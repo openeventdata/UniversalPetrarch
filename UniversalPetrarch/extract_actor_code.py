@@ -18,10 +18,13 @@ def _format_ud_parsed_str(parsed_str):
 
     cleanparsed=[]
     for p in parsed:
+    	if not p:
+    		continue
     	if len(p.split("\t"))==8:
     		cleanparsed.append(p)
     	else:
-    		print("number of field is not 8"+p)
+    		print("number of field is not 8:"+p)
+    		raw_input("Press Enter to continue...")
 
 
     treestr = '\n'.join(cleanparsed)
@@ -47,7 +50,7 @@ def read_xml_input(filepaths, parsed=False):
 				if parsed:
 					parsed_content = story.find('Parse').text
 					parsed_content = _format_ud_parsed_str(parsed_content)
-				#print(parsed_content) # add graph
+					#print(parsed_content) # add graph
 				else:
 					parsed_content = ''
 
@@ -58,8 +61,8 @@ def read_xml_input(filepaths, parsed=False):
 					text = story.find('Text').text
 					text = text.replace('\n', ' ').replace('  ', ' ')
 					sent_dict = {'content': text, 'parsed': parsed_content}
-					print(text)
-					print(parsed_content)
+					#print(text)
+					#print(parsed_content)
 
 					meta_content = {'date': story.attrib['date'],
 					'source': story.attrib['source']}
@@ -118,8 +121,8 @@ def extract_actor_code(event_dict):
 				#print(nx.dfs_successors(sentence.udgraph,6))
 
 				sentence.get_phrases()
-				print('verbs:')
-				for v in sentence.metadata['verbs']: print(v)
+				#print('verbs:')
+				#for v in sentence.metadata['verbs']: print(v)
 				print('nouns:')
 				for n in sentence.metadata['nouns']: 
 					codes,roots,matched_txt = n.get_meaning();
@@ -181,8 +184,9 @@ sys.stdout.write('Mk1\n')
 PETRreader.parse_Config(config)
 print("reading dicts")
 petrarch2.read_dictionaries()
-inputFile=sys.argv[1].replace(".xml","")+"_parsed.xml"
-outputFile = inputFile.replace(".xml","")+"_phrase.xml"
+inputFile=sys.argv[1]
+#inputFile=sys.argv[1].replace(".xml","")+"_parsed.xml"
+#outputFile = inputFile.replace(".xml","")+"_phrase.xml"
 events = read_xml_input([inputFile], True)
 '''
 print(len(events))

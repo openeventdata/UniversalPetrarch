@@ -1,0 +1,1819 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20080804" id="AFP0808020625_4" sentence="True" source="AFP">
+<Text>
+The stopover came as the US leader prepared to attend the Beijing Olympics, an 
+event which will test his vow to keep politics out of the Games. 
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	stopover	_	NOUN	NOUN	_	8	nsubj
+3	came	_	VERB	VERB	_	2	acl
+4	as	_	ADP	ADP	_	7	case
+5	the	_	DET	DET	_	7	det
+6	US	_	PROPN	PROPN	_	7	compound
+7	leader	_	NOUN	NOUN	_	3	nmod
+8	prepared	_	VERB	VERB	_	0	root
+9	to	_	PART	PART	_	10	mark
+10	attend	_	VERB	VERB	_	8	xcomp
+11	the	_	DET	DET	_	13	det
+12	Beijing	_	PROPN	PROPN	_	13	compound
+13	Olympics	_	PROPN	PROPN	_	10	dobj
+14	,	_	PUNCT	PUNCT	_	13	punct
+15	an	_	DET	DET	_	16	det
+16	event	_	NOUN	NOUN	_	13	appos
+17	which	_	PRON	PRON	_	19	nsubj
+18	will	_	AUX	AUX	_	19	aux
+19	test	_	VERB	VERB	_	16	acl:relcl
+20	his	_	PRON	PRON	_	21	nmod:poss
+21	vow	_	NOUN	NOUN	_	19	dobj
+22	to	_	PART	PART	_	23	mark
+23	keep	_	VERB	VERB	_	19	advcl
+24	politics	_	NOUN	NOUN	_	23	dobj
+25	out	_	ADP	ADP	_	28	case
+26	of	_	ADP	ADP	_	28	case
+27	the	_	DET	DET	_	28	det
+28	Games	_	NOUN	NOUN	_	23	nmod
+29	.	_	PUNCT	PUNCT	_	8	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020675_1" sentence="True" source="AFP">
+<Text>
+Brazil and the United States are seeking to deepen a partnership in energy, 
+especially by promoting biofuels and other alternatives to oil, US Deputy 
+Secretary of Energy Jeffrey Kupfer said here Wednesday. 
+</Text>
+<Parse>1	Brazil	_	PROPN	PROPN	_	7	nsubj
+2	and	_	CONJ	CONJ	_	1	cc
+3	the	_	DET	DET	_	5	det
+4	United	_	PROPN	PROPN	_	5	compound
+5	States	_	PROPN	PROPN	_	1	conj
+6	are	_	AUX	AUX	_	7	aux
+7	seeking	_	VERB	VERB	_	0	root
+8	to	_	PART	PART	_	9	mark
+9	deepen	_	VERB	VERB	_	7	xcomp
+10	a	_	DET	DET	_	11	det
+11	partnership	_	NOUN	NOUN	_	9	dobj
+12	in	_	ADP	ADP	_	13	case
+13	energy	_	NOUN	NOUN	_	9	nmod
+14	,	_	PUNCT	PUNCT	_	9	punct
+15	especially	_	ADV	ADV	_	17	advmod
+16	by	_	SCONJ	SCONJ	_	17	mark
+17	promoting	_	VERB	VERB	_	9	advcl
+18	biofuels	_	NOUN	NOUN	_	17	dobj
+19	and	_	CONJ	CONJ	_	18	cc
+20	other	_	ADJ	ADJ	_	21	amod
+21	alternatives	_	NOUN	NOUN	_	18	conj
+22	to	_	ADP	ADP	_	23	case
+23	oil	_	NOUN	NOUN	_	21	nmod
+24	,	_	PUNCT	PUNCT	_	21	punct
+25	US	_	PROPN	PROPN	_	27	compound
+26	Deputy	_	NOUN	NOUN	_	27	compound
+27	Secretary	_	NOUN	NOUN	_	21	nmod
+28	of	_	ADP	ADP	_	31	case
+29	Energy	_	PROPN	PROPN	_	31	compound
+30	Jeffrey	_	PROPN	PROPN	_	31	compound
+31	Kupfer	_	PROPN	PROPN	_	27	nmod
+32	said	_	VERB	VERB	_	31	acl
+33	here	_	ADV	ADV	_	32	advmod
+34	Wednesday	_	PROPN	PROPN	_	32	dobj
+35	.	_	PUNCT	PUNCT	_	7	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020705_1" sentence="True" source="AFP">
+<Text>
+A court in Guyana has issued arrest warrants for two Brazilian men sought in 
+the brutal slaying of two American missionaries in southern Guyana three years 
+ago, a senior Guyanese police officer said Wednesday. 
+</Text>
+<Parse>1	A	_	DET	DET	_	2	det
+2	court	_	NOUN	NOUN	_	6	nsubj
+3	in	_	ADP	ADP	_	4	case
+4	Guyana	_	PROPN	PROPN	_	2	nmod
+5	has	_	AUX	AUX	_	6	aux
+6	issued	_	VERB	VERB	_	34	ccomp
+7	arrest	_	NOUN	NOUN	_	8	compound
+8	warrants	_	NOUN	NOUN	_	6	dobj
+9	for	_	ADP	ADP	_	12	case
+10	two	_	NUM	NUM	_	12	nummod
+11	Brazilian	_	ADJ	ADJ	_	12	amod
+12	men	_	NOUN	NOUN	_	6	nmod
+13	sought	_	VERB	VERB	_	12	acl
+14	in	_	ADP	ADP	_	17	case
+15	the	_	DET	DET	_	17	det
+16	brutal	_	ADJ	ADJ	_	17	amod
+17	slaying	_	NOUN	NOUN	_	13	nmod
+18	of	_	ADP	ADP	_	21	case
+19	two	_	NUM	NUM	_	21	nummod
+20	American	_	ADJ	ADJ	_	21	amod
+21	missionaries	_	NOUN	NOUN	_	17	nmod
+22	in	_	ADP	ADP	_	24	case
+23	southern	_	ADJ	ADJ	_	24	amod
+24	Guyana	_	PROPN	PROPN	_	21	nmod
+25	three	_	NUM	NUM	_	26	nummod
+26	years	_	NOUN	NOUN	_	27	nmod:npmod
+27	ago	_	ADV	ADV	_	13	advmod
+28	,	_	PUNCT	PUNCT	_	34	punct
+29	a	_	DET	DET	_	33	det
+30	senior	_	ADJ	ADJ	_	33	amod
+31	Guyanese	_	NOUN	NOUN	_	32	compound
+32	police	_	NOUN	NOUN	_	33	compound
+33	officer	_	NOUN	NOUN	_	34	nsubj
+34	said	_	VERB	VERB	_	0	root
+35	Wednesday	_	PROPN	PROPN	_	34	dobj
+36	.	_	PUNCT	PUNCT	_	34	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020742_2" sentence="True" source="AFP">
+<Text>
+Washington said such a step enjoyed support from Moscow and Beijing-- which 
+have resisted taking a harder line on the Islamic republic-- but China 
+remained mum and Russia's UN ambassador said he was unaware of such agreement. 
+</Text>
+<Parse>1	Washington	_	PROPN	PROPN	_	2	nsubj
+2	said	_	VERB	VERB	_	0	root
+3	such	_	DET	DET	_	5	det:predet
+4	a	_	DET	DET	_	5	det
+5	step	_	NOUN	NOUN	_	2	dobj
+6	enjoyed	_	VERB	VERB	_	5	acl
+7	support	_	NOUN	NOUN	_	6	dobj
+8	from	_	ADP	ADP	_	9	case
+9	Moscow	_	PROPN	PROPN	_	7	nmod
+10	and	_	CONJ	CONJ	_	9	cc
+11	Beijing	_	PROPN	PROPN	_	9	conj
+12	--	_	PUNCT	PUNCT	_	7	punct
+13	which	_	PRON	PRON	_	15	nsubj
+14	have	_	AUX	AUX	_	15	aux
+15	resisted	_	VERB	VERB	_	7	acl:relcl
+16	taking	_	VERB	VERB	_	15	xcomp
+17	a	_	DET	DET	_	19	det
+18	harder	_	ADJ	ADJ	_	19	amod
+19	line	_	NOUN	NOUN	_	16	dobj
+20	on	_	ADP	ADP	_	23	case
+21	the	_	DET	DET	_	23	det
+22	Islamic	_	PROPN	PROPN	_	23	compound
+23	republic	_	PROPN	PROPN	_	19	nmod
+24	--	_	PUNCT	PUNCT	_	2	punct
+25	but	_	CONJ	CONJ	_	2	cc
+26	China	_	PROPN	PROPN	_	27	nsubj
+27	remained	_	VERB	VERB	_	2	conj
+28	mum	_	NOUN	NOUN	_	27	dobj
+29	and	_	CONJ	CONJ	_	28	cc
+30	Russia	_	PROPN	PROPN	_	33	nmod:poss
+31	's	_	PART	PART	_	30	case
+32	UN	_	PROPN	PROPN	_	33	compound
+33	ambassador	_	NOUN	NOUN	_	28	conj
+34	said	_	VERB	VERB	_	33	acl
+35	he	_	PRON	PRON	_	36	nsubj
+36	was	_	VERB	VERB	_	34	ccomp
+37	unaware	_	ADJ	ADJ	_	36	dobj
+38	of	_	ADP	ADP	_	40	case
+39	such	_	ADJ	ADJ	_	40	amod
+40	agreement	_	NOUN	NOUN	_	37	nmod
+41	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020776_5" sentence="True" source="AFP">
+<Text>
+The statement by the French presidency comes a day before Sarkozy heads to 
+Beijing for the Friday opening of the Olympic Games, seeking to mend ties with 
+China frayed by an initial threat to boycott the ceremony. 
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	statement	_	NOUN	NOUN	_	24	nsubj
+3	by	_	ADP	ADP	_	6	case
+4	the	_	DET	DET	_	6	det
+5	French	_	ADJ	ADJ	_	6	amod
+6	presidency	_	NOUN	NOUN	_	2	nmod
+7	comes	_	VERB	VERB	_	6	acl
+8	a	_	DET	DET	_	9	det
+9	day	_	NOUN	NOUN	_	7	dobj
+10	before	_	ADP	ADP	_	12	case
+11	Sarkozy	_	ADJ	ADJ	_	12	amod
+12	heads	_	NOUN	NOUN	_	7	nmod
+13	to	_	ADP	ADP	_	14	case
+14	Beijing	_	PROPN	PROPN	_	7	nmod
+15	for	_	ADP	ADP	_	18	case
+16	the	_	DET	DET	_	18	det
+17	Friday	_	PROPN	PROPN	_	18	compound
+18	opening	_	NOUN	NOUN	_	7	nmod
+19	of	_	ADP	ADP	_	22	case
+20	the	_	DET	DET	_	22	det
+21	Olympic	_	PROPN	PROPN	_	22	compound
+22	Games	_	NOUN	NOUN	_	18	nmod
+23	,	_	PUNCT	PUNCT	_	24	punct
+24	seeking	_	VERB	VERB	_	0	root
+25	to	_	PART	PART	_	26	mark
+26	mend	_	VERB	VERB	_	24	xcomp
+27	ties	_	NOUN	NOUN	_	26	dobj
+28	with	_	ADP	ADP	_	29	case
+29	China	_	PROPN	PROPN	_	27	nmod
+30	frayed	_	VERB	VERB	_	27	acl
+31	by	_	ADP	ADP	_	34	case
+32	an	_	DET	DET	_	34	det
+33	initial	_	ADJ	ADJ	_	34	amod
+34	threat	_	NOUN	NOUN	_	30	nmod
+35	to	_	PART	PART	_	36	mark
+36	boycott	_	VERB	VERB	_	34	acl
+37	the	_	DET	DET	_	38	det
+38	ceremony	_	NOUN	NOUN	_	36	dobj
+39	.	_	PUNCT	PUNCT	_	24	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020824_1" sentence="True" source="AFP">
+<Text>
+A Tunisian court has jailed a man for two years for helping young militants 
+join an armed Islamic group in Lebanon, his lawyer said Wednesday. 
+</Text>
+<Parse>1	A	_	DET	DET	_	3	det
+2	Tunisian	_	ADJ	ADJ	_	3	amod
+3	court	_	NOUN	NOUN	_	5	nsubj
+4	has	_	AUX	AUX	_	5	aux
+5	jailed	_	VERB	VERB	_	0	root
+6	a	_	DET	DET	_	7	det
+7	man	_	NOUN	NOUN	_	5	dobj
+8	for	_	ADP	ADP	_	10	case
+9	two	_	NUM	NUM	_	10	nummod
+10	years	_	NOUN	NOUN	_	5	nmod
+11	for	_	SCONJ	SCONJ	_	12	mark
+12	helping	_	VERB	VERB	_	5	advcl
+13	young	_	ADJ	ADJ	_	14	amod
+14	militants	_	NOUN	NOUN	_	12	dobj
+15	join	_	VERB	VERB	_	12	xcomp
+16	an	_	DET	DET	_	19	det
+17	armed	_	ADJ	ADJ	_	19	amod
+18	Islamic	_	PROPN	PROPN	_	19	compound
+19	group	_	NOUN	NOUN	_	15	dobj
+20	in	_	ADP	ADP	_	21	case
+21	Lebanon	_	PROPN	PROPN	_	15	nmod
+22	,	_	PUNCT	PUNCT	_	15	punct
+23	his	_	PRON	PRON	_	24	nmod:poss
+24	lawyer	_	NOUN	NOUN	_	25	nsubj
+25	said	_	VERB	VERB	_	15	advcl
+26	Wednesday	_	PROPN	PROPN	_	25	dobj
+27	.	_	PUNCT	PUNCT	_	5	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020840_1" sentence="True" source="AFP">
+<Text>
+France on Wednesday condemned as`` unacceptable'' allegations by Rwanda that it 
+had played an active role in the 1994 genocide, as Kigali said it hoped French 
+officials would be indicted for war crimes. 
+</Text>
+<Parse>1	France	_	PROPN	PROPN	_	4	nsubj
+2	on	_	ADP	ADP	_	3	case
+3	Wednesday	_	PROPN	PROPN	_	1	nmod
+4	condemned	_	VERB	VERB	_	0	root
+5	as	_	ADP	ADP	_	9	case
+6	``	_	ADJ	ADJ	_	9	amod
+7	unacceptable	_	ADJ	ADJ	_	9	amod
+8	''	_	PUNCT	PUNCT	_	9	punct
+9	allegations	_	NOUN	NOUN	_	4	nmod
+10	by	_	ADP	ADP	_	11	case
+11	Rwanda	_	PROPN	PROPN	_	4	nmod
+12	that	_	SCONJ	SCONJ	_	15	mark
+13	it	_	PRON	PRON	_	15	nsubj
+14	had	_	AUX	AUX	_	15	aux
+15	played	_	VERB	VERB	_	4	advcl
+16	an	_	DET	DET	_	18	det
+17	active	_	ADJ	ADJ	_	18	amod
+18	role	_	NOUN	NOUN	_	15	dobj
+19	in	_	ADP	ADP	_	22	case
+20	the	_	DET	DET	_	22	det
+21	1994	_	NUM	NUM	_	22	nummod
+22	genocide	_	NOUN	NOUN	_	15	nmod
+23	,	_	PUNCT	PUNCT	_	15	punct
+24	as	_	SCONJ	SCONJ	_	26	mark
+25	Kigali	_	PROPN	PROPN	_	26	nsubj
+26	said	_	VERB	VERB	_	15	advcl
+27	it	_	PRON	PRON	_	28	nsubj
+28	hoped	_	VERB	VERB	_	26	ccomp
+29	French	_	ADJ	ADJ	_	30	amod
+30	officials	_	NOUN	NOUN	_	28	dobj
+31	would	_	AUX	AUX	_	33	aux
+32	be	_	AUX	AUX	_	33	aux
+33	indicted	_	VERB	VERB	_	28	csubj
+34	for	_	ADP	ADP	_	36	case
+35	war	_	NOUN	NOUN	_	36	compound
+36	crimes	_	NOUN	NOUN	_	33	nmod
+37	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020840_2" sentence="True" source="AFP">
+<Text>
+A 500-page report released Tuesday in the Rwandan capital alleged that France 
+was aware of preparations for the genocide, and that the French military in 
+Rwanda helped to plan and carry out killings. 
+</Text>
+<Parse>1	A	_	DET	DET	_	3	det
+2	500-page	_	NOUN	NOUN	_	3	compound
+3	report	_	NOUN	NOUN	_	10	nsubj
+4	released	_	VERB	VERB	_	3	acl
+5	Tuesday	_	PROPN	PROPN	_	4	dobj
+6	in	_	ADP	ADP	_	9	case
+7	the	_	DET	DET	_	9	det
+8	Rwandan	_	PROPN	PROPN	_	9	compound
+9	capital	_	NOUN	NOUN	_	4	nmod
+10	alleged	_	VERB	VERB	_	0	root
+11	that	_	SCONJ	SCONJ	_	13	mark
+12	France	_	PROPN	PROPN	_	13	nsubj
+13	was	_	VERB	VERB	_	10	ccomp
+14	aware	_	ADJ	ADJ	_	13	xcomp
+15	of	_	ADP	ADP	_	16	case
+16	preparations	_	NOUN	NOUN	_	14	nmod
+17	for	_	ADP	ADP	_	19	case
+18	the	_	DET	DET	_	19	det
+19	genocide	_	NOUN	NOUN	_	16	nmod
+20	,	_	PUNCT	PUNCT	_	13	punct
+21	and	_	CONJ	CONJ	_	13	cc
+22	that	_	SCONJ	SCONJ	_	28	mark
+23	the	_	DET	DET	_	25	det
+24	French	_	ADJ	ADJ	_	25	amod
+25	military	_	NOUN	NOUN	_	28	nsubj
+26	in	_	ADP	ADP	_	27	case
+27	Rwanda	_	PROPN	PROPN	_	25	nmod
+28	helped	_	VERB	VERB	_	13	conj
+29	to	_	PART	PART	_	30	mark
+30	plan	_	VERB	VERB	_	28	xcomp
+31	and	_	CONJ	CONJ	_	30	cc
+32	carry	_	VERB	VERB	_	30	conj
+33	out	_	ADP	ADP	_	32	compound:prt
+34	killings	_	NOUN	NOUN	_	32	nmod
+35	.	_	PUNCT	PUNCT	_	10	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020857_1" sentence="True" source="AFP">
+<Text>
+Israel on Wednesday released the mayor of the northern West Bank city of 
+Nablus, a member of the Islamist Hamas movement jailed over a year ago, 
+Palestinian security officials said. 
+</Text>
+<Parse>1	Israel	_	PROPN	PROPN	_	32	nsubj
+2	on	_	ADP	ADP	_	3	case
+3	Wednesday	_	PROPN	PROPN	_	1	nmod
+4	released	_	VERB	VERB	_	1	parataxis
+5	the	_	DET	DET	_	6	det
+6	mayor	_	NOUN	NOUN	_	4	dobj
+7	of	_	ADP	ADP	_	12	case
+8	the	_	DET	DET	_	12	det
+9	northern	_	ADJ	ADJ	_	12	amod
+10	West	_	PROPN	PROPN	_	11	compound
+11	Bank	_	PROPN	PROPN	_	12	compound
+12	city	_	NOUN	NOUN	_	6	nmod
+13	of	_	ADP	ADP	_	14	case
+14	Nablus	_	PROPN	PROPN	_	12	nmod
+15	,	_	PUNCT	PUNCT	_	14	punct
+16	a	_	DET	DET	_	17	det
+17	member	_	NOUN	NOUN	_	14	appos
+18	of	_	ADP	ADP	_	22	case
+19	the	_	DET	DET	_	22	det
+20	Islamist	_	PROPN	PROPN	_	21	compound
+21	Hamas	_	PROPN	PROPN	_	22	compound
+22	movement	_	NOUN	NOUN	_	17	nmod
+23	jailed	_	VERB	VERB	_	22	acl
+24	over	_	ADP	ADP	_	23	compound:prt
+25	a	_	DET	DET	_	26	det
+26	year	_	NOUN	NOUN	_	27	nmod:npmod
+27	ago	_	ADV	ADV	_	23	advmod
+28	,	_	PUNCT	PUNCT	_	32	punct
+29	Palestinian	_	ADJ	ADJ	_	31	amod
+30	security	_	NOUN	NOUN	_	31	compound
+31	officials	_	NOUN	NOUN	_	32	nsubj
+32	said	_	VERB	VERB	_	0	root
+33	.	_	PUNCT	PUNCT	_	32	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020857_2" sentence="True" source="AFP">
+<Text>
+The release of Adli Yaish, who had been arrested 15 months ago, came as Israel 
+announced it would free over 150 Palestinian prisoners by the end of August as 
+a goodwill gesture to Palestinian president Mahmud Abbas. 
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	release	_	NOUN	NOUN	_	15	nsubj
+3	of	_	ADP	ADP	_	5	case
+4	Adli	_	PROPN	PROPN	_	5	compound
+5	Yaish	_	PROPN	PROPN	_	2	nmod
+6	,	_	PUNCT	PUNCT	_	2	punct
+7	who	_	PRON	PRON	_	10	nsubj
+8	had	_	AUX	AUX	_	10	aux
+9	been	_	AUX	AUX	_	10	aux
+10	arrested	_	VERB	VERB	_	2	acl:relcl
+11	15	_	NUM	NUM	_	12	nummod
+12	months	_	NOUN	NOUN	_	13	nmod:npmod
+13	ago	_	ADV	ADV	_	10	advmod
+14	,	_	PUNCT	PUNCT	_	15	punct
+15	came	_	VERB	VERB	_	0	root
+16	as	_	SCONJ	SCONJ	_	18	mark
+17	Israel	_	PROPN	PROPN	_	18	nsubj
+18	announced	_	VERB	VERB	_	15	advcl
+19	it	_	PRON	PRON	_	21	nsubj
+20	would	_	AUX	AUX	_	21	aux
+21	free	_	ADJ	ADJ	_	18	xcomp
+22	over	_	ADP	ADP	_	25	case
+23	150	_	NUM	NUM	_	25	nummod
+24	Palestinian	_	ADJ	ADJ	_	25	amod
+25	prisoners	_	NOUN	NOUN	_	21	nmod
+26	by	_	ADP	ADP	_	28	case
+27	the	_	DET	DET	_	28	det
+28	end	_	NOUN	NOUN	_	18	nmod
+29	of	_	ADP	ADP	_	30	case
+30	August	_	PROPN	PROPN	_	28	nmod
+31	as	_	ADP	ADP	_	34	case
+32	a	_	DET	DET	_	34	det
+33	goodwill	_	ADJ	ADJ	_	34	amod
+34	gesture	_	NOUN	NOUN	_	18	nmod
+35	to	_	ADP	ADP	_	39	case
+36	Palestinian	_	PROPN	PROPN	_	39	compound
+37	president	_	PROPN	PROPN	_	39	compound
+38	Mahmud	_	PROPN	PROPN	_	39	compound
+39	Abbas	_	PROPN	PROPN	_	34	nmod
+40	.	_	PUNCT	PUNCT	_	15	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020905_1" sentence="True" source="AFP">
+<Text>
+The US commander in Iraq, General David Petraeus, held talks with President 
+Michel Suleiman during a surprise visit to Beirut on Wednesday, offering
+further military support to Lebanon. 
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	US	_	PROPN	PROPN	_	3	compound
+3	commander	_	NOUN	NOUN	_	11	nsubj
+4	in	_	ADP	ADP	_	5	case
+5	Iraq	_	PROPN	PROPN	_	3	nmod
+6	,	_	PUNCT	PUNCT	_	5	punct
+7	General	_	PROPN	PROPN	_	9	compound
+8	David	_	PROPN	PROPN	_	9	compound
+9	Petraeus	_	PROPN	PROPN	_	5	conj
+10	,	_	PUNCT	PUNCT	_	11	punct
+11	held	_	VERB	VERB	_	0	root
+12	talks	_	NOUN	NOUN	_	11	dobj
+13	with	_	ADP	ADP	_	16	case
+14	President	_	PROPN	PROPN	_	16	compound
+15	Michel	_	PROPN	PROPN	_	16	compound
+16	Suleiman	_	PROPN	PROPN	_	12	nmod
+17	during	_	ADP	ADP	_	20	case
+18	a	_	DET	DET	_	20	det
+19	surprise	_	NOUN	NOUN	_	20	compound
+20	visit	_	NOUN	NOUN	_	11	nmod
+21	to	_	ADP	ADP	_	22	case
+22	Beirut	_	PROPN	PROPN	_	20	nmod
+23	on	_	ADP	ADP	_	24	case
+24	Wednesday	_	PROPN	PROPN	_	22	nmod
+25	,	_	PUNCT	PUNCT	_	11	punct
+26	offering	_	VERB	VERB	_	11	advcl
+27	further	_	ADV	ADV	_	26	advmod
+28	military	_	ADJ	ADJ	_	29	amod
+29	support	_	NOUN	NOUN	_	26	dobj
+30	to	_	ADP	ADP	_	31	case
+31	Lebanon	_	PROPN	PROPN	_	29	nmod
+32	.	_	PUNCT	PUNCT	_	11	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020937_1" sentence="True" source="AFP">
+<Text>
+US and British activists staged a dramatic protest in Beijing on Wednesday, 
+scaling a pole and unfurling giant`` Free Tibet'' banners close to the stadium 
+where the Olympics will open in two days. 
+</Text>
+<Parse>1	US	_	PROPN	PROPN	_	4	compound
+2	and	_	CONJ	CONJ	_	1	cc
+3	British	_	ADJ	ADJ	_	1	conj
+4	activists	_	NOUN	NOUN	_	5	nsubj
+5	staged	_	VERB	VERB	_	0	root
+6	a	_	DET	DET	_	8	det
+7	dramatic	_	ADJ	ADJ	_	8	amod
+8	protest	_	NOUN	NOUN	_	5	dobj
+9	in	_	ADP	ADP	_	10	case
+10	Beijing	_	PROPN	PROPN	_	8	nmod
+11	on	_	ADP	ADP	_	12	case
+12	Wednesday	_	PROPN	PROPN	_	8	nmod
+13	,	_	PUNCT	PUNCT	_	5	punct
+14	scaling	_	VERB	VERB	_	5	advcl
+15	a	_	DET	DET	_	16	det
+16	pole	_	NOUN	NOUN	_	14	dobj
+17	and	_	CONJ	CONJ	_	16	cc
+18	unfurling	_	ADJ	ADJ	_	19	amod
+19	giant	_	NOUN	NOUN	_	16	conj
+20	``	_	ADP	ADP	_	22	case
+21	Free	_	ADJ	ADJ	_	22	amod
+22	Tibet	_	NOUN	NOUN	_	19	nmod
+23	''	_	PUNCT	PUNCT	_	22	punct
+24	banners	_	NOUN	NOUN	_	22	appos
+25	close	_	ADJ	ADJ	_	24	amod
+26	to	_	ADP	ADP	_	28	case
+27	the	_	DET	DET	_	28	det
+28	stadium	_	NOUN	NOUN	_	25	nmod
+29	where	_	ADV	ADV	_	33	advmod
+30	the	_	DET	DET	_	31	det
+31	Olympics	_	PROPN	PROPN	_	33	nsubj
+32	will	_	AUX	AUX	_	33	aux
+33	open	_	VERB	VERB	_	28	acl:relcl
+34	in	_	ADP	ADP	_	36	case
+35	two	_	NUM	NUM	_	36	nummod
+36	days	_	NOUN	NOUN	_	33	nmod
+37	.	_	PUNCT	PUNCT	_	5	punct
+</Parse></Sentence>
+
+
+<Sentence date="20080806" id="AFP0808020955_1" sentence="True" source="AFP">
+<Text>
+Rwanda's information minister said Wednesday she hoped a raft of French 
+political and military officials accused of playing a role in the country's 
+1994 genocide would soon be indicted for war crimes. 
+</Text>
+<Parse>1	Rwanda	_	PROPN	PROPN	_	4	nmod:poss
+2	's	_	PART	PART	_	1	case
+3	information	_	NOUN	NOUN	_	4	compound
+4	minister	_	NOUN	NOUN	_	5	nsubj
+5	said	_	VERB	VERB	_	0	root
+6	Wednesday	_	PROPN	PROPN	_	5	dobj
+7	she	_	PRON	PRON	_	8	nsubj
+8	hoped	_	VERB	VERB	_	5	ccomp
+9	a	_	DET	DET	_	10	det
+10	raft	_	NOUN	NOUN	_	8	dobj
+11	of	_	ADP	ADP	_	16	case
+12	French	_	ADJ	ADJ	_	16	amod
+13	political	_	ADJ	ADJ	_	16	amod
+14	and	_	CONJ	CONJ	_	13	cc
+15	military	_	ADJ	ADJ	_	13	conj
+16	officials	_	NOUN	NOUN	_	10	nmod
+17	accused	_	VERB	VERB	_	10	acl
+18	of	_	SCONJ	SCONJ	_	19	mark
+19	playing	_	VERB	VERB	_	17	advcl
+20	a	_	DET	DET	_	21	det
+21	role	_	NOUN	NOUN	_	19	dobj
+22	in	_	ADP	ADP	_	24	case
+23	the	_	DET	DET	_	24	det
+24	country	_	NOUN	NOUN	_	19	nmod
+25	's	_	PART	PART	_	24	case
+26	1994	_	NUM	NUM	_	27	nummod
+27	genocide	_	NOUN	NOUN	_	31	nsubj
+28	would	_	AUX	AUX	_	31	aux
+29	soon	_	ADV	ADV	_	31	advmod
+30	be	_	AUX	AUX	_	31	aux
+31	indicted	_	VERB	VERB	_	17	advcl
+32	for	_	ADP	ADP	_	34	case
+33	war	_	NOUN	NOUN	_	34	compound
+34	crimes	_	NOUN	NOUN	_	31	nmod
+35	.	_	PUNCT	PUNCT	_	5	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020957_1" sentence="True" source="AFP">
+<Text>
+France on Wednesday accused Rwanda of making`` unacceptable accusations'' by 
+alleging Paris played an active role in the 1994 genocide, but said it was 
+still determined to mend damaged ties with Kigali. 
+</Text>
+<Parse>1	France	_	PROPN	PROPN	_	4	nsubj
+2	on	_	ADP	ADP	_	3	case
+3	Wednesday	_	PROPN	PROPN	_	1	nmod
+4	accused	_	VERB	VERB	_	0	root
+5	Rwanda	_	PROPN	PROPN	_	4	dobj
+6	of	_	SCONJ	SCONJ	_	7	mark
+7	making	_	VERB	VERB	_	4	advcl
+8	``	_	ADJ	ADJ	_	10	amod
+9	unacceptable	_	ADJ	ADJ	_	10	amod
+10	accusations	_	NOUN	NOUN	_	7	dobj
+11	''	_	PUNCT	PUNCT	_	4	punct
+12	by	_	SCONJ	SCONJ	_	13	mark
+13	alleging	_	VERB	VERB	_	4	advcl
+14	Paris	_	PROPN	PROPN	_	13	dobj
+15	played	_	VERB	VERB	_	13	xcomp
+16	an	_	DET	DET	_	18	det
+17	active	_	ADJ	ADJ	_	18	amod
+18	role	_	NOUN	NOUN	_	15	dobj
+19	in	_	ADP	ADP	_	22	case
+20	the	_	DET	DET	_	22	det
+21	1994	_	NUM	NUM	_	22	nummod
+22	genocide	_	NOUN	NOUN	_	15	nmod
+23	,	_	PUNCT	PUNCT	_	15	punct
+24	but	_	CONJ	CONJ	_	15	cc
+25	said	_	VERB	VERB	_	15	conj
+26	it	_	PRON	PRON	_	27	nsubj
+27	was	_	VERB	VERB	_	25	ccomp
+28	still	_	ADV	ADV	_	27	advmod
+29	determined	_	ADJ	ADJ	_	27	xcomp
+30	to	_	PART	PART	_	31	mark
+31	mend	_	VERB	VERB	_	29	advcl
+32	damaged	_	VERB	VERB	_	31	xcomp
+33	ties	_	NOUN	NOUN	_	32	dobj
+34	with	_	ADP	ADP	_	35	case
+35	Kigali	_	PROPN	PROPN	_	32	nmod
+36	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808020957_2" sentence="True" source="AFP">
+<Text>
+A 500-page report released Tuesday in the Rwandan capital alleged that France 
+was aware of preparations for the genocide, and that the French military in 
+Rwanda contributed to planning the massacres and actively took part in the 
+killing. 
+</Text>
+<Parse>1	A	_	DET	DET	_	3	det
+2	500-page	_	NOUN	NOUN	_	3	compound
+3	report	_	NOUN	NOUN	_	10	nsubj
+4	released	_	VERB	VERB	_	3	acl
+5	Tuesday	_	PROPN	PROPN	_	4	dobj
+6	in	_	ADP	ADP	_	9	case
+7	the	_	DET	DET	_	9	det
+8	Rwandan	_	PROPN	PROPN	_	9	compound
+9	capital	_	NOUN	NOUN	_	4	nmod
+10	alleged	_	VERB	VERB	_	0	root
+11	that	_	SCONJ	SCONJ	_	13	mark
+12	France	_	PROPN	PROPN	_	13	nsubj
+13	was	_	VERB	VERB	_	10	ccomp
+14	aware	_	ADJ	ADJ	_	13	xcomp
+15	of	_	ADP	ADP	_	16	case
+16	preparations	_	NOUN	NOUN	_	14	nmod
+17	for	_	ADP	ADP	_	19	case
+18	the	_	DET	DET	_	19	det
+19	genocide	_	NOUN	NOUN	_	16	nmod
+20	,	_	PUNCT	PUNCT	_	13	punct
+21	and	_	CONJ	CONJ	_	13	cc
+22	that	_	SCONJ	SCONJ	_	28	mark
+23	the	_	DET	DET	_	25	det
+24	French	_	ADJ	ADJ	_	25	amod
+25	military	_	NOUN	NOUN	_	28	nsubj
+26	in	_	ADP	ADP	_	27	case
+27	Rwanda	_	PROPN	PROPN	_	25	nmod
+28	contributed	_	VERB	VERB	_	13	conj
+29	to	_	PART	PART	_	30	mark
+30	planning	_	VERB	VERB	_	28	xcomp
+31	the	_	DET	DET	_	32	det
+32	massacres	_	NOUN	NOUN	_	30	dobj
+33	and	_	CONJ	CONJ	_	30	cc
+34	actively	_	ADV	ADV	_	35	advmod
+35	took	_	VERB	VERB	_	30	conj
+36	part	_	NOUN	NOUN	_	35	dobj
+37	in	_	ADP	ADP	_	39	case
+38	the	_	DET	DET	_	39	det
+39	killing	_	NOUN	NOUN	_	35	nmod
+40	.	_	PUNCT	PUNCT	_	10	punct
+</Parse></Sentence>
+
+<Sentence date="20080806" id="AFP0808021021_3" sentence="True" source="AFP">
+<Text>
+Before leaving for Beijing on Thursday, Bush was scheduled to give a speech 
+here on US relations with Asia and meet with exiled dissidents from 
+military-ruled Myanmar. 
+</Text>
+<Parse>1	Before	_	SCONJ	SCONJ	_	2	mark
+2	leaving	_	VERB	VERB	_	10	advcl
+3	for	_	ADP	ADP	_	4	case
+4	Beijing	_	PROPN	PROPN	_	2	nmod
+5	on	_	ADP	ADP	_	6	case
+6	Thursday	_	PROPN	PROPN	_	2	nmod
+7	,	_	PUNCT	PUNCT	_	10	punct
+8	Bush	_	PROPN	PROPN	_	10	nsubj
+9	was	_	AUX	AUX	_	10	aux
+10	scheduled	_	VERB	VERB	_	0	root
+11	to	_	PART	PART	_	12	mark
+12	give	_	VERB	VERB	_	10	xcomp
+13	a	_	DET	DET	_	14	det
+14	speech	_	NOUN	NOUN	_	12	dobj
+15	here	_	ADV	ADV	_	12	advmod
+16	on	_	ADP	ADP	_	18	case
+17	US	_	PROPN	PROPN	_	18	compound
+18	relations	_	NOUN	NOUN	_	12	nmod
+19	with	_	ADP	ADP	_	20	case
+20	Asia	_	PROPN	PROPN	_	18	nmod
+21	and	_	CONJ	CONJ	_	12	cc
+22	meet	_	VERB	VERB	_	12	conj
+23	with	_	ADP	ADP	_	25	case
+24	exiled	_	ADJ	ADJ	_	25	amod
+25	dissidents	_	NOUN	NOUN	_	22	nmod
+26	from	_	ADP	ADP	_	28	case
+27	military-ruled	_	ADJ	ADJ	_	28	amod
+28	Myanmar	_	PROPN	PROPN	_	25	nmod
+29	.	_	PUNCT	PUNCT	_	10	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="GOLD_0" sentence="True" source="AFP">
+<Text>
+The United States launched an air strike against an Islamic State target southwest of Baghdad, the U.S. Central Command said on Monday night, expanding its campaign against the militant group that has seized parts of Iraq and Syria.
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	United	_	PROPN	PROPN	_	3	compound
+3	States	_	PROPN	PROPN	_	4	nsubj
+4	launched	_	VERB	VERB	_	21	advcl
+5	an	_	DET	DET	_	7	det
+6	air	_	NOUN	NOUN	_	7	compound
+7	strike	_	NOUN	NOUN	_	4	dobj
+8	against	_	ADP	ADP	_	11	case
+9	an	_	DET	DET	_	11	det
+10	Islamic	_	PROPN	PROPN	_	11	compound
+11	State	_	PROPN	PROPN	_	7	nmod
+12	target	_	VERB	VERB	_	7	acl
+13	southwest	_	PROPN	PROPN	_	12	dobj
+14	of	_	ADP	ADP	_	15	case
+15	Baghdad	_	PROPN	PROPN	_	13	nmod
+16	,	_	PUNCT	PUNCT	_	21	punct
+17	the	_	DET	DET	_	20	det
+18	U.S.	_	PROPN	PROPN	_	20	compound
+19	Central	_	PROPN	PROPN	_	20	compound
+20	Command	_	PROPN	PROPN	_	21	nsubj
+21	said	_	VERB	VERB	_	0	root
+22	on	_	ADP	ADP	_	24	case
+23	Monday	_	PROPN	PROPN	_	24	compound
+24	night	_	NOUN	NOUN	_	21	nmod
+25	,	_	PUNCT	PUNCT	_	21	punct
+26	expanding	_	VERB	VERB	_	21	ccomp
+27	its	_	PRON	PRON	_	28	nmod:poss
+28	campaign	_	NOUN	NOUN	_	26	dobj
+29	against	_	ADP	ADP	_	32	case
+30	the	_	DET	DET	_	32	det
+31	militant	_	ADJ	ADJ	_	32	amod
+32	group	_	NOUN	NOUN	_	28	nmod
+33	that	_	PRON	PRON	_	35	nsubj
+34	has	_	AUX	AUX	_	35	aux
+35	seized	_	VERB	VERB	_	32	acl:relcl
+36	parts	_	NOUN	NOUN	_	35	dobj
+37	of	_	ADP	ADP	_	38	case
+38	Iraq	_	PROPN	PROPN	_	36	nmod
+39	and	_	CONJ	CONJ	_	38	cc
+40	Syria	_	PROPN	PROPN	_	38	conj
+41	.	_	PUNCT	PUNCT	_	21	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="GOLD_4" sentence="True" source="AFP">
+<Text>
+Ukraine ratified a sweeping agreement with the European Union on Tuesday.
+</Text>
+<Parse>1	Ukraine	_	PROPN	PROPN	_	2	nsubj
+2	ratified	_	VERB	VERB	_	0	root
+3	a	_	DET	DET	_	5	det
+4	sweeping	_	NOUN	NOUN	_	5	compound
+5	agreement	_	NOUN	NOUN	_	2	dobj
+6	with	_	ADP	ADP	_	9	case
+7	the	_	DET	DET	_	9	det
+8	European	_	PROPN	PROPN	_	9	compound
+9	Union	_	PROPN	PROPN	_	5	nmod
+10	on	_	ADP	ADP	_	11	case
+11	Tuesday	_	PROPN	PROPN	_	2	nmod
+12	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="GOLD_1" sentence="True" source="AFP">
+<Text>
+Israel said a mortar bomb was fired at it from the Gaza Strip on Tuesday in the first such attack since a seven-week war in the enclave ended on Aug 26.
+</Text>
+<Parse>1	Israel	_	PROPN	PROPN	_	2	nsubj
+2	said	_	VERB	VERB	_	0	root
+3	a	_	DET	DET	_	5	det
+4	mortar	_	ADJ	ADJ	_	5	amod
+5	bomb	_	NOUN	NOUN	_	7	nsubj
+6	was	_	AUX	AUX	_	7	aux
+7	fired	_	VERB	VERB	_	2	ccomp
+8	at	_	ADP	ADP	_	9	case
+9	it	_	PRON	PRON	_	7	nmod
+10	from	_	ADP	ADP	_	13	case
+11	the	_	DET	DET	_	13	det
+12	Gaza	_	PROPN	PROPN	_	13	compound
+13	Strip	_	PROPN	PROPN	_	7	nmod
+14	on	_	ADP	ADP	_	15	case
+15	Tuesday	_	PROPN	PROPN	_	7	nmod
+16	in	_	ADP	ADP	_	20	case
+17	the	_	DET	DET	_	20	det
+18	first	_	ADJ	ADJ	_	20	amod
+19	such	_	ADJ	ADJ	_	20	amod
+20	attack	_	NOUN	NOUN	_	7	nmod
+21	since	_	ADP	ADP	_	24	case
+22	a	_	DET	DET	_	24	det
+23	seven-week	_	ADJ	ADJ	_	24	amod
+24	war	_	NOUN	NOUN	_	20	nmod
+25	in	_	ADP	ADP	_	27	case
+26	the	_	DET	DET	_	27	det
+27	enclave	_	NOUN	NOUN	_	24	nmod
+28	ended	_	VERB	VERB	_	27	acl
+29	on	_	ADP	ADP	_	30	case
+30	Aug	_	PROPN	PROPN	_	28	nmod
+31	26	_	NUM	NUM	_	30	nummod
+32	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="GOLD_2" sentence="True" source="AFP">
+<Text>
+Iraq's national security advisor met with Syrian President Bashar Assad Tuesday to discuss efforts to counter Islamic State militants, Reuters reports.
+</Text>
+<Parse>1	Iraq	_	PROPN	PROPN	_	5	nmod:poss
+2	's	_	PART	PART	_	1	case
+3	national	_	ADJ	ADJ	_	5	amod
+4	security	_	NOUN	NOUN	_	5	compound
+5	advisor	_	NOUN	NOUN	_	6	nsubj
+6	met	_	VERB	VERB	_	0	root
+7	with	_	ADP	ADP	_	12	case
+8	Syrian	_	ADJ	ADJ	_	12	amod
+9	President	_	PROPN	PROPN	_	12	compound
+10	Bashar	_	PROPN	PROPN	_	12	compound
+11	Assad	_	PROPN	PROPN	_	12	compound
+12	Tuesday	_	PROPN	PROPN	_	6	nmod
+13	to	_	PART	PART	_	14	mark
+14	discuss	_	VERB	VERB	_	6	advcl
+15	efforts	_	NOUN	NOUN	_	14	dobj
+16	to	_	PART	PART	_	17	mark
+17	counter	_	VERB	VERB	_	15	acl
+18	Islamic	_	PROPN	PROPN	_	19	compound
+19	State	_	PROPN	PROPN	_	20	compound
+20	militants	_	NOUN	NOUN	_	17	dobj
+21	,	_	PUNCT	PUNCT	_	20	punct
+22	Reuters	_	PROPN	PROPN	_	23	compound
+23	reports	_	NOUN	NOUN	_	20	appos
+24	.	_	PUNCT	PUNCT	_	6	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="GOLD_3" sentence="True" source="AFP">
+<Text>
+Ukrainian lawmakers Tuesday endorsed an association agreement with the European Union, making a decisive turn in favor of closer relations with Western neighbors in spite of the 10-month-old conflict that possibility has ignited with Russia.
+</Text>
+<Parse>1	Ukrainian	_	ADJ	ADJ	_	2	amod
+2	lawmakers	_	NOUN	NOUN	_	13	nmod:tmod
+3	Tuesday	_	PROPN	PROPN	_	4	nsubj
+4	endorsed	_	VERB	VERB	_	2	acl
+5	an	_	DET	DET	_	7	det
+6	association	_	NOUN	NOUN	_	7	compound
+7	agreement	_	NOUN	NOUN	_	4	dobj
+8	with	_	ADP	ADP	_	11	case
+9	the	_	DET	DET	_	11	det
+10	European	_	PROPN	PROPN	_	11	compound
+11	Union	_	PROPN	PROPN	_	7	nmod
+12	,	_	PUNCT	PUNCT	_	13	punct
+13	making	_	VERB	VERB	_	0	root
+14	a	_	DET	DET	_	16	det
+15	decisive	_	ADJ	ADJ	_	16	amod
+16	turn	_	NOUN	NOUN	_	13	dobj
+17	in	_	ADP	ADP	_	18	case
+18	favor	_	NOUN	NOUN	_	16	nmod
+19	of	_	ADP	ADP	_	21	case
+20	closer	_	ADJ	ADJ	_	21	amod
+21	relations	_	NOUN	NOUN	_	18	nmod
+22	with	_	ADP	ADP	_	24	case
+23	Western	_	ADJ	ADJ	_	24	amod
+24	neighbors	_	NOUN	NOUN	_	21	nmod
+25	in	_	ADP	ADP	_	26	case
+26	spite	_	NOUN	NOUN	_	13	nmod
+27	of	_	ADP	ADP	_	30	case
+28	the	_	DET	DET	_	30	det
+29	10-month-old	_	NUM	NUM	_	30	nummod
+30	conflict	_	NOUN	NOUN	_	26	nmod
+31	that	_	DET	DET	_	32	det
+32	possibility	_	NOUN	NOUN	_	34	nsubj
+33	has	_	AUX	AUX	_	34	aux
+34	ignited	_	VERB	VERB	_	30	acl:relcl
+35	with	_	ADP	ADP	_	36	case
+36	Russia	_	PROPN	PROPN	_	34	nmod
+37	.	_	PUNCT	PUNCT	_	13	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="GOLD_5" sentence="True" source="AFP">
+<Text>
+OBAMA AIRDROPS
+</Text>
+<Parse>1	OBAMA	_	PROPN	PROPN	_	2	compound
+2	AIRDROPS	_	PROPN	PROPN	_	0	root
+3	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="GOLD_6" sentence="True" source="AFP">
+<Text>
+Qatar has pledged to expel exiled leaders of Egypt's Muslim Brotherhood as one of the conditions of an agreement forced on the wealthy Gulf state by Saudi Arabia, the United Arab Emirates and other neighbours.
+
+</Text>
+<Parse>1	Qatar	_	PROPN	PROPN	_	3	nsubj
+2	has	_	AUX	AUX	_	3	aux
+3	pledged	_	VERB	VERB	_	0	root
+4	to	_	PART	PART	_	5	mark
+5	expel	_	VERB	VERB	_	3	xcomp
+6	exiled	_	VERB	VERB	_	5	xcomp
+7	leaders	_	NOUN	NOUN	_	6	dobj
+8	of	_	ADP	ADP	_	12	case
+9	Egypt	_	PROPN	PROPN	_	12	nmod:poss
+10	's	_	PART	PART	_	9	case
+11	Muslim	_	PROPN	PROPN	_	12	compound
+12	Brotherhood	_	PROPN	PROPN	_	7	nmod
+13	as	_	ADP	ADP	_	14	case
+14	one	_	NUM	NUM	_	6	nmod
+15	of	_	ADP	ADP	_	17	case
+16	the	_	DET	DET	_	17	det
+17	conditions	_	NOUN	NOUN	_	14	nmod
+18	of	_	ADP	ADP	_	20	case
+19	an	_	DET	DET	_	20	det
+20	agreement	_	NOUN	NOUN	_	17	nmod
+21	forced	_	VERB	VERB	_	20	acl
+22	on	_	ADP	ADP	_	26	case
+23	the	_	DET	DET	_	26	det
+24	wealthy	_	ADJ	ADJ	_	26	amod
+25	Gulf	_	NOUN	NOUN	_	26	compound
+26	state	_	NOUN	NOUN	_	21	nmod
+27	by	_	ADP	ADP	_	29	case
+28	Saudi	_	PROPN	PROPN	_	29	compound
+29	Arabia	_	PROPN	PROPN	_	26	nmod
+30	,	_	PUNCT	PUNCT	_	29	punct
+31	the	_	DET	DET	_	34	det
+32	United	_	PROPN	PROPN	_	33	compound
+33	Arab	_	PROPN	PROPN	_	34	compound
+34	Emirates	_	PROPN	PROPN	_	29	conj
+35	and	_	CONJ	CONJ	_	29	cc
+36	other	_	ADJ	ADJ	_	37	amod
+37	neighbours	_	NOUN	NOUN	_	29	conj
+38	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="GOLD_7" sentence="True" source="AFP">
+<Text>
+
+The Canadian government announced asset freezes and bans on travel to Canada against four senior officers in the Russian military, as well as economic sanctions against five more of Russia's arms makers and one Moscow-based bank.
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	Canadian	_	ADJ	ADJ	_	3	amod
+3	government	_	NOUN	NOUN	_	4	nsubj
+4	announced	_	VERB	VERB	_	0	root
+5	asset	_	NOUN	NOUN	_	6	compound
+6	freezes	_	NOUN	NOUN	_	4	dobj
+7	and	_	CONJ	CONJ	_	6	cc
+8	bans	_	NOUN	NOUN	_	6	conj
+9	on	_	ADP	ADP	_	10	case
+10	travel	_	NOUN	NOUN	_	8	nmod
+11	to	_	ADP	ADP	_	12	case
+12	Canada	_	PROPN	PROPN	_	10	nmod
+13	against	_	ADP	ADP	_	16	case
+14	four	_	NUM	NUM	_	16	nummod
+15	senior	_	ADJ	ADJ	_	16	amod
+16	officers	_	NOUN	NOUN	_	4	nmod
+17	in	_	ADP	ADP	_	20	case
+18	the	_	DET	DET	_	20	det
+19	Russian	_	ADJ	ADJ	_	20	amod
+20	military	_	NOUN	NOUN	_	16	nmod
+21	,	_	PUNCT	PUNCT	_	16	punct
+22	as	_	ADV	ADV	_	16	cc
+23	well	_	ADV	ADV	_	22	mwe
+24	as	_	ADP	ADP	_	22	mwe
+25	economic	_	ADJ	ADJ	_	26	amod
+26	sanctions	_	NOUN	NOUN	_	16	nmod
+27	against	_	ADP	ADP	_	28	case
+28	five	_	NUM	NUM	_	26	nmod
+29	more	_	ADJ	ADJ	_	26	amod
+30	of	_	ADP	ADP	_	34	case
+31	Russia	_	PROPN	PROPN	_	34	nmod:poss
+32	's	_	PART	PART	_	31	case
+33	arms	_	NOUN	NOUN	_	34	compound
+34	makers	_	NOUN	NOUN	_	29	nmod
+35	and	_	CONJ	CONJ	_	34	cc
+36	one	_	NUM	NUM	_	38	nummod
+37	Moscow-based	_	ADJ	ADJ	_	38	amod
+38	bank	_	NOUN	NOUN	_	34	conj
+39	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="GOLD_8" sentence="True" source="AFP">
+<Text>
+Hundreds of UN troops withdrew from the Syrian to the Israeli-occupied sector of the Golan on Monday, an AFP correspondent said, two weeks after Al-Qaeda-linked rebels kidnapped dozens of peacekeepers.
+
+</Text>
+<Parse>1	Hundreds	_	NOUN	NOUN	_	22	nsubj
+2	of	_	ADP	ADP	_	4	case
+3	UN	_	PROPN	PROPN	_	4	compound
+4	troops	_	NOUN	NOUN	_	1	nmod
+5	withdrew	_	VERB	VERB	_	4	acl
+6	from	_	ADP	ADP	_	8	case
+7	the	_	DET	DET	_	8	det
+8	Syrian	_	ADJ	ADJ	_	5	nmod
+9	to	_	ADP	ADP	_	12	case
+10	the	_	DET	DET	_	12	det
+11	Israeli-occupied	_	ADJ	ADJ	_	12	amod
+12	sector	_	NOUN	NOUN	_	8	nmod
+13	of	_	ADP	ADP	_	15	case
+14	the	_	DET	DET	_	15	det
+15	Golan	_	PROPN	PROPN	_	12	nmod
+16	on	_	ADP	ADP	_	17	case
+17	Monday	_	PROPN	PROPN	_	12	nmod
+18	,	_	PUNCT	PUNCT	_	22	punct
+19	an	_	DET	DET	_	21	det
+20	AFP	_	PROPN	PROPN	_	21	compound
+21	correspondent	_	NOUN	NOUN	_	22	nsubj
+22	said	_	VERB	VERB	_	0	root
+23	,	_	PUNCT	PUNCT	_	22	punct
+24	two	_	NUM	NUM	_	25	nummod
+25	weeks	_	NOUN	NOUN	_	29	nsubj
+26	after	_	ADP	ADP	_	28	case
+27	Al-Qaeda-linked	_	ADJ	ADJ	_	28	amod
+28	rebels	_	NOUN	NOUN	_	25	nmod
+29	kidnapped	_	VERB	VERB	_	22	ccomp
+30	dozens	_	NOUN	NOUN	_	29	dobj
+31	of	_	ADP	ADP	_	32	case
+32	peacekeepers	_	NOUN	NOUN	_	30	nmod
+33	.	_	PUNCT	PUNCT	_	22	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="GOLD_9" sentence="True" source="AFP">
+<Text>
+The Philippines and the European Union (EU) agree that territorial disputes in the South China Sea should be resolved through international arbitration.
+
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	Philippines	_	PROPN	PROPN	_	10	nsubj
+3	and	_	CONJ	CONJ	_	2	cc
+4	the	_	DET	DET	_	9	det
+5	European	_	PROPN	PROPN	_	6	compound
+6	Union	_	PROPN	PROPN	_	9	compound
+7	-LRB-	_	PROPN	PROPN	_	9	compound
+8	EU	_	PROPN	PROPN	_	9	compound
+9	-RRB-	_	PROPN	PROPN	_	2	conj
+10	agree	_	VERB	VERB	_	0	root
+11	that	_	SCONJ	SCONJ	_	21	mark
+12	territorial	_	ADJ	ADJ	_	13	amod
+13	disputes	_	NOUN	NOUN	_	21	nsubj
+14	in	_	ADP	ADP	_	18	case
+15	the	_	DET	DET	_	18	det
+16	South	_	PROPN	PROPN	_	18	compound
+17	China	_	PROPN	PROPN	_	18	compound
+18	Sea	_	PROPN	PROPN	_	13	nmod
+19	should	_	AUX	AUX	_	21	aux
+20	be	_	AUX	AUX	_	21	aux
+21	resolved	_	VERB	VERB	_	10	ccomp
+22	through	_	ADP	ADP	_	24	case
+23	international	_	ADJ	ADJ	_	24	amod
+24	arbitration	_	NOUN	NOUN	_	21	nmod
+25	.	_	PUNCT	PUNCT	_	10	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="GOLD_9" sentence="True" source="AFP">
+<Text>
+Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense and military officials said.
+</Text>
+<Parse>1	Syrian	_	ADJ	ADJ	_	2	amod
+2	rebels	_	NOUN	NOUN	_	19	nsubj
+3	engaged	_	VERB	VERB	_	2	acl
+4	Filipino	_	ADJ	ADJ	_	5	amod
+5	peacekeepers	_	NOUN	NOUN	_	3	dobj
+6	in	_	ADP	ADP	_	8	case
+7	a	_	DET	DET	_	8	det
+8	firefight	_	NOUN	NOUN	_	3	nmod
+9	in	_	ADP	ADP	_	11	case
+10	Golan	_	PROPN	PROPN	_	11	compound
+11	Heights	_	PROPN	PROPN	_	8	nmod
+12	on	_	ADP	ADP	_	13	case
+13	Saturday	_	PROPN	PROPN	_	8	nmod
+14	,	_	PUNCT	PUNCT	_	19	punct
+15	defense	_	NOUN	NOUN	_	19	nsubj
+16	and	_	CONJ	CONJ	_	15	cc
+17	military	_	ADJ	ADJ	_	18	amod
+18	officials	_	NOUN	NOUN	_	15	conj
+19	said	_	VERB	VERB	_	0	root
+20	.	_	PUNCT	PUNCT	_	19	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="VERB_0" sentence="True" source="AFP">
+<Text>
+Obama is scheduled to attend a summit on the unrest in Iran
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	3	nsubj
+2	is	_	AUX	AUX	_	3	aux
+3	scheduled	_	VERB	VERB	_	0	root
+4	to	_	PART	PART	_	5	mark
+5	attend	_	VERB	VERB	_	3	xcomp
+6	a	_	DET	DET	_	7	det
+7	summit	_	NOUN	NOUN	_	5	dobj
+8	on	_	ADP	ADP	_	10	case
+9	the	_	DET	DET	_	10	det
+10	unrest	_	NOUN	NOUN	_	5	nmod
+11	in	_	ADP	ADP	_	12	case
+12	Iran	_	PROPN	PROPN	_	10	nmod
+13	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="VERB_1" sentence="True" source="AFP">
+<Text>
+Obama is scheduled to attend a summit in Switzerland on the unrest in Iran
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	3	nsubj
+2	is	_	AUX	AUX	_	3	aux
+3	scheduled	_	VERB	VERB	_	0	root
+4	to	_	PART	PART	_	5	mark
+5	attend	_	VERB	VERB	_	3	xcomp
+6	a	_	DET	DET	_	7	det
+7	summit	_	NOUN	NOUN	_	5	dobj
+8	in	_	ADP	ADP	_	9	case
+9	Switzerland	_	PROPN	PROPN	_	7	nmod
+10	on	_	ADP	ADP	_	12	case
+11	the	_	DET	DET	_	12	det
+12	unrest	_	NOUN	NOUN	_	5	nmod
+13	in	_	ADP	ADP	_	14	case
+14	Iran	_	PROPN	PROPN	_	12	nmod
+15	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="TEST_10" sentence="True" source="AFP">
+<Text>
+President obama expressed sorrow for the horrific shootings in South Carolina
+</Text>
+<Parse>1	President	_	PROPN	PROPN	_	2	compound
+2	obama	_	PROPN	PROPN	_	3	nsubj
+3	expressed	_	VERB	VERB	_	0	root
+4	sorrow	_	ADV	ADV	_	3	advmod
+5	for	_	ADP	ADP	_	8	case
+6	the	_	DET	DET	_	8	det
+7	horrific	_	ADJ	ADJ	_	8	amod
+8	shootings	_	NOUN	NOUN	_	3	nmod
+9	in	_	ADP	ADP	_	11	case
+10	South	_	PROPN	PROPN	_	11	compound
+11	Carolina	_	PROPN	PROPN	_	8	nmod
+12	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="TEST_11" sentence="True" source="AFP">
+<Text>
+Ukraine says it has strong evidence proving Russia was behind the chemical attacks
+</Text>
+<Parse>1	Ukraine	_	PROPN	PROPN	_	2	nsubj
+2	says	_	VERB	VERB	_	0	root
+3	it	_	PRON	PRON	_	4	nsubj
+4	has	_	VERB	VERB	_	2	ccomp
+5	strong	_	ADJ	ADJ	_	6	amod
+6	evidence	_	NOUN	NOUN	_	4	dobj
+7	proving	_	VERB	VERB	_	6	acl
+8	Russia	_	PROPN	PROPN	_	7	dobj
+9	was	_	VERB	VERB	_	7	xcomp
+10	behind	_	ADP	ADP	_	13	case
+11	the	_	DET	DET	_	13	det
+12	chemical	_	ADJ	ADJ	_	13	amod
+13	attacks	_	NOUN	NOUN	_	9	nmod
+14	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="TEST_12" sentence="True" source="AFP">
+<Text>
+Barack Obama and Vladimir Putin will meet in Zurich to 
+discuss their music tastes
+</Text>
+<Parse>1	Barack	_	PROPN	PROPN	_	2	compound
+2	Obama	_	PROPN	PROPN	_	7	nsubj
+3	and	_	CONJ	CONJ	_	2	cc
+4	Vladimir	_	PROPN	PROPN	_	5	compound
+5	Putin	_	PROPN	PROPN	_	2	conj
+6	will	_	AUX	AUX	_	7	aux
+7	meet	_	VERB	VERB	_	0	root
+8	in	_	ADP	ADP	_	9	case
+9	Zurich	_	PROPN	PROPN	_	7	nmod
+10	to	_	PART	PART	_	11	mark
+11	discuss	_	VERB	VERB	_	7	advcl
+12	their	_	PRON	PRON	_	14	nmod:poss
+13	music	_	NOUN	NOUN	_	14	compound
+14	tastes	_	NOUN	NOUN	_	11	dobj
+15	.	_	PUNCT	PUNCT	_	7	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="NEST_0" sentence="True" source="AFP">
+<Text>
+The US claimed that they had attacked Iraq
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	US	_	PROPN	PROPN	_	3	nsubj
+3	claimed	_	VERB	VERB	_	0	root
+4	that	_	SCONJ	SCONJ	_	7	mark
+5	they	_	PRON	PRON	_	7	nsubj
+6	had	_	AUX	AUX	_	7	aux
+7	attacked	_	VERB	VERB	_	3	ccomp
+8	Iraq	_	PROPN	PROPN	_	7	dobj
+9	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="NEST_2.75" sentence="True" source="AFP">
+<Text>
+The US claimed that ISIL had attacked Iraq and taken the city of Mosul
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	US	_	PROPN	PROPN	_	3	nsubj
+3	claimed	_	VERB	VERB	_	0	root
+4	that	_	SCONJ	SCONJ	_	7	mark
+5	ISIL	_	PROPN	PROPN	_	7	nsubj
+6	had	_	AUX	AUX	_	7	aux
+7	attacked	_	VERB	VERB	_	3	ccomp
+8	Iraq	_	PROPN	PROPN	_	7	dobj
+9	and	_	CONJ	CONJ	_	7	cc
+10	taken	_	VERB	VERB	_	7	conj
+11	the	_	DET	DET	_	12	det
+12	city	_	NOUN	NOUN	_	10	dobj
+13	of	_	ADP	ADP	_	14	case
+14	Mosul	_	PROPN	PROPN	_	12	nmod
+15	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="EXIST_0" sentence="True" source="AFP">
+<Text>
+Local news reports that there was a pause in the bombing in Aleppo.
+</Text>
+<Parse>1	Local	_	ADJ	ADJ	_	3	amod
+2	news	_	NOUN	NOUN	_	3	compound
+3	reports	_	NOUN	NOUN	_	0	root
+4	that	_	SCONJ	SCONJ	_	6	mark
+5	there	_	PRON	PRON	_	6	expl
+6	was	_	VERB	VERB	_	3	acl
+7	a	_	DET	DET	_	8	det
+8	pause	_	NOUN	NOUN	_	6	dobj
+9	in	_	ADP	ADP	_	11	case
+10	the	_	DET	DET	_	11	det
+11	bombing	_	NOUN	NOUN	_	6	nmod
+12	in	_	ADP	ADP	_	13	case
+13	Aleppo	_	PROPN	PROPN	_	11	nmod
+14	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="EXIST_1" sentence="True" source="AFP">
+<Text>
+There were 10 Russian soldiers killed in Ukraine today.
+</Text>
+<Parse>1	There	_	PRON	PRON	_	2	expl
+2	were	_	VERB	VERB	_	0	root
+3	10	_	NUM	NUM	_	5	nummod
+4	Russian	_	ADJ	ADJ	_	5	amod
+5	soldiers	_	NOUN	NOUN	_	2	nsubj
+6	killed	_	VERB	VERB	_	5	acl
+7	in	_	ADP	ADP	_	8	case
+8	Ukraine	_	PROPN	PROPN	_	6	nmod
+9	today	_	NOUN	NOUN	_	6	nmod:tmod
+10	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+<Sentence date="20150101" id="abc12_3" sentence="True" source="AFP">
+<Text>
+Boko Haram has launched many similar attacks during its six-year campaign for a strict Islamic state in northeastern Nigeria.</Text>
+<Parse>1	Boko	_	PROPN	PROPN	_	2	compound
+2	Haram	_	PROPN	PROPN	_	4	nsubj
+3	has	_	AUX	AUX	_	4	aux
+4	launched	_	VERB	VERB	_	0	root
+5	many	_	ADJ	ADJ	_	7	amod
+6	similar	_	ADJ	ADJ	_	7	amod
+7	attacks	_	NOUN	NOUN	_	4	dobj
+8	during	_	ADP	ADP	_	11	case
+9	its	_	PRON	PRON	_	11	nmod:poss
+10	six-year	_	ADJ	ADJ	_	11	amod
+11	campaign	_	NOUN	NOUN	_	4	nmod
+12	for	_	ADP	ADP	_	16	case
+13	a	_	DET	DET	_	16	det
+14	strict	_	ADJ	ADJ	_	16	amod
+15	Islamic	_	ADJ	ADJ	_	16	amod
+16	state	_	NOUN	NOUN	_	11	nmod
+17	in	_	ADP	ADP	_	19	case
+18	northeastern	_	ADJ	ADJ	_	19	amod
+19	Nigeria	_	PROPN	PROPN	_	16	nmod
+20	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="NEST_8" sentence="True" source="AFP">
+<Text>
+The US said that Iraq had attacked themselves
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	US	_	PROPN	PROPN	_	3	nsubj
+3	said	_	VERB	VERB	_	0	root
+4	that	_	SCONJ	SCONJ	_	7	mark
+5	Iraq	_	PROPN	PROPN	_	7	nsubj
+6	had	_	AUX	AUX	_	7	aux
+7	attacked	_	VERB	VERB	_	3	ccomp
+8	themselves	_	PRON	PRON	_	7	dobj
+9	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="PREP_1" sentence="True" source="AFP">
+<Text>
+Opponents of Rwanda's Senate protested yesterday in the city's capital
+</Text>
+<Parse>1	Opponents	_	PROPN	PROPN	_	6	nsubj
+2	of	_	ADP	ADP	_	5	case
+3	Rwanda	_	PROPN	PROPN	_	5	nmod:poss
+4	's	_	PART	PART	_	3	case
+5	Senate	_	PROPN	PROPN	_	1	nmod
+6	protested	_	VERB	VERB	_	0	root
+7	yesterday	_	NOUN	NOUN	_	6	dobj
+8	in	_	ADP	ADP	_	12	case
+9	the	_	DET	DET	_	10	det
+10	city	_	NOUN	NOUN	_	12	nmod:poss
+11	's	_	PART	PART	_	10	case
+12	capital	_	NOUN	NOUN	_	6	nmod
+13	.	_	PUNCT	PUNCT	_	6	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="PREP_0" sentence="True" source="AFP">
+<Text>
+The civilians imprisoned for acting against Moscow were released yesterday by Putin himself
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	civilians	_	NOUN	NOUN	_	3	nsubj
+3	imprisoned	_	VERB	VERB	_	0	root
+4	for	_	SCONJ	SCONJ	_	5	mark
+5	acting	_	VERB	VERB	_	3	advcl
+6	against	_	ADP	ADP	_	7	case
+7	Moscow	_	PROPN	PROPN	_	5	nmod
+8	were	_	AUX	AUX	_	9	aux
+9	released	_	VERB	VERB	_	3	advcl
+10	yesterday	_	NOUN	NOUN	_	9	dobj
+11	by	_	ADP	ADP	_	12	case
+12	Putin	_	PROPN	PROPN	_	9	nmod
+13	himself	_	PRON	PRON	_	12	nmod:npmod
+14	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="VERB_2" sentence="True" source="AFP">
+<Text>
+The government expressed appreciation for China's assistance.
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	government	_	NOUN	NOUN	_	3	nsubj
+3	expressed	_	VERB	VERB	_	0	root
+4	appreciation	_	NOUN	NOUN	_	3	dobj
+5	for	_	ADP	ADP	_	8	case
+6	China	_	PROPN	PROPN	_	8	nmod:poss
+7	's	_	PART	PART	_	6	case
+8	assistance	_	NOUN	NOUN	_	3	nmod
+9	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="VERB_3" sentence="True" source="AFP">
+<Text>
+The US State department has advised against travel to Tunisia after the museum shooting last week.
+</Text>
+<Parse>1	The	_	DET	DET	_	4	det
+2	US	_	PROPN	PROPN	_	3	compound
+3	State	_	PROPN	PROPN	_	4	compound
+4	department	_	NOUN	NOUN	_	6	nsubj
+5	has	_	AUX	AUX	_	6	aux
+6	advised	_	VERB	VERB	_	0	root
+7	against	_	ADP	ADP	_	8	case
+8	travel	_	NOUN	NOUN	_	6	nmod
+9	to	_	ADP	ADP	_	10	case
+10	Tunisia	_	PROPN	PROPN	_	6	nmod
+11	after	_	ADP	ADP	_	13	case
+12	the	_	DET	DET	_	13	det
+13	museum	_	NOUN	NOUN	_	6	nmod
+14	shooting	_	VERB	VERB	_	13	acl
+15	last	_	ADJ	ADJ	_	16	amod
+16	week	_	NOUN	NOUN	_	14	nmod:tmod
+17	.	_	PUNCT	PUNCT	_	6	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="VERB_4" sentence="True" source="AFP">
+<Text>
+The tanks head back from the border after the skirmish went wrong
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	tanks	_	NOUN	NOUN	_	3	compound
+3	head	_	NOUN	NOUN	_	0	root
+4	back	_	ADV	ADV	_	3	advmod
+5	from	_	ADP	ADP	_	7	case
+6	the	_	DET	DET	_	7	det
+7	border	_	NOUN	NOUN	_	4	nmod
+8	after	_	ADP	ADP	_	10	case
+9	the	_	DET	DET	_	10	det
+10	skirmish	_	NOUN	NOUN	_	7	nmod
+11	went	_	VERB	VERB	_	10	acl
+12	wrong	_	ADJ	ADJ	_	11	xcomp
+13	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="VERB_5" sentence="True" source="AFP">
+<Text>
+The tanks might want Obama to head back after what just happened.
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	tanks	_	NOUN	NOUN	_	4	nsubj
+3	might	_	AUX	AUX	_	4	aux
+4	want	_	VERB	VERB	_	0	root
+5	Obama	_	PROPN	PROPN	_	4	dobj
+6	to	_	PART	PART	_	7	mark
+7	head	_	VERB	VERB	_	4	xcomp
+8	back	_	ADV	ADV	_	7	advmod
+9	after	_	SCONJ	SCONJ	_	12	mark
+10	what	_	PRON	PRON	_	12	nsubj
+11	just	_	ADV	ADV	_	12	advmod
+12	happened	_	VERB	VERB	_	7	advcl
+13	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PASSIVE_0" sentence="True" source="AFP">
+<Text>
+Evidence against Russia was presented by the US.
+</Text>
+<Parse>1	Evidence	_	NOUN	NOUN	_	5	nsubj
+2	against	_	ADP	ADP	_	3	case
+3	Russia	_	PROPN	PROPN	_	1	nmod
+4	was	_	AUX	AUX	_	5	aux
+5	presented	_	VERB	VERB	_	0	root
+6	by	_	ADP	ADP	_	8	case
+7	the	_	DET	DET	_	8	det
+8	US	_	PROPN	PROPN	_	5	nmod
+9	.	_	PUNCT	PUNCT	_	5	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PASSIVE_1" sentence="True" source="AFP">
+<Text>
+The US presented evidence against Russia.
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	US	_	PROPN	PROPN	_	3	nsubj
+3	presented	_	VERB	VERB	_	0	root
+4	evidence	_	NOUN	NOUN	_	3	dobj
+5	against	_	ADP	ADP	_	6	case
+6	Russia	_	PROPN	PROPN	_	3	nmod
+7	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PASSIVE_2" sentence="True" source="AFP">
+<Text>
+A protestor demolished the building.
+</Text>
+<Parse>1	A	_	DET	DET	_	2	det
+2	protestor	_	NOUN	NOUN	_	3	nsubj
+3	demolished	_	VERB	VERB	_	0	root
+4	the	_	DET	DET	_	5	det
+5	building	_	NOUN	NOUN	_	3	dobj
+6	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PASSIVE_3" sentence="True" source="AFP">
+<Text>
+The building was demolished by a protestor.
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	building	_	NOUN	NOUN	_	4	nsubj
+3	was	_	AUX	AUX	_	4	aux
+4	demolished	_	VERB	VERB	_	0	root
+5	by	_	ADP	ADP	_	7	case
+6	a	_	DET	DET	_	7	det
+7	protestor	_	NOUN	NOUN	_	4	nmod
+8	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="VERB_6" sentence="True" source="AFP">
+<Text>
+The inspectors want to re-examine the refineries in Iran</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	inspectors	_	NOUN	NOUN	_	3	nsubj
+3	want	_	VERB	VERB	_	0	root
+4	to	_	PART	PART	_	5	mark
+5	re-examine	_	VERB	VERB	_	3	xcomp
+6	the	_	DET	DET	_	7	det
+7	refineries	_	NOUN	NOUN	_	5	dobj
+8	in	_	ADP	ADP	_	9	case
+9	Iran	_	PROPN	PROPN	_	5	nmod
+10	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+<Sentence date="20150609" id="SYRIA_0" sentence="True" source="AFP">
+<Text>
+Insurgents bombarded a government-held part of Syria's second city Aleppo overnight, killing at least eight people, Syrian state media reported
+</Text>
+<Parse>1	Insurgents	_	NOUN	NOUN	_	2	nsubj
+2	bombarded	_	VERB	VERB	_	0	root
+3	a	_	DET	DET	_	5	det
+4	government-held	_	ADJ	ADJ	_	5	amod
+5	part	_	NOUN	NOUN	_	2	dobj
+6	of	_	ADP	ADP	_	10	case
+7	Syria	_	PROPN	PROPN	_	10	nmod:poss
+8	's	_	PART	PART	_	7	case
+9	second	_	ADJ	ADJ	_	10	amod
+10	city	_	NOUN	NOUN	_	5	nmod
+11	Aleppo	_	PROPN	PROPN	_	10	appos
+12	overnight	_	ADV	ADV	_	14	advmod
+13	,	_	PUNCT	PUNCT	_	2	punct
+14	killing	_	VERB	VERB	_	2	advcl
+15	at	_	ADV	ADV	_	16	case
+16	least	_	ADV	ADV	_	17	nmod
+17	eight	_	NUM	NUM	_	18	nummod
+18	people	_	NOUN	NOUN	_	14	dobj
+19	,	_	PUNCT	PUNCT	_	18	punct
+20	Syrian	_	ADJ	ADJ	_	22	amod
+21	state	_	NOUN	NOUN	_	22	compound
+22	media	_	NOUN	NOUN	_	23	nsubj
+23	reported	_	VERB	VERB	_	18	appos
+24	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="SYRIA_1" sentence="True" source="AFP">
+<Text>
+The Syrian Observatory for Human Rights, a UK-based group that tracks the war, said eight people were killed in an air strike by government forces in a separate, rebel-held part of the city.
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	Syrian	_	ADJ	ADJ	_	3	amod
+3	Observatory	_	PROPN	PROPN	_	16	nsubj
+4	for	_	ADP	ADP	_	6	case
+5	Human	_	PROPN	PROPN	_	6	compound
+6	Rights	_	PROPN	PROPN	_	3	nmod
+7	,	_	PUNCT	PUNCT	_	6	punct
+8	a	_	DET	DET	_	10	det
+9	UK-based	_	ADJ	ADJ	_	10	amod
+10	group	_	NOUN	NOUN	_	6	appos
+11	that	_	DET	DET	_	12	det
+12	tracks	_	NOUN	NOUN	_	10	nmod:npmod
+13	the	_	DET	DET	_	14	det
+14	war	_	NOUN	NOUN	_	12	nmod:npmod
+15	,	_	PUNCT	PUNCT	_	16	punct
+16	said	_	VERB	VERB	_	0	root
+17	eight	_	NUM	NUM	_	18	nummod
+18	people	_	NOUN	NOUN	_	20	nsubj
+19	were	_	AUX	AUX	_	20	aux
+20	killed	_	VERB	VERB	_	16	ccomp
+21	in	_	ADP	ADP	_	24	case
+22	an	_	DET	DET	_	24	det
+23	air	_	NOUN	NOUN	_	24	compound
+24	strike	_	NOUN	NOUN	_	20	nmod
+25	by	_	ADP	ADP	_	27	case
+26	government	_	NOUN	NOUN	_	27	compound
+27	forces	_	NOUN	NOUN	_	24	nmod
+28	in	_	ADP	ADP	_	33	case
+29	a	_	DET	DET	_	33	det
+30	separate	_	ADJ	ADJ	_	33	amod
+31	,	_	PUNCT	PUNCT	_	33	punct
+32	rebel-held	_	ADJ	ADJ	_	33	amod
+33	part	_	NOUN	NOUN	_	20	nmod
+34	of	_	ADP	ADP	_	36	case
+35	the	_	DET	DET	_	36	det
+36	city	_	NOUN	NOUN	_	33	nmod
+37	.	_	PUNCT	PUNCT	_	16	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="NEG_0" sentence="True" source="AFP">
+<Text>
+Obama said he would not help Israel
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	said	_	VERB	VERB	_	0	root
+3	he	_	PRON	PRON	_	6	nsubj
+4	would	_	AUX	AUX	_	6	aux
+5	not	_	PART	PART	_	6	neg
+6	help	_	VERB	VERB	_	2	ccomp
+7	Israel	_	PROPN	PROPN	_	6	dobj
+8	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="NEG_1" sentence="True" source="AFP">
+<Text>
+Obama said he would not ask Russia to help Israel
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	said	_	VERB	VERB	_	0	root
+3	he	_	PRON	PRON	_	6	nsubj
+4	would	_	AUX	AUX	_	6	aux
+5	not	_	PART	PART	_	6	neg
+6	ask	_	VERB	VERB	_	2	ccomp
+7	Russia	_	PROPN	PROPN	_	6	dobj
+8	to	_	PART	PART	_	9	mark
+9	help	_	VERB	VERB	_	6	xcomp
+10	Israel	_	PROPN	PROPN	_	9	dobj
+11	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="Pattern_1" sentence="True" source="AFP">
+<Text>
+Obama said he will attack Iraq
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	said	_	VERB	VERB	_	0	root
+3	he	_	PRON	PRON	_	5	nsubj
+4	will	_	AUX	AUX	_	5	aux
+5	attack	_	VERB	VERB	_	2	ccomp
+6	Iraq	_	PROPN	PROPN	_	5	dobj
+7	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+
+<Sentence date="20150609" id="PASSIVE_4" sentence="True" source="AFP">
+<Text>
+Obama faces pressure from Congress to help Iran.
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	3	compound
+2	faces	_	NOUN	NOUN	_	3	compound
+3	pressure	_	NOUN	NOUN	_	0	root
+4	from	_	ADP	ADP	_	5	case
+5	Congress	_	PROPN	PROPN	_	3	nmod
+6	to	_	PART	PART	_	7	mark
+7	help	_	VERB	VERB	_	3	acl
+8	Iran	_	PROPN	PROPN	_	7	dobj
+9	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="PASSIVE_5" sentence="True" source="AFP">
+<Text>
+Congress is pressuring Obama to help Iran.
+</Text>
+<Parse>1	Congress	_	PROPN	PROPN	_	3	nsubj
+2	is	_	AUX	AUX	_	3	aux
+3	pressuring	_	VERB	VERB	_	0	root
+4	Obama	_	PROPN	PROPN	_	3	dobj
+5	to	_	PART	PART	_	6	mark
+6	help	_	VERB	VERB	_	3	xcomp
+7	Iran	_	PROPN	PROPN	_	6	dobj
+8	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PASSIVE_6" sentence="True" source="AFP">
+<Text>
+Obama is being pressured by congress to help Iran.
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	4	nsubj
+2	is	_	AUX	AUX	_	4	aux
+3	being	_	AUX	AUX	_	4	aux
+4	pressured	_	VERB	VERB	_	0	root
+5	by	_	ADP	ADP	_	6	case
+6	congress	_	NOUN	NOUN	_	4	nmod
+7	to	_	PART	PART	_	8	mark
+8	help	_	VERB	VERB	_	4	advcl
+9	Iran	_	PROPN	PROPN	_	8	dobj
+10	.	_	PUNCT	PUNCT	_	4	punct
+</Parse></Sentence>
+
+
+
+
+
+<Sentence date="20150609" id="APPEALS_0" sentence="True" source="AFP">
+<Text>
+Obama wants Putin to attack Switzerland.
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	wants	_	VERB	VERB	_	0	root
+3	Putin	_	PROPN	PROPN	_	2	dobj
+4	to	_	PART	PART	_	5	mark
+5	attack	_	VERB	VERB	_	2	xcomp
+6	Switzerland	_	PROPN	PROPN	_	5	dobj
+7	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+<Sentence date="20150609" id="APPEALS_1" sentence="True" source="AFP">
+<Text>
+Obama wants to attack Switzerland.
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	wants	_	VERB	VERB	_	0	root
+3	to	_	PART	PART	_	4	mark
+4	attack	_	VERB	VERB	_	2	xcomp
+5	Switzerland	_	PROPN	PROPN	_	4	dobj
+6	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="SYNSET_0" sentence="True" source="AFP">
+<Text>
+Obama ordered an investigation against Iran
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	2	nsubj
+2	ordered	_	VERB	VERB	_	0	root
+3	an	_	DET	DET	_	4	det
+4	investigation	_	NOUN	NOUN	_	2	dobj
+5	against	_	ADP	ADP	_	6	case
+6	Iran	_	PROPN	PROPN	_	2	nmod
+7	.	_	PUNCT	PUNCT	_	2	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="AGREE_0" sentence="True" source="AFP">
+<Text>
+Obama has agreed to lift the sanctions on Iran
+</Text>
+<Parse>1	Obama	_	PROPN	PROPN	_	3	nsubj
+2	has	_	AUX	AUX	_	3	aux
+3	agreed	_	VERB	VERB	_	0	root
+4	to	_	PART	PART	_	5	mark
+5	lift	_	VERB	VERB	_	3	xcomp
+6	the	_	DET	DET	_	7	det
+7	sanctions	_	NOUN	NOUN	_	5	dobj
+8	on	_	ADP	ADP	_	9	case
+9	Iran	_	PROPN	PROPN	_	5	nmod
+10	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+
+
+<Sentence date="20150609" id="VERB_8" sentence="True" source="AFP">
+<Text>
+The United States will supply arms to Israel
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	United	_	PROPN	PROPN	_	3	compound
+3	States	_	PROPN	PROPN	_	5	nsubj
+4	will	_	AUX	AUX	_	5	aux
+5	supply	_	VERB	VERB	_	0	root
+6	arms	_	NOUN	NOUN	_	5	dobj
+7	to	_	ADP	ADP	_	8	case
+8	Israel	_	PROPN	PROPN	_	5	nmod
+9	.	_	PUNCT	PUNCT	_	5	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="VALID_0" sentence="True" source="AFP">
+<Text>
+The USA gave the two exiled dissidents from Egypt assylum
+</Text>
+<Parse>1	The	_	DET	DET	_	2	det
+2	USA	_	PROPN	PROPN	_	3	nsubj
+3	gave	_	VERB	VERB	_	0	root
+4	the	_	DET	DET	_	7	det
+5	two	_	NUM	NUM	_	7	nummod
+6	exiled	_	ADJ	ADJ	_	7	amod
+7	dissidents	_	NOUN	NOUN	_	3	dobj
+8	from	_	ADP	ADP	_	10	case
+9	Egypt	_	PROPN	PROPN	_	10	compound
+10	assylum	_	NOUN	NOUN	_	7	nmod
+11	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="OVERLAP_0" sentence="True" source="AFP">
+<Text>
+Russia is conducting military exercises in Alaska
+</Text>
+<Parse>1	Russia	_	PROPN	PROPN	_	3	nsubj
+2	is	_	AUX	AUX	_	3	aux
+3	conducting	_	VERB	VERB	_	0	root
+4	military	_	ADJ	ADJ	_	5	amod
+5	exercises	_	NOUN	NOUN	_	3	dobj
+6	in	_	ADP	ADP	_	7	case
+7	Alaska	_	PROPN	PROPN	_	3	nmod
+8	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+<Sentence date="20150609" id="PMATCH_0" sentence="True" source="AFP">
+<Text>
+The US Secretary of state wants to help iSrael
+</Text>
+<Parse>1	The	_	DET	DET	_	3	det
+2	US	_	PROPN	PROPN	_	3	compound
+3	Secretary	_	PROPN	PROPN	_	6	nsubj
+4	of	_	ADP	ADP	_	5	case
+5	state	_	NOUN	NOUN	_	3	nmod
+6	wants	_	VERB	VERB	_	0	root
+7	to	_	PART	PART	_	8	mark
+8	help	_	VERB	VERB	_	6	xcomp
+9	iSrael	_	PROPN	PROPN	_	8	dobj
+10	.	_	PUNCT	PUNCT	_	6	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="PASSIVE_10" sentence="True" source="AFP">
+<Text>
+Government forces clash with tunisian rioters in the downtown square
+</Text>
+<Parse>1	Government	_	NOUN	NOUN	_	2	compound
+2	forces	_	NOUN	NOUN	_	3	compound
+3	clash	_	NOUN	NOUN	_	0	root
+4	with	_	ADP	ADP	_	6	case
+5	tunisian	_	ADJ	ADJ	_	6	amod
+6	rioters	_	NOUN	NOUN	_	3	nmod
+7	in	_	ADP	ADP	_	10	case
+8	the	_	DET	DET	_	10	det
+9	downtown	_	NOUN	NOUN	_	10	compound
+10	square	_	NOUN	NOUN	_	6	nmod
+11	.	_	PUNCT	PUNCT	_	3	punct
+</Parse></Sentence>
+
+
+<Sentence date="20150609" id="COOP_0" sentence="True" source="AFP">
+<Text>
+THe US, Russia, and Switzerland met yesterday
+</Text>
+<Parse>1	THe	_	DET	DET	_	2	det
+2	US	_	PROPN	PROPN	_	8	nsubj
+3	,	_	PUNCT	PUNCT	_	2	punct
+4	Russia	_	PROPN	PROPN	_	2	conj
+5	,	_	PUNCT	PUNCT	_	2	punct
+6	and	_	CONJ	CONJ	_	2	cc
+7	Switzerland	_	PROPN	PROPN	_	2	conj
+8	met	_	VERB	VERB	_	0	root
+9	yesterday	_	NOUN	NOUN	_	8	dobj
+10	.	_	PUNCT	PUNCT	_	8	punct
+</Parse></Sentence>
+
+
+
+</Sentences>

@@ -262,7 +262,7 @@ class Sentence:
 		npIDs.append(nounhead)
 		npTokens =[]
 		npIDs.sort()
-		print(npIDs)
+		#print(npIDs)
 		if self.udgraph.node[npIDs[0]]['pos']=='ADP':
 			npIDs = npIDs[1:]
 		for npID in npIDs:
@@ -283,9 +283,9 @@ class Sentence:
 		target = []
 		othernoun = []
 		for successor in self.udgraph.successors(nodeID):
-			print(str(nodeID)+"\t"+str(successor)+"\t"+self.udgraph.node[successor]['pos'])
+			#print(str(nodeID)+"\t"+str(successor)+"\t"+self.udgraph.node[successor]['pos'])
 			if('relation' in self.udgraph[nodeID][successor]):
-				print(self.udgraph[nodeID][successor]['relation'])
+				#print(self.udgraph[nodeID][successor]['relation'])
 				if(self.udgraph[nodeID][successor]['relation']=='nsubj'):
 					#source.append(self.udgraph.node[successor]['token'])
 					source.append(self.get_nounPharse(successor))
@@ -317,7 +317,7 @@ class Sentence:
 			nodeID = node[0]
 			attrs = node[1]
 			if 'pos' in attrs and attrs['pos']== 'VERB':
-				print(str(nodeID)+"\t"+attrs['pos']+"\t"+(" ").join(str(e) for e in self.udgraph.successors(nodeID)))
+				#print(str(nodeID)+"\t"+attrs['pos']+"\t"+(" ").join(str(e) for e in self.udgraph.successors(nodeID)))
 				#print(self.udgraph.successors(nodeID))
 				
 				verb = attrs['token']
