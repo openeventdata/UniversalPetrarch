@@ -186,10 +186,27 @@ class NounPhrase:
 
 		return code
 
+class VerbPhrase:
+
+	def __init__(self,sentence,vpIDs,headID):
+
+		self.vpIDs = vpIDs
+		self.text = ""
+		self.head = None
+		self.headID = headID
+		self.meaning = ""
+		self.sentence = sentence
+		self.code = None
+		self.passive = False
+
+
+
+
 class Sentence:
 	"""
-    Holds the information of a sentence and its tree.
+    Holds the information of a sentence and its dependency tree.
     
+
     Methods
     -------
     
@@ -199,13 +216,43 @@ class Sentence:
 	"""
 
 	def __init__(self, parse, text, date):
+		"""
+        Initialization for Sentence classes.
+
+
+        Parameters
+        -----------
+
+        parse: string
+               parse tree read from input file
+
+        date: string
+        verbs: dictionary
+               verb phrases in the sentence
+               key is the headID in the dependency parse tree graph, value is a VerbPhrase object
+        nouns: dictionary
+               noun phrases in the sentence
+               key is the headID in the dependency parse tree graph, value is a NounPhrase object
+        
+        udgraph: graph
+        		 store denpendency parse tree as a graph
+
+
+        Returns
+        -------
+        An instantiated Sentence object
+
+        """
 		self.parse = parse
-		self.agent = ""
+		#self.agent = ""
 		self.ID = -1
-		self.actor = ""
+		#self.actor = ""
 		self.date = date
 		self.longlat = (-1,-1)
-		self.verbs = []
+		self.verbs = {}
+		self.nouns = {}
+		self.triplets = {}
+		self.rootID = ""
 		self.txt = ""
 		self.udgraph = self.str_to_graph(parse)
 		self.verb_analysis = {}
@@ -272,7 +319,28 @@ class Sentence:
 
 		np = NounPhrase(self,npIDs,nounhead,self.date)
 		np.text = nounPhrasetext
+		np.head = self.udgraph.node[nounhead]['token']
 		return np
+
+	def get_verbPhrase(self,verbhead):
+
+		vpIDs = []
+		for successor in self.udgraph.successors(verbhead):
+			if('relation' in self.udgraph[verbhead][successor]):
+				#print(self.udgraph[nodeID][successor]['relation'])
+				if self.udgraph[verbhead][successor]['relation'].startswith('compound'):
+					vpIDs.append(successor)
+		vpIDs.append(verbhead)
+		vpTokens =[]
+		vpIDs.sort()
+		for vpID in vpIDs:
+			vpTokens.append(self.udgraph.node[vpID]['token'])
+
+		verbPhrasetext = (' ').join(vpTokens)
+		vp = VerbPhrase(self,vpIDs,verbhead)
+		vp.text = verbPhrasetext
+		vp.head = self.udgraph.node[verbhead]['token']
+		return vp
 
 
 
@@ -319,16 +387,40 @@ class Sentence:
 			if 'pos' in attrs and attrs['pos']== 'VERB':
 				#print(str(nodeID)+"\t"+attrs['pos']+"\t"+(" ").join(str(e) for e in self.udgraph.successors(nodeID)))
 				#print(self.udgraph.successors(nodeID))
-				
-				verb = attrs['token']
+				verb = self.get_verbPhrase(nodeID)
+
+				if verb.headID in self.verbs:
+					raw_input("verb:"+self.verbs[verb.headID])
+				else:
+					self.verbs[verb.headID] = verb
+
 				source,target,othernoun = self.get_source_target(nodeID)
 
-				#for s in source: print(s)
+				for s in source:
+					if s.headID in self.nouns:
+						raw_input("source:"+self.nouns[s.headID])
+					else:
+						self.nouns[s.headID] = s
+
+				for t in target:
+					if t.headID in self.nouns:
+						raw_input("target:"+self.nouns[t.headID])
+					else:
+						self.nouns[t.headID] = t
+
+				for o in othernoun:
+					if o.headID in self.nouns:
+						raw_input("othernoun:"+self.nouns[o.headID])
+					else:
+						self.nouns[o.headID] = o
+
+
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
 					for t in target:
 						triplet = ("-",t,verb,othernoun)
 						self.metadata['triplets'].append(triplet)
+						#self.triplet["-#"+str(t.headID)+"#"]
 				elif len(source)>0 and len(target)==0:
 					for s in source:
 						triplet = (s,"-",verb,othernoun)
@@ -345,4 +437,164 @@ class Sentence:
 				self.metadata['nouns'].extend(source)
 				self.metadata['nouns'].extend(target)
 				self.metadata['nouns'].extend(othernoun)
+
+
+	def get_verb_code(self):
+
+		def match_phrase(path, noun_phrase):
+			# Having matched the head of the phrase, this matches the full noun
+			# phrase, if specified
+			#print("mphrase-entry")
+			if not noun_phrase:
+				return False
+			for npID in filter(lambda a: a<noun_phrase.headID,noun_phrase.npIDs):				
+				nptoken = self.udgraph.node[npID]['token'].upper()
+				#print(str(npID)+" "+nptoken)
+				if nptoken in path:
+					subpath = path[nptoken]
+					match = reroute(subpath, lambda a: match_phrase(a, None))
+					if match:
+						return match
+			return reroute(path, lambda a: match_phrase(a, noun_phrase))
+
+		def match_noun(path, noun_phrase):
+			#print("mn-entry")
+			#if isinstance(noun_phrase,basestring):
+			#	print("noun: "+noun_phrase)
+			#else:
+			if not isinstance(noun_phrase,basestring):
+				#print("noun:"+noun_phrase.head+"#"+noun_phrase.text)
+				head = noun_phrase.head.upper()
+				if head in path:
+					subpath = path[head]
+					#print(head +" found in pattern dictionary")
+					match = reroute(subpath, (lambda a: match_phrase(a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
+					if match:
+						#print(match)
+						return match
+
+		def match_prep(path, prep_phrase):
+			print("mp-entry")
+
+
+		def reroute(subpath, o1=match_noun, o2=match_noun,o3=match_prep, o4=match_noun, exit=1):
+			#print('rr-entry:') # ,subpath
+			if not o1:  # match_noun() can call reroute() with o1 == None; guessing returning False is the appropriate response pas 16.04.21
+				return False
+			if '-' in subpath:
+				match = o1(subpath['-'])
+				if match:
+					#print('rr-- match')
+					#print(match)
+					return match
+
+			if ',' in subpath:
+				#print('rr-,')
+				match = o2(subpath[','])
+				if match:
+					#print(match)
+					return match
+
+			if '|' in subpath:
+				#print('rr-|')
+				print(subpath['|'])
+				#match = o3(subpath['|'])
+				#if match:
+				#    print(match)
+				#    return match
+
+			if '*' in subpath:
+				#print('rr-*')
+				print(subpath['*'])
+				#return subpath['*']
+				#match = o4(subpath['*'])
+				#if match:
+				#	print(match)
+				#	return match
+
+			if '#' in subpath and exit:
+				#print('rr-#')
+				#print(subpath['#'])
+				return subpath['#']
+
+			#print('rr-False')
+			return False
+
+
+
+		for triple in self.metadata['triplets']:
+			source = triple[0]
+			target = triple[1]
+			verb = triple[2]
+
+			'''get code from verb dictionary'''
+			#print("find code of verb:"+verb.text)
+			verbDictionary = PETRglobals.VerbDict['verbs']
+			verbDictPath = verbDictionary
+			code = None
+			meaning = None
+			matched_txt = []
+			for verbtext in verb.text.upper().split(" "):
+				if verbtext in verbDictPath:
+					matched_txt.append(verbtext)
+					verbDictPath = verbDictPath[verbtext]
+
+			if "#" in verbDictPath:
+				try:
+					code = verbDictPath['#']['#']['code']
+					meaning = verbDictPath['#']['#']['meaning']
+				except:
+					print("passing:"+verb.text)
+					pass
+
+			'''		
+			if code != None and meaning != None:	
+				print(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt))
+			else:
+				print("None code and none meaning")
+			'''
+
+			'''get code from pattern dictionary'''
+			patternDictionary = PETRglobals.VerbDict['phrases']
+			patternDictPath = patternDictionary
+			matched_pattern = None
+			if meaning in patternDictionary:
+				patternDictPath = patternDictPath[meaning]
+				#print("processing source:")
+				match = match_noun(patternDictPath,source)
+				if match:
+					code = match['code']
+					matched_pattern = match['line']
+					#print("matched:"+code+"\t"+matched_pattern)
+
+				if '*' in patternDictPath:
+					patternDictPath = patternDictPath['*']
+
+				#print("processing target:")
+				match = match_noun(patternDictPath,target)
+				if match:
+					code = match['code']
+					matched_pattern = match['line']
+					#print("matched:"+code+"\t"+matched_pattern)
+
+			tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
+			           ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
+			           str(verb.headID)
+
+			self.triplets[tripleID] = {}   
+			self.triplets[tripleID]['triple']=triple
+			self.triplets[tripleID]['verbcode'] = code
+			self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
+			self.triplets[tripleID]['meaning'] = meaning
+
+			#raw_input("Press Enter to continue...")
+
+
+
+
+
+
+
+
+
 
