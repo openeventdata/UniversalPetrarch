@@ -357,6 +357,9 @@ PETRARCH
                                help="""Filepath for the PETRARCH configuration
                                file. Defaults to PETR_config.ini""",
                                required=False)
+    parse_command.add_argument('-d', '--debug',
+                               help="""Enable debug info""",
+                               required=False)
 
     batch_command = sub_parse.add_parser('batch', help="""Command to run a batch
                                          process from parsed files specified by
@@ -377,6 +380,10 @@ PETRARCH
     batch_command.add_argument('-o', '--outputs',
                                help="""Filepath for the input XML file. Defaults to
                                data/text/Gigaword.sample.PETR.xml""",
+                               required=False)
+
+    batch_command.add_argument('-d', '--debug',
+                               help="""Enable debug info""",
                                required=False)
 
     nulloptions = aparse.add_mutually_exclusive_group()
@@ -400,7 +407,7 @@ PETRARCH
 
 def main():
     cli_args = parse_cli_args()
-    utilities.init_logger('PETRARCH.log')
+    utilities.init_logger('PETRARCH.log',cli_args.debug)
     logger = logging.getLogger('petr_log')
 
     PETRglobals.RunTimeString = time.asctime()
@@ -435,6 +442,8 @@ def main():
             PETRglobals.NewActorLength = int(cli_args.nullactors)
 
         read_dictionaries()
+        
+        '''
         start_time = time.time()
         print('\n\n')
 
@@ -465,6 +474,7 @@ def main():
             run(paths, out, True)  # <===
 
         print("Coding time:", time.time() - start_time)
+        '''
 
     print("Finished")
 

@@ -379,20 +379,28 @@ def _get_config(config_name):
     return out_dir
 
 
-def init_logger(logger_filename):
-
-    logger = logging.getLogger('petr_log')
-    logger.setLevel(logging.INFO)
-
+def init_logger(logger_filename,debug):
     cwd = os.getcwd()
     logger_filepath = os.path.join(cwd, logger_filename)
 
-    fh = logging.FileHandler(logger_filepath, 'w')
     formatter = logging.Formatter('%(levelname)s %(asctime)s: %(message)s')
-    fh.setFormatter(formatter)
 
+    logger = logging.getLogger('petr_log')
+    logger.setLevel(logging.DEBUG)
+    fh = logging.FileHandler(logger_filepath, 'w')
+    fh.setFormatter(formatter)
+    fh.setLevel(logging.INFO)
     logger.addHandler(fh)
+
+    if debug:
+        chformatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+        ch.setFormatter(chformatter)
+        logger.addHandler(ch)
+    
     logger.info('Running')
+
 
 
 def combine_code(selfcode, to_add):

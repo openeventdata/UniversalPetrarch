@@ -4,6 +4,8 @@
 import networkx as nx
 import PETRglobals
 import PETRreader
+import logging
+
 
 class NounPhrase:
 
@@ -78,6 +80,84 @@ class NounPhrase:
 		        # 16.04.25 this branch always resolves to an agent
 		        return [path['#']], so_far, length
 		return False
+
+	def resolve_codes(self, codes):
+		"""
+		Method that divides a list of mixed codes into actor and agent codes
+
+		Parameters
+		-----------
+		codes: list
+		       Mixed list of codes
+
+		Returns
+		-------
+		actorcodes: list
+		            List of actor codes
+
+		agentcodes: list
+		            List of actor codes
+
+		"""
+		if not codes:
+			return [], []
+
+		actorcodes = []
+		agentcodes = []
+		for code in codes:
+			if not code:
+			    continue
+			if code.startswith("~"):
+				agentcodes.append(code)
+			else:
+				actorcodes.append(code)
+		return actorcodes, agentcodes
+
+	def mix_codes(self, agents, actors):
+		"""
+		Combine the actor codes and agent codes addressing duplicates
+		and removing the general "~PPL" if there's a better option.
+
+		Parameters
+		-----------
+		agents, actors : Lists of their respective codes
+
+
+		Returns
+		-------
+		codes: list
+		       [Agent codes] x [Actor codes]
+
+		"""
+
+		# --        print('mc-entry',actors,agents)
+		codes = set()
+		mix = lambda a, b: a + b if not b in a else a
+		actors = actors if actors else ['~']
+		for ag in agents:
+			if ag == '~PPL' and len(agents) > 1:
+				continue
+		#            actors = map( lambda a : mix( a[0], ag[1:]), actors)
+			actors = map(lambda a: mix(a, ag[1:]), actors)
+
+		# --        print('mc-1',actors)
+		return filter(lambda a: a not in ['', '~', '~~', None], actors)
+
+		# 16.04.25 hmmm, this is either a construct of utterly phenomenal
+		# subtlety or else we never hit this code...
+		codes = set()
+		# --        print('WTF-1')
+		for act in (actors if actors else ['~']):
+			for ag in (agents if agents else ['~']):
+				if ag == "~PPL" and len(agents) > 1:
+					continue
+				code = act
+				if not ag[1:] in act:
+					code += ag[1:]
+				if not code in ['~', '~~', ""]:
+					codes.add(code)
+		return list(codes)
+
 
 	def check_date(self,match):
 		"""
@@ -275,6 +355,12 @@ class Sentence:
 
 		return dpgraph
 
+	def get_rootNode(self):
+		for successor in self.udgraph.successors(0):
+			if('relation' in self.udgraph[0][successor]):
+				#print(self.udgraph[nodeID][successor]['relation'])
+				if self.udgraph[0][successor]['relation'] in ['root']:
+					self.rootID = successor
 
 	def get_nounPharse(self, nounhead):
 		npIDs=[]
@@ -440,16 +526,17 @@ class Sentence:
 
 
 	def get_verb_code(self):
+		logger = logging.getLogger('petr_log.PETRgraph')
 
 		def match_phrase(path, noun_phrase):
 			# Having matched the head of the phrase, this matches the full noun
 			# phrase, if specified
-			#print("mphrase-entry")
+			logger.debug("mphrase-entry")
 			if not noun_phrase:
 				return False
 			for npID in filter(lambda a: a<noun_phrase.headID,noun_phrase.npIDs):				
 				nptoken = self.udgraph.node[npID]['token'].upper()
-				#print(str(npID)+" "+nptoken)
+				logger.debug(str(npID)+" "+nptoken)
 				if nptoken in path:
 					subpath = path[nptoken]
 					match = reroute(subpath, lambda a: match_phrase(a, None))
@@ -458,19 +545,17 @@ class Sentence:
 			return reroute(path, lambda a: match_phrase(a, noun_phrase))
 
 		def match_noun(path, noun_phrase):
-			#print("mn-entry")
-			#if isinstance(noun_phrase,basestring):
-			#	print("noun: "+noun_phrase)
-			#else:
+			logger.debug("mn-entry")
+			
 			if not isinstance(noun_phrase,basestring):
-				#print("noun:"+noun_phrase.head+"#"+noun_phrase.text)
+				logger.debug("noun:"+noun_phrase.head+"#"+noun_phrase.text)
 				head = noun_phrase.head.upper()
 				if head in path:
 					subpath = path[head]
-					#print(head +" found in pattern dictionary")
+					logger.debug(head +" found in pattern dictionary")
 					match = reroute(subpath, (lambda a: match_phrase(a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
 					if match:
-						#print(match)
+						logger.debug(match)
 						return match
 
 		def match_prep(path, prep_phrase):
@@ -528,7 +613,7 @@ class Sentence:
 			verb = triple[2]
 
 			'''get code from verb dictionary'''
-			#print("find code of verb:"+verb.text)
+			logger.debug("finding code of verb:"+verb.text)					
 			verbDictionary = PETRglobals.VerbDict['verbs']
 			verbDictPath = verbDictionary
 			code = None
@@ -547,12 +632,12 @@ class Sentence:
 					print("passing:"+verb.text)
 					pass
 
-			'''		
+					
 			if code != None and meaning != None:	
-				print(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt))
+				logger.debug(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt))
 			else:
-				print("None code and none meaning")
-			'''
+				logger.debug("None code and none meaning")
+			
 
 			'''get code from pattern dictionary'''
 			patternDictionary = PETRglobals.VerbDict['phrases']
@@ -560,22 +645,22 @@ class Sentence:
 			matched_pattern = None
 			if meaning in patternDictionary:
 				patternDictPath = patternDictPath[meaning]
-				#print("processing source:")
+				logger.debug("processing source:")
 				match = match_noun(patternDictPath,source)
 				if match:
 					code = match['code']
 					matched_pattern = match['line']
-					#print("matched:"+code+"\t"+matched_pattern)
+					logger.debug("matched:"+code+"\t"+matched_pattern)
 
 				if '*' in patternDictPath:
 					patternDictPath = patternDictPath['*']
 
-				#print("processing target:")
+				logger.debug("processing target:")
 				match = match_noun(patternDictPath,target)
 				if match:
 					code = match['code']
 					matched_pattern = match['line']
-					#print("matched:"+code+"\t"+matched_pattern)
+					logger.debug("matched:"+code+"\t"+matched_pattern)
 
 			tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
 			           ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
@@ -587,8 +672,13 @@ class Sentence:
 			self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
 			self.triplets[tripleID]['meaning'] = meaning
 
-			#raw_input("Press Enter to continue...")
+			raw_input("Press Enter to continue...")
+	
+	def get_meaning(self):
+		self.get_verb_code()
+		self.get_rootNode()
 
+		#for 
 
 
 

@@ -144,9 +144,9 @@ def extract_actor_code(event_dict):
 					print("matched_txt:"+triple['matched_txt'])
 
 		
-				#event_dict[key]['sents'][sent]['phrase_dict'] = sentence.metadata
+				event_dict[key]['sents'][sent]['phrase_dict'] = sentence.metadata
 
-			raw_input("Press Enter to continue...")
+			#raw_input("Press Enter to continue...")
 
 	return event_dict
 
@@ -188,7 +188,7 @@ def write_phrases(event_dict,outputfile):
 	tree = ET.ElementTree(root)
 	tree.write(outputfile,'UTF-8')
 
-
+utilities.init_logger('PETRARCH.log',True)
 config = utilities._get_data('data/config/', 'PETR_config.ini')
 print("reading config")
 sys.stdout.write('Mk1\n')
