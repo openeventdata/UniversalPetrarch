@@ -358,6 +358,23 @@ def _format_parsed_str(parsed_str):
     treestr = ''.join(parsed)
     return treestr
 
+def _format_ud_parsed_str(parsed_str):
+    
+    parsed = parsed_str.split('\n')
+
+    cleanparsed=[]
+    for p in parsed:
+        if not p:
+            continue
+        if len(p.split("\t"))==8:
+            cleanparsed.append(p)
+        else:
+            print("number of field is not 8:"+p)
+            raw_input("Press Enter to continue...")
+
+
+    treestr = '\n'.join(cleanparsed)
+    return treestr
 
 def _format_datestr(date):
     datetime = dateutil.parser.parse(date)

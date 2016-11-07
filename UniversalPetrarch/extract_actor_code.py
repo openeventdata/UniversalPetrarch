@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import petrarch2, PETRglobals, PETRreader, utilities
+import petrarch_ud, PETRglobals, PETRreader, utilities
 import xml.etree.ElementTree as ET
 import networkx as nx
 import PETRgraph
@@ -194,7 +194,7 @@ print("reading config")
 sys.stdout.write('Mk1\n')
 PETRreader.parse_Config(config)
 print("reading dicts")
-petrarch2.read_dictionaries()
+petrarch_ud.read_dictionaries()
 inputFile=sys.argv[1]
 #inputFile=sys.argv[1].replace(".xml","")+"_parsed.xml"
 outputFile = inputFile.replace("_parsed.xml","")+"_phrase.xml"

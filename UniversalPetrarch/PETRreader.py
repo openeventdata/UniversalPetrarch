@@ -2121,7 +2121,7 @@ def read_xml_input(filepaths, parsed=False):
                 # i.e., multiple parsed sentences within the XML entry?
                 if parsed:
                     parsed_content = story.find('Parse').text
-                    parsed_content = utilities._format_parsed_str(
+                    parsed_content = utilities._format_ud_parsed_str(
                         parsed_content)
                 else:
                     parsed_content = ''

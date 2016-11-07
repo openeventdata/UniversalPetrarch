@@ -18,11 +18,16 @@ class NounPhrase:
 		self.meaning = ""
 		self.date = date
 		self.sentence = sentence
+		self.matched_txt = None
 
 	def get_meaning(self):
 		npText = self.text.upper().split(" ")
 		# matching the entire noun phrase string first in the actor or agent dictionary
 		codes,roots,matched_txt = self.textMatching(npText)
+
+		actorcodes, agentcodes = self.resolve_codes(codes)
+		self.meaning = self.mix_codes(agentcodes, actorcodes)
+		self.matched_txt = matched_txt
 
 		return codes,roots,matched_txt
 
@@ -335,8 +340,8 @@ class Sentence:
 		self.rootID = ""
 		self.txt = ""
 		self.udgraph = self.str_to_graph(parse)
-		self.verb_analysis = {}
-		self.events = []
+		#self.verb_analysis = {}
+		self.events = {}
 		self.metadata = {'nouns': [], 'verbs':[],'triplets':[]}
     
 
@@ -575,10 +580,11 @@ class Sentence:
 
 			if ',' in subpath:
 				#print('rr-,')
-				match = o2(subpath[','])
-				if match:
+				print(subpath[','])
+				#match = o2(subpath[','])
+				#if match:
 					#print(match)
-					return match
+					#return match
 
 			if '|' in subpath:
 				#print('rr-|')
@@ -672,13 +678,208 @@ class Sentence:
 			self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
 			self.triplets[tripleID]['meaning'] = meaning
 
-			raw_input("Press Enter to continue...")
+			#raw_input("Press Enter to continue...")
 	
-	def get_meaning(self):
+	def get_events(self):
+		logger = logging.getLogger('petr_log.PETRgraph')
+		self.get_phrases()
 		self.get_verb_code()
 		self.get_rootNode()
 
-		#for 
+		root_event = None
+		root_eventID=""
+		events = {}
+
+		for tripleID, triple in self.triplets.items():
+			logger.debug("check event:"+tripleID)
+			source = triple['triple'][0]
+			source_meaning=""
+			if not isinstance(source,basestring):
+				source.get_meaning() 
+				source_meaning=source.meaning if source.meaning != None else ""
+				logger.debug("source: "+ source.head+" code: "+(("#").join(source.meaning) if source.meaning != None else '-'))
+
+			target = triple['triple'][1]
+			target_meaning=""
+			if not isinstance(target,basestring):
+				target.get_meaning() 
+				target_meaning=target.meaning if target.meaning != None else ""
+				logger.debug("target: "+ target.head+" code: "+(("#").join(target.meaning) if target.meaning != None else '-'))
+
+			verb = triple['triple'][2]
+
+			if(verb.headID == self.rootID):
+				root_event = (source_meaning,target_meaning,triple['verbcode'])
+				root_eventID = tripleID
+				logger.debug("Root verb:"+verb.text+" code:"+(triple['verbcode'] if triple['verbcode'] != None else "-"))
+			else:
+				logger.debug("verb:"+verb.text+" code:"+(triple['verbcode'] if triple['verbcode'] != None else "-"))
+				if verb.headID in self.udgraph.neighbors(self.rootID):
+					relation_with_root = self.udgraph[self.rootID][verb.headID]['relation']
+					logger.debug("verb:"+verb.text+" relation:"+relation_with_root)
+
+			event = (source_meaning,target_meaning,triple['verbcode'])
+			logger.debug(event)
+
+			events[tripleID]= event
+			triple['event'] = event
+
+
+		logger.debug("event transformation....")
+
+		if root_event == None:
+			logger.debug("root_event is None")
+			return {}
+
+		for tripleID, triple in self.triplets.items():
+			verb = triple['triple'][2]
+
+			if verb.headID in self.udgraph.neighbors(self.rootID):
+					relation_with_root = self.udgraph[self.rootID][verb.headID]['relation']
+					if relation_with_root in ['advcl','ccomp','xcomp']:
+						current_event = (source_meaning,target_meaning,triple['verbcode'])
+						event_before_transfer = (root_event[0],current_event,root_event[2])
+						event_after_transfer = self.match_transform(event_before_transfer)
+						logger.debug("event"+tripleID+"transformation:")
+						logger.debug(event_after_transfer)
+						for e in event_after_transfer:
+							if isinstance(e,tuple) and not isinstance(e[1],tuple):
+								if tripleID not in self.events:
+									self.events[tripleID] = []
+								self.events[tripleID].append(e)
+
+		if(len(self.events)==0):
+			self.events[root_eventID]=[]
+			self.events[root_eventID].append(root_event)
+
+		return self.events
+			
+
+
+	def match_transform(self, e):
+		"""
+		Check to see if the event e follows one of the verb transformation patterns
+		specified at the bottom of the Verb Dictionary file.
+
+		If the transformation is present, adjust the event accordingly.
+		If no transformation is present, check if the event is of the form:
+
+		            a ( b . Q ) P , where Q is not a top-level verb.
+
+		    and then convert this to ( a b P+Q )
+
+		Otherwise, return the event as-is.
+
+		Parameters
+		-----------
+		e: tuple
+		   Event to be transformed
+
+		Returns
+		-------
+		t: list of tuples, matched_transformation if exist
+		   List of modified events, since multiple events can come from one single event
+		"""
+
+		logger = logging.getLogger('petr_log.PETRgraph')
+
+		def recurse(pdict, event, a2v={}, v2a={}):
+			'''
+			Parameters
+			-----------
+			a2v: dictionary
+				 actor to variable mapping
+
+			v2a: dictionary
+				 variable to actor mapping
+
+			'''
+			logger.debug("recurse entry..")
+            
+			path = pdict
+			if isinstance(pdict, list):
+				#transfromation pattern is found
+				line = pdict[1]
+				path = pdict[0]
+				verb = utilities.convert_code(path[2])[0] if not path[2] == "Q" else v2a["Q"]
+				if isinstance(v2a[path[1]], tuple):
+					results = []
+					for item in v2a[path[1]]:
+						results.append((list(v2a[path[0]]), item, verb))
+					return results, line
+				return [(list(v2a[path[0]]), v2a[path[1]], verb)], line
+
+			if isinstance(event, tuple):
+				actor = None if not event[0] else tuple(event[0])
+				masks = filter(lambda a: a in pdict, [event[2], event[2] - event[2] % 0x10,
+				                                      event[2] - event[2] % 0x100, event[2] - event[2] % 0x1000])
+				logger.debug("actor:")
+				logger.debug(actor)
+
+				logger.debug("masks:")
+				logger.debug(masks)
+
+				if masks:
+					path = pdict[masks[0]]
+				elif -1 in pdict:
+					v2a["Q"] = event[2]
+					path = pdict[-1]
+				else:
+				    return False
+			else:
+				actor = event
+
+			if actor in a2v:
+				actor = a2v[actor]
+
+			if not actor:
+				actor = "_"
+
+			if actor in path:
+				return recurse(path[actor], event[1], a2v, v2a)
+			elif not actor == '_':
+				for var in sorted(path.keys())[::-1]:
+					if var in v2a:
+						continue
+					if not var == '.':
+						v2a[var] = actor
+						a2v[actor] = var
+					return recurse(path[var], event[1], a2v, v2a)
+			return False
+
+		logger.debug("match_transform entry...")
+
+		try:            
+			logger.debug(e)
+
+			t = recurse(PETRglobals.VerbDict['transformations'], e)
+			if t:
+				logger.debug("transformation is present:")
+				logger.debug("t:")
+				logger.debug(t)
+				return t
+			else:
+				logger.debug("no transformation is present:")
+				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and not e[1][2] / (16 ** 3):
+					logger.debug("the event is of the form: a ( b . Q ) P")
+					if isinstance(e[1][0], list):
+						results = []
+						for item in e[1][0]:
+							event = (e[0], item, utilities.combine_code(e[1][2], e[2]))
+							logger.debug(event)
+							results.append(event)
+						return results
+					
+					event = (e[0], e[1][0], utilities.combine_code(e[2], e[1][2]))
+					logger.debug(event)
+					return [event]
+
+		except Exception as ex:
+			pass  # print(ex)
+		return [e]
+
+
+
 
 
 
