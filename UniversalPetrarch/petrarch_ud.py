@@ -125,13 +125,15 @@ PETRARCH
                                required=False)
                                
     batch_command.add_argument('-o', '--outputs',
-                               help="""Filepath for the input XML file. Defaults to 
+                               help="""Filepath for the output XML file. Defaults to 
                                data/text/Gigaword.sample.PETR.xml""",
                                required=False)
 
     batch_command.add_argument('-d', '--debug',
                                help="""Enable debug info""",
-                               required=False)
+                               action="store_true")
+
+    batch_command.set_defaults(debug=False)
 
     args = aparse.parse_args()
     return args
@@ -304,6 +306,7 @@ def do_coding(event_dict):
                 t1 = time.time()
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
                 print(sentence.txt)
+                raw_input("check")
                 # this is the entry point into the processing in PETRtree
                 coded_events = sentence.get_events()
 
