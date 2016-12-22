@@ -1,0 +1,522 @@
+# PETRARCH VALIDATION SUITE VERBS DICTIONARY -->
+# VERSION: 2.0 -->
+# Last Update: 20 Dec 2016 -->
+
+# Change 20 Dec 2016
+# 1. convert to CAMEO 2.0 format
+
+# Note: This dictionary started out as part of a KEDS dictionary -- hence most of   
+# the codes are WEIS, not CAMEO -- and then small parts of it were tweaked quite    
+# unsystematically to accommodate various unit tests over the years. Most of the    
+# patterns here are not, in fact, actually used in the PETRARCH unit tests, and at  
+# some point the whole thing should be edited and substantially reduced in size, as 
+# at which point we should also add unique identifiers to the patterns so one can   
+# associate specific tests with specific patterns. But at the moment it is mostly   
+# just that ad hoc KEDS-based dictionary.  Sorry.                                   
+
+####### SYNONYM SETS ####### 
+&PREPOSIT1_
++AGAINST
++IN
++ON
++BY
++NEAR
++AT
+
+&CURRENCY 
++DOLLARS
++EUROS
++AUSTRIAN FLORIN
++GOLDEN_GOBLIN_GALLEONS
++PESO
++KRONER
++YUM YENNYEN 
++JAVANESE YEN
++SWISS FRANCS
++YEN
+
+&HYPERCURR
++BITCOIN
++AUSTRIAN GOLD FLORIN  
++LEPRECHAUN GOLD
+
+&TIETYPES
++MILITARY
++ECONOMIC
++CULTURAL
+
+&NEGATVAUXVRB  # "negative auxiliary verb" since you are wondering... 
++DID N'T   # this is what a contraction looks like in TreeBank
++WO N'T
++REALLY DID NOT
++CA N'T
++WILL NOT
+
+&GENINT
++GENEVA
++INTERNATIONAL
+
+&ACCORDSYN  # this is a whacky one which tests embedded synsets....
++&TIETYPES
++CLOSER
++NEARER
++&CURRENCY
+
+&REVOLT
++REVOLUTION
++REVOLUTIONARY
+
+&EXERSYN
++EXERCISES
++MANUVERS
+
+&ECONSANCT
++ECONOMIC SANCTIONS
++TOTAL BOYCOTT
++EMBARGO
+
+&TESTSYN3
++(TO THE END)
++(TO THE DEATH)
++(UNTIL HELL FREEZES OVER)
+
+&TESTSYN4
++(TO THE END OF THE EARTH)
++(TO THE DEATH)
+
+
+####### VERB PATTERNS ####### 
+
+--- ABANDON  [345]  ---
+ABANDON    # pas 15 Jul 2003
++ABC_DEF_GHI
+KLM_NOP_+RST [002]
++ABC_AARDVARK_ADVOCATE [003]
+- * {NEW &TIETYPES RELATIONS} [903] #  -PAS 12.01.12
+- * {IMPROVED &TIETYPES RELATIONS} [904] #  -PAS 12.01.12
+- * EFFORT  [080]  # pas 15 Jul 2003
+- * {DIPLOMATIC TIES} [080]
+- * {&TIETYPES TIES} [080] #  -PAS 12.01.12
+
+--- ACCORD  [---] ---
+ACCORD  
+- + * {DEMAND &GENINT CONVENTIONS}  [111]   
+- {INCHING &ACCORDSYN} *  [013]  # tony  4/29/91 
+- (IN) *  [075]  # pas 2 May 2005 #   pattern CONNECT-3  7/14/03
+- (IN) *  [075A]  # pas 2 May 2005 #   pattern CONNECT-3  7/14/03
+- (IN) *  [072]  # pas 2 May 2005 #   pattern CONNECT-2  7/14/03
+- (TO) *  [073]
+
+--- ACT [100] ---
+ACT 
+#- INDICATED WOULD * NOW  [1010] 
+#- INDICATED SHOULD *   [1011] 
+- * (&PREPOSIT1 RESOLUTION)  [057]  # tony  4/22/91
+- * (&PREPOSIT1 PROGRAMS)  [051]  # tony  3/9/91
+
+---  WILL   [030]  --- 
+SCHEDULE
+WILL
+WOULD
+
+--- ADOPT  [057]  ---
+ADOPT    # PAS   9/24/91
+- * RESOLUTION  [057]  # tony  4/22/91
+- * &REVOLT  [802]  # PAS  5/08/14
+- * PROGRAM  [073]  # tony  3/9/91
+
+
+--- AGREE  [081] ---
+AGREE  
+- * (TO LET ESCAPE)  [066]  # tony  4/28/91
+- * (TO ATTEND)  [082] 
+#- FAILED_TO_*  [111]  # jw 9/17/91 
+- * (WITH)  [050]
+- % * [039:039]  # pas 14.09.18  
+
+
+--- ALLOW  [080] ---
+ALLOW  
+- * {THE NEATEST PLACE}  [027]  # CONNECT-26, 27 #  pas 8-May-05
+- * {REALLY PLEASANT}  [080]  # CONNECT-08 to 10 #  pas 8-May-05 
+- * {REAL_PLEASANT}  [080]  # CONNECT-08 to 10 #  pas 8-May-05
+#- INDICATED MAY *  [080]  # tony  3/9/91
+- RECENTLY *  [025]  # CONNECT-23 to 25 #  pas 8-May-05
+- POLICY *  [060]
+- * (TO LEAVE)  [066]
+#- NOT *  [112]  # tony  3/9/91
+
+---  INDICATE   [---]  --- 
+INDICATE 
+POINT 
+SIGNAL {SIGNALS SIGNALLING SIGNALLED }
+- * READY                                             [030]         # INDICATE
+- * TIME (FOR &NEGOTIATION)                           [036]         # INDICATE
+- * WILLINGNESS (FOR TALKS)                           [036]         # INDICATE
+
+--- APPEAL  [027] ---
+APPEAL 
+
+--- ARRANGE  [073] ---
+ARRANGE  
+
+--- ARREST  [212] ---
+ARREST  
+
+--- ARRIVE  [040:040]  ---
+ARRIVE    # -PAS 95.12.18
+
+--- BARGAIN  [031]  ---
+BARGAIN    # tony  3/9/91
+- * (FOR ASYLUM) [1033]  #  pattern CONNECT-15,16
+#- REFUSAL TO *  [112]  # jw 9/24/91 
+- * ASYLUM  [174L]  #  pattern CONNECT-15,16
+
+--- BEGIN  [---]  ---
+BEGIN {BEGINS BEGINNING BEGAN BEGUN }
+* (TO QUESTION) [110]
+
+--- BELIEVE  [012] ---
+BELIEVE  
+- * KIDNAP  [212]
+- * LINKED  [111]
+
+--- BOYCOTT  [163] ---
+BOYCOTT  
+#- NOTED_WOULD NOW *  [173]  #  pattern CONNECT-11,13 #  now forces earlier match 7/15/03
+#- NOTED WOULD *  [174]  #  pattern CONNECT-12 7/15/03
+#- SAID *  [172] 
+- * WORK  [181]
+#- NEITHER * [081] 
+
+
+
+--- OBSERVE   [010]  --- 
++TAKE_NOTE {+TAKES_NOTE +TAKING_NOTE +TAKEN_NOTE +TOOK_NOTE }
++WATCH_OVER {+WATCHES_OVER +WATCHED_OVER +WATCHING_OVER }
+NOTE 
+NOTICE 
+OBSERVE 
+SAW 
+SEE {SEES SEEING SEEN }  # JON 2/22/96
+VIEW 
+WATCH 
+WITNESS 
+- * {NO REASON} (FOR OPTIMISM)                        [012]         # SAW
+- * CHANCE (FOR PEACE)                                [013]         # SEE
+- * (NO OBSTACLE)                                     [013]         # SAW
+- * DAY (OF MOURNING)                                 [017]         # OBSERVE
+- * ROLE (IN PEACEKEEPING)                            [0334]        # SAW
+- * &CEASEFIRE                                        [0871]        # OBSERVE
+- * (WITH HOSTILITY)                                  [110]         # VIEW
+- * REBUFF                                            [110]         # SAW
+- * ROW                                               [110]         # WITNESS
+- * (AS TERRORIST)                                    [112]         # VIEW
+- * {GENERAL STRIKE}                                  [143]         # OBSERVE
+
+
+--- BREAK [120] ---
+BREAK { BROKE BROKEN  }
++BREAK_DOWN {+BREAKS_DOWN +BREAKING_DOWN +BROKE_DOWN +BROKEN_DOWN }
+#- + KNOWN_ * IN_ $  [076]  #  pattern CONNECT-15D to 15H  7/14/03
+- * DEADLOCK  [102]
+- * TREATY  [1246]
+- * BONE  [182]
+- + * (IN) $  [075]  #  pattern CONNECT-6  7/14/03
+- * (OFF) [195]  # tony  3/13/91
+
+
+--- BURN [---] ---
+BURN 
+- * (DOWN)  [222]
+- * FLAGS  [181]  # tony  4/28/91 #Jing: singular?
+
+--- CALL  [010] ---
+CALL  
+- * (FOR CEASEFIRE)  [014]  # jw 9/29/91
+- * (FOR &ECONSANCT)  [172]  # pas 25 Jan 2002
+- * (UPON)  [097]  #  BUG-02 #  PAS 9-May-05
+- * (FOR)  [113]
+- * (ON) [095]  #  MARK-00 to 05 #  PAS 9-May-05
+
+--- CELEBRATE  [051] ---
+CELEBRATE  
+- * TABASKI ^ $ [017]  # pas  3/2/02 
+- * {MAY DAY}  $ [017]  # pas  3/2/02 
+- * EID (AT ^) (WITH +) [017]  # pas  3/2/02
+- * DECISION  [017]  # tony  3/9/91
+- * IFTAR (AT ^ ^) +  [017]  # pas  4/20/03
+- * IFTAR (IN ^) +  [017]  # pas  4/20/03
+
+---  HOST   [043:042]  --- 
+HOST   # jw   11/14/91
+- * {&MILITARY CONFERENCE}                            [0332]        # HOST
+- * CONFERENCE &MILITARY                              [0332]        # HOST
+- * SUMMIT (WITH)                                     [036:036]     # HOST
+- WILL *                                              [036:036]     # HOST
+- * TALKS (BETWEEN)                                   [039]         # HOST
+- * MEETING                                           [043:042]     # HOST
+- * SUMMIT                                            [043:042]     # HOST
+- * (BY)                                              [043:042]     # HOST
+- * DINNER                                            [043]         # HOST
+- * CONFERENCE                                        [053]         # HOST
+- * {JOINT EXERCISE}                                  [062:062]     # HOST
+
+--- CHIDE  [111] ---
+CHIDE  
+
+--- CLASH  [223] ---
+CLASH  
+#- UNEXPECTEDLY &NEGATVAUXVRB * OVER EFFORTS  [906]  #  PAS 12.01.14 
+#- MOST_CERTAINLY_&NEGATVAUXVRB_EVER * OVER EFFORTS  [907]  #  PAS 12.01.14 
+#- &NEGATVAUXVRB EVER * OVER EFFORTS  [905]  #  PAS 12.01.14 
+#- &NEGATVAUXVRB * OVER EFFORTS  [904]  #  PAS 12.01.14 
+#- &NEGATVAUXVRB_WANT * OVER EFFORTS  [908]  #  PAS 12.01.14 
+- * (OVER EFFORTS)  [110]  # jw 9/25/91
+- * DEBATE  [121]  # tony  4/22/91
+
+--- CONDEMN  [111]  ---
+CONDEMN    # tony  4/28/91
+#- JOIN IN *  [122]  # jw 9/30/91
+#- ISSUE *  [132]  # pas  3/2/91
+
+--- CONTRIBUTE [070]  ---
+CONTRIBUTE   # tony  3/12/91
+- * &CURRENCY [070] #  -PAS 12.01.12
+- * &HYPERCURR [904] #  -PAS 14.05.08
+- * RUPEES  [070]
+
+--- EXCLUDE  [144] ---
+EXCLUDE  
++CORDON_OFF {+CORDONED_OFF +CORDONS_OFF +CORDONING_OFF } 
+- * (FOR CONSTRUCTION) [144]
+
+--- CRITICIZE  [111]  ---
+CRITICIZE    # pas  3/1/91
+- (DESPITE) * (FROM $)  [122]  # tony  4/22/91
+#- HEAVILY UNJUSTLY  *  [123]  # tony  4/22/91 
+#- HEAVILY *   [122]  # tony  4/22/91 
+- (DESPITE $) *  [123]  # tony  4/22/91
+
+--- DELAY [120]  ---
+DELAY
+DOWNPLAY [014]
+POSTPONE    # -PAS 2/9/96
+#- % HAVE  *  [191] 
+#- SAID WOULD NOT *  [112]  # tony  4/19/91 
+- * MEET                                              [161]         # POSTPONE
+
+
+--- DEPART [040]  ---
+DEPART   # JW   10/15/91
+
+--- DEPLORE [111] ---
+DEPLORE 
+#- INDICATED *  [123] 
+
+--- EXPRESS  [020] ---
+EXPRESS  
+- * SUPPORT  [042]
+- * CONCERN  [131]
+- * DISMAY  [121]  # tony  4/28/91
+- * REGRET  [061]
+- * HOPES  [013]  # tony  4/22/91
+- * ANGER  [121]  # tony  4/22/91
+- * FEARS  [022]  # tony  4/26/91
+- * WISH  [094]
+
+--- FIRE  [071]  ---
+FIRE    # jw 9/17/91
+- * ARTILLERY  [180]  # jw 9/24/91
+
+--- FREE  [080] ---
+FREE  
+#- SAID * HOSTAGES  [053] 
+- * (FROM $)  [080]
+#- SAID *  [053] 
+
+---  HALT [191]  ---
+HALT
+- * TRANSPORT                                           [211]  
+- * CARGO                                               [211] 
+- * MARCH					     	[0871]
+
+---  HOLD [210]  ---
+HOLD {HOLDS HOLDING HELD } [---] # HUX 10/10/97
+- * DEMONSTRATION                                     	[181]
+- * (UP LICENSING)                                    	[112]
+#- % * TALKS                                           	[031]   
+- * TALKS                                            	[032:032]
+
+--- LAUNCH  [---] ---
+LAUNCH  
+- * {DIPLOMATIC OFFENSIVE}  			      	[122]  
+- * {CIVIL DISOBEDIENCE}  				[181]  
+- * ATTACK  						[173]
+- * OFFENSIVE  						[223]  
+- * {NEW BROADSIDE}  					[122]  
+- * DIPLOMATIC  					[050]
+- * ATTACK  						[223]
+- TANKS *  						[224]
+- * BID  						[102]  
+
+--- LEAVE  [012] ---
+LEAVE  
+- (ABLE TO) *  					[012]
+
+
+--- LEFT  [040:040]  ---
+LEFT[040:040]    
+
+
+--- MARCH  [152] ---
+MARCH
+
+
+--- MEET  [040:040]  ---
+MEET {MEETS MET MEETING}     
+- (OUT OF) *  						[112]
+- * DEMANDS  						[012]
+#- HOLD *  						[031]    
+
+--- REGRET  [111] ---
+REGRET  {REGRETTED REGRETS}
+- + *  							[111]   
+- $ *  							[113]  
+
+--- OPPOSE  [110] ---
+OPPOSE  
+- $ BACK + IN *  					[042]
+
+
+--- OVERCOME  [---] ---
+OVERCOME  
+- * ANIMOSITY  						[050]  
+
+--- PRESENT  [---] ---
+PRESENT  
+- * CREDENTIALS  					[040]
+- * PROPOSAL  						[101]
+- * GIFT  						[073]
+
+--- REASSERT  [---] ---
+REASSERT  
+- * FRIENDSHIP  					[051]  
+
+
+--- RECEIVE  [033]  ---
+RECEIVE   
+- + * {A MESSAGE} $  					[031]
+- + * MONEY $  						[071]
+- * CARD  						[---]
+
+--- RENEW  [---] ---
+RENEW  
+- * POLICY 						[201]
+- * DIPLOMATIC  					[050:050]
+- % * DIPLOMATIC  					[050:050]
+- * CRITICISM  						[121]
+- * RELATIONS  						[050]
+- * LICENSE  						[031]  
+- * DIALOGUE  						[031] 
+
+--- RESCHEDULE  [082] ---
+RESCHEDULE  
+
+
+--- RESTORE  [050]  ---
+RESTORE    
+- * {FXLL DIPLOMATIC}  					[+++]
+- * RELATIONS	  					[050]  
+- * DIPLOMATIC  					[050] 
+- * DIPLXMATIC  					[###] 
+- * {THE FULL} 						[xxy]  
+- * TIES  						[050]  
+
+--- SAY  [010]  ---
+SAY  {SAYS SAID SAYING}    
+- * UNSATISFACTORY  					[131]
+- * INNOCENT  						[141] 
+- * {DOWN ARMS}  					[094]  
+- * {BE MERCILESS}  					[173] 
+- * {NO EVIDENCE}  					[141]
+- * SKEPTICISM  					[111]
+- * POLICY   						[010]  
+- * {ONLY WAY}  					[094]
+- * PLEASED  						[041]  
+- * UNABLE  						[111]  
+- * HAPPY  						[041]  
+
+--- RISEN  [---] ---
+RISEN   
+- {DEATH TOTAL} * 					[190] 
+- {DEATH TOLL} * 					[190] 
+
+
+--- PROPOSE  [100] ---
+PROPOSE  
+
+
+--- WARN  [130] ---
+WARN  
+#- NOW + HAVE BEEN * $ RECENT  				[165] 
+- $ ^ (FOR) *  						[164] 
+- * THEIR ^ ABOUT +  					[130]
+- * (AT) ^ +  						[130]
+- $ (IN) ^ *  						[163]
+
+---  SHOOT   [190]  ---
+SHOOT  {SHOOTS SHOOTING SHOT }  # SHAN   9/6/93
+
+--- SIGN  [---] ---
+SIGN  
+- * {NEW PROTOCOL}  					[084]
+- * AGREEMENT  						[081]
+- * {TRADE PROTOCOL}  					[057]
+- (CLOSE TO) *  					[031]  
+- * PACT  						[053]
+
+--- SIGNAL  [---] ---
+SIGNAL  
+- * (TO SETTLE)  					[024] 
+
+
+--- SPUR [111] ---
+SPUR 
+- * RECONCILIATION 					[050]  
+
+--- URGE  [023] ---
+URGE  
+- * (TO FREEZE) {SETTLEMENT ACTIVITY} 			[102b]
+
+--- VOW  [170]  ---
+VOW     
+- * &TESTSYN3 						[113]  
+- * &TESTSYN4  						[115] 
+- * RESISTANCE (TO) THE INVADING 			[114]  
+- * WAR  						[190]  
+
+
+--- WELCOME  [050] ---
+WELCOME  
+- * {&TIETYPES MEMOS} (FROM) 				[911]
+- * {&TIETYPES RUMORS} (FROM) 				[911]
+- * MEMOS (ON &TIETYPES) (FROM) 				[911]
+- * {&TIETYPES MEMOS} (ABOUT) 				[915]
+- * {&TIETYPES RUMORS} (ABOUT) 				[915]
+- * MEMOS (ON &TIETYPES) (ABOUT) 				[915]
+- * {&TIETYPES ASSURANCES} (FROM) 				[030]
+- * ASSURANCES (ON &TIETYPES) (FROM) 			[030]
+- * {&TIETYPES MEMOS} 					[912]
+- * {&TIETYPES RUMORS}  					[912]
+- * MEMOS (ON &TIETYPES)  				[912]
+- * {&TIETYPES ASSURANCES} 				[030]
+- * ASSURANCES (ON &TIETYPES) 				[030]
+
+--- CONFISCATE  [170] ---
+CONFISCATE  
+WIRE_+TAP {WIRE_+TAPPED  WIRE_+TAPPING }
+TAP {TAPS TAPPED  TAPPING }
+
+--- OUST  [174]  ---
+OUST    # jw 9/16/91
