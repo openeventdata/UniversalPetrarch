@@ -361,7 +361,7 @@ class Sentence:
 			temp = p.split("\t")
 
 			#print(temp)
-			dpgraph.add_node(int(temp[0]), token = temp[1], pos = temp[3])
+			dpgraph.add_node(int(temp[0]), token = temp[1], pos = temp[3], lemma = temp[2])
 			dpgraph.add_edge(int(temp[6]),int(temp[0]),relation = temp[7])
 
 		return dpgraph
@@ -433,8 +433,8 @@ class Sentence:
 		npTokens =[]
 		npIDs.sort()
 		#print(npIDs)
-		if self.udgraph.node[npIDs[0]]['pos']=='ADP':
-			npIDs = npIDs[1:]
+		#if self.udgraph.node[npIDs[0]]['pos']=='ADP':
+		#	npIDs = npIDs[1:]
 		for npID in npIDs:
 			npTokens.append(self.udgraph.node[npID]['token'])
 			
@@ -566,6 +566,21 @@ class Sentence:
 						psource,ptarget,pothernoun = self.get_source_target([predecessor])
 						source.extend(psource)
 
+				#find the subject for 'xcomp' relation
+				#An open clausal complement (xcomp) of a verb or an adjective is a predicative or clausal complement without its own subject. 
+				#The reference of the subject is necessarily determined by an argument external to the xcomp 
+				#(normally by the object of the next higher clause, if there is one, or else by the subject of the next higher clause).
+				for predecessor in predecessors:
+					if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['xcomp']: 
+						logger.debug("found the governer of xcomp verb:"+ self.udgraph.node[predecessor]['token'])
+						psource,ptarget,pothernoun = self.get_source_target([predecessor])
+						if len(ptarget)>0:
+							source.extend(ptarget)
+						elif len(psource)>0:
+							source.extend(psource)
+						#raw_input("find xcomp relation")
+
+
 				for s in source:
 					if s.headID in self.nouns:
 						continue
@@ -591,20 +606,57 @@ class Sentence:
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
 					for t in target:
-						triplet = ("-",t,verb,othernoun)
+						triplet = ("-",t,verb)
 						self.metadata['triplets'].append(triplet)
 						#self.triplet["-#"+str(t.headID)+"#"+str(verb.headID)] = triplet
 				elif len(source)>0 and len(target)==0:
 					for s in source:
-						triplet = (s,"-",verb,othernoun)
+						triplet = (s,"-",verb)
 						self.metadata['triplets'].append(triplet)
-				#elif len(source)==0 and len(target)==0:
-				#	continue
 				else:
 					for s in source:
 						for t in target:
-							triplet = (s,t,verb,othernoun)
+							triplet = (s,t,verb)
 							self.metadata['triplets'].append(triplet)
+
+				#othernoun are usually prepositional phrase, combine the verb and preposition as the new verb phrase
+				#make the noun phrase in prepositional phrase as new target
+				#improvement is still needed			
+				if len(othernoun)>0:
+					for o in othernoun:
+						if self.udgraph.node[o.npIDs[0]]['pos']=='ADP':
+							vpTokens = []
+							vpIDs = []
+							vpIDs.extend(verb.vpIDs)
+							vpIDs.append(o.npIDs[0])
+							vpIDs.sort()
+
+							newverb = VerbPhrase(self,vpIDs,verb.headID)
+							for vpID in vpIDs:
+								vpTokens.append(self.udgraph.node[vpID]['token'])
+
+							verbPhrasetext = (' ').join(vpTokens)
+							
+							newverb.text = verbPhrasetext
+							newverb.head = verb.head
+							logger.debug("construct new vp:"+newverb.text)
+
+							newtarget = NounPhrase(self,o.npIDs[1:],o.headID,o.date)
+							targetTokens = []
+							for tID in newtarget.npIDs:
+								targetTokens.append(self.udgraph.node[tID]['token'])
+							newtarget.text = (' ').join(targetTokens)
+							newtarget.head = o.head
+							logger.debug("construct new target:"+newtarget.text)
+
+
+							if len(source)==0:
+								triplet = ("-",newtarget,newverb)
+								self.metadata['triplets'].append(triplet)
+							else:
+								for s in source:
+									triplet = (s,newtarget,newverb)
+									self.metadata['triplets'].append(triplet)
 
 				self.metadata['verbs'].append(verb)
 				self.metadata['nouns'].extend(source)
@@ -625,9 +677,16 @@ class Sentence:
 				return False
 			for npID in filter(lambda a: a<noun_phrase.headID,noun_phrase.npIDs):				
 				nptoken = self.udgraph.node[npID]['token'].upper()
+				nplemma = self.udgraph.node[npID]['lemma'].upper()
+
 				logger.debug(str(npID)+" "+nptoken)
 				if nptoken in path:
 					subpath = path[nptoken]
+					match = reroute(subpath, lambda a: match_phrase(a, None))
+					if match:
+						return match
+				elif nplemma in path:
+					subpath = path[nplemma]
 					match = reroute(subpath, lambda a: match_phrase(a, None))
 					if match:
 						return match
@@ -639,6 +698,7 @@ class Sentence:
 			if not isinstance(noun_phrase,basestring):
 				logger.debug("noun:"+noun_phrase.head+"#"+noun_phrase.text)
 				head = noun_phrase.head.upper()
+				headlemma = self.udgraph.node[noun_phrase.headID]['lemma'].upper()
 				if head in path:
 					subpath = path[head]
 					logger.debug(head +" found in pattern dictionary")
@@ -646,6 +706,14 @@ class Sentence:
 					if match:
 						logger.debug(match)
 						return match
+				elif headlemma in path:
+					subpath = path[headlemma]
+					logger.debug(headlemma +" found in pattern dictionary (lemma)")
+					match = reroute(subpath, (lambda a: match_phrase(a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
+					if match:
+						logger.debug(match)
+						return match
+
 
 		def match_prep(path, prep_phrase):
 			print("mp-entry")
@@ -673,6 +741,7 @@ class Sentence:
 			if '|' in subpath:
 				#print('rr-|')
 				print(subpath['|'])
+				#raw_input("match preposition")
 				#match = o3(subpath['|'])
 				#if match:
 				#    print(match)
@@ -751,7 +820,7 @@ class Sentence:
 
 					
 			if code != None and meaning != None:	
-				logger.debug(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt))
+				logger.debug(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt)+"\t"+str(len(verb.vpIDs)))
 			else:
 				logger.debug("None code and none meaning")
 			
@@ -771,7 +840,35 @@ class Sentence:
 
 				if '*' in patternDictPath:
 					patternDictPath = patternDictPath['*']
+					logger.debug("'*' matched")
 
+				if len(verb.vpIDs)>1:
+					logger.debug("matching prep:")
+					temppatternDictPath = patternDictPath
+					found = False
+					if '|' in temppatternDictPath:
+						logger.debug("'|' matched")
+						temppatternDictPath = temppatternDictPath['|']
+						for vpID in verb.vpIDs:
+							if(vpID <= verb.headID):
+								continue
+							if self.udgraph.node[vpID]['pos']=='ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
+								temppatternDictPath = temppatternDictPath[self.udgraph.node[vpID]['token'].upper()]
+								logger.debug("prep matched:"+self.udgraph.node[vpID]['token'].upper())
+								found = True
+
+					if found==True:
+						patternDictPath = temppatternDictPath
+						if '#' in patternDictPath:
+							patternDictPath = patternDictPath['#']
+							match = patternDictPath
+
+					if match:
+						code = match['code']
+						matched_pattern = match['line']
+						logger.debug("matched:"+code+"\t"+matched_pattern)
+
+						
 				logger.debug("processing target:")
 				match = match_noun(patternDictPath,target)
 				if match:
