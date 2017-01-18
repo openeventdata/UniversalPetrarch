@@ -366,10 +366,10 @@ def _format_ud_parsed_str(parsed_str):
     for p in parsed:
         if not p:
             continue
-        if len(p.split("\t"))==8:
+        if len(p.split("\t"))==8 or len(p.split("\t"))==10 :
             cleanparsed.append(p)
         else:
-            print("number of field is not 8:"+p)
+            print("number of field is not 8 or 10:"+p)
             raw_input("Press Enter to continue...")
 
 
