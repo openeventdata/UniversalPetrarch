@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_1" sentence="True" source="afp">
+<Text>
+Some 2,500 mainly university students formed a human chain in Japanese characters spelling out "No War" in Osaka on Sunday to protest against the ongoing US-led military campaign in Iraq.
+</Text>
+<Parse>1	Some	some	DET	DT	_	5	det	_	_
+2	2,500	2,500	NUM	CD	NumType=Card	5	nummod	_	_
+3	mainly	mainly	ADV	RB	_	5	advmod	_	_
+4	university	university	NOUN	NN	Number=Sing	5	compound	_	_
+5	students	student	NOUN	NNS	Number=Plur	6	nsubj	_	_
+6	formed	form	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
+8	human	human	ADJ	JJ	Degree=Pos	9	amod	_	_
+9	chain	chain	NOUN	NN	Number=Sing	6	dobj	_	_
+10	in	in	ADP	IN	_	12	case	_	_
+11	Japanese	japanese	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	characters	character	NOUN	NNS	Number=Plur	9	nmod	_	_
+13	spelling	spell	VERB	VBG	VerbForm=Ger	6	advcl	_	_
+14	out	out	ADP	RP	_	13	compound:prt	_	_
+15	"No	"no	DET	DT	_	16	det	_	_
+16	War"	War"	NOUN	NN	Number=Sing	13	dobj	_	_
+17	in	in	ADP	IN	_	18	case	_	_
+18	Osaka	Osaka	PROPN	NNP	Number=Sing	16	nmod	_	_
+19	on	on	ADP	IN	_	20	case	_	_
+20	Sunday	Sunday	PROPN	NNP	Number=Sing	13	nmod	_	_
+21	to	to	PART	TO	_	22	mark	_	_
+22	protest	protest	VERB	VB	VerbForm=Inf	13	advcl	_	_
+23	against	against	ADP	IN	_	28	case	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
+25	ongoing	ongoing	ADJ	JJ	Degree=Pos	28	amod	_	_
+26	US-led	US-led	VERB	VBN	Tense=Past|VerbForm=Part	28	amod	_	_
+27	military	military	ADJ	JJ	Degree=Pos	28	amod	_	_
+28	campaign	campaign	NOUN	NN	Number=Sing	22	nmod	_	_
+29	in	in	ADP	IN	_	30	case	_	_
+30	Iraq.	Iraq.	PROPN	NNP	Number=Sing	22	nmod	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_2" sentence="True" source="afp">
+<Text>
+"We cannot forgive this war," Miyako Fuji, 20, one of the rally's organisers told Jiji news agency.
+</Text>
+<Parse>1	"We	"We	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	3	nsubj	_	_
+2	cannot	cannot	PART	RB	_	3	mark	_	_
+3	forgive	forgive	VERB	VB	VerbForm=Inf	0	root	_	_
+4	this	this	DET	DT	Number=Sing|PronType=Dem	6	det	_	_
+5	war,"	war,"	NOUN	NN	Number=Sing	6	compound	_	_
+6	Miyako	Miyako	PROPN	NNP	Number=Sing	3	dobj	_	_
+7	Fuji,	Fuji,	PUNCT	,	_	3	punct	_	_
+8	20,	20,	NUM	CD	NumType=Card	9	nummod	_	_
+9	one	one	NUM	CD	NumType=Card	14	nsubj	_	_
+10	of	of	ADP	IN	_	13	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+12	rally's	rally'	NOUN	NNS	Number=Plur	13	compound	_	_
+13	organisers	organiser	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	told	tell	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
+15	Jiji	Jiji	PROPN	NNP	Number=Sing	17	compound	_	_
+16	news	news	NOUN	NN	Number=Sing	17	compound	_	_
+17	agency.	agency.	NOUN	NN	Number=Sing	14	dobj	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_3" sentence="True" source="afp">
+<Text>
+Protesters, who exceeded the 2,000 expected to show up at the park at Osaka Castle in the city's downtown neighbourhood, carried placards that read "Stop war" and "Love and Peace" while forming the human chain after 3:00 pm (0600 GMT), Jiji said.
+</Text>
+<Parse>1	Protesters,	protesters,	X	GW	_	3	advmod	_	_
+2	who	who	PRON	WP	PronType=Int	3	nsubj	_	_
+3	exceeded	exceed	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+5	2,000	2,000	NUM	CD	NumType=Card	3	dobj	_	_
+6	expected	expect	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	xcomp	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	show	show	VERB	VB	VerbForm=Inf	6	xcomp	_	_
+9	up	up	ADP	RP	_	8	compound:prt	_	_
+10	at	at	ADP	IN	_	12	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+12	park	park	NOUN	NN	Number=Sing	8	nmod	_	_
+13	at	at	ADP	IN	_	15	case	_	_
+14	Osaka	Osaka	PROPN	NNP	Number=Sing	15	compound	_	_
+15	Castle	Castle	PROPN	NNP	Number=Sing	12	nmod	_	_
+16	in	in	ADP	IN	_	19	case	_	_
+17	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
+18	city's	city'	NOUN	NNS	Number=Plur	19	compound	_	_
+19	downtown	downtown	NOUN	NN	Number=Sing	8	nmod	_	_
+20	neighbourhood,	neighbourhood,	PUNCT	,	_	19	punct	_	_
+21	carried	carry	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
+22	placards	placard	NOUN	NNS	Number=Plur	19	appos	_	_
+23	that	that	DET	WDT	PronType=Rel	24	nsubj	_	_
+24	read	read	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
+25	"Stop	"Stop	PROPN	NNP	Number=Sing	24	dobj	_	_
+26	war"	war"	PUNCT	''	_	25	punct	_	_
+27	and	and	CONJ	CC	_	25	cc	_	_
+28	"Love	"Love	PROPN	NNP	Number=Sing	25	conj	_	_
+29	and	and	CONJ	CC	_	25	cc	_	_
+30	Peace"	Peace"	NOUN	NN	Number=Sing	25	conj	_	_
+31	while	while	SCONJ	IN	_	32	mark	_	_
+32	forming	form	VERB	VBG	VerbForm=Ger	24	advcl	_	_
+33	the	the	DET	DT	Definite=Def|PronType=Art	35	det	_	_
+34	human	human	ADJ	JJ	Degree=Pos	35	amod	_	_
+35	chain	chain	NOUN	NN	Number=Sing	32	dobj	_	_
+36	after	after	ADP	IN	_	38	case	_	_
+37	3:00	3:00	NUM	CD	NumType=Card	38	nummod	_	_
+38	pm	pm	NOUN	NN	Number=Sing	32	nmod	_	_
+39	(0600	(0600	NUM	CD	NumType=Card	38	nummod	_	_
+40	GMT),	Gmt),	NOUN	NN	Number=Sing	41	compound	_	_
+41	Jiji	Jiji	PROPN	NNP	Number=Sing	38	nmod:npmod	_	_
+42	said.	said.	SYM	NFP	_	3	punct	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_4" sentence="True" source="afp">
+<Text>
+The protest follows a string of others involving tens of thousands of peace activists across Japan since January.
+</Text>
+<Parse>1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	protest	protest	NOUN	NN	Number=Sing	3	nsubj	_	_
+3	follows	follow	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	string	string	NOUN	NN	Number=Sing	3	dobj	_	_
+6	of	of	ADP	IN	_	7	case	_	_
+7	others	other	NOUN	NNS	Number=Plur	5	nmod	_	_
+8	involving	involve	VERB	VBG	VerbForm=Ger	5	acl	_	_
+9	tens	ten	NOUN	NNS	Number=Plur	8	dobj	_	_
+10	of	of	ADP	IN	_	11	case	_	_
+11	thousands	thousand	NOUN	NNS	Number=Plur	9	nmod	_	_
+12	of	of	ADP	IN	_	14	case	_	_
+13	peace	peace	NOUN	NN	Number=Sing	14	compound	_	_
+14	activists	activist	NOUN	NNS	Number=Plur	11	nmod	_	_
+15	across	across	ADP	IN	_	16	case	_	_
+16	Japan	Japan	PROPN	NNP	Number=Sing	14	nmod	_	_
+17	since	since	ADP	IN	_	18	case	_	_
+18	January.	January.	PROPN	NNP	Number=Sing	8	nmod	_	_
+</Parse></Sentence>
+</Sentences>

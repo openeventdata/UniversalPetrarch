@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_1" sentence="True" source="afp">
+<Text>
+La ONU aceptó en principio la solicitud de México para una asistencia técnica en materia electoral en las fases previas de las elecciones de agosto próximo, indicaron el jueves fuentes de Naciones 
+Unidas.
+</Text>
+<Parse>1	La	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	2	det	_	_
+2	ONU	onu	PROPN	_	_	3	nsubj	_	_
+3	aceptó	aceptar	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+4	en	en	ADP	_	_	5	case	_	_
+5	principio	principio	NOUN	_	Gender=Masc|Number=Sing	3	nmod	_	_
+6	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	7	det	_	_
+7	solicitud	solicitud	NOUN	_	Gender=Fem|Number=Sing	3	dobj	_	_
+8	de	de	ADP	_	_	9	case	_	_
+9	México	méxico	PROPN	_	_	7	nmod	_	_
+10	para	para	ADP	_	_	12	case	_	_
+11	una	uno	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	12	det	_	_
+12	asistencia	asistencia	NOUN	_	Gender=Fem|Number=Sing	7	nmod	_	_
+13	técnica	técnico	ADJ	_	Gender=Fem|Number=Sing	12	amod	_	_
+14	en	en	ADP	_	_	15	case	_	_
+15	materia	materia	NOUN	_	Gender=Fem|Number=Sing	12	nmod	_	_
+16	electoral	electoral	ADJ	_	Number=Sing	15	amod	_	_
+17	en	en	ADP	_	_	19	case	_	_
+18	las	el	DET	_	Definite=Def|Gender=Fem|Number=Plur|PronType=Art	19	det	_	_
+19	fases	fase	NOUN	_	Gender=Fem|Number=Plur	15	nmod	_	_
+20	previas	previo	ADJ	_	Gender=Fem|Number=Plur	19	amod	_	_
+21	de	de	ADP	_	_	23	case	_	_
+22	las	el	DET	_	Definite=Def|Gender=Fem|Number=Plur|PronType=Art	23	det	_	_
+23	elecciones	elección	NOUN	_	Gender=Fem|Number=Plur	19	nmod	_	_
+24	de	de	ADP	_	_	25	case	_	_
+25	agosto	agosto	PROPN	_	_	23	nmod	_	_
+26	próximo,	próximo,	PUNCT	_	_	27	punct	_	_
+27	indicaron	indicar	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Past|VerbForm=Fin	3	parataxis	_	_
+28	el	el	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	30	det	_	_
+29	jueves	jueves	ADJ	_	Number=Plur	30	amod	_	_
+30	fuentes	fuente	NOUN	_	Gender=Fem|Number=Plur	27	dobj	_	_
+31	de	de	ADP	_	_	32	case	_	_
+32	Naciones	naciones	PROPN	_	_	30	nmod	_	_
+33	Unidas.	unidas.	PROPN	_	_	32	amod	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_2" sentence="True" source="afp">
+<Text>
+Una misión encabezada por el director de la Unidad de asistencia electoral de la ONU, Horacio Boneo, se encuentra actualmente en la capital mexicana para afinar detalles de la colaboración que prestará Naciones Unidas en la materia, indicó Joe Sills, portavoz del secretario general del organismo, Butros Butros-Ghali.
+</Text>
+<Parse>1	Una	uno	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	2	det	_	_
+2	misión	misión	NOUN	_	Gender=Fem|Number=Sing	19	nsubj	_	_
+3	encabezada	encabezado	VERB	_	Gender=Fem|Number=Sing|VerbForm=Part	2	acl	_	_
+4	por	por	ADP	_	_	6	case	_	_
+5	el	el	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	6	det	_	_
+6	director	director	NOUN	_	Gender=Masc|Number=Sing	3	nmod	_	_
+7	de	de	ADP	_	_	9	case	_	_
+8	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	9	det	_	_
+9	Unidad	unidad	PROPN	_	_	6	nmod	_	_
+10	de	de	ADP	_	_	11	case	_	_
+11	asistencia	asistencia	NOUN	_	Gender=Fem|Number=Sing	9	nmod	_	_
+12	electoral	electoral	ADJ	_	Number=Sing	11	amod	_	_
+13	de	de	ADP	_	_	15	case	_	_
+14	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	15	det	_	_
+15	ONU,	Onu,	PROPN	_	_	11	nmod	_	_
+16	Horacio	horacio	PROPN	_	_	15	name	_	_
+17	Boneo,	boneo,	PROPN	_	_	15	name	_	_
+18	se	él	PRON	_	Case=Acc,Dat|Person=3|PrepCase=Npr|PronType=Prs|Reflex=Yes	19	iobj	_	_
+19	encuentra	encontrar	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+20	actualmente	actualmente	ADV	_	_	19	advmod	_	_
+21	en	en	ADP	_	_	23	case	_	_
+22	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	23	det	_	_
+23	capital	capital	NOUN	_	Gender=Fem|Number=Sing	19	nmod	_	_
+24	mexicana	mexicano	ADJ	_	Gender=Fem|Number=Sing	23	amod	_	_
+25	para	para	ADP	_	_	26	mark	_	_
+26	afinar	afinar	VERB	_	VerbForm=Inf	19	advcl	_	_
+27	detalles	detalle	NOUN	_	Gender=Masc|Number=Plur	26	dobj	_	_
+28	de	de	ADP	_	_	30	case	_	_
+29	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	30	det	_	_
+30	colaboración	colaboración	NOUN	_	Gender=Fem|Number=Sing	27	nmod	_	_
+31	que	que	SCONJ	_	_	32	mark	_	_
+32	prestará	prestar	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Fut|VerbForm=Fin	30	acl:relcl	_	_
+33	Naciones	naciones	PROPN	_	_	32	nsubj	_	_
+34	Unidas	unido	PROPN	_	_	33	amod	_	_
+35	en	en	ADP	_	_	38	case	_	_
+36	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	38	det	_	_
+37	materia,	materia,	PUNCT	_	_	38	punct	_	_
+38	indicó	indicar	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	32	nmod	_	_
+39	Joe	joe	PROPN	_	_	38	nsubj	_	_
+40	Sills,	sills,	PROPN	_	_	39	name	_	_
+41	portavoz	portavoz	NOUN	_	Number=Sing	39	name	_	_
+42	del	del	ADP	_	_	43	case	_	_
+43	secretario	secretario	NOUN	_	Gender=Masc|Number=Sing	39	nmod	_	_
+44	general	general	ADJ	_	Number=Sing	43	amod	_	_
+45	del	del	ADP	_	_	48	case	_	_
+46	organismo,	organismo,	X	_	_	47	compound	_	_
+47	Butros	Butros	X	ADJ	_	48	compound	_	_
+48	Butros-Ghali.	Butros-ghali.	X	_	_	43	nmod	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_3" sentence="True" source="afp">
+<Text>
+La solicitud del Gobierno mexicano fue presentada el miércoles en una carta enviada a Butros-Ghali por el ministro del Interior de México, Jorge Carpizo.
+</Text>
+<Parse>1	La	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	2	det	_	_
+2	solicitud	solicitud	NOUN	_	Gender=Fem|Number=Sing	7	nsubjpass	_	_
+3	del	del	ADP	_	_	4	case	_	_
+4	Gobierno	gobierno	NOUN	_	_	2	nmod	_	_
+5	mexicano	mexicano	ADJ	_	Gender=Masc|Number=Sing	4	amod	_	_
+6	fue	ser	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	7	auxpass	_	_
+7	presentada	presentar	VERB	_	Gender=Fem|Number=Sing|Tense=Past|VerbForm=Part	0	root	_	_
+8	el	el	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
+9	miércoles	miércoles	PROPN	_	_	7	nmod	_	_
+10	en	en	ADP	_	_	12	case	_	_
+11	una	uno	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	12	det	_	_
+12	carta	carta	NOUN	_	Gender=Fem|Number=Sing	7	nmod	_	_
+13	enviada	enviado	VERB	_	Gender=Fem|Number=Sing|VerbForm=Part	12	acl	_	_
+14	a	a	ADP	_	_	15	case	_	_
+15	Butros-Ghali	Butros-Ghali	PROPN	_	_	13	nmod	_	_
+16	por	por	ADP	_	_	18	case	_	_
+17	el	el	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
+18	ministro	ministro	NOUN	_	Gender=Masc|Number=Sing	13	nmod	_	_
+19	del	del	ADP	_	_	20	case	_	_
+20	Interior	interior	PROPN	_	_	18	nmod	_	_
+21	de	de	ADP	_	_	22	case	_	_
+22	México,	méxico,	PROPN	_	_	20	nmod	_	_
+23	Jorge	jorge	PROPN	_	_	18	appos	_	_
+24	Carpizo.	carpizo.	PROPN	_	_	23	name	_	_
+</Parse></Sentence>
+<Sentence date="20000715" id="AFP_ARB_20000715.0015_4" sentence="True" source="afp">
+<Text>
+Sills indicó que los detalles de la respuesta formal de Naciones Unidas se darán a conocer una vez que concluya la misión del organismo. 
+</Text>
+<Parse>1	Sills	Sills	PROPN	_	_	2	nsubj	_	_
+2	indicó	indicar	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+3	que	que	SCONJ	_	_	14	mark	_	_
+4	los	el	DET	_	Definite=Def|Gender=Masc|Number=Plur|PronType=Art	5	det	_	_
+5	detalles	detalle	NOUN	_	Gender=Masc|Number=Plur	14	nsubj	_	_
+6	de	de	ADP	_	_	8	case	_	_
+7	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	8	det	_	_
+8	respuesta	respuesta	NOUN	_	Gender=Fem|Number=Sing	5	nmod	_	_
+9	formal	formal	ADJ	_	Number=Sing	8	amod	_	_
+10	de	de	ADP	_	_	11	case	_	_
+11	Naciones	naciones	PROPN	_	_	8	nmod	_	_
+12	Unidas	unidas	PROPN	_	_	11	amod	_	_
+13	se	él	PRON	_	Case=Acc,Dat|Person=3|PrepCase=Npr|PronType=Prs|Reflex=Yes	14	iobj	_	_
+14	darán	dar	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Fut|VerbForm=Fin	2	ccomp	_	_
+15	a	a	ADP	_	_	16	mark	_	_
+16	conocer	conocer	VERB	_	VerbForm=Inf	14	acl	_	_
+17	una	uno	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	18	det	_	_
+18	vez	vez	NOUN	_	Gender=Fem|Number=Sing	16	nmod	_	_
+19	que	que	SCONJ	_	_	20	mark	_	_
+20	concluya	concluir	VERB	_	Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	18	acl:relcl	_	_
+21	la	el	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	22	det	_	_
+22	misión	misión	NOUN	_	Gender=Fem|Number=Sing	20	dobj	_	_
+23	del	del	ADP	_	_	24	case	_	_
+24	organismo.	organismo.	X	_	_	22	nmod	_	_
+</Parse></Sentence>
+</Sentences>
