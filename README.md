@@ -10,6 +10,8 @@ Language-agnostic political event coding using universal dependencies
 	2.1. Preprocessing  
 	* Input data format  
 	* Usage  
+	* Example of usage  
+
 	2.2. UniversalPetrarch  
 	* Input data format  
 	* Usage  
@@ -22,11 +24,11 @@ Language-agnostic political event coding using universal dependencies
 
 * If your input data is just raw text, you need to preprocess the data to get part-of-speech tags and dependency parsed trees. Those are the toolkits that you will need to do preprocessing:
 	1. tokenizer
-	* you will need Standford Corenlp to do sentence splitting and tokenization, which can be downloaded [here](http://stanfordnlp.github.io/CoreNLP/download.html)
-	* Arabic: you will need Stanford word segmenter. You can downloaded from [here](http://nlp.stanford.edu/software/segmenter.html#Download) and unzip it.
+		* you will need Standford Corenlp to do sentence splitting and tokenization, which can be downloaded at (http://stanfordnlp.github.io/CoreNLP/download.html)
+		* For Arabic documents, you will need Stanford word segmenter as well. You can download via the [link](http://nlp.stanford.edu/software/segmenter.html#Download) and unzip it.
 
 	2. POS tagger and dependency parser  
-	You will need UDpipe. Its pre-compiled binary package (udpipe-1.0.0-bin.zip) can be downloaded at [here](https://github.com/ufal/udpipe/releases/tag/v1.0.0). To use UDpipe, a language model is needed, which can be downloaded at [here](https://ufal.mff.cuni.cz/udpipe#download)
+		You will need UDpipe. Its pre-compiled binary package (udpipe-1.0.0-bin.zip) can be downloaded at [here](https://github.com/ufal/udpipe/releases/tag/v1.0.0). To use UDpipe, a language model is needed, which can be downloaded at [here](https://ufal.mff.cuni.cz/udpipe#download)
 
 
 
@@ -35,7 +37,7 @@ Language-agnostic political event coding using universal dependencies
 * Input data format  
 	The input data should be in XML format, each element is an article or a sentence. Here are two examples:  
     
-	Each element is a sentence:  
+	Each element of input data is an article:  
     
 	``` 
 	<Articles>
@@ -47,7 +49,7 @@ Language-agnostic political event coding using universal dependencies
 	</Articles>
 	```
 
-	Each element is a sentence:  
+	Each element of input data is a sentence:  
     
     ```
     <Sentences>
@@ -55,9 +57,11 @@ Language-agnostic political event coding using universal dependencies
 	<Text>
 	Brazil and the United States are seeking to deepen a partnership in energy, especially by promoting biofuels and other alternatives to oil, US Deputy Secretary of Energy Jeffrey Kupfer said here Wednesday. 
 	</Text>
+	</Sentence>
+	</Sentences>
 	```
 * Usage  
-	Shell script preprocess_sentence.sh and preprocess_document.sh are provided to do preprocessing of an English and Spanish input file. Shell script preprocess_sentence_ar.sh and preprocess_document_ar.sh are provided to do preprocessing of an Arabic input file. 
+	Shell scripts preprocess_sentence.sh and preprocess_document.sh are provided to do preprocessing of an English or Spanish input file. Shell scripts preprocess_sentence_ar.sh and preprocess_document_ar.sh are provided to do preprocessing of an Arabic input file. 
 
 	```
 	usage: preprocess_sentence.sh INPUT_FILE  
@@ -98,8 +102,7 @@ Language-agnostic political event coding using universal dependencies
 	```
 * Example of usage
 
-``> ./run_document.sh Sample_english_doc.xml`` 
-
+``> ./run_document.sh Sample_english_doc.xml``  
 The result from running above command are files Sample_english_doc.xml-sent.xml and Sample_english_doc-sent_parsed.xml 
 
 ``> ./run_sentence.sh Sample_english_sent.xml``  
