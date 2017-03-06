@@ -5,6 +5,7 @@ import networkx as nx
 import PETRglobals
 import PETRreader
 import logging
+from sets import Set
 
 
 class NounPhrase:
@@ -938,6 +939,7 @@ class Sentence:
 	def get_events(self):
 		logger = logging.getLogger('petr_log.PETRgraph')
 		self.get_phrases()
+		self.filter_triplet_with_time_expression()
 		self.get_verb_code()
 		self.get_rootNode()
 
@@ -1146,6 +1148,25 @@ class Sentence:
 		except Exception as ex:
 			pass  # print(ex)
 		return [e]
+
+
+	def filter_triplet_with_time_expression(self):
+		#filter out triplet containing time expressions as target
+		#only works for English now 
+		timeexps=Set(['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'])
+
+		def has_time_expression(triplet):
+			target  = triplet[1]
+			if target=="-":
+				return False
+
+			if target.text in timeexps:
+				return True
+			else:
+				return False
+
+		self.metadata['triplets'] = [t for t in self.metadata['triplets'] if not has_time_expression(t)]
+			
 
 
 
