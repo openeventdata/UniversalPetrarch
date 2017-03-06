@@ -19,10 +19,32 @@ class NounPhrase:
 		self.date = date
 		self.sentence = sentence
 		self.matched_txt = None
+		self.prep_phrase = []
 
 	def get_meaning(self):
+		logger = logging.getLogger('petr_log.NPgetmeaning')
+
+		# 1. matching the main part of noun phrase string in the actor or agent dictionary
+		# main part is extracted by removing all the prepositional phrases in the noun phrase
+
+		npMainText = self.text
+		for prep_phrase in self.prep_phrase:
+			logger.debug("pphrase:"+prep_phrase.text)
+			npMainText = npMainText.replace(prep_phrase.text,"")
+
+		logger.debug("npMainText:"+npMainText)
+		codes,roots,matched_txt = self.textMatching(npMainText.upper().split(" "))
+		actorcodes, agentcodes = self.resolve_codes(codes)
+		if actorcodes and agentcodes:
+			# if both actor and agent are found, return the code
+			self.meaning = self.mix_codes(agentcodes, actorcodes)
+			self.matched_txt = matched_txt
+			logger.debug("npMainText meaning:"+(",").join(self.meaning))
+			return codes,roots,matched_txt
+
+
+		# 2. if actor code is not found, matching the entire noun phrase string in the actor or agent dictionary
 		npText = self.text.upper().split(" ")
-		# matching the entire noun phrase string first in the actor or agent dictionary
 		codes,roots,matched_txt = self.textMatching(npText)
 
 		actorcodes, agentcodes = self.resolve_codes(codes)
@@ -273,6 +295,13 @@ class NounPhrase:
 
 		return code
 
+class PrepPhrase:
+
+	def __init__(self,sentence,ppIDs):
+
+		self.ppIDs = ppIDs
+		self.text = ""
+
 class VerbPhrase:
 
 	def __init__(self,sentence,vpIDs,headID):
@@ -451,6 +480,10 @@ class Sentence:
 				ppTokens.append(self.udgraph.node[ppID]['token'])
 
 			pptext = (' ').join(ppTokens)
+			pphrase = PrepPhrase(self,pp)
+			pphrase.text = pptext
+			np.prep_phrase.append(pphrase)
+
 			logger.debug(pptext)
 
 		return np
@@ -647,6 +680,7 @@ class Sentence:
 								targetTokens.append(self.udgraph.node[tID]['token'])
 							newtarget.text = (' ').join(targetTokens)
 							newtarget.head = o.head
+							newtarget.prep_phrase = o.prep_phrase
 							logger.debug("construct new target:"+newtarget.text)
 
 
