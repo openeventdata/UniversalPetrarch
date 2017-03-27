@@ -398,15 +398,25 @@ class Sentence:
 
 	def get_rootNode(self):
 		for successor in self.udgraph.successors(0):
-			if('relation' in self.udgraph[0][successor]):
+			#if('relation' in self.udgraph[0][successor]):
 				#print(self.udgraph[nodeID][successor]['relation'])
-				if self.udgraph[0][successor]['relation'] in ['root']:
-					root = successor
+			if self.udgraph[0][successor]['relation'] in ['root']:
+				root = successor
+				#if the root node is a verb, add it directly and find whether any conjunctive verb exists
+				if self.udgraph.node[root]['pos'] == 'VERB':
 					self.rootID.append(root)
 					rsuccessors = self.udgraph.successors(root)
 					for rsuccessor in rsuccessors:
-						if 'relation' in self.udgraph[root][rsuccessor] and self.udgraph[root][rsuccessor]['relation'] in ['conj']:
+						if self.udgraph[root][rsuccessor]['relation'] in ['conj']:
 							self.rootID.append(rsuccessor)
+				else:
+					#if the root node is not a verb
+					#if a copula relation exist, find the verb connected to the root, and the verb as root
+					for rsuccessor in self.udgraph.successors(root):
+						if self.udgraph[root][rsuccessor]['relation'] != 'cop' and self.udgraph.node[rsuccessor]['pos'] == 'VERB':
+							self.rootID.append(rsuccessor)
+							#raw_input('root is not verb')
+
 							
 
 

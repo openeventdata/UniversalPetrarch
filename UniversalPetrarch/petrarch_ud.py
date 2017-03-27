@@ -306,7 +306,7 @@ def do_coding(event_dict):
                 t1 = time.time()
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
                 print(sentence.txt)
-                raw_input("check")
+                #raw_input("check")
                 # this is the entry point into the processing in PETRtree
                 coded_events = sentence.get_events()
 
