@@ -415,7 +415,7 @@ class Sentence:
 					for rsuccessor in self.udgraph.successors(root):
 						if self.udgraph[root][rsuccessor]['relation'] != 'cop' and self.udgraph.node[rsuccessor]['pos'] == 'VERB':
 							self.rootID.append(rsuccessor)
-							raw_input('root is not verb')
+							#raw_input('root is not verb')
 
 							
 
@@ -517,50 +517,56 @@ class Sentence:
 			while len(parents)>0:
 				temp = []
 				'''ignore the conjunt nouns''' 
-				for parent in parents:
-					if parent in allsuccessors.keys():
-						for child in allsuccessors[parent]:
-							if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
-								
-								if self.udgraph[parent][child]['relation'] in ['nmod']:
-									nmod_conjs[child]=[]
-									for nmodchild in allsuccessors[child]:
-										if self.udgraph[child][nmodchild]['relation'] in ['conj']:
-											nmod_conjs[child].append(nmodchild)
+				parentgen = (parent for parent in parents if parent in allsuccessors.keys())
+				for parent in parentgen:
+					#if parent in allsuccessors.keys():
+					for child in allsuccessors[parent]:
+						if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
+							
+							#find noun modifiers conjuctions
+							if self.udgraph[parent][child]['relation'] in ['nmod']:
+								nmod_conjs[child]=[]
+								for nmodchild in allsuccessors[child]:
+									if self.udgraph[child][nmodchild]['relation'] in ['conj']:
+										nmod_conjs[child].append(nmodchild)
 
-								temp.append(child)
-
-								if parent in nmod_conjs and child in nmod_conjs[parent]:
-									print(str(parent)+":"+str(child))
-								else:
-									npIDs.append(child)
+							temp.append(child)
+							#if 
+							if parent in nmod_conjs and child in nmod_conjs[parent]:
+								print(str(parent)+":"+str(child))
+							else:
+								npIDs.append(child)
 	
 				parents = temp
 
 			parents = [nounhead]
 			while len(parents)>0:
 				temp = []
-				for parent in parents:
-					if parent in allsuccessors.keys():
-						for child in allsuccessors[parent]:
-							if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
-								temp.append(child)
 
-							if parent==nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
-								# extract prepositional phrases in a noun phrase
-								#logger.debug(self.udgraph[nounhead][child]['relation'])
-								#logger.debug(self.udgraph.node[nounhead])
-								nmod_successors = nx.dfs_successors(self.udgraph,child)
-								
-								pptemp = []
-								pptemp.append(child)
-								for key in nmod_successors.keys():
-									pptemp.extend(nmod_successors[key]) 
-								pptemp.sort()
-								logger.debug(pptemp)
-								if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
+				parentgen = (parent for parent in parents if parent in allsuccessors.keys())
 
-									prep_phrase.append(pptemp)
+				for parent in parentgen:
+					#if parent in allsuccessors.keys():
+					for child in allsuccessors[parent]:
+						if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
+							temp.append(child)
+
+						if parent==nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
+							# extract prepositional phrases in a noun phrase
+							#logger.debug(self.udgraph[nounhead][child]['relation'])
+							#logger.debug(self.udgraph.node[nounhead])
+							nmod_successors = nx.dfs_successors(self.udgraph,child)
+							
+							pptemp = []
+							pptemp.append(child)
+							for key in nmod_successors.keys():
+								pptemp.extend(nmod_successors[key]) 
+							pptemp.sort()
+							logger.debug(pptemp)
+							if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
+
+								prep_phrase.append(pptemp)
+
 				parents = temp
 			
 			'''
@@ -595,28 +601,6 @@ class Sentence:
 		nounPhrasetext = (' ').join(npTokens)
 		logger.debug("noun:"+nounPhrasetext)
 
-		for nmod,nmodchildren in nmod_conjs.items():
-				print("nmod:"+str(nmod)+":"+self.udgraph.node[nmod]['token'])
-				for nmodchild in nmodchildren:
-					print("nmodchild:"+str(nmodchild)+":"+self.udgraph.node[nmodchild]['token'])
-					newnpIDs=[]
-					newnpTokens=[]
-					for npID in npIDs:
-						if npID in self.udgraph[nmod] and self.udgraph[nmod][npID]['relation'] in ['name',"compound"]:
-							continue
-
-						if npID == nmod:
-							newnpIDs.append(nmodchild)
-							newnpTokens.append(self.udgraph.node[nmodchild]['token'])
-						else:
-							newnpIDs.append(npID)
-							newnpTokens.append(self.udgraph.node[npID]['token'])
-				
-					newnounPhrasetext = (' ').join(newnpTokens)
-					logger.debug("newnoun:"+newnounPhrasetext)
-				if len(nmodchildren)>0:
-					raw_input(" compound nous")
-
 		np = NounPhrase(self,npIDs,nounhead,self.date)
 		np.text = nounPhrasetext
 		np.head = self.udgraph.node[nounhead]['token']
@@ -633,7 +617,40 @@ class Sentence:
 
 			logger.debug(pptext)
 
-		return np
+		nps.append(np)
+
+		for nmod,nmodchildren in nmod_conjs.items():
+			logger.debug("nmod:"+str(nmod)+":"+self.udgraph.node[nmod]['token'])
+			for nmodchild in nmodchildren:
+				logger.debug("nmodchild:"+str(nmodchild)+":"+self.udgraph.node[nmodchild]['token'])
+				conjnpIDs=[]
+				conjnpTokens=[]
+				for npID in npIDs:
+					if npID in self.udgraph[nmod] and self.udgraph[nmod][npID]['relation'] in ['name',"compound"]:
+						continue
+
+					if npID == nmod:
+						conjnpIDs.append(nmodchild)
+						conjnpTokens.append(self.udgraph.node[nmodchild]['token'])
+					else:
+						conjnpIDs.append(npID)
+						conjnpTokens.append(self.udgraph.node[npID]['token'])
+			
+				conjnounPhrasetext = (' ').join(conjnpTokens)
+				logger.debug("conjnoun:"+conjnounPhrasetext)
+
+				conjnp = NounPhrase(self,conjnpIDs,nounhead,self.date)
+				conjnp.text = conjnounPhrasetext
+				conjnp.head = self.udgraph.node[nounhead]['token']
+				conjnp.prep_phrase = np.prep_phrase
+				nps.append(conjnp)
+
+			if len(nmodchildren)>0:
+				raw_input(" compound nous")
+
+		
+
+		return nps
 
 	def get_verbPhrase(self,verbhead):
 
@@ -689,20 +706,23 @@ class Sentence:
 					#print(self.udgraph[nodeID][successor]['relation'])
 					if(self.udgraph[verbID][successor]['relation']=='nsubj'):
 						#source.append(self.udgraph.node[successor]['token'])
-						source.append(self.get_nounPharse(successor))
+						#source.append(self.get_nounPharse(successor))
+						source.extend(self.get_nounPharses(successor))
 						source.extend(self.get_conj_noun(successor))
 
 						self.get_nounPharses(successor)
 					elif(self.udgraph[verbID][successor]['relation'] in ['dobj','iobj','nsubjpass']):
-						target.append(self.get_nounPharse(successor))
+						#target.append(self.get_nounPharse(successor))
+						target.extend(self.get_nounPharses(successor))
 						target.extend(self.get_conj_noun(successor))
 						if self.udgraph[verbID][successor]['relation'] in ['nsubjpass']:
 							self.verbs[verbID].passive = True
 
-						self.get_nounPharses(successor)
+						#self.get_nounPharses(successor)
 
 					elif(self.udgraph[verbID][successor]['relation'] in ['nmod']):
-						othernoun.append(self.get_nounPharse(successor))
+						#othernoun.append(self.get_nounPharse(successor))
+						othernoun.extend(self.get_nounPharses(successor))
 						othernoun.extend(self.get_conj_noun(successor))
 
 		return source,target,othernoun
@@ -715,7 +735,8 @@ class Sentence:
 		conj_noun = []
 		for successor in self.udgraph.successors(nodeID):
 			if(self.udgraph[nodeID][successor]['relation']=='conj'):
-				conj_noun.append(self.get_nounPharse(successor))
+				#conj_noun.append(self.get_nounPharse(successor))
+				conj_noun.extend(self.get_nounPharses(successor))
 
 		return conj_noun
 
@@ -764,7 +785,7 @@ class Sentence:
 							source.extend(psource)
 						#raw_input("find xcomp relation")
 
-
+				''' no more needed
 				for s in source:
 					if s.headID in self.nouns:
 						continue
@@ -785,7 +806,7 @@ class Sentence:
 						continue
 					else:
 						self.nouns[o.headID] = o
-
+				'''
 
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
@@ -1063,7 +1084,7 @@ class Sentence:
 
 			tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
 			           ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
-			           str(verb.headID)
+			           str(verb.headID)+"#"+str(len(self.triplets))
 
 
 			if code != None:
@@ -1077,6 +1098,7 @@ class Sentence:
 					verbcode = code
 			else:
 				verbcode = None
+
 
 			self.triplets[tripleID] = {}   
 			self.triplets[tripleID]['triple']=triple
