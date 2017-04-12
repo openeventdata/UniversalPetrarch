@@ -1,6 +1,6 @@
 # PETRARCH VALIDATION SUITE VERBS DICTIONARY -->
 # VERSION: 2.0 -->
-# Last Update: 20 Dec 2016 -->
+# Last Update: 12 April 2017 -->
 
 # Change 20 Dec 2016
 # 1. convert to CAMEO 2.0 format
@@ -14,7 +14,31 @@
 # associate specific tests with specific patterns. But at the moment it is mostly   
 # just that ad hoc KEDS-based dictionary.  Sorry.                                   
 
+# Change 12 April 2017
+# Updated verb codes and added patterns
+
 ####### SYNONYM SETS ####### 
+&AUXVERB1_
++WAS
++WERE
++BEEN
+
+&AUXVERB2_
++WILL
++IS_TO
++WOULD
+
+&AUXVERB3_
++HAVE
++HAS
++HAD
+
+&TOBEVERB_
++IS
++ARE
++AM
++WAS
+
 &PREPOSIT1_
 +AGAINST
 +IN
@@ -23,27 +47,236 @@
 +NEAR
 +AT
 
-&CURRENCY 
-+DOLLARS
-+EUROS
+&NEGOTIATION
++NEGOTIATION
++DIALOGUE
++DISCUSSION
+
+
+&PROPOSAL
++PROPOSAL
++PROPOSITION
++SUGGESTION
++PROFFER
++MOTION
+
+&TREATY
++TREATY
++PACT
++ACCORD
++WRITTEN_AGREEMENT
++AGREEMENT
+
+&CEASEFIRE
++TRUCE
++ARMISTICE
++CEASE-FIRE
++CEASEFIRE
++CEASE_FIRE
+
+&MILITARY
++MILITARY
++ARMED_FORCES
++ARMED_SERVICES
++ARMY
++GROUND_FORCES
++MARINES
++RESERVES
++TROOPS
++NAVY
++SPECIAL_FORCES
++SOLDIERS
++SERVICEMEN
++PARATROOPERS
++INFANTRYMEN
++SERVICEMEMBERS
++COMBAT_BRIGADES
++BATTALIONS
++BRIGADES
+
+&SOLUTION
++SOLUTION
++ANSWER
++RESULT
++RESOLUTION
++CLOSURE_
+
+
+&PREPOSIT1_
++AGAINST
++IN
++ON
++BY
++NEAR
++AT
+
+&OPPOSITION
++OPPOSITION_
++RESISTANCE_
++OPPONENT
++ENEMY
++FOE
++ADVERSARY
++RIVAL
++CHALLENGER
++CONTENDER
+
+&INVESTIGATION
++INVESTIGATION
++INQUIRY
++ENQUIRY
++PROBE
++ANALYSIS_
++ANALYSES_
++RESEARCH
++EXAMINATION
+
+&CURRENCY
+# <14.06.08: some of these are probably already plural
++MONEY
++CURRENCY
++CASH_
++AFGHANI
++AUSTRAL
++BAHT
++BALBOA
++BIRR
++BITCOIN
++BOLIVAR
++CEDI
++DALASI
++DINAR
++DIRHAM
++DOLLAR
++DONG
++DOBRA
++EURO
++EURODOLLAR
++ESCUDO
++CONTO
++FORINT
++GOURDE
++GUARANI
++GUILDER
++GULDEN
++FLORIN
++INTI
++KINA
++KIP
++KORUNA
++KRONA
++KRONE_
++KRONER_
++KROON
++KWACHA
++KWAI
++KWANZA
++KYAT
++LEK
++LEMPIRA
++LEONE
++LEU
++LEV
++LILANGENI
++LIRA_
++LOTI
++METICAL
++NAIRA
++NGULTRUM
++OUGUIYA
++PA'ANGA
++PATACA
++BOLIVIANO
++CORDOBA
++PESO
++POUND
++PULA
++QUETZAL
++RAND_
++RIAL
++RIEL
++RINGGIT
++RIYAL
++RUBLE
++ROUBLE
++DRAM
++MANAT
++RUBEL
++LARI
++TENGE
++LATS
++LITAS
++SOM
++HRYVINA
++RUPEE
++RUPIAH
++RENMINBI
++SHEKEL
++SHILLING
++SUCRE
++TAKA
++TALA
++TICAL
++TUGRIK
++TUGHRIK
++WON_
++YEN
++YUAN_
++ZLOTY
 +AUSTRIAN FLORIN
 +GOLDEN_GOBLIN_GALLEONS
-+PESO
-+KRONER
 +YUM YENNYEN 
 +JAVANESE YEN
 +SWISS FRANCS
-+YEN
+
+&FIGHT
++STRUGGLE
++BATTLE
++FIGHT
++FIGHTING_
++STRIFE_
++WAR
++WARFARE
++FEUD
++COMBAT_
++HOSTILITIES_
++BELLIGERENCY
+
+&FIGHT_OF_WORDS
++ARGUMENT
++DISGAREEMENT
++DEBATE
 
 &HYPERCURR
 +BITCOIN
 +AUSTRIAN GOLD FLORIN  
 +LEPRECHAUN GOLD
 
+&LEADER
++PRESIDENT
++GOVERNOR
++DICTATOR
++RULER
++PRIME_MINISTER
++QUEEN
++KING
++SULTAN
++MINISTER
+
 &TIETYPES
 +MILITARY
 +ECONOMIC
 +CULTURAL
+
+&STRONGHOLD
++STRONGHOLD
++BASTION
++CITADEL
++BLOCKHOUSE
++REDOUBT
++FORT
++OUTPOST
++HEADQUARTERS
 
 &NEGATVAUXVRB  # "negative auxiliary verb" since you are wondering... 
 +DID N'T   # this is what a contraction looks like in TreeBank
@@ -84,6 +317,24 @@
 +(TO THE END OF THE EARTH)
 +(TO THE DEATH)
 
+
+&DISPUTE
++DISPUTE
++CONFLICT
++QUARREL
++CONTROVERSY
++CONTENTION
++CONTESTATION
++DISPUTATION
++ARGUMENT
++ARGUING_
++DIFFERENCE
++DIFFERENCE_OF_OPINION_
++DIFFERENCES_OF_OPINION_
++DISAGREEMENT
++DISSIDENCE_
++DISSENSION_
++CONTRAVENTION
 
 ####### VERB PATTERNS ####### 
 
@@ -126,13 +377,24 @@ ADOPT    # PAS   9/24/91
 - * PROGRAM  [073]  # tony  3/9/91
 
 
---- AGREE  [081] ---
-AGREE  
-- * (TO LET ESCAPE)  [066]  # tony  4/28/91
-- * (TO ATTEND)  [082] 
-#- FAILED_TO_*  [111]  # jw 9/17/91 
-- * (WITH)  [050]
-- % * [039:039]  # pas 14.09.18  
+---  AGREE   [050]  ---
+AGREE 
+- * (ON IMPORTANCE)                                   [019]         # AGREE
+- * (ON NEED)                                         [019]         # AGREE
+- * NOT EXTEND DEADLINE                               [030]         # AGREE
+- * (TO PROPOSAL)                                     [030]         # AGREE
+- * (WITH)                                            [030]         # AGREE
+- * (ON TRADE)                                        [0311]        # AGREE
+- * (TO &CEASEFIRE)                                   [0356]        # AGREE
+- * ON &SOLUTION                                      [035]         # AGREE
+- * (TO PEACE &TREATY)                                [037:037]     # AGREE
+- * (TO PEACE)                                        [037:037]     # AGREE
+- * (TO {PEACE PLAN})                                 [037]         # AGREE
+- * (TO {EARLY ELECTIONS})                            [0831]        # AGREE
+- * (TO ELECTIONS)                                    [0831]        # AGREE
+- * (TO INSPECTION)                                   [0862:090]    # AGREE
+- * ON {&MILITARY PRESSURE}                           [138]         # AGREE
+- * (TO SANCTIONS)                                    [163]         # AGREE 
 
 
 --- ALLOW  [080] ---
@@ -157,7 +419,7 @@ SIGNAL {SIGNALS SIGNALLING SIGNALLED }
 --- APPEAL  [027] ---
 APPEAL 
 
---- ARRANGE  [073] ---
+--- ARRANGE  [040] ---
 ARRANGE  
 
 --- ARREST  [212] ---
@@ -187,7 +449,7 @@ BOYCOTT
 #- NOTED WOULD *  [174]  #  pattern CONNECT-12 7/15/03
 #- SAID *  [172] 
 - * WORK  [181]
-#- NEITHER * [081] 
+- NEITHER * [057] 
 
 
 
@@ -302,7 +564,7 @@ CRITICIZE    # pas  3/1/91
 DELAY
 DOWNPLAY [014]
 POSTPONE    # -PAS 2/9/96
-#- % HAVE  *  [191] 
+- % HAVE  *  [1246] 
 #- SAID WOULD NOT *  [112]  # tony  4/19/91 
 - * MEET                                              [161]         # POSTPONE
 
@@ -413,7 +675,7 @@ RECEIVE
 --- RENEW  [---] ---
 RENEW  
 - * POLICY 						[201]
-- * DIPLOMATIC  					[050:050]
+- * {DIPLOMATIC TIES}					[050:050]
 - % * DIPLOMATIC  					[050:050]
 - * CRITICISM  						[121]
 - * RELATIONS  						[050]
@@ -468,11 +730,13 @@ WARN
 ---  SHOOT   [190]  ---
 SHOOT  {SHOOTS SHOOTING SHOT }  # SHAN   9/6/93
 
---- SIGN  [---] ---
+--- SIGN  [057] ---
 SIGN  
 - * {NEW PROTOCOL}  					[084]
 - * AGREEMENT  						[081]
 - * {TRADE PROTOCOL}  					[057]
+- * {TO SUPPLY}  					[057]
+- * ACCORD  					[057]
 - (CLOSE TO) *  					[031]  
 - * PACT  						[053]
 
@@ -483,10 +747,10 @@ SIGNAL
 
 --- SPUR [111] ---
 SPUR 
-- * RECONCILIATION 					[050]  
+- * RECONCILIATION 					[051]  
 
 --- URGE  [023] ---
-URGE  
+URGE
 - * (TO FREEZE) {SETTLEMENT ACTIVITY} 			[102b]
 
 --- VOW  [170]  ---
@@ -496,6 +760,8 @@ VOW
 - * RESISTANCE (TO) THE INVADING 			[114]  
 - * WAR  						[190]  
 
+--- WIN [010] ---
+WIN	[010]
 
 --- WELCOME  [050] ---
 WELCOME  
@@ -520,3 +786,195 @@ TAP {TAPS TAPPED  TAPPING }
 
 --- OUST  [174]  ---
 OUST    # jw 9/16/91
+
+---  SUPPORT   [050]  ---
+SUPPORT 
+
+
+--- RESPOND  [010] ---
+RESPOND  
+- HAS * POSITIVELY  [082]  # tony  4/21/91
+- * ACCUSATION  [111]
+- * ANGRILY  [122]  # tony  3/12/91
+
+--- RESOLVE [080] ---
+RESOLVE
+- * (OVER VISIT)                                      [036]         # NEGOTIATE
+- * &DISPUTE                                          [039]         # RESOLVE
+- &DISPUTE *                                          [039]         # RESOLVE
+- * (BETWEEN)                                         [045]         # MEDIATE
+- * DEADLOCK                                          [045]         # RESOLVE
+- * (WITH)                                            [050:050]     # NEGOTIATE
+- * &DISPUTE                                          [050]         # RESOLVE
+- * (FOR BUSINESS)                                    [061:061]     # NEGOTIATE
+- * {CREDIT &DISPUTE}                                 [061]         # RESOLVE
+- * ISSUE                                             [082]         # RESOLVE
+- * RELEASE                                           [0831]        # NEGOTIATE
+
+
+---  EXPLAIN_VERBAL   [010]  ---
++CLEAR_UP {+CLEARS_UP +CLEARED_UP +CLEARING_UP}
+ANNOUNCE 
+ARTICULATE 
+ASSERT 
+CITE 
+CLARIFY {CLARIFIES CLARIFIED CLARIFYING }
+COMMENT 
+COMMUNICATE [040] 
+CONVEY 
+DEFINE 
+DEPICT 
+DESCRIBE  
+DETAIL 
+ELUCIDATE 
+EXPLAIN 
+EXPLICATE 
+EXPOUND 
+EXPRESS [110]
+IMPART 
+INFORM 
+MENTION 
+NARRATE 
+RATIONALIZE 
+REFER {REFERS REFERRING REFERRED }  
+REMARK 
+REPORT [---]
+SAY  {SAYS SAID SAYING}
+STATE 
+TELL {TELLS TOLD TELLING}   
+- * INITIATIVE                                        [010]         # ANNOUNCE
+- * EXPECTS +                                         [010]         # SAY
+- * APPROACH                                          [010]         # ANNOUNCE
+- * APPREHENSION                                      [012]         # EXPRESS
+- * EXASPERATION                                      [012]         # EXPRESS
+- * RESERVATION                                       [012]         # EXPRESS
+- * IMPATIENCE                                        [012]         # EXPRESS
+- * SKEPTICISM                                        [012]         # EXPRESS
+- * HOSTILITY                                         [012]         # EXPRESS
+- * MISGIVING                                         [012]         # EXPRESS
+- * PESSIMISM                                         [012]         # EXPRESS
+- * WARINESS                                          [012]         # EXPRESS
+- * CONCERN                                           [012]         # EXPRESS
+- * DISTRESS                                          [012]         # EXPRESS
+- * DISTRUST                                          [012]         # EXPRESS
+- * SURPRISE                                          [012]         # EXPRESS
+- * ANXIETY                                           [012]         # EXPRESS
+- * CAUTION                                           [012]         # EXPRESS
+- * CLASHES                                           [012]         # REPORT
+- * CONCERN                                           [012]         # EXPRESS
+- * OUTRAGE                                           [012]         # EXPRESS
+- * &FIGHT                                            [012]         # REPORT
+- * DISMAY                                            [012]         # EXPRESS
+- * HORROR                                            [012]         # EXPRESS
+- * THREAT                                            [012]         # SAY
+- * ALARM                                             [012]         # EXPRESS
+- * DOUBT                                             [012]         # EXPRESS
+- * FEARS                                             [012]         # SAY
+- * GRIEF                                             [012]         # EXPRESS
+- * SHOCK                                             [012]         # EXPRESS
+- * TENSE                                             [012]         # SAY
+- * FEAR                                              [012]         # EXPRESS
+- * APPRECIATION                                      [013]         # EXPRESS
+- * WILLINGNESS                                       [013]         # EXPRESS
+- * CONFIDENCE                                        [013]         # EXPRESS
+- * READINESS                                         [013]         # EXPRESS
+- * OPTIMISM                                          [013]         # EXPRESS
+- * PLEASURE                                          [013]         # EXPRESS
+- * PROGRESS                                          [013]         # REPORT
+- * RELIEF                                            [013]         # EXPRESS
+- * HOPE                                              [013]         # EXPRESS
+- * HOPE                                              [013]         # EXPRESS , EXPRESS
+- * RESERVATION                                       [014]         # EXPRESS
+- * GREETINGS                                         [017]         # CONVEY
+- * (AS PERFIDIOUS)                                   [018]         # DESCRIBE
+- * CONDOLENCES                                       [018]         # EXPRESS
+- * CONDOLENCE                                        [018]         # EXPRESS
+- * SYMPATHIES                                        [018]         # EXPRESS
+- * SYMPATHY                                          [018]         # EXPRESS
+- * SADNESS                                           [018]         # EXPRESS
+- * SADNESS                                           [018]         # EXPRESS
+- * REGRET                                            [018]         # EXPRESS
+- * SORROW                                            [018]         # EXPRESS
+- * DETERMINATION                                     [019]         # EXPRESS
+- * &PROPOSAL                                         [020]         # ANNOUNCE
+- * WISH                                              [020]         # EXPRESS
+- * WILLINGNESS                                       [030]         # EXPRESS
+- * AGREE                                             [030]         # ANNOUNCE
+- * PLANS                                             [030]         # ANNOUNCE
+- * PROGRESS                                          [031]         # REPORT
+- * PLAN                                              [032:032]     # ANNOUNCE
+- * SUPPORT                                           [032]         # ASSERT
+- * AID                                               [0331]        # ANNOUNCE
+- * ASSISTANCE                                        [033]         # ANNOUNCE
+- * PACKAGE                                           [033]         # ANNOUNCE
+- * AID                                               [033]         # ANNOUNCE
+- * PULLOUT                                           [0356]        # ANNOUNCE
+- * DESIRE (FOR &NEGOTIATION)                         [036]         # EXPRESS
+- * INITIATIVE                                        [036]         # ANNOUNCE
+- * VISIT                                             [036]         # ANNOUNCE
+- * MESSAGE                                           [045]         # CONVEY
+- * RESTORATION (OF RELATIONS)                        [050:050]     # ANNOUNCE
+- * UNDERSTANDING                                     [051]         # EXPRESS
+- * SATISFACTION                                      [051]         # EXPRESS
+- * SOLIDARITY                                        [051]         # EXPRESS
+- * GRATITUDE                                         [051]         # EXPRESS
+- * GRATITUDE                                         [051]         # EXPRESS
+- * BACKING                                           [051]         # EXPRESS
+- * DELIGHT                                           [051]         # EXPRESS
+- * SUPPORT                                           [051]         # SAY
+- * SORRY                                             [055]         # SAY
+- * DEAL                                              [060]         # ANNOUNCE
+- * LOANS                                             [071]         # ANNOUNCE
+- * {&MILITARY SUPPORT}                               [072]         # ANNOUNCE
+- * RESIGNATION                                       [0831]        # ANNOUNCE
+- * RESTRUCTURING                                     [083]         # ANNOUNCE
+- * REFORM                                            [083]         # ANNOUNCE
+- * RELEASE                                           [0841]        # ANNOUNCE
+- * PARDON                                            [0841]        # ANNOUNCE
+- * &CEASEFIRE                                        [0871]        # ANNOUNCE
+- * WITHDRAW                                          [0874]        # ANNOUNCE
+- * END (OF STRIKE)                                   [087]         # ANNOUNCE
+- * &INVESTIGATION                                    [090]         # ANNOUNCE
+- * CHALLENGE (FOR LEADERSHIP)                        [1041]        # ANNOUNCE
+- * DISAPPOINTMENT                                    [110]         # EXPRESS
+- * (AS DISASTER)                                     [110]         # DESCRIBE
+- * (AS MISTAKE)                                      [110]         # DESCRIBE
+- * &OPPOSITION                                       [110]         # EXPRESS
+- * DISAPPROVAL                                       [110]         # EXPRESS
+- * DISPLEASURE                                       [110]         # EXPRESS
+- * FRUSTRATION                                       [110]         # EXPRESS
+- * INDIGNATION                                       [110]         # EXPRESS
+- * DISCONTENT                                        [110]         # EXPRESS
+- * MISGIVING                                         [110]         # EXPRESS
+- * RELUCTANCE                                        [110]         # EXPRESS
+- * RESENTMENT                                        [110]         # EXPRESS
+- * MISTRUST                                          [110]         # EXPRESS
+- * FEAR                                              [110]         # EXPRESS
+- * FURY                                              [110]         # EXPRESS
+- * DISSATISFACTION                                   [111]         # EXPRESS
+- * (AS LAWLESS)                                      [111]         # DESCRIBE
+- * CONDEMNATION                                      [111]         # EXPRESS
+- * DETRIMENT                                         [111]         # DESCRIBE
+- * REVULSION                                         [111]         # EXPRESS
+- * MISTRUST                                          [111]         # SAY
+- * OUTRAGE                                           [111]         # EXPRESS
+- CRITICS *                                           [111]         # REPORT
+- * SHOCK                                             [111]         # EXPRESS
+- * ANGER                                             [111]         # EXPRESS
+- * SCEPTICISM                                        [114]         # EXPRESS
+- * RETALIATION                                       [130]         # ANNOUNCE
+- * MEASURES                                          [130]         # ANNOUNCE
+- * BOYCOTT                                           [1312]        # SAY
+- * POSSIBILITY (OF &FIGHT)                           [138]         # MENTION
+- * OFFENSIVE                                         [138]         # ANNOUNCE
+- * PROTEST                                           [140]         # ANNOUNCE
+- * BOLSTER FORCE                                     [154]         # REPORT
+- * RESTRICTIONS                                      [160]         # ANNOUNCE
+- * POSTPONEMENT (OF &NEGOTIATION)                    [161]         # ANNOUNCE
+- * CLOSING (OF EMBASSY)                              [161]         # ANNOUNCE
+- * &SOLUTION OF + TRADE OFFICE                       [1621]        # ANNOUNCE
+- * SANCTIONS                                         [163]         # ANNOUNCE
+- * SANCTIONS                                         [163]         # ANNOUNCE
+- * ARREST                                            [173]         # ANNOUNCE
+- * ARREST                                            [173]         # ANNOUNCE
+- * ATTACK                                            [190]
