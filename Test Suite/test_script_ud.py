@@ -1200,14 +1200,14 @@ it in forthcoming peace talks.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CAL],[BRE],010)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CAL],[BRE],023)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test19']['sents']['0']:
             print(return_dict['test19']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test19']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CAL],[BRE],010)",str(return_dict['test19']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CAL],[BRE],023)",str(return_dict['test19']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CAL],[BRE],010)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CAL],[BRE],023)","noevent"]
             print("test19 Failed")
     except:
         print("test19 Failed")
@@ -5573,14 +5573,14 @@ newspaper al-Raya said on Friday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[CAL],057)\n([ARN],[GON],057)\n([GON],[CAL],057)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[CAL],051)\n([ARN],[GON],051)\n([GON],[CAL],051)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test92']['sents']['0']:
             print(return_dict['test92']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test92']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[CAL],057)\n([ARN],[GON],057)\n([GON],[CAL],057)",str(return_dict['test92']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[CAL],051)\n([ARN],[GON],051)\n([GON],[CAL],051)",str(return_dict['test92']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[CAL],057)\n([ARN],[GON],057)\n([GON],[CAL],057)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[CAL],051)\n([ARN],[GON],051)\n([GON],[CAL],051)","noevent"]
             print("test92 Failed")
     except:
         print("test92 Failed")
@@ -5982,14 +5982,14 @@ def test97():
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[IGOEEU],039)\n([IGOEEU],[PHL],039)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[IGOEEU],050)\n([IGOEEU],[PHL],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test98']['sents']['0']:
             print(return_dict['test98']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test98']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[IGOEEU],039)\n([IGOEEU],[PHL],039)",str(return_dict['test98']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[IGOEEU],050)\n([IGOEEU],[PHL],050)",str(return_dict['test98']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[IGOEEU],039)\n([IGOEEU],[PHL],039)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[IGOEEU],050)\n([IGOEEU],[PHL],050)","noevent"]
             print("test98 Failed")
     except:
         print("test98 Failed")
@@ -6035,14 +6035,14 @@ def test98():
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[FRA],039)\n([FRA],[PHL],039)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[FRA],050)\n([FRA],[PHL],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test99']['sents']['0']:
             print(return_dict['test99']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test99']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],039)\n([FRA],[PHL],039)",str(return_dict['test99']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],050)\n([FRA],[PHL],050)",str(return_dict['test99']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],039)\n([FRA],[PHL],039)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],050)\n([FRA],[PHL],050)","noevent"]
             print("test99 Failed")
     except:
         print("test99 Failed")
@@ -6091,14 +6091,14 @@ def test99():
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[CAF],039)\n([CAF],[PHL],039)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[CAF],050)\n([CAF],[PHL],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test100']['sents']['0']:
             print(return_dict['test100']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test100']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[CAF],039)\n([CAF],[PHL],039)",str(return_dict['test100']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[CAF],050)\n([CAF],[PHL],050)",str(return_dict['test100']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[CAF],039)\n([CAF],[PHL],039)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[CAF],050)\n([CAF],[PHL],050)","noevent"]
             print("test100 Failed")
     except:
         print("test100 Failed")
@@ -6149,14 +6149,14 @@ def test100():
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[FRA],039)\n([FRA],[PHL],039)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([PHL],[FRA],050)\n([FRA],[PHL],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test101']['sents']['0']:
             print(return_dict['test101']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test101']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],039)\n([FRA],[PHL],039)",str(return_dict['test101']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],050)\n([FRA],[PHL],050)",str(return_dict['test101']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],039)\n([FRA],[PHL],039)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([PHL],[FRA],050)\n([FRA],[PHL],050)","noevent"]
             print("test101 Failed")
     except:
         print("test101 Failed")
@@ -6204,14 +6204,14 @@ def test101():
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ERI],[FRA],040)\n([ERI],[PHL],040)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ERI],[FRA],030)\n([ERI],[PHL],030)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test102']['sents']['0']:
             print(return_dict['test102']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test102']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ERI],[FRA],040)\n([ERI],[PHL],040)",str(return_dict['test102']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ERI],[FRA],030)\n([ERI],[PHL],030)",str(return_dict['test102']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ERI],[FRA],040)\n([ERI],[PHL],040)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ERI],[FRA],030)\n([ERI],[PHL],030)","noevent"]
             print("test102 Failed")
     except:
         print("test102 Failed")
