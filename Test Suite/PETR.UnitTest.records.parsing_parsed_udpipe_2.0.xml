@@ -692,7 +692,7 @@ in Eymn Muil were crushed last June.
 
 <Sentence category="DEMO" date="19950118" id="DEMO-18" sentence="true">
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="010" sourcecode="CAL" targetcode="BRE" />
+<EventCoding eventcode="023" sourcecode="CAL" targetcode="BRE" />
 <Text>
 Calenardhon urged Bree on Monday to help win a greater role for 
 it in forthcoming peace talks.
@@ -3184,9 +3184,9 @@ And Eriador has called for a boycott against Osgiliath, the state's fiercest foe
 <!-- anything automated coding can handle, but leaving this here to check on the  -->
 <!-- robustness of the system against crashes. -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="057" sourcecode="ARN" targetcode="CAL" />
-<EventCoding eventcode="057" sourcecode="ARN" targetcode="GON" />
-<EventCoding eventcode="057" sourcecode="GON" targetcode="CAL" />
+<EventCoding eventcode="051" sourcecode="ARN" targetcode="CAL" />
+<EventCoding eventcode="051" sourcecode="ARN" targetcode="GON" />
+<EventCoding eventcode="051" sourcecode="GON" targetcode="CAL" />
 <Text>
 Resumption of ties between Arnor and Gondor may spur reconciliation 
 between Calenardhon and Gondor, and Gondor and Dagolath, the Osgiliath
@@ -3453,8 +3453,8 @@ show of support to his government by their countries.
 <!-- % AGREE generates a paired event coded on a compound -->
 <!-- Corrects errors uncovered by Halterman               -->
 <!-- Last update: 17-Sept-2014 -->
-<EventCoding eventcode="039" sourcecode="PHL" targetcode="IGOEEU" />
-<EventCoding eventcode="039" sourcecode="IGOEEU" targetcode="PHL" />
+<EventCoding eventcode="050" sourcecode="PHL" targetcode="IGOEEU" />
+<EventCoding eventcode="050" sourcecode="IGOEEU" targetcode="PHL" />
 <Text>
 The Philippines and the European Union (EU) agree that territorial disputes in the South China Sea should be resolved through international arbitration.
 </Text>
@@ -3491,8 +3491,8 @@ The Philippines and the European Union (EU) agree that territorial disputes in t
 <!-- % AGREE generates a paired event coded on a compound -->
 <!-- Corrects errors uncovered by Halterman               -->
 <!-- Last update: 17-Sept-2014 -->
-<EventCoding eventcode="039" sourcecode="PHL" targetcode="FRA" />
-<EventCoding eventcode="039" sourcecode="FRA" targetcode="PHL" />
+<EventCoding eventcode="050" sourcecode="PHL" targetcode="FRA" />
+<EventCoding eventcode="050" sourcecode="FRA" targetcode="PHL" />
 <Text>
 The Philippines and France agree that territorial disputes should be resolved through international arbitration.
 </Text>
@@ -3519,8 +3519,8 @@ The Philippines and France agree that territorial disputes should be resolved th
 <!-- % AGREE generates a paired event coded on a compound -->
 <!-- Corrects errors uncovered by Halterman               -->
 <!-- Last update: 17-Sept-2014 -->
-<EventCoding eventcode="039" sourcecode="PHL" targetcode="CAF" />
-<EventCoding eventcode="039" sourcecode="CAF" targetcode="PHL" />
+<EventCoding eventcode="050" sourcecode="PHL" targetcode="CAF" />
+<EventCoding eventcode="050" sourcecode="CAF" targetcode="PHL" />
 <Text>
 The Philippines and the Central African Republic agree that territorial disputes should be resolved through international arbitration.
 </Text>
@@ -3550,8 +3550,8 @@ The Philippines and the Central African Republic agree that territorial disputes
 <!-- % AGREE generates a paired event coded on a compound -->
 <!-- Corrects errors uncovered by Halterman               -->
 <!-- Last update: 17-Sept-2014 -->
-<EventCoding eventcode="039" sourcecode="PHL" targetcode="FRA" />
-<EventCoding eventcode="039" sourcecode="FRA" targetcode="PHL" />
+<EventCoding eventcode="050" sourcecode="PHL" targetcode="FRA" />
+<EventCoding eventcode="050" sourcecode="FRA" targetcode="PHL" />
 <Text>
 The Philippines and France agree that territorial disputes in the South China Sea should be resolved through international arbitration.
 </Text>
@@ -3582,8 +3582,8 @@ The Philippines and France agree that territorial disputes in the South China Se
 <Sentence category="COMPOUND" date="19950103" id="COMPOUND-42" sentence="true">
 <!-- AGREE WITH % checks for % following a verb  -->
 <!-- Last update: 24-Sept-2014 -->
-<EventCoding eventcode="040" sourcecode="ERI" targetcode="FRA" />
-<EventCoding eventcode="040" sourcecode="ERI" targetcode="PHL" />
+<EventCoding eventcode="030" sourcecode="ERI" targetcode="FRA" />
+<EventCoding eventcode="030" sourcecode="ERI" targetcode="PHL" />
 <Text>
 Eriador agrees with the Philippines and France that territorial disputes should be resolved through international arbitration.
 </Text>
