@@ -590,6 +590,7 @@ EXPRESS
 --- FIRE  [071]  ---
 FIRE    # jw 9/17/91
 - * ARTILLERY  [180]  # jw 9/24/91
+- * (ARTILLERY SHELLS) [180]
 
 --- FREE  [080] ---
 FREE  

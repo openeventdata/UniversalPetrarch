@@ -2287,12 +2287,8 @@ official news agency WFNA said on Thursday .
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="MOR" targetcode="GON" />
 <EventCoding eventcode="050" sourcecode="MOR" targetcode="OSG" />
-<EventCoding eventcode="050" sourcecode="FRO" targetcode="GON" />
-<EventCoding eventcode="050" sourcecode="BIL" targetcode="GON" />
-<EventCoding eventcode="050" sourcecode="SAM" targetcode="GON" />
-<EventCoding eventcode="050" sourcecode="FRO" targetcode="OSG" />
-<EventCoding eventcode="050" sourcecode="BIL" targetcode="OSG" />
-<EventCoding eventcode="050" sourcecode="SAM" targetcode="OSG" />
+<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="GON" />
+<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="FOR" targetcode="GON" />
 <EventCoding eventcode="050" sourcecode="FOR" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="BRE" targetcode="GON" />
@@ -2405,12 +2401,8 @@ with Eriador.
 <Sentence category="COMPOUND" date="19950101" id="COMPOUND-10" sentence="true">
 <!-- [Tests coded compounds] -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="050" sourcecode="FRO" targetcode="ELR" />
-<EventCoding eventcode="050" sourcecode="FRO" targetcode="GAL" />
-<EventCoding eventcode="050" sourcecode="BIL" targetcode="ELR" />
-<EventCoding eventcode="050" sourcecode="BIL" targetcode="GAL" />
-<EventCoding eventcode="050" sourcecode="SAM" targetcode="ELR" />
-<EventCoding eventcode="050" sourcecode="SAM" targetcode="GAL" />
+<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="ELR" />
+<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="GAL" />
 <Text>
 The Shire is about to restore full diplomatic ties with Lorien almost 
 five years after crowds burned down its embassy. 
@@ -3621,7 +3613,7 @@ Eriador agrees with the Philippines and France that territorial disputes should 
 <Sentence category="DATE" date="19950104" id="DATE-01" sentence="true">
 <!-- Beginning of a series of tests of the date restrictions;  simple < -->
 <!-- Last update: 20-Dec-2013 -->
-<EventCoding eventcode="040" sourcecode="HOBCIV" targetcode="SHRGOV" />
+<EventCoding eventcode="031" sourcecode="HOBCIV" targetcode="SHRGOV" />
 <Text>
 Sam Gamgee will be renewing his gardener's license in Michel Delving.
 </Text>
@@ -3644,7 +3636,7 @@ Sam Gamgee will be renewing his gardener's license in Michel Delving.
 <Sentence category="DATE" date="19950104" id="DATE-02" sentence="true">
 <!-- < at boundary -->
 <!-- Last update: 2-Dec-2013 -->
-<EventCoding eventcode="040" sourcecode="HOBCIV" targetcode="SHRGOV" />
+<EventCoding eventcode="031" sourcecode="HOBCIV" targetcode="SHRGOV" />
 <Text>
 Sam Gamgee will be renewing his gardener's license in Michel Delving.
 </Text>
