@@ -421,6 +421,10 @@ class Sentence:
 
 
 	def get_nounPharse(self, nounhead):
+		"""
+			Extract noun phrase given the head of the phrase
+
+		"""
 		logger = logging.getLogger('petr_log.getNP')
 		npIDs=[]
 		prep_phrase = []
@@ -500,6 +504,14 @@ class Sentence:
 		return np
 
 	def get_nounPharses(self, nounhead):
+		"""
+			Extract noun phrases given the head of the phrase. 
+			It is an extension of funciton get_nounPharse()
+			If conjunctions are found in the modifiers, split the noun phrases into several noun phrases.
+			e.g. "the ambassadors of Arnor, Osgiliath and Gondor"
+			three noun phrases will be generated: the ambassadors of Arnor, the ambassadors of Osgiliath , the ambassadors of Gondor"
+			
+		"""
 		nps = []
 
 		logger = logging.getLogger('petr_log.getNP')
@@ -519,7 +531,6 @@ class Sentence:
 				'''ignore the conjunt nouns''' 
 				parentgen = (parent for parent in parents if parent in allsuccessors.keys())
 				for parent in parentgen:
-					#if parent in allsuccessors.keys():
 					for child in allsuccessors[parent]:
 						if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
 							
@@ -531,7 +542,7 @@ class Sentence:
 										nmod_conjs[child].append(nmodchild)
 
 							temp.append(child)
-							#if 
+							
 							if parent in nmod_conjs and child in nmod_conjs[parent]:
 								print(str(parent)+":"+str(child))
 							else:
@@ -546,15 +557,12 @@ class Sentence:
 				parentgen = (parent for parent in parents if parent in allsuccessors.keys())
 
 				for parent in parentgen:
-					#if parent in allsuccessors.keys():
 					for child in allsuccessors[parent]:
 						if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
 							temp.append(child)
 
 						if parent==nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
 							# extract prepositional phrases in a noun phrase
-							#logger.debug(self.udgraph[nounhead][child]['relation'])
-							#logger.debug(self.udgraph.node[nounhead])
 							nmod_successors = nx.dfs_successors(self.udgraph,child)
 							
 							pptemp = []
@@ -580,14 +588,9 @@ class Sentence:
 				for nmodchild in nmodchildren:
 					print("nmodchild:"+str(nmodchild)+":"+self.udgraph.node[nmodchild]['token'])
 				
-				if len(nmodchildren)>0:
-					raw_input(" compound nous")
+				#if len(nmodchildren)>0:
+					#raw_input(" compound nous")
 
-
-
-			#for value in allsuccessors.values():
-			#	npIDs.extend(value)
-			#print(npIDs)
 
 		npIDs.append(nounhead)
 		npTokens =[]
@@ -645,11 +648,6 @@ class Sentence:
 				conjnp.prep_phrase = np.prep_phrase
 				nps.append(conjnp)
 
-			if len(nmodchildren)>0:
-				raw_input(" compound nous")
-
-		
-
 		return nps
 
 	def get_verbPhrase(self,verbhead):
@@ -705,7 +703,6 @@ class Sentence:
 				if('relation' in self.udgraph[verbID][successor]):
 					#print(self.udgraph[nodeID][successor]['relation'])
 					if(self.udgraph[verbID][successor]['relation']=='nsubj'):
-						#source.append(self.udgraph.node[successor]['token'])
 						#source.append(self.get_nounPharse(successor))
 						source.extend(self.get_nounPharses(successor))
 						source.extend(self.get_conj_noun(successor))
@@ -717,8 +714,6 @@ class Sentence:
 						target.extend(self.get_conj_noun(successor))
 						if self.udgraph[verbID][successor]['relation'] in ['nsubjpass']:
 							self.verbs[verbID].passive = True
-
-						#self.get_nounPharses(successor)
 
 					elif(self.udgraph[verbID][successor]['relation'] in ['nmod']):
 						#othernoun.append(self.get_nounPharse(successor))
@@ -785,28 +780,6 @@ class Sentence:
 							source.extend(psource)
 						#raw_input("find xcomp relation")
 
-				''' no more needed
-				for s in source:
-					if s.headID in self.nouns:
-						continue
-						#raw_input("source:"+self.nouns[s.headID]['text'])
-					else:
-						self.nouns[s.headID] = s
-
-				for t in target:
-					if t.headID in self.nouns:
-						#raw_input("target:"+self.nouns[t.headID]['text'])
-						continue
-					else:
-						self.nouns[t.headID] = t
-
-				for o in othernoun:
-					if o.headID in self.nouns:
-						#raw_input("othernoun:"+self.nouns[o.headID])
-						continue
-					else:
-						self.nouns[o.headID] = o
-				'''
 
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
