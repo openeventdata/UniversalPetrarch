@@ -259,7 +259,7 @@ class NounPhrase:
 
 		"""
 		
-		code = None
+		finalcode = None
 		#try:
 		for j in match:
 			dates = j[1]
@@ -272,29 +272,36 @@ class NounPhrase:
 					date.append(str(PETRreader.dstr_to_ordate(d)))
 
 			curdate = self.date
-			
+
+			#print(("\n").join(date))
+			#print("curdate:"+ str(self.date))
+			#print("curdate:"+ str(curdate))
+
 			if not date:
-				code = j[0]
+				nodatecode = j[0]
 			elif len(date) == 1:
 				if date[0][0] == '<':
-					if curdate < int(date[0][1:]):
+					if curdate <= int(date[0][1:]):
 						code = j[0]
 				else:
 					if curdate >= int(date[0][1:]):
 						code = j[0]
 			else:
-				if curdate < int(date[1]):
+				if curdate <= int(date[1]):
 					if curdate >= int(date[0]):
 						code = j[0]
 
-			if code:
-				return code
+			if code and not finalcode:
+				finalcode = code
 		
 		#except Exception as e:
 			# print(e)
-		#	return code
 
-		return code
+		#
+		if not finalcode and nodatecode:
+			finalcode = nodatecode
+
+		return finalcode
 
 class PrepPhrase:
 
