@@ -260,6 +260,11 @@ class NounPhrase:
 		"""
 		
 		finalcode = None
+		matched_code = []
+
+		#curdate = self.date
+		#print("curdate:"+ str(curdate))
+		#print(PETRreader.ordate_to_dstr(curdate))
 		#try:
 		for j in match:
 			dates = j[1]
@@ -275,32 +280,49 @@ class NounPhrase:
 
 			#print(("\n").join(date))
 			#print("curdate:"+ str(self.date))
-			#print("curdate:"+ str(curdate))
-
+			
 			if not date:
 				nodatecode = j[0]
 			elif len(date) == 1:
 				if date[0][0] == '<':
 					if curdate <= int(date[0][1:]):
 						code = j[0]
+						matched_code.append(j)
 				else:
 					if curdate >= int(date[0][1:]):
 						code = j[0]
+						matched_code.append(j)
 			else:
 				if curdate <= int(date[1]):
 					if curdate >= int(date[0]):
 						code = j[0]
+						matched_code.append(j)
 
-			if code and not finalcode:
-				finalcode = code
-		
-		#except Exception as e:
-			# print(e)
+		if len(matched_code)>1:
+			# two cases:
+			# 1. embedded time restrictions: pick the smaller one
+			# 2. multiple same restrictions: pick the first one
+			best_date = ""
+			best_code = ""
+			best_date_range = float('inf')
+			for item in matched_code:
+				print("matched:"+item[0]+"\t"+(" ").join(item[1]))
+				date = item[1]
+				if len(date)==2:
+					date_range = PETRreader.dstr_to_ordate(date[1]) - PETRreader.dstr_to_ordate(date[0])
+					if date_range < best_date_range:
+						best_date_range = date_range
+						best_code = item[0]
+						best_date = date
 
-		#
+			finalcode = best_code
+		elif len(matched_code)==1:
+			finalcode = matched_code[0][0]
+
 		if not finalcode and nodatecode:
 			finalcode = nodatecode
 
+		#print("finalcode:"+finalcode)
 		return finalcode
 
 class PrepPhrase:

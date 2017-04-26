@@ -1782,11 +1782,40 @@ def dstr_to_ordate(datestring):
 
     return int(ordate)
 
+def ordate_to_dstr(ordate):
+    """ Computes a Gregorian calendar date string YYYYMMDD from an ordinal date
+        Algorithm is from: http://aa.usno.navy.mil/faq/docs/JD_Formula.php
+    """
+    ordate += 2305813 #adjust for ANSI date
+    L= ordate+68569
+    N= 4*L/146097
+    L= L-(146097*N+3)/4
+    I= 4000*(L+1)/1461001
+    L= L-1461*I/4+31
+    J= 80*L/2447
+    K= L-2447*J/80
+    L= J/11
+    J= J+2-12*L
+    I= 100*(N-49)+I+L
+
+    YEAR= I
+    MONTH= J
+    DAY= K
+
+    yearstr = str(YEAR)
+    monthstr = str(MONTH) if len(str(MONTH))==2 else "0"+str(MONTH)
+    daystr = str(DAY) if len(str(DAY))==2 else "0"+str(DAY)
+
+    return yearstr+monthstr+daystr
 
 def read_actor_dictionary(actorfile):
     """ This is a simple dictionary of dictionaries indexed on the words in the actor string. The final node has the
         key '#' and contains codes with their date restrictions and, optionally, the root phrase in the case
         of synonyms. 
+
+        <date : applies to times before or equal to date
+        >date : applies to times after or equal to date
+        date-date: applies to times between dates, both boundaries are included
 
         Example: 
 
@@ -1797,6 +1826,54 @@ def read_actor_dictionary(actorfile):
         {u'UFFE': {u'ELLEMANN': {u'JENSEN': {u'#': [(u'IGOEUREEC', [u'820701', u'821231']), (u'IGOEUREEC', [u'870701', u'871231'])]}}}}
 
         """
+
+    def check_date_boundaries(datelist):
+        """
+            This function checks the date boundaries.
+            1. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [date2, date3], 
+            the date restriction of actor_code1 will be updated as [date1,date2-1]
+
+            2. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [>date2], 
+            the date restriction of actor_code1 will be updated as [date1,date2-1]
+
+        """
+        updated_datelist = []
+
+        start_dates = []
+        for item in datelist:
+            if not item[1]: #actor code without time restriction
+                continue
+            start_date = item[1][0]
+            if start_date[0] in '>':
+                start_dates.append(start_date[1:])
+            elif start_date[0] not in '<':
+                start_dates.append(start_date)
+
+        for item in datelist:
+            #print(item)
+            if not item[1]: #actor code without time restriction
+                updated_datelist.append(item)
+                continue
+
+            start_date = item[1][0]
+            if start_date[0] in '<>':
+                updated_datelist.append(item)
+            elif len(item[1])==2:
+                end_date = item[1][1]
+                if end_date in start_dates:
+                   new_end_date = ordate_to_dstr(dstr_to_ordate(end_date)-1)
+                   newitem = (item[0],[start_date,new_end_date])
+                   updated_datelist.append(newitem)
+                else:
+                    updated_datelist.append(item) 
+            else:
+                updated_datelist.append(item) 
+
+        return updated_datelist
+
+
+
+
 
     open_FIN(actorfile, "actor")
 
@@ -1846,7 +1923,7 @@ def read_actor_dictionary(actorfile):
                     if "#" not in actordict:
                         actordict["#"] = []
 
-                    actordict["#"].extend(datelist)
+                    actordict["#"].extend(check_date_boundaries(datelist))
 
                 datelist = []  # reset for the new actor
                 current_acts = []
@@ -1895,9 +1972,9 @@ def read_actor_dictionary(actorfile):
 
         line = read_FIN_line().strip()
 
-    '''for j,k in sorted(PETRglobals.ActorDict.items()):
-        print(j,'\t\t',k.keys())
-        print(j,'\t\t',k)'''
+    #for j,k in sorted(PETRglobals.ActorDict.items()):
+        #print(j,'\t\t',k.keys())
+        #print(j,'\t\t',k)
 #    exit()
 
 
@@ -2160,7 +2237,7 @@ def read_xml_input(filepaths, parsed=False):
 
                     text = story.find('Text').text
                     text = text.replace('\n', ' ').replace('  ', ' ')
-                    sent_dict = {'content': text, 'parsed': parsed_content}
+                    sent_dict = {'content': text, 'parsed': parsed_content,'date': story.attrib['date']}
                     meta_content = {'date': story.attrib['date'],
                                     'source': story.attrib['source']}
                     content_dict = {'sents': {sent_id: sent_dict},
