@@ -918,8 +918,8 @@ fiercest foe.
 <!-- Test of % (compounds) in a pattern.  Should match -->
 <!-- POSTPONE \n- % HAVE *  [1246] -->
 <!-- This also provides a check of POSTPONE as a synonym with the default code -->
-<EventCoding eventcode="1246" sourcecode="GON" targetcode="MORMIL" />
-<EventCoding eventcode="1246" sourcecode="OSG" targetcode="MORMIL" />
+<EventCoding eventcode="120" sourcecode="GON" targetcode="MORMIL" />
+<EventCoding eventcode="120" sourcecode="OSG" targetcode="MORMIL" />
 <Text>
 Gondor and Osgiliath have postponed their meeting after a 
 hafling was reported on the pass of Cirith Ungol. 
@@ -949,8 +949,8 @@ hafling was reported on the pass of Cirith Ungol.
 <Sentence category="DEMO" date="19950102" id="DEMO-26" sentence="true">
 <!-- Test of % (compounds) in a pattern.  Should match -->
 <!-- POSTPONE \n- % HAVE *  [1246] -->
-<EventCoding eventcode="1246" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="1246" sourcecode="OSG" targetcode="GON" />
+<EventCoding eventcode="120" sourcecode="GON" targetcode="OSG" />
+<EventCoding eventcode="120" sourcecode="OSG" targetcode="GON" />
 <Text>
 Gondor and Osgiliath have delayed their meeting after a 
 hafling was reported on the pass of Cirith Ungol. 
@@ -981,8 +981,8 @@ hafling was reported on the pass of Cirith Ungol.
 <!-- Test of % (compounds) in a pattern.  Should match -->
 <!-- DOWNPLAY \n- % HAVE *  [1246]    -->
 <!-- This also provides a check of DOWNPLAY [014] as a synonym without a default code -->
-<EventCoding eventcode="1246" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="1246" sourcecode="OSG" targetcode="GON" />
+<EventCoding eventcode="120" sourcecode="GON" targetcode="OSG" />
+<EventCoding eventcode="120" sourcecode="OSG" targetcode="GON" />
 <Text>
 Gondor and Osgiliath have downplayed their meeting after a 
 hafling was reported on the pass of Cirith Ungol. 
@@ -1013,8 +1013,8 @@ hafling was reported on the pass of Cirith Ungol.
 <!-- Test of % (compounds) in a pattern; match is not at the beginning of the sentence  -->
 <!-- Should match -->
 <!-- DELAY \n- % HAVE *  [1246] -->
-<EventCoding eventcode="1246" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="1246" sourcecode="OSG" targetcode="GON" />
+<EventCoding eventcode="120" sourcecode="GON" targetcode="OSG" />
+<EventCoding eventcode="120" sourcecode="OSG" targetcode="GON" />
 <Text>
 It has been noted that Gondor and Osgiliath have delayed their meeting after a hafling was reported on the pass
 of Cirith Ungol </Text>
@@ -1424,7 +1424,6 @@ five years after crowds trashed its embassy.
 <!-- 14.04.26: currently not implemented -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="GON" />
-<EventCoding eventcode="012" sourcecode="XYZGOV" targetcode="XYZ" />
 <Text>
 Arnor is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy, a senior official 
@@ -1952,7 +1951,7 @@ ties with former Gondor prosecutors.
 <!-- This is a TABARI feature that may or may not get implemented in PETRARCH -->
 <!-- 14.04.26: currently not implemented -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="050" sourcecode="USAGOVELI" targetcode="GONELI" />
+<EventCoding eventcode="050" sourcecode="USAGOV" targetcode="GONCOP" />
 <Text>
 Former security officials in White House are about to restore full 
 diplomatic ties with former Minas Tirith border police. 
@@ -2401,8 +2400,7 @@ with Eriador.
 <Sentence category="COMPOUND" date="19950101" id="COMPOUND-10" sentence="true">
 <!-- [Tests coded compounds] -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="ELR" />
-<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="GAL" />
+<EventCoding eventcode="050" sourcecode="FRO/BIL/SAM" targetcode="ELR/GAL" />
 <Text>
 The Shire is about to restore full diplomatic ties with Lorien almost 
 five years after crowds burned down its embassy. 
