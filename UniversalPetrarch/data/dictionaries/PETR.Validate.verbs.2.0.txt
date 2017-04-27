@@ -52,6 +52,18 @@
 +DIALOGUE
 +DISCUSSION
 
+&TOWN
++TOWN
++MUNICIPALITY
++BOROUGH
++TOWNSHIP
++CITY
++METROPOLIS
++URBAN_CENTER
++URBAN_AREA
++VILLAGE
++SETTLEMENT
++COMMUNITY
 
 &PROPOSAL
 +PROPOSAL
@@ -536,6 +548,53 @@ CLASH
 #- &NEGATVAUXVRB_WANT * OVER EFFORTS  [908]  #  PAS 12.01.14 
 - * (OVER EFFORTS)  [110]  # jw 9/25/91
 - * DEBATE  [121]  # tony  4/22/91
+- * (AT MEETING)                                      [110:110]     # CLASH
+- * (IN MEETING)                                      [110:110]     # CLASH
+- * (OVER IMPRISONMENT)                               [110]         # CLASH
+- * (WITH OFFICIALS)                                  [110]         # CLASH
+- * PUBLICLY (WITH)                                   [110]         # CLASH
+- * (OVER EFFORTS)                                    [110]         # CLASH
+- RELATIONSHIP *                                      [110]         # HIT
+- * CRITICISM                                         [110]         # BATTLE
+- CABINETS *                                          [110]         # CLASH
+- * BAN                                               [110]         # FIGHT
+- * (AGAINST PLAN)                                    [111]         # ATTACK
+- * (IN ELECTIONS)                                    [111]         # ATTACK
+- * OUT (AT CLAIM)                                    [111]         # HIT
+- * (FOR FAILING)                                     [111]         # ATTACK
+- * GOVERNMENT                                        [111]         # ATTACK
+- * CONFERENCE                                        [111]         # ATTACK
+- * &PROPOSAL                                         [111]         # ATTACK
+- * &SOLUTION                                         [111]         # ATTACK , ATTACK
+- * BACK (AT)                                         [111]         # HIT
+- * CRITICISM                                         [111]         # ATTACK
+- * CRITICISM                                         [111]         # ATTACK
+- MAGAZINE *                                          [111]         # ATTACK
+- NEWSPAPER *                                         [111]         # ATTACK
+- * BITTERLY                                          [111]         # ATTACK
+- * DECISION                                          [111]         # ATTACK
+- * MEASURES                                          [111]         # ATTACK
+- * OUT (AT)                                          [111]         # HIT
+- * SANCTION                                          [111]         # ATTACK
+- VERBALLY *                                          [111]         # ATTACK
+- * &TREATY                                           [111]         # ATTACK
+- * ASSAULT                                           [111]         # ATTACK
+- * COMMENT                                           [111]         # ATTACK
+- * CRITICS                                           [111]         # ATTACK
+- SHARPLY *                                           [111]         # ATTACK
+- * DEMAND                                            [111]         # ATTACK
+- * POLICY                                            [111]         # ATTACK
+- * RULING                                            [111]         # ATTACK
+- * TALKS                                             [111]         # ATTACK
+- * (FOR)                                             [111]         # ATTACK
+- * COURT                                             [111]         # ATTACK
+- * ENVOY                                             [111]         # ATTACK
+- * PLANS                                             [111]         # ATTACK
+- * VISIT                                             [111]         # ATTACK
+- * MEET                                              [111]         # ATTACK
+- * VETO                                              [111]         # ATTACK
+- * LAW                                               [111]         # ATTACK
+
 
 --- CONDEMN  [111]  ---
 CONDEMN    # tony  4/28/91
@@ -779,6 +838,50 @@ WELCOME
 - * MEMOS (ON &TIETYPES)  				[912]
 - * {&TIETYPES ASSURANCES} 				[030]
 - * ASSURANCES (ON &TIETYPES) 				[030]
+- * FALL (OF &TOWN)                                   [---]         # COMMEMORATE
+- * CHRISTMAS                                         [---]         # CELEBRATE
+- * BIRTHDAY                                          [---]         # CELEBRATE
+- * HARVEST                                           [---]         # WELCOME
+- * {NATIONAL DAY}                                    [017]         # CELEBRATE
+- * INDEPENDENCE                                      [017]         # CELEBRATE
+- * ANNIVERSARY                                       [017]         # COMMEMORATE
+- * FESTIVAL                                          [017]         # CELEBRATE
+- * NEWROZ                                            [017]         # CELEBRATE
+- * MASS                                              [017]         # CELEBRATE
+- * ATTEMPT                                           [030]         # WELCOME
+- * OFFER                                             [030]         # WELCOME
+- * OFFER                                             [030]         # WELCOME
+- * CALL (FOR TALKS)                                  [036:036]     # WELCOME
+- * INVITATION                                        [036]         # WELCOME
+- * APPEAL                                            [036]         # WELCOME
+- * (TO SUMMIT)                                       [042:043]     # WELCOME
+- * COUNTERPARTS                                      [043:042]     # WELCOME
+- * VISIT                                             [043:042]     # WELCOME
+- * (TO)                                              [043:042]     # WELCOME
+- * DELEGATION                                        [050]         # WELCOME
+- * RELATIONS                                         [051:051]     # HAIL
+- * {BOMBING HALT}                                    [051]         # WELCOME
+- * OVERTURES                                         [051]         # WELCOME
+- * CLAMPDOWN                                         [052]         # PRAISE
+- * DECISION                                          [052]         # HAIL
+- * DECISION                                          [052]         # HAIL
+- * INDEPENDENCE                                      [054]         # RECOGNISE
+- * ATTACK (AGAINST)                                  [110]         # WELCOME
+- * ASSASSINATION                                     [110]         # HAIL
+- * ATTACKS (ON)                                      [110]         # HAIL
+- * EXTRADITION                                       [110]         # HAIL
+- * STRIKE (ON)                                       [110]         # HAIL
+- * EXECUTION                                         [110]         # HAIL
+- * CAPTURE                                           [110]         # APPLAUD
+- * KILLING                                           [110]         # HAIL
+- * ARREST                                            [110]         # HAIL
+- * DEFEAT                                            [110]         # HAIL
+- * DEMISE                                            [110]         # CELEBRATE
+- * OUSTING                                           [110]         # CELEBRATE
+- * STRIKE                                            [110]         # HAIL
+- * SURRENDER                                         [:080]        # WELCOME
+- * DEPARTURE                                         [:0874]       # CELEBRATE
+- * WITHDRAWAL                                        [:0874]       # APPLAUD
 
 --- CONFISCATE  [170] ---
 CONFISCATE  
