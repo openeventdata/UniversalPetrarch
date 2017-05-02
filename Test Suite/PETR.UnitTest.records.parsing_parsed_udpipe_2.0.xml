@@ -720,7 +720,7 @@ it in forthcoming peace talks.
 
 <Sentence category="DEMO" date="19950119" id="DEMO-19" sentence="true">
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="010" sourcecode="ARNGOVFRM" targetcode="ERI" />
+<EventCoding eventcode="023" sourcecode="ARNGOVFRM" targetcode="ERI" />
 <Text>
 Arnor's foreign minister, in remarks published on Monday, urged 
 Eriador to respond to Gondor's proposals on elections.
@@ -1308,7 +1308,6 @@ almost five years after crowds trashed its embassy.
 20	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	20	dobj	_	_
-23	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
 
 
@@ -1541,7 +1540,7 @@ ties with Minas Tirith border police.
 <Sentence category="AGENT" date="19950106" id="AGENT-12" sentence="true">
 <!-- Just another simple agent assignment with an automatically generated plural -->
 <!-- Last update: 23 Nov 2013 -->
-<EventCoding eventcode="111" sourcecode="CALLEG" targetcode="OSGMIL" />
+<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
@@ -1567,7 +1566,7 @@ in south Ithilen on Thursday
 <Sentence category="AGENT" date="19950106" id="AGENT-13" sentence="true">
 <!-- Simple agent assignment with an agent generated from a substitution set -->
 <!-- Last update: 22 April 2014 -->
-<EventCoding eventcode="111" sourcecode="CALLEG" targetcode="OSGMIL" />
+<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
@@ -1922,7 +1921,7 @@ ties with Gondor and Arnor.
 <!-- This is a TABARI feature that may or may not get implemented in PETRARCH -->
 <!-- 14.04.26: currently not implemented -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="050" sourcecode="ARNELI" targetcode="GONELI" />
+<EventCoding eventcode="050" sourcecode="ARNGOV" targetcode="GONJUD" />
 <Text>
 Arnor former security officials are about to restore full diplomatic 
 ties with former Gondor prosecutors. 

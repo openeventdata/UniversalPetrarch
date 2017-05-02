@@ -135,7 +135,7 @@ class NounPhrase:
 		for code in codes:
 			if not code:
 			    continue
-			if code.startswith("~"):
+			if code.startswith("~") or code.endswith("~"):
 				agentcodes.append(code)
 			else:
 				actorcodes.append(code)
@@ -159,14 +159,24 @@ class NounPhrase:
 		"""
 
 		# --        print('mc-entry',actors,agents)
+
+		def mix(a,b):
+			if not b[1:] in a[-len(b[1:]):] and b[0] in '~':
+				# handle agents such as "~GOV"
+				return a + b[1:]
+			elif not b[:-1] in a[0:len(b[:-1])] and b[-1] in '~':
+				# handle agents such as "NGO~"
+				return b[:-1] + a
+			else:
+				return a
+
 		codes = set()
-		mix = lambda a, b: a + b if not b in a else a
 		actors = actors if actors else ['~']
 		for ag in agents:
 			if ag == '~PPL' and len(agents) > 1:
 				continue
 		#            actors = map( lambda a : mix( a[0], ag[1:]), actors)
-			actors = map(lambda a: mix(a, ag[1:]), actors)
+			actors = map(lambda a: mix(a, ag), actors)
 
 		# --        print('mc-1',actors)
 		for code in filter(lambda a: a not in ['', '~', '~~', None], actors):
