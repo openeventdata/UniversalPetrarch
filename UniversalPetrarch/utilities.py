@@ -684,7 +684,7 @@ def convert_code(code, forward=1):
            "108": 0x4030,
 
 
-           "110": 0x7000,  # Disapprove
+           "110": 0x1007f, #0xFFFF + 0x0080, #0x7000,  # Disapprove
            "111": 0x7001,
            "112": 0x70a0,
            "1121": 0x70a1,

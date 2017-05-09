@@ -5,6 +5,7 @@ import networkx as nx
 import PETRglobals
 import PETRreader
 import logging
+import utilities
 from sets import Set
 
 
@@ -159,7 +160,7 @@ class NounPhrase:
 		"""
 
 		# --        print('mc-entry',actors,agents)
-
+		
 		def mix(a,b):
 			if not b[1:] in a[-len(b[1:]):] and b[0] in '~':
 				# handle agents such as "~GOV"
@@ -168,7 +169,7 @@ class NounPhrase:
 				# handle agents such as "NGO~"
 				return b[:-1] + a
 			else:
-				return a
+				return a 
 
 		codes = set()
 		actors = actors if actors else ['~']
@@ -355,6 +356,7 @@ class VerbPhrase:
 		self.sentence = sentence
 		self.code = None
 		self.passive = False
+		self.negative = False
 
 
 
@@ -621,11 +623,13 @@ class Sentence:
 				print(str(parent))
 				print(child)
 			'''		
+			'''	
 
 			for nmod,nmodchildren in nmod_conjs.items():
 				print("nmod:"+str(nmod)+":"+self.udgraph.node[nmod]['token'])
 				for nmodchild in nmodchildren:
 					print("nmodchild:"+str(nmodchild)+":"+self.udgraph.node[nmodchild]['token'])
+			'''
 				
 				#if len(nmodchildren)>0:
 					#raw_input(" compound nous")
@@ -702,6 +706,9 @@ class Sentence:
 				#print(self.udgraph[nodeID][successor]['relation'])
 				if self.udgraph[verbhead][successor]['relation'].startswith('compound'):
 					vpIDs.append(successor)
+				if self.udgraph[verbhead][successor]['relation'].startswith('neg'):
+					vp.negative = True
+				'''
 				if self.udgraph[verbhead][successor]['relation'].startswith('advcl'):
 					# check the to + verb structure
 					if self.udgraph.node[successor]['pos']=="VERB":
@@ -711,6 +718,7 @@ class Sentence:
 								vpIDs.append(ss)
 								self.verbIDs.append(successor)
 								vp.verbIDs.append(successor)
+				'''
 
 
 
@@ -856,6 +864,8 @@ class Sentence:
 							
 							newverb.text = verbPhrasetext
 							newverb.head = verb.head
+							newverb.passive = verb.passive
+							newverb.negative = verb.negative
 							logger.debug("construct new vp:"+newverb.text)
 
 							newtarget = NounPhrase(self,o.npIDs[1:],o.headID,o.date)
@@ -893,22 +903,53 @@ class Sentence:
 			logger.debug("mphrase-entry")
 			if not noun_phrase:
 				return False
+
+			cfound = True
+			match = ""
 			for npID in filter(lambda a: a<noun_phrase.headID,noun_phrase.npIDs):				
 				nptoken = self.udgraph.node[npID]['token'].upper()
 				nplemma = self.udgraph.node[npID]['lemma'].upper()
 
-				logger.debug(str(npID)+" "+nptoken)
+				logger.debug(str(npID)+" "+nptoken+" "+str(cfound))
+
+				barfound = False
+				if '-' in path and cfound:
+					path = path['-']
+					barfound = True
+				if '|' in path:
+					path = path['|']
+
+				logger.debug(path)
 				if nptoken in path:
 					subpath = path[nptoken]
+					logger.debug(subpath)
+					
+					cfound = True	
 					match = reroute(subpath, lambda a: match_phrase(a, None))
-					if match:
-						return match
+					#if match:
+						#return match
+
+					path = subpath
 				elif nplemma in path:
 					subpath = path[nplemma]
+					logger.debug(subpath)
+					
+					cfound = True	
 					match = reroute(subpath, lambda a: match_phrase(a, None))
-					if match:
-						return match
+					#if match:
+						#return match
+
+					path = subpath
+				else:
+					cfound = False
+
+			if match:
+				return match
+
 			return reroute(path, lambda a: match_phrase(a, noun_phrase))
+
+		#def match_continus_noun(path,noun_phrase,start_ID):
+
 
 		def match_noun(path, noun_phrase):
 			logger.debug("mn-entry")
@@ -1080,6 +1121,8 @@ class Sentence:
 						if '#' in patternDictPath:
 							patternDictPath = patternDictPath['#']
 							match = patternDictPath
+						if '-' in patternDictPath:
+							patternDictPath = patternDictPath['-']
 
 					if match:
 						code = match['code']
@@ -1108,6 +1151,19 @@ class Sentence:
 						verbcode = active_code
 				else:
 					verbcode = code
+				if verb.negative == True:
+					#raw_input("before negated:"+verbcode)
+					if int(verbcode)<=200: 
+					#validation verbs have codes over 200, add this condition to make sure the program is not crashed. 
+						tempcode = utilities.convert_code(verbcode)[0] - 0xFFFF
+						tempverbcode = str(utilities.convert_code(tempcode,0))
+						logger.debug("negated:"+verbcode+"\thex:"+hex(tempcode))
+						if tempverbcode=="0":
+							verbcode = verbcode+"#"+hex(tempcode)
+						else:
+							verbcode = tempverbcode
+						#raw_input("find negated verb:")
+				
 			else:
 				verbcode = None
 
@@ -1187,7 +1243,8 @@ class Sentence:
 				if verb.headID in self.udgraph.neighbors(root):
 						relation_with_root = self.udgraph[root][verb.headID]['relation']
 						if relation_with_root in ['advcl','ccomp','xcomp']:
-							current_event = (source_meaning,target_meaning,triple['verbcode'])
+							current_event = triple['event'] #4.27
+							#(source_meaning,target_meaning,triple['verbcode'])
 
 							for reventID, revent in root_event[root].items():
 
@@ -1200,6 +1257,10 @@ class Sentence:
 										if tripleID not in self.events:
 											self.events[tripleID] = []
 										self.events[tripleID].append(e)
+									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]==None and e[1][2] != "None":
+										if tripleID not in self.events:
+											self.events[tripleID] = []
+										self.events[tripleID].extend(list(e[1]))
 
 		if(len(self.events)==0):
 			for root in root_eventID:

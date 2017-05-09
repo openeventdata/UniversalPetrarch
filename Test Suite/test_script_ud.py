@@ -89,25 +89,25 @@ def test1():
     text="""Arnor is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	.	.	PUNCT	.	_	5	punct	_	_
+19	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -148,32 +148,32 @@ def test2():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -217,7 +217,7 @@ committee with Arnor, the Dagolathi news agency reported.
     parse="""1	Dagolath	Dagolath	PROPN	NNP	Number=Sing	7	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
 3	first	first	ADJ	JJ	Degree=Pos|NumType=Ord	4	amod	_	_
-4	Deputy	deputy	NOUN	NN	Number=Sing	7	compound	_	_
+4	Deputy	deputy	NOUN	NN	Number=Sing	6	compound	_	_
 5	Prime	Prime	PROPN	NNP	Number=Sing	6	compound	_	_
 6	Minister	Minister	PROPN	NNP	Number=Sing	7	compound	_	_
 7	Telemar	Telemar	PROPN	NNP	Number=Sing	8	nsubj	_	_
@@ -290,7 +290,7 @@ the joint transport committee with Arnor.
 6	left	leave	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 7	yesterday	yesterday	NOUN	NN	Number=Sing	6	nmod:tmod	_	_
 8	for	for	ADP	IN	_	10	case	_	_
-9	Minas	Minas	PROPN	NNP	Number=Sing	10	name	_	_
+9	Minas	Minas	PROPN	NNP	Number=Sing	10	compound	_	_
 10	Tirith	Tirith	PROPN	NNP	Number=Sing	6	nmod	_	_
 11	for	for	ADP	IN	_	12	case	_	_
 12	meetings	meeting	NOUN	NNS	Number=Plur	6	nmod	_	_
@@ -342,34 +342,34 @@ def test5():
 five years after volleyball crowds burned down its embassy,  a senior 
 official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
-6	fxll	fxll	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	fxll	fxll	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
-8	ties	tie	NOUN	NNS	Number=Plur	6	dobj	_	_
+8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	volleyball	volleyball	NOUN	NN	Number=Sing	16	compound	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	6	nmod	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 17	burned	burn	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
 18	down	down	ADP	RP	_	17	compound:prt	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-21	,	,	PUNCT	,	_	17	punct	_	_
+21	,	,	PUNCT	,	_	3	punct	_	_
 22	a	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
 23	senior	senior	ADJ	JJ	Degree=Pos	24	amod	_	_
 24	official	official	NOUN	NN	Number=Sing	25	nsubj	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 26	on	on	ADP	IN	_	27	case	_	_
 27	Saturday	Saturday	PROPN	NNP	Number=Sing	25	nmod	_	_
-28	.	.	PUNCT	.	_	5	punct	_	_
+28	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -409,18 +409,18 @@ def test6():
     text="""An Eriadorian was shot dead in Osgiliath, the state's fiercest foe. 
 """
     parse="""1	An	a	DET	DT	Definite=Ind|PronType=Art	2	det	_	_
-2	Eriadorian	Eriadorian	PROPN	NNP	Number=Sing	4	nsubjpass	_	_
+2	Eriadorian	Eriadorian	NOUN	NN	Number=Sing	4	nsubjpass	_	_
 3	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	4	auxpass	_	_
 4	shot	shoot	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 5	dead	dead	ADJ	JJ	Degree=Pos	4	xcomp	_	_
 6	in	in	ADP	IN	_	7	case	_	_
 7	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	5	nmod	_	_
-8	,	,	PUNCT	,	_	5	punct	_	_
+8	,	,	PUNCT	,	_	7	punct	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	state	state	NOUN	NN	Number=Sing	13	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
 12	fiercest	fiercest	NOUN	NN	Number=Sing	13	compound	_	_
-13	foe	foe	NOUN	NN	Number=Sing	5	appos	_	_
+13	foe	foe	NOUN	NN	Number=Sing	7	appos	_	_
 14	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -469,12 +469,12 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	and	and	CONJ	CC	_	14	cc	_	_
 16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
 17	aid	aid	NOUN	NN	Number=Sing	14	conj	_	_
@@ -482,7 +482,7 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
 20	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
 21	Ithilen	Ithilen	PROPN	NNP	Number=Sing	22	compound	_	_
-22	villages	village	NOUN	NNS	Number=Plur	4	nmod	_	_
+22	villages	villag	NOUN	NNS	Number=Plur	9	nmod	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -539,7 +539,7 @@ month.
 13	water	water	NOUN	NN	Number=Sing	10	nmod	_	_
 14	from	from	ADP	IN	_	18	case	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
-16	mighty	mighty	NOUN	NN	Number=Sing	17	compound	_	_
+16	mighty	mighty	NOUN	NN	Number=Sing	18	compound	_	_
 17	Entwash	Entwash	NOUN	NN	Number=Sing	18	compound	_	_
 18	river	river	NOUN	NN	Number=Sing	10	nmod	_	_
 19	when	when	ADV	WRB	PronType=Int	24	mark	_	_
@@ -606,7 +606,7 @@ show of support to his government by their countries.
 13	's	's	PART	POS	_	12	case	_	_
 14	president	president	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	on	on	ADP	IN	_	16	case	_	_
-16	Wednesday	Wednesday	PROPN	NNP	Number=Sing	14	nmod	_	_
+16	Wednesday	Wednesday	PROPN	NNP	Number=Sing	9	nmod	_	_
 17	in	in	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	further	further	ADJ	JJ	Degree=Pos	20	amod	_	_
@@ -615,10 +615,10 @@ show of support to his government by their countries.
 22	support	support	NOUN	NN	Number=Sing	20	nmod	_	_
 23	to	to	ADP	IN	_	25	case	_	_
 24	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	25	nmod:poss	_	_
-25	government	government	NOUN	NN	Number=Sing	22	nmod	_	_
+25	government	government	NOUN	NN	Number=Sing	20	nmod	_	_
 26	by	by	ADP	IN	_	28	case	_	_
 27	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	28	nmod:poss	_	_
-28	countries	country	NOUN	NNS	Number=Plur	25	nmod	_	_
+28	countries	country	NOUN	NNS	Number=Plur	9	nmod	_	_
 29	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -673,7 +673,7 @@ refusal to talk to Calenardhon leader Calimehtar.
 12	's	's	PART	POS	_	11	case	_	_
 13	refusal	refusal	NOUN	NN	Number=Sing	10	dobj	_	_
 14	to	to	PART	TO	_	15	mark	_	_
-15	talk	talk	VERB	VB	VerbForm=Inf	10	advcl	_	_
+15	talk	talk	VERB	VB	VerbForm=Inf	13	acl	_	_
 16	to	to	ADP	IN	_	19	case	_	_
 17	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	18	compound	_	_
 18	leader	leader	NOUN	NN	Number=Sing	19	compound	_	_
@@ -779,23 +779,23 @@ def test12():
 fiercest foe, could be drawn into the peace process by its resumption 
 of diplomatic ties with Gondor. 
 """
-    parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	expressed	express	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-3	hopes	hope	NOUN	NNS	Number=Plur	2	dobj	_	_
+    parse="""1	Eriador	Eriador	NOUN	NN	Number=Sing	3	compound	_	_
+2	expressed	express	VERB	VBN	Tense=Past|VerbForm=Part	3	amod	_	_
+3	hopes	hope	NOUN	NNS	Number=Plur	0	root	_	_
 4	on	on	ADP	IN	_	5	case	_	_
-5	Thursday	Thursday	PROPN	NNP	Number=Sing	2	nmod	_	_
-6	that	that	ADP	IN	_	7	case	_	_
-7	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	Thursday	Thursday	PROPN	NNP	Number=Sing	3	nmod	_	_
+6	that	that	PRON	WDT	PronType=Rel	17	dobj	_	_
+7	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	17	nsubjpass	_	_
 8	,	,	PUNCT	,	_	7	punct	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	state	state	NOUN	NN	Number=Sing	13	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
 12	fiercest	fiercest	NOUN	NN	Number=Sing	13	compound	_	_
 13	foe	foe	NOUN	NN	Number=Sing	7	appos	_	_
-14	,	,	PUNCT	,	_	2	punct	_	_
+14	,	,	PUNCT	,	_	17	punct	_	_
 15	could	could	AUX	MD	VerbForm=Fin	17	aux	_	_
 16	be	be	AUX	VB	VerbForm=Inf	17	auxpass	_	_
-17	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	2	conj	_	_
+17	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	acl:relcl	_	_
 18	into	into	ADP	IN	_	21	case	_	_
 19	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 20	peace	peace	NOUN	NN	Number=Sing	21	compound	_	_
@@ -808,7 +808,7 @@ of diplomatic ties with Gondor.
 27	ties	tie	NOUN	NNS	Number=Plur	24	nmod	_	_
 28	with	with	ADP	IN	_	29	case	_	_
 29	Gondor	Gondor	PROPN	NNP	Number=Sing	27	nmod	_	_
-30	.	.	PUNCT	.	_	2	punct	_	_
+30	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -859,9 +859,9 @@ for 1990 with Dagolath, its biggest trading partner, officials said.
 9	trade	trade	NOUN	NN	Number=Sing	10	compound	_	_
 10	protocol	protocol	NOUN	NN	Number=Sing	4	dobj	_	_
 11	for	for	ADP	IN	_	12	case	_	_
-12	1990	1990	NUM	CD	NumType=Card	4	nmod	_	_
+12	1990	1990	NUM	CD	NumType=Card	10	nmod	_	_
 13	with	with	ADP	IN	_	14	case	_	_
-14	Dagolath	Dagolath	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Dagolath	Dagolath	PROPN	NNP	Number=Sing	12	nmod	_	_
 15	,	,	PUNCT	,	_	14	punct	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 17	biggest	biggest	ADJ	JJS	Degree=Sup	19	amod	_	_
@@ -869,7 +869,7 @@ for 1990 with Dagolath, its biggest trading partner, officials said.
 19	partner	partner	NOUN	NN	Number=Sing	14	appos	_	_
 20	,	,	PUNCT	,	_	4	punct	_	_
 21	officials	official	NOUN	NNS	Number=Plur	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	ccomp	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -921,12 +921,12 @@ group yielded ground seized in six days of fighting.
 9	war	war	NOUN	NN	Number=Sing	8	dobj	_	_
 10	on	on	ADP	IN	_	12	case	_	_
 11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
-12	Rohans	Rohans	PROPN	NNPS	Number=Plur	9	nmod	_	_
-13	until	until	SCONJ	IN	_	17	case	_	_
-14	that	that	DET	DT	Number=Sing|PronType=Dem	17	det	_	_
-15	group	group	NOUN	NN	Number=Sing	17	compound	_	_
-16	yielded	yield	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
-17	ground	ground	NOUN	NN	Number=Sing	4	nmod	_	_
+12	Rohans	Rohans	PROPN	NNPS	Number=Plur	8	nmod	_	_
+13	until	until	SCONJ	IN	_	16	mark	_	_
+14	that	that	DET	DT	Number=Sing|PronType=Dem	15	det	_	_
+15	group	group	NOUN	NN	Number=Sing	16	nsubj	_	_
+16	yielded	yield	VERB	VBN	Tense=Past|VerbForm=Part	4	advcl	_	_
+17	ground	ground	NOUN	NN	Number=Sing	16	dobj	_	_
 18	seized	seize	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
 19	in	in	ADP	IN	_	21	case	_	_
 20	six	six	NUM	CD	NumType=Card	21	nummod	_	_
@@ -988,18 +988,18 @@ embassy spokesman said.
 12	50,000	50,000	NUM	CD	NumType=Card	13	nummod	_	_
 13	tonnes	tonne	NOUN	NNS	Number=Plur	8	nmod	_	_
 14	of	of	ADP	IN	_	15	case	_	_
-15	wheat	wheat	ADJ	JJ	Degree=Pos	13	nmod	_	_
+15	wheat	wheat	NOUN	NN	Number=Sing	13	nmod	_	_
 16	,	,	PUNCT	,	_	2	punct	_	_
 17	worth	worth	ADJ	JJ	Degree=Pos	20	amod	_	_
 18	11.8	11.8	NUM	CD	NumType=Card	19	compound	_	_
 19	million	million	NUM	CD	NumType=Card	20	nummod	_	_
-20	ducats	ducat	NOUN	NNS	Number=Plur	2	dobj	_	_
-21	,	,	PUNCT	,	_	20	punct	_	_
+20	ducats	ducat	NOUN	NNS	Number=Plur	2	parataxis	_	_
+21	,	,	PUNCT	,	_	2	punct	_	_
 22	an	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 23	Arnorian	Arnorian	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	embassy	embassy	NOUN	NN	Number=Sing	25	compound	_	_
 25	spokesman	spokesman	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	acl:relcl	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
 27	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -1037,11 +1037,11 @@ embassy spokesman said.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test16():
-    text="""Fornost President Umbardacil has again appealed for peace in Ithilen in 
+    text="""Arnor President Umbardacil has again appealed for peace in Ithilen in 
 a message to the spiritial leader of the war-torn nation's influential 
 Douzu community.
 """
-    parse="""1	Fornost	Fornost	X	AFX	_	3	compound	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	2	compound	_	_
 2	President	President	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Umbardacil	Umbardacil	PROPN	NNP	Number=Sing	6	nsubj	_	_
 4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	aux	_	_
@@ -1078,14 +1078,14 @@ Douzu community.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FORGOV],[ITH],027)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNGOV],[ITH],027)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test17']['sents']['0']:
             print(return_dict['test17']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test17']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORGOV],[ITH],027)",str(return_dict['test17']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[ITH],027)",str(return_dict['test17']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORGOV],[ITH],027)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[ITH],027)","noevent"]
             print("test17 Failed")
     except:
         print("test17 Failed")
@@ -1115,15 +1115,15 @@ in Eymn Muil were crushed last June.
 6	Gondor	Gondor	PROPN	NNP	Number=Sing	4	nmod	_	_
 7	on	on	ADP	IN	_	8	case	_	_
 8	Monday	Monday	PROPN	NNP	Number=Sing	4	nmod	_	_
-9	on	on	ADP	IN	_	14	case	_	_
-10	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
+9	on	on	ADP	IN	_	12	case	_	_
+10	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 11	first	first	ADJ	JJ	Degree=Pos|NumType=Ord	12	amod	_	_
-12	official	official	NOUN	NN	Number=Sing	14	compound	_	_
+12	official	official	NOUN	NN	Number=Sing	22	nmod	_	_
 13	foreign	foreign	ADJ	JJ	Degree=Pos	14	amod	_	_
-14	visit	visit	NOUN	NN	Number=Sing	4	nmod	_	_
-15	since	since	SCONJ	IN	_	22	mark	_	_
+14	visit	visit	NOUN	NN	Number=Sing	22	nsubjpass	_	_
+15	since	since	ADP	IN	_	17	case	_	_
 16	pro-restoration	pro-restoration	NOUN	NN	Number=Sing	17	compound	_	_
-17	demonstrators	demonstrator	NOUN	NNS	Number=Plur	22	nsubjpass	_	_
+17	demonstrators	demonstrator	NOUN	NNS	Number=Plur	14	nmod	_	_
 18	in	in	ADP	IN	_	20	case	_	_
 19	Eymn	Eymn	PROPN	NNP	Number=Sing	20	compound	_	_
 20	Muil	Muil	PROPN	NNP	Number=Sing	17	nmod	_	_
@@ -1178,7 +1178,7 @@ it in forthcoming peace talks.
 5	Monday	Monday	PROPN	NNP	Number=Sing	2	nmod	_	_
 6	to	to	PART	TO	_	7	mark	_	_
 7	help	help	VERB	VB	VerbForm=Inf	2	advcl	_	_
-8	win	win	VERB	VB	VerbForm=Inf	7	xcomp	_	_
+8	win	win	VERB	VB	VerbForm=Inf	7	ccomp	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	11	det	_	_
 10	greater	greater	ADJ	JJR	Degree=Cmp	11	amod	_	_
 11	role	role	NOUN	NN	Number=Sing	8	dobj	_	_
@@ -1232,7 +1232,7 @@ Eriador to respond to Gondor's proposals on elections.
 2	's	's	PART	POS	_	1	case	_	_
 3	foreign	foreign	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	minister	minister	NOUN	NN	Number=Sing	12	nsubj	_	_
-5	,	,	PUNCT	,	_	4	punct	_	_
+5	,	,	PUNCT	,	_	7	punct	_	_
 6	in	in	ADP	IN	_	7	case	_	_
 7	remarks	remark	NOUN	NNS	Number=Plur	4	nmod	_	_
 8	published	publish	VERB	VBN	Tense=Past|VerbForm=Part	7	acl	_	_
@@ -1242,13 +1242,13 @@ Eriador to respond to Gondor's proposals on elections.
 12	urged	urge	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 13	Eriador	Eriador	PROPN	NNP	Number=Sing	12	dobj	_	_
 14	to	to	PART	TO	_	15	mark	_	_
-15	respond	respond	VERB	VB	VerbForm=Inf	12	xcomp	_	_
+15	respond	respond	VERB	VB	VerbForm=Inf	13	acl	_	_
 16	to	to	ADP	IN	_	19	case	_	_
 17	Gondor	Gondor	PROPN	NNP	Number=Sing	19	nmod:poss	_	_
 18	's	's	PART	POS	_	17	case	_	_
 19	proposals	proposal	NOUN	NNS	Number=Plur	15	nmod	_	_
 20	on	on	ADP	IN	_	21	case	_	_
-21	elections	election	NOUN	NNS	Number=Plur	15	nmod	_	_
+21	elections	election	NOUN	NNS	Number=Plur	19	nmod	_	_
 22	.	.	PUNCT	.	_	12	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -1261,14 +1261,14 @@ Eriador to respond to Gondor's proposals on elections.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNGOVFRM],[ERI],010)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNGOVFRM],[ERI],023)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test20']['sents']['0']:
             print(return_dict['test20']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test20']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOVFRM],[ERI],010)",str(return_dict['test20']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOVFRM],[ERI],023)",str(return_dict['test20']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOVFRM],[ERI],010)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOVFRM],[ERI],023)","noevent"]
             print("test20 Failed")
     except:
         print("test20 Failed")
@@ -1300,12 +1300,12 @@ fiercest foe.
 9	dispute	dispute	NOUN	NN	Number=Sing	6	nmod	_	_
 10	with	with	ADP	IN	_	11	case	_	_
 11	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	9	nmod	_	_
-12	,	,	PUNCT	,	_	6	punct	_	_
+12	,	,	PUNCT	,	_	9	punct	_	_
 13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
 14	state	state	NOUN	NN	Number=Sing	17	nmod:poss	_	_
 15	's	's	PART	POS	_	14	case	_	_
 16	fiercest	fiercest	NOUN	NN	Number=Sing	17	compound	_	_
-17	foe	foe	NOUN	NN	Number=Sing	6	dobj	_	_
+17	foe	foe	NOUN	NN	Number=Sing	9	appos	_	_
 18	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -1346,12 +1346,12 @@ def test21():
     text="""Eriador's death and injury toll has risen in the dispute with Osgiliath, the state's 
 fiercest foe. 
 """
-    parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	6	nmod:poss	_	_
+    parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	3	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
-3	death	death	NOUN	NN	Number=Sing	6	compound	_	_
+3	death	death	NOUN	NN	Number=Sing	8	nsubj	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
-5	injury	injury	NOUN	NN	Number=Sing	3	conj	_	_
-6	toll	toll	NOUN	NN	Number=Sing	8	nsubj	_	_
+5	injury	injury	NOUN	NN	Number=Sing	6	compound	_	_
+6	toll	toll	NOUN	NN	Number=Sing	3	conj	_	_
 7	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	aux	_	_
 8	risen	rise	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 9	in	in	ADP	IN	_	11	case	_	_
@@ -1359,12 +1359,12 @@ fiercest foe.
 11	dispute	dispute	NOUN	NN	Number=Sing	8	nmod	_	_
 12	with	with	ADP	IN	_	13	case	_	_
 13	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	11	nmod	_	_
-14	,	,	PUNCT	,	_	8	punct	_	_
+14	,	,	PUNCT	,	_	11	punct	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	16	det	_	_
 16	state	state	NOUN	NN	Number=Sing	19	nmod:poss	_	_
 17	's	's	PART	POS	_	16	case	_	_
 18	fiercest	fiercest	NOUN	NN	Number=Sing	19	compound	_	_
-19	foe	foe	NOUN	NN	Number=Sing	8	dobj	_	_
+19	foe	foe	NOUN	NN	Number=Sing	11	appos	_	_
 20	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -1405,12 +1405,12 @@ def test22():
     text="""Eriador's death and injury toll has risen in the dispute with Osgiliath, the state's 
 fiercest foe. 
 """
-    parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	6	nmod:poss	_	_
+    parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	3	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
-3	death	death	NOUN	NN	Number=Sing	6	compound	_	_
+3	death	death	NOUN	NN	Number=Sing	8	nsubj	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
-5	injury	injury	NOUN	NN	Number=Sing	3	conj	_	_
-6	toll	toll	NOUN	NN	Number=Sing	8	nsubj	_	_
+5	injury	injury	NOUN	NN	Number=Sing	6	compound	_	_
+6	toll	toll	NOUN	NN	Number=Sing	3	conj	_	_
 7	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	aux	_	_
 8	risen	rise	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 9	in	in	ADP	IN	_	11	case	_	_
@@ -1418,12 +1418,12 @@ fiercest foe.
 11	dispute	dispute	NOUN	NN	Number=Sing	8	nmod	_	_
 12	with	with	ADP	IN	_	13	case	_	_
 13	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	11	nmod	_	_
-14	,	,	PUNCT	,	_	8	punct	_	_
+14	,	,	PUNCT	,	_	11	punct	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	16	det	_	_
 16	state	state	NOUN	NN	Number=Sing	19	nmod:poss	_	_
 17	's	's	PART	POS	_	16	case	_	_
 18	fiercest	fiercest	NOUN	NN	Number=Sing	19	compound	_	_
-19	foe	foe	NOUN	NN	Number=Sing	8	dobj	_	_
+19	foe	foe	NOUN	NN	Number=Sing	11	appos	_	_
 20	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -1586,12 +1586,12 @@ hafling was reported on the pass of Cirith Ungol.
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	postponed	postpone	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 6	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	7	nmod:poss	_	_
-7	meeting	meeting	NOUN	NN	Number=Sing	12	nsubjpass	_	_
-8	after	after	ADP	IN	_	10	case	_	_
+7	meeting	meeting	NOUN	NN	Number=Sing	5	dobj	_	_
+8	after	after	ADP	IN	_	12	mark	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-10	hafling	hafling	NOUN	NN	Number=Sing	7	nmod	_	_
+10	hafling	hafling	NOUN	NN	Number=Sing	12	nsubjpass	_	_
 11	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	12	auxpass	_	_
-12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	ccomp	_	_
+12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	advcl	_	_
 13	on	on	ADP	IN	_	15	case	_	_
 14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
 15	pass	pass	NOUN	NN	Number=Sing	12	nmod	_	_
@@ -1644,12 +1644,12 @@ hafling was reported on the pass of Cirith Ungol.
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	delayed	delay	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 6	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	7	nmod:poss	_	_
-7	meeting	meeting	NOUN	NN	Number=Sing	12	nsubjpass	_	_
-8	after	after	ADP	IN	_	10	case	_	_
+7	meeting	meeting	NOUN	NN	Number=Sing	5	dobj	_	_
+8	after	after	ADP	IN	_	12	mark	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-10	hafling	hafling	NOUN	NN	Number=Sing	7	nmod	_	_
+10	hafling	hafling	NOUN	NN	Number=Sing	12	nsubjpass	_	_
 11	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	12	auxpass	_	_
-12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	ccomp	_	_
+12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	advcl	_	_
 13	on	on	ADP	IN	_	15	case	_	_
 14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
 15	pass	pass	NOUN	NN	Number=Sing	12	nmod	_	_
@@ -1702,12 +1702,12 @@ hafling was reported on the pass of Cirith Ungol.
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	downplayed	downplay	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 6	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	7	nmod:poss	_	_
-7	meeting	meeting	NOUN	NN	Number=Sing	12	nsubjpass	_	_
-8	after	after	ADP	IN	_	10	case	_	_
+7	meeting	meeting	NOUN	NN	Number=Sing	5	dobj	_	_
+8	after	after	ADP	IN	_	12	mark	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-10	hafling	hafling	NOUN	NN	Number=Sing	7	nmod	_	_
+10	hafling	hafling	NOUN	NN	Number=Sing	12	nsubjpass	_	_
 11	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	12	auxpass	_	_
-12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	ccomp	_	_
+12	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	advcl	_	_
 13	on	on	ADP	IN	_	15	case	_	_
 14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
 15	pass	pass	NOUN	NN	Number=Sing	12	nmod	_	_
@@ -1820,9 +1820,9 @@ of Cirith Ungol.
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	cordoned	cordon	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-6	off	off	ADP	IN	_	5	compound:prt	_	_
+6	off	off	ADP	IN	_	8	case	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
-8	roads	roads	NOUN	NNS	Number=Plur	5	dobj	_	_
+8	roads	roads	NOUN	NNS	Number=Plur	5	nmod	_	_
 9	leading	lead	VERB	VBG	VerbForm=Ger	8	acl	_	_
 10	into	into	ADP	IN	_	11	case	_	_
 11	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nmod	_	_
@@ -1872,11 +1872,11 @@ def test30():
     text="""Soldiers from Gondor wire tapped all communication links leading into Mordor along the 
 pass of Cirith Ungol.
 """
-    parse="""1	Soldiers	soldier	NOUN	NNS	Number=Plur	5	nsubj	_	_
+    parse="""1	Soldiers	soldier	NOUN	NNS	Number=Plur	0	root	_	_
 2	from	from	ADP	IN	_	4	case	_	_
-3	Gondor	Gondor	PROPN	NNP	Number=Sing	4	compound	_	_
+3	Gondor	Gondor	PROPN	NNP	Number=Sing	4	name	_	_
 4	wire	wire	NOUN	NN	Number=Sing	1	nmod	_	_
-5	tapped	tap	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	tapped	tap	VERB	VBN	Tense=Past|VerbForm=Part	1	acl	_	_
 6	all	all	DET	DT	_	8	det	_	_
 7	communication	communication	NOUN	NN	Number=Sing	8	compound	_	_
 8	links	link	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -1889,7 +1889,7 @@ pass of Cirith Ungol.
 15	of	of	ADP	IN	_	17	case	_	_
 16	Cirith	Cirith	PROPN	NNP	Number=Sing	17	name	_	_
 17	Ungol	Ungol	PROPN	NNP	Number=Sing	14	nmod	_	_
-18	.	.	PUNCT	.	_	5	punct	_	_
+18	.	.	PUNCT	.	_	1	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -1935,7 +1935,7 @@ the pass of Cirith Ungol.
 4	will	will	AUX	MD	VerbForm=Fin	6	aux	_	_
 5	not	not	PART	RB	_	6	neg	_	_
 6	wire	wire	VERB	VB	VerbForm=Inf	0	root	_	_
-7	tap	tap	NOUN	NN	Number=Sing	6	dobj	_	_
+7	tap	tap	NOUN	NN	Number=Sing	10	compound	_	_
 8	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 9	communication	communication	NOUN	NN	Number=Sing	10	compound	_	_
 10	links	link	NOUN	NNS	Number=Plur	6	dobj	_	_
@@ -1993,7 +1993,7 @@ along the pass of Cirith Ungol.
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	cordoned	cordon	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-6	off	off	ADP	RP	_	5	compound:prt	_	_
+6	off	off	ADP	RP	_	8	case	_	_
 7	for	for	ADP	IN	_	8	case	_	_
 8	construction	construction	NOUN	NN	Number=Sing	5	nmod	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
@@ -2060,7 +2060,7 @@ five years after crowds trashed its embassy.
 11	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
-14	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
+14	years	year	NOUN	NNS	Number=Plur	6	nmod:tmod	_	_
 15	after	after	ADP	IN	_	16	case	_	_
 16	crowds	crowd	NOUN	NNS	Number=Plur	6	nmod	_	_
 17	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
@@ -2107,25 +2107,25 @@ def test34():
 five years after crowds trashed its embassy.
 """
     parse="""1	MSF	MSF	PROPN	NNP	Number=Sing	2	name	_	_
-2	Arnor	Arnor	PROPN	NNP	Number=Sing	6	nsubj	_	_
-3	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	cop	_	_
-4	about	about	ADV	RB	_	6	advmod	_	_
+2	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
+3	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	cop	_	_
+4	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 5	to	to	PART	TO	_	6	mark	_	_
-6	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+6	restore	restore	VERB	VB	VerbForm=Inf	4	xcomp	_	_
 7	full	full	ADJ	JJ	Degree=Pos	9	amod	_	_
 8	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	9	amod	_	_
 9	ties	tie	NOUN	NNS	Number=Plur	6	dobj	_	_
 10	with	with	ADP	IN	_	11	case	_	_
-11	Gondor	Gondor	PROPN	NNP	Number=Sing	9	nmod	_	_
+11	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
-14	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
+14	years	year	NOUN	NNS	Number=Plur	6	nmod:tmod	_	_
 15	after	after	ADP	IN	_	16	case	_	_
 16	crowds	crowd	NOUN	NNS	Number=Plur	6	nmod	_	_
 17	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 19	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-20	.	.	PUNCT	.	_	6	punct	_	_
+20	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2180,7 +2180,7 @@ five years after crowds trashed its embassy.
 13	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
 15	five	five	NUM	CD	NumType=Card	16	nummod	_	_
-16	years	year	NOUN	NNS	Number=Plur	18	nmod:npmod	_	_
+16	years	year	NOUN	NNS	Number=Plur	8	nmod:tmod	_	_
 17	after	after	ADP	IN	_	18	case	_	_
 18	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
 19	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	18	acl	_	_
@@ -2226,11 +2226,11 @@ def test36():
     text="""Arnor is about to restore full diplomatic ties with the Gondor main opposition group 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -2248,7 +2248,7 @@ almost five years after crowds trashed its embassy.
 20	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	20	dobj	_	_
-23	.	.	PUNCT	.	_	5	punct	_	_
+23	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2288,18 +2288,18 @@ def test37():
     text="""Arnor is about to restore full diplomatic ties with Gondor's government 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	12	case	_	_
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	12	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
-12	government	government	NOUN	NN	Number=Sing	8	nmod	_	_
+12	government	government	NOUN	NN	Number=Sing	5	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	five	five	NUM	CD	NumType=Card	15	nummod	_	_
 15	years	year	NOUN	NNS	Number=Plur	17	nmod:npmod	_	_
@@ -2308,7 +2308,7 @@ almost five years after crowds trashed its embassy.
 18	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
-21	.	.	PUNCT	.	_	5	punct	_	_
+21	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2348,11 +2348,11 @@ def test38():
     text="""Arnor is about to restore full diplomatic ties with Gondor's main opposition group 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -2361,7 +2361,7 @@ almost five years after crowds trashed its embassy.
 11	's	's	PART	POS	_	10	case	_	_
 12	main	main	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	opposition	opposition	NOUN	NN	Number=Sing	14	compound	_	_
-14	group	group	NOUN	NN	Number=Sing	8	nmod	_	_
+14	group	group	NOUN	NN	Number=Sing	5	nmod	_	_
 15	almost	almost	ADV	RB	_	16	advmod	_	_
 16	five	five	NUM	CD	NumType=Card	17	nummod	_	_
 17	years	year	NOUN	NNS	Number=Plur	19	nmod:npmod	_	_
@@ -2370,7 +2370,7 @@ almost five years after crowds trashed its embassy.
 20	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	20	dobj	_	_
-23	.	.	PUNCT	.	_	5	punct	_	_
+23	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2412,27 +2412,27 @@ five years after crowds trashed its embassy.
 """
     parse="""1	Human	human	ADJ	JJ	Degree=Pos	3	amod	_	_
 2	rights	rights	NOUN	NNS	Number=Plur	3	compound	_	_
-3	activists	activist	NOUN	NNS	Number=Plur	9	nsubj	_	_
+3	activists	activist	NOUN	NNS	Number=Plur	7	nsubj	_	_
 4	in	in	ADP	IN	_	5	case	_	_
 5	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nmod	_	_
-6	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	9	cop	_	_
-7	about	about	ADV	RB	_	9	advmod	_	_
+6	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	7	cop	_	_
+7	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 8	to	to	PART	TO	_	9	mark	_	_
-9	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+9	restore	restore	VERB	VB	VerbForm=Inf	7	xcomp	_	_
 10	full	full	ADJ	JJ	Degree=Pos	12	amod	_	_
 11	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	12	amod	_	_
 12	ties	tie	NOUN	NNS	Number=Plur	9	dobj	_	_
 13	with	with	ADP	IN	_	14	case	_	_
-14	Gondor	Gondor	PROPN	NNP	Number=Sing	12	nmod	_	_
+14	Gondor	Gondor	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	almost	almost	ADV	RB	_	16	advmod	_	_
 16	five	five	NUM	CD	NumType=Card	17	nummod	_	_
-17	years	year	NOUN	NNS	Number=Plur	19	nmod:npmod	_	_
+17	years	year	NOUN	NNS	Number=Plur	9	nmod:tmod	_	_
 18	after	after	ADP	IN	_	19	case	_	_
 19	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
 20	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	20	dobj	_	_
-23	.	.	PUNCT	.	_	9	punct	_	_
+23	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2473,32 +2473,32 @@ def test40():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2546,12 +2546,12 @@ in south Ithilen on Thursday
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2602,7 +2602,7 @@ ties with Gondor police.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	13	case	_	_
-12	Gondor	Gondor	ADJ	JJ	Degree=Pos	13	amod	_	_
+12	Gondor	Gondor	PROPN	NNP	Number=Sing	13	compound	_	_
 13	police	police	NOUN	NNS	Number=Plur	10	nmod	_	_
 14	.	.	PUNCT	.	_	5	punct	_	_
 """
@@ -2644,8 +2644,8 @@ def test43():
     text="""White House security officials are about to restore full diplomatic 
 ties with Minas Tirith border police. 
 """
-    parse="""1	White	White	PROPN	NNP	Number=Sing	3	compound	_	_
-2	House	House	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	White	White	PROPN	NNP	Number=Sing	2	compound	_	_
+2	House	House	PROPN	NNP	Number=Sing	4	compound	_	_
 3	security	security	NOUN	NN	Number=Sing	4	compound	_	_
 4	officials	official	NOUN	NNS	Number=Plur	6	nsubj	_	_
 5	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	6	cop	_	_
@@ -2657,7 +2657,7 @@ ties with Minas Tirith border police.
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	16	case	_	_
 13	Minas	Minas	PROPN	NNP	Number=Sing	16	compound	_	_
-14	Tirith	Tirith	PROPN	NNP	Number=Sing	15	compound	_	_
+14	Tirith	Tirith	PROPN	NNP	Number=Sing	16	compound	_	_
 15	border	border	NOUN	NN	Number=Sing	16	compound	_	_
 16	police	police	NOUN	NN	Number=Sing	11	nmod	_	_
 17	.	.	PUNCT	.	_	6	punct	_	_
@@ -2708,12 +2708,12 @@ in south Ithilen on Thursday
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2725,14 +2725,14 @@ in south Ithilen on Thursday
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALLEG],[OSGMIL],111)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test45']['sents']['0']:
             print(return_dict['test45']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test45']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALLEG],[OSGMIL],111)",str(return_dict['test45']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)",str(return_dict['test45']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALLEG],[OSGMIL],111)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)","noevent"]
             print("test45 Failed")
     except:
         print("test45 Failed")
@@ -2761,12 +2761,12 @@ in south Ithilen on Thursday
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2778,14 +2778,14 @@ in south Ithilen on Thursday
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALLEG],[OSGMIL],111)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test46']['sents']['0']:
             print(return_dict['test46']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test46']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALLEG],[OSGMIL],111)",str(return_dict['test46']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)",str(return_dict['test46']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALLEG],[OSGMIL],111)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)","noevent"]
             print("test46 Failed")
     except:
         print("test46 Failed")
@@ -2817,12 +2817,12 @@ in south Ithilen on Thursday
 9	attack	attack	NOUN	NN	Number=Sing	7	dobj	_	_
 10	by	by	ADP	IN	_	12	case	_	_
 11	Osgiliath	Osgiliath	DET	DT	_	12	det	_	_
-12	soldiers	soldier	NOUN	NNS	Number=Plur	7	nmod	_	_
+12	soldiers	soldier	NOUN	NNS	Number=Plur	9	nmod	_	_
 13	in	in	ADP	IN	_	15	case	_	_
-14	south	south	PROPN	NNP	Number=Sing	15	compound	_	_
+14	south	south	ADV	RB	_	15	advmod	_	_
 15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	12	nmod	_	_
 16	on	on	ADP	IN	_	17	case	_	_
-17	Thursday	Thursday	PROPN	NNP	Number=Sing	7	nmod	_	_
+17	Thursday	Thursday	PROPN	NNP	Number=Sing	12	nmod	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2873,12 +2873,12 @@ in south Ithilen on Thursday
 9	attack	attack	NOUN	NN	Number=Sing	7	dobj	_	_
 10	by	by	ADP	IN	_	12	case	_	_
 11	Osgiliath	Osgiliath	DET	DT	_	12	det	_	_
-12	soldiers	soldier	NOUN	NNS	Number=Plur	7	nmod	_	_
+12	soldiers	soldier	NOUN	NNS	Number=Plur	9	nmod	_	_
 13	in	in	ADP	IN	_	15	case	_	_
-14	south	south	PROPN	NNP	Number=Sing	15	compound	_	_
+14	south	south	ADV	RB	_	15	advmod	_	_
 15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	12	nmod	_	_
 16	on	on	ADP	IN	_	17	case	_	_
-17	Thursday	Thursday	PROPN	NNP	Number=Sing	7	nmod	_	_
+17	Thursday	Thursday	PROPN	NNP	Number=Sing	12	nmod	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2921,20 +2921,20 @@ full diplomatic ties with Gondor.
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
 2	human	human	ADJ	JJ	Degree=Pos	4	amod	_	_
 3	rights	rights	NOUN	NNS	Number=Plur	4	compound	_	_
-4	activists	activist	NOUN	NNS	Number=Plur	11	nsubj	_	_
+4	activists	activist	NOUN	NNS	Number=Plur	9	nsubj	_	_
 5	of	of	ADP	IN	_	7	case	_	_
 6	Amnesty	Amnesty	PROPN	NNP	Number=Sing	7	compound	_	_
 7	International	International	PROPN	NNP	Number=Sing	4	nmod	_	_
-8	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	11	cop	_	_
-9	about	about	ADV	RB	_	11	advmod	_	_
+8	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	9	cop	_	_
+9	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 10	to	to	PART	TO	_	11	mark	_	_
-11	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+11	restore	restore	VERB	VB	VerbForm=Inf	9	xcomp	_	_
 12	full	full	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	14	amod	_	_
 14	ties	tie	NOUN	NNS	Number=Plur	11	dobj	_	_
 15	with	with	ADP	IN	_	16	case	_	_
-16	Gondor	Gondor	PROPN	NNP	Number=Sing	14	nmod	_	_
-17	.	.	PUNCT	.	_	11	punct	_	_
+16	Gondor	Gondor	PROPN	NNP	Number=Sing	11	nmod	_	_
+17	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -2974,7 +2974,7 @@ def test49():
     text="""Washington security officials are about to restore full diplomatic 
 ties with Gondor. 
 """
-    parse="""1	Washington	Washington	PROPN	NNP	Number=Sing	2	compound	_	_
+    parse="""1	Washington	Washington	PROPN	NNP	Number=Sing	3	compound	_	_
 2	security	security	NOUN	NN	Number=Sing	3	compound	_	_
 3	officials	official	NOUN	NNS	Number=Plur	5	nsubj	_	_
 4	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	cop	_	_
@@ -2985,7 +2985,7 @@ ties with Gondor.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Gondor	Gondor	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
 13	.	.	PUNCT	.	_	5	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -3026,8 +3026,8 @@ def test50():
     text="""White House security officials are about to restore full diplomatic 
 ties with Gondor. 
 """
-    parse="""1	White	White	PROPN	NNP	Number=Sing	3	compound	_	_
-2	House	House	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	White	White	PROPN	NNP	Number=Sing	2	compound	_	_
+2	House	House	PROPN	NNP	Number=Sing	4	compound	_	_
 3	security	security	NOUN	NN	Number=Sing	4	compound	_	_
 4	officials	official	NOUN	NNS	Number=Plur	6	nsubj	_	_
 5	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	6	cop	_	_
@@ -3038,7 +3038,7 @@ ties with Gondor.
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Gondor	Gondor	PROPN	NNP	Number=Sing	11	nmod	_	_
+13	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -3080,7 +3080,7 @@ def test51():
 ties with Gondor now. 
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
-2	Quibbler	Quibbler	ADJ	JJ	Degree=Pos	4	amod	_	_
+2	Quibbler	Quibbler	PROPN	NNP	Number=Sing	4	compound	_	_
 3	government	government	NOUN	NN	Number=Sing	4	compound	_	_
 4	newspaper	newspaper	NOUN	NN	Number=Sing	6	nsubj	_	_
 5	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	cop	_	_
@@ -3133,11 +3133,11 @@ def test52():
     text="""Arnor is about to restore full diplomatic ties with Gondor's main opposition groups 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -3146,7 +3146,7 @@ almost five years after crowds trashed its embassy.
 11	's	's	PART	POS	_	10	case	_	_
 12	main	main	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	opposition	opposition	NOUN	NN	Number=Sing	14	compound	_	_
-14	groups	group	NOUN	NNS	Number=Plur	8	nmod	_	_
+14	groups	group	NOUN	NNS	Number=Plur	5	nmod	_	_
 15	almost	almost	ADV	RB	_	16	advmod	_	_
 16	five	five	NUM	CD	NumType=Card	17	nummod	_	_
 17	years	year	NOUN	NNS	Number=Plur	19	nmod:npmod	_	_
@@ -3155,7 +3155,7 @@ almost five years after crowds trashed its embassy.
 20	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	20	dobj	_	_
-23	.	.	PUNCT	.	_	5	punct	_	_
+23	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3195,11 +3195,11 @@ def test53():
     text="""Arnor is about to restore full diplomatic ties with Gondor's golden geese 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -3207,7 +3207,7 @@ almost five years after crowds trashed its embassy.
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	13	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
 12	golden	golden	ADJ	JJ	Degree=Pos	13	amod	_	_
-13	geese	geese	NOUN	NN	Number=Sing	8	nmod	_	_
+13	geese	geese	NOUN	NN	Number=Sing	5	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
 15	five	five	NUM	CD	NumType=Card	16	nummod	_	_
 16	years	year	NOUN	NNS	Number=Plur	18	nmod:npmod	_	_
@@ -3216,7 +3216,7 @@ almost five years after crowds trashed its embassy.
 19	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	18	acl	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
 21	embassy	embassy	NOUN	NN	Number=Sing	19	dobj	_	_
-22	.	.	PUNCT	.	_	5	punct	_	_
+22	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3256,18 +3256,18 @@ def test54():
     text="""Arnor is about to restore full diplomatic ties with Gondor's polices 
 almost five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	12	case	_	_
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	12	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
-12	polices	police	NOUN	NNS	Number=Plur	8	nmod	_	_
+12	polices	polex	NOUN	NNS	Number=Plur	5	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	five	five	NUM	CD	NumType=Card	15	nummod	_	_
 15	years	year	NOUN	NNS	Number=Plur	17	nmod:npmod	_	_
@@ -3276,7 +3276,7 @@ almost five years after crowds trashed its embassy.
 18	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
-21	.	.	PUNCT	.	_	5	punct	_	_
+21	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3316,7 +3316,7 @@ def test55():
     text="""West German world government activists are about to restore 
 full diplomatic ties with human rights activists of Gonzo GMO. 
 """
-    parse="""1	West	West	ADJ	JJ	Degree=Pos	3	amod	_	_
+    parse="""1	West	West	ADJ	JJ	Degree=Pos	5	amod	_	_
 2	German	german	ADJ	JJ	Degree=Pos	3	amod	_	_
 3	world	world	NOUN	NN	Number=Sing	5	compound	_	_
 4	government	government	NOUN	NN	Number=Sing	5	compound	_	_
@@ -3375,8 +3375,8 @@ def test56():
     text="""White House security officials are about to restore full diplomatic 
 ties with Gondor and Arnor. 
 """
-    parse="""1	White	White	PROPN	NNP	Number=Sing	3	compound	_	_
-2	House	House	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	White	White	PROPN	NNP	Number=Sing	2	compound	_	_
+2	House	House	PROPN	NNP	Number=Sing	4	compound	_	_
 3	security	security	NOUN	NN	Number=Sing	4	compound	_	_
 4	officials	official	NOUN	NNS	Number=Plur	6	nsubj	_	_
 5	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	6	cop	_	_
@@ -3430,7 +3430,7 @@ def test57():
     text="""Arnor former security officials are about to restore full diplomatic 
 ties with former Gondor prosecutors. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	compound	_	_
+    parse="""1	Arnor	Arnor	ADP	IN	_	4	case	_	_
 2	former	former	ADJ	JJ	Degree=Pos	4	amod	_	_
 3	security	security	NOUN	NN	Number=Sing	4	compound	_	_
 4	officials	official	NOUN	NNS	Number=Plur	6	nsubj	_	_
@@ -3457,14 +3457,14 @@ ties with former Gondor prosecutors.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNELI],[GONELI],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNGOV],[GONJUD],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test58']['sents']['0']:
             print(return_dict['test58']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test58']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNELI],[GONELI],050)",str(return_dict['test58']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[GONJUD],050)",str(return_dict['test58']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNELI],[GONELI],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[GONJUD],050)","noevent"]
             print("test58 Failed")
     except:
         print("test58 Failed")
@@ -3485,26 +3485,26 @@ def test58():
     text="""Former security officials in White House are about to restore full 
 diplomatic ties with former Minas Tirith border police. 
 """
-    parse="""1	Former	former	ADJ	JJ	Degree=Pos	2	amod	_	_
+    parse="""1	Former	former	ADJ	JJ	Degree=Pos	3	amod	_	_
 2	security	security	NOUN	NN	Number=Sing	3	compound	_	_
-3	officials	official	NOUN	NNS	Number=Plur	10	nsubj	_	_
+3	officials	official	NOUN	NNS	Number=Plur	8	nsubj	_	_
 4	in	in	ADP	IN	_	6	case	_	_
 5	White	White	PROPN	NNP	Number=Sing	6	compound	_	_
 6	House	House	PROPN	NNP	Number=Sing	3	nmod	_	_
-7	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	10	cop	_	_
-8	about	about	ADV	RB	_	10	advmod	_	_
+7	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	8	cop	_	_
+8	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 9	to	to	PART	TO	_	10	mark	_	_
-10	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+10	restore	restore	VERB	VB	VerbForm=Inf	8	xcomp	_	_
 11	full	full	ADJ	JJ	Degree=Pos	13	amod	_	_
 12	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	ties	tie	NOUN	NNS	Number=Plur	10	dobj	_	_
 14	with	with	ADP	IN	_	19	case	_	_
 15	former	former	ADJ	JJ	Degree=Pos	19	amod	_	_
-16	Minas	Minas	PROPN	NNP	Number=Sing	17	compound	_	_
+16	Minas	Minas	PROPN	NNP	Number=Sing	19	compound	_	_
 17	Tirith	Tirith	PROPN	NNP	Number=Sing	19	compound	_	_
 18	border	border	NOUN	NN	Number=Sing	19	compound	_	_
 19	police	police	NOUN	NN	Number=Sing	13	nmod	_	_
-20	.	.	PUNCT	.	_	10	punct	_	_
+20	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3545,13 +3545,13 @@ def test59():
 12-year break in a step that holds advantages for both major 
 powers. 
 """
-    parse="""1	Old	old	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	foes	fo	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+    parse="""1	Old	old	PROPN	NNP	Number=Sing	3	compound	_	_
+2	foe	foe	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nsubj	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
 5	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	3	conj	_	_
 6	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	7	aux	_	_
-7	renewed	renew	VERB	VBN	Tense=Past|VerbForm=Part	2	ccomp	_	_
+7	renewed	renew	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 8	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	9	amod	_	_
 9	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 10	after	after	ADP	IN	_	13	case	_	_
@@ -3560,15 +3560,15 @@ powers.
 13	break	break	NOUN	NN	Number=Sing	7	nmod	_	_
 14	in	in	ADP	IN	_	16	case	_	_
 15	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
-16	step	step	NOUN	NN	Number=Sing	13	nmod	_	_
-17	that	that	DET	WDT	PronType=Rel	18	nsubj	_	_
+16	step	step	NOUN	NN	Number=Sing	7	nmod	_	_
+17	that	that	PRON	WDT	PronType=Rel	18	nsubj	_	_
 18	holds	hold	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	16	acl:relcl	_	_
 19	advantages	advantage	NOUN	NNS	Number=Plur	18	dobj	_	_
 20	for	for	ADP	IN	_	23	case	_	_
 21	both	both	DET	DT	_	23	det	_	_
 22	major	major	ADJ	JJ	Degree=Pos	23	amod	_	_
 23	powers	power	NOUN	NNS	Number=Plur	18	nmod	_	_
-24	.	.	PUNCT	.	_	2	punct	_	_
+24	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3605,17 +3605,17 @@ powers.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test60():
-    text="""Mordor, Rohan, Fornost and Bree welcomed their resumption of formal 
+    text="""Mordor, Rohan, Arnor and Bree welcomed their resumption of formal 
 diplomatic ties with Osgiliath after a 12-year rift. 
 """
     parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	8	nsubj	_	_
 2	,	,	PUNCT	,	_	1	punct	_	_
 3	Rohan	Rohan	PROPN	NNP	Number=Sing	1	conj	_	_
 4	,	,	PUNCT	,	_	1	punct	_	_
-5	Fornost	Fornost	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	1	conj	_	_
+5	Arnor	Arnor	PROPN	NNP	Number=Sing	1	conj	_	_
 6	and	and	CONJ	CC	_	1	cc	_	_
 7	Bree	Bree	PROPN	NNP	Number=Sing	1	conj	_	_
-8	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+8	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 9	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	10	nmod:poss	_	_
 10	resumption	resumption	NOUN	NN	Number=Sing	8	dobj	_	_
 11	of	of	ADP	IN	_	14	case	_	_
@@ -3627,7 +3627,7 @@ diplomatic ties with Osgiliath after a 12-year rift.
 17	after	after	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	12-year	12-year	ADJ	JJ	Degree=Pos	20	amod	_	_
-20	rift	rift	NOUN	NN	Number=Sing	14	nmod	_	_
+20	rift	rift	NOUN	NN	Number=Sing	8	nmod	_	_
 21	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -3640,14 +3640,14 @@ diplomatic ties with Osgiliath after a 12-year rift.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[OSG],050)\n([ROH],[OSG],050)\n([FOR],[OSG],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[OSG],050)\n([ROH],[OSG],050)\n([ARN],[OSG],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test61']['sents']['0']:
             print(return_dict['test61']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test61']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ROH],[OSG],050)\n([FOR],[OSG],050)\n([BRE],[OSG],050)",str(return_dict['test61']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ROH],[OSG],050)\n([ARN],[OSG],050)\n([BRE],[OSG],050)",str(return_dict['test61']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ROH],[OSG],050)\n([FOR],[OSG],050)\n([BRE],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ROH],[OSG],050)\n([ARN],[OSG],050)\n([BRE],[OSG],050)","noevent"]
             print("test61 Failed")
     except:
         print("test61 Failed")
@@ -3665,11 +3665,11 @@ diplomatic ties with Osgiliath after a 12-year rift.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test61():
-    text="""Fornost and Gondor welcome a resumption of formal diplomatic ties with  
+    text="""Arnor and Gondor welcome a resumption of formal diplomatic ties with  
 Osgiliath after a 12-year rift, the primary official news agency WFNA said 
 on Thursday. 
 """
-    parse="""1	Fornost	Fornost	ADJ	JJ	Degree=Pos	4	nsubj	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
 4	welcome	welcome	VERB	VB	VerbForm=Inf	0	root	_	_
@@ -3686,13 +3686,13 @@ on Thursday.
 15	12-year	12-year	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
 17	,	,	PUNCT	,	_	4	punct	_	_
-18	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
-19	primary	primary	ADJ	JJ	Degree=Pos	23	amod	_	_
-20	official	official	ADJ	JJ	Degree=Pos	21	amod	_	_
-21	news	news	NOUN	NN	Number=Sing	23	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	23	compound	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
+20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
+21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
+22	agency	agency	NOUN	NN	Number=Sing	4	dobj	_	_
 23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
 25	on	on	ADP	IN	_	26	case	_	_
 26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
 27	.	.	PUNCT	.	_	4	punct	_	_
@@ -3707,14 +3707,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FOR],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test62']['sents']['0']:
             print(return_dict['test62']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test62']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test62']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test62']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)","noevent"]
             print("test62 Failed")
     except:
         print("test62 Failed")
@@ -3732,12 +3732,12 @@ on Thursday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test62():
-    text="""Fornost welcomed a resumption of formal diplomatic ties between Gondor 
+    text="""Arnor welcomed a resumption of formal diplomatic ties between Gondor 
 and Osgiliath after a 12-year rift, the primary official news agency WFNA said 
 on Thursday. 
 """
-    parse="""1	Fornost	Fornost	ADV	RB	_	2	advmod	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	a	a	DET	DT	Definite=Ind|PronType=Art	4	det	_	_
 4	resumption	resumption	NOUN	NN	Number=Sing	2	dobj	_	_
 5	of	of	ADP	IN	_	8	case	_	_
@@ -3753,13 +3753,13 @@ on Thursday.
 15	12-year	12-year	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	rift	rift	NOUN	NN	Number=Sing	2	nmod	_	_
 17	,	,	PUNCT	,	_	2	punct	_	_
-18	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
-19	primary	primary	ADJ	JJ	Degree=Pos	23	amod	_	_
-20	official	official	ADJ	JJ	Degree=Pos	21	amod	_	_
-21	news	news	NOUN	NN	Number=Sing	23	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	23	compound	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
+20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
+21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
+22	agency	agency	NOUN	NN	Number=Sing	2	dobj	_	_
 23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
 25	on	on	ADP	IN	_	26	case	_	_
 26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
 27	.	.	PUNCT	.	_	2	punct	_	_
@@ -3774,14 +3774,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FOR],[GON],050)\n([FOR],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test63']['sents']['0']:
             print(return_dict['test63']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test63']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[GON],050)\n([FOR],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test63']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test63']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[GON],050)\n([FOR],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)","noevent"]
             print("test63 Failed")
     except:
         print("test63 Failed")
@@ -3800,7 +3800,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test63():
     text="""Osgiliath welcomed the resumption of formal  diplomatic ties with 
-Mordor, Rohan, Fornost and Bree after a 12-year rift. 
+Mordor, Rohan, Arnor and Bree after a 12-year rift. 
 """
     parse="""1	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	2	nsubj	_	_
 2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
@@ -3815,7 +3815,7 @@ Mordor, Rohan, Fornost and Bree after a 12-year rift.
 11	,	,	PUNCT	,	_	10	punct	_	_
 12	Rohan	Rohan	PROPN	NNP	Number=Sing	10	conj	_	_
 13	,	,	PUNCT	,	_	10	punct	_	_
-14	Fornost	Fornost	X	AFX	_	10	conj	_	_
+14	Arnor	Arnor	PROPN	NNP	Number=Sing	10	conj	_	_
 15	and	and	CONJ	CC	_	10	cc	_	_
 16	Bree	Bree	PROPN	NNP	Number=Sing	10	conj	_	_
 17	after	after	ADP	IN	_	20	case	_	_
@@ -3834,14 +3834,14 @@ Mordor, Rohan, Fornost and Bree after a 12-year rift.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[FOR],050)\n([OSG],[BRE],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[ARN],050)\n([OSG],[BRE],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test64']['sents']['0']:
             print(return_dict['test64']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test64']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[FOR],050)\n([OSG],[BRE],050)",str(return_dict['test64']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[ARN],050)\n([OSG],[BRE],050)",str(return_dict['test64']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[FOR],050)\n([OSG],[BRE],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([OSG],[MOR],050)\n([OSG],[ROH],050)\n([OSG],[ARN],050)\n([OSG],[BRE],050)","noevent"]
             print("test64 Failed")
     except:
         print("test64 Failed")
@@ -3859,14 +3859,14 @@ Mordor, Rohan, Fornost and Bree after a 12-year rift.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test64():
-    text="""Fornost and Gondor welcomed a resumption of formal diplomatic ties
+    text="""Arnor and Gondor welcomed a resumption of formal diplomatic ties
 between Eriador and Osgiliath after a 12-year rift, the official news
 agency WFNA said on Thursday . 
 """
-    parse="""1	Fornost	Fornost	ADJ	JJ	Degree=Pos	4	nsubj	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-4	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 6	resumption	resumption	NOUN	NN	Number=Sing	4	dobj	_	_
 7	of	of	ADP	IN	_	10	case	_	_
@@ -3880,14 +3880,14 @@ agency WFNA said on Thursday .
 15	after	after	ADP	IN	_	18	case	_	_
 16	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
 17	12-year	12-year	ADJ	JJ	Degree=Pos	18	amod	_	_
-18	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
-19	,	,	PUNCT	,	_	4	punct	_	_
-20	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
-21	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
-22	news	news	NOUN	NN	Number=Sing	24	compound	_	_
-23	agency	agency	NOUN	NN	Number=Sing	24	compound	_	_
+18	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
+19	,	,	PUNCT	,	_	18	punct	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+21	official	official	ADJ	JJ	Degree=Pos	23	amod	_	_
+22	news	news	NOUN	NN	Number=Sing	23	compound	_	_
+23	agency	agency	NOUN	NN	Number=Sing	18	appos	_	_
 24	WFNA	WFNA	PROPN	NNP	Number=Sing	25	nsubj	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	23	acl:relcl	_	_
 26	on	on	ADP	IN	_	27	case	_	_
 27	Thursday	Thursday	PROPN	NNP	Number=Sing	25	nmod	_	_
 28	.	.	PUNCT	.	_	4	punct	_	_
@@ -3902,14 +3902,14 @@ agency WFNA said on Thursday .
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FOR],[ERI],050)\n([FOR],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[ERI],050)\n([ARN],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test65']['sents']['0']:
             print(return_dict['test65']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test65']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[ERI],050)\n([FOR],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)",str(return_dict['test65']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[ERI],050)\n([ARN],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)",str(return_dict['test65']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[ERI],050)\n([FOR],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[ERI],050)\n([ARN],[OSG],050)\n([GON],[ERI],050)\n([GON],[OSG],050)","noevent"]
             print("test65 Failed")
     except:
         print("test65 Failed")
@@ -3927,18 +3927,18 @@ agency WFNA said on Thursday .
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test65():
-    text="""Mordor, Rohan, Fornost and Bree welcomed a resumption of formal 
+    text="""Mordor, Rohan, Arnor and Bree welcomed a resumption of formal 
 diplomatic ties between Gondor and Osgiliath after a 12-year rift, the 
 official news agency WFNA said on Thursday . 
 """
-    parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	5	nsubj	_	_
+    parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	8	nsubj	_	_
 2	,	,	PUNCT	,	_	1	punct	_	_
-3	Rohan	Rohan	PROPN	NNP	Number=Sing	1	appos	_	_
-4	,	,	PUNCT	,	_	5	punct	_	_
-5	Fornost	Fornost	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-6	and	and	CONJ	CC	_	5	cc	_	_
-7	Bree	Bree	PROPN	NNP	Number=Sing	8	nsubj	_	_
-8	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
+3	Rohan	Rohan	PROPN	NNP	Number=Sing	1	conj	_	_
+4	,	,	PUNCT	,	_	1	punct	_	_
+5	Arnor	Arnor	PROPN	NNP	Number=Sing	1	conj	_	_
+6	and	and	CONJ	CC	_	1	cc	_	_
+7	Bree	Bree	PROPN	NNP	Number=Sing	1	conj	_	_
+8	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
 10	resumption	resumption	NOUN	NN	Number=Sing	8	dobj	_	_
 11	of	of	ADP	IN	_	14	case	_	_
@@ -3953,16 +3953,16 @@ official news agency WFNA said on Thursday .
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	12-year	12-year	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	rift	rift	NOUN	NN	Number=Sing	8	nmod	_	_
-23	,	,	PUNCT	,	_	5	punct	_	_
+23	,	,	PUNCT	,	_	8	punct	_	_
 24	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
 25	official	official	ADJ	JJ	Degree=Pos	27	amod	_	_
 26	news	news	NOUN	NN	Number=Sing	27	compound	_	_
-27	agency	agency	NOUN	NN	Number=Sing	5	dobj	_	_
+27	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
 28	WFNA	WFNA	PROPN	NNP	Number=Sing	29	nsubj	_	_
 29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	27	acl:relcl	_	_
 30	on	on	ADP	IN	_	31	case	_	_
 31	Thursday	Thursday	PROPN	NNP	Number=Sing	29	nmod	_	_
-32	.	.	PUNCT	.	_	5	punct	_	_
+32	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3974,14 +3974,14 @@ official news agency WFNA said on Thursday .
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test66']['sents']['0']:
             print(return_dict['test66']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test66']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)",str(return_dict['test66']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)",str(return_dict['test66']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([ROH],[GON],050)\n([ROH],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)","noevent"]
             print("test66 Failed")
     except:
         print("test66 Failed")
@@ -4003,15 +4003,15 @@ def test66():
 diplomatic ties between Minas Tirith and Osgiliath after a 12-year rift, 
 the official news agency WFNA said on Thursday. 
 """
-    parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	6	nsubj	_	_
+    parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nsubj	_	_
 2	,	,	PUNCT	,	_	1	punct	_	_
 3	the	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
 4	Shire	Shire	PROPN	NNP	Number=Sing	1	appos	_	_
-5	,	,	PUNCT	,	_	6	punct	_	_
-6	Fornost	Fornost	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-7	and	and	CONJ	CC	_	6	cc	_	_
-8	Bree	Bree	PROPN	NNP	Number=Sing	9	nsubj	_	_
-9	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	conj	_	_
+5	,	,	PUNCT	,	_	4	punct	_	_
+6	Arnor	Arnor	PROPN	NNP	Number=Sing	4	conj	_	_
+7	and	and	CONJ	CC	_	4	cc	_	_
+8	Bree	Bree	PROPN	NNP	Number=Sing	4	conj	_	_
+9	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 10	a	a	DET	DT	Definite=Ind|PronType=Art	11	det	_	_
 11	resumption	resumption	NOUN	NN	Number=Sing	9	dobj	_	_
 12	of	of	ADP	IN	_	15	case	_	_
@@ -4027,16 +4027,16 @@ the official news agency WFNA said on Thursday.
 22	a	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
 23	12-year	12-year	ADJ	JJ	Degree=Pos	24	amod	_	_
 24	rift	rift	NOUN	NN	Number=Sing	9	nmod	_	_
-25	,	,	PUNCT	,	_	6	punct	_	_
+25	,	,	PUNCT	,	_	9	punct	_	_
 26	the	the	DET	DT	Definite=Def|PronType=Art	29	det	_	_
 27	official	official	ADJ	JJ	Degree=Pos	29	amod	_	_
 28	news	news	NOUN	NN	Number=Sing	29	compound	_	_
-29	agency	agency	NOUN	NN	Number=Sing	6	dobj	_	_
+29	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
 30	WFNA	WFNA	PROPN	NNP	Number=Sing	31	nsubj	_	_
 31	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	29	acl:relcl	_	_
 32	on	on	ADP	IN	_	33	case	_	_
 33	Thursday	Thursday	PROPN	NNP	Number=Sing	31	nmod	_	_
-34	.	.	PUNCT	.	_	6	punct	_	_
+34	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4048,14 +4048,14 @@ the official news agency WFNA said on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test67']['sents']['0']:
             print(return_dict['test67']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test67']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)",str(return_dict['test67']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)",str(return_dict['test67']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([FOR],[GON],050)\n([FOR],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[GON],050)\n([MOR],[OSG],050)\n([FRO/BIL/SAM],[GON],050)\n([FRO/BIL/SAM],[OSG],050)\n([ARN],[GON],050)\n([ARN],[OSG],050)\n([BRE],[GON],050)\n([BRE],[OSG],050)","noevent"]
             print("test67 Failed")
     except:
         print("test67 Failed")
@@ -4076,12 +4076,12 @@ def test67():
     text="""Lawmakers in Fornost and Gondor welcomed a resumption of formal diplomatic ties
 with Eriador. 
 """
-    parse="""1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	6	nsubj	_	_
+    parse="""1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	0	root	_	_
 2	in	in	ADP	IN	_	3	case	_	_
-3	Fornost	Fornost	NOUN	NN	Number=Sing	1	nmod	_	_
+3	Arnor	Arnor	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	and	and	CONJ	CC	_	1	cc	_	_
-5	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-6	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nsubj	_	_
+6	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	1	conj	_	_
 7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
 8	resumption	resumption	NOUN	NN	Number=Sing	6	dobj	_	_
 9	of	of	ADP	IN	_	12	case	_	_
@@ -4090,7 +4090,7 @@ with Eriador.
 12	ties	tie	NOUN	NNS	Number=Plur	8	nmod	_	_
 13	with	with	ADP	IN	_	14	case	_	_
 14	Eriador	Eriador	PROPN	NNP	Number=Sing	12	nmod	_	_
-15	.	.	PUNCT	.	_	6	punct	_	_
+15	.	.	PUNCT	.	_	1	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4102,14 +4102,14 @@ with Eriador.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test68']['sents']['0']:
             print(return_dict['test68']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test68']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)",str(return_dict['test68']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)",str(return_dict['test68']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)","noevent"]
             print("test68 Failed")
     except:
         print("test68 Failed")
@@ -4127,17 +4127,17 @@ with Eriador.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test68():
-    text="""Lawmakers and officials in Fornost and Gondor welcomed a resumption of formal diplomatic ties
+    text="""Lawmakers and officials in Arnor and Gondor welcomed a resumption of formal diplomatic ties
 with Eriador. 
 """
     parse="""1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	8	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
 3	officials	official	NOUN	NNS	Number=Plur	1	conj	_	_
 4	in	in	ADP	IN	_	5	case	_	_
-5	Fornost	Fornost	NOUN	NN	Number=Sing	1	nmod	_	_
-6	and	and	CONJ	CC	_	1	cc	_	_
-7	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-8	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	Arnor	Arnor	PROPN	NNP	Number=Sing	1	nmod	_	_
+6	and	and	CONJ	CC	_	5	cc	_	_
+7	Gondor	Gondor	PROPN	NNP	Number=Sing	5	conj	_	_
+8	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
 10	resumption	resumption	NOUN	NN	Number=Sing	8	dobj	_	_
 11	of	of	ADP	IN	_	14	case	_	_
@@ -4158,14 +4158,14 @@ with Eriador.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([FORGOV],[ERI],050)\n([GONGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([ARNGOV],[ERI],050)\n([GONGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test69']['sents']['0']:
             print(return_dict['test69']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test69']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([FORGOV],[ERI],050)\n([GONGOV],[ERI],050)",str(return_dict['test69']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([ARNGOV],[ERI],050)\n([GONGOV],[ERI],050)",str(return_dict['test69']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([FORGOV],[ERI],050)\n([GONGOV],[ERI],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNLEG],[ERI],050)\n([GONLEG],[ERI],050)\n([ARNGOV],[ERI],050)\n([GONGOV],[ERI],050)","noevent"]
             print("test69 Failed")
     except:
         print("test69 Failed")
@@ -4243,19 +4243,19 @@ five years after crowds burned down its embassy.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test70():
-    text="""Fornost and the evil awful Gondor welcomed a resumption of formal diplomatic  
+    text="""Arnor and the evil awful Gondor welcomed a resumption of formal diplomatic  
 ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
 on Thursday. 
 """
-    parse="""1	Fornost	Fornost	ADJ	JJS	Degree=Sup	7	nsubj	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	7	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
 3	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
 4	evil	evil	ADJ	JJ	Degree=Pos	6	amod	_	_
 5	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
 6	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-7	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 8	a	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
-9	resumption	resumption	NOUN	NN	Number=Sing	26	nsubj	_	_
+9	resumption	resumption	NOUN	NN	Number=Sing	7	dobj	_	_
 10	of	of	ADP	IN	_	13	case	_	_
 11	formal	formal	ADJ	JJ	Degree=Pos	13	amod	_	_
 12	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	13	amod	_	_
@@ -4265,14 +4265,14 @@ on Thursday.
 16	after	after	ADP	IN	_	19	case	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	12-year	12-year	ADJ	JJ	Degree=Pos	19	amod	_	_
-19	rift	rift	NOUN	NN	Number=Sing	26	nmod	_	_
-20	,	,	PUNCT	,	_	26	punct	_	_
-21	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
-22	official	official	ADJ	JJ	Degree=Pos	23	amod	_	_
-23	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-24	agency	agency	NOUN	NN	Number=Sing	25	compound	_	_
+19	rift	rift	NOUN	NN	Number=Sing	9	nmod	_	_
+20	,	,	PUNCT	,	_	19	punct	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
+22	official	official	ADJ	JJ	Degree=Pos	24	amod	_	_
+23	news	news	NOUN	NN	Number=Sing	24	compound	_	_
+24	agency	agency	NOUN	NN	Number=Sing	19	appos	_	_
 25	WFNA	WFNA	PROPN	NNP	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	ccomp	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
 27	on	on	ADP	IN	_	28	case	_	_
 28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
 29	.	.	PUNCT	.	_	7	punct	_	_
@@ -4287,14 +4287,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FOR],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test71']['sents']['0']:
             print(return_dict['test71']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test71']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test71']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test71']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)","noevent"]
             print("test71 Failed")
     except:
         print("test71 Failed")
@@ -4312,7 +4312,7 @@ on Thursday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test71():
-    text="""Evil Mordor, the awful Fornost, and good Gondor welcomed a resumption of formal   
+    text="""Evil Mordor, the awful Arnor, and good Gondor welcomed a resumption of formal   
 diplomatic ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
 on Thursday. 
 """
@@ -4321,34 +4321,34 @@ on Thursday.
 3	,	,	PUNCT	,	_	2	punct	_	_
 4	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
 5	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
-6	Fornost	Fornost	NOUN	NN	Number=Sing	2	appos	_	_
+6	Arnor	Arnor	PROPN	NNP	Number=Sing	2	appos	_	_
 7	,	,	PUNCT	,	_	2	punct	_	_
 8	and	and	CONJ	CC	_	2	cc	_	_
 9	good	good	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	2	conj	_	_
-11	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+11	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 12	a	a	DET	DT	Definite=Ind|PronType=Art	13	det	_	_
-13	resumption	resumption	NOUN	NN	Number=Sing	30	nsubj	_	_
+13	resumption	resumption	NOUN	NN	Number=Sing	11	dobj	_	_
 14	of	of	ADP	IN	_	17	case	_	_
 15	formal	formal	ADJ	JJ	Degree=Pos	17	amod	_	_
 16	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	17	amod	_	_
 17	ties	tie	NOUN	NNS	Number=Plur	13	nmod	_	_
 18	with	with	ADP	IN	_	19	case	_	_
-19	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	17	nmod	_	_
+19	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	11	nmod	_	_
 20	after	after	ADP	IN	_	23	case	_	_
 21	a	a	DET	DT	Definite=Ind|PronType=Art	23	det	_	_
 22	12-year	12-year	ADJ	JJ	Degree=Pos	23	amod	_	_
-23	rift	rift	NOUN	NN	Number=Sing	30	nmod	_	_
-24	,	,	PUNCT	,	_	30	punct	_	_
+23	rift	rift	NOUN	NN	Number=Sing	11	nmod	_	_
+24	,	,	PUNCT	,	_	11	punct	_	_
 25	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
 26	official	official	ADJ	JJ	Degree=Pos	28	amod	_	_
 27	news	news	NOUN	NN	Number=Sing	28	compound	_	_
-28	agency	agency	NOUN	NN	Number=Sing	30	nsubj	_	_
+28	agency	agency	NOUN	NN	Number=Sing	11	dobj	_	_
 29	WFNA	WFNA	PROPN	NNP	Number=Sing	30	nsubj	_	_
-30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	ccomp	_	_
+30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	acl:relcl	_	_
 31	on	on	ADP	IN	_	32	case	_	_
 32	Thursday	Thursday	PROPN	NNP	Number=Sing	30	nmod	_	_
-33	.	.	PUNCT	.	_	28	punct	_	_
+33	.	.	PUNCT	.	_	11	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4360,14 +4360,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[OSG],050)\n([FOR],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([MOR],[OSG],050)\n([ARN],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test72']['sents']['0']:
             print(return_dict['test72']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test72']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([FOR],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test72']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ARN],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test72']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([FOR],[OSG],050)\n([GON],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([MOR],[OSG],050)\n([ARN],[OSG],050)\n([GON],[OSG],050)","noevent"]
             print("test72 Failed")
     except:
         print("test72 Failed")
@@ -4397,26 +4397,26 @@ on Thursday.
 6	evil	evil	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	awful	awful	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-9	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+9	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 10	a	a	DET	DT	Definite=Ind|PronType=Art	11	det	_	_
-11	resumption	resumption	NOUN	NN	Number=Sing	28	nsubj	_	_
+11	resumption	resumption	NOUN	NN	Number=Sing	9	dobj	_	_
 12	of	of	ADP	IN	_	15	case	_	_
 13	formal	formal	ADJ	JJ	Degree=Pos	15	amod	_	_
 14	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	15	amod	_	_
 15	ties	tie	NOUN	NNS	Number=Plur	11	nmod	_	_
 16	with	with	ADP	IN	_	17	case	_	_
-17	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	15	nmod	_	_
+17	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	9	nmod	_	_
 18	after	after	ADP	IN	_	21	case	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	12-year	12-year	ADJ	JJ	Degree=Pos	21	amod	_	_
-21	rift	rift	NOUN	NN	Number=Sing	28	nmod	_	_
-22	,	,	PUNCT	,	_	28	punct	_	_
-23	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
-24	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
-25	news	news	NOUN	NN	Number=Sing	27	compound	_	_
-26	agency	agency	NOUN	NN	Number=Sing	27	compound	_	_
+21	rift	rift	NOUN	NN	Number=Sing	9	nmod	_	_
+22	,	,	PUNCT	,	_	9	punct	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
+24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
+25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
+26	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
 27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	ccomp	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	acl:relcl	_	_
 29	on	on	ADP	IN	_	30	case	_	_
 30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
 31	.	.	PUNCT	.	_	9	punct	_	_
@@ -4467,9 +4467,9 @@ on Thursday.
 5	Arnor	Arnor	ADP	IN	_	7	case	_	_
 6	awful	awful	ADJ	JJ	Degree=Pos	7	amod	_	_
 7	Gondor	Gondor	PROPN	NNP	Number=Sing	4	nmod	_	_
-8	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+8	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-10	resumption	resumption	NOUN	NN	Number=Sing	27	nsubj	_	_
+10	resumption	resumption	NOUN	NN	Number=Sing	8	dobj	_	_
 11	of	of	ADP	IN	_	14	case	_	_
 12	formal	formal	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	14	amod	_	_
@@ -4479,14 +4479,14 @@ on Thursday.
 17	after	after	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	12-year	12-year	ADJ	JJ	Degree=Pos	20	amod	_	_
-20	rift	rift	NOUN	NN	Number=Sing	27	nmod	_	_
-21	,	,	PUNCT	,	_	27	punct	_	_
-22	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
-23	official	official	ADJ	JJ	Degree=Pos	24	amod	_	_
-24	news	news	NOUN	NN	Number=Sing	26	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	26	compound	_	_
+20	rift	rift	NOUN	NN	Number=Sing	10	nmod	_	_
+21	,	,	PUNCT	,	_	20	punct	_	_
+22	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
+24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
+25	agency	agency	NOUN	NN	Number=Sing	20	appos	_	_
 26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	ccomp	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
 28	on	on	ADP	IN	_	29	case	_	_
 29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
 30	.	.	PUNCT	.	_	8	punct	_	_
@@ -4537,7 +4537,7 @@ on Thursday.
 5	evil	evil	ADJ	JJ	Degree=Pos	7	amod	_	_
 6	awful	awful	ADJ	JJ	Degree=Pos	7	amod	_	_
 7	Gondor	Gondor	PROPN	NNP	Number=Sing	2	conj	_	_
-8	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+8	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
 10	resumption	resumption	NOUN	NN	Number=Sing	8	dobj	_	_
 11	of	of	ADP	IN	_	14	case	_	_
@@ -4545,7 +4545,7 @@ on Thursday.
 13	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	14	amod	_	_
 14	ties	tie	NOUN	NNS	Number=Plur	10	nmod	_	_
 15	with	with	ADP	IN	_	16	case	_	_
-16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	14	nmod	_	_
+16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	8	nmod	_	_
 17	after	after	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	12-year	12-year	ADJ	JJ	Degree=Pos	20	amod	_	_
@@ -4553,7 +4553,7 @@ on Thursday.
 21	,	,	PUNCT	,	_	8	punct	_	_
 22	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
 23	primary	primary	ADJ	JJ	Degree=Pos	26	amod	_	_
-24	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
+24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
 25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
 26	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
 27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
@@ -4607,7 +4607,7 @@ on Thursday.
 4	,	,	PUNCT	,	_	1	punct	_	_
 5	and	and	CONJ	CC	_	1	cc	_	_
 6	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-7	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 8	a	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
 9	resumption	resumption	NOUN	NN	Number=Sing	7	dobj	_	_
 10	of	of	ADP	IN	_	13	case	_	_
@@ -4615,17 +4615,17 @@ on Thursday.
 12	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	ties	tie	NOUN	NNS	Number=Plur	9	nmod	_	_
 14	with	with	ADP	IN	_	15	case	_	_
-15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	13	nmod	_	_
+15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	7	nmod	_	_
 16	after	after	ADP	IN	_	19	case	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	12-year	12-year	ADJ	JJ	Degree=Pos	19	amod	_	_
-19	rift	rift	NOUN	NN	Number=Sing	13	nmod	_	_
-20	,	,	PUNCT	,	_	9	punct	_	_
+19	rift	rift	NOUN	NN	Number=Sing	7	nmod	_	_
+20	,	,	PUNCT	,	_	7	punct	_	_
 21	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
 22	primary	primary	ADJ	JJ	Degree=Pos	25	amod	_	_
-23	official	official	ADJ	JJ	Degree=Pos	24	amod	_	_
+23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	9	appos	_	_
+25	agency	agency	NOUN	NN	Number=Sing	7	dobj	_	_
 26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
 27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
 28	on	on	ADP	IN	_	29	case	_	_
@@ -4671,7 +4671,7 @@ def test76():
 Dol Amroth. 
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nmod:poss	_	_
-2	's	's	PART	POS	_	1	case	_	_
+2	's	be	PART	POS	_	1	case	_	_
 3	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
 5	evil	evil	ADJ	JJ	Degree=Pos	3	conj	_	_
@@ -4721,14 +4721,14 @@ Dol Amroth.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test77():
-    text="""Fornost and Gondor welcomed a resumption of formal diplomatic ties with  
+    text="""Arnor and Gondor welcomed a resumption of formal diplomatic ties with  
 Osgiliath after a 12-year rift, the official news agency WFNA said 
 on Thursday. 
 """
-    parse="""1	Fornost	Fornost	ADJ	JJ	Degree=Pos	4	nsubj	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
-4	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 6	resumption	resumption	NOUN	NN	Number=Sing	4	dobj	_	_
 7	of	of	ADP	IN	_	10	case	_	_
@@ -4740,14 +4740,14 @@ on Thursday.
 13	after	after	ADP	IN	_	16	case	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	12-year	12-year	ADJ	JJ	Degree=Pos	16	amod	_	_
-16	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
-17	,	,	PUNCT	,	_	4	punct	_	_
-18	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
-19	official	official	ADJ	JJ	Degree=Pos	20	amod	_	_
-20	news	news	NOUN	NN	Number=Sing	22	compound	_	_
-21	agency	agency	NOUN	NN	Number=Sing	22	compound	_	_
+16	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
+17	,	,	PUNCT	,	_	16	punct	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+19	official	official	ADJ	JJ	Degree=Pos	21	amod	_	_
+20	news	news	NOUN	NN	Number=Sing	21	compound	_	_
+21	agency	agency	NOUN	NN	Number=Sing	16	appos	_	_
 22	WFNA	WFNA	PROPN	NNP	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
 26	.	.	PUNCT	.	_	4	punct	_	_
@@ -4762,14 +4762,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FOR],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[OSG],050)\n([GON],[OSG],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test78']['sents']['0']:
             print(return_dict['test78']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test78']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test78']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)",str(return_dict['test78']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FOR],[OSG],050)\n([GON],[OSG],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)","noevent"]
             print("test78 Failed")
     except:
         print("test78 Failed")
@@ -4791,7 +4791,7 @@ def test78():
 Dol Amroth. 
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nmod:poss	_	_
-2	's	's	PART	POS	_	1	case	_	_
+2	's	be	PART	POS	_	1	case	_	_
 3	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
 5	cool	cool	ADJ	JJ	Degree=Pos	3	conj	_	_
@@ -4841,7 +4841,7 @@ Dol Amroth.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test79():
-    text="""Ithilen's sheep and goats of Gondor warned of the Prince of Dol_Amroth. 
+    text="""Ithilen's sheep and goats of Gondor warned of the Prince of Dol Amroth. 
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	3	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
@@ -4854,9 +4854,10 @@ def test79():
 9	of	of	ADP	IN	_	11	case	_	_
 10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
 11	Prince	Prince	PROPN	NNP	Number=Sing	8	nmod	_	_
-12	of	of	ADP	IN	_	13	case	_	_
-13	Dol_Amroth	Dol_Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
-14	.	.	PUNCT	.	_	8	punct	_	_
+12	of	of	ADP	IN	_	14	case	_	_
+13	Dol	Dol	PROPN	NNP	Number=Sing	14	name	_	_
+14	Amroth	Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
+15	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4893,7 +4894,7 @@ def test79():
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test80():
-    text="""Ithilen and the government of Gondor warned their populations about the Prince of Dol_Amroth. 
+    text="""Ithilen and the government of Gondor warned their populations about the Prince of Dol Amroth. 
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
@@ -4907,9 +4908,10 @@ def test80():
 10	about	about	ADP	IN	_	12	case	_	_
 11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
 12	Prince	Prince	PROPN	NNP	Number=Sing	9	nmod	_	_
-13	of	of	ADP	IN	_	14	case	_	_
-14	Dol_Amroth	Dol_Amroth	PROPN	NNP	Number=Sing	12	nmod	_	_
-15	.	.	PUNCT	.	_	7	punct	_	_
+13	of	of	ADP	IN	_	15	case	_	_
+14	Dol	Dol	PROPN	NNP	Number=Sing	15	name	_	_
+15	Amroth	Amroth	PROPN	NNP	Number=Sing	12	nmod	_	_
+16	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4946,7 +4948,7 @@ def test80():
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test81():
-    text="""Ithilen and the government of Gondor warned their Ent populations about the Prince of Dol_Amroth. 
+    text="""Ithilen and the government of Gondor warned their Ent populations about the Prince of Dol Amroth. 
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
@@ -4956,14 +4958,15 @@ def test81():
 6	Gondor	Gondor	PROPN	NNP	Number=Sing	4	nmod	_	_
 7	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 8	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	10	nmod:poss	_	_
-9	Ent	Ent	NOUN	NN	Number=Sing	10	compound	_	_
+9	Ent	Ent	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	populations	population	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	about	about	ADP	IN	_	13	case	_	_
 12	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
 13	Prince	Prince	PROPN	NNP	Number=Sing	10	nmod	_	_
-14	of	of	ADP	IN	_	15	case	_	_
-15	Dol_Amroth	Dol_Amroth	PROPN	NNP	Number=Sing	13	nmod	_	_
-16	.	.	PUNCT	.	_	7	punct	_	_
+14	of	of	ADP	IN	_	16	case	_	_
+15	Dol	Dol	PROPN	NNP	Number=Sing	16	name	_	_
+16	Amroth	Amroth	PROPN	NNP	Number=Sing	13	nmod	_	_
+17	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5062,12 +5065,12 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	and	and	CONJ	CC	_	14	cc	_	_
 16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
 17	aid	aid	NOUN	NN	Number=Sing	14	conj	_	_
@@ -5075,7 +5078,7 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
 20	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
 21	Ithilen	Ithilen	PROPN	NNP	Number=Sing	22	compound	_	_
-22	villages	village	NOUN	NNS	Number=Plur	4	nmod	_	_
+22	villages	villag	NOUN	NNS	Number=Plur	9	nmod	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -5116,10 +5119,10 @@ def test84():
     text="""Danish media and government warned at the Gondor of the Prince of Dol Amroth. 
 """
     parse="""1	Danish	Danish	ADJ	JJ	Degree=Pos	2	amod	_	_
-2	media	media	NOUN	NN	Number=Sing	5	nsubj	_	_
+2	media	media	NOUN	NN	Number=Sing	0	root	_	_
 3	and	and	CONJ	CC	_	2	cc	_	_
 4	government	government	NOUN	NN	Number=Sing	2	conj	_	_
-5	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	warned	warn	VERB	VBN	Tense=Past|VerbForm=Part	2	acl	_	_
 6	at	at	ADP	IN	_	8	case	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
@@ -5129,7 +5132,7 @@ def test84():
 12	of	of	ADP	IN	_	14	case	_	_
 13	Dol	Dol	PROPN	NNP	Number=Sing	14	name	_	_
 14	Amroth	Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
-15	.	.	PUNCT	.	_	5	punct	_	_
+15	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5224,11 +5227,11 @@ def test86():
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
 2	Danish	Danish	PROPN	NNP	Number=Sing	3	compound	_	_
-3	Islamist	islamist	PROPN	NNP	Number=Sing	4	compound	_	_
-4	media	media	NOUN	NN	Number=Sing	7	nsubj	_	_
+3	Islamist	Islamist	PROPN	NNP	Number=Sing	4	compound	_	_
+4	media	media	NOUN	NN	Number=Sing	0	root	_	_
 5	and	and	CONJ	CC	_	4	cc	_	_
 6	government	government	NOUN	NN	Number=Sing	4	conj	_	_
-7	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	warned	warn	VERB	VBN	Tense=Past|VerbForm=Part	4	acl	_	_
 8	at	at	ADP	IN	_	10	case	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
@@ -5238,7 +5241,7 @@ def test86():
 14	of	of	ADP	IN	_	16	case	_	_
 15	Dol	Dol	PROPN	NNP	Number=Sing	16	name	_	_
 16	Amroth	Amroth	PROPN	NNP	Number=Sing	13	nmod	_	_
-17	.	.	PUNCT	.	_	7	punct	_	_
+17	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5280,13 +5283,13 @@ and Gondor's dramatic cooperation and its eye-catching development are of
 great significance to the region and even the entire world, he noted. 
 """
     parse="""1	Frodo	Frodo	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	2	aux	_	_
-2	said	say	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+2	said	say	VERB	VBN	Tense=Past|VerbForm=Part	37	ccomp	_	_
 3	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
 4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	deep	deep	VERB	VBN	Tense=Past|VerbForm=Part	2	ccomp	_	_
 6	satisfaction	satisfaction	NOUN	NN	Number=Sing	5	dobj	_	_
 7	toward	toward	ADP	IN	_	8	case	_	_
-8	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
+8	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 9	and	and	CONJ	CC	_	8	cc	_	_
 10	Arnor	Arnor	PROPN	NNP	Number=Sing	12	nmod:poss	_	_
 11	's	's	PART	POS	_	10	case	_	_
@@ -5296,7 +5299,7 @@ great significance to the region and even the entire world, he noted.
 15	Gondor	Gondor	PROPN	NNP	Number=Sing	18	nmod:poss	_	_
 16	's	's	PART	POS	_	15	case	_	_
 17	dramatic	dramatic	ADJ	JJ	Degree=Pos	18	amod	_	_
-18	cooperation	cooperation	NOUN	NN	Number=Sing	26	nsubj	_	_
+18	cooperation	cooperation	NOUN	NN	Number=Sing	5	conj	_	_
 19	and	and	CONJ	CC	_	18	cc	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 21	eye-catching	eye-catching	ADJ	JJ	Degree=Pos	22	amod	_	_
@@ -5304,7 +5307,7 @@ great significance to the region and even the entire world, he noted.
 23	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	26	cop	_	_
 24	of	of	ADP	IN	_	26	case	_	_
 25	great	great	ADJ	JJ	Degree=Pos	26	amod	_	_
-26	significance	significance	NOUN	NN	Number=Sing	5	conj	_	_
+26	significance	significance	NOUN	NN	Number=Sing	37	ccomp	_	_
 27	to	to	ADP	IN	_	29	case	_	_
 28	the	the	DET	DT	Definite=Def|PronType=Art	29	det	_	_
 29	region	region	NOUN	NN	Number=Sing	26	nmod	_	_
@@ -5313,10 +5316,10 @@ great significance to the region and even the entire world, he noted.
 32	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
 33	entire	entire	ADJ	JJ	Degree=Pos	34	amod	_	_
 34	world	world	NOUN	NN	Number=Sing	26	conj	_	_
-35	,	,	PUNCT	,	_	2	punct	_	_
+35	,	,	PUNCT	,	_	37	punct	_	_
 36	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	37	nsubj	_	_
-37	noted	not	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
-38	.	.	PUNCT	.	_	2	punct	_	_
+37	noted	not	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+38	.	.	PUNCT	.	_	37	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5357,7 +5360,7 @@ def test88():
 in south Ithilen on Thursday and promised raids to the affected Ithilen villages. 
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
-2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	3	compound	_	_
+2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	4	compound	_	_
 3	government	government	NOUN	NN	Number=Sing	4	compound	_	_
 4	issue	issue	NOUN	NN	Number=Sing	5	nsubj	_	_
 5	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
@@ -5365,9 +5368,9 @@ in south Ithilen on Thursday and promised raids to the affected Ithilen villages
 7	attack	attack	NOUN	NN	Number=Sing	5	dobj	_	_
 8	by	by	ADP	IN	_	10	case	_	_
 9	Osgiliath	Osgiliath	DET	DT	_	10	det	_	_
-10	soldiers	soldier	NOUN	NNS	Number=Plur	5	nmod	_	_
+10	soldiers	soldier	NOUN	NNS	Number=Plur	7	nmod	_	_
 11	in	in	ADP	IN	_	13	case	_	_
-12	south	south	PROPN	NNP	Number=Sing	13	compound	_	_
+12	south	south	ADV	RB	_	13	advmod	_	_
 13	Ithilen	Ithilen	PROPN	NNP	Number=Sing	10	nmod	_	_
 14	on	on	ADP	IN	_	15	case	_	_
 15	Thursday	Thursday	PROPN	NNP	Number=Sing	5	nmod	_	_
@@ -5378,7 +5381,7 @@ in south Ithilen on Thursday and promised raids to the affected Ithilen villages
 20	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
 21	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	23	amod	_	_
 22	Ithilen	Ithilen	PROPN	NNP	Number=Sing	23	compound	_	_
-23	villages	village	NOUN	NNS	Number=Plur	5	nmod	_	_
+23	villages	villag	NOUN	NNS	Number=Plur	5	nmod	_	_
 24	.	.	PUNCT	.	_	5	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -5427,18 +5430,18 @@ in south Ithilen on Thursday and ousted the affected Ithilen villages.
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
 7	by	by	ADP	IN	_	9	case	_	_
 8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
-9	soldiers	soldier	NOUN	NNS	Number=Plur	4	nmod	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
-11	south	south	PROPN	NNP	Number=Sing	12	compound	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	and	and	CONJ	CC	_	4	cc	_	_
 16	ousted	oust	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	conj	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
 18	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	20	amod	_	_
 19	Ithilen	Ithilen	PROPN	NNP	Number=Sing	20	compound	_	_
-20	villages	village	NOUN	NNS	Number=Plur	16	dobj	_	_
+20	villages	villag	NOUN	NNS	Number=Plur	16	dobj	_	_
 21	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -5538,7 +5541,7 @@ newspaper al-Raya said on Friday.
 2	of	of	ADP	IN	_	3	case	_	_
 3	ties	tie	NOUN	NNS	Number=Plur	1	nmod	_	_
 4	between	between	ADP	IN	_	5	case	_	_
-5	Arnor	Arnor	PROPN	NNP	Number=Sing	1	nmod	_	_
+5	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nmod	_	_
 6	and	and	CONJ	CC	_	5	cc	_	_
 7	Gondor	Gondor	PROPN	NNP	Number=Sing	5	conj	_	_
 8	may	may	AUX	MD	VerbForm=Fin	9	aux	_	_
@@ -5548,17 +5551,17 @@ newspaper al-Raya said on Friday.
 12	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	10	nmod	_	_
 13	and	and	CONJ	CC	_	12	cc	_	_
 14	Gondor	Gondor	PROPN	NNP	Number=Sing	12	conj	_	_
-15	,	,	PUNCT	,	_	10	punct	_	_
-16	and	and	CONJ	CC	_	10	cc	_	_
-17	Gondor	Gondor	PROPN	NNP	Number=Sing	10	conj	_	_
+15	,	,	PUNCT	,	_	9	punct	_	_
+16	and	and	CONJ	CC	_	9	cc	_	_
+17	Gondor	Gondor	PROPN	NNP	Number=Sing	9	conj	_	_
 18	and	and	CONJ	CC	_	17	cc	_	_
 19	Dagolath	Dagolath	PROPN	NNP	Number=Sing	17	conj	_	_
-20	,	,	PUNCT	,	_	10	punct	_	_
-21	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
-22	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	23	compound	_	_
-23	newspaper	newspaper	NOUN	NN	Number=Sing	25	nsubj	_	_
-24	al-Raya	al-Raya	ADV	RB	_	25	advmod	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	parataxis	_	_
+20	,	,	PUNCT	,	_	17	punct	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
+22	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	24	compound	_	_
+23	newspaper	newspaper	NOUN	NN	Number=Sing	24	compound	_	_
+24	al-Raya	al-Raya	PROPN	NNP	Number=Sing	25	nsubj	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
 26	on	on	ADP	IN	_	27	case	_	_
 27	Friday	Friday	PROPN	NNP	Number=Sing	25	nmod	_	_
 28	.	.	PUNCT	.	_	9	punct	_	_
@@ -5619,7 +5622,7 @@ month.
 15	water	water	NOUN	NN	Number=Sing	12	nmod	_	_
 16	from	from	ADP	IN	_	20	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
-18	mighty	mighty	NOUN	NN	Number=Sing	19	compound	_	_
+18	mighty	mighty	NOUN	NN	Number=Sing	20	compound	_	_
 19	Entwash	Entwash	NOUN	NN	Number=Sing	20	compound	_	_
 20	river	river	NOUN	NN	Number=Sing	12	nmod	_	_
 21	when	when	ADV	WRB	PronType=Int	26	mark	_	_
@@ -5677,11 +5680,11 @@ countries of the region.
 4	on	on	ADP	IN	_	5	case	_	_
 5	Friday	Friday	PROPN	NNP	Number=Sing	3	nmod	_	_
 6	that	that	SCONJ	IN	_	14	mark	_	_
-7	an	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
-8	arms	arm	NOUN	NNS	Number=Plur	9	compound	_	_
-9	embargo	embargo	NOUN	NN	Number=Sing	14	nsubj	_	_
+7	an	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+8	arms	arm	NOUN	NNS	Number=Plur	14	nsubj	_	_
+9	embargo	embargo	ADV	RB	_	11	advmod	_	_
 10	against	against	ADP	IN	_	11	case	_	_
-11	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nmod	_	_
+11	Mordor	Mordor	PROPN	NNP	Number=Sing	8	nmod	_	_
 12	would	would	AUX	MD	VerbForm=Fin	14	aux	_	_
 13	not	not	PART	RB	_	14	neg	_	_
 14	work	work	VERB	VB	VerbForm=Inf	3	ccomp	_	_
@@ -5745,19 +5748,19 @@ the Bay of Belfalas would harm all countries of the region.
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	information	information	NOUN	NN	Number=Sing	3	compound	_	_
-3	ministry	ministry	NOUN	NN	Number=Sing	9	nsubj	_	_
+3	ministry	ministry	NOUN	NN	Number=Sing	0	root	_	_
 4	of	of	ADP	IN	_	5	case	_	_
 5	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
-6	and	and	CONJ	CC	_	5	cc	_	_
+6	and	and	CONJ	CC	_	3	cc	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
-8	Nasgul	Nasgul	PROPN	NNP	Number=Sing	5	conj	_	_
-9	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+8	Nasgul	Nasgul	PROPN	NNP	Number=Sing	9	nsubj	_	_
+9	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	conj	_	_
 10	on	on	ADP	IN	_	11	case	_	_
 11	Friday	Friday	PROPN	NNP	Number=Sing	9	nmod	_	_
 12	that	that	SCONJ	IN	_	22	mark	_	_
-13	an	a	DET	DT	Definite=Ind|PronType=Art	15	det	_	_
-14	arms	arm	NOUN	NNS	Number=Plur	15	compound	_	_
-15	embargo	embargo	NOUN	NN	Number=Sing	22	nsubj	_	_
+13	an	a	DET	DT	Definite=Ind|PronType=Art	14	det	_	_
+14	arms	arm	NOUN	NNS	Number=Plur	22	nsubj	_	_
+15	embargo	embargo	ADV	RB	_	14	advmod	_	_
 16	against	against	ADP	IN	_	19	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
 18	Mordor	Mordor	ADJ	JJ	Degree=Pos	19	amod	_	_
@@ -5782,7 +5785,7 @@ the Bay of Belfalas would harm all countries of the region.
 37	of	of	ADP	IN	_	39	case	_	_
 38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
 39	region	region	NOUN	NN	Number=Sing	36	nmod	_	_
-40	.	.	PUNCT	.	_	9	punct	_	_
+40	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5822,8 +5825,8 @@ def test95():
     text="""White House security officials are about to restore full diplomatic 
 ties with Gondor and Arnor. 
 """
-    parse="""1	White	White	PROPN	NNP	Number=Sing	3	compound	_	_
-2	House	House	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	White	White	PROPN	NNP	Number=Sing	2	compound	_	_
+2	House	House	PROPN	NNP	Number=Sing	4	compound	_	_
 3	security	security	NOUN	NN	Number=Sing	4	compound	_	_
 4	officials	official	NOUN	NNS	Number=Plur	6	nsubj	_	_
 5	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	6	cop	_	_
@@ -5894,7 +5897,7 @@ show of support to his government by their countries.
 14	's	's	PART	POS	_	13	case	_	_
 15	president	president	PROPN	NNP	Number=Sing	9	nmod	_	_
 16	on	on	ADP	IN	_	17	case	_	_
-17	Wednesday	Wednesday	PROPN	NNP	Number=Sing	15	nmod	_	_
+17	Wednesday	Wednesday	PROPN	NNP	Number=Sing	9	nmod	_	_
 18	in	in	ADP	IN	_	21	case	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	further	further	ADJ	JJ	Degree=Pos	21	amod	_	_
@@ -5903,10 +5906,10 @@ show of support to his government by their countries.
 23	support	support	NOUN	NN	Number=Sing	21	nmod	_	_
 24	to	to	ADP	IN	_	26	case	_	_
 25	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	26	nmod:poss	_	_
-26	government	government	NOUN	NN	Number=Sing	23	nmod	_	_
+26	government	government	NOUN	NN	Number=Sing	21	nmod	_	_
 27	by	by	ADP	IN	_	29	case	_	_
 28	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	29	nmod:poss	_	_
-29	countries	country	NOUN	NNS	Number=Plur	26	nmod	_	_
+29	countries	country	NOUN	NNS	Number=Plur	9	nmod	_	_
 30	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -5947,21 +5950,21 @@ def test97():
     text="""The Philippines and the European Union (EU) agree that territorial disputes in the South China Sea should be resolved through international arbitration.
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
-2	Philippines	Philippines	PROPN	NNPS	Number=Plur	10	nsubj	_	_
+2	Philippines	Philippines	PROPN	NNPS	Number=Plur	8	name	_	_
 3	and	and	CONJ	CC	_	2	cc	_	_
 4	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
-5	European	european	PROPN	NNP	Number=Sing	6	compound	_	_
-6	Union	Union	PROPN	NNP	Number=Sing	2	conj	_	_
-7	-LRB-	-LRB-	PUNCT	HYPH	_	8	punct	_	_
+5	European	european	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	Union	Union	NOUN	NN	Number=Sing	2	conj	_	_
+7	-LRB-	-LRB-	NOUN	NN	Number=Sing	8	compound	_	_
 8	EU	EU	PROPN	NNP	Number=Sing	10	nsubj	_	_
-9	-RRB-	-RRB-	SYM	NFP	_	8	punct	_	_
+9	-RRB-	-RRB-	SYM	NFP	_	10	punct	_	_
 10	agree	agree	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
 11	that	that	SCONJ	IN	_	21	mark	_	_
 12	territorial	territorial	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	disputes	dispute	NOUN	NNS	Number=Plur	21	nsubjpass	_	_
 14	in	in	ADP	IN	_	18	case	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
-16	South	South	PROPN	NNP	Number=Sing	18	compound	_	_
+16	South	South	PROPN	NNP	Number=Sing	17	compound	_	_
 17	China	China	PROPN	NNP	Number=Sing	18	compound	_	_
 18	Sea	Sea	PROPN	NNP	Number=Sing	13	nmod	_	_
 19	should	should	AUX	MD	VerbForm=Fin	21	aux	_	_
@@ -6068,7 +6071,7 @@ def test99():
 4	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
 5	Central	Central	PROPN	NNP	Number=Sing	7	compound	_	_
 6	African	African	PROPN	NNP	Number=Sing	7	compound	_	_
-7	Republic	republic	PROPN	NNP	Number=Sing	2	conj	_	_
+7	Republic	Republic	PROPN	NNP	Number=Sing	2	conj	_	_
 8	agree	agree	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
 9	that	that	SCONJ	IN	_	14	mark	_	_
 10	territorial	territorial	ADJ	JJ	Degree=Pos	11	amod	_	_
@@ -6128,7 +6131,7 @@ def test100():
 8	disputes	dispute	NOUN	NNS	Number=Plur	16	nsubjpass	_	_
 9	in	in	ADP	IN	_	13	case	_	_
 10	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
-11	South	South	PROPN	NNP	Number=Sing	13	compound	_	_
+11	South	South	PROPN	NNP	Number=Sing	12	compound	_	_
 12	China	China	PROPN	NNP	Number=Sing	13	compound	_	_
 13	Sea	Sea	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	should	should	AUX	MD	VerbForm=Fin	16	aux	_	_
@@ -6242,7 +6245,7 @@ def test102():
 9	license	license	NOUN	NN	Number=Sing	5	dobj	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	Michel	Michel	PROPN	NNP	Number=Sing	12	compound	_	_
-12	Delving	Delving	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Delving	Delving	PROPN	NNP	Number=Sing	5	nmod	_	_
 13	.	.	PUNCT	.	_	5	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6293,7 +6296,7 @@ def test103():
 9	license	license	NOUN	NN	Number=Sing	5	dobj	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	Michel	Michel	PROPN	NNP	Number=Sing	12	compound	_	_
-12	Delving	Delving	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Delving	Delving	PROPN	NNP	Number=Sing	5	nmod	_	_
 13	.	.	PUNCT	.	_	5	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6345,7 +6348,7 @@ def test104():
 10	in	in	ADP	IN	_	13	case	_	_
 11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
 12	White	White	PROPN	NNP	Number=Sing	13	compound	_	_
-13	Downs	downs	PROPN	NNP	Number=Sing	8	nmod	_	_
+13	Downs	downs	PROPN	NNPS	Number=Plur	8	nmod	_	_
 14	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6396,7 +6399,7 @@ def test105():
 9	guest	guest	NOUN	NN	Number=Sing	10	compound	_	_
 10	houses	house	NOUN	NNS	Number=Plur	7	nmod	_	_
 11	in	in	ADP	IN	_	12	case	_	_
-12	Bree	Bree	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
 13	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6448,7 +6451,7 @@ def test106():
 10	houses	house	NOUN	NNS	Number=Plur	7	nmod	_	_
 11	in	in	ADP	IN	_	13	case	_	_
 12	Michel	Michel	PROPN	NNP	Number=Sing	13	compound	_	_
-13	Delving	Delving	PROPN	NNP	Number=Sing	10	nmod	_	_
+13	Delving	Delving	PROPN	NNP	Number=Sing	7	nmod	_	_
 14	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6499,7 +6502,7 @@ def test107():
 9	guest	guest	NOUN	NN	Number=Sing	10	compound	_	_
 10	houses	house	NOUN	NNS	Number=Plur	7	nmod	_	_
 11	in	in	ADP	IN	_	12	case	_	_
-12	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
+12	Bree	Bree	PROPN	NNP	Number=Sing	7	nmod	_	_
 13	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6551,7 +6554,7 @@ def test108():
 10	in	in	ADP	IN	_	13	case	_	_
 11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
 12	White	White	PROPN	NNP	Number=Sing	13	compound	_	_
-13	Downs	downs	PROPN	NNP	Number=Sing	8	nmod	_	_
+13	Downs	downs	PROPN	NNPS	Number=Plur	8	nmod	_	_
 14	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -6596,7 +6599,7 @@ def test109():
 3	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
 4	marched	march	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 5	very	very	ADV	RB	_	6	advmod	_	_
-6	close	close	ADJ	JJ	Degree=Pos	4	xcomp	_	_
+6	close	close	ADJ	JJ	Degree=Pos	4	dobj	_	_
 7	to	to	ADP	IN	_	9	case	_	_
 8	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
 9	border	border	NOUN	NN	Number=Sing	6	nmod	_	_
@@ -6697,9 +6700,9 @@ def test111():
 7	of	of	ADP	IN	_	10	case	_	_
 8	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 9	Morgul	Morgul	PROPN	NNP	Number=Sing	10	compound	_	_
-10	Orcs	Orcs	PROPN	NNP	Number=Sing	6	nmod	_	_
+10	Orcs	Orcs	PROPN	NNPS	Number=Plur	6	nmod	_	_
 11	,	,	PUNCT	,	_	6	punct	_	_
-12	which	which	DET	WDT	PronType=Rel	16	nsubj	_	_
+12	which	which	PRON	WDT	PronType=Rel	16	nsubj	_	_
 13	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	16	cop	_	_
 14	no	no	DET	DT	_	16	neg	_	_
 15	small	small	ADJ	JJ	Degree=Pos	16	amod	_	_
@@ -6754,7 +6757,7 @@ Morgul Orcs.
 8	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	10	nsubj	_	_
 9	really	really	ADV	RB	_	10	advmod	_	_
 10	has	have	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	ccomp	_	_
-11	much	much	ADV	RB	_	10	advmod	_	_
+11	much	much	ADJ	JJ	Degree=Pos	10	dobj	_	_
 12	of	of	ADP	IN	_	14	case	_	_
 13	a	a	DET	DT	Definite=Ind|PronType=Art	14	det	_	_
 14	future	future	NOUN	NN	Number=Sing	11	nmod	_	_
@@ -6811,7 +6814,7 @@ def test113():
 8	adventures	adventur	NOUN	NNS	Number=Plur	5	nmod	_	_
 9	in	in	ADP	IN	_	11	case	_	_
 10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
-11	vicinity	vicinity	NOUN	NN	Number=Sing	3	nmod	_	_
+11	vicinity	vicinity	NOUN	NN	Number=Sing	8	nmod	_	_
 12	of	of	ADP	IN	_	14	case	_	_
 13	Cirith	Cirith	PROPN	NNP	Number=Sing	14	name	_	_
 14	Ungol	Ungol	PROPN	NNP	Number=Sing	11	nmod	_	_
@@ -6861,7 +6864,7 @@ def test114():
 5	friendship	friendship	NOUN	NN	Number=Sing	4	dobj	_	_
 6	with	with	ADP	IN	_	10	case	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
-8	gardening	gardening	VERB	VBG	VerbForm=Ger	10	amod	_	_
+8	gardening	gardening	NOUN	NN	Number=Sing	10	compound	_	_
 9	license	license	NOUN	NN	Number=Sing	10	compound	_	_
 10	raj	raj	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	of	of	ADP	IN	_	13	case	_	_
@@ -6908,32 +6911,32 @@ def test115():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Smeagol	Smeagol	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Smeagol	Smeagol	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -6974,32 +6977,32 @@ def test116():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Slinker	Slinker	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Slinker	Slinker	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7052,17 +7055,17 @@ said on Saturday.
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
 26	.	.	PUNCT	.	_	3	punct	_	_
@@ -7106,32 +7109,32 @@ def test118():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Slinker	Slinker	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Slinker	Slinker	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7172,32 +7175,32 @@ def test119():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Smeagol	Smeagol	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Smeagol	Smeagol	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7238,32 +7241,32 @@ def test120():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Slinker	Slinker	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Slinker	Slinker	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7304,11 +7307,11 @@ def test121():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Zimbabwe	Zimbabwe	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
+    parse="""1	Zimbabwe	Zimbabwe	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	2	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
 3	about	about	ADV	RB	_	5	advmod	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	2	ccomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -7322,14 +7325,14 @@ said on Saturday.
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	18	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	acl:relcl	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7370,32 +7373,32 @@ def test122():
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Zimbabwe	Zimbabwe	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Zimbabwe	Zimbabwe	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	5	punct	_	_
+26	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7439,44 +7442,44 @@ valve was less than half a microcurie, or less than what one would find in a
     parse="""1	An	a	DET	DT	Definite=Ind|PronType=Art	2	det	_	_
 2	investigation	investigation	NOUN	NN	Number=Sing	3	nsubj	_	_
 3	determined	determine	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-4	that	that	SCONJ	IN	_	19	mark	_	_
+4	that	that	SCONJ	IN	_	17	mark	_	_
 5	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
-6	amount	amount	NOUN	NN	Number=Sing	19	nsubj	_	_
+6	amount	amount	NOUN	NN	Number=Sing	17	nsubj	_	_
 7	of	of	ADP	IN	_	8	case	_	_
 8	radioactivity	radioactivity	NOUN	NN	Number=Sing	6	nmod	_	_
-9	that	that	DET	WDT	PronType=Rel	10	nsubj	_	_
+9	that	that	PRON	WDT	PronType=Rel	10	nsubj	_	_
 10	seeped	see	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	acl:relcl	_	_
 11	from	from	ADP	IN	_	13	case	_	_
 12	a	a	DET	DT	Definite=Ind|PronType=Art	13	det	_	_
 13	valve	valve	NOUN	NN	Number=Sing	10	nmod	_	_
-14	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	19	cop	_	_
+14	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	17	cop	_	_
 15	less	less	ADJ	JJR	Degree=Cmp	17	advmod	_	_
 16	than	than	ADP	IN	_	15	mwe	_	_
-17	half	half	DET	PDT	_	19	nummod	_	_
+17	half	half	DET	PDT	_	3	ccomp	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
-19	microcurie	microcurie	NOUN	NN	Number=Sing	3	ccomp	_	_
-20	,	,	PUNCT	,	_	19	punct	_	_
-21	or	or	CONJ	CC	_	19	cc	_	_
-22	less	less	ADJ	JJR	Degree=Cmp	27	advmod	_	_
-23	than	than	SCONJ	IN	_	22	mwe	_	_
-24	what	what	PRON	WP	PronType=Int	27	dobj	_	_
+19	microcurie	microcurie	NOUN	NN	Number=Sing	17	nmod:npmod	_	_
+20	,	,	PUNCT	,	_	17	punct	_	_
+21	or	or	CONJ	CC	_	17	cc	_	_
+22	less	less	ADJ	JJR	Degree=Cmp	17	conj	_	_
+23	than	than	SCONJ	IN	_	24	case	_	_
+24	what	what	PRON	WP	PronType=Int	22	nmod	_	_
 25	one	one	PRON	PRP	_	27	nsubj	_	_
 26	would	would	AUX	MD	VerbForm=Fin	27	aux	_	_
-27	find	find	VERB	VB	VerbForm=Inf	19	conj	_	_
+27	find	find	VERB	VB	VerbForm=Inf	24	acl:relcl	_	_
 28	in	in	ADP	IN	_	31	case	_	_
 29	a	a	DET	DT	Definite=Ind|PronType=Art	31	det	_	_
 30	50-pound	50-pound	ADJ	JJ	Degree=Pos	31	amod	_	_
 31	bag	bag	NOUN	NN	Number=Sing	27	nmod	_	_
 32	of	of	ADP	IN	_	34	case	_	_
-33	lawn	lawn	NOUN	NN	Number=Sing	34	compound	_	_
+33	lawn	lawn	ADJ	JJ	Degree=Pos	34	amod	_	_
 34	fertilizer	fertilizer	NOUN	NN	Number=Sing	31	nmod	_	_
-35	,	,	PUNCT	,	_	31	punct	_	_
+35	,	,	PUNCT	,	_	3	punct	_	_
 36	a	a	DET	DT	Definite=Ind|PronType=Art	40	det	_	_
 37	senior	senior	ADJ	JJ	Degree=Pos	40	amod	_	_
 38	illiterate	illiterate	ADJ	JJ	Degree=Pos	40	amod	_	_
 39	university	university	NOUN	NN	Number=Sing	40	compound	_	_
 40	professor	professor	NOUN	NN	Number=Sing	41	nsubj	_	_
-41	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	31	acl:relcl	_	_
+41	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	ccomp	_	_
 42	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -7703,15 +7706,15 @@ with priority being assigned to states with low health indices.
 27	phased	phase	VERB	VBN	Tense=Past|VerbForm=Part	28	amod	_	_
 28	manner	manner	NOUN	NN	Number=Sing	17	nmod	_	_
 29	with	with	ADP	IN	_	30	case	_	_
-30	priority	priority	NOUN	NN	Number=Sing	28	nmod	_	_
+30	priority	priority	NOUN	NN	Number=Sing	17	nmod	_	_
 31	being	be	AUX	VBG	VerbForm=Ger	32	auxpass	_	_
-32	assigned	assign	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	17	advcl	_	_
+32	assigned	assign	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	30	acl	_	_
 33	to	to	ADP	IN	_	34	case	_	_
 34	states	state	NOUN	NNS	Number=Plur	32	nmod	_	_
 35	with	with	ADP	IN	_	38	case	_	_
-36	low	low	ADJ	JJ	Degree=Pos	37	amod	_	_
+36	low	low	ADJ	JJ	Degree=Pos	38	amod	_	_
 37	health	health	NOUN	NN	Number=Sing	38	compound	_	_
-38	indices	index	NOUN	NNS	Number=Plur	34	nmod	_	_
+38	indices	index	NOUN	NNS	Number=Plur	32	nmod	_	_
 39	.	.	PUNCT	.	_	13	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -7770,7 +7773,7 @@ triumphed in 2000 and 2004.
 15	,	,	PUNCT	,	_	6	punct	_	_
 16	while	while	SCONJ	IN	_	23	mark	_	_
 17	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
-18	male	male	NOUN	NN	Number=Sing	19	compound	_	_
+18	male	male	ADJ	JJ	Degree=Pos	19	amod	_	_
 19	counterparts	counterpart	NOUN	NNS	Number=Plur	23	nsubj	_	_
 20	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	23	cop	_	_
 21	on	on	ADP	IN	_	23	case	_	_
@@ -7782,7 +7785,7 @@ triumphed in 2000 and 2004.
 27	hat-trick	hat-trick	NOUN	NN	Number=Sing	25	dobj	_	_
 28	,	,	PUNCT	,	_	23	punct	_	_
 29	having	have	AUX	VBG	VerbForm=Ger	30	auxpass	_	_
-30	triumphed	triumph	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	23	acl	_	_
+30	triumphed	triumph	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	23	parataxis	_	_
 31	in	in	ADP	IN	_	32	case	_	_
 32	2000	2000	NUM	CD	NumType=Card	30	nmod	_	_
 33	and	and	CONJ	CC	_	32	cc	_	_
@@ -7840,24 +7843,24 @@ girls said.
 10	school	school	NOUN	NN	Number=Sing	11	compound	_	_
 11	dormitory	dormitory	NOUN	NN	Number=Sing	3	nmod	_	_
 12	just	just	ADV	RB	_	34	advmod	_	_
-13	as	as	SCONJ	IN	_	34	mark	_	_
+13	as	as	SCONJ	IN	_	24	mark	_	_
 14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
-15	girls	girl	NOUN	NNS	Number=Plur	34	nsubj	_	_
-16	,	,	PUNCT	,	_	15	punct	_	_
-17	aged	aged	ADJ	JJ	Degree=Pos	15	appos	_	_
+15	girls	girl	NOUN	NNS	Number=Plur	24	nsubj	_	_
+16	,	,	PUNCT	,	_	17	punct	_	_
+17	aged	aged	ADJ	JJ	Degree=Pos	15	amod	_	_
 18	from	from	ADP	IN	_	19	case	_	_
 19	eight	eight	NUM	CD	NumType=Card	17	nmod	_	_
 20	to	to	ADP	IN	_	21	case	_	_
 21	16	16	NUM	CD	NumType=Card	17	nmod	_	_
-22	,	,	PUNCT	,	_	34	punct	_	_
-23	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	34	aux	_	_
-24	getting	get	VERB	VBG	VerbForm=Ger	34	advcl	_	_
-25	up	up	ADP	RP	_	24	compound:prt	_	_
+22	,	,	PUNCT	,	_	24	punct	_	_
+23	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	aux	_	_
+24	getting	get	VERB	VBG	VerbForm=Ger	12	advcl	_	_
+25	up	up	ADV	RB	_	24	advmod	_	_
 26	for	for	ADP	IN	_	28	case	_	_
 27	morning	morning	NOUN	NN	Number=Sing	28	compound	_	_
 28	prayers	prayer	NOUN	NNS	Number=Plur	24	nmod	_	_
-29	,	,	PUNCT	,	_	24	punct	_	_
-30	one	one	NUM	CD	NumType=Card	24	dobj	_	_
+29	,	,	PUNCT	,	_	34	punct	_	_
+30	one	one	NUM	CD	NumType=Card	34	nsubj	_	_
 31	of	of	ADP	IN	_	33	case	_	_
 32	the	the	DET	DT	Definite=Def|PronType=Art	33	det	_	_
 33	girls	girl	NOUN	NNS	Number=Plur	30	nmod	_	_
@@ -7910,7 +7913,7 @@ ideas were included in the design; it's very different.
 5	lost	lose	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	acl:relcl	_	_
 6	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	7	nmod:poss	_	_
 7	son	son	NOUN	NN	Number=Sing	5	dobj	_	_
-8	Philip	Philip	PROPN	NNP	Number=Sing	5	xcomp	_	_
+8	Philip	Philip	PROPN	NNP	Number=Sing	7	appos	_	_
 9	when	when	ADV	WRB	PronType=Int	16	mark	_	_
 10	one	one	NUM	CD	NumType=Card	16	nsubj	_	_
 11	of	of	ADP	IN	_	15	case	_	_
@@ -7918,7 +7921,7 @@ ideas were included in the design; it's very different.
 13	four	four	NUM	CD	NumType=Card	15	nummod	_	_
 14	suicide	suicide	NOUN	NN	Number=Sing	15	compound	_	_
 15	bombers	bomber	NOUN	NNS	Number=Plur	10	nmod	_	_
-16	detonated	detonate	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	acl	_	_
+16	detonated	detonate	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
 18	device	device	NOUN	NN	Number=Sing	16	dobj	_	_
 19	on	on	ADP	IN	_	21	case	_	_
@@ -7926,27 +7929,27 @@ ideas were included in the design; it's very different.
 21	bus	bus	NOUN	NN	Number=Sing	16	nmod	_	_
 22	in	in	ADP	IN	_	24	case	_	_
 23	central	central	ADJ	JJ	Degree=Pos	24	amod	_	_
-24	London	London	PROPN	NNP	Number=Sing	16	nmod	_	_
+24	London	London	PROPN	NNP	Number=Sing	21	nmod	_	_
 25	,	,	PUNCT	,	_	26	punct	_	_
 26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 27	:	:	PUNCT	:	_	26	punct	_	_
-28	``	``	SYM	$	_	44	punct	_	_
+28	``	``	SYM	$	_	36	punct	_	_
 29	A	a	DET	DT	Definite=Ind|PronType=Art	30	det	_	_
-30	lot	lot	NOUN	NN	Number=Sing	44	nmod	_	_
-31	of	of	ADP	IN	_	32	case	_	_
-32	families	family	NOUN	NNS	Number=Plur	30	nmod	_	_
-33	'	'	PART	POS	_	36	mark	_	_
-34	ideas	idea	NOUN	NNS	Number=Plur	36	nsubjpass	_	_
+30	lot	lot	NOUN	NN	Number=Sing	36	nsubjpass	_	_
+31	of	of	ADP	IN	_	34	case	_	_
+32	families	family	NOUN	NNS	Number=Plur	34	nmod:poss	_	_
+33	'	'	PART	POS	_	32	case	_	_
+34	ideas	idea	NOUN	NNS	Number=Plur	30	nmod	_	_
 35	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	36	auxpass	_	_
-36	included	include	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	32	acl	_	_
+36	included	include	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	26	parataxis	_	_
 37	in	in	ADP	IN	_	39	case	_	_
 38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
 39	design	design	NOUN	NN	Number=Sing	36	nmod	_	_
-40	;	;	PUNCT	,	_	44	punct	_	_
+40	;	;	PUNCT	,	_	36	punct	_	_
 41	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	44	nsubj	_	_
 42	's	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	44	cop	_	_
 43	very	very	ADV	RB	_	44	advmod	_	_
-44	different	different	ADJ	JJ	Degree=Pos	26	ccomp	_	_
+44	different	different	ADJ	JJ	Degree=Pos	36	ccomp	_	_
 45	.	.	PUNCT	.	_	26	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -7994,7 +7997,7 @@ Wales.
 4	to	to	PART	TO	_	7	mark	_	_
 5	be	be	VERB	VB	VerbForm=Inf	7	cop	_	_
 6	jointly	jointly	ADV	RB	_	7	advmod	_	_
-7	managed	manage	VERB	VBN	Tense=Past|VerbForm=Part	3	xcomp	_	_
+7	managed	manage	VERB	VBN	Tense=Past|VerbForm=Part	3	acl	_	_
 8	by	by	ADP	IN	_	10	case	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	government	government	NOUN	NN	Number=Sing	7	nmod	_	_
@@ -8078,18 +8081,18 @@ for coal-- the source of about 70 percent of China's energy.
 20	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 21	quest	quest	NOUN	NN	Number=Sing	18	nmod	_	_
 22	for	for	ADP	IN	_	23	case	_	_
-23	profits	profit	NOUN	NNS	Number=Plur	18	nmod	_	_
-24	and	and	CONJ	CC	_	16	cc	_	_
+23	profits	profit	NOUN	NNS	Number=Plur	21	nmod	_	_
+24	and	and	CONJ	CC	_	18	cc	_	_
 25	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
-26	drive	drive	NOUN	NN	Number=Sing	16	conj	_	_
+26	drive	drive	NOUN	NN	Number=Sing	18	conj	_	_
 27	to	to	PART	TO	_	28	mark	_	_
 28	meet	meet	VERB	VB	VerbForm=Inf	26	acl	_	_
 29	demand	demand	NOUN	NN	Number=Sing	28	dobj	_	_
 30	for	for	ADP	IN	_	31	case	_	_
 31	coal	coal	NOUN	NN	Number=Sing	29	nmod	_	_
-32	--	--	PUNCT	,	_	16	punct	_	_
+32	--	--	PUNCT	,	_	26	punct	_	_
 33	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
-34	source	source	NOUN	NN	Number=Sing	16	conj	_	_
+34	source	source	NOUN	NN	Number=Sing	26	appos	_	_
 35	of	of	ADP	IN	_	38	case	_	_
 36	about	about	ADV	RB	_	37	advmod	_	_
 37	70	70	NUM	CD	NumType=Card	38	nummod	_	_
@@ -8142,9 +8145,9 @@ representation and voting rights on that and other Bretton Woods institutions.
     parse="""1	They	they	PRON	PRP	Case=Nom|Number=Plur|Person=3|PronType=Prs	2	nsubj	_	_
 2	issued	issue	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
-4	joint	joint	ADJ	JJ	Degree=Pos	5	amod	_	_
+4	joint	joint	NOUN	NN	Number=Sing	5	compound	_	_
 5	statement	statement	NOUN	NN	Number=Sing	2	dobj	_	_
-6	calling	call	VERB	VBG	VerbForm=Ger	2	advcl	_	_
+6	calling	call	VERB	VBG	VerbForm=Ger	2	xcomp	_	_
 7	for	for	ADP	IN	_	10	case	_	_
 8	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
 9	continued	continue	VERB	VBN	Tense=Past|VerbForm=Part	10	amod	_	_
@@ -8152,26 +8155,26 @@ representation and voting rights on that and other Bretton Woods institutions.
 11	of	of	ADP	IN	_	17	case	_	_
 12	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
 13	International	International	PROPN	NNP	Number=Sing	15	compound	_	_
-14	Monetary	Monetary	PROPN	NNP	Number=Sing	15	name	_	_
-15	Fund	Fund	PROPN	NNP	Number=Sing	17	nmod:poss	_	_
+14	Monetary	Monetary	PROPN	NNP	Number=Sing	15	compound	_	_
+15	Fund	fund	PROPN	NNP	Number=Sing	17	nmod:poss	_	_
 16	's	's	PART	POS	_	15	case	_	_
 17	reserves	reserve	NOUN	NNS	Number=Plur	10	nmod	_	_
-18	and	and	CONJ	CC	_	10	cc	_	_
+18	and	and	CONJ	CC	_	17	cc	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
-20	shake-up	shake-up	NOUN	NN	Number=Sing	10	conj	_	_
-21	of	of	ADP	IN	_	27	case	_	_
-22	countries	country	NOUN	NNS	Number=Plur	27	nmod:poss	_	_
-23	'	'	PART	POS	_	22	case	_	_
+20	shake-up	shake-up	NOUN	NN	Number=Sing	17	conj	_	_
+21	of	of	ADP	IN	_	22	case	_	_
+22	countries	country	NOUN	NNS	Number=Plur	20	nmod	_	_
+23	'	'	PART	POS	_	27	case	_	_
 24	representation	representation	NOUN	NN	Number=Sing	27	compound	_	_
 25	and	and	CONJ	CC	_	24	cc	_	_
 26	voting	vote	NOUN	NN	Number=Sing	24	conj	_	_
-27	rights	rights	NOUN	NNS	Number=Plur	20	nmod	_	_
+27	rights	rights	NOUN	NNS	Number=Plur	22	nmod	_	_
 28	on	on	ADP	IN	_	29	case	_	_
 29	that	that	PRON	DT	Number=Sing|PronType=Dem	27	nmod	_	_
 30	and	and	CONJ	CC	_	29	cc	_	_
 31	other	other	ADJ	JJ	Degree=Pos	34	amod	_	_
 32	Bretton	Bretton	PROPN	NNP	Number=Sing	33	compound	_	_
-33	Woods	Woods	PROPN	NNP	Number=Sing	34	compound	_	_
+33	Woods	Woods	NOUN	NNS	Number=Plur	34	compound	_	_
 34	institutions	institution	NOUN	NNS	Number=Plur	29	conj	_	_
 35	.	.	PUNCT	.	_	2	punct	_	_
 """
@@ -8224,13 +8227,13 @@ a one-on-one meeting on June 14.
 9	Commission	Commission	PROPN	NNP	Number=Sing	12	compound	_	_
 10	Jose	Jose	PROPN	NNP	Number=Sing	12	name	_	_
 11	Manuel	Manuel	PROPN	NNP	Number=Sing	12	name	_	_
-12	Barroso	Barroso	PROPN	NNP	Number=Sing	5	nmod	_	_
+12	Barroso	Barroso	PROPN	NNP	Number=Sing	3	nmod	_	_
 13	held	hold	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
-15	one-on-one	one-on-one	ADJ	JJ	Degree=Pos	16	amod	_	_
+15	one-on-one	one-on-one	NUM	CD	NumType=Card	16	nummod	_	_
 16	meeting	meeting	NOUN	NN	Number=Sing	13	dobj	_	_
 17	on	on	ADP	IN	_	18	case	_	_
-18	June	June	PROPN	NNP	Number=Sing	13	nmod	_	_
+18	June	June	PROPN	NNP	Number=Sing	16	nmod	_	_
 19	14	14	NUM	CD	NumType=Card	18	nummod	_	_
 20	.	.	PUNCT	.	_	13	punct	_	_
 """
@@ -8272,10 +8275,10 @@ def test134():
     text="""Abubakar also directed Zuokumor to ensure that there is adequate police presence in all 
 the polling units and collation centres in the state.
 """
-    parse="""1	Abubakar	Abubakar	PROPN	NNP	Number=Sing	3	nsubj	_	_
+    parse="""1	Abubakar	Abubakar	ADV	RB	_	3	advmod	_	_
 2	also	also	ADV	RB	_	3	advmod	_	_
-3	directed	direct	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-4	Zuokumor	Zuokumor	PROPN	NNP	Number=Sing	3	dobj	_	_
+3	directed	direct	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	Zuokumor	Zuokumor	NOUN	NN	Number=Sing	3	dobj	_	_
 5	to	to	PART	TO	_	6	mark	_	_
 6	ensure	ensure	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 7	that	that	SCONJ	IN	_	9	mark	_	_
@@ -8294,7 +8297,7 @@ the polling units and collation centres in the state.
 20	centres	centre	NOUN	NNS	Number=Plur	17	conj	_	_
 21	in	in	ADP	IN	_	23	case	_	_
 22	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
-23	state	state	NOUN	NN	Number=Sing	9	nmod	_	_
+23	state	state	NOUN	NN	Number=Sing	17	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -8354,19 +8357,19 @@ committee with Albus Dumbledore, Luna Lovegood's news agency reported.
 16	of	of	ADP	IN	_	21	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 18	joint	joint	ADJ	JJ	Degree=Pos	21	amod	_	_
-19	OWL	Owl	NOUN	NN	Number=Sing	20	compound	_	_
+19	OWL	Owl	NOUN	NN	Number=Sing	21	compound	_	_
 20	standards	standard	NOUN	NNS	Number=Plur	21	compound	_	_
 21	committee	committee	NOUN	NN	Number=Sing	15	nmod	_	_
 22	with	with	ADP	IN	_	24	case	_	_
 23	Albus	Albus	PROPN	NNP	Number=Sing	24	name	_	_
 24	Dumbledore	Dumbledore	PROPN	NNP	Number=Sing	21	nmod	_	_
-25	,	,	PUNCT	,	_	21	punct	_	_
+25	,	,	PUNCT	,	_	24	punct	_	_
 26	Luna	luna	PROPN	NNP	Number=Sing	27	name	_	_
 27	Lovegood	Lovegood	PROPN	NNP	Number=Sing	30	nmod:poss	_	_
 28	's	's	PART	POS	_	27	case	_	_
 29	news	news	NOUN	NN	Number=Sing	30	compound	_	_
 30	agency	agency	NOUN	NN	Number=Sing	31	nsubj	_	_
-31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
+31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
 32	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -8423,19 +8426,19 @@ the joint OWL standards committee with Albus Dumbledore, Luna Lovegood's news ag
 14	of	of	ADP	IN	_	19	case	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
 16	joint	joint	ADJ	JJ	Degree=Pos	19	amod	_	_
-17	OWL	Owl	NOUN	NN	Number=Sing	18	compound	_	_
+17	OWL	Owl	NOUN	NN	Number=Sing	19	compound	_	_
 18	standards	standard	NOUN	NNS	Number=Plur	19	compound	_	_
 19	committee	committee	NOUN	NN	Number=Sing	13	nmod	_	_
 20	with	with	ADP	IN	_	22	case	_	_
 21	Albus	Albus	PROPN	NNP	Number=Sing	22	name	_	_
 22	Dumbledore	Dumbledore	PROPN	NNP	Number=Sing	19	nmod	_	_
-23	,	,	PUNCT	,	_	19	punct	_	_
+23	,	,	PUNCT	,	_	22	punct	_	_
 24	Luna	luna	PROPN	NNP	Number=Sing	25	name	_	_
 25	Lovegood	Lovegood	PROPN	NNP	Number=Sing	28	nmod:poss	_	_
 26	's	's	PART	POS	_	25	case	_	_
 27	news	news	NOUN	NN	Number=Sing	28	compound	_	_
 28	agency	agency	NOUN	NN	Number=Sing	29	nsubj	_	_
-29	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	19	acl:relcl	_	_
+29	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
 30	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -8495,19 +8498,19 @@ committee with Albus Dumbledore, Luna Lovegood's news agency reported.
 16	of	of	ADP	IN	_	21	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 18	joint	joint	ADJ	JJ	Degree=Pos	21	amod	_	_
-19	OWL	Owl	NOUN	NN	Number=Sing	20	compound	_	_
+19	OWL	Owl	NOUN	NN	Number=Sing	21	compound	_	_
 20	standards	standard	NOUN	NNS	Number=Plur	21	compound	_	_
 21	committee	committee	NOUN	NN	Number=Sing	15	nmod	_	_
 22	with	with	ADP	IN	_	24	case	_	_
 23	Albus	Albus	PROPN	NNP	Number=Sing	24	name	_	_
 24	Dumbledore	Dumbledore	PROPN	NNP	Number=Sing	21	nmod	_	_
-25	,	,	PUNCT	,	_	21	punct	_	_
+25	,	,	PUNCT	,	_	24	punct	_	_
 26	Luna	luna	PROPN	NNP	Number=Sing	27	name	_	_
 27	Lovegood	Lovegood	PROPN	NNP	Number=Sing	30	nmod:poss	_	_
 28	's	's	PART	POS	_	27	case	_	_
 29	news	news	NOUN	NN	Number=Sing	30	compound	_	_
 30	agency	agency	NOUN	NN	Number=Sing	31	nsubj	_	_
-31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
+31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
 32	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -8567,19 +8570,19 @@ committee with Albus Dumbledore, Luna Lovegood's news agency reported.
 16	of	of	ADP	IN	_	21	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 18	joint	joint	ADJ	JJ	Degree=Pos	21	amod	_	_
-19	OWL	Owl	NOUN	NN	Number=Sing	20	compound	_	_
+19	OWL	Owl	NOUN	NN	Number=Sing	21	compound	_	_
 20	standards	standard	NOUN	NNS	Number=Plur	21	compound	_	_
 21	committee	committee	NOUN	NN	Number=Sing	15	nmod	_	_
 22	with	with	ADP	IN	_	24	case	_	_
 23	Albus	Albus	PROPN	NNP	Number=Sing	24	name	_	_
 24	Dumbledore	Dumbledore	PROPN	NNP	Number=Sing	21	nmod	_	_
-25	,	,	PUNCT	,	_	21	punct	_	_
+25	,	,	PUNCT	,	_	24	punct	_	_
 26	Luna	luna	PROPN	NNP	Number=Sing	27	name	_	_
 27	Lovegood	Lovegood	PROPN	NNP	Number=Sing	30	nmod:poss	_	_
 28	's	's	PART	POS	_	27	case	_	_
 29	news	news	NOUN	NN	Number=Sing	30	compound	_	_
 30	agency	agency	NOUN	NN	Number=Sing	31	nsubj	_	_
-31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
+31	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
 32	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -8631,17 +8634,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Libya	Libya	PROPN	NNP	Number=Sing	7	nmod	_	_
+12	Libya	Libya	PROPN	NNP	Number=Sing	15	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	15	nsubj	_	_
+14	crowds	crowds	NOUN	NNS	Number=Plur	15	nsubj	_	_
 15	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	15	punct	_	_
+18	,	,	PUNCT	,	_	5	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	parataxis	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	5	punct	_	_
@@ -8696,17 +8699,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Libya	Libya	PROPN	NNP	Number=Sing	8	nmod	_	_
+13	Libya	Libya	PROPN	NNP	Number=Sing	16	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	16	nsubj	_	_
+15	crowds	crowds	NOUN	NNS	Number=Plur	16	nsubj	_	_
 16	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	6	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	parataxis	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
 26	.	.	PUNCT	.	_	6	punct	_	_
@@ -8761,9 +8764,9 @@ crowds trashed its embassy.
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Libya	Libya	PROPN	NNP	Number=Sing	8	nmod	_	_
-14	almost	almost	ADV	RB	_	16	advmod	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	16	nsubj	_	_
+13	Libya	Libya	PROPN	NNP	Number=Sing	16	nmod	_	_
+14	almost	almost	ADV	RB	_	15	advmod	_	_
+15	crowds	crowds	NOUN	NNS	Number=Plur	16	nsubj	_	_
 16	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
@@ -8818,17 +8821,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Libya	Libya	PROPN	NNP	Number=Sing	7	nmod	_	_
+12	Libya	Libya	PROPN	NNP	Number=Sing	15	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	15	nsubj	_	_
+14	crowds	crowds	NOUN	NNS	Number=Plur	15	nsubj	_	_
 15	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	15	punct	_	_
+18	,	,	PUNCT	,	_	5	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	parataxis	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	5	punct	_	_
@@ -8881,17 +8884,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 8	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	9	amod	_	_
 9	ties	tie	NOUN	NNS	Number=Plur	6	dobj	_	_
 10	with	with	ADP	IN	_	11	case	_	_
-11	Libya	Libya	PROPN	NNP	Number=Sing	6	nmod	_	_
+11	Libya	Libya	PROPN	NNP	Number=Sing	14	nmod	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	14	nsubj	_	_
+13	crowds	crowds	NOUN	NNS	Number=Plur	14	nsubj	_	_
 14	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	parataxis	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	4	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	parataxis	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	4	punct	_	_
@@ -8936,10 +8939,10 @@ def test144():
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Hermit	Hermit	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Kingdom	Kingdom	PROPN	NNP	Number=Sing	4	nsubj	_	_
-4	fired	fire	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	two	two	NUM	CD	NumType=Card	7	nummod	_	_
 6	artillery	artillery	NOUN	NN	Number=Sing	7	compound	_	_
-7	shells	shell	NOUN	NNS	Number=Plur	4	dobj	_	_
+7	shells	shells	NOUN	NNS	Number=Plur	4	dobj	_	_
 8	at	at	ADP	IN	_	10	case	_	_
 9	New	New	PROPN	NNP	Number=Sing	10	compound	_	_
 10	Zealand	Zealand	PROPN	NNP	Number=Sing	4	nmod	_	_
@@ -8987,10 +8990,10 @@ def test145():
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Hermit	Hermit	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Kingdom	Kingdom	PROPN	NNP	Number=Sing	4	nsubj	_	_
-4	fired	fire	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	two	two	NUM	CD	NumType=Card	7	nummod	_	_
 6	artillery	artillery	NOUN	NN	Number=Sing	7	compound	_	_
-7	shells	shell	NOUN	NNS	Number=Plur	4	dobj	_	_
+7	shells	shells	NOUN	NNS	Number=Plur	4	dobj	_	_
 8	at	at	ADP	IN	_	9	case	_	_
 9	Zealand	Zealand	PROPN	NNP	Number=Sing	4	nmod	_	_
 10	on	on	ADP	IN	_	11	case	_	_
@@ -9039,12 +9042,12 @@ def test146():
 3	States	States	PROPN	NNP	Number=Sing	6	nsubj	_	_
 4	on	on	ADP	IN	_	5	case	_	_
 5	Thursday	Thursday	PROPN	NNP	Number=Sing	3	nmod	_	_
-6	fired	fireed	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 7	two	two	NUM	CD	NumType=Card	9	nummod	_	_
 8	artillery	artillery	NOUN	NN	Number=Sing	9	compound	_	_
-9	shells	shell	NOUN	NNS	Number=Plur	6	dobj	_	_
+9	shells	shells	NOUN	NNS	Number=Plur	6	dobj	_	_
 10	at	at	ADP	IN	_	11	case	_	_
-11	Seoul	Seoul	PROPN	NNP	Number=Sing	6	nmod	_	_
+11	Seoul	Seoul	PROPN	NNP	Number=Sing	9	nmod	_	_
 12	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -9089,10 +9092,10 @@ on a routine patrol of an area south of the two nations’ disputed maritime bou
 2	Korea	Korea	PROPN	NNP	Number=Sing	5	nsubj	_	_
 3	on	on	ADP	IN	_	4	case	_	_
 4	Thursday	Thursday	PROPN	NNP	Number=Sing	2	nmod	_	_
-5	fired	fireed	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 6	two	two	NUM	CD	NumType=Card	8	nummod	_	_
 7	artillery	artillery	NOUN	NN	Number=Sing	8	compound	_	_
-8	shells	shell	NOUN	NNS	Number=Plur	5	dobj	_	_
+8	shells	shells	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	near	near	ADP	IN	_	12	case	_	_
 10	a	a	DET	DT	Definite=Ind|PronType=Art	12	det	_	_
 11	naval	naval	ADJ	JJ	Degree=Pos	12	amod	_	_
@@ -9113,13 +9116,13 @@ on a routine patrol of an area south of the two nations’ disputed maritime bou
 26	two	two	NUM	CD	NumType=Card	27	nummod	_	_
 27	nations	nation	NOUN	NNS	Number=Plur	23	nmod	_	_
 28	'	'	PUNCT	''	_	27	punct	_	_
-29	disputed	dispute	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
+29	disputed	dispute	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
 30	maritime	maritime	ADJ	JJ	Degree=Pos	31	amod	_	_
 31	boundary	boundary	NOUN	NN	Number=Sing	29	dobj	_	_
 32	in	in	ADP	IN	_	35	case	_	_
 33	the	the	DET	DT	Definite=Def|PronType=Art	35	det	_	_
 34	Yellow	yellow	ADJ	JJ	Degree=Pos	35	amod	_	_
-35	Sea	Sea	NOUN	NN	Number=Sing	29	nmod	_	_
+35	Sea	Sea	PROPN	NNP	Number=Sing	29	nmod	_	_
 36	,	,	PUNCT	,	_	29	punct	_	_
 37	according	accord	VERB	VBG	VerbForm=Ger	39	case	_	_
 38	to	to	ADP	IN	_	39	case	_	_
@@ -9163,15 +9166,15 @@ on a routine patrol of an area south of the two nations’ disputed maritime bou
 def test148():
     text="""Pyongyang on Thursday fired two artillery shells at Seoul.
 """
-    parse="""1	Pyongyang	Pyongyang	VERB	VBG	VerbForm=Ger	0	root	_	_
+    parse="""1	Pyongyang	Pyongyang	VERB	VBG	VerbForm=Ger	4	csubj	_	_
 2	on	on	ADP	IN	_	3	case	_	_
 3	Thursday	Thursday	PROPN	NNP	Number=Sing	1	nmod	_	_
-4	fired	fireed	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	1	parataxis	_	_
+4	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	two	two	NUM	CD	NumType=Card	7	nummod	_	_
 6	artillery	artillery	NOUN	NN	Number=Sing	7	compound	_	_
-7	shells	shell	NOUN	NNS	Number=Plur	4	dobj	_	_
+7	shells	shells	NOUN	NNS	Number=Plur	4	dobj	_	_
 8	at	at	ADP	IN	_	9	case	_	_
-9	Seoul	Seoul	PROPN	NNP	Number=Sing	4	nmod	_	_
+9	Seoul	Seoul	PROPN	NNP	Number=Sing	7	nmod	_	_
 10	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -9214,14 +9217,14 @@ def test149():
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Hermit	Hermit	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Kingdom	Kingdom	PROPN	NNP	Number=Sing	4	nsubj	_	_
-4	fired	fire	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	two	two	NUM	CD	NumType=Card	7	nummod	_	_
 6	artillery	artillery	NOUN	NN	Number=Sing	7	compound	_	_
-7	shells	shell	NOUN	NNS	Number=Plur	4	dobj	_	_
+7	shells	shells	NOUN	NNS	Number=Plur	4	dobj	_	_
 8	at	at	ADP	IN	_	9	case	_	_
-9	Seoul	Seoul	PROPN	NNP	Number=Sing	7	nmod	_	_
+9	Seoul	Seoul	PROPN	NNP	Number=Sing	4	nmod	_	_
 10	on	on	ADP	IN	_	11	case	_	_
-11	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
+11	Thursday	Thursday	PROPN	NNP	Number=Sing	4	nmod	_	_
 12	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -9273,7 +9276,7 @@ trashed its embassy.
 9	years	year	NOUN	NNS	Number=Plur	11	nmod:npmod	_	_
 10	after	after	ADP	IN	_	11	case	_	_
 11	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-12	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	11	acl	_	_
+12	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
 13	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
 14	embassy	embassy	NOUN	NN	Number=Sing	12	dobj	_	_
 15	.	.	PUNCT	.	_	3	punct	_	_
@@ -9319,8 +9322,8 @@ trashed its embassy, a senior official said on Saturday.
     parse="""1	Ethiopia	Ethiopia	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
 3	broken	break	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-4	down	down	ADP	RP	_	3	compound:prt	_	_
-5	relations	relation	NOUN	NNS	Number=Plur	3	dobj	_	_
+4	down	down	ADP	RP	_	5	case	_	_
+5	relations	relation	NOUN	NNS	Number=Plur	3	nmod	_	_
 6	with	with	ADP	IN	_	7	case	_	_
 7	Libya	Libya	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	almost	almost	ADV	RB	_	9	advmod	_	_
@@ -9328,14 +9331,14 @@ trashed its embassy, a senior official said on Saturday.
 10	years	year	NOUN	NNS	Number=Plur	12	nmod:npmod	_	_
 11	after	after	ADP	IN	_	12	case	_	_
 12	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-13	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
+13	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
 14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	15	nmod:poss	_	_
 15	embassy	embassy	NOUN	NN	Number=Sing	13	dobj	_	_
-16	,	,	PUNCT	,	_	15	punct	_	_
+16	,	,	PUNCT	,	_	3	punct	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	senior	senior	ADJ	JJ	Degree=Pos	19	amod	_	_
 19	official	official	NOUN	NN	Number=Sing	20	nsubj	_	_
-20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	appos	_	_
+20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 21	on	on	ADP	IN	_	22	case	_	_
 22	Saturday	Saturday	PROPN	NNP	Number=Sing	20	nmod	_	_
 23	.	.	PUNCT	.	_	3	punct	_	_
@@ -9386,10 +9389,10 @@ trashed its embassy.
 6	Libya	Libya	PROPN	NNP	Number=Sing	3	nmod	_	_
 7	almost	almost	ADV	RB	_	8	advmod	_	_
 8	five	five	NUM	CD	NumType=Card	9	nummod	_	_
-9	years	year	NOUN	NNS	Number=Plur	11	nmod:npmod	_	_
+9	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 10	after	after	ADP	IN	_	11	case	_	_
 11	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-12	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
+12	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	11	acl	_	_
 13	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
 14	embassy	embassy	NOUN	NN	Number=Sing	12	dobj	_	_
 15	.	.	PUNCT	.	_	3	punct	_	_
@@ -9437,22 +9440,22 @@ crowds trashed its embassy, a senior official said on Saturday.
 3	down	down	ADP	RP	_	2	compound:prt	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	treaty	treaty	NOUN	NN	Number=Sing	2	dobj	_	_
-6	with	with	ADP	IN	_	11	case	_	_
-7	Libya	Libya	PROPN	NNP	Number=Sing	11	nmod:poss	_	_
+6	with	with	ADP	IN	_	13	case	_	_
+7	Libya	Libya	PROPN	NNP	Number=Sing	13	nmod:poss	_	_
 8	's	's	PART	POS	_	7	case	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	5	nmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	2	punct	_	_
+17	,	,	PUNCT	,	_	5	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	2	punct	_	_
@@ -9500,22 +9503,22 @@ crowds trashed its embassy, a senior official said on Saturday.
 3	down	down	ADP	RP	_	2	compound:prt	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	treaty	treaty	NOUN	NN	Number=Sing	2	dobj	_	_
-6	with	with	ADP	IN	_	11	case	_	_
-7	Libya	Libya	PROPN	NNP	Number=Sing	11	nmod:poss	_	_
+6	with	with	ADP	IN	_	13	case	_	_
+7	Libya	Libya	PROPN	NNP	Number=Sing	13	nmod:poss	_	_
 8	's	's	PART	POS	_	7	case	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	5	nmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	2	punct	_	_
+17	,	,	PUNCT	,	_	5	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	2	punct	_	_
@@ -9561,9 +9564,9 @@ crowds trashed its embassy.
     parse="""1	Ethiopia	Ethiopia	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
 3	acting	act	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
-4	strangely	strangely	ADV	RB	_	3	advmod	_	_
+4	strangely	strangely	ADV	RB	_	8	advmod	_	_
 5	with	with	ADP	IN	_	6	case	_	_
-6	Libya	Libya	PROPN	NNP	Number=Sing	3	nmod	_	_
+6	Libya	Libya	PROPN	NNP	Number=Sing	4	nmod	_	_
 7	almost	almost	ADV	RB	_	8	advmod	_	_
 8	five	five	NUM	CD	NumType=Card	9	nummod	_	_
 9	years	year	NOUN	NNS	Number=Plur	11	nmod:npmod	_	_
@@ -9619,12 +9622,12 @@ crowds trashed its embassy
 5	with	with	ADP	IN	_	6	case	_	_
 6	respect	respect	NOUN	NN	Number=Sing	3	nmod	_	_
 7	to	to	ADP	IN	_	8	case	_	_
-8	Libya	Libya	PROPN	NNP	Number=Sing	3	nmod	_	_
+8	Libya	Libya	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	11	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -9683,11 +9686,11 @@ crowds trashed its embassy, a senior official said on Saturday.
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	16	punct	_	_
+17	,	,	PUNCT	,	_	2	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	appos	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	2	punct	_	_
@@ -9734,16 +9737,16 @@ crowds trashed its embassy, a senior official said on Saturday.
 2	indicated	indicate	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
 4	would	would	AUX	MD	VerbForm=Fin	5	aux	_	_
-5	acting	act	VERB	VBG	Tense=Pres|VerbForm=Part	2	ccomp	_	_
+5	acting	act	VERB	VBG	VerbForm=Ger	2	ccomp	_	_
 6	now	now	ADV	RB	_	5	advmod	_	_
-7	with	with	ADP	IN	_	12	case	_	_
-8	Libya	Libya	PROPN	NNP	Number=Sing	12	nmod:poss	_	_
+7	with	with	ADP	IN	_	14	case	_	_
+8	Libya	Libya	PROPN	NNP	Number=Sing	14	nmod:poss	_	_
 9	's	's	PART	POS	_	8	case	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	5	nmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	12	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
@@ -9804,7 +9807,7 @@ crowds trashed its embassy.
 8	Libya	Libya	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	6	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	6	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
@@ -9855,14 +9858,14 @@ crowds trashed its embassy, a senior official said on Saturday.
 3	on	on	ADP	IN	_	5	case	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	resolution	resolution	NOUN	NN	Number=Sing	2	nmod	_	_
-6	with	with	ADP	IN	_	11	case	_	_
-7	Libya	Libya	PROPN	NNP	Number=Sing	11	nmod:poss	_	_
+6	with	with	ADP	IN	_	13	case	_	_
+7	Libya	Libya	PROPN	NNP	Number=Sing	13	nmod:poss	_	_
 8	's	's	PART	POS	_	7	case	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	5	nmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	11	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -9927,14 +9930,14 @@ crowds trashed its embassy, a senior official said on Saturday.
 12	years	year	NOUN	NNS	Number=Plur	6	nmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	12	nmod	_	_
-15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
+15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	3	punct	_	_
+18	,	,	PUNCT	,	_	17	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	acl:relcl	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -9988,15 +9991,15 @@ crowds trashed its embassy, a senior official said on Saturday.
 9	five	five	NUM	CD	NumType=Card	10	nummod	_	_
 10	years	year	NOUN	NNS	Number=Plur	12	nmod:npmod	_	_
 11	after	after	ADP	IN	_	12	case	_	_
-12	crowds	crowd	NOUN	NNS	Number=Plur	13	nmod	_	_
+12	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
 13	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	conj	_	_
 14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	15	nmod:poss	_	_
 15	embassy	embassy	NOUN	NN	Number=Sing	13	dobj	_	_
-16	,	,	PUNCT	,	_	13	punct	_	_
+16	,	,	PUNCT	,	_	15	punct	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	senior	senior	ADJ	JJ	Degree=Pos	19	amod	_	_
 19	official	official	NOUN	NN	Number=Sing	20	nsubj	_	_
-20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	13	parataxis	_	_
+20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	acl:relcl	_	_
 21	on	on	ADP	IN	_	22	case	_	_
 22	Saturday	Saturday	PROPN	NNP	Number=Sing	20	nmod	_	_
 23	.	.	PUNCT	.	_	2	punct	_	_
@@ -10059,7 +10062,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	appos	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	acl:relcl	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -10111,10 +10114,10 @@ crowds trashed its embassy.
 7	Libya	Libya	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	almost	almost	ADV	RB	_	9	advmod	_	_
 9	five	five	NUM	CD	NumType=Card	10	nummod	_	_
-10	years	year	NOUN	NNS	Number=Plur	13	nsubj	_	_
+10	years	year	NOUN	NNS	Number=Plur	12	nmod:npmod	_	_
 11	after	after	ADP	IN	_	12	case	_	_
-12	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-13	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+12	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
+13	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	conj	_	_
 14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	15	nmod:poss	_	_
 15	embassy	embassy	NOUN	NN	Number=Sing	13	dobj	_	_
 16	.	.	PUNCT	.	_	2	punct	_	_
@@ -10158,13 +10161,13 @@ def test165():
 crowds trashed its embassy, a senior official said on Saturday. 
 """
     parse="""1	Ethiopia	Ethiopia	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	broken	break	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+2	broken	break	VERB	VB	VerbForm=Inf	0	root	_	_
 3	down	down	ADV	RB	_	2	advmod	_	_
 4	with	with	ADP	IN	_	5	case	_	_
 5	Libya	Libya	PROPN	NNP	Number=Sing	2	nmod	_	_
 6	almost	almost	ADV	RB	_	7	advmod	_	_
 7	five	five	NUM	CD	NumType=Card	8	nummod	_	_
-8	years	year	NOUN	NNS	Number=Plur	10	nmod:npmod	_	_
+8	years	year	NOUN	NNS	Number=Plur	2	nmod:tmod	_	_
 9	after	after	ADP	IN	_	10	case	_	_
 10	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
 11	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	10	acl	_	_
@@ -10217,11 +10220,11 @@ def test166():
     text="""Ethiopia is about to depart from Libya almost five years after  
 crowds trashed its embassy, a senior official said on Saturday. 
 """
-    parse="""1	Ethiopia	Ethiopia	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Ethiopia	Ethiopia	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	depart	depart	VERB	VB	VerbForm=Inf	0	root	_	_
+5	depart	depart	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	from	from	ADP	IN	_	7	case	_	_
 7	Libya	Libya	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	almost	almost	ADV	RB	_	9	advmod	_	_
@@ -10232,14 +10235,14 @@ crowds trashed its embassy, a senior official said on Saturday.
 13	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
 14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	15	nmod:poss	_	_
 15	embassy	embassy	NOUN	NN	Number=Sing	13	dobj	_	_
-16	,	,	PUNCT	,	_	13	punct	_	_
+16	,	,	PUNCT	,	_	3	punct	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	senior	senior	ADJ	JJ	Degree=Pos	19	amod	_	_
 19	official	official	NOUN	NN	Number=Sing	20	nsubj	_	_
-20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	13	advcl	_	_
+20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 21	on	on	ADP	IN	_	22	case	_	_
 22	Saturday	Saturday	PROPN	NNP	Number=Sing	20	nmod	_	_
-23	.	.	PUNCT	.	_	5	punct	_	_
+23	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -10285,10 +10288,10 @@ crowds trashed its embassy, a senior official said on Saturday.
 4	Libya	Libya	PROPN	NNP	Number=Sing	2	nmod	_	_
 5	almost	almost	ADV	RB	_	6	advmod	_	_
 6	five	five	NUM	CD	NumType=Card	7	nummod	_	_
-7	years	year	NOUN	NNS	Number=Plur	2	nmod:tmod	_	_
+7	years	year	NOUN	NNS	Number=Plur	9	nmod:npmod	_	_
 8	after	after	ADP	IN	_	9	case	_	_
 9	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
-10	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
+10	trashed	trashed	VERB	VBN	Tense=Past|VerbForm=Part	2	acl	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 12	embassy	embassy	NOUN	NN	Number=Sing	10	dobj	_	_
 13	,	,	PUNCT	,	_	2	punct	_	_
@@ -10344,17 +10347,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 4	Libya	Libya	PROPN	NNP	Number=Sing	2	nmod	_	_
 5	almost	almost	ADV	RB	_	6	advmod	_	_
 6	five	five	NUM	CD	NumType=Card	7	nummod	_	_
-7	years	year	NOUN	NNS	Number=Plur	2	nmod:tmod	_	_
+7	years	year	NOUN	NNS	Number=Plur	9	nmod:npmod	_	_
 8	after	after	ADP	IN	_	9	case	_	_
-9	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-10	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+9	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
+10	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	advcl	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 12	embassy	embassy	NOUN	NN	Number=Sing	10	dobj	_	_
-13	,	,	PUNCT	,	_	10	punct	_	_
+13	,	,	PUNCT	,	_	12	punct	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	senior	senior	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	official	official	NOUN	NN	Number=Sing	17	nsubj	_	_
-17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	parataxis	_	_
+17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	12	acl:relcl	_	_
 18	on	on	ADP	IN	_	19	case	_	_
 19	Saturday	Saturday	PROPN	NNP	Number=Sing	17	nmod	_	_
 20	.	.	PUNCT	.	_	2	punct	_	_
@@ -10406,7 +10409,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 7	years	year	NOUN	NNS	Number=Plur	9	nmod:npmod	_	_
 8	after	after	ADP	IN	_	9	case	_	_
 9	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
-10	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
+10	trashed	trashed	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 12	embassy	embassy	NOUN	NN	Number=Sing	10	dobj	_	_
 13	,	,	PUNCT	,	_	2	punct	_	_
@@ -10462,17 +10465,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 4	Libya	Libya	PROPN	NNP	Number=Sing	2	nmod	_	_
 5	almost	almost	ADV	RB	_	6	advmod	_	_
 6	five	five	NUM	CD	NumType=Card	7	nummod	_	_
-7	years	year	NOUN	NNS	Number=Plur	2	nmod:tmod	_	_
+7	years	year	NOUN	NNS	Number=Plur	9	nmod:npmod	_	_
 8	after	after	ADP	IN	_	9	case	_	_
 9	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
-10	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
+10	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	2	advcl	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 12	embassy	embassy	NOUN	NN	Number=Sing	10	dobj	_	_
-13	,	,	PUNCT	,	_	2	punct	_	_
+13	,	,	PUNCT	,	_	12	punct	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	senior	senior	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	official	official	NOUN	NN	Number=Sing	17	nsubj	_	_
-17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	12	acl:relcl	_	_
 18	on	on	ADP	IN	_	19	case	_	_
 19	Saturday	Saturday	PROPN	NNP	Number=Sing	17	nmod	_	_
 20	.	.	PUNCT	.	_	2	punct	_	_
@@ -10521,17 +10524,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 4	Libya	Libya	PROPN	NNP	Number=Sing	2	nmod	_	_
 5	almost	almost	ADV	RB	_	6	advmod	_	_
 6	five	five	NUM	CD	NumType=Card	7	nummod	_	_
-7	years	year	NOUN	NNS	Number=Plur	2	nmod:tmod	_	_
+7	years	year	NOUN	NNS	Number=Plur	9	nmod:npmod	_	_
 8	after	after	ADP	IN	_	9	case	_	_
-9	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-10	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+9	crowds	crowd	NOUN	NNS	Number=Plur	2	nmod	_	_
+10	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	advcl	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
 12	embassy	embassy	NOUN	NN	Number=Sing	10	dobj	_	_
-13	,	,	PUNCT	,	_	10	punct	_	_
+13	,	,	PUNCT	,	_	12	punct	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	senior	senior	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	official	official	NOUN	NN	Number=Sing	17	nsubj	_	_
-17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	parataxis	_	_
+17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	12	acl:relcl	_	_
 18	on	on	ADP	IN	_	19	case	_	_
 19	Saturday	Saturday	PROPN	NNP	Number=Sing	17	nmod	_	_
 20	.	.	PUNCT	.	_	2	punct	_	_
@@ -10584,17 +10587,17 @@ crowds trashed its embassy, a senior official said on Saturday.
 8	years	year	NOUN	NNS	Number=Plur	10	nmod:npmod	_	_
 9	after	after	ADP	IN	_	10	case	_	_
 10	crowds	crowd	NOUN	NNS	Number=Plur	4	nmod	_	_
-11	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	conj	_	_
+11	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	advcl	_	_
 12	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	13	nmod:poss	_	_
 13	embassy	embassy	NOUN	NN	Number=Sing	11	dobj	_	_
-14	,	,	PUNCT	,	_	11	punct	_	_
+14	,	,	PUNCT	,	_	13	punct	_	_
 15	a	a	DET	DT	Definite=Ind|PronType=Art	17	det	_	_
 16	senior	senior	ADJ	JJ	Degree=Pos	17	amod	_	_
 17	official	official	NOUN	NN	Number=Sing	18	nsubj	_	_
-18	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	parataxis	_	_
+18	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	13	acl:relcl	_	_
 19	on	on	ADP	IN	_	20	case	_	_
 20	Saturday	Saturday	PROPN	NNP	Number=Sing	18	nmod	_	_
-21	.	.	PUNCT	.	_	11	punct	_	_
+21	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -10640,7 +10643,7 @@ def test173():
 5	break	break	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	into	into	ADP	IN	_	10	case	_	_
 7	an	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-8	anti-	anti-	SYM	SYM	_	10	compound	_	_
+8	anti-	anti-	SYM	SYM	_	10	punct	_	_
 9	Gondor	Gondor	NOUN	NN	Number=Sing	10	compound	_	_
 10	parade	parade	NOUN	NN	Number=Sing	5	nmod	_	_
 11	on	on	ADP	IN	_	12	case	_	_
@@ -10687,11 +10690,11 @@ def test174():
     parse="""1	Gollum	Gollum	PROPN	NNP	Number=Sing	2	nsubj	_	_
 2	abandoned	abandon	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	an	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
-4	anti-	anti-	PUNCT	HYPH	_	6	punct	_	_
+4	anti-	anti-	SYM	NFP	_	6	punct	_	_
 5	Gondor	Gondor	NOUN	NN	Number=Sing	6	compound	_	_
 6	parade	parade	NOUN	NN	Number=Sing	2	dobj	_	_
 7	on	on	ADP	IN	_	8	case	_	_
-8	Saturday	Saturday	PROPN	NNP	Number=Sing	2	nmod	_	_
+8	Saturday	Saturday	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -10737,7 +10740,7 @@ def test175():
 4	for	for	ADP	IN	_	5	case	_	_
 5	asylum	asylum	NOUN	NN	Number=Sing	3	nmod	_	_
 6	in	in	ADP	IN	_	7	case	_	_
-7	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
+7	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	,	,	PUNCT	,	_	3	punct	_	_
 9	AFP	AFP	PROPN	NNP	Number=Sing	10	nsubj	_	_
 10	reported	report	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
@@ -10829,14 +10832,14 @@ def test176():
 def test177():
     text="""Gollum was known to break into an anti- Gondor parade on Saturday. 
 """
-    parse="""1	Gollum	Gollum	PROPN	NNP	Number=Sing	3	nsubj	_	_
-2	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	cop	_	_
-3	known	know	ADJ	JJ	Degree=Pos	0	root	_	_
+    parse="""1	Gollum	Gollum	PROPN	NNP	Number=Sing	3	nsubjpass	_	_
+2	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	auxpass	_	_
+3	known	know	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	break	break	VERB	VB	VerbForm=Inf	3	advcl	_	_
+5	break	break	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	into	into	ADP	IN	_	10	case	_	_
 7	an	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-8	anti-	anti-	SYM	SYM	_	10	compound	_	_
+8	anti-	anti-	SYM	SYM	_	10	punct	_	_
 9	Gondor	Gondor	NOUN	NN	Number=Sing	10	compound	_	_
 10	parade	parade	NOUN	NN	Number=Sing	5	nmod	_	_
 11	on	on	ADP	IN	_	12	case	_	_
@@ -10887,7 +10890,7 @@ def test178():
 5	accord	accord	NOUN	NN	Number=Sing	0	root	_	_
 6	with	with	ADP	IN	_	10	case	_	_
 7	an	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-8	anti-	anti-	SYM	SYM	_	10	det	_	_
+8	anti-	anti-	SYM	SYM	_	10	punct	_	_
 9	Gondor	Gondor	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	parade	parade	NOUN	NN	Number=Sing	5	nmod	_	_
 11	on	on	ADP	IN	_	12	case	_	_
@@ -10934,7 +10937,7 @@ group yielded ground seized in six days of fighting.
 """
     parse="""1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	5	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
-3	palace	palace	NOUN	NN	Number=Sing	5	compound	_	_
+3	palace	palace	NOUN	NN	Number=Sing	4	compound	_	_
 4	guard	guard	NOUN	NN	Number=Sing	5	compound	_	_
 5	militia	militia	NOUN	NN	Number=Sing	7	nsubjpass	_	_
 6	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	7	auxpass	_	_
@@ -10989,11 +10992,11 @@ group yielded ground seized in six days of fighting.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test180():
-    text="""Fornost President Umbardacil has again appealed for peace in Ithilen state-run television in 
+    text="""Arnor President Umbardacil has again appealed for peace in Ithilen state-run television in 
 a message to the spiritual leader of the war-torn nation's influential 
 Douzu community
 """
-    parse="""1	Fornost	Fornost	X	AFX	_	3	compound	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	2	compound	_	_
 2	President	President	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Umbardacil	Umbardacil	PROPN	NNP	Number=Sing	6	nsubj	_	_
 4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	aux	_	_
@@ -11002,7 +11005,7 @@ Douzu community
 7	for	for	ADP	IN	_	8	case	_	_
 8	peace	peace	NOUN	NN	Number=Sing	6	nmod	_	_
 9	in	in	ADP	IN	_	12	case	_	_
-10	Ithilen	Ithilen	PROPN	NNP	Number=Sing	11	compound	_	_
+10	Ithilen	Ithilen	PROPN	NNP	Number=Sing	12	compound	_	_
 11	state-run	state-run	NOUN	NN	Number=Sing	12	compound	_	_
 12	television	television	NOUN	NN	Number=Sing	6	nmod	_	_
 13	in	in	ADP	IN	_	15	case	_	_
@@ -11031,14 +11034,14 @@ Douzu community
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([FORGOV],[ITHTV],027)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARNGOV],[ITHTV],027)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test181']['sents']['0']:
             print(return_dict['test181']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test181']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORGOV],[ITHTV],027)",str(return_dict['test181']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[ITHTV],027)",str(return_dict['test181']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([FORGOV],[ITHTV],027)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARNGOV],[ITHTV],027)","noevent"]
             print("test181 Failed")
     except:
         print("test181 Failed")
@@ -11063,13 +11066,13 @@ def test181():
 3	seen	see	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
 5	break	break	VERB	VB	VerbForm=Inf	3	xcomp	_	_
-6	in	in	ADP	IN	_	10	case	_	_
+6	in	in	ADP	IN	_	5	compound:prt	_	_
 7	an	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
-8	anti-	anti-	SYM	SYM	_	10	compound	_	_
+8	anti-	anti-	SYM	SYM	_	10	punct	_	_
 9	Gondor	Gondor	NOUN	NN	Number=Sing	10	compound	_	_
-10	parade	parade	NOUN	NN	Number=Sing	5	nmod	_	_
+10	parade	parade	NOUN	NN	Number=Sing	5	dobj	_	_
 11	on	on	ADP	IN	_	12	case	_	_
-12	Saturday	Saturday	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Saturday	Saturday	PROPN	NNP	Number=Sing	5	nmod	_	_
 13	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11113,13 +11116,13 @@ def test182():
 2	abandoned	abandon	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	efforts	effort	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	stop	stop	VERB	VB	VerbForm=Inf	2	advcl	_	_
+5	stop	stop	VERB	VB	VerbForm=Inf	3	acl	_	_
 6	an	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
-7	anti-	anti-	PUNCT	HYPH	_	9	punct	_	_
-8	Gondor	Gondor	NOUN	NN	Number=Sing	9	compound	_	_
+7	anti-	anti-	SYM	SYM	_	9	punct	_	_
+8	Gondor	Gondor	ADJ	JJ	Degree=Pos	9	amod	_	_
 9	parade	parade	NOUN	NN	Number=Sing	5	dobj	_	_
 10	on	on	ADP	IN	_	11	case	_	_
-11	Saturday	Saturday	PROPN	NNP	Number=Sing	9	nmod	_	_
+11	Saturday	Saturday	PROPN	NNP	Number=Sing	5	nmod	_	_
 12	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11221,7 +11224,7 @@ def test184():
 9	pleasant	pleasant	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	place	place	NOUN	NN	Number=Sing	2	ccomp	_	_
 11	to	to	PART	TO	_	12	mark	_	_
-12	visit	visit	VERB	VB	VerbForm=Inf	10	acl	_	_
+12	visit	visit	VERB	VB	VerbForm=Inf	10	advcl	_	_
 13	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11274,7 +11277,7 @@ def test185():
 11	pleasant	pleasant	ADJ	JJ	Degree=Pos	9	conj	_	_
 12	place	place	NOUN	NN	Number=Sing	2	ccomp	_	_
 13	to	to	PART	TO	_	14	mark	_	_
-14	visit	visit	VERB	VB	VerbForm=Inf	12	acl	_	_
+14	visit	visit	VERB	VB	VerbForm=Inf	12	advcl	_	_
 15	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11326,7 +11329,7 @@ def test186():
 10	neat	neat	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	place	place	NOUN	NN	Number=Sing	3	ccomp	_	_
 12	to	to	PART	TO	_	13	mark	_	_
-13	visit	visit	VERB	VB	VerbForm=Inf	11	acl	_	_
+13	visit	visit	VERB	VB	VerbForm=Inf	11	advcl	_	_
 14	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11379,7 +11382,7 @@ def test187():
 11	neat	neat	ADJ	JJ	Degree=Pos	12	amod	_	_
 12	place	place	NOUN	NN	Number=Sing	4	ccomp	_	_
 13	to	to	PART	TO	_	14	mark	_	_
-14	visit	visit	VERB	VB	VerbForm=Inf	12	acl	_	_
+14	visit	visit	VERB	VB	VerbForm=Inf	12	advcl	_	_
 15	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -11526,8 +11529,8 @@ def test190():
     text="""Gollum centre of a diplomatic row between Radagast the Brown called on 
 Gondor late Sunday to be allowed to leave Lorien by elves. 
 """
-    parse="""1	Gollum	Gollum	VERB	VB	Mood=Imp|VerbForm=Fin	0	root	_	_
-2	centre	centre	NOUN	NN	Number=Sing	1	dobj	_	_
+    parse="""1	Gollum	Gollum	PROPN	NNP	Number=Sing	2	name	_	_
+2	centre	centre	NOUN	NN	Number=Sing	0	root	_	_
 3	of	of	ADP	IN	_	6	case	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	6	amod	_	_
@@ -11536,20 +11539,20 @@ Gondor late Sunday to be allowed to leave Lorien by elves.
 8	Radagast	Radagast	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	Brown	brown	PROPN	NNP	Number=Sing	11	nsubj	_	_
-11	called	call	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	1	parataxis	_	_
-12	on	on	ADP	IN	_	15	case	_	_
-13	Gondor	Gondor	ADJ	JJ	Degree=Pos	15	amod	_	_
+11	called	call	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	acl:relcl	_	_
+12	on	on	ADP	IN	_	13	case	_	_
+13	Gondor	Gondor	PROPN	NNP	Number=Sing	11	nmod	_	_
 14	late	late	ADJ	JJ	Degree=Pos	15	amod	_	_
-15	Sunday	Sunday	PROPN	NNP	Number=Sing	11	nmod	_	_
+15	Sunday	Sunday	PROPN	NNP	Number=Sing	11	nmod:tmod	_	_
 16	to	to	PART	TO	_	18	mark	_	_
 17	be	be	AUX	VB	VerbForm=Inf	18	auxpass	_	_
-18	allowed	allow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	11	advcl	_	_
+18	allowed	allow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	11	xcomp	_	_
 19	to	to	PART	TO	_	20	mark	_	_
-20	leave	leave	VERB	VB	VerbForm=Inf	18	xcomp	_	_
-21	Lorien	Lorien	PROPN	NNP	Number=Sing	20	dobj	_	_
+20	leave	leave	VERB	VB	VerbForm=Inf	18	advcl	_	_
+21	Lorien	Lorien	VERB	VBN	Tense=Past|VerbForm=Part	20	xcomp	_	_
 22	by	by	ADP	IN	_	23	case	_	_
-23	elves	elves	NOUN	NNS	Number=Plur	20	nmod	_	_
-24	.	.	PUNCT	.	_	1	punct	_	_
+23	elves	elves	NOUN	NNS	Number=Plur	21	nmod	_	_
+24	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -11589,8 +11592,8 @@ def test191():
     text="""Gollum centre of a diplomatic row between Radagast the Brown called immediately for  
 Gondor late Sunday to be allowed to leave Lorien by elves. 
 """
-    parse="""1	Gollum	Gollum	VERB	VB	Mood=Imp|VerbForm=Fin	0	root	_	_
-2	centre	centre	NOUN	NN	Number=Sing	1	dobj	_	_
+    parse="""1	Gollum	Gollum	PROPN	NNP	Number=Sing	2	name	_	_
+2	centre	centre	NOUN	NN	Number=Sing	0	root	_	_
 3	of	of	ADP	IN	_	6	case	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	6	amod	_	_
@@ -11598,22 +11601,22 @@ Gondor late Sunday to be allowed to leave Lorien by elves.
 7	between	between	ADP	IN	_	8	case	_	_
 8	Radagast	Radagast	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
-10	Brown	brown	PROPN	NNP	Number=Sing	6	appos	_	_
-11	called	call	VERB	VBN	Tense=Past|VerbForm=Part	6	acl	_	_
+10	Brown	brown	PROPN	NNP	Number=Sing	11	nsubj	_	_
+11	called	call	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	acl:relcl	_	_
 12	immediately	immediately	ADV	RB	_	11	advmod	_	_
 13	for	for	ADP	IN	_	14	case	_	_
 14	Gondor	Gondor	PROPN	NNP	Number=Sing	11	nmod	_	_
-15	late	late	ADV	RB	Degree=Pos	16	advmod	_	_
+15	late	late	ADJ	JJ	Degree=Pos	16	amod	_	_
 16	Sunday	Sunday	PROPN	NNP	Number=Sing	11	nmod:tmod	_	_
 17	to	to	PART	TO	_	19	mark	_	_
 18	be	be	AUX	VB	VerbForm=Inf	19	auxpass	_	_
-19	allowed	allow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	1	xcomp	_	_
+19	allowed	allow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	11	xcomp	_	_
 20	to	to	PART	TO	_	21	mark	_	_
-21	leave	leave	VERB	VB	VerbForm=Inf	19	xcomp	_	_
-22	Lorien	Lorien	PROPN	NNP	Number=Sing	21	dobj	_	_
+21	leave	leave	VERB	VB	VerbForm=Inf	19	advcl	_	_
+22	Lorien	Lorien	VERB	VBN	Tense=Past|VerbForm=Part	21	xcomp	_	_
 23	by	by	ADP	IN	_	24	case	_	_
-24	elves	elves	NOUN	NNS	Number=Plur	21	nmod	_	_
-25	.	.	PUNCT	.	_	1	punct	_	_
+24	elves	elves	NOUN	NNS	Number=Plur	22	nmod	_	_
+25	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -11766,24 +11769,24 @@ hafling was reported on the pass of Cirith Ungol.
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
-3	celebrated	celebrate	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-4	Eid	Eid	PROPN	NNP	Number=Sing	3	dobj	_	_
+3	celebrated	celebrate	VERB	VBN	Tense=Past|VerbForm=Part	13	nsubjpass	_	_
+4	Eid	Eid	NOUN	NN	Number=Sing	3	dobj	_	_
 5	at	at	ADP	IN	_	6	case	_	_
 6	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	3	nmod	_	_
 7	with	with	ADP	IN	_	8	case	_	_
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
-9	after	after	ADP	IN	_	13	mark	_	_
+9	after	after	ADP	IN	_	11	case	_	_
 10	a	a	DET	DT	Definite=Ind|PronType=Art	11	det	_	_
-11	hafling	hafling	NOUN	NN	Number=Sing	13	nsubjpass	_	_
+11	hafling	hafling	NOUN	NN	Number=Sing	3	nmod	_	_
 12	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	13	auxpass	_	_
-13	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	3	advcl	_	_
+13	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 14	on	on	ADP	IN	_	16	case	_	_
 15	the	the	DET	DT	Definite=Def|PronType=Art	16	det	_	_
 16	pass	pass	NOUN	NN	Number=Sing	13	nmod	_	_
 17	of	of	ADP	IN	_	19	case	_	_
 18	Cirith	Cirith	PROPN	NNP	Number=Sing	19	name	_	_
 19	Ungol	Ungol	PROPN	NNP	Number=Sing	16	nmod	_	_
-20	.	.	PUNCT	.	_	3	punct	_	_
+20	.	.	PUNCT	.	_	13	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -11825,7 +11828,7 @@ def test195():
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
 3	celebrated	celebrate	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-4	Iftar	Iftar	ADV	RB	Degree=Pos	3	advmod	_	_
+4	Iftar	Iftar	PROPN	NNP	Number=Sing	3	dobj	_	_
 5	in	in	ADP	IN	_	6	case	_	_
 6	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	3	nmod	_	_
 7	with	with	ADP	IN	_	9	case	_	_
@@ -11900,11 +11903,11 @@ after a hafling was reported on the pass of Cirith Ungol.
 11	Gondor	Gondor	PROPN	NNP	Number=Sing	9	nmod	_	_
 12	in	in	ADP	IN	_	13	case	_	_
 13	Eriador	Eriador	PROPN	NNP	Number=Sing	3	nmod	_	_
-14	after	after	ADP	IN	_	16	case	_	_
+14	after	after	ADP	IN	_	18	mark	_	_
 15	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 16	hafling	hafling	NOUN	NN	Number=Sing	18	nsubjpass	_	_
 17	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	18	auxpass	_	_
-18	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	3	parataxis	_	_
+18	reported	report	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	3	advcl	_	_
 19	on	on	ADP	IN	_	21	case	_	_
 20	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 21	pass	pass	NOUN	NN	Number=Sing	18	nmod	_	_
@@ -11954,13 +11957,13 @@ hafling was reported on the pass of Cirith Ungol.
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
 3	celebrated	celebrate	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-4	Eid	Eid	PROPN	NNP	Number=Sing	3	dobj	_	_
+4	Eid	Eid	NOUN	NN	Number=Sing	3	dobj	_	_
 5	at	at	ADP	IN	_	8	case	_	_
-6	United	United	PROPN	NNP	Number=Sing	7	compound	_	_
+6	United	United	PROPN	NNP	Number=Sing	8	compound	_	_
 7	Arab	Arab	PROPN	NNP	Number=Sing	8	compound	_	_
-8	Emirates	Emirates	PROPN	NNPS	Number=Plur	3	nmod	_	_
+8	Emirates	Emirates	PROPN	NNP	Number=Sing	4	nmod	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	4	nmod	_	_
 11	after	after	ADP	IN	_	15	mark	_	_
 12	a	a	DET	DT	Definite=Ind|PronType=Art	13	det	_	_
 13	hafling	hafling	NOUN	NN	Number=Sing	15	nsubjpass	_	_
@@ -12018,30 +12021,30 @@ Arnor spokesmen said 54 civilians were killed or injured.
 3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 4	new	new	ADJ	JJ	Degree=Pos	5	amod	_	_
 5	bombing	bombing	NOUN	NN	Number=Sing	2	dobj	_	_
-6	and	and	CONJ	CC	_	2	cc	_	_
-7	shelling	shell	VERB	VBG	VerbForm=Ger	2	conj	_	_
-8	offensive	offensive	NOUN	NN	Number=Sing	7	dobj	_	_
-9	against	against	ADP	IN	_	11	case	_	_
-10	besieged	besieged	VERB	VBN	Tense=Past|VerbForm=Part	11	amod	_	_
-11	Osgiliath	Osgiliath	NOUN	NN	Number=Sing	7	nmod	_	_
+6	and	and	CONJ	CC	_	5	cc	_	_
+7	shelling	shell	NOUN	NN	Number=Sing	8	compound	_	_
+8	offensive	offensive	NOUN	NN	Number=Sing	5	conj	_	_
+9	against	against	ADP	IN	_	10	case	_	_
+10	besieged	besieged	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	nmod	_	_
+11	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	dobj	_	_
 12	during	during	ADP	IN	_	14	case	_	_
 13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
-14	night	night	NOUN	NN	Number=Sing	7	nmod	_	_
-15	following	follow	VERB	VBG	VerbForm=Ger	17	amod	_	_
+14	night	night	NOUN	NN	Number=Sing	10	nmod	_	_
+15	following	follow	VERB	VBG	VerbForm=Ger	17	case	_	_
 16	daylight	daylight	NOUN	NN	Number=Sing	17	compound	_	_
-17	raids	raid	NOUN	NNS	Number=Plur	14	appos	_	_
-18	in	in	ADP	IN	_	19	case	_	_
-19	which	which	DET	WDT	PronType=Rel	22	nmod	_	_
-20	Arnor	Arnor	PROPN	NNP	Number=Sing	21	compound	_	_
-21	spokesmen	spokesman	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	acl:relcl	_	_
+17	raids	raid	NOUN	NNS	Number=Plur	14	nmod	_	_
+18	in	in	ADP	IN	_	21	case	_	_
+19	which	which	DET	WDT	PronType=Int	21	det	_	_
+20	Arnor	Arnor	PROPN	NNP	Number=Sing	21	name	_	_
+21	spokesmen	spokesman	NOUN	NN	Number=Sing	17	nmod	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	root	_	_
 23	54	54	NUM	CD	NumType=Card	24	nummod	_	_
 24	civilians	civilian	NOUN	NNS	Number=Plur	26	nsubjpass	_	_
 25	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	auxpass	_	_
 26	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	22	ccomp	_	_
 27	or	or	CONJ	CC	_	26	cc	_	_
 28	injured	injure	VERB	VBN	Tense=Past|VerbForm=Part	26	conj	_	_
-29	.	.	PUNCT	.	_	2	punct	_	_
+29	.	.	PUNCT	.	_	22	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12377,7 +12380,7 @@ of diplomatic ties with Gondor.
 5	courier	courier	NOUN	NN	Number=Sing	6	compound	_	_
 6	money	money	NOUN	NN	Number=Sing	3	nmod	_	_
 7	from	from	ADP	IN	_	8	case	_	_
-8	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	3	nmod	_	_
+8	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	,	,	PUNCT	,	_	3	punct	_	_
 10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
 11	state	state	NOUN	NN	Number=Sing	14	nmod:poss	_	_
@@ -12444,19 +12447,19 @@ of diplomatic ties with Gondor.
     parse="""1	Eriador	Eriador	PROPN	NNP	Number=Sing	3	nsubjpass	_	_
 2	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	auxpass	_	_
 3	opposed	oppose	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-4	earlier	earlier	ADV	RBR	Degree=Cmp	6	advmod	_	_
+4	earlier	earlier	ADV	RBR	Degree=Cmp	3	advmod	_	_
 5	by	by	ADP	IN	_	6	case	_	_
-6	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	3	nmod	_	_
-7	,	,	PUNCT	,	_	6	punct	_	_
+6	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	4	nmod	_	_
+7	,	,	PUNCT	,	_	3	punct	_	_
 8	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
 9	state	state	NOUN	NN	Number=Sing	12	nmod:poss	_	_
 10	's	's	PART	POS	_	9	case	_	_
 11	fiercest	fiercest	NOUN	NN	Number=Sing	12	compound	_	_
-12	foe	foe	NOUN	NN	Number=Sing	6	list	_	_
-13	,	,	PUNCT	,	_	6	punct	_	_
+12	foe	foe	NOUN	NN	Number=Sing	3	dobj	_	_
+13	,	,	PUNCT	,	_	12	punct	_	_
 14	in	in	SCONJ	IN	_	16	mark	_	_
 15	being	be	AUX	VBG	VerbForm=Ger	16	auxpass	_	_
-16	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	6	acl	_	_
+16	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	12	acl	_	_
 17	into	into	ADP	IN	_	20	case	_	_
 18	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
 19	peace	peace	NOUN	NN	Number=Sing	20	compound	_	_
@@ -12510,10 +12513,10 @@ def test206():
 Osgiliath is being drawn into the peace process by its resumption 
 of diplomatic ties with Gondor. 
 """
-    parse="""1	Rebuked	Rebuk	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+    parse="""1	Rebuked	Rebuk	VERB	VBN	Tense=Past|VerbForm=Part	14	advcl	_	_
 2	by	by	ADP	IN	_	3	case	_	_
 3	Eriador	Eriador	PROPN	NNP	Number=Sing	1	nmod	_	_
-4	,	,	PUNCT	,	_	1	punct	_	_
+4	,	,	PUNCT	,	_	14	punct	_	_
 5	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
 6	state	state	NOUN	NN	Number=Sing	9	nmod:poss	_	_
 7	's	's	PART	POS	_	6	case	_	_
@@ -12523,7 +12526,7 @@ of diplomatic ties with Gondor.
 11	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	9	appos	_	_
 12	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	14	aux	_	_
 13	being	be	AUX	VBG	VerbForm=Ger	14	auxpass	_	_
-14	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	1	parataxis	_	_
+14	drawn	draw	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 15	into	into	ADP	IN	_	18	case	_	_
 16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
 17	peace	peace	NOUN	NN	Number=Sing	18	compound	_	_
@@ -12536,7 +12539,7 @@ of diplomatic ties with Gondor.
 24	ties	tie	NOUN	NNS	Number=Plur	21	nmod	_	_
 25	with	with	ADP	IN	_	26	case	_	_
 26	Gondor	Gondor	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	1	punct	_	_
+27	.	.	PUNCT	.	_	14	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12577,36 +12580,36 @@ def test207():
 five years after crowds burned down its embassy,  a very senior 
 Bree official said on Saturday night. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
-11	,	,	PUNCT	,	_	5	punct	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
+11	,	,	PUNCT	,	_	3	punct	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
 13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	16	nmod	_	_
-16	burned	burn	VERB	VBN	Tense=Past|VerbForm=Part	5	conj	_	_
-17	down	down	ADP	RP	_	19	case	_	_
+15	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
+16	burned	burn	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
+17	down	down	ADP	RP	_	16	compound:prt	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
-19	embassy	embassy	NOUN	NN	Number=Sing	16	nmod	_	_
-20	,	,	PUNCT	,	_	5	punct	_	_
+19	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
+20	,	,	PUNCT	,	_	15	punct	_	_
 21	a	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 22	very	very	ADV	RB	_	23	advmod	_	_
 23	senior	senior	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	Bree	Bree	PROPN	NNP	Number=Sing	25	compound	_	_
 25	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	acl:relcl	_	_
 27	on	on	ADP	IN	_	29	case	_	_
 28	Saturday	Saturday	PROPN	NNP	Number=Sing	29	compound	_	_
 29	night	night	NOUN	NN	Number=Sing	26	nmod	_	_
-30	.	.	PUNCT	.	_	5	punct	_	_
+30	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12647,35 +12650,35 @@ def test208():
 five years after Calenardhon crowds burned down its embassy,  a senior 
 Bree official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
 13	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	16	compound	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
-17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
+17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
 18	down	down	ADP	RP	_	17	compound:prt	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
 21	,	,	PUNCT	,	_	17	punct	_	_
 22	a	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 23	senior	senior	ADJ	JJ	Degree=Pos	25	amod	_	_
-24	Bree	Bree	NOUN	NN	Number=Sing	25	compound	_	_
-25	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
+24	Bree	Bree	PROPN	NNP	Number=Sing	25	compound	_	_
+25	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	cop	_	_
 27	on	on	ADP	IN	_	28	case	_	_
-28	Saturday	Saturday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+28	Saturday	Saturday	PROPN	NNP	Number=Sing	17	conj	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12716,33 +12719,33 @@ def test209():
 five years after crowds burned down its embassy,  a senior 
 official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
-11	,	,	PUNCT	,	_	5	punct	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
+11	,	,	PUNCT	,	_	3	punct	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
 13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
-16	burned	burn	VERB	VBN	Tense=Past|VerbForm=Part	15	advcl	_	_
+15	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
+16	burned	burn	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	down	down	ADP	RP	_	16	compound:prt	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 19	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
 20	,	,	PUNCT	,	_	16	punct	_	_
 21	a	a	DET	DT	Definite=Ind|PronType=Art	23	det	_	_
 22	senior	senior	ADJ	JJ	Degree=Pos	23	amod	_	_
-23	official	official	NOUN	NN	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	parataxis	_	_
+23	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	cop	_	_
 25	on	on	ADP	IN	_	26	case	_	_
-26	Saturday	Saturday	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	5	punct	_	_
+26	Saturday	Saturday	PROPN	NNP	Number=Sing	16	conj	_	_
+27	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12783,37 +12786,37 @@ def test210():
 five years after Cxlenardhon crowds burned down its embassy,  a senior 
 Bree official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	complete	complete	ADJ	JJ	Degree=Pos	10	amod	_	_
 7	,	,	PUNCT	,	_	6	punct	_	_
 8	full	full	ADJ	JJ	Degree=Pos	10	amod	_	_
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Gondor	Gondor	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	five	five	NUM	CD	NumType=Card	15	nummod	_	_
-15	years	year	NOUN	NNS	Number=Plur	19	nsubj	_	_
+15	years	year	NOUN	NNS	Number=Plur	18	nmod:npmod	_	_
 16	after	after	ADP	IN	_	18	case	_	_
 17	Cxlenardhon	Cxlenardhon	PROPN	NNP	Number=Sing	18	compound	_	_
-18	crowds	crowd	NOUN	NNS	Number=Plur	15	nmod	_	_
-19	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	advcl	_	_
+18	crowds	crowd	NOUN	NNS	Number=Plur	12	nmod	_	_
+19	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
 20	down	down	ADP	RP	_	19	compound:prt	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	19	dobj	_	_
-23	,	,	PUNCT	,	_	22	punct	_	_
+23	,	,	PUNCT	,	_	19	punct	_	_
 24	a	a	DET	DT	Definite=Ind|PronType=Art	27	det	_	_
 25	senior	senior	ADJ	JJ	Degree=Pos	27	amod	_	_
-26	Bree	Bree	NOUN	NN	Number=Sing	27	compound	_	_
-27	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	appos	_	_
+26	Bree	Bree	PROPN	NNP	Number=Sing	27	compound	_	_
+27	official	official	NOUN	NN	Number=Sing	30	nsubj	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	30	cop	_	_
 29	on	on	ADP	IN	_	30	case	_	_
-30	Saturday	Saturday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	5	punct	_	_
+30	Saturday	Saturday	PROPN	NNP	Number=Sing	19	conj	_	_
+31	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12854,35 +12857,35 @@ def test211():
 five years after Calenardhon crowds burned down its embassy,  a senior 
 official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	,	,	PUNCT	,	_	10	punct	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
 14	years	year	NOUN	NNS	Number=Plur	17	nmod:npmod	_	_
 15	after	after	ADP	IN	_	17	case	_	_
 16	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	17	compound	_	_
-17	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
-19	down	down	ADP	RP	_	18	compound:prt	_	_
+17	crowds	crowd	NOUN	NNS	Number=Plur	18	nmod	_	_
+18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	conj	_	_
+19	down	down	ADP	RP	_	21	case	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
-21	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
-22	,	,	PUNCT	,	_	18	punct	_	_
+21	embassy	embassy	NOUN	NN	Number=Sing	18	nmod	_	_
+22	,	,	PUNCT	,	_	10	punct	_	_
 23	a	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 24	senior	senior	ADJ	JJ	Degree=Pos	25	amod	_	_
 25	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	parataxis	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	conj	_	_
 27	on	on	ADP	IN	_	28	case	_	_
 28	Saturday	Saturday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12922,35 +12925,35 @@ def test212():
     text="""Arnor is about to restore full diplomatic ties with Gondor almost five years after 
 Calenardhon crowds burned down its embassy,  a clearly inebriated Bree official said today. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	17	nsubj	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	16	compound	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	13	nmod	_	_
-17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	parataxis	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
+17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	acl	_	_
 18	down	down	ADP	RP	_	17	compound:prt	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-21	,	,	PUNCT	,	_	17	punct	_	_
+21	,	,	PUNCT	,	_	3	punct	_	_
 22	a	a	DET	DT	Definite=Ind|PronType=Art	26	det	_	_
 23	clearly	clearly	ADV	RB	_	24	advmod	_	_
 24	inebriated	inebriate	VERB	VBN	Tense=Past|VerbForm=Part	26	amod	_	_
 25	Bree	Bree	PROPN	NNP	Number=Sing	26	compound	_	_
 26	official	official	NOUN	NN	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 28	today	today	NOUN	NN	Number=Sing	27	nmod:tmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -12991,14 +12994,14 @@ def test213():
 five years after Calenardhon crowds burned down its embassy,  a senior 
 Bree official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
-6	,	,	PUNCT	,	_	5	punct	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	ccomp	_	_
+6	,	,	PUNCT	,	_	3	punct	_	_
 7	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
-8	seems	seem	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	parataxis	_	_
+8	seems	seem	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	parataxis	_	_
 9	,	,	PUNCT	,	_	8	punct	_	_
 10	complete	complete	ADJ	JJ	Degree=Pos	8	conj	_	_
 11	,	,	PUNCT	,	_	8	punct	_	_
@@ -13020,12 +13023,12 @@ Bree official said on Saturday.
 27	,	,	PUNCT	,	_	8	punct	_	_
 28	a	a	DET	DT	Definite=Ind|PronType=Art	31	det	_	_
 29	senior	senior	ADJ	JJ	Degree=Pos	31	amod	_	_
-30	Bree	Bree	NOUN	NN	Number=Sing	31	compound	_	_
-31	official	official	NOUN	NN	Number=Sing	32	nsubj	_	_
-32	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	conj	_	_
+30	Bree	Bree	PROPN	NNP	Number=Sing	31	compound	_	_
+31	official	official	NOUN	NN	Number=Sing	34	nsubj	_	_
+32	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	34	cop	_	_
 33	on	on	ADP	IN	_	34	case	_	_
-34	Saturday	Saturday	PROPN	NNP	Number=Sing	32	nmod	_	_
-35	.	.	PUNCT	.	_	5	punct	_	_
+34	Saturday	Saturday	PROPN	NNP	Number=Sing	8	conj	_	_
+35	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13066,37 +13069,37 @@ def test214():
 five years after Calenardhon crowds burned down its embassy,  a senior 
 Bree official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	complete	complete	ADJ	JJ	Degree=Pos	10	amod	_	_
 7	,	,	PUNCT	,	_	6	punct	_	_
 8	full	full	ADJ	JJ	Degree=Pos	10	amod	_	_
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Gondor	Gondor	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	five	five	NUM	CD	NumType=Card	15	nummod	_	_
-15	years	year	NOUN	NNS	Number=Plur	19	nsubj	_	_
+15	years	year	NOUN	NNS	Number=Plur	18	nmod:npmod	_	_
 16	after	after	ADP	IN	_	18	case	_	_
 17	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	18	compound	_	_
-18	crowds	crowd	NOUN	NNS	Number=Plur	15	nmod	_	_
-19	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	advcl	_	_
+18	crowds	crowd	NOUN	NNS	Number=Plur	12	nmod	_	_
+19	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
 20	down	down	ADP	RP	_	19	compound:prt	_	_
 21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
 22	embassy	embassy	NOUN	NN	Number=Sing	19	dobj	_	_
-23	,	,	PUNCT	,	_	22	punct	_	_
+23	,	,	PUNCT	,	_	19	punct	_	_
 24	a	a	DET	DT	Definite=Ind|PronType=Art	27	det	_	_
 25	senior	senior	ADJ	JJ	Degree=Pos	27	amod	_	_
-26	Bree	Bree	NOUN	NN	Number=Sing	27	compound	_	_
-27	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	appos	_	_
+26	Bree	Bree	PROPN	NNP	Number=Sing	27	compound	_	_
+27	official	official	NOUN	NN	Number=Sing	30	nsubj	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	30	cop	_	_
 29	on	on	ADP	IN	_	30	case	_	_
-30	Saturday	Saturday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	5	punct	_	_
+30	Saturday	Saturday	PROPN	NNP	Number=Sing	19	conj	_	_
+31	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13149,11 +13152,11 @@ official said on Saturday.
 10	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	11	nsubj	_	_
 11	seems	seem	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	parataxis	_	_
 12	,	,	PUNCT	,	_	11	punct	_	_
-13	complete	complete	ADJ	JJ	Degree=Pos	11	conj	_	_
-14	,	,	PUNCT	,	_	11	punct	_	_
+13	complete	complete	ADJ	JJ	Degree=Pos	17	amod	_	_
+14	,	,	PUNCT	,	_	13	punct	_	_
 15	full	full	ADJ	JJ	Degree=Pos	17	amod	_	_
 16	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	17	amod	_	_
-17	ties	tie	NOUN	NNS	Number=Plur	26	nsubj	_	_
+17	ties	tie	NOUN	NNS	Number=Plur	11	dobj	_	_
 18	with	with	ADP	IN	_	19	case	_	_
 19	Gondor	Gondor	PROPN	NNP	Number=Sing	17	nmod	_	_
 20	almost	almost	ADV	RB	_	21	advmod	_	_
@@ -13161,17 +13164,17 @@ official said on Saturday.
 22	years	year	NOUN	NNS	Number=Plur	25	nmod:npmod	_	_
 23	after	after	ADP	IN	_	25	case	_	_
 24	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	25	compound	_	_
-25	crowds	crowd	NOUN	NNS	Number=Plur	17	nmod	_	_
+25	crowds	crowd	NOUN	NNS	Number=Plur	26	nmod	_	_
 26	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	conj	_	_
 27	down	down	ADP	RP	_	26	compound:prt	_	_
 28	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	29	nmod:poss	_	_
 29	embassy	embassy	NOUN	NN	Number=Sing	26	dobj	_	_
-30	,	,	PUNCT	,	_	11	punct	_	_
+30	,	,	PUNCT	,	_	29	punct	_	_
 31	a	a	DET	DT	Definite=Ind|PronType=Art	34	det	_	_
 32	senior	senior	ADJ	JJ	Degree=Pos	34	amod	_	_
-33	Bree	Bree	NOUN	NN	Number=Sing	34	compound	_	_
+33	Bree	Bree	PROPN	NNP	Number=Sing	34	compound	_	_
 34	official	official	NOUN	NN	Number=Sing	35	nsubj	_	_
-35	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	conj	_	_
+35	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	29	acl:relcl	_	_
 36	on	on	ADP	IN	_	37	case	_	_
 37	Saturday	Saturday	PROPN	NNP	Number=Sing	35	nmod	_	_
 38	.	.	PUNCT	.	_	3	punct	_	_
@@ -13215,35 +13218,35 @@ def test216():
 five years after Calenardhon crowds burned down its embassy,  a senior 
 official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	,	,	PUNCT	,	_	10	punct	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
 14	years	year	NOUN	NNS	Number=Plur	17	nmod:npmod	_	_
 15	after	after	ADP	IN	_	17	case	_	_
 16	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	17	compound	_	_
-17	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
-19	down	down	ADP	RP	_	18	compound:prt	_	_
+17	crowds	crowd	NOUN	NNS	Number=Plur	18	nmod	_	_
+18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	conj	_	_
+19	down	down	ADP	RP	_	21	case	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
-21	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
-22	,	,	PUNCT	,	_	18	punct	_	_
+21	embassy	embassy	NOUN	NN	Number=Sing	18	nmod	_	_
+22	,	,	PUNCT	,	_	10	punct	_	_
 23	a	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 24	senior	senior	ADJ	JJ	Degree=Pos	25	amod	_	_
 25	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	parataxis	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	conj	_	_
 27	on	on	ADP	IN	_	28	case	_	_
 28	Saturday	Saturday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13284,16 +13287,16 @@ def test217():
 five years after Calenardhon crowds burned down its embassy,  a 
 clearly inebriated Bree official said today.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	improve	improve	VERB	VB	VerbForm=Inf	0	root	_	_
+5	improve	improve	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	,	,	PUNCT	,	_	10	punct	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
@@ -13301,7 +13304,7 @@ clearly inebriated Bree official said today.
 15	after	after	ADP	IN	_	17	case	_	_
 16	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	17	compound	_	_
 17	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
+18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	root	_	_
 19	down	down	ADP	RP	_	18	compound:prt	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
 21	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
@@ -13311,9 +13314,9 @@ clearly inebriated Bree official said today.
 25	inebriated	inebriate	VERB	VBN	Tense=Past|VerbForm=Part	27	amod	_	_
 26	Bree	Bree	PROPN	NNP	Number=Sing	27	compound	_	_
 27	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	parataxis	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	conj	_	_
 29	today	today	NOUN	NN	Number=Sing	28	nmod:tmod	_	_
-30	.	.	PUNCT	.	_	5	punct	_	_
+30	.	.	PUNCT	.	_	18	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13354,35 +13357,35 @@ def test218():
 five years after Calenardhon crowds burned down its embassy,  a 
 senior Bree official said today. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	improve	improve	VERB	VB	VerbForm=Inf	0	root	_	_
+5	improve	improve	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	,	,	PUNCT	,	_	10	punct	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
 14	years	year	NOUN	NNS	Number=Plur	17	nmod:npmod	_	_
 15	after	after	ADP	IN	_	17	case	_	_
 16	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	17	compound	_	_
-17	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
-18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
-19	down	down	ADP	RP	_	18	compound:prt	_	_
+17	crowds	crowd	NOUN	NNS	Number=Plur	18	nmod	_	_
+18	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	conj	_	_
+19	down	down	ADP	RP	_	21	case	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
-21	embassy	embassy	NOUN	NN	Number=Sing	18	dobj	_	_
-22	,	,	PUNCT	,	_	18	punct	_	_
+21	embassy	embassy	NOUN	NN	Number=Sing	18	nmod	_	_
+22	,	,	PUNCT	,	_	10	punct	_	_
 23	a	a	DET	DT	Definite=Ind|PronType=Art	26	det	_	_
 24	senior	senior	ADJ	JJ	Degree=Pos	26	amod	_	_
-25	Bree	Bree	NOUN	NN	Number=Sing	26	compound	_	_
+25	Bree	Bree	PROPN	NNP	Number=Sing	26	compound	_	_
 26	official	official	NOUN	NN	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	parataxis	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	parataxis	_	_
 28	today	today	NOUN	NN	Number=Sing	27	nmod:tmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13433,9 +13436,9 @@ for 1990 with Dagolath, its biggest trading partner, officials said.
 9	trade	trade	NOUN	NN	Number=Sing	10	compound	_	_
 10	protocol	protocol	NOUN	NN	Number=Sing	4	dobj	_	_
 11	for	for	ADP	IN	_	12	case	_	_
-12	1990	1990	NUM	CD	NumType=Card	4	nmod	_	_
+12	1990	1990	NUM	CD	NumType=Card	10	nmod	_	_
 13	with	with	ADP	IN	_	14	case	_	_
-14	Dagolath	Dagolath	PROPN	NNP	Number=Sing	4	nmod	_	_
+14	Dagolath	Dagolath	PROPN	NNP	Number=Sing	12	nmod	_	_
 15	,	,	PUNCT	,	_	14	punct	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 17	biggest	biggest	ADJ	JJS	Degree=Sup	19	amod	_	_
@@ -13443,7 +13446,7 @@ for 1990 with Dagolath, its biggest trading partner, officials said.
 19	partner	partner	NOUN	NN	Number=Sing	14	appos	_	_
 20	,	,	PUNCT	,	_	4	punct	_	_
 21	officials	official	NOUN	NNS	Number=Plur	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	ccomp	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -13485,23 +13488,23 @@ def test220():
 years after Calenardhon crowds burned down its embassy,  a senior 
 official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	8	nmod	_	_
-11	,	,	PUNCT	,	_	10	punct	_	_
+10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	5	nmod	_	_
+11	,	,	PUNCT	,	_	3	punct	_	_
 12	several	several	ADJ	JJ	Degree=Pos	13	amod	_	_
-13	years	year	NOUN	NNS	Number=Plur	10	appos	_	_
+13	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	16	compound	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	13	nmod	_	_
-17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	advcl	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	17	nsubj	_	_
+17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 18	down	down	ADP	RP	_	17	compound:prt	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
@@ -13509,10 +13512,10 @@ official said on Saturday.
 22	a	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
 23	senior	senior	ADJ	JJ	Degree=Pos	24	amod	_	_
 24	official	official	NOUN	NN	Number=Sing	25	nsubj	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	conj	_	_
 26	on	on	ADP	IN	_	27	case	_	_
 27	Saturday	Saturday	PROPN	NNP	Number=Sing	25	nmod	_	_
-28	.	.	PUNCT	.	_	5	punct	_	_
+28	.	.	PUNCT	.	_	17	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13553,35 +13556,35 @@ def test221():
 five years after Cxlenardhon crowds burned down its embassy,  a senior 
 Bree official said on Saturday. 
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gxndor	Gxndor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
 13	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	Cxlenardhon	Cxlenardhon	PROPN	NNP	Number=Sing	16	compound	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
-17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
+17	burned	burn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
 18	down	down	ADP	RP	_	17	compound:prt	_	_
 19	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
 20	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
 21	,	,	PUNCT	,	_	17	punct	_	_
 22	a	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 23	senior	senior	ADJ	JJ	Degree=Pos	25	amod	_	_
-24	Bree	Bree	NOUN	NN	Number=Sing	25	compound	_	_
-25	official	official	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	parataxis	_	_
+24	Bree	Bree	PROPN	NNP	Number=Sing	25	compound	_	_
+25	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	cop	_	_
 27	on	on	ADP	IN	_	28	case	_	_
-28	Saturday	Saturday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	5	punct	_	_
+28	Saturday	Saturday	PROPN	NNP	Number=Sing	17	conj	_	_
+29	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13632,17 +13635,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -13697,17 +13700,17 @@ said on Saturday.
 9	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	15	punct	_	_
+18	,	,	PUNCT	,	_	3	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	advcl	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -13761,17 +13764,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -13825,17 +13828,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -13889,17 +13892,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -13953,17 +13956,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -14014,20 +14017,20 @@ said on Saturday.
 5	symbolic	symbolic	ADJ	JJ	Degree=Pos	6	amod	_	_
 6	ties	tie	NOUN	NNS	Number=Plur	3	dobj	_	_
 7	with	with	ADP	IN	_	8	case	_	_
-8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
+8	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	14	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	advcl	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -14067,7 +14070,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test229():
-    text="""Arnor will contribute a million rupees to Gondor almost 
+    text="""Arnor will contribute a million rupees to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14077,13 +14080,13 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	rupees	rupee	NOUN	NNS	Number=Plur	3	dobj	_	_
-7	to	to	PART	TO	_	8	mark	_	_
-8	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+7	to	to	ADP	IN	_	8	case	_	_
+8	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	8	dobj	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -14106,14 +14109,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],144)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test230']['sents']['0']:
             print(return_dict['test230']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test230']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],144)",str(return_dict['test230']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test230']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],144)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test230 Failed")
     except:
         print("test230 Failed")
@@ -14131,7 +14134,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test230():
-    text="""Arnor will contribute a million dollars to Gondor almost 
+    text="""Arnor will contribute a million dollars to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14141,13 +14144,13 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	dollars	dollar	NOUN	NNS	Number=Plur	3	dobj	_	_
-7	to	to	PART	TO	_	8	mark	_	_
-8	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+7	to	to	ADP	IN	_	8	case	_	_
+8	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	8	dobj	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -14170,14 +14173,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test231']['sents']['0']:
             print(return_dict['test231']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test231']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test231']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test231']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test231 Failed")
     except:
         print("test231 Failed")
@@ -14195,7 +14198,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test231():
-    text="""Arnor will contribute a million euros to Gondor almost 
+    text="""Arnor will contribute a million euros to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14205,13 +14208,13 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	euros	euro	NOUN	NNS	Number=Plur	3	dobj	_	_
-7	to	to	PART	TO	_	8	mark	_	_
-8	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+7	to	to	ADP	IN	_	8	case	_	_
+8	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	8	dobj	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -14234,14 +14237,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test232']['sents']['0']:
             print(return_dict['test232']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test232']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test232']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test232']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test232 Failed")
     except:
         print("test232 Failed")
@@ -14259,7 +14262,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test232():
-    text="""Arnor will contribute a million kroner to Gondor almost 
+    text="""Arnor will contribute a million kroner to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14269,13 +14272,13 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	kroner	kroner	NOUN	NN	Number=Sing	3	dobj	_	_
-7	to	to	PART	TO	_	8	mark	_	_
-8	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+7	to	to	ADP	IN	_	8	case	_	_
+8	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	8	dobj	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
@@ -14298,14 +14301,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test233']['sents']['0']:
             print(return_dict['test233']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test233']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test233']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test233']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test233 Failed")
     except:
         print("test233 Failed")
@@ -14323,7 +14326,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test233():
-    text="""Arnor will contribute a million swiss francs to Gondor almost 
+    text="""Arnor will contribute a million swiss francs to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14331,16 +14334,16 @@ said on Saturday.
 2	will	will	AUX	MD	VerbForm=Fin	3	aux	_	_
 3	contribute	contribute	VERB	VB	VerbForm=Inf	0	root	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
-5	million	million	NUM	CD	NumType=Card	7	nummod	_	_
+5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	swiss	swiss	NOUN	NN	Number=Sing	7	compound	_	_
 7	francs	franc	NOUN	NNS	Number=Plur	3	dobj	_	_
-8	to	to	PART	TO	_	9	mark	_	_
-9	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	9	dobj	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
@@ -14363,14 +14366,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test234']['sents']['0']:
             print(return_dict['test234']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test234']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test234']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test234']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test234 Failed")
     except:
         print("test234 Failed")
@@ -14388,7 +14391,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test234():
-    text="""Arnor will contribute a million golden goblin galleons to Gondor almost 
+    text="""Arnor will contribute a million golden goblin galleons to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14400,13 +14403,13 @@ said on Saturday.
 6	golden	golden	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	goblin	goblin	NOUN	NN	Number=Sing	8	compound	_	_
 8	galleons	galleon	NOUN	NNS	Number=Plur	3	dobj	_	_
-9	to	to	PART	TO	_	10	mark	_	_
-10	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+9	to	to	ADP	IN	_	10	case	_	_
+10	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	10	dobj	_	_
+13	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
+15	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
@@ -14429,14 +14432,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test235']['sents']['0']:
             print(return_dict['test235']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test235']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test235']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test235']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test235 Failed")
     except:
         print("test235 Failed")
@@ -14454,7 +14457,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test235():
-    text="""Arnor will contribute a million goblin galleons to Gondor almost 
+    text="""Arnor will contribute a million goblin galleons to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -14462,16 +14465,16 @@ said on Saturday.
 2	will	will	AUX	MD	VerbForm=Fin	3	aux	_	_
 3	contribute	contribute	VERB	VB	VerbForm=Inf	0	root	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
-5	million	million	NUM	CD	NumType=Card	7	nummod	_	_
+5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	goblin	goblin	NOUN	NN	Number=Sing	7	compound	_	_
 7	galleons	galleon	NOUN	NNS	Number=Plur	3	dobj	_	_
-8	to	to	PART	TO	_	9	mark	_	_
-9	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	9	dobj	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
@@ -14494,14 +14497,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test236']['sents']['0']:
             print(return_dict['test236']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test236']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test236']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test236']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test236 Failed")
     except:
         print("test236 Failed")
@@ -14519,24 +14522,24 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test236():
-    text="""Arnor will contribute a million golden galleons to Gondor almost 
+    text="""Arnor will contribute a million golden galleons to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	will	will	AUX	MD	VerbForm=Fin	3	aux	_	_
 3	contribute	contribute	VERB	VB	VerbForm=Inf	0	root	_	_
-4	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	million	million	NUM	CD	NumType=Card	7	nummod	_	_
 6	golden	golden	ADJ	JJ	Degree=Pos	7	amod	_	_
 7	galleons	galleon	NOUN	NNS	Number=Plur	3	dobj	_	_
-8	to	to	PART	TO	_	9	mark	_	_
-9	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	9	dobj	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
@@ -14559,14 +14562,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test237']['sents']['0']:
             print(return_dict['test237']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test237']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test237']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test237']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test237 Failed")
     except:
         print("test237 Failed")
@@ -14587,7 +14590,7 @@ def test237():
     text="""Bree Prime Minister Romendacil clashed over the efforts of Eriadori to deal 
 with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	5	nsubj	_	_
@@ -14598,7 +14601,7 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
 9	of	of	ADP	IN	_	10	case	_	_
 10	Eriadori	Eriadori	PROPN	NNP	Number=Sing	8	nmod	_	_
 11	to	to	PART	TO	_	12	mark	_	_
-12	deal	deal	VERB	VB	VerbForm=Inf	5	advcl	_	_
+12	deal	deal	VERB	VB	VerbForm=Inf	5	xcomp	_	_
 13	with	with	ADP	IN	_	16	case	_	_
 14	an	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	orc	orc	ADJ	JJ	Degree=Pos	16	amod	_	_
@@ -14625,14 +14628,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],111)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test238']['sents']['0']:
             print(return_dict['test238']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test238']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],111)",str(return_dict['test238']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test238']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],111)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
             print("test238 Failed")
     except:
         print("test238 Failed")
@@ -14693,14 +14696,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test239']['sents']['0']:
             print(return_dict['test239']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test239']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test239']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test239']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test239 Failed")
     except:
         print("test239 Failed")
@@ -14734,7 +14737,7 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
 11	of	of	ADP	IN	_	12	case	_	_
 12	Eriadori	Eriadori	PROPN	NNP	Number=Sing	10	nmod	_	_
 13	to	to	PART	TO	_	14	mark	_	_
-14	deal	deal	VERB	VB	VerbForm=Inf	7	advcl	_	_
+14	deal	deal	VERB	VB	VerbForm=Inf	7	xcomp	_	_
 15	with	with	ADP	IN	_	18	case	_	_
 16	an	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
 17	orc	orc	ADJ	JJ	Degree=Pos	18	amod	_	_
@@ -14743,10 +14746,10 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
 20	a	a	DET	DT	Definite=Ind|PronType=Art	23	det	_	_
 21	brief	brief	ADJ	JJ	Degree=Pos	23	amod	_	_
 22	private	private	ADJ	JJ	Degree=Pos	23	amod	_	_
-23	visit	visit	NOUN	NN	Number=Sing	14	nmod	_	_
+23	visit	visit	NOUN	NN	Number=Sing	18	nmod	_	_
 24	to	to	ADP	IN	_	25	case	_	_
 25	Eriador	Eriador	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	starting	start	VERB	VBG	VerbForm=Ger	23	acl	_	_
+26	starting	start	VERB	VBG	VerbForm=Ger	14	advcl	_	_
 27	on	on	ADP	IN	_	28	case	_	_
 28	Sunday	Sunday	PROPN	NNP	Number=Sing	26	nmod	_	_
 29	.	.	PUNCT	.	_	7	punct	_	_
@@ -14761,14 +14764,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test240']['sents']['0']:
             print(return_dict['test240']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test240']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test240']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test240']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test240 Failed")
     except:
         print("test240 Failed")
@@ -14803,7 +14806,7 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
 12	of	of	ADP	IN	_	13	case	_	_
 13	Eriadori	Eriadori	PROPN	NNP	Number=Sing	11	nmod	_	_
 14	to	to	PART	TO	_	15	mark	_	_
-15	deal	deal	VERB	VB	VerbForm=Inf	8	advcl	_	_
+15	deal	deal	VERB	VB	VerbForm=Inf	8	xcomp	_	_
 16	with	with	ADP	IN	_	19	case	_	_
 17	an	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	orc	orc	ADJ	JJ	Degree=Pos	19	amod	_	_
@@ -14830,14 +14833,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test241']['sents']['0']:
             print(return_dict['test241']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test241']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test241']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test241']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test241 Failed")
     except:
         print("test241 Failed")
@@ -14858,7 +14861,7 @@ def test241():
     text="""Bree Prime Minister Romendacil can't ever clash over the efforts of Eriadori to deal 
 with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	8	nsubj	_	_
@@ -14899,14 +14902,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test242']['sents']['0']:
             print(return_dict['test242']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test242']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test242']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test242']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test242 Failed")
     except:
         print("test242 Failed")
@@ -14927,7 +14930,7 @@ def test242():
     text="""Bree Prime Minister Romendacil unexpectedly won't clash over the efforts of Eriadori to deal 
 with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	8	nsubj	_	_
@@ -14968,14 +14971,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test243']['sents']['0']:
             print(return_dict['test243']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test243']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test243']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test243']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test243 Failed")
     except:
         print("test243 Failed")
@@ -14996,12 +14999,12 @@ def test243():
     text="""Bree Prime Minister Romendacil most certainly really did not clash over the efforts of Eriadori  
 to deal with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	10	nsubj	_	_
 5	most	most	ADV	RBS	_	6	advmod	_	_
-6	certainly	certainly	ADV	RB	_	7	advmod	_	_
+6	certainly	certainly	ADV	RB	_	10	advmod	_	_
 7	really	really	ADV	RB	_	10	advmod	_	_
 8	did	do	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	aux	_	_
 9	not	not	PART	RB	_	10	neg	_	_
@@ -15039,14 +15042,14 @@ to deal with an orc infestation during a brief private visit to Eriador starting
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test244']['sents']['0']:
             print(return_dict['test244']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test244']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test244']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test244']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test244 Failed")
     except:
         print("test244 Failed")
@@ -15107,14 +15110,14 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test245']['sents']['0']:
             print(return_dict['test245']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test245']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test245']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test245']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test245 Failed")
     except:
         print("test245 Failed")
@@ -15132,7 +15135,7 @@ with an orc infestation during a brief private visit to Eriador starting on Sund
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test245():
-    text="""Arnor will contribute a million yum yennyen to Gondor almost 
+    text="""Arnor will contribute a million yum yennyen to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -15143,21 +15146,21 @@ said on Saturday.
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
 6	yum	yum	NOUN	NN	Number=Sing	3	dobj	_	_
 7	yennyen	yennyen	ADV	RB	_	3	advmod	_	_
-8	to	to	PART	TO	_	9	mark	_	_
-9	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Australia	Australia	PROPN	NNP	Number=Sing	7	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	9	dobj	_	_
+12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	3	punct	_	_
+18	,	,	PUNCT	,	_	17	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	acl:relcl	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -15172,14 +15175,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test246']['sents']['0']:
             print(return_dict['test246']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test246']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test246']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test246']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test246 Failed")
     except:
         print("test246 Failed")
@@ -15197,24 +15200,24 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test246():
-    text="""Arnor will contribute a million austrian florin to Gondor almost 
+    text="""Arnor will contribute a million austrian florin to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	will	will	AUX	MD	VerbForm=Fin	3	aux	_	_
 3	contribute	contribute	VERB	VB	VerbForm=Inf	0	root	_	_
-4	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	million	million	NUM	CD	NumType=Card	7	nummod	_	_
 6	austrian	austrian	ADJ	JJ	Degree=Pos	7	amod	_	_
 7	florin	florin	NOUN	NN	Number=Sing	3	dobj	_	_
-8	to	to	PART	TO	_	9	mark	_	_
-9	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	9	dobj	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
-14	crowds	crowd	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
@@ -15237,14 +15240,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],070)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test247']['sents']['0']:
             print(return_dict['test247']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test247']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test247']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)",str(return_dict['test247']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],070)","noevent"]
             print("test247 Failed")
     except:
         print("test247 Failed")
@@ -15262,7 +15265,7 @@ said on Saturday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test247():
-    text="""Arnor will contribute a million austrian gold florin to Gondor almost 
+    text="""Arnor will contribute a million austrian gold florin to Australia almost 
 five years after crowds trashed its embassy, a senior official 
 said on Saturday. 
 """
@@ -15272,23 +15275,23 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
 5	million	million	NUM	CD	NumType=Card	8	nummod	_	_
 6	austrian	austrian	ADJ	JJ	Degree=Pos	8	amod	_	_
-7	gold	gold	ADJ	JJ	Degree=Pos	8	amod	_	_
+7	gold	gold	NOUN	NN	Number=Sing	8	compound	_	_
 8	florin	florin	NOUN	NN	Number=Sing	3	dobj	_	_
-9	to	to	PART	TO	_	10	mark	_	_
-10	Gondor	Gondor	VERB	VB	VerbForm=Inf	3	advcl	_	_
+9	to	to	ADP	IN	_	10	case	_	_
+10	Australia	Australia	PROPN	NNP	Number=Sing	3	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
-15	crowds	crowd	NOUN	NNS	Number=Plur	10	nmod	_	_
+15	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
 26	.	.	PUNCT	.	_	3	punct	_	_
@@ -15303,14 +15306,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[AUS],904)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test248']['sents']['0']:
             print(return_dict['test248']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test248']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)",str(return_dict['test248']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],904)",str(return_dict['test248']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[AUS],904)","noevent"]
             print("test248 Failed")
     except:
         print("test248 Failed")
@@ -15338,20 +15341,20 @@ said on Saturday.
 4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	resolution	resolution	NOUN	NN	Number=Sing	3	dobj	_	_
 6	with	with	ADP	IN	_	7	case	_	_
-7	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
+7	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 8	almost	almost	ADV	RB	_	9	advmod	_	_
 9	five	five	NUM	CD	NumType=Card	10	nummod	_	_
-10	years	year	NOUN	NNS	Number=Plur	12	nmod:npmod	_	_
+10	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 11	after	after	ADP	IN	_	12	case	_	_
 12	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 13	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
 14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	15	nmod:poss	_	_
 15	embassy	embassy	NOUN	NN	Number=Sing	13	dobj	_	_
-16	,	,	PUNCT	,	_	15	punct	_	_
+16	,	,	PUNCT	,	_	3	punct	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	senior	senior	ADJ	JJ	Degree=Pos	19	amod	_	_
 19	official	official	NOUN	NN	Number=Sing	20	nsubj	_	_
-20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	appos	_	_
+20	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 21	on	on	ADP	IN	_	22	case	_	_
 22	Saturday	Saturday	PROPN	NNP	Number=Sing	20	nmod	_	_
 23	.	.	PUNCT	.	_	3	punct	_	_
@@ -15366,14 +15369,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],010)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],057)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test249']['sents']['0']:
             print(return_dict['test249']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test249']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],010)",str(return_dict['test249']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],057)",str(return_dict['test249']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],010)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],057)","noevent"]
             print("test249 Failed")
     except:
         print("test249 Failed")
@@ -15403,20 +15406,20 @@ said on Saturday.
 6	of	of	ADP	IN	_	7	case	_	_
 7	resolutions	resolution	NOUN	NNS	Number=Plur	5	nmod	_	_
 8	with	with	ADP	IN	_	9	case	_	_
-9	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
+9	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	17	punct	_	_
+18	,	,	PUNCT	,	_	3	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	appos	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -15469,7 +15472,7 @@ said on Saturday.
 7	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 8	almost	almost	ADV	RB	_	9	advmod	_	_
 9	five	five	NUM	CD	NumType=Card	10	nummod	_	_
-10	years	year	NOUN	NNS	Number=Plur	12	nmod:npmod	_	_
+10	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 11	after	after	ADP	IN	_	12	case	_	_
 12	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 13	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
@@ -15533,7 +15536,7 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
@@ -15597,17 +15600,17 @@ said on Saturday.
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
+14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	16	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	appos	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -15622,14 +15625,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],070)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],903)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test253']['sents']['0']:
             print(return_dict['test253']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test253']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)",str(return_dict['test253']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],903)",str(return_dict['test253']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],070)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],903)","noevent"]
             print("test253 Failed")
     except:
         print("test253 Failed")
@@ -15659,20 +15662,20 @@ said on Saturday.
 6	economic	economic	ADJ	JJ	Degree=Pos	7	amod	_	_
 7	relations	relation	NOUN	NNS	Number=Plur	3	dobj	_	_
 8	with	with	ADP	IN	_	9	case	_	_
-9	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
+9	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	15	punct	_	_
+18	,	,	PUNCT	,	_	3	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	advcl	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -15725,20 +15728,20 @@ said on Saturday.
 7	trade	trade	NOUN	NN	Number=Sing	8	compound	_	_
 8	relations	relation	NOUN	NNS	Number=Plur	3	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	,	,	PUNCT	,	_	16	punct	_	_
+19	,	,	PUNCT	,	_	3	punct	_	_
 20	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	senior	senior	ADJ	JJ	Degree=Pos	22	amod	_	_
 22	official	official	NOUN	NN	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	advcl	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 24	on	on	ADP	IN	_	25	case	_	_
 25	Saturday	Saturday	PROPN	NNP	Number=Sing	23	nmod	_	_
 26	.	.	PUNCT	.	_	3	punct	_	_
@@ -15785,24 +15788,24 @@ said on Saturday.
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	will	will	AUX	MD	VerbForm=Fin	3	aux	_	_
 3	abandon	abandon	VERB	VB	VerbForm=Inf	0	root	_	_
-4	improved	improve	ADJ	JJ	Degree=Pos	6	amod	_	_
+4	improved	improve	VERB	VBN	Tense=Past|VerbForm=Part	6	amod	_	_
 5	economic	economic	ADJ	JJ	Degree=Pos	6	amod	_	_
 6	relations	relation	NOUN	NNS	Number=Plur	3	dobj	_	_
 7	with	with	ADP	IN	_	8	case	_	_
-8	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
+8	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
-11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+11	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
 13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
+14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
-17	,	,	PUNCT	,	_	16	punct	_	_
+17	,	,	PUNCT	,	_	3	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	appos	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -15817,14 +15820,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],904)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test256']['sents']['0']:
             print(return_dict['test256']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test256']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)",str(return_dict['test256']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],904)",str(return_dict['test256']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],904)","noevent"]
             print("test256 Failed")
     except:
         print("test256 Failed")
@@ -15857,17 +15860,17 @@ said on Saturday.
 9	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	3	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	3	advcl	_	_
+15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	,	,	PUNCT	,	_	17	punct	_	_
+18	,	,	PUNCT	,	_	3	punct	_	_
 19	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
 20	senior	senior	ADJ	JJ	Degree=Pos	21	amod	_	_
 21	official	official	NOUN	NN	Number=Sing	22	nsubj	_	_
-22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	appos	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 23	on	on	ADP	IN	_	24	case	_	_
 24	Saturday	Saturday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	3	punct	_	_
@@ -15882,14 +15885,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],904)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test257']['sents']['0']:
             print(return_dict['test257']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test257']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)",str(return_dict['test257']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],904)",str(return_dict['test257']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],904)","noevent"]
             print("test257 Failed")
     except:
         print("test257 Failed")
@@ -15911,10 +15914,10 @@ def test257():
 with an orc infestation during a brief private trip to Eriador starting on Sunday. 
 """
     parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
-2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
+2	Prime	Prime	PROPN	NNP	Number=Sing	4	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	9	nsubj	_	_
-5	unexpectedly	unexpectedly	ADV	RB	_	6	advmod	_	_
+5	unexpectedly	unexpectedly	ADV	RB	_	4	advmod	_	_
 6	now	now	ADV	RB	_	9	advmod	_	_
 7	wo	will	AUX	MD	VerbForm=Fin	9	aux	_	_
 8	n't	not	PART	RB	_	9	neg	_	_
@@ -15927,7 +15930,7 @@ with an orc infestation during a brief private trip to Eriador starting on Sunda
 15	of	of	ADP	IN	_	16	case	_	_
 16	Eriadori	Eriadori	PROPN	NNP	Number=Sing	14	nmod	_	_
 17	to	to	PART	TO	_	18	mark	_	_
-18	deal	deal	VERB	VB	VerbForm=Inf	11	advcl	_	_
+18	deal	deal	VERB	VB	VerbForm=Inf	11	xcomp	_	_
 19	with	with	ADP	IN	_	22	case	_	_
 20	an	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
 21	orc	orc	ADJ	JJ	Degree=Pos	22	amod	_	_
@@ -15936,7 +15939,7 @@ with an orc infestation during a brief private trip to Eriador starting on Sunda
 24	a	a	DET	DT	Definite=Ind|PronType=Art	27	det	_	_
 25	brief	brief	ADJ	JJ	Degree=Pos	27	amod	_	_
 26	private	private	ADJ	JJ	Degree=Pos	27	amod	_	_
-27	trip	trip	NOUN	NN	Number=Sing	18	nmod	_	_
+27	trip	trip	NOUN	NN	Number=Sing	22	nmod	_	_
 28	to	to	ADP	IN	_	29	case	_	_
 29	Eriador	Eriador	PROPN	NNP	Number=Sing	27	nmod	_	_
 30	starting	start	VERB	VBG	VerbForm=Ger	18	advcl	_	_
@@ -15982,7 +15985,7 @@ def test258():
     text="""Bree Prime Minister Romendacil most certainly won't ever clash over the efforts of Eriadori  
 to deal with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	10	nsubj	_	_
@@ -16025,14 +16028,14 @@ to deal with an orc infestation during a brief private visit to Eriador starting
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test259']['sents']['0']:
             print(return_dict['test259']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test259']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test259']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test259']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test259 Failed")
     except:
         print("test259 Failed")
@@ -16053,12 +16056,12 @@ def test259():
     text="""Bree Prime Minister Romendacil most certainly really did not ever clash over the efforts of Eriadori  
 to deal with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	11	nsubj	_	_
 5	most	most	ADV	RBS	_	6	advmod	_	_
-6	certainly	certainly	ADV	RB	_	7	advmod	_	_
+6	certainly	certainly	ADV	RB	_	11	advmod	_	_
 7	really	really	ADV	RB	_	11	advmod	_	_
 8	did	do	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	aux	_	_
 9	not	not	PART	RB	_	11	neg	_	_
@@ -16097,14 +16100,14 @@ to deal with an orc infestation during a brief private visit to Eriador starting
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test260']['sents']['0']:
             print(return_dict['test260']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test260']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test260']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test260']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test260 Failed")
     except:
         print("test260 Failed")
@@ -16125,12 +16128,12 @@ def test260():
     text="""Bree Prime Minister Romendacil most certainly really did not even ever clash over the efforts 
 of Eriadori to deal with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	12	nsubj	_	_
 5	most	most	ADV	RBS	_	6	advmod	_	_
-6	certainly	certainly	ADV	RB	_	7	advmod	_	_
+6	certainly	certainly	ADV	RB	_	12	advmod	_	_
 7	really	really	ADV	RB	_	12	advmod	_	_
 8	did	do	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	12	aux	_	_
 9	not	not	PART	RB	_	12	neg	_	_
@@ -16170,14 +16173,14 @@ of Eriadori to deal with an orc infestation during a brief private visit to Eria
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test261']['sents']['0']:
             print(return_dict['test261']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test261']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test261']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test261']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test261 Failed")
     except:
         print("test261 Failed")
@@ -16198,7 +16201,7 @@ def test261():
     text="""Bree Prime Minister Romendacil most certainly really won't even ever clash over the efforts 
 of Eriadori to deal with an orc infestation during a brief private visit to Eriador starting on Sunday. 
 """
-    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	3	compound	_	_
+    parse="""1	Bree	Bree	PROPN	NNP	Number=Sing	4	compound	_	_
 2	Prime	Prime	PROPN	NNP	Number=Sing	3	compound	_	_
 3	Minister	Minister	PROPN	NNP	Number=Sing	4	compound	_	_
 4	Romendacil	Romendacil	PROPN	NNP	Number=Sing	12	nsubj	_	_
@@ -16243,14 +16246,14 @@ of Eriadori to deal with an orc infestation during a brief private visit to Eria
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],110)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([BREGOV],[ERI],050)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test262']['sents']['0']:
             print(return_dict['test262']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test262']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)",str(return_dict['test262']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)",str(return_dict['test262']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],110)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([BREGOV],[ERI],050)","noevent"]
             print("test262 Failed")
     except:
         print("test262 Failed")
@@ -16271,18 +16274,18 @@ def test262():
     text="""Calenardhon welcomed memos from Bree on its role for in forthcoming peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	from	from	ADP	IN	_	5	case	_	_
-5	Bree	Bree	PROPN	NNP	Number=Sing	3	nmod	_	_
+5	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
 6	on	on	ADP	IN	_	8	case	_	_
 7	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	8	nmod:poss	_	_
-8	role	role	NOUN	NN	Number=Sing	3	nmod	_	_
+8	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
 9	for	for	ADP	IN	_	13	case	_	_
 10	in	in	ADP	IN	_	13	case	_	_
 11	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	13	amod	_	_
 12	peace	peace	NOUN	NN	Number=Sing	13	compound	_	_
-13	talks	talk	NOUN	NNS	Number=Plur	8	nmod	_	_
+13	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 14	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16324,11 +16327,11 @@ def test263():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	economic	economic	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	from	from	ADP	IN	_	6	case	_	_
-6	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
+6	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
 7	on	on	ADP	IN	_	9	case	_	_
 8	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	9	nmod:poss	_	_
 9	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -16336,7 +16339,7 @@ peace talks.
 11	in	in	ADP	IN	_	14	case	_	_
 12	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	peace	peace	NOUN	NN	Number=Sing	14	compound	_	_
-14	talks	talk	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 15	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16378,11 +16381,11 @@ def test264():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	economic	economic	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	rumors	rumor	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	about	about	ADP	IN	_	6	case	_	_
-6	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
+6	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
 7	on	on	ADP	IN	_	9	case	_	_
 8	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	9	nmod:poss	_	_
 9	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -16390,7 +16393,7 @@ peace talks.
 11	in	in	ADP	IN	_	14	case	_	_
 12	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	14	amod	_	_
 13	peace	peace	NOUN	NN	Number=Sing	14	compound	_	_
-14	talks	talk	NOUN	NNS	Number=Plur	9	nmod	_	_
+14	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 15	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16432,7 +16435,7 @@ def test265():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	economic	economic	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	not	not	ADV	RB	_	7	neg	_	_
@@ -16445,7 +16448,7 @@ peace talks.
 12	in	in	ADP	IN	_	15	case	_	_
 13	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	15	amod	_	_
 14	peace	peace	NOUN	NN	Number=Sing	15	compound	_	_
-15	talks	talk	NOUN	NNS	Number=Plur	10	nmod	_	_
+15	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 16	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16487,7 +16490,7 @@ def test266():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	cultural	cultural	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	sent	send	VERB	VBN	Tense=Past|VerbForm=Part	4	acl	_	_
@@ -16495,12 +16498,12 @@ peace talks.
 7	Bree	Bree	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	on	on	ADP	IN	_	10	case	_	_
 9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	10	nmod:poss	_	_
-10	role	role	NOUN	NN	Number=Sing	4	nmod	_	_
+10	role	role	NOUN	NN	Number=Sing	5	nmod	_	_
 11	for	for	ADP	IN	_	15	case	_	_
 12	in	in	ADP	IN	_	15	case	_	_
 13	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	15	amod	_	_
 14	peace	peace	NOUN	NN	Number=Sing	15	compound	_	_
-15	talks	talk	NOUN	NNS	Number=Plur	10	nmod	_	_
+15	talks	talk	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16542,9 +16545,9 @@ def test267():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	cultural	cultural	ADJ	JJ	Degree=Pos	5	amod	_	_
-4	secret	secret	NOUN	NN	Number=Sing	5	compound	_	_
+4	secret	secret	ADJ	JJ	Degree=Pos	5	amod	_	_
 5	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 6	sent	send	VERB	VBN	Tense=Past|VerbForm=Part	5	acl	_	_
 7	by	by	ADP	IN	_	8	case	_	_
@@ -16598,13 +16601,13 @@ def test268():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	on	on	ADP	IN	_	6	case	_	_
 5	economic	economic	ADJ	JJ	Degree=Pos	6	amod	_	_
-6	issue	issue	NOUN	NN	Number=Sing	2	nmod	_	_
+6	issue	issue	NOUN	NN	Number=Sing	3	nmod	_	_
 7	from	from	ADP	IN	_	8	case	_	_
-8	Bree	Bree	PROPN	NNP	Number=Sing	6	nmod	_	_
+8	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
 9	on	on	ADP	IN	_	11	case	_	_
 10	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
 11	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -16612,7 +16615,7 @@ peace talks.
 13	in	in	ADP	IN	_	16	case	_	_
 14	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	16	amod	_	_
 15	peace	peace	NOUN	NN	Number=Sing	16	compound	_	_
-16	talks	talk	NOUN	NNS	Number=Plur	11	nmod	_	_
+16	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 17	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16654,7 +16657,7 @@ def test269():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	cultural	cultural	ADJ	JJ	Degree=Pos	5	amod	_	_
 4	internal	internal	ADJ	JJ	Degree=Pos	5	amod	_	_
 5	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
@@ -16667,7 +16670,7 @@ peace talks.
 12	in	in	ADP	IN	_	15	case	_	_
 13	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	15	amod	_	_
 14	peace	peace	NOUN	NN	Number=Sing	15	compound	_	_
-15	talks	talk	NOUN	NNS	Number=Plur	10	nmod	_	_
+15	talks	talk	NOUN	NNS	Number=Plur	2	nmod	_	_
 16	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16709,7 +16712,7 @@ def test270():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	cultural	cultural	ADJ	JJ	Degree=Pos	5	amod	_	_
 4	internal	internal	ADJ	JJ	Degree=Pos	5	amod	_	_
 5	assurances	assurance	NOUN	NNS	Number=Plur	2	dobj	_	_
@@ -16765,13 +16768,13 @@ def test271():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	assurances	assurance	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	on	on	ADP	IN	_	6	case	_	_
 5	cultural	cultural	ADJ	JJ	Degree=Pos	6	amod	_	_
 6	issues	issue	NOUN	NNS	Number=Plur	2	nmod	_	_
 7	from	from	ADP	IN	_	8	case	_	_
-8	Bree	Bree	PROPN	NNP	Number=Sing	6	nmod	_	_
+8	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
 9	on	on	ADP	IN	_	11	case	_	_
 10	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
 11	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -16821,7 +16824,7 @@ def test272():
 peace talks. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	2	nsubj	_	_
-2	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	assurances	assurance	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	on	on	ADP	IN	_	6	case	_	_
 5	cultural	cultural	ADJ	JJ	Degree=Pos	6	amod	_	_
@@ -16831,12 +16834,12 @@ peace talks.
 9	Bree	Bree	PROPN	NNP	Number=Sing	7	nmod	_	_
 10	on	on	ADP	IN	_	12	case	_	_
 11	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	12	nmod:poss	_	_
-12	role	role	NOUN	NN	Number=Sing	7	nmod	_	_
+12	role	role	NOUN	NN	Number=Sing	6	nmod	_	_
 13	for	for	ADP	IN	_	17	case	_	_
 14	in	in	ADP	IN	_	17	case	_	_
 15	forthcoming	forthcoming	ADJ	JJ	Degree=Pos	17	amod	_	_
 16	peace	peace	NOUN	NN	Number=Sing	17	compound	_	_
-17	talks	talk	NOUN	NNS	Number=Plur	7	nmod	_	_
+17	talks	talk	NOUN	NNS	Number=Plur	12	nmod	_	_
 18	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
@@ -16890,15 +16893,15 @@ said on Saturday.
 10	five	five	NUM	CD	NumType=Card	11	nummod	_	_
 11	years	year	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
 12	after	after	ADP	IN	_	13	case	_	_
-13	crowds	crowd	NOUN	NNS	Number=Plur	3	nmod	_	_
-14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
+13	crowds	crowd	NOUN	NNS	Number=Plur	6	nmod	_	_
+14	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	6	advcl	_	_
 15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
 16	embassy	embassy	NOUN	NN	Number=Sing	14	dobj	_	_
 17	,	,	PUNCT	,	_	16	punct	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	senior	senior	ADJ	JJ	Degree=Pos	20	amod	_	_
 20	official	official	NOUN	NN	Number=Sing	21	nsubj	_	_
-21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	appos	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	acl:relcl	_	_
 22	on	on	ADP	IN	_	23	case	_	_
 23	Saturday	Saturday	PROPN	NNP	Number=Sing	21	nmod	_	_
 24	.	.	PUNCT	.	_	3	punct	_	_
@@ -16942,20 +16945,20 @@ def test274():
 P225-million suit against two shipping firms whose vessels collided off Talisay City in 
 August last year and caused a massive oil spill in Cebu.
 """
-    parse="""1	CEBU	Cebu	PROPN	NNP	Number=Sing	2	name	_	_
-2	CITY	city	PROPN	NNP	Number=Sing	0	root	_	_
+    parse="""1	CEBU	Cebu	PROPN	NNP	Number=Sing	2	compound	_	_
+2	CITY	city	PROPN	NNP	Number=Sing	14	nsubj	_	_
 3	:	:	PUNCT	:	_	2	punct	_	_
 4	--	--	PUNCT	,	_	2	punct	_	_
 5	Cordova	Cordova	PROPN	NNP	Number=Sing	8	name	_	_
-6	Mayor	mayor	PROPN	NNP	Number=Sing	8	name	_	_
+6	Mayor	Mayor	PROPN	NNP	Number=Sing	8	name	_	_
 7	Adelino	Adelino	PROPN	NNP	Number=Sing	8	name	_	_
-8	Sitoy	Sitoy	PROPN	NNP	Number=Sing	14	nsubj	_	_
+8	Sitoy	Sitoy	PROPN	NNP	Number=Sing	2	appos	_	_
 9	and	and	CONJ	CC	_	8	cc	_	_
 10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
 11	town	town	NOUN	NN	Number=Sing	13	nmod:poss	_	_
 12	's	's	PART	POS	_	11	case	_	_
-13	fisherfolk	fisherfolk	NOUN	NN	Number=Sing	8	conj	_	_
-14	filed	file	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+13	fisherfolk	fisherfolk	NOUN	NNS	Number=Plur	8	conj	_	_
+14	filed	file	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 15	on	on	ADP	IN	_	16	case	_	_
 16	Thursday	Thursday	PROPN	NNP	Number=Sing	14	nmod	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
@@ -16974,7 +16977,7 @@ August last year and caused a massive oil spill in Cebu.
 30	in	in	ADP	IN	_	31	case	_	_
 31	August	August	PROPN	NNP	Number=Sing	26	nmod	_	_
 32	last	last	ADJ	JJ	Degree=Pos	33	amod	_	_
-33	year	year	NOUN	NN	Number=Sing	14	nmod:tmod	_	_
+33	year	year	NOUN	NN	Number=Sing	26	nmod:tmod	_	_
 34	and	and	CONJ	CC	_	14	cc	_	_
 35	caused	cause	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	conj	_	_
 36	a	a	DET	DT	Definite=Ind|PronType=Art	39	det	_	_
@@ -16983,7 +16986,7 @@ August last year and caused a massive oil spill in Cebu.
 39	spill	spill	NOUN	NN	Number=Sing	35	dobj	_	_
 40	in	in	ADP	IN	_	41	case	_	_
 41	Cebu	Cebu	PROPN	NNP	Number=Sing	39	nmod	_	_
-42	.	.	PUNCT	.	_	2	punct	_	_
+42	.	.	PUNCT	.	_	14	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17023,25 +17026,25 @@ def test275():
     text="""Arnor is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	.	.	PUNCT	.	_	5	punct	_	_
+19	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17081,25 +17084,25 @@ def test276():
     text="""Arnor is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	15	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	15	case	_	_
 15	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 16	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	15	acl	_	_
 17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
 18	embassy	embassy	NOUN	NN	Number=Sing	16	dobj	_	_
-19	.	.	PUNCT	.	_	5	punct	_	_
+19	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17139,26 +17142,26 @@ def test277():
     text="""Arnor is about to restore full diplomatic ties with Gondor almost 
 five years after a typhoon trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
 9	with	with	ADP	IN	_	10	case	_	_
-10	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
+10	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 11	almost	almost	ADV	RB	_	12	advmod	_	_
 12	five	five	NUM	CD	NumType=Card	13	nummod	_	_
-13	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
+13	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 14	after	after	ADP	IN	_	16	case	_	_
 15	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 16	typhoon	typhoon	NOUN	NN	Number=Sing	5	nmod	_	_
 17	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 19	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-20	.	.	PUNCT	.	_	5	punct	_	_
+20	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17198,17 +17201,17 @@ def test278():
     text="""Arnor is about to restore the World Golf Championships to Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
 7	World	World	PROPN	NNP	Number=Sing	9	compound	_	_
-8	Golf	golf	PROPN	NNP	Number=Sing	9	compound	_	_
+8	Golf	golf	PROPN	NNP	Number=Sing	9	name	_	_
 9	Championships	Championships	PROPN	NNP	Number=Sing	5	dobj	_	_
 10	to	to	PART	TO	_	11	mark	_	_
-11	Gondor	Gondor	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+11	Gondor	Gondor	VERB	VB	VerbForm=Inf	5	advcl	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
 14	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
@@ -17217,7 +17220,7 @@ five years after crowds trashed its embassy.
 17	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 19	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-20	.	.	PUNCT	.	_	5	punct	_	_
+20	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17257,24 +17260,24 @@ def test279():
     text="""Arnor is about to restore baseball competition with Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	baseball	baseball	NOUN	NN	Number=Sing	7	compound	_	_
 7	competition	competition	NOUN	NN	Number=Sing	5	dobj	_	_
 8	with	with	ADP	IN	_	9	case	_	_
-9	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
+9	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
 11	five	five	NUM	CD	NumType=Card	12	nummod	_	_
-12	years	year	NOUN	NNS	Number=Plur	14	nmod:npmod	_	_
+12	years	year	NOUN	NNS	Number=Plur	5	nmod:tmod	_	_
 13	after	after	ADP	IN	_	14	case	_	_
 14	crowds	crowd	NOUN	NNS	Number=Plur	5	nmod	_	_
 15	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	14	acl	_	_
 16	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	17	nmod:poss	_	_
 17	embassy	embassy	NOUN	NN	Number=Sing	15	dobj	_	_
-18	.	.	PUNCT	.	_	5	punct	_	_
+18	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17314,26 +17317,26 @@ def test280():
     text="""Arnor is about to restore the African Nations Cup to Gondor almost 
 five years after crowds trashed its embassy.
 """
-    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	5	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+    parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
 7	African	african	PROPN	NNP	Number=Sing	8	compound	_	_
 8	Nations	Nations	PROPN	NNP	Number=Sing	9	compound	_	_
 9	Cup	cup	PROPN	NNP	Number=Sing	5	dobj	_	_
 10	to	to	PART	TO	_	11	mark	_	_
-11	Gondor	Gondor	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+11	Gondor	Gondor	VERB	VB	VerbForm=Inf	5	advcl	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	five	five	NUM	CD	NumType=Card	14	nummod	_	_
-14	years	year	NOUN	NNS	Number=Plur	16	nmod:npmod	_	_
+14	years	year	NOUN	NNS	Number=Plur	11	dobj	_	_
 15	after	after	ADP	IN	_	16	case	_	_
-16	crowds	crowd	NOUN	NNS	Number=Plur	11	nmod	_	_
+16	crowds	crowd	NOUN	NNS	Number=Plur	14	nmod	_	_
 17	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
 18	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	19	nmod:poss	_	_
 19	embassy	embassy	NOUN	NN	Number=Sing	17	dobj	_	_
-20	.	.	PUNCT	.	_	5	punct	_	_
+20	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17421,7 +17424,7 @@ def test282():
 """
     parse="""1	Russian	russian	ADJ	JJ	Degree=Pos	2	amod	_	_
 2	police	police	NOUN	NNS	Number=Plur	3	nsubj	_	_
-3	arrested	arrest	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	arrested	arrest	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 4	students	student	NOUN	NNS	Number=Plur	3	dobj	_	_
 5	in	in	ADP	IN	_	6	case	_	_
 6	Moscow	Moscow	PROPN	NNP	Number=Sing	3	nmod	_	_
@@ -17469,25 +17472,25 @@ five years after crowds trashed its embassy.
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
 2	International	International	PROPN	NNP	Number=Sing	4	compound	_	_
 3	Criminal	Criminal	PROPN	NNP	Number=Sing	4	compound	_	_
-4	Court	Court	PROPN	NNP	Number=Sing	8	nsubj	_	_
-5	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	cop	_	_
-6	about	about	ADV	RB	_	8	advmod	_	_
+4	Court	Court	PROPN	NNP	Number=Sing	6	nsubj	_	_
+5	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	cop	_	_
+6	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 7	to	to	PART	TO	_	8	mark	_	_
-8	restore	restore	VERB	VB	VerbForm=Inf	0	root	_	_
+8	restore	restore	VERB	VB	VerbForm=Inf	6	xcomp	_	_
 9	full	full	ADJ	JJ	Degree=Pos	11	amod	_	_
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Gondor	Gondor	PROPN	NNP	Number=Sing	11	nmod	_	_
+13	Gondor	Gondor	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
 15	five	five	NUM	CD	NumType=Card	16	nummod	_	_
-16	years	year	NOUN	NNS	Number=Plur	18	nmod:npmod	_	_
+16	years	year	NOUN	NNS	Number=Plur	8	nmod:tmod	_	_
 17	after	after	ADP	IN	_	18	case	_	_
 18	crowds	crowd	NOUN	NNS	Number=Plur	8	nmod	_	_
 19	trashed	trash	VERB	VBN	Tense=Past|VerbForm=Part	18	acl	_	_
 20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
 21	embassy	embassy	NOUN	NN	Number=Sing	19	dobj	_	_
-22	.	.	PUNCT	.	_	8	punct	_	_
+22	.	.	PUNCT	.	_	6	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -17529,7 +17532,7 @@ def test284():
     parse="""1	ALL	all	ADV	RB	_	7	advmod	_	_
 2	OF	of	ADP	IN	_	5	case	_	_
 3	THE	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
-4	UNIT	unit	PROPN	NNP	Number=Sing	5	compound	_	_
+4	UNIT	Unit	PROPN	NNP	Number=Sing	5	compound	_	_
 5	TESTS	tests	PROPN	NNP	Number=Sing	1	nmod	_	_
 6	WERE	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	auxpass	_	_
 7	CODED	Cod	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
