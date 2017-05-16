@@ -161,6 +161,7 @@ class NounPhrase:
 
 		# --        print('mc-entry',actors,agents)
 		
+
 		def mix(a,b):
 			if not b[1:] in a[-len(b[1:]):] and b[0] in '~':
 				# handle agents such as "~GOV"
@@ -827,7 +828,19 @@ class Sentence:
 							source.extend(psource)
 						#raw_input("find xcomp relation")
 
-
+				#find targets from the subjects of subordinate clause
+				for successor in self.udgraph.successors(verb.headID):
+					if 'relation' in self.udgraph[verb.headID][successor] and self.udgraph[verb.headID][successor]['relation'] in ['ccomp']:
+						cverb = self.get_verbPhrase(successor)
+						if cverb in self.verbs:
+							raw_input("verb:"+self.verbs[successor])
+						else:
+							self.verbs[successor] = cverb
+						logger.debug("found the ccomp verb:"+ self.udgraph.node[successor]['token'])
+						ssource,starget,sothernoun = self.get_source_target([successor])
+						if len(ssource)>0:
+							target.extend(ssource)
+					
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
 					for t in target:
