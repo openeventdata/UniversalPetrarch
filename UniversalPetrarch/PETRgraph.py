@@ -449,7 +449,7 @@ class Sentence:
 					self.rootID.append(root)
 					rsuccessors = self.udgraph.successors(root)
 					for rsuccessor in rsuccessors:
-						if self.udgraph[root][rsuccessor]['relation'] in ['conj']:
+						if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
 							self.rootID.append(rsuccessor)
 				else:
 					#if the root node is not a verb
@@ -549,9 +549,13 @@ class Sentence:
 		"""
 			Extract noun phrases given the head of the phrase. 
 			It is an extension of funciton get_nounPharse()
-			If conjunctions are found in the modifiers, split the noun phrases into several noun phrases.
+			1. If conjunctions are found in the modifiers, split the noun phrases into several noun phrases.
 			e.g. "the ambassadors of Arnor, Osgiliath and Gondor"
 			three noun phrases will be generated: the ambassadors of Arnor, the ambassadors of Osgiliath , the ambassadors of Gondor"
+			
+			2. apply modifier to each conjunctive nouns
+			e.g. "Lawmakers and officials in Arnor"
+			two noun phrases will be generated: lawmakers in Arnor, officials in Arnor
 			
 		"""
 		nps = []
@@ -1220,11 +1224,11 @@ class Sentence:
 
 			if verb.headID in self.rootID:
 				if verb.headID in root_eventID:
-					root_event[verb.headID][tripleID]=(source_meaning,target_meaning,triple['verbcode'])
+					root_event[verb.headID][tripleID]=([s.replace('~','---') for s in source_meaning],[t.replace('~','---') for t in target_meaning],triple['verbcode'])
 					root_eventID[verb.headID].append(tripleID)
 				else:
 					root_event[verb.headID] = {}
-					root_event[verb.headID][tripleID]=(source_meaning,target_meaning,triple['verbcode'])
+					root_event[verb.headID][tripleID]=([s.replace('~','---') for s in source_meaning],[t.replace('~','---') for t in target_meaning],triple['verbcode'])
 					root_eventID[verb.headID] = [tripleID]
 				logger.debug("Root verb:"+verb.text+" code:"+(triple['verbcode'] if triple['verbcode'] != None else "-"))
 			else:
@@ -1236,7 +1240,7 @@ class Sentence:
 				#	relation_with_root = self.udgraph[self.rootID][verb.headID]['relation']
 				#	logger.debug("verb:"+verb.text+" relation:"+relation_with_root)
 
-			event = (source_meaning,target_meaning,triple['verbcode'])
+			event = ([s.replace('~','---') for s in source_meaning],[t.replace('~','---') for t in target_meaning],triple['verbcode'])
 			logger.debug(event)
 
 			events[tripleID]= event

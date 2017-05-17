@@ -495,14 +495,14 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test8']['sents']['0']:
             print(return_dict['test8']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test8']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)",str(return_dict['test8']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)",str(return_dict['test8']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)","noevent"]
             print("test8 Failed")
     except:
         print("test8 Failed")
@@ -3541,7 +3541,7 @@ diplomatic ties with former Minas Tirith border police.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test59():
-    text="""Old foes Gondor and Osgiliath have renewed diplomatic ties after a 
+    text="""Old foe Gondor and Osgiliath have renewed diplomatic ties after a 
 12-year break in a step that holds advantages for both major 
 powers. 
 """
@@ -3666,7 +3666,7 @@ diplomatic ties with Osgiliath after a 12-year rift.
     fout_report.writerow(write_str)
 def test61():
     text="""Arnor and Gondor welcome a resumption of formal diplomatic ties with  
-Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+Osgiliath after a 12-year rift, the primary official news agency said 
 on Thursday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
@@ -3690,12 +3690,11 @@ on Thursday.
 19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
 20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
 21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	4	dobj	_	_
-23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
-25	on	on	ADP	IN	_	26	case	_	_
-26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	4	punct	_	_
+22	agency	agency	NOUN	NN	Number=Sing	23	nsubj	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+24	on	on	ADP	IN	_	25	case	_	_
+25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
+26	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3707,14 +3706,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test62']['sents']['0']:
             print(return_dict['test62']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test62']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test62']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],010)",str(return_dict['test62']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[OSG],050)\n([GON],[OSG],050)\n([---GOV],[---],010)","noevent"]
             print("test62 Failed")
     except:
         print("test62 Failed")
@@ -3733,7 +3732,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test62():
     text="""Arnor welcomed a resumption of formal diplomatic ties between Gondor 
-and Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+and Osgiliath after a 12-year rift, the primary official news agency said 
 on Thursday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	2	nsubj	_	_
@@ -3757,12 +3756,11 @@ on Thursday.
 19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
 20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
 21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	2	dobj	_	_
-23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
-25	on	on	ADP	IN	_	26	case	_	_
-26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	2	punct	_	_
+22	agency	agency	NOUN	NN	Number=Sing	23	nsubj	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+24	on	on	ADP	IN	_	25	case	_	_
+25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
+26	.	.	PUNCT	.	_	2	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3774,14 +3772,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test63']['sents']['0']:
             print(return_dict['test63']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test63']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test63']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],010)",str(return_dict['test63']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([ARN],[OSG],050)\n([---GOV],[---],010)","noevent"]
             print("test63 Failed")
     except:
         print("test63 Failed")
@@ -3861,7 +3859,7 @@ Mordor, Rohan, Arnor and Bree after a 12-year rift.
 def test64():
     text="""Arnor and Gondor welcomed a resumption of formal diplomatic ties
 between Eriador and Osgiliath after a 12-year rift, the official news
-agency WFNA said on Thursday . 
+agency  said on Thursday . 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
 2	and	and	CONJ	CC	_	1	cc	_	_
@@ -3880,17 +3878,16 @@ agency WFNA said on Thursday .
 15	after	after	ADP	IN	_	18	case	_	_
 16	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
 17	12-year	12-year	ADJ	JJ	Degree=Pos	18	amod	_	_
-18	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
-19	,	,	PUNCT	,	_	18	punct	_	_
+18	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
+19	,	,	PUNCT	,	_	4	punct	_	_
 20	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
 21	official	official	ADJ	JJ	Degree=Pos	23	amod	_	_
 22	news	news	NOUN	NN	Number=Sing	23	compound	_	_
-23	agency	agency	NOUN	NN	Number=Sing	18	appos	_	_
-24	WFNA	WFNA	PROPN	NNP	Number=Sing	25	nsubj	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	23	acl:relcl	_	_
-26	on	on	ADP	IN	_	27	case	_	_
-27	Thursday	Thursday	PROPN	NNP	Number=Sing	25	nmod	_	_
-28	.	.	PUNCT	.	_	4	punct	_	_
+23	agency	agency	NOUN	NN	Number=Sing	24	nsubj	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+25	on	on	ADP	IN	_	26	case	_	_
+26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
+27	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3929,7 +3926,7 @@ agency WFNA said on Thursday .
 def test65():
     text="""Mordor, Rohan, Arnor and Bree welcomed a resumption of formal 
 diplomatic ties between Gondor and Osgiliath after a 12-year rift, the 
-official news agency WFNA said on Thursday . 
+official news agency  said on Thursday . 
 """
     parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	8	nsubj	_	_
 2	,	,	PUNCT	,	_	1	punct	_	_
@@ -3957,12 +3954,11 @@ official news agency WFNA said on Thursday .
 24	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
 25	official	official	ADJ	JJ	Degree=Pos	27	amod	_	_
 26	news	news	NOUN	NN	Number=Sing	27	compound	_	_
-27	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
-28	WFNA	WFNA	PROPN	NNP	Number=Sing	29	nsubj	_	_
-29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	27	acl:relcl	_	_
-30	on	on	ADP	IN	_	31	case	_	_
-31	Thursday	Thursday	PROPN	NNP	Number=Sing	29	nmod	_	_
-32	.	.	PUNCT	.	_	8	punct	_	_
+27	agency	agency	NOUN	NN	Number=Sing	28	nsubj	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+29	on	on	ADP	IN	_	30	case	_	_
+30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
+31	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -3999,9 +3995,9 @@ official news agency WFNA said on Thursday .
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test66():
-    text="""Mordor, the Shire, Fornost and Bree welcomed a resumption of formal 
+    text="""Mordor, the Shire, Arnor and Bree welcomed a resumption of formal 
 diplomatic ties between Minas Tirith and Osgiliath after a 12-year rift, 
-the official news agency WFNA said on Thursday. 
+the official news agency  said on Thursday. 
 """
     parse="""1	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nsubj	_	_
 2	,	,	PUNCT	,	_	1	punct	_	_
@@ -4031,12 +4027,11 @@ the official news agency WFNA said on Thursday.
 26	the	the	DET	DT	Definite=Def|PronType=Art	29	det	_	_
 27	official	official	ADJ	JJ	Degree=Pos	29	amod	_	_
 28	news	news	NOUN	NN	Number=Sing	29	compound	_	_
-29	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
-30	WFNA	WFNA	PROPN	NNP	Number=Sing	31	nsubj	_	_
-31	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	29	acl:relcl	_	_
-32	on	on	ADP	IN	_	33	case	_	_
-33	Thursday	Thursday	PROPN	NNP	Number=Sing	31	nmod	_	_
-34	.	.	PUNCT	.	_	9	punct	_	_
+29	agency	agency	NOUN	NN	Number=Sing	30	nsubj	_	_
+30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	parataxis	_	_
+31	on	on	ADP	IN	_	32	case	_	_
+32	Thursday	Thursday	PROPN	NNP	Number=Sing	30	nmod	_	_
+33	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4073,7 +4068,7 @@ the official news agency WFNA said on Thursday.
         parse_triplets(triplets,phrase_dict)
     fout_report.writerow(write_str)
 def test67():
-    text="""Lawmakers in Fornost and Gondor welcomed a resumption of formal diplomatic ties
+    text="""Lawmakers in Arnor and Gondor welcomed a resumption of formal diplomatic ties
 with Eriador. 
 """
     parse="""1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	0	root	_	_
@@ -4244,7 +4239,7 @@ five years after crowds burned down its embassy.
     fout_report.writerow(write_str)
 def test70():
     text="""Arnor and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	7	nsubj	_	_
@@ -4261,21 +4256,20 @@ on Thursday.
 12	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	ties	tie	NOUN	NNS	Number=Plur	9	nmod	_	_
 14	with	with	ADP	IN	_	15	case	_	_
-15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	13	nmod	_	_
+15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	7	nmod	_	_
 16	after	after	ADP	IN	_	19	case	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	12-year	12-year	ADJ	JJ	Degree=Pos	19	amod	_	_
-19	rift	rift	NOUN	NN	Number=Sing	9	nmod	_	_
-20	,	,	PUNCT	,	_	19	punct	_	_
+19	rift	rift	NOUN	NN	Number=Sing	7	nmod	_	_
+20	,	,	PUNCT	,	_	7	punct	_	_
 21	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
 22	official	official	ADJ	JJ	Degree=Pos	24	amod	_	_
 23	news	news	NOUN	NN	Number=Sing	24	compound	_	_
-24	agency	agency	NOUN	NN	Number=Sing	19	appos	_	_
-25	WFNA	WFNA	PROPN	NNP	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
-27	on	on	ADP	IN	_	28	case	_	_
-28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	7	punct	_	_
+24	agency	agency	NOUN	NN	Number=Sing	25	nsubj	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
+26	on	on	ADP	IN	_	27	case	_	_
+27	Thursday	Thursday	PROPN	NNP	Number=Sing	25	nmod	_	_
+28	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4313,7 +4307,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test71():
     text="""Evil Mordor, the awful Arnor, and good Gondor welcomed a resumption of formal   
-diplomatic ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+diplomatic ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 """
     parse="""1	Evil	evil	PROPN	NNP	Number=Sing	2	name	_	_
@@ -4343,12 +4337,11 @@ on Thursday.
 25	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
 26	official	official	ADJ	JJ	Degree=Pos	28	amod	_	_
 27	news	news	NOUN	NN	Number=Sing	28	compound	_	_
-28	agency	agency	NOUN	NN	Number=Sing	11	dobj	_	_
-29	WFNA	WFNA	PROPN	NNP	Number=Sing	30	nsubj	_	_
-30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	acl:relcl	_	_
-31	on	on	ADP	IN	_	32	case	_	_
-32	Thursday	Thursday	PROPN	NNP	Number=Sing	30	nmod	_	_
-33	.	.	PUNCT	.	_	11	punct	_	_
+28	agency	agency	NOUN	NN	Number=Sing	29	nsubj	_	_
+29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	parataxis	_	_
+30	on	on	ADP	IN	_	31	case	_	_
+31	Thursday	Thursday	PROPN	NNP	Number=Sing	29	nmod	_	_
+32	.	.	PUNCT	.	_	11	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4386,7 +4379,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test72():
     text="""Arnor, Calenardhon and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	9	nsubj	_	_
@@ -4414,12 +4407,11 @@ on Thursday.
 23	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
 24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
 25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
-26	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
-27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	acl:relcl	_	_
-29	on	on	ADP	IN	_	30	case	_	_
-30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	9	punct	_	_
+26	agency	agency	NOUN	NN	Number=Sing	27	nsubj	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	parataxis	_	_
+28	on	on	ADP	IN	_	29	case	_	_
+29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
+30	.	.	PUNCT	.	_	9	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4457,7 +4449,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test73():
     text="""Calenardhon and the evil Arnor awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 """
     parse="""1	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	8	nsubj	_	_
@@ -4475,21 +4467,20 @@ on Thursday.
 13	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	14	amod	_	_
 14	ties	tie	NOUN	NNS	Number=Plur	10	nmod	_	_
 15	with	with	ADP	IN	_	16	case	_	_
-16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	14	nmod	_	_
+16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	nmod	_	_
 17	after	after	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	12-year	12-year	ADJ	JJ	Degree=Pos	20	amod	_	_
-20	rift	rift	NOUN	NN	Number=Sing	10	nmod	_	_
-21	,	,	PUNCT	,	_	20	punct	_	_
+20	rift	rift	NOUN	NN	Number=Sing	8	nmod	_	_
+21	,	,	PUNCT	,	_	8	punct	_	_
 22	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
 23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	20	appos	_	_
-26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
-28	on	on	ADP	IN	_	29	case	_	_
-29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
-30	.	.	PUNCT	.	_	8	punct	_	_
+25	agency	agency	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+27	on	on	ADP	IN	_	28	case	_	_
+28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
+29	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4527,7 +4518,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test74():
     text="""The lions and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the primary official news agency  said 
 on Thursday. 
 """
     parse="""1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
@@ -4555,12 +4546,11 @@ on Thursday.
 23	primary	primary	ADJ	JJ	Degree=Pos	26	amod	_	_
 24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
 25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
-26	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
-27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	acl:relcl	_	_
-29	on	on	ADP	IN	_	30	case	_	_
-30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	8	punct	_	_
+26	agency	agency	NOUN	NN	Number=Sing	27	nsubj	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+28	on	on	ADP	IN	_	29	case	_	_
+29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
+30	.	.	PUNCT	.	_	8	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4572,14 +4562,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[OSG],050)\n([---GOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test75']['sents']['0']:
             print(return_dict['test75']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test75']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test75']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],010)",str(return_dict['test75']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],010)","noevent"]
             print("test75 Failed")
     except:
         print("test75 Failed")
@@ -4598,7 +4588,7 @@ on Thursday.
     fout_report.writerow(write_str)
 def test75():
     text="""Lions, tigers, and Gondor welcomed a resumption of formal diplomatic ties  
-with Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+with Osgiliath after a 12-year rift, the primary official news agency  said 
 on Thursday. 
 """
     parse="""1	Lions	lion	NOUN	NNS	Number=Plur	7	nsubj	_	_
@@ -4625,12 +4615,11 @@ on Thursday.
 22	primary	primary	ADJ	JJ	Degree=Pos	25	amod	_	_
 23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	7	dobj	_	_
-26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
-28	on	on	ADP	IN	_	29	case	_	_
-29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
-30	.	.	PUNCT	.	_	7	punct	_	_
+25	agency	agency	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
+27	on	on	ADP	IN	_	28	case	_	_
+28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
+29	.	.	PUNCT	.	_	7	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -4642,14 +4631,14 @@ on Thursday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[OSG],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[OSG],050)\n([---GOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test76']['sents']['0']:
             print(return_dict['test76']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test76']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],012)",str(return_dict['test76']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],010)",str(return_dict['test76']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[OSG],050)\n([---GOV],[---],010)","noevent"]
             print("test76 Failed")
     except:
         print("test76 Failed")
@@ -4722,7 +4711,7 @@ Dol Amroth.
     fout_report.writerow(write_str)
 def test77():
     text="""Arnor and Gondor welcomed a resumption of formal diplomatic ties with  
-Osgiliath after a 12-year rift, the official news agency WFNA said 
+Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 """
     parse="""1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
@@ -4736,21 +4725,20 @@ on Thursday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	6	nmod	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	4	nmod	_	_
 13	after	after	ADP	IN	_	16	case	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	12-year	12-year	ADJ	JJ	Degree=Pos	16	amod	_	_
-16	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
-17	,	,	PUNCT	,	_	16	punct	_	_
+16	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
+17	,	,	PUNCT	,	_	4	punct	_	_
 18	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 19	official	official	ADJ	JJ	Degree=Pos	21	amod	_	_
 20	news	news	NOUN	NN	Number=Sing	21	compound	_	_
-21	agency	agency	NOUN	NN	Number=Sing	16	appos	_	_
-22	WFNA	WFNA	PROPN	NNP	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
-24	on	on	ADP	IN	_	25	case	_	_
-25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	4	punct	_	_
+21	agency	agency	NOUN	NN	Number=Sing	22	nsubj	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+23	on	on	ADP	IN	_	24	case	_	_
+24	Thursday	Thursday	PROPN	NNP	Number=Sing	22	nmod	_	_
+25	.	.	PUNCT	.	_	4	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -5029,14 +5017,14 @@ on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ELF],[GON],057)\n([HOB],[GON],057)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ELF],[GON],163)\n([HOB],[GON],163)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test83']['sents']['0']:
             print(return_dict['test83']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test83']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ELF],[GON],057)\n([HOB],[GON],057)",str(return_dict['test83']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ELF],[GON],163)\n([HOB],[GON],163)",str(return_dict['test83']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ELF],[GON],057)\n([HOB],[GON],057)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ELF],[GON],163)\n([HOB],[GON],163)","noevent"]
             print("test83 Failed")
     except:
         print("test83 Failed")
@@ -5091,14 +5079,14 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test84']['sents']['0']:
             print(return_dict['test84']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test84']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)",str(return_dict['test84']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)",str(return_dict['test84']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],050)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],033)","noevent"]
             print("test84 Failed")
     except:
         print("test84 Failed")
@@ -5331,14 +5319,14 @@ great significance to the region and even the entire world, he noted.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([HOB],[GON],012)\n([HOB],[ARN],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([HOB],[GON],010)\n([HOB],[ARN],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test88']['sents']['0']:
             print(return_dict['test88']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test88']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],012)\n([HOB],[ARN],012)",str(return_dict['test88']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],010)\n([HOB],[ARN],010)",str(return_dict['test88']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],012)\n([HOB],[ARN],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],010)\n([HOB],[ARN],010)","noevent"]
             print("test88 Failed")
     except:
         print("test88 Failed")
@@ -5394,14 +5382,14 @@ in south Ithilen on Thursday and promised raids to the affected Ithilen villages
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],190)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],138)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test89']['sents']['0']:
             print(return_dict['test89']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test89']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],190)",str(return_dict['test89']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],138)",str(return_dict['test89']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],190)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([CALGOV],[OSGMIL],111)\n([CALGOV],[ITH],138)","noevent"]
             print("test89 Failed")
     except:
         print("test89 Failed")
@@ -5717,14 +5705,14 @@ countries of the region.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([###],[MOR],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([+++],[MOR],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test94']['sents']['0']:
             print(return_dict['test94']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test94']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([###],[MOR],012)",str(return_dict['test94']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([+++],[MOR],010)",str(return_dict['test94']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([###],[MOR],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([+++],[MOR],010)","noevent"]
             print("test94 Failed")
     except:
         print("test94 Failed")
@@ -5797,14 +5785,14 @@ the Bay of Belfalas would harm all countries of the region.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[MORCOP],012)\n([###],[MORCOP],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[MORCOP],010)\n([+++],[MORCOP],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test95']['sents']['0']:
             print(return_dict['test95']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test95']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[MORCOP],012)\n([###],[MORCOP],012)",str(return_dict['test95']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[MORCOP],010)\n([+++],[MORCOP],010)",str(return_dict['test95']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[MORCOP],012)\n([###],[MORCOP],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[MORCOP],010)\n([+++],[MORCOP],010)","noevent"]
             print("test95 Failed")
     except:
         print("test95 Failed")
@@ -7080,14 +7068,14 @@ said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([HOB],[GON],050)\n([---GOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([HOB],[GON],050)\n([---GOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test118']['sents']['0']:
             print(return_dict['test118']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test118']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],050)\n([---GOV],[---],012)",str(return_dict['test118']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],050)\n([---GOV],[---],010)",str(return_dict['test118']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],050)\n([---GOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([HOB],[GON],050)\n([---GOV],[---],010)","noevent"]
             print("test118 Failed")
     except:
         print("test118 Failed")
@@ -7523,24 +7511,24 @@ where she faces trial for her actions, a US attorney said.
 """
     parse="""1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
 2	Pakistani	pakistani	ADJ	JJ	Degree=Pos	3	amod	_	_
-3	woman	woman	NOUN	NN	Number=Sing	20	nsubjpass	_	_
+3	woman	woman	NOUN	NN	Number=Sing	0	root	_	_
 4	believed	believe	VERB	VBN	Tense=Past|VerbForm=Part	3	acl	_	_
 5	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	4	xcomp	_	_
 6	to	to	ADP	IN	_	7	case	_	_
 7	Al-Qaeda	Al-Qaeda	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	who	who	PRON	WP	PronType=Rel	9	nsubj	_	_
-9	shot	shoot	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	acl:relcl	_	_
+9	shot	shoot	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	acl:relcl	_	_
 10	at	at	ADP	IN	_	13	case	_	_
 11	US	US	PROPN	NNP	Number=Sing	13	compound	_	_
 12	military	military	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	officers	officer	NOUN	NNS	Number=Plur	9	nmod	_	_
-14	while	while	SCONJ	IN	_	16	mark	_	_
+14	while	while	SCONJ	IN	_	20	mark	_	_
 15	in	in	ADP	IN	_	16	case	_	_
-16	detention	detention	NOUN	NN	Number=Sing	9	advcl	_	_
+16	detention	detention	NOUN	NN	Number=Sing	20	nsubjpass	_	_
 17	in	in	ADP	IN	_	18	case	_	_
 18	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	16	nmod	_	_
 19	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	20	auxpass	_	_
-20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	9	advcl	_	_
 21	Monday	Monday	PROPN	NNP	Number=Sing	20	nmod:tmod	_	_
 22	to	to	ADP	IN	_	25	case	_	_
 23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
@@ -7548,17 +7536,17 @@ where she faces trial for her actions, a US attorney said.
 25	States	States	PROPN	NNP	Number=Sing	20	nmod	_	_
 26	where	where	ADV	WRB	PronType=Rel	28	advmod	_	_
 27	she	she	PRON	PRP	Case=Nom|Gender=Fem|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
-28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	acl:relcl	_	_
+28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	acl:relcl	_	_
 29	trial	trial	NOUN	NN	Number=Sing	28	dobj	_	_
 30	for	for	ADP	IN	_	32	case	_	_
 31	her	she	PRON	PRP$	Gender=Fem|Number=Sing|Person=3|Poss=Yes|PronType=Prs	32	nmod:poss	_	_
 32	actions	action	NOUN	NNS	Number=Plur	28	nmod	_	_
-33	,	,	PUNCT	,	_	20	punct	_	_
+33	,	,	PUNCT	,	_	3	punct	_	_
 34	a	a	DET	DT	Definite=Ind|PronType=Art	36	det	_	_
 35	US	US	PROPN	NNP	Number=Sing	36	compound	_	_
 36	attorney	attorney	NOUN	NN	Number=Sing	37	nsubj	_	_
-37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	parataxis	_	_
-38	.	.	PUNCT	.	_	20	punct	_	_
+37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	acl:relcl	_	_
+38	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -7601,24 +7589,24 @@ where she faces trial for her actions, a US attorney said.
 """
     parse="""1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
 2	Pakistani	pakistani	ADJ	JJ	Degree=Pos	3	amod	_	_
-3	woman	woman	NOUN	NN	Number=Sing	20	nsubjpass	_	_
+3	woman	woman	NOUN	NN	Number=Sing	0	root	_	_
 4	believed	believe	VERB	VBN	Tense=Past|VerbForm=Part	3	acl	_	_
 5	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	4	xcomp	_	_
 6	to	to	ADP	IN	_	7	case	_	_
 7	Al-Qaeda	Al-Qaeda	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	who	who	PRON	WP	PronType=Rel	9	nsubj	_	_
-9	shot	shoot	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	acl:relcl	_	_
+9	shot	shoot	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	acl:relcl	_	_
 10	at	at	ADP	IN	_	13	case	_	_
 11	US	US	PROPN	NNP	Number=Sing	13	compound	_	_
 12	military	military	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	officers	officer	NOUN	NNS	Number=Plur	9	nmod	_	_
-14	while	while	SCONJ	IN	_	16	mark	_	_
+14	while	while	SCONJ	IN	_	20	mark	_	_
 15	in	in	ADP	IN	_	16	case	_	_
-16	detention	detention	NOUN	NN	Number=Sing	9	advcl	_	_
+16	detention	detention	NOUN	NN	Number=Sing	20	nsubjpass	_	_
 17	in	in	ADP	IN	_	18	case	_	_
 18	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	16	nmod	_	_
 19	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	20	auxpass	_	_
-20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	9	advcl	_	_
 21	Monday	Monday	PROPN	NNP	Number=Sing	20	nmod:tmod	_	_
 22	to	to	ADP	IN	_	25	case	_	_
 23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
@@ -7626,17 +7614,17 @@ where she faces trial for her actions, a US attorney said.
 25	States	States	PROPN	NNP	Number=Sing	20	nmod	_	_
 26	where	where	ADV	WRB	PronType=Rel	28	advmod	_	_
 27	she	she	PRON	PRP	Case=Nom|Gender=Fem|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
-28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	acl:relcl	_	_
+28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	acl:relcl	_	_
 29	trial	trial	NOUN	NN	Number=Sing	28	dobj	_	_
 30	for	for	ADP	IN	_	32	case	_	_
 31	her	she	PRON	PRP$	Gender=Fem|Number=Sing|Person=3|Poss=Yes|PronType=Prs	32	nmod:poss	_	_
 32	actions	action	NOUN	NNS	Number=Plur	28	nmod	_	_
-33	,	,	PUNCT	,	_	20	punct	_	_
+33	,	,	PUNCT	,	_	3	punct	_	_
 34	a	a	DET	DT	Definite=Ind|PronType=Art	36	det	_	_
 35	US	US	PROPN	NNP	Number=Sing	36	compound	_	_
 36	attorney	attorney	NOUN	NN	Number=Sing	37	nsubj	_	_
-37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	parataxis	_	_
-38	.	.	PUNCT	.	_	20	punct	_	_
+37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	acl:relcl	_	_
+38	.	.	PUNCT	.	_	3	punct	_	_
 """
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -13040,14 +13028,14 @@ Bree official said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[---],222)\n([BREGOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([GON],[---],222)\n([BREGOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test214']['sents']['0']:
             print(return_dict['test214']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test214']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[---],222)\n([BREGOV],[---],012)",str(return_dict['test214']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[---],222)\n([BREGOV],[---],010)",str(return_dict['test214']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[---],222)\n([BREGOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([GON],[---],222)\n([BREGOV],[---],010)","noevent"]
             print("test214 Failed")
     except:
         print("test214 Failed")
@@ -13111,14 +13099,14 @@ Bree official said on Saturday.
     try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],050)\n([BREGOV],[---],012)", "Petrarch Runtime Error " + str(e)]
+        write_str = [text.replace("\n"," ") , parsed.replace("\n"," ") , "([ARN],[GON],050)\n([BREGOV],[---],010)", "Petrarch Runtime Error " + str(e)]
     try:
         if 'events' in return_dict['test215']['sents']['0']:
             print(return_dict['test215']['sents']['0']['events'])
             event_out = process_event_output(str(return_dict['test215']['sents']['0']['events']))
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([BREGOV],[---],012)",str(return_dict['test215']['sents']['0']['events']),event_out]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([BREGOV],[---],010)",str(return_dict['test215']['sents']['0']['events']),event_out]
         else:
-            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([BREGOV],[---],012)","noevent"]
+            write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)\n([BREGOV],[---],010)","noevent"]
             print("test215 Failed")
     except:
         print("test215 Failed")

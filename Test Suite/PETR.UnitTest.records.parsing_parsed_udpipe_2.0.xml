@@ -280,7 +280,7 @@ An Eriadorian was shot dead in Osgiliath, the state's fiercest foe.
 <!-- [Coding two events from a compound sentence] -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
-<EventCoding eventcode="050" sourcecode="CALGOV" targetcode="ITH" />
+<EventCoding eventcode="033" sourcecode="CALGOV" targetcode="ITH" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday and promised aid to the affected Ithilen villages. 
@@ -1993,7 +1993,7 @@ diplomatic ties with former Minas Tirith border police.
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="OSG" targetcode="GON" />
 <Text>
-Old foes Gondor and Osgiliath have renewed diplomatic ties after a 
+Old foe Gondor and Osgiliath have renewed diplomatic ties after a 
 12-year break in a step that holds advantages for both major 
 powers. 
 </Text>
@@ -2067,10 +2067,10 @@ diplomatic ties with Osgiliath after a 12-year rift.
 <!-- Last update: 25-April-2014 -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="012" sourcecode="---GOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor and Gondor welcome a resumption of formal diplomatic ties with  
-Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+Osgiliath after a 12-year rift, the primary official news agency said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2095,12 +2095,11 @@ on Thursday.
 19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
 20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
 21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	4	dobj	_	_
-23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
-25	on	on	ADP	IN	_	26	case	_	_
-26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	4	punct	_	_
+22	agency	agency	NOUN	NN	Number=Sing	23	nsubj	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+24	on	on	ADP	IN	_	25	case	_	_
+25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
+26	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
 
@@ -2110,10 +2109,10 @@ on Thursday.
 <!-- Last update: 9 Dec 2013 -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="GON" />
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="OSG" />
-<EventCoding eventcode="012" sourcecode="---GOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor welcomed a resumption of formal diplomatic ties between Gondor 
-and Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+and Osgiliath after a 12-year rift, the primary official news agency said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2138,12 +2137,11 @@ on Thursday.
 19	primary	primary	ADJ	JJ	Degree=Pos	22	amod	_	_
 20	official	official	ADJ	JJ	Degree=Pos	22	amod	_	_
 21	news	news	NOUN	NN	Number=Sing	22	compound	_	_
-22	agency	agency	NOUN	NN	Number=Sing	2	dobj	_	_
-23	WFNA	WFNA	PROPN	NNP	Number=Sing	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	22	acl:relcl	_	_
-25	on	on	ADP	IN	_	26	case	_	_
-26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
-27	.	.	PUNCT	.	_	2	punct	_	_
+22	agency	agency	NOUN	NN	Number=Sing	23	nsubj	_	_
+23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
+24	on	on	ADP	IN	_	25	case	_	_
+25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
+26	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
 <Config option="require_dyad" value="true" />
@@ -2194,7 +2192,7 @@ Mordor, Rohan, Arnor and Bree after a 12-year rift.
 <Text>
 Arnor and Gondor welcomed a resumption of formal diplomatic ties
 between Eriador and Osgiliath after a 12-year rift, the official news
-agency WFNA said on Thursday . 
+agency  said on Thursday . 
 </Text>
 <Parse>
 1	Arnor	Arnor	PROPN	NNP	Number=Sing	4	nsubj	_	_
@@ -2214,17 +2212,16 @@ agency WFNA said on Thursday .
 15	after	after	ADP	IN	_	18	case	_	_
 16	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
 17	12-year	12-year	ADJ	JJ	Degree=Pos	18	amod	_	_
-18	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
-19	,	,	PUNCT	,	_	18	punct	_	_
+18	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
+19	,	,	PUNCT	,	_	4	punct	_	_
 20	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
 21	official	official	ADJ	JJ	Degree=Pos	23	amod	_	_
 22	news	news	NOUN	NN	Number=Sing	23	compound	_	_
-23	agency	agency	NOUN	NN	Number=Sing	18	appos	_	_
-24	WFNA	WFNA	PROPN	NNP	Number=Sing	25	nsubj	_	_
-25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	23	acl:relcl	_	_
-26	on	on	ADP	IN	_	27	case	_	_
-27	Thursday	Thursday	PROPN	NNP	Number=Sing	25	nmod	_	_
-28	.	.	PUNCT	.	_	4	punct	_	_
+23	agency	agency	NOUN	NN	Number=Sing	24	nsubj	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+25	on	on	ADP	IN	_	26	case	_	_
+26	Thursday	Thursday	PROPN	NNP	Number=Sing	24	nmod	_	_
+27	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
 
@@ -2242,7 +2239,7 @@ agency WFNA said on Thursday .
 <Text>
 Mordor, Rohan, Arnor and Bree welcomed a resumption of formal 
 diplomatic ties between Gondor and Osgiliath after a 12-year rift, the 
-official news agency WFNA said on Thursday . 
+official news agency  said on Thursday . 
 </Text>
 <Parse>
 1	Mordor	Mordor	PROPN	NNP	Number=Sing	8	nsubj	_	_
@@ -2271,12 +2268,11 @@ official news agency WFNA said on Thursday .
 24	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
 25	official	official	ADJ	JJ	Degree=Pos	27	amod	_	_
 26	news	news	NOUN	NN	Number=Sing	27	compound	_	_
-27	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
-28	WFNA	WFNA	PROPN	NNP	Number=Sing	29	nsubj	_	_
-29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	27	acl:relcl	_	_
-30	on	on	ADP	IN	_	31	case	_	_
-31	Thursday	Thursday	PROPN	NNP	Number=Sing	29	nmod	_	_
-32	.	.	PUNCT	.	_	8	punct	_	_
+27	agency	agency	NOUN	NN	Number=Sing	28	nsubj	_	_
+28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+29	on	on	ADP	IN	_	30	case	_	_
+30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
+31	.	.	PUNCT	.	_	8	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-07B" sentence="true">
@@ -2293,9 +2289,9 @@ official news agency WFNA said on Thursday .
 <EventCoding eventcode="050" sourcecode="BRE" targetcode="GON" />
 <EventCoding eventcode="050" sourcecode="BRE" targetcode="OSG" />
 <Text>
-Mordor, the Shire, Fornost and Bree welcomed a resumption of formal 
+Mordor, the Shire, Arnor and Bree welcomed a resumption of formal 
 diplomatic ties between Minas Tirith and Osgiliath after a 12-year rift, 
-the official news agency WFNA said on Thursday. 
+the official news agency  said on Thursday. 
 </Text>
 <Parse>
 1	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nsubj	_	_
@@ -2326,12 +2322,11 @@ the official news agency WFNA said on Thursday.
 26	the	the	DET	DT	Definite=Def|PronType=Art	29	det	_	_
 27	official	official	ADJ	JJ	Degree=Pos	29	amod	_	_
 28	news	news	NOUN	NN	Number=Sing	29	compound	_	_
-29	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
-30	WFNA	WFNA	PROPN	NNP	Number=Sing	31	nsubj	_	_
-31	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	29	acl:relcl	_	_
-32	on	on	ADP	IN	_	33	case	_	_
-33	Thursday	Thursday	PROPN	NNP	Number=Sing	31	nmod	_	_
-34	.	.	PUNCT	.	_	9	punct	_	_
+29	agency	agency	NOUN	NN	Number=Sing	30	nsubj	_	_
+30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	parataxis	_	_
+31	on	on	ADP	IN	_	32	case	_	_
+32	Thursday	Thursday	PROPN	NNP	Number=Sing	30	nmod	_	_
+33	.	.	PUNCT	.	_	9	punct	_	_
 </Parse></Sentence>
 
 
@@ -2342,7 +2337,7 @@ the official news agency WFNA said on Thursday.
 <EventCoding eventcode="050" sourcecode="ARNLEG" targetcode="ERI" />
 <EventCoding eventcode="050" sourcecode="GONLEG" targetcode="ERI" />
 <Text>
-Lawmakers in Fornost and Gondor welcomed a resumption of formal diplomatic ties
+Lawmakers in Arnor and Gondor welcomed a resumption of formal diplomatic ties
 with Eriador. 
 </Text>
 <Parse>
@@ -2436,7 +2431,7 @@ five years after crowds burned down its embassy.
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
 <Text>
 Arnor and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2454,21 +2449,20 @@ on Thursday.
 12	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	ties	tie	NOUN	NNS	Number=Plur	9	nmod	_	_
 14	with	with	ADP	IN	_	15	case	_	_
-15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	13	nmod	_	_
+15	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	7	nmod	_	_
 16	after	after	ADP	IN	_	19	case	_	_
 17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
 18	12-year	12-year	ADJ	JJ	Degree=Pos	19	amod	_	_
-19	rift	rift	NOUN	NN	Number=Sing	9	nmod	_	_
-20	,	,	PUNCT	,	_	19	punct	_	_
+19	rift	rift	NOUN	NN	Number=Sing	7	nmod	_	_
+20	,	,	PUNCT	,	_	7	punct	_	_
 21	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
 22	official	official	ADJ	JJ	Degree=Pos	24	amod	_	_
 23	news	news	NOUN	NN	Number=Sing	24	compound	_	_
-24	agency	agency	NOUN	NN	Number=Sing	19	appos	_	_
-25	WFNA	WFNA	PROPN	NNP	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	24	acl:relcl	_	_
-27	on	on	ADP	IN	_	28	case	_	_
-28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
-29	.	.	PUNCT	.	_	7	punct	_	_
+24	agency	agency	NOUN	NN	Number=Sing	25	nsubj	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
+26	on	on	ADP	IN	_	27	case	_	_
+27	Thursday	Thursday	PROPN	NNP	Number=Sing	25	nmod	_	_
+28	.	.	PUNCT	.	_	7	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-12" sentence="true">
@@ -2479,7 +2473,7 @@ on Thursday.
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
 <Text>
 Evil Mordor, the awful Arnor, and good Gondor welcomed a resumption of formal   
-diplomatic ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+diplomatic ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2510,12 +2504,11 @@ on Thursday.
 25	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
 26	official	official	ADJ	JJ	Degree=Pos	28	amod	_	_
 27	news	news	NOUN	NN	Number=Sing	28	compound	_	_
-28	agency	agency	NOUN	NN	Number=Sing	11	dobj	_	_
-29	WFNA	WFNA	PROPN	NNP	Number=Sing	30	nsubj	_	_
-30	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	acl:relcl	_	_
-31	on	on	ADP	IN	_	32	case	_	_
-32	Thursday	Thursday	PROPN	NNP	Number=Sing	30	nmod	_	_
-33	.	.	PUNCT	.	_	11	punct	_	_
+28	agency	agency	NOUN	NN	Number=Sing	29	nsubj	_	_
+29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	parataxis	_	_
+30	on	on	ADP	IN	_	31	case	_	_
+31	Thursday	Thursday	PROPN	NNP	Number=Sing	29	nmod	_	_
+32	.	.	PUNCT	.	_	11	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-13" sentence="true">
@@ -2526,7 +2519,7 @@ on Thursday.
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
 <Text>
 Arnor, Calenardhon and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2555,12 +2548,11 @@ on Thursday.
 23	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
 24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
 25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
-26	agency	agency	NOUN	NN	Number=Sing	9	dobj	_	_
-27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	acl:relcl	_	_
-29	on	on	ADP	IN	_	30	case	_	_
-30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	9	punct	_	_
+26	agency	agency	NOUN	NN	Number=Sing	27	nsubj	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	parataxis	_	_
+28	on	on	ADP	IN	_	29	case	_	_
+29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
+30	.	.	PUNCT	.	_	9	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-14" sentence="true">
@@ -2573,7 +2565,7 @@ on Thursday.
 <!--EventCoding sourcecode="GON" targetcode="OSG" eventcode="050"-->
 <Text>
 Calenardhon and the evil Arnor awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2592,21 +2584,20 @@ on Thursday.
 13	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	14	amod	_	_
 14	ties	tie	NOUN	NNS	Number=Plur	10	nmod	_	_
 15	with	with	ADP	IN	_	16	case	_	_
-16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	14	nmod	_	_
+16	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	nmod	_	_
 17	after	after	ADP	IN	_	20	case	_	_
 18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
 19	12-year	12-year	ADJ	JJ	Degree=Pos	20	amod	_	_
-20	rift	rift	NOUN	NN	Number=Sing	10	nmod	_	_
-21	,	,	PUNCT	,	_	20	punct	_	_
+20	rift	rift	NOUN	NN	Number=Sing	8	nmod	_	_
+21	,	,	PUNCT	,	_	8	punct	_	_
 22	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
 23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	20	appos	_	_
-26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
-28	on	on	ADP	IN	_	29	case	_	_
-29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
-30	.	.	PUNCT	.	_	8	punct	_	_
+25	agency	agency	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+27	on	on	ADP	IN	_	28	case	_	_
+28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
+29	.	.	PUNCT	.	_	8	punct	_	_
 </Parse></Sentence>
 
 <Config option="require_dyad" value="FALSE" />
@@ -2617,10 +2608,10 @@ on Thursday.
 <!-- from the final phrase -->
 <!-- Last update: 22-Apr-2014 -->
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="012" sourcecode="---GOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 The lions and the evil awful Gondor welcomed a resumption of formal diplomatic  
-ties with Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+ties with Osgiliath after a 12-year rift, the primary official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2649,12 +2640,11 @@ on Thursday.
 23	primary	primary	ADJ	JJ	Degree=Pos	26	amod	_	_
 24	official	official	ADJ	JJ	Degree=Pos	26	amod	_	_
 25	news	news	NOUN	NN	Number=Sing	26	compound	_	_
-26	agency	agency	NOUN	NN	Number=Sing	8	dobj	_	_
-27	WFNA	WFNA	PROPN	NNP	Number=Sing	28	nsubj	_	_
-28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	acl:relcl	_	_
-29	on	on	ADP	IN	_	30	case	_	_
-30	Thursday	Thursday	PROPN	NNP	Number=Sing	28	nmod	_	_
-31	.	.	PUNCT	.	_	8	punct	_	_
+26	agency	agency	NOUN	NN	Number=Sing	27	nsubj	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+28	on	on	ADP	IN	_	29	case	_	_
+29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
+30	.	.	PUNCT	.	_	8	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-16" sentence="true">
@@ -2663,10 +2653,10 @@ on Thursday.
 <!--           same code, so the duplicate event is eliminated  -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="012" sourcecode="---GOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Lions, tigers, and Gondor welcomed a resumption of formal diplomatic ties  
-with Osgiliath after a 12-year rift, the primary official news agency WFNA said 
+with Osgiliath after a 12-year rift, the primary official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2694,12 +2684,11 @@ on Thursday.
 22	primary	primary	ADJ	JJ	Degree=Pos	25	amod	_	_
 23	official	official	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	news	news	NOUN	NN	Number=Sing	25	compound	_	_
-25	agency	agency	NOUN	NN	Number=Sing	7	dobj	_	_
-26	WFNA	WFNA	PROPN	NNP	Number=Sing	27	nsubj	_	_
-27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	25	acl:relcl	_	_
-28	on	on	ADP	IN	_	29	case	_	_
-29	Thursday	Thursday	PROPN	NNP	Number=Sing	27	nmod	_	_
-30	.	.	PUNCT	.	_	7	punct	_	_
+25	agency	agency	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
+27	on	on	ADP	IN	_	28	case	_	_
+28	Thursday	Thursday	PROPN	NNP	Number=Sing	26	nmod	_	_
+29	.	.	PUNCT	.	_	7	punct	_	_
 </Parse></Sentence>
 
 <Config option="require_dyad" value="TRUE" />
@@ -2737,7 +2726,7 @@ Dol Amroth.
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
 <Text>
 Arnor and Gondor welcomed a resumption of formal diplomatic ties with  
-Osgiliath after a 12-year rift, the official news agency WFNA said 
+Osgiliath after a 12-year rift, the official news agency  said 
 on Thursday. 
 </Text>
 <Parse>
@@ -2752,21 +2741,20 @@ on Thursday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	6	nmod	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	nmod	_	_
+12	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	4	nmod	_	_
 13	after	after	ADP	IN	_	16	case	_	_
 14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
 15	12-year	12-year	ADJ	JJ	Degree=Pos	16	amod	_	_
-16	rift	rift	NOUN	NN	Number=Sing	6	nmod	_	_
-17	,	,	PUNCT	,	_	16	punct	_	_
+16	rift	rift	NOUN	NN	Number=Sing	4	nmod	_	_
+17	,	,	PUNCT	,	_	4	punct	_	_
 18	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
 19	official	official	ADJ	JJ	Degree=Pos	21	amod	_	_
 20	news	news	NOUN	NN	Number=Sing	21	compound	_	_
-21	agency	agency	NOUN	NN	Number=Sing	16	appos	_	_
-22	WFNA	WFNA	PROPN	NNP	Number=Sing	23	nsubj	_	_
-23	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	acl:relcl	_	_
-24	on	on	ADP	IN	_	25	case	_	_
-25	Thursday	Thursday	PROPN	NNP	Number=Sing	23	nmod	_	_
-26	.	.	PUNCT	.	_	4	punct	_	_
+21	agency	agency	NOUN	NN	Number=Sing	22	nsubj	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+23	on	on	ADP	IN	_	24	case	_	_
+24	Thursday	Thursday	PROPN	NNP	Number=Sing	22	nmod	_	_
+25	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19990809" id="COMPOUND-19" sentence="true">
@@ -2884,8 +2872,8 @@ Ithilen and the government of Gondor warned their Ent populations about the Prin
 <Sentence category="COMPOUND" date="19920102" id="COMPOUND-23" sentence="true">
 <!-- Test of NOR conjunction and the NEITHER pattern match-->
 <!-- Last update: TABARI validation with modifications-->
-<EventCoding eventcode="057" sourcecode="ELF" targetcode="GON" />
-<EventCoding eventcode="057" sourcecode="HOB" targetcode="GON" />
+<EventCoding eventcode="163" sourcecode="ELF" targetcode="GON" />
+<EventCoding eventcode="163" sourcecode="HOB" targetcode="GON" />
 <Text>
 Neither Galadriel nor Gollum boycotted the parade supporting Gondor 
 on Saturday. 
@@ -2908,7 +2896,7 @@ on Saturday.
 <!-- [Coding two events from a compound sentence] -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
-<EventCoding eventcode="050" sourcecode="CALGOV" targetcode="ITH" />
+<EventCoding eventcode="033" sourcecode="CALGOV" targetcode="ITH" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday and promised aid to the affected Ithilen villages. 
@@ -3028,8 +3016,8 @@ The Danish Islamist media and government warned at the Gondor of the Prince of D
 <!-- an infinite loop in earlier versions -->
 <!-- <14.05.12: Elimination of coding of embedded compounds now causes issues here -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="012" sourcecode="HOB" targetcode="GON" />
-<EventCoding eventcode="012" sourcecode="HOB" targetcode="ARN" />
+<EventCoding eventcode="010" sourcecode="HOB" targetcode="GON" />
+<EventCoding eventcode="010" sourcecode="HOB" targetcode="ARN" />
 <Text>
 Frodo said he has deep satisfaction toward Gondor and Arnor's Elrond, 
 and Gondor's dramatic cooperation and its eye-catching development are of 
@@ -3080,7 +3068,7 @@ great significance to the region and even the entire world, he noted.
 <!-- [Minor variants on DEMO-06 used to test pattern reporting] -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
-<EventCoding eventcode="190" sourcecode="CALGOV" targetcode="ITH" />
+<EventCoding eventcode="138" sourcecode="CALGOV" targetcode="ITH" />
 <Text>
 The Calenardhon government issue condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday and promised raids to the affected Ithilen villages. 
@@ -3266,7 +3254,7 @@ month.
 <!-- list, though this is useful to insure that ### isn't being confused with a comment -->
 <!-- delimiter -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="012" sourcecode="###" targetcode="MOR" />
+<EventCoding eventcode="010" sourcecode="+++" targetcode="MOR" />
 <Text>
 The Nasgul said on Friday that an arms embargo against Mordor would not 
 work and warned that a blockade of the Bay of Belfalas would harm all  
@@ -3311,8 +3299,8 @@ countries of the region.
 <Sentence category="COMPOUND" date="19950105" id="COMPOUND-35" sentence="true">
 <!-- Discard code in compound source: similar to the above -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="012" sourcecode="GON" targetcode="MORCOP" />
-<EventCoding eventcode="012" sourcecode="###" targetcode="MORCOP" />
+<EventCoding eventcode="010" sourcecode="GON" targetcode="MORCOP" />
+<EventCoding eventcode="010" sourcecode="+++" targetcode="MORCOP" />
 <Text>
 The information ministry of Gondor and the Nasgul said on Friday that an arms 
 embargo against the Mordor police would not work and warned that a blockade of 
@@ -4028,7 +4016,7 @@ said on Saturday.
 <!-- for the heck of it...also turn off end comma clause deletion  -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="HOB" targetcode="GON" />
-<EventCoding eventcode="012" sourcecode="---GOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Stinker is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy, a senior official 
@@ -4344,24 +4332,24 @@ where she faces trial for her actions, a US attorney said.
 <Parse>
 1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
 2	Pakistani	pakistani	ADJ	JJ	Degree=Pos	3	amod	_	_
-3	woman	woman	NOUN	NN	Number=Sing	20	nsubjpass	_	_
+3	woman	woman	NOUN	NN	Number=Sing	0	root	_	_
 4	believed	believe	VERB	VBN	Tense=Past|VerbForm=Part	3	acl	_	_
 5	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	4	xcomp	_	_
 6	to	to	ADP	IN	_	7	case	_	_
 7	Al-Qaeda	Al-Qaeda	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	who	who	PRON	WP	PronType=Rel	9	nsubj	_	_
-9	shot	shoot	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	acl:relcl	_	_
+9	shot	shoot	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	acl:relcl	_	_
 10	at	at	ADP	IN	_	13	case	_	_
 11	US	US	PROPN	NNP	Number=Sing	13	compound	_	_
 12	military	military	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	officers	officer	NOUN	NNS	Number=Plur	9	nmod	_	_
-14	while	while	SCONJ	IN	_	16	mark	_	_
+14	while	while	SCONJ	IN	_	20	mark	_	_
 15	in	in	ADP	IN	_	16	case	_	_
-16	detention	detention	NOUN	NN	Number=Sing	9	advcl	_	_
+16	detention	detention	NOUN	NN	Number=Sing	20	nsubjpass	_	_
 17	in	in	ADP	IN	_	18	case	_	_
 18	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	16	nmod	_	_
 19	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	20	auxpass	_	_
-20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	9	advcl	_	_
 21	Monday	Monday	PROPN	NNP	Number=Sing	20	nmod:tmod	_	_
 22	to	to	ADP	IN	_	25	case	_	_
 23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
@@ -4369,17 +4357,17 @@ where she faces trial for her actions, a US attorney said.
 25	States	States	PROPN	NNP	Number=Sing	20	nmod	_	_
 26	where	where	ADV	WRB	PronType=Rel	28	advmod	_	_
 27	she	she	PRON	PRP	Case=Nom|Gender=Fem|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
-28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	acl:relcl	_	_
+28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	acl:relcl	_	_
 29	trial	trial	NOUN	NN	Number=Sing	28	dobj	_	_
 30	for	for	ADP	IN	_	32	case	_	_
 31	her	she	PRON	PRP$	Gender=Fem|Number=Sing|Person=3|Poss=Yes|PronType=Prs	32	nmod:poss	_	_
 32	actions	action	NOUN	NNS	Number=Plur	28	nmod	_	_
-33	,	,	PUNCT	,	_	20	punct	_	_
+33	,	,	PUNCT	,	_	3	punct	_	_
 34	a	a	DET	DT	Definite=Ind|PronType=Art	36	det	_	_
 35	US	US	PROPN	NNP	Number=Sing	36	compound	_	_
 36	attorney	attorney	NOUN	NN	Number=Sing	37	nsubj	_	_
-37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	parataxis	_	_
-38	.	.	PUNCT	.	_	20	punct	_	_
+37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	acl:relcl	_	_
+38	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="PARSING" date="20080804" id="AFP0808020593-1b" sentence="true">
@@ -4396,24 +4384,24 @@ where she faces trial for her actions, a US attorney said.
 <Parse>
 1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
 2	Pakistani	pakistani	ADJ	JJ	Degree=Pos	3	amod	_	_
-3	woman	woman	NOUN	NN	Number=Sing	20	nsubjpass	_	_
+3	woman	woman	NOUN	NN	Number=Sing	0	root	_	_
 4	believed	believe	VERB	VBN	Tense=Past|VerbForm=Part	3	acl	_	_
 5	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	4	xcomp	_	_
 6	to	to	ADP	IN	_	7	case	_	_
 7	Al-Qaeda	Al-Qaeda	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	who	who	PRON	WP	PronType=Rel	9	nsubj	_	_
-9	shot	shoot	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	acl:relcl	_	_
+9	shot	shoot	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	acl:relcl	_	_
 10	at	at	ADP	IN	_	13	case	_	_
 11	US	US	PROPN	NNP	Number=Sing	13	compound	_	_
 12	military	military	ADJ	JJ	Degree=Pos	13	amod	_	_
 13	officers	officer	NOUN	NNS	Number=Plur	9	nmod	_	_
-14	while	while	SCONJ	IN	_	16	mark	_	_
+14	while	while	SCONJ	IN	_	20	mark	_	_
 15	in	in	ADP	IN	_	16	case	_	_
-16	detention	detention	NOUN	NN	Number=Sing	9	advcl	_	_
+16	detention	detention	NOUN	NN	Number=Sing	20	nsubjpass	_	_
 17	in	in	ADP	IN	_	18	case	_	_
 18	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	16	nmod	_	_
 19	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	20	auxpass	_	_
-20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+20	extradited	extradite	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	9	advcl	_	_
 21	Monday	Monday	PROPN	NNP	Number=Sing	20	nmod:tmod	_	_
 22	to	to	ADP	IN	_	25	case	_	_
 23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
@@ -4421,17 +4409,17 @@ where she faces trial for her actions, a US attorney said.
 25	States	States	PROPN	NNP	Number=Sing	20	nmod	_	_
 26	where	where	ADV	WRB	PronType=Rel	28	advmod	_	_
 27	she	she	PRON	PRP	Case=Nom|Gender=Fem|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
-28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	acl:relcl	_	_
+28	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	acl:relcl	_	_
 29	trial	trial	NOUN	NN	Number=Sing	28	dobj	_	_
 30	for	for	ADP	IN	_	32	case	_	_
 31	her	she	PRON	PRP$	Gender=Fem|Number=Sing|Person=3|Poss=Yes|PronType=Prs	32	nmod:poss	_	_
 32	actions	action	NOUN	NNS	Number=Plur	28	nmod	_	_
-33	,	,	PUNCT	,	_	20	punct	_	_
+33	,	,	PUNCT	,	_	3	punct	_	_
 34	a	a	DET	DT	Definite=Ind|PronType=Art	36	det	_	_
 35	US	US	PROPN	NNP	Number=Sing	36	compound	_	_
 36	attorney	attorney	NOUN	NN	Number=Sing	37	nsubj	_	_
-37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	parataxis	_	_
-38	.	.	PUNCT	.	_	20	punct	_	_
+37	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	acl:relcl	_	_
+38	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="PARSING" date="19990101" id="TABDEBUG-19" sentence="true">
@@ -7443,7 +7431,7 @@ Calenardhon crowds burned down its embassy,  a clearly inebriated Bree official 
 <!-- 'Saturday' would go to (NP-TMP. CoreNLP is subtle, but probably not mean.     -->
 <!-- Last update: 14.05.02 -->
 <EventCoding eventcode="222" sourcecode="GON" targetcode="---" />
-<EventCoding eventcode="012" sourcecode="BREGOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="BREGOV" targetcode="---" />
 <Text>
 Arnor is about to restore, it seems, complete, full diplomatic ties with Gondor almost 
 five years after Calenardhon crowds burned down its embassy,  a senior 
@@ -7493,7 +7481,7 @@ Bree official said on Saturday.
 <!-- the noun phrase, which is a distinction TABARI would not have made -->
 <!-- Last update: TABARI validation with modification of outcome -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="GON" />
-<EventCoding eventcode="012" sourcecode="BREGOV" targetcode="---" />
+<EventCoding eventcode="010" sourcecode="BREGOV" targetcode="---" />
 <Text>
 Arnor is about to restore complete, full diplomatic ties with Gondor almost 
 five years after Calenardhon crowds burned down its embassy,  a senior 
