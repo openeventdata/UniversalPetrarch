@@ -374,8 +374,8 @@ ACCORD
 ACT 
 #- INDICATED WOULD * NOW  [1010] 
 #- INDICATED SHOULD *   [1011] 
-- * (&PREPOSIT1 RESOLUTION)  [057]  # tony  4/22/91
-- * (&PREPOSIT1 PROGRAMS)  [051]  # tony  3/9/91
+- * (ON RESOLUTION)  [057]  # tony  4/22/91
+- * (ON PROGRAMS)  [051]  # tony  3/9/91
 
 ---  WILL   [030]  --- 
 SCHEDULE
@@ -518,6 +518,7 @@ CELEBRATE
 - * TABASKI ^ $ [017]  # pas  3/2/02 
 - * {MAY DAY}  $ [017]  # pas  3/2/02 
 - * EID (AT ^) (WITH +) [017]  # pas  3/2/02
+- * EID [017]  # pas  3/2/02
 - * DECISION  [017]  # tony  3/9/91
 - * IFTAR (AT ^ ^) +  [017]  # pas  4/20/03
 - * IFTAR (IN ^) +  [017]  # pas  4/20/03
@@ -675,7 +676,7 @@ LAUNCH
 - * {DIPLOMATIC OFFENSIVE}  			      	[122]  
 - * {CIVIL DISOBEDIENCE}  				[181]  
 - * ATTACK  						[173]
-- * OFFENSIVE  						[223]  
+- * OFFENSIVE  						[190]  
 - * {NEW BROADSIDE}  					[122]  
 - * DIPLOMATIC  					[050]
 - * ATTACK  						[223]
@@ -1082,3 +1083,29 @@ TELL {TELLS TOLD TELLING}
 - * ARREST                                            [173]         # ANNOUNCE
 - * ARREST                                            [173]         # ANNOUNCE
 - * ATTACK                                            [190]
+
+---  PROMISE   [030]  ---
+ASSURE 
+CERTIFY 
+ENSURE 
+GUARANTEE 
+PROMISE 
+VOUCH 
+- CAMPAIGN *                                          [---]         # PROMISE
+- * COOPERATION                                       [030]         # PROMISE
+- * SUPPORT                                           [030]         # PROMISE
+- * HELP                                              [030]         # PROMISE
+- * {&MILITARY FLYOVER RIGHTS}                        [0312]        # GUARANTEE
+- * {FULL SUPPORT}                                    [032]         # ASSURE
+- * {ECONOMIC SUPPORT}                                [0331]        # PROMISE
+- * {FINANCIAL AID}                                   [0331]        # PROMISE
+- * &CURRENCY                                         [0331]        # PROMISE
+- * {&MILITARY AID}                                   [0332]        # PROMISE
+- * &SECURITY                                         [0332]        # ENSURE
+- * ASSISTANCE                                        [0333]        # ASSURE
+- * AID                                               [033]         # PROMISE
+- * OPERATION                                         [0356]        # PROMISE
+- * ACTION (AGAINST)                                  [130]         # PROMISE
+- * ARREST                                            [130]         # PROMISE
+- * HELL                                              [130]         # PROMISE
+- * RAIDS                                             [138]         # PROMISE
