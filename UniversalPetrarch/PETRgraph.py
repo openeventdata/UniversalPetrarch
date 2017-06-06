@@ -447,10 +447,7 @@ class Sentence:
 				#if the root node is a verb, add it directly and find whether any conjunctive verb exists
 				if self.udgraph.node[root]['pos'] == 'VERB':
 					self.rootID.append(root)
-				rsuccessors = self.udgraph.successors(root)
-				for rsuccessor in rsuccessors:
-					if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
-						self.rootID.append(rsuccessor)
+				
 				else:
 					#if the root node is not a verb
 					#if a copula relation exist, find the verb connected to the root, and the verb as root
@@ -459,6 +456,17 @@ class Sentence:
 							self.rootID.append(rsuccessor)
 							#raw_input('root is not verb')
 
+				#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
+
+				#found other root nodes from parallel relation ('conj' & 'parataxis')
+				rsuccessors = self.udgraph.successors(root)
+				for rsuccessor in rsuccessors:
+					if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
+						self.rootID.append(rsuccessor)
+
+				#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
+
+		#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
 							
 
 
@@ -1305,7 +1313,7 @@ class Sentence:
 						if relation_with_root in ['advcl','ccomp','xcomp']:
 							current_event = triple['event'] #4.27
 							#(source_meaning,target_meaning,triple['verbcode'])
-
+							logger.debug("root"+str(root))
 							for reventID, revent in root_event[root].items():
 
 								event_before_transfer = (revent[0],current_event,revent[2])
@@ -1323,10 +1331,16 @@ class Sentence:
 										if tripleID not in self.events:
 											self.events[tripleID] = []
 										self.events[tripleID].append(e)
-									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]==None and e[1][2] != "None":
+									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]== None and e[1][2] != None :
 										if tripleID not in self.events:
 											self.events[tripleID] = []
+										
 										self.events[tripleID].extend(list(e[1]))
+
+		logger.debug("self.events: "+ str(len(self.events)))
+		for key, value in self.events.items():
+			logger.debug(key+":")
+			logger.debug(value)
 
 		if(len(self.events)==0):
 			for root in root_eventID:
@@ -1395,8 +1409,11 @@ class Sentence:
 
 			if isinstance(event, tuple):
 				actor = None if not event[0] else tuple(event[0])
-				masks = filter(lambda a: a in pdict, [event[2], event[2] - event[2] % 0x10,
-				                                      event[2] - event[2] % 0x100, event[2] - event[2] % 0x1000])
+				
+				eventcode = utilities.convert_code(event[2])[0]
+				codelist = [eventcode] #, eventcode - eventcode % 0x10,eventcode - eventcode % 0x100, eventcode - eventcode % 0x1000]
+				masks = filter(lambda a: a in pdict, codelist)
+				
 				logger.debug("actor:")
 				logger.debug(actor)
 
@@ -1404,12 +1421,15 @@ class Sentence:
 				logger.debug(masks)
 
 				if masks:
+					#print(masks)
 					path = pdict[masks[0]]
 				elif -1 in pdict:
 					v2a["Q"] = event[2]
 					path = pdict[-1]
+					#print(path)
 				else:
-				    return False
+					#print("nothing is found")
+					return False
 			else:
 				actor = event
 
@@ -1432,9 +1452,10 @@ class Sentence:
 						a2v[actor] = var
 					return recurse(path[var], event[1], a2v, v2a)
 			
-			logger.debug("no transformation is present")
+			#logger.debug("no transformation is present")
 
 			return False
+
 
 		logger.debug("match_transform entry...")
 
@@ -1442,7 +1463,7 @@ class Sentence:
 			logger.debug(e)
 
 			t = recurse(PETRglobals.VerbDict['transformations'], e)
-			#raw_input(t)
+			print(t)
 			if t:
 				logger.debug("transformation is present:")
 				logger.debug("t:")
@@ -1450,17 +1471,25 @@ class Sentence:
 				return t
 			else:
 				logger.debug("no transformation is present:")
-				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and not e[1][2] / (16 ** 3):
+				#c = utilities.convert_code(e[1][2])[0]
+				#print(c)
+				#print(16 ** 3)
+				#print(c / (16 ** 3))
+				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2]: #not e[1][2] / (16 ** 3):
+					print(utilities.convert_code(e[2])[0])
+					print(e[2])
 					logger.debug("the event is of the form: a ( b . Q ) P")
 					if isinstance(e[1][0], list):
 						results = []
 						for item in e[1][0]:
-							event = (e[0], item, utilities.combine_code(e[1][2], e[2]))
+							code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+							event = (e[0], item, utilities.convert_code(code_combined,0))
 							logger.debug(event)
 							results.append(event)
 						return results
 					
-					event = (e[0], e[1][0], utilities.combine_code(e[2], e[1][2]))
+					code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+					event = (e[0], e[1][0], utilities.convert_code(code_combined,0))
 					logger.debug(event)
 					return [event]
 
