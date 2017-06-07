@@ -1305,7 +1305,7 @@ class Sentence:
 			
 			if len(root_event)==0:
 				self.events[tripleID]=[]
-				self.events[tripleID].append(triple['event'])
+				self.events[tripleID]=(list(triple['event']))
 				
 			for root in self.rootID:
 				if verb.headID in self.udgraph.neighbors(root):
@@ -1326,16 +1326,19 @@ class Sentence:
 									
 								logger.debug("event"+tripleID+"transformation:")
 								logger.debug(event_after_transfer)
+
 								for e in event_after_transfer:
 									if isinstance(e,tuple) and not isinstance(e[1],tuple):
-										if tripleID not in self.events:
-											self.events[tripleID] = []
-										self.events[tripleID].append(e)
+										if reventID not in self.events:
+											self.events[reventID] = []
+											self.events[reventID].extend(list(e))
+										
+
 									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]== None and e[1][2] != None :
 										if tripleID not in self.events:
 											self.events[tripleID] = []
-										
-										self.events[tripleID].extend(list(e[1]))
+											self.events[tripleID].extend(list(e[1]))
+									
 
 		logger.debug("self.events: "+ str(len(self.events)))
 		for key, value in self.events.items():
@@ -1347,6 +1350,34 @@ class Sentence:
 				for eventID in root_eventID[root]:
 					self.events[eventID]=[]
 					self.events[eventID].extend(root_event[root][eventID])
+
+		# check the verb codes
+		finalverbs = {}
+		for eventID in self.events:
+			ids = eventID.split("#")
+			vid = ids[2]
+
+			if len(self.events[eventID])!=3:
+				print(self.events[eventID])
+				continue
+
+			if vid not in finalverbs:
+				finalverbs[vid] = self.events[eventID][2]
+			else:
+				print(self.events[eventID][1])
+				if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None'] :
+					finalverbs[vid] = self.events[eventID][2]
+
+		for vid,value in finalverbs.items():
+			if value != None:
+				print("vid: "+vid+"\t"+str(value))
+			else:
+				print("vid: "+vid+"\tNone")
+
+		for eventID in self.events:
+			ids = eventID.split("#")
+			vid = ids[2]
+			self.events[eventID][2] = finalverbs[vid]
 
 		return self.events
 			
@@ -1475,21 +1506,25 @@ class Sentence:
 				#print(c)
 				#print(16 ** 3)
 				#print(c / (16 ** 3))
-				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2]: #not e[1][2] / (16 ** 3):
+				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0]!=e[1][0]: #not e[1][2] / (16 ** 3):
 					print(utilities.convert_code(e[2])[0])
 					print(e[2])
+
+
 					logger.debug("the event is of the form: a ( b . Q ) P")
 					if isinstance(e[1][0], list):
 						results = []
 						for item in e[1][0]:
 							code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
-							event = (e[0], item, utilities.convert_code(code_combined,0))
+							#target = []
+							#target.append(item)
+							event = (e[0], [item], utilities.convert_code(code_combined,0))
 							logger.debug(event)
 							results.append(event)
 						return results
 					
 					code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
-					event = (e[0], e[1][0], utilities.convert_code(code_combined,0))
+					event = (e[0], [e[1][0]], utilities.convert_code(code_combined,0))
 					logger.debug(event)
 					return [event]
 
