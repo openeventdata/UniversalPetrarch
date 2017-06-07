@@ -300,14 +300,14 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
 14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
-15	and	and	CONJ	CC	_	14	cc	_	_
-16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
-17	aid	aid	NOUN	NN	Number=Sing	14	conj	_	_
+15	and	and	CONJ	CC	_	4	cc	_	_
+16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	4	conj	_	_
+17	aid	aid	NOUN	NN	Number=Sing	16	dobj	_	_
 18	to	to	ADP	IN	_	22	case	_	_
 19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
 20	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
 21	Ithilen	Ithilen	PROPN	NNP	Number=Sing	22	compound	_	_
-22	villages	villag	NOUN	NNS	Number=Plur	9	nmod	_	_
+22	villages	villag	NOUN	NNS	Number=Plur	17	nmod	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
@@ -563,12 +563,12 @@ group yielded ground seized in six days of fighting.
 9	war	war	NOUN	NN	Number=Sing	8	dobj	_	_
 10	on	on	ADP	IN	_	12	case	_	_
 11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
-12	Rohans	Rohans	PROPN	NNPS	Number=Plur	9	nmod	_	_
-13	until	until	SCONJ	IN	_	17	case	_	_
-14	that	that	DET	DT	Number=Sing|PronType=Dem	17	det	_	_
-15	group	group	NOUN	NN	Number=Sing	17	compound	_	_
-16	yielded	yield	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
-17	ground	ground	NOUN	NN	Number=Sing	4	nmod	_	_
+12	Rohans	Rohans	PROPN	NNPS	Number=Plur	8	nmod	_	_
+13	until	until	SCONJ	IN	_	16	mark	_	_
+14	that	that	DET	DT	Number=Sing|PronType=Dem	15	det	_	_
+15	group	group	NOUN	NN	Number=Sing	16	nsubj	_	_
+16	yielded	yield	VERB	VBN	Tense=Past|VerbForm=Part	4	advcl	_	_
+17	ground	ground	NOUN	NN	Number=Sing	16	dobj	_	_
 18	seized	seize	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
 19	in	in	ADP	IN	_	21	case	_	_
 20	six	six	NUM	CD	NumType=Card	21	nummod	_	_
@@ -601,18 +601,18 @@ embassy spokesman said.
 12	50,000	50,000	NUM	CD	NumType=Card	13	nummod	_	_
 13	tonnes	tonne	NOUN	NNS	Number=Plur	8	nmod	_	_
 14	of	of	ADP	IN	_	15	case	_	_
-15	wheat	wheat	ADJ	JJ	Degree=Pos	13	nmod	_	_
+15	wheat	wheat	NOUN	NN	Number=Sing	13	nmod	_	_
 16	,	,	PUNCT	,	_	2	punct	_	_
 17	worth	worth	ADJ	JJ	Degree=Pos	20	amod	_	_
 18	11.8	11.8	NUM	CD	NumType=Card	19	compound	_	_
 19	million	million	NUM	CD	NumType=Card	20	nummod	_	_
-20	ducats	ducat	NOUN	NNS	Number=Plur	2	dobj	_	_
-21	,	,	PUNCT	,	_	20	punct	_	_
+20	ducats	ducat	NOUN	NNS	Number=Plur	2	parataxis	_	_
+21	,	,	PUNCT	,	_	2	punct	_	_
 22	an	a	DET	DT	Definite=Ind|PronType=Art	25	det	_	_
 23	Arnorian	Arnorian	ADJ	JJ	Degree=Pos	25	amod	_	_
 24	embassy	embassy	NOUN	NN	Number=Sing	25	compound	_	_
 25	spokesman	spokesman	NOUN	NN	Number=Sing	26	nsubj	_	_
-26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	acl:relcl	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	parataxis	_	_
 27	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
@@ -770,12 +770,12 @@ fiercest foe.
 9	dispute	dispute	NOUN	NN	Number=Sing	6	nmod	_	_
 10	with	with	ADP	IN	_	11	case	_	_
 11	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	9	nmod	_	_
-12	,	,	PUNCT	,	_	6	punct	_	_
+12	,	,	PUNCT	,	_	9	punct	_	_
 13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
 14	state	state	NOUN	NN	Number=Sing	17	nmod:poss	_	_
 15	's	's	PART	POS	_	14	case	_	_
 16	fiercest	fiercest	NOUN	NN	Number=Sing	17	compound	_	_
-17	foe	foe	NOUN	NN	Number=Sing	6	dobj	_	_
+17	foe	foe	NOUN	NN	Number=Sing	9	appos	_	_
 18	.	.	PUNCT	.	_	6	punct	_	_
 </Parse></Sentence>
 
@@ -826,12 +826,12 @@ Eriador's death and injury toll has risen in the dispute with Osgiliath, the sta
 fiercest foe. 
 </Text>
 <Parse>
-1	Eriador	Eriador	PROPN	NNP	Number=Sing	3	nmod:poss	_	_
+1	Eriador	Eriador	PROPN	NNP	Number=Sing	6	nmod:poss	_	_
 2	's	's	PART	POS	_	1	case	_	_
-3	death	death	NOUN	NN	Number=Sing	8	nsubj	_	_
+3	death	death	NOUN	NN	Number=Sing	6	compound	_	_
 4	and	and	CONJ	CC	_	3	cc	_	_
-5	injury	injury	NOUN	NN	Number=Sing	6	compound	_	_
-6	toll	toll	NOUN	NN	Number=Sing	3	conj	_	_
+5	injury	injury	NOUN	NN	Number=Sing	3	conj	_	_
+6	toll	toll	NOUN	NN	Number=Sing	8	nsubj	_	_
 7	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	aux	_	_
 8	risen	rise	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 9	in	in	ADP	IN	_	11	case	_	_
@@ -918,8 +918,8 @@ fiercest foe.
 <!-- Test of % (compounds) in a pattern.  Should match -->
 <!-- POSTPONE \n- % HAVE *  [1246] -->
 <!-- This also provides a check of POSTPONE as a synonym with the default code -->
-<EventCoding eventcode="120" sourcecode="GON" targetcode="MORMIL" />
-<EventCoding eventcode="120" sourcecode="OSG" targetcode="MORMIL" />
+<EventCoding eventcode="120" sourcecode="GON" targetcode="OSG" />
+<EventCoding eventcode="120" sourcecode="OSG" targetcode="GON" />
 <Text>
 Gondor and Osgiliath have postponed their meeting after a 
 hafling was reported on the pass of Cirith Ungol. 
@@ -1058,9 +1058,9 @@ of Cirith Ungol.
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	cordoned	cordon	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-6	off	off	ADP	IN	_	5	compound:prt	_	_
+6	off	off	ADP	IN	_	8	case	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
-8	roads	roads	NOUN	NNS	Number=Plur	5	dobj	_	_
+8	roads	roads	NOUN	NNS	Number=Plur	5	nmod	_	_
 9	leading	lead	VERB	VBG	VerbForm=Ger	8	acl	_	_
 10	into	into	ADP	IN	_	11	case	_	_
 11	Mordor	Mordor	PROPN	NNP	Number=Sing	9	nmod	_	_
@@ -1117,7 +1117,7 @@ the pass of Cirith Ungol.
 4	will	will	AUX	MD	VerbForm=Fin	6	aux	_	_
 5	not	not	PART	RB	_	6	neg	_	_
 6	wire	wire	VERB	VB	VerbForm=Inf	0	root	_	_
-7	tap	tap	NOUN	NN	Number=Sing	10	compound	_	_
+7	tap	tap	NOUN	NN	Number=Sing	6	dobj	_	_
 8	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 9	communication	communication	NOUN	NN	Number=Sing	10	compound	_	_
 10	links	link	NOUN	NNS	Number=Plur	6	dobj	_	_
@@ -1148,7 +1148,7 @@ along the pass of Cirith Ungol.
 3	Gondor	Gondor	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	cordoned	cordon	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-6	off	off	ADP	RP	_	8	case	_	_
+6	off	off	ADP	RP	_	5	compound:prt	_	_
 7	for	for	ADP	IN	_	8	case	_	_
 8	construction	construction	NOUN	NN	Number=Sing	5	nmod	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
@@ -2341,12 +2341,12 @@ Lawmakers in Arnor and Gondor welcomed a resumption of formal diplomatic ties
 with Eriador. 
 </Text>
 <Parse>
-1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	0	root	_	_
+1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	6	nsubj	_	_
 2	in	in	ADP	IN	_	3	case	_	_
-3	Arnor	Arnor	PROPN	NNP	Number=Sing	1	nmod	_	_
+3	Fornost	Fornost	NOUN	NN	Number=Sing	1	nmod	_	_
 4	and	and	CONJ	CC	_	1	cc	_	_
-5	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nsubj	_	_
-6	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	1	conj	_	_
+5	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
+6	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
 8	resumption	resumption	NOUN	NN	Number=Sing	6	dobj	_	_
 9	of	of	ADP	IN	_	12	case	_	_
@@ -2355,7 +2355,7 @@ with Eriador.
 12	ties	tie	NOUN	NNS	Number=Plur	8	nmod	_	_
 13	with	with	ADP	IN	_	14	case	_	_
 14	Eriador	Eriador	PROPN	NNP	Number=Sing	12	nmod	_	_
-15	.	.	PUNCT	.	_	1	punct	_	_
+15	.	.	PUNCT	.	_	6	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950104" id="COMPOUND-09" sentence="true">
@@ -2917,13 +2917,13 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 13	on	on	ADP	IN	_	14	case	_	_
 14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 15	and	and	CONJ	CC	_	14	cc	_	_
-16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	17	amod	_	_
-17	aid	aid	NOUN	NN	Number=Sing	14	conj	_	_
+16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	4	conj	_	_
+17	aid	aid	NOUN	NN	Number=Sing	16	dobj	_	_
 18	to	to	ADP	IN	_	22	case	_	_
 19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
 20	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
 21	Ithilen	Ithilen	PROPN	NNP	Number=Sing	22	compound	_	_
-22	villages	villag	NOUN	NNS	Number=Plur	9	nmod	_	_
+22	villages	villag	NOUN	NNS	Number=Plur	17	nmod	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
@@ -2938,10 +2938,10 @@ Danish media and government warned at the Gondor of the Prince of Dol Amroth.
 </Text>
 <Parse>
 1	Danish	Danish	ADJ	JJ	Degree=Pos	2	amod	_	_
-2	media	media	NOUN	NN	Number=Sing	0	root	_	_
+2	media	media	NOUN	NN	Number=Sing	5	nsubj	_	_
 3	and	and	CONJ	CC	_	2	cc	_	_
 4	government	government	NOUN	NN	Number=Sing	2	conj	_	_
-5	warned	warn	VERB	VBN	Tense=Past|VerbForm=Part	2	acl	_	_
+5	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 6	at	at	ADP	IN	_	8	case	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
@@ -2951,7 +2951,7 @@ Danish media and government warned at the Gondor of the Prince of Dol Amroth.
 12	of	of	ADP	IN	_	14	case	_	_
 13	Dol	Dol	PROPN	NNP	Number=Sing	14	name	_	_
 14	Amroth	Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
-15	.	.	PUNCT	.	_	2	punct	_	_
+15	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19990809" id="COMPOUND-26" sentence="true">
@@ -2994,11 +2994,11 @@ The Danish Islamist media and government warned at the Gondor of the Prince of D
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
 2	Danish	Danish	PROPN	NNP	Number=Sing	3	compound	_	_
-3	Islamist	Islamist	PROPN	NNP	Number=Sing	4	compound	_	_
-4	media	media	NOUN	NN	Number=Sing	0	root	_	_
+3	Islamist	islamist	PROPN	NNP	Number=Sing	4	compound	_	_
+4	media	media	NOUN	NN	Number=Sing	7	nsubj	_	_
 5	and	and	CONJ	CC	_	4	cc	_	_
 6	government	government	NOUN	NN	Number=Sing	4	conj	_	_
-7	warned	warn	VERB	VBN	Tense=Past|VerbForm=Part	4	acl	_	_
+7	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 8	at	at	ADP	IN	_	10	case	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	Gondor	Gondor	PROPN	NNP	Number=Sing	7	nmod	_	_
@@ -3008,10 +3008,10 @@ The Danish Islamist media and government warned at the Gondor of the Prince of D
 14	of	of	ADP	IN	_	16	case	_	_
 15	Dol	Dol	PROPN	NNP	Number=Sing	16	name	_	_
 16	Amroth	Amroth	PROPN	NNP	Number=Sing	13	nmod	_	_
-17	.	.	PUNCT	.	_	4	punct	_	_
+17	.	.	PUNCT	.	_	7	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="COMPOUND" date="20000423" id="COMPOUND-28" sentence="false">
+<Sentence category="COMPOUND" date="20000423" id="COMPOUND-28" sentence="true">
 <!--  Involves an overlap of compound and subordinate phrases that caused  -->
 <!-- an infinite loop in earlier versions -->
 <!-- <14.05.12: Elimination of coding of embedded compounds now causes issues here -->
@@ -3024,8 +3024,8 @@ and Gondor's dramatic cooperation and its eye-catching development are of
 great significance to the region and even the entire world, he noted. 
 </Text>
 <Parse>
-1	Frodo	Frodo	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	2	aux	_	_
-2	said	say	VERB	VBN	Tense=Past|VerbForm=Part	37	ccomp	_	_
+1	Frodo	Frodo	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	2	nsubj	_	_
+2	said	say	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 3	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
 4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
 5	deep	deep	VERB	VBN	Tense=Past|VerbForm=Part	2	ccomp	_	_
@@ -3060,7 +3060,7 @@ great significance to the region and even the entire world, he noted.
 34	world	world	NOUN	NN	Number=Sing	26	conj	_	_
 35	,	,	PUNCT	,	_	37	punct	_	_
 36	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	37	nsubj	_	_
-37	noted	not	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+37	noted	not	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	ccomp	_	_
 38	.	.	PUNCT	.	_	37	punct	_	_
 </Parse></Sentence>
 
@@ -3090,13 +3090,13 @@ in south Ithilen on Thursday and promised raids to the affected Ithilen villages
 14	on	on	ADP	IN	_	15	case	_	_
 15	Thursday	Thursday	PROPN	NNP	Number=Sing	5	nmod	_	_
 16	and	and	CONJ	CC	_	15	cc	_	_
-17	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	18	amod	_	_
-18	raids	raid	NOUN	NNS	Number=Plur	15	conj	_	_
+17	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	5	conj	_	_
+18	raids	raid	NOUN	NNS	Number=Plur	17	dobj	_	_
 19	to	to	ADP	IN	_	23	case	_	_
 20	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
 21	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	23	amod	_	_
 22	Ithilen	Ithilen	PROPN	NNP	Number=Sing	23	compound	_	_
-23	villages	villag	NOUN	NNS	Number=Plur	5	nmod	_	_
+23	villages	villag	NOUN	NNS	Number=Plur	18	nmod	_	_
 24	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
 
@@ -3309,19 +3309,19 @@ the Bay of Belfalas would harm all countries of the region.
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	information	information	NOUN	NN	Number=Sing	3	compound	_	_
-3	ministry	ministry	NOUN	NN	Number=Sing	0	root	_	_
+3	ministry	ministry	NOUN	NN	Number=Sing	9	nsubj	_	_
 4	of	of	ADP	IN	_	5	case	_	_
 5	Gondor	Gondor	PROPN	NNP	Number=Sing	3	nmod	_	_
-6	and	and	CONJ	CC	_	3	cc	_	_
+6	and	and	CONJ	CC	_	5	cc	_	_
 7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
-8	Nasgul	Nasgul	PROPN	NNP	Number=Sing	9	nsubj	_	_
-9	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	conj	_	_
+8	Nasgul	Nasgul	PROPN	NNP	Number=Sing	5	conj	_	_
+9	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 10	on	on	ADP	IN	_	11	case	_	_
 11	Friday	Friday	PROPN	NNP	Number=Sing	9	nmod	_	_
 12	that	that	SCONJ	IN	_	22	mark	_	_
-13	an	a	DET	DT	Definite=Ind|PronType=Art	14	det	_	_
-14	arms	arm	NOUN	NNS	Number=Plur	22	nsubj	_	_
-15	embargo	embargo	ADV	RB	_	14	advmod	_	_
+13	an	a	DET	DT	Definite=Ind|PronType=Art	15	det	_	_
+14	arms	arm	NOUN	NNS	Number=Plur	15	compound	_	_
+15	embargo	embargo	NOUN	NN	Number=Sing	22	nsubj	_	_
 16	against	against	ADP	IN	_	19	case	_	_
 17	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
 18	Mordor	Mordor	ADJ	JJ	Degree=Pos	19	amod	_	_
@@ -3346,7 +3346,7 @@ the Bay of Belfalas would harm all countries of the region.
 37	of	of	ADP	IN	_	39	case	_	_
 38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
 39	region	region	NOUN	NN	Number=Sing	36	nmod	_	_
-40	.	.	PUNCT	.	_	3	punct	_	_
+40	.	.	PUNCT	.	_	9	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUNDx" date="19950101" id="COMPOUND-36" sentence="true">
@@ -3441,7 +3441,7 @@ The Philippines and the European Union (EU) agree that territorial disputes in t
 </Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
-2	Philippines	Philippines	PROPN	NNPS	Number=Plur	8	name	_	_
+2	Philippines	Philippines	PROPN	NNPS	Number=Plur	10	nsubj	_	_
 3	and	and	CONJ	CC	_	2	cc	_	_
 4	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
 5	European	european	ADJ	JJ	Degree=Pos	6	amod	_	_
@@ -4180,10 +4180,10 @@ said on Saturday.
 </Text>
 <Parse>
 1	Zimbabwe	Zimbabwe	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	2	nsubj	_	_
-2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-3	about	about	ADV	RB	_	5	advmod	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
-5	restore	restore	VERB	VB	VerbForm=Inf	2	ccomp	_	_
+5	restore	restore	VERB	VB	VerbForm=Inf	3	xcomp	_	_
 6	full	full	ADJ	JJ	Degree=Pos	8	amod	_	_
 7	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	8	amod	_	_
 8	ties	tie	NOUN	NNS	Number=Plur	5	dobj	_	_
@@ -5054,7 +5054,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Libya	Libya	PROPN	NNP	Number=Sing	15	nmod	_	_
+12	Libya	Libya	PROPN	NNP	Number=Sing	7	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	crowds	crowds	NOUN	NNS	Number=Plur	15	nsubj	_	_
 15	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
@@ -5091,7 +5091,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Libya	Libya	PROPN	NNP	Number=Sing	16	nmod	_	_
+13	Libya	Libya	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
 15	crowds	crowds	NOUN	NNS	Number=Plur	16	nsubj	_	_
 16	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
@@ -5128,7 +5128,7 @@ crowds trashed its embassy.
 10	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	11	amod	_	_
 11	ties	tie	NOUN	NNS	Number=Plur	8	dobj	_	_
 12	with	with	ADP	IN	_	13	case	_	_
-13	Libya	Libya	PROPN	NNP	Number=Sing	16	nmod	_	_
+13	Libya	Libya	PROPN	NNP	Number=Sing	8	nmod	_	_
 14	almost	almost	ADV	RB	_	15	advmod	_	_
 15	crowds	crowds	NOUN	NNS	Number=Plur	16	nsubj	_	_
 16	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
@@ -5158,7 +5158,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 9	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	10	amod	_	_
 10	ties	tie	NOUN	NNS	Number=Plur	7	dobj	_	_
 11	with	with	ADP	IN	_	12	case	_	_
-12	Libya	Libya	PROPN	NNP	Number=Sing	15	nmod	_	_
+12	Libya	Libya	PROPN	NNP	Number=Sing	7	nmod	_	_
 13	almost	almost	ADV	RB	_	14	advmod	_	_
 14	crowds	crowds	NOUN	NNS	Number=Plur	15	nsubj	_	_
 15	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
@@ -5193,7 +5193,7 @@ crowds trashed its embassy, a senior official said on Saturday.
 8	diplomatic	diplomatic	ADJ	JJ	Degree=Pos	9	amod	_	_
 9	ties	tie	NOUN	NNS	Number=Plur	6	dobj	_	_
 10	with	with	ADP	IN	_	11	case	_	_
-11	Libya	Libya	PROPN	NNP	Number=Sing	14	nmod	_	_
+11	Libya	Libya	PROPN	NNP	Number=Sing	6	nmod	_	_
 12	almost	almost	ADV	RB	_	13	advmod	_	_
 13	crowds	crowds	NOUN	NNS	Number=Plur	14	nsubj	_	_
 14	trashed	trash	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	parataxis	_	_
@@ -5339,7 +5339,7 @@ on a routine patrol of an area south of the two nations’ disputed maritime bou
 Pyongyang on Thursday fired two artillery shells at Seoul.
 </Text>
 <Parse>
-1	Pyongyang	Pyongyang	VERB	VBG	VerbForm=Ger	4	csubj	_	_
+1	Pyongyang	Pyongyang	VERB	VBG	VerbForm=Ger	4	nsubj	_	_
 2	on	on	ADP	IN	_	3	case	_	_
 3	Thursday	Thursday	PROPN	NNP	Number=Sing	1	nmod	_	_
 4	fired	fi	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
@@ -6565,7 +6565,7 @@ Gollum in recent days did allow that Mordor isn't the neat or cool place to visi
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="095" sourcecode="HOB" targetcode="GON" />
 <Text>
-Gollum centre of a diplomatic row between Radagast Brown called on 
+Gollum centre of a diplomatic row between Radagast and the Brown called on 
 Gondor late Sunday to be allowed to leave Lorien by elves. 
 </Text>
 <Parse>

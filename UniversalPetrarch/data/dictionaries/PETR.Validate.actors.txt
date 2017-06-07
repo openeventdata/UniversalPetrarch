@@ -115,7 +115,7 @@ ITALY  [ITA]
 +ITALIAN #JW   9/10/91
 
 ITHILEN  [ITH]
-ITHILEN TELEVISION  [ITHTV]
+ITHILEN_TELEVISION  [ITHTV]
 ITHILEN_GOVERNMENT_RADIO_  [ITHRAD]
 ITHILEN MILITARY  [ITHMIL]
 
@@ -135,7 +135,8 @@ MONETARY_FUND  [IMF]
 MORDOR  [MOR]
 +BARAD-DUR
 
-#NASGUL  [###]  # ### is not a discard code in PETR but leave this in as a test in case old TAB entries are being used <14.03.16>
+NASGUL  [+++]  
+# ### is not a discard code in PETR but leave this in as a test in case old TAB entries are being used <14.03.16>
 
 NEW_ZEALAND [NZE]
 

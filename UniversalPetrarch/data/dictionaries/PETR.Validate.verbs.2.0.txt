@@ -391,6 +391,7 @@ ADOPT    # PAS   9/24/91
 
 ---  AGREE   [050]  ---
 AGREE 
+- % *  [050]
 - * (ON IMPORTANCE)                                   [019]         # AGREE
 - * (ON NEED)                                         [019]         # AGREE
 - * NOT EXTEND DEADLINE                               [030]         # AGREE
@@ -624,7 +625,7 @@ CRITICIZE    # pas  3/1/91
 DELAY
 DOWNPLAY [014]
 POSTPONE    # -PAS 2/9/96
-- % HAVE  *  [1246] 
+- % *  [120] 
 #- SAID WOULD NOT *  [112]  # tony  4/19/91 
 - * MEET                                              [161]         # POSTPONE
 
@@ -650,7 +651,7 @@ EXPRESS
 --- FIRE  [071]  ---
 FIRE    # jw 9/17/91
 - * ARTILLERY  [180]  # jw 9/24/91
-- * (ARTILLERY SHELLS) [180]
+- * {ARTILLERY SHELLS} [180]
 
 --- FREE  [080] ---
 FREE  
@@ -737,7 +738,7 @@ RECEIVE
 RENEW  
 - * POLICY 						[201]
 - * {DIPLOMATIC TIES}					[050:050]
-- % * DIPLOMATIC  					[050:050]
+- % * {DIPLOMATIC  TIES}				[050:050]
 - * CRITICISM  						[121]
 - * RELATIONS  						[050]
 - * LICENSE  						[031]  
@@ -887,7 +888,9 @@ WELCOME
 --- CONFISCATE  [170] ---
 CONFISCATE  
 WIRE_+TAP {WIRE_+TAPPED  WIRE_+TAPPING }
+WIRE
 TAP {TAPS TAPPED  TAPPING }
+- * TAP  [170]
 
 --- OUST  [174]  ---
 OUST    # jw 9/16/91
@@ -1109,3 +1112,17 @@ VOUCH
 - * ARREST                                            [130]         # PROMISE
 - * HELL                                              [130]         # PROMISE
 - * RAIDS                                             [138]         # PROMISE
+
+
+######## TRANSFORMATIONS ##########
+
+
+#~ a (a b ATTACK) SAY = a b 015
+#~ a (a b ATTACK) CLAIM = a b 015
+#~ a (b . ATTACK) SAY = a b 112
+#~ a (b . ATTACK) CLAIM = a b 112
+#~ a (a b WILL_ATTACK) SAY = a b 138
+#~ a (a b Q) SAY = a b Q
+#~ a (_ b ATTACK) WANT = a b 138
+#~ a (b . ATTACK ) WANT = a b 021
+#~ a (_ b ASSASSINATE) ATTEMPT = a b 185
