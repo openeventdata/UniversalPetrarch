@@ -310,6 +310,7 @@
 &REVOLT
 +REVOLUTION
 +REVOLUTIONARY
++REVOLUTIONARY MANIFESTO
 
 &EXERSYN
 +EXERCISES
@@ -361,10 +362,10 @@ KLM_NOP_+RST [002]
 - * {DIPLOMATIC TIES} [080]
 - * {&TIETYPES TIES} [080] #  -PAS 12.01.12
 
---- ACCORD  [---] ---
+--- ACCORD  [013] ---
 ACCORD  
 - + * {DEMAND &GENINT CONVENTIONS}  [111]   
-- {INCHING &ACCORDSYN} *  [013]  # tony  4/29/91 
+#- {INCHING &ACCORDSYN} *  [013]  # tony  4/29/91 
 - (IN) *  [075]  # pas 2 May 2005 #   pattern CONNECT-3  7/14/03
 - (IN) *  [075A]  # pas 2 May 2005 #   pattern CONNECT-3  7/14/03
 - (IN) *  [072]  # pas 2 May 2005 #   pattern CONNECT-2  7/14/03
@@ -656,7 +657,7 @@ FIRE    # jw 9/17/91
 --- FREE  [080] ---
 FREE  
 #- SAID * HOSTAGES  [053] 
-- * (FROM $)  [080]
+- + * (FROM $)  [080]
 #- SAID *  [053] 
 
 ---  HALT [191]  ---
@@ -705,8 +706,8 @@ MEET {MEETS MET MEETING}
 
 --- REGRET  [111] ---
 REGRET  {REGRETTED REGRETS}
-- + *  							[111]   
-- $ *  							[113]  
+#- + *  							[111]   
+#- $ *  							[113]  
 
 --- OPPOSE  [110] ---
 OPPOSE  
@@ -738,7 +739,7 @@ RECEIVE
 RENEW  
 - * POLICY 						[201]
 - * {DIPLOMATIC TIES}					[050:050]
-- % * {DIPLOMATIC  TIES}				[050:050]
+- % * {DIPLOMATIC TIES}				[050:050]
 - * CRITICISM  						[121]
 - * RELATIONS  						[050]
 - * LICENSE  						[031]  

@@ -264,7 +264,7 @@ An Eriadorian was shot dead in Osgiliath, the state's fiercest foe.
 4	shot	shoot	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 5	dead	dead	ADJ	JJ	Degree=Pos	4	xcomp	_	_
 6	in	in	ADP	IN	_	7	case	_	_
-7	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	5	nmod	_	_
+7	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	4	nmod	_	_
 8	,	,	PUNCT	,	_	7	punct	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	state	state	NOUN	NN	Number=Sing	13	nmod:poss	_	_
@@ -2343,9 +2343,9 @@ with Eriador.
 <Parse>
 1	Lawmakers	lawmaker	NOUN	NNS	Number=Plur	6	nsubj	_	_
 2	in	in	ADP	IN	_	3	case	_	_
-3	Fornost	Fornost	NOUN	NN	Number=Sing	1	nmod	_	_
+3	Arnor	Arnor	NOUN	NN	Number=Sing	1	nmod	_	_
 4	and	and	CONJ	CC	_	1	cc	_	_
-5	Gondor	Gondor	PROPN	NNP	Number=Sing	1	conj	_	_
+5	Gondor	Gondor	PROPN	NNP	Number=Sing	3	conj	_	_
 6	welcomed	welcome	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
 8	resumption	resumption	NOUN	NN	Number=Sing	6	dobj	_	_
@@ -4179,7 +4179,7 @@ five years after crowds trashed its embassy, a senior official
 said on Saturday. 
 </Text>
 <Parse>
-1	Zimbabwe	Zimbabwe	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	2	nsubj	_	_
+1	Zimbabwe	Zimbabwe	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
 3	about	about	ADJ	JJ	Degree=Pos	0	root	_	_
 4	to	to	PART	TO	_	5	mark	_	_
@@ -5552,7 +5552,7 @@ crowds trashed its embassy.
 3	acting	act	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
 4	strangely	strangely	ADV	RB	_	8	advmod	_	_
 5	with	with	ADP	IN	_	6	case	_	_
-6	Libya	Libya	PROPN	NNP	Number=Sing	4	nmod	_	_
+6	Libya	Libya	PROPN	NNP	Number=Sing	3	nmod	_	_
 7	almost	almost	ADV	RB	_	8	advmod	_	_
 8	five	five	NUM	CD	NumType=Card	9	nummod	_	_
 9	years	year	NOUN	NNS	Number=Plur	11	nmod:npmod	_	_
@@ -6462,7 +6462,7 @@ Gollum allowed that Mordor isn't a real easy or pleasant place to visit.
 <!-- use, so these next few cases are just generic pattern matching. Leave them in here -->
 <!-- in case they can break something. -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="025" sourcecode="HOB" targetcode="MOR" />
+<EventCoding eventcode="080" sourcecode="HOB" targetcode="MOR" />
 <Text>
 Gollum recently allowed that Mordor isn't a such neat place to visit. 
 </Text>
@@ -6511,7 +6511,7 @@ Gollum recently did allow that Mordor isn't a such neat place to visit.
 <Sentence category="PATTERN" date="19920102" id="PATTERN-17" sentence="true">
 <!-- Test of ~_ connector in upper phrase;  -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="027" sourcecode="HOB" targetcode="MOR" />
+<EventCoding eventcode="080" sourcecode="HOB" targetcode="MOR" />
 <Text>
 Gollum allowed that Mordor isn't the neatest place to visit. 
 </Text>
@@ -6845,7 +6845,7 @@ Arnor spokesmen said 54 civilians were killed or injured.
 7	shelling	shell	NOUN	NN	Number=Sing	8	compound	_	_
 8	offensive	offensive	NOUN	NN	Number=Sing	5	conj	_	_
 9	against	against	ADP	IN	_	10	case	_	_
-10	besieged	besieged	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	nmod	_	_
+10	besieged	besieged	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	nmod	_	_
 11	Osgiliath	Osgiliath	PROPN	NNP	Number=Sing	10	dobj	_	_
 12	during	during	ADP	IN	_	14	case	_	_
 13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
@@ -6871,7 +6871,7 @@ Arnor spokesmen said 54 civilians were killed or injured.
 <Sentence category="PATTERN" date="19950103" id="PATTERN-29" sentence="true">
 <!-- Basic check on the priority of longer patterns -->
 <!-- Last update: 24-Sept-2014 -->
-<EventCoding eventcode="111" sourcecode="PHL" targetcode="ERI" />
+<EventCoding eventcode="111" sourcecode="ERI" targetcode="PHL" />
 <Text>
 The Philippines was criticized over its territorial dispute with Eriador.
 </Text>
@@ -6893,18 +6893,18 @@ The Philippines was criticized over its territorial dispute with Eriador.
 <Sentence category="PATTERN" date="19950103" id="PATTERN-30" sentence="true">
 <!-- Basic check on the priority of longer patterns -->
 <!-- Last update: 24-Sept-2014 -->
-<EventCoding eventcode="111" sourcecode="PHL" targetcode="ERI" />
+<EventCoding eventcode="111" sourcecode="ERI" targetcode="PHL" />
 <Text>
 The Philippines was heavily and unjustly criticized over its territorial dispute with Eriador.
 </Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
-2	Philippines	Philippines	PROPN	NNPS	Number=Plur	4	nsubj	_	_
-3	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	4	cop	_	_
-4	heavily	heavily	ADV	RB	_	0	root	_	_
+2	Philippines	Philippines	PROPN	NNPS	Number=Plur	7	nsubjpass	_	_
+3	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	7	auxpass	_	_
+4	heavily	heavily	ADV	RB	_	7	advmod	_	_
 5	and	and	CONJ	CC	_	4	cc	_	_
-6	unjustly	unjustly	ADV	RB	_	7	advmod	_	_
-7	criticized	criticize	VERB	VBN	Tense=Past|VerbForm=Part	4	conj	_	_
+6	unjustly	unjustly	ADV	RB	_	4	conj	_	_
+7	criticized	criticize	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 8	over	over	ADP	IN	_	11	case	_	_
 9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
 10	territorial	territorial	ADJ	JJ	Degree=Pos	11	amod	_	_
@@ -6918,7 +6918,7 @@ The Philippines was heavily and unjustly criticized over its territorial dispute
 <Sentence category="PATTERN" date="19950103" id="PATTERN-31" sentence="true">
 <!-- Basic check on the priority of longer patterns -->
 <!-- Last update: 24-Sept-2014 -->
-<EventCoding eventcode="111" sourcecode="PHL" targetcode="ERI" />
+<EventCoding eventcode="111" sourcecode="ERI" targetcode="PHL" />
 <Text>
 The Philippines was heavily criticized over its territorial dispute with Eriador.
 </Text>
@@ -7032,7 +7032,7 @@ of diplomatic ties with Gondor.
 <!-- Not passive voice but has actor switching by +/$ pattern fitting; -->
 <!-- (order is still OSG-ERI, but it is set by the pattern generating 144 -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="144" sourcecode="OSG" targetcode="ERI" />
+<EventCoding eventcode="071" sourcecode="OSG" targetcode="ERI" />
 <Text>
 Eriador has received by courier money from Osgiliath, the state's 
 fiercest foe, to be drawn into the peace process by its resumption 
@@ -7512,7 +7512,7 @@ Bree official said on Saturday.
 24	a	a	DET	DT	Definite=Ind|PronType=Art	27	det	_	_
 25	senior	senior	ADJ	JJ	Degree=Pos	27	amod	_	_
 26	Bree	Bree	PROPN	NNP	Number=Sing	27	compound	_	_
-27	official	official	NOUN	NN	Number=Sing	30	nsubj	_	_
+27	official	official	NOUN	NN	Number=Sing	28	nsubj	_	_
 28	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	parataxis	_	_
 29	on	on	ADP	IN	_	30	case	_	_
 30	Saturday	Saturday	PROPN	NNP	Number=Sing	28	nmod:tmod	_	_
@@ -8736,8 +8736,8 @@ said on Saturday.
 3	contribute	contribute	VERB	VB	VerbForm=Inf	0	root	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 5	million	million	NUM	CD	NumType=Card	6	nummod	_	_
-6	yum	yum	NOUN	NN	Number=Sing	3	dobj	_	_
-7	yennyen	yennyen	ADV	RB	_	3	advmod	_	_
+6	yum	yum	NOUN	NN	Number=Sing	7	compound	_	_
+7	yennyen	yennyen	NOUN	NN	Number=Sing	3	dobj	_	_
 8	to	to	ADP	IN	_	9	case	_	_
 9	Australia	Australia	PROPN	NNP	Number=Sing	7	nmod	_	_
 10	almost	almost	ADV	RB	_	11	advmod	_	_
@@ -9015,9 +9015,9 @@ said on Saturday.
 </Parse></Sentence>
 
 <Sentence category="SYNSET" date="19950101" id="SYNSET-22b" sentence="true">
-<!-- [synset upper match: internal consecutive; fails] -->
+<!-- [synset upper match: internal consecutive; ] -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="345" sourcecode="ARN" targetcode="GON" />
+<EventCoding eventcode="903" sourcecode="ARN" targetcode="GON" />
 <Text>
 Arnor will abandon new global economic relations with Gondor almost 
 five years after crowds trashed its embassy, a senior official 
@@ -9399,7 +9399,7 @@ Calenardhon welcomed memos from Bree on its role for in forthcoming peace talks.
 2	welcomed	welcom	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 3	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	from	from	ADP	IN	_	5	case	_	_
-5	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	Bree	Bree	PROPN	NNP	Number=Sing	3	nmod	_	_
 6	on	on	ADP	IN	_	8	case	_	_
 7	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	8	nmod:poss	_	_
 8	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9425,7 +9425,7 @@ peace talks.
 3	economic	economic	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	from	from	ADP	IN	_	6	case	_	_
-6	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+6	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
 7	on	on	ADP	IN	_	9	case	_	_
 8	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	9	nmod:poss	_	_
 9	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9451,7 +9451,7 @@ peace talks.
 3	economic	economic	ADJ	JJ	Degree=Pos	4	amod	_	_
 4	rumors	rumor	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	about	about	ADP	IN	_	6	case	_	_
-6	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+6	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
 7	on	on	ADP	IN	_	9	case	_	_
 8	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	9	nmod:poss	_	_
 9	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9478,7 +9478,7 @@ peace talks.
 4	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 5	not	not	ADV	RB	_	7	neg	_	_
 6	about	about	ADP	IN	_	7	case	_	_
-7	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+7	Bree	Bree	PROPN	NNP	Number=Sing	4	nmod	_	_
 8	on	on	ADP	IN	_	10	case	_	_
 9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	10	nmod:poss	_	_
 10	role	role	NOUN	NN	Number=Sing	7	nmod	_	_
@@ -9561,7 +9561,7 @@ peace talks.
 5	economic	economic	ADJ	JJ	Degree=Pos	6	amod	_	_
 6	issue	issue	NOUN	NN	Number=Sing	3	nmod	_	_
 7	from	from	ADP	IN	_	8	case	_	_
-8	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+8	Bree	Bree	PROPN	NNP	Number=Sing	3	nmod	_	_
 9	on	on	ADP	IN	_	11	case	_	_
 10	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
 11	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9588,7 +9588,7 @@ peace talks.
 4	internal	internal	ADJ	JJ	Degree=Pos	5	amod	_	_
 5	memos	memo	NOUN	NNS	Number=Plur	2	dobj	_	_
 6	from	from	ADP	IN	_	7	case	_	_
-7	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+7	Bree	Bree	PROPN	NNP	Number=Sing	5	nmod	_	_
 8	on	on	ADP	IN	_	10	case	_	_
 9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	10	nmod:poss	_	_
 10	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9642,9 +9642,9 @@ peace talks.
 3	assurances	assurance	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	on	on	ADP	IN	_	6	case	_	_
 5	cultural	cultural	ADJ	JJ	Degree=Pos	6	amod	_	_
-6	issues	issue	NOUN	NNS	Number=Plur	2	nmod	_	_
+6	issues	issue	NOUN	NNS	Number=Plur	3	nmod	_	_
 7	from	from	ADP	IN	_	8	case	_	_
-8	Bree	Bree	PROPN	NNP	Number=Sing	2	nmod	_	_
+8	Bree	Bree	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	on	on	ADP	IN	_	11	case	_	_
 10	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
 11	role	role	NOUN	NN	Number=Sing	2	nmod	_	_
@@ -9670,7 +9670,7 @@ peace talks.
 3	assurances	assurance	NOUN	NNS	Number=Plur	2	dobj	_	_
 4	on	on	ADP	IN	_	6	case	_	_
 5	cultural	cultural	ADJ	JJ	Degree=Pos	6	amod	_	_
-6	issues	issue	NOUN	NNS	Number=Plur	2	nmod	_	_
+6	issues	issue	NOUN	NNS	Number=Plur	3	nmod	_	_
 7	sent	send	VERB	VBN	Tense=Past|VerbForm=Part	6	acl	_	_
 8	from	from	ADP	IN	_	9	case	_	_
 9	Bree	Bree	PROPN	NNP	Number=Sing	7	nmod	_	_
@@ -9700,7 +9700,7 @@ said on Saturday.
 3	inching	inch	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
 4	nearer	nearer	ADJ	JJR	Degree=Cmp	3	xcomp	_	_
 5	to	to	PART	TO	_	6	mark	_	_
-6	accord	accord	VERB	VB	VerbForm=Inf	4	advcl	_	_
+6	accord	accord	VERB	VB	VerbForm=Inf	3	advcl	_	_
 7	with	with	ADP	IN	_	8	case	_	_
 8	Gondor	Gondor	PROPN	NNP	Number=Sing	6	nmod	_	_
 9	almost	almost	ADV	RB	_	10	advmod	_	_

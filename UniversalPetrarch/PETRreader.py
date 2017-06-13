@@ -969,6 +969,8 @@ def read_verb_dictionary(verb_path):
                 temp = term
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "}"
+            elif " " in term:
+                temp = "{" + term + "}"                       
             else:
                 temp = term
             
