@@ -447,10 +447,7 @@ class Sentence:
 				#if the root node is a verb, add it directly and find whether any conjunctive verb exists
 				if self.udgraph.node[root]['pos'] == 'VERB':
 					self.rootID.append(root)
-					rsuccessors = self.udgraph.successors(root)
-					for rsuccessor in rsuccessors:
-						if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
-							self.rootID.append(rsuccessor)
+				
 				else:
 					#if the root node is not a verb
 					#if a copula relation exist, find the verb connected to the root, and the verb as root
@@ -459,6 +456,17 @@ class Sentence:
 							self.rootID.append(rsuccessor)
 							#raw_input('root is not verb')
 
+				#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
+
+				#found other root nodes from parallel relation ('conj' & 'parataxis')
+				rsuccessors = self.udgraph.successors(root)
+				for rsuccessor in rsuccessors:
+					if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
+						self.rootID.append(rsuccessor)
+
+				#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
+
+		#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
 							
 
 
@@ -565,7 +573,7 @@ class Sentence:
 		nmod_conjs = {}
 		npIDs=[]
 		prep_phrase = []
-		if(self.udgraph.node[nounhead]['pos'] in ['NOUN','ADJ','PROPN']):
+		if(self.udgraph.node[nounhead]['pos'] in ['NOUN','ADJ','PROPN','PRON']):
 			allsuccessors = nx.dfs_successors(self.udgraph,nounhead)
 
 			flag = True
@@ -746,6 +754,22 @@ class Sentence:
 
 
 	def get_source_target(self,verbIDs):
+		logger = logging.getLogger("petr_log.get_source_target")
+		def resolve_pronoun(pronounID,verbID,pronounrole):
+			predecessors = self.udgraph.predecessors(verbID)
+			for predecessor in predecessors:
+				if 'relation' in self.udgraph[predecessor][verbID] and self.udgraph[predecessor][verbID]['relation'] in ['ccomp']: 
+					logger.debug("resolve pronoun: found the governer of ccomp verb:"+ self.udgraph.node[predecessor]['token'])
+					psource,ptarget,pothernoun = self.get_source_target([predecessor])
+					if pronounrole in ['source']:
+						logger.debug("resolve pronoun: found resolved source:"+str(len(psource)))
+						return psource
+						
+			return []
+						
+						
+					
+					
 		source = []
 		target = []
 		othernoun = []
@@ -756,8 +780,11 @@ class Sentence:
 					#print(self.udgraph[nodeID][successor]['relation'])
 					if(self.udgraph[verbID][successor]['relation']=='nsubj'):
 						#source.append(self.get_nounPharse(successor))
-						source.extend(self.get_nounPharses(successor))
-						source.extend(self.get_conj_noun(successor))
+						if self.udgraph.node[successor]['pos'] in ['PRON']:
+							source.extend(resolve_pronoun(successor,verbID,'source'))
+						else:
+							source.extend(self.get_nounPharses(successor))
+							source.extend(self.get_conj_noun(successor))
 
 						self.get_nounPharses(successor)
 					elif(self.udgraph[verbID][successor]['relation'] in ['dobj','iobj','nsubjpass']):
@@ -794,8 +821,8 @@ class Sentence:
 			nodeID = node[0]
 			attrs = node[1]
 
-			if nodeID in self.verbIDs:
-				continue
+			#if nodeID in self.verbIDs:
+				#continue
 
 			if 'pos' in attrs and attrs['pos']== 'VERB':
 
@@ -803,11 +830,13 @@ class Sentence:
 				#print(self.udgraph.successors(nodeID))
 				verb = self.get_verbPhrase(nodeID)
 
-				if verb.headID in self.verbs:
-					raw_input("verb:"+self.verbs[verb.headID])
-				else:
+				#if verb.headID in self.verbs:
+				#	raw_input("verb:"+self.verbs[verb.headID].text)
+				#else:
+				#	self.verbs[verb.headID] = verb
+				if verb.headID not in self.verbs:
 					self.verbs[verb.headID] = verb
-
+					
 				source,target,othernoun = self.get_source_target(verb.verbIDs)
 
 				#check for conjuncting verbs
@@ -830,16 +859,21 @@ class Sentence:
 							source.extend(ptarget)
 						elif len(psource)>0:
 							source.extend(psource)
-						#raw_input("find xcomp relation")
+						#raw_input("find xcomp relation")					
 
 				#find targets from the subjects of subordinate clause
 				for successor in self.udgraph.successors(verb.headID):
 					if 'relation' in self.udgraph[verb.headID][successor] and self.udgraph[verb.headID][successor]['relation'] in ['ccomp']:
 						cverb = self.get_verbPhrase(successor)
-						if cverb in self.verbs:
-							raw_input("verb:"+self.verbs[successor])
-						else:
-							self.verbs[successor] = cverb
+						#if cverb in self.verbs:
+							#raw_input("verb:"+self.verbs[successor])
+							#raw_input("verb:"+self.verbs[successor].text)
+						#else:
+						#	self.verbs[successor] = cverb
+							
+						if cverb not in self.verbs:
+							self.verbs[successor] = cverb	
+							
 						logger.debug("found the ccomp verb:"+ self.udgraph.node[successor]['token'])
 						ssource,starget,sothernoun = self.get_source_target([successor])
 						if len(ssource)>0:
@@ -884,24 +918,37 @@ class Sentence:
 							newverb.passive = verb.passive
 							newverb.negative = verb.negative
 							logger.debug("construct new vp:"+newverb.text)
-
-							newtarget = NounPhrase(self,o.npIDs[1:],o.headID,o.date)
+						
+							newnoun = NounPhrase(self,o.npIDs[1:],o.headID,o.date)
 							targetTokens = []
-							for tID in newtarget.npIDs:
+							for tID in newnoun.npIDs:
 								targetTokens.append(self.udgraph.node[tID]['token'])
-							newtarget.text = (' ').join(targetTokens)
-							newtarget.head = o.head
-							newtarget.prep_phrase = o.prep_phrase
-							logger.debug("construct new target:"+newtarget.text)
+							newnoun.text = (' ').join(targetTokens)
+							newnoun.head = o.head
+							newnoun.prep_phrase = o.prep_phrase
+							if newverb.passive == False:
+								newtarget = newnoun
+								logger.debug("construct new target:"+newtarget.text)
 
-
-							if len(source)==0:
-								triplet = ("-",newtarget,newverb)
-								self.metadata['triplets'].append(triplet)
-							else:
-								for s in source:
-									triplet = (s,newtarget,newverb)
+								if len(source)==0:
+									triplet = ("-",newtarget,newverb)
 									self.metadata['triplets'].append(triplet)
+								else:
+									for s in source:
+										triplet = (s,newtarget,newverb)
+										self.metadata['triplets'].append(triplet)
+										
+							else:
+								newsource = newnoun
+								logger.debug("construct new source:"+newsource.text)
+
+								if len(target)==0:
+									triplet = (newsource,'-',newverb)
+									self.metadata['triplets'].append(triplet)
+								else:
+									for t in target:
+										triplet = (newsource,t,newverb)
+										self.metadata['triplets'].append(triplet)
 
 				self.metadata['verbs'].append(verb)
 				self.metadata['nouns'].extend(source)
@@ -1207,17 +1254,17 @@ class Sentence:
 		for tripleID, triple in self.triplets.items():
 			logger.debug("check event:"+tripleID)
 			source = triple['triple'][0]
-			source_meaning=""
+			source_meaning=''
 			if not isinstance(source,basestring):
 				source.get_meaning() 
-				source_meaning=source.meaning if source.meaning != None else ""
+				source_meaning=source.meaning if source.meaning != None else ''
 				logger.debug("source: "+ source.head+" code: "+(("#").join(source.meaning) if source.meaning != None else '-'))
 
 			target = triple['triple'][1]
-			target_meaning=""
+			target_meaning=['---']
 			if not isinstance(target,basestring):
 				target.get_meaning() 
-				target_meaning=target.meaning if target.meaning != None else ""
+				target_meaning=target.meaning if target.meaning != None else ['---']
 				logger.debug("target: "+ target.head+" code: "+(("#").join(target.meaning) if target.meaning != None else '-'))
 
 			verb = triple['triple'][2]
@@ -1251,39 +1298,86 @@ class Sentence:
 
 		if len(root_event) == 0:
 			logger.debug("root_event is None")
-			return {}
+			#return {}
 
 		for tripleID, triple in self.triplets.items():
 			verb = triple['triple'][2]
-
+			
+			if len(root_event)==0:
+				self.events[tripleID]=[]
+				self.events[tripleID]=(list(triple['event']))
+				
 			for root in self.rootID:
 				if verb.headID in self.udgraph.neighbors(root):
 						relation_with_root = self.udgraph[root][verb.headID]['relation']
 						if relation_with_root in ['advcl','ccomp','xcomp']:
 							current_event = triple['event'] #4.27
 							#(source_meaning,target_meaning,triple['verbcode'])
-
+							logger.debug("root"+str(root))
 							for reventID, revent in root_event[root].items():
 
 								event_before_transfer = (revent[0],current_event,revent[2])
-								event_after_transfer = self.match_transform(event_before_transfer)
+								if revent[0] and revent[2] not in ['---']:
+									event_after_transfer = self.match_transform(event_before_transfer)
+								elif current_event[0] and current_event[1]:
+									event_after_transfer = [current_event]
+								else:
+									event_after_transfer = [event_before_transfer]
+									
 								logger.debug("event"+tripleID+"transformation:")
 								logger.debug(event_after_transfer)
+
 								for e in event_after_transfer:
 									if isinstance(e,tuple) and not isinstance(e[1],tuple):
+										if reventID not in self.events:
+											self.events[reventID] = []
+											self.events[reventID].extend(list(e))
+										
+
+									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]== None and e[1][2] != None :
 										if tripleID not in self.events:
 											self.events[tripleID] = []
-										self.events[tripleID].append(e)
-									elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]==None and e[1][2] != "None":
-										if tripleID not in self.events:
-											self.events[tripleID] = []
-										self.events[tripleID].extend(list(e[1]))
+											self.events[tripleID].extend(list(e[1]))
+									
+
+		logger.debug("self.events: "+ str(len(self.events)))
+		for key, value in self.events.items():
+			logger.debug(key+":")
+			logger.debug(value)
 
 		if(len(self.events)==0):
 			for root in root_eventID:
 				for eventID in root_eventID[root]:
 					self.events[eventID]=[]
 					self.events[eventID].extend(root_event[root][eventID])
+
+		# check the verb codes
+		finalverbs = {}
+		for eventID in self.events:
+			ids = eventID.split("#")
+			vid = ids[2]
+
+			if len(self.events[eventID])!=3:
+				print(self.events[eventID])
+				continue
+
+			if vid not in finalverbs:
+				finalverbs[vid] = self.events[eventID][2]
+			else:
+				print(self.events[eventID][1])
+				if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None'] :
+					finalverbs[vid] = self.events[eventID][2]
+
+		for vid,value in finalverbs.items():
+			if value != None:
+				print("vid: "+vid+"\t"+str(value))
+			else:
+				print("vid: "+vid+"\tNone")
+
+		for eventID in self.events:
+			ids = eventID.split("#")
+			vid = ids[2]
+			self.events[eventID][2] = finalverbs[vid]
 
 		return self.events
 			
@@ -1339,13 +1433,18 @@ class Sentence:
 					results = []
 					for item in v2a[path[1]]:
 						results.append((list(v2a[path[0]]), item, verb))
+					logger.debug("line:"+line)
 					return results, line
+				logger.debug("line:"+line)
 				return [(list(v2a[path[0]]), v2a[path[1]], verb)], line
 
 			if isinstance(event, tuple):
 				actor = None if not event[0] else tuple(event[0])
-				masks = filter(lambda a: a in pdict, [event[2], event[2] - event[2] % 0x10,
-				                                      event[2] - event[2] % 0x100, event[2] - event[2] % 0x1000])
+				
+				eventcode = utilities.convert_code(event[2])[0]
+				codelist = [eventcode] #, eventcode - eventcode % 0x10,eventcode - eventcode % 0x100, eventcode - eventcode % 0x1000]
+				masks = filter(lambda a: a in pdict, codelist)
+				
 				logger.debug("actor:")
 				logger.debug(actor)
 
@@ -1353,12 +1452,15 @@ class Sentence:
 				logger.debug(masks)
 
 				if masks:
+					#print(masks)
 					path = pdict[masks[0]]
 				elif -1 in pdict:
 					v2a["Q"] = event[2]
 					path = pdict[-1]
+					#print(path)
 				else:
-				    return False
+					#print("nothing is found")
+					return False
 			else:
 				actor = event
 
@@ -1368,6 +1470,8 @@ class Sentence:
 			if not actor:
 				actor = "_"
 
+			logger.debug("actor:")
+			logger.debug(actor)
 			if actor in path:
 				return recurse(path[actor], event[1], a2v, v2a)
 			elif not actor == '_':
@@ -1378,7 +1482,11 @@ class Sentence:
 						v2a[var] = actor
 						a2v[actor] = var
 					return recurse(path[var], event[1], a2v, v2a)
+			
+			#logger.debug("no transformation is present")
+
 			return False
+
 
 		logger.debug("match_transform entry...")
 
@@ -1386,6 +1494,7 @@ class Sentence:
 			logger.debug(e)
 
 			t = recurse(PETRglobals.VerbDict['transformations'], e)
+			print(t)
 			if t:
 				logger.debug("transformation is present:")
 				logger.debug("t:")
@@ -1393,17 +1502,29 @@ class Sentence:
 				return t
 			else:
 				logger.debug("no transformation is present:")
-				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and not e[1][2] / (16 ** 3):
+				#c = utilities.convert_code(e[1][2])[0]
+				#print(c)
+				#print(16 ** 3)
+				#print(c / (16 ** 3))
+				if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0]!=e[1][0]: #not e[1][2] / (16 ** 3):
+					print(utilities.convert_code(e[2])[0])
+					print(e[2])
+
+
 					logger.debug("the event is of the form: a ( b . Q ) P")
 					if isinstance(e[1][0], list):
 						results = []
 						for item in e[1][0]:
-							event = (e[0], item, utilities.combine_code(e[1][2], e[2]))
+							code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+							#target = []
+							#target.append(item)
+							event = (e[0], [item], utilities.convert_code(code_combined,0))
 							logger.debug(event)
 							results.append(event)
 						return results
 					
-					event = (e[0], e[1][0], utilities.combine_code(e[2], e[1][2]))
+					code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+					event = (e[0], [e[1][0]], utilities.convert_code(code_combined,0))
 					logger.debug(event)
 					return [event]
 
