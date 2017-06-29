@@ -130,6 +130,7 @@ def parse_Config(config_path):
         PETRglobals.DiscardFileName = parser.get(
             'Dictionaries',
             'discardfile_name')
+        PETRglobals.InternalCodingOntologyFileName = parser.get('Dictionaries','internal_coding_ontology_filename')
 
         direct = parser.get('StanfordNLP', 'stanford_dir')
         PETRglobals.stanfordnlp = os.path.expanduser(direct)
@@ -670,6 +671,65 @@ def read_issue_list(issue_path):
 		print PETRglobals.IssueList[ka],PETRglobals.IssueCodes[PETRglobals.IssueList[ka][1]]
 		ka += 1
 	"""
+
+
+def read_internal_coding_ontology(pico_path):
+    """
+    read the PETRARCH Internal Coding Ontology (PICO) file: the mapping between event code to hex code
+    """
+    logger = logging.getLogger('petr_log')
+    logger.info("Reading " + PETRglobals.InternalCodingOntologyFileName)
+    open_FIN(pico_path, "pico")
+
+    line = read_FIN_line()
+    while len(line) > 0:  # loop through the file
+        if '#' in line:
+            line = line[:line.find('#')]
+
+        mapping = line.strip()
+        mappings = mapping.split(":")
+
+        operations = re.findall( r'\+|-', mappings[1][1:]) #find all "+","-" operations and ignore the first one
+        if operations:
+            # if line contains some operations, find all hex numbers and apply operations on them
+            # e.g 1221:-0xFFFF+0x2045+0x300
+
+            #print(line)
+            #print(operations)
+            #raw_input()
+            hexnumbers = []
+            tempstring = mappings[1][1:] #find the first hex, e.g -0xFFFF
+            idx = tempstring.find(operations[0])+1
+            hexnumbers.append(int(mappings[1][0:idx-1],16))
+            tempstring = mappings[1][idx+1:]
+
+            for i in range(1,len(operations)): #iteratively to find the rests
+                oper = operations[i]
+                idx = tempstring.find(oper)
+                hexnumbers.append(int(tempstring[0:idx-1],16))
+                tempstring = tempstring[idx+1:]
+            
+            hexnumbers.append(int(tempstring,16))
+            #print(hexnumbers)
+            #raw_input()
+
+            result = hexnumbers[0]
+            for i in range(1,len(hexnumbers)):
+                if operations[i-1]=='-':
+                    result = result - hexnumbers[i]
+                elif operations[i-1]=='+':
+                    result = result + hexnumbers[i]
+
+            PETRglobals.InternalCodingOntology[mappings[0]] = hex(result)
+        else:
+            #if the line is "113:0x7002"
+            PETRglobals.InternalCodingOntology[mappings[0]] = hex(int(mappings[1],16))
+        line = read_FIN_line()
+    close_FIN()
+
+
+
+
 
 # ================== VERB DICTIONARY INPUT ================== #
 

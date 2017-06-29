@@ -16,7 +16,7 @@ import PETRglobals  # global variables
 import PETRreader
 import PETRwriter
 import utilities
-import PETRgraph
+import PETRgraph_date
 
 def main():
 
@@ -168,6 +168,10 @@ def read_dictionaries(validation=False):
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 
+    print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
+    pico_path = utilities._get_data('data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
+    PETRreader.read_internal_coding_ontology(pico_path)
+
 # ========================== PRIMARY CODING FUNCTIONS ====================== #
 
 
@@ -304,7 +308,7 @@ def do_coding(event_dict):
                 
 
                 t1 = time.time()
-                sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
+                sentence = PETRgraph_date.Sentence(treestr, SentenceText, Date)
                 print(sentence.txt)
                 #raw_input("check")
                 # this is the entry point into the processing in PETRtree

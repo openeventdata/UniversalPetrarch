@@ -36,6 +36,7 @@ ActorDict = {}  # actor dictionary
 ActorCodes = []  # actor code list
 AgentDict = {}  # agent dictionary
 DiscardList = {}  # discard list
+InternalCodingOntology = {}
 IssueList = []
 IssueCodes = []
 
@@ -47,6 +48,7 @@ DiscardFileName = ""  # discard list
 TextFileList = []  # current text or validation file
 EventFileName = ""  # event output file
 IssueFileName = ""  # issues list
+InternalCodingOntologyFileName = "" #internal coding ontology mapping file
 
 # element followed by attribute and content pairs for XML line
 AttributeList = []
