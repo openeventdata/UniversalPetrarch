@@ -16,7 +16,7 @@ import PETRglobals  # global variables
 import PETRreader
 import PETRwriter
 import utilities
-import PETRgraph_date
+import PETRgraph
 
 def main():
 
@@ -308,7 +308,7 @@ def do_coding(event_dict):
                 
 
                 t1 = time.time()
-                sentence = PETRgraph_date.Sentence(treestr, SentenceText, Date)
+                sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
                 print(sentence.txt)
                 #raw_input("check")
                 # this is the entry point into the processing in PETRtree

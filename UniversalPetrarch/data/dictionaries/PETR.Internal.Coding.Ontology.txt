@@ -1,3 +1,33 @@
+# PETRARCH Internal Coding Ontology (PICO) -->
+# VERSION: 1.0 -->
+# Last Update: 29 June 2017 -->
+#
+# Convert a verb code between CAMEO and the Petrarch internal coding ontology (PICO).
+#
+#                Coding scheme:
+#
+#            0                0          0                       0
+#            2 Appeal         1 Reduce   1 Meet                  1 Leadership
+#            3 Intend         2 Yield    2 Settle                2 Policy
+#            4 Demand                    3 Mediate               3 Rights
+#            5 Protest                   4 Aid                   4 Regime
+#            6 Threaten	                 5 Expel                 5 Econ
+#            1 Say                       6 Pol. Change           6 Military
+#            7 Disapprove                7 Mat. Coop             7 Humanitarian
+#            8 Posture                   8 Dip. Coop             8 Judicial
+#            9 Coerce                    9 Assault	             9 Peacekeeping
+#            A Investigate               A Fight		         A Intelligence
+#            B Consult  		       	 B Mass violence		 B Admin. Sanctions
+#                                                                C Dissent
+#                                                                D Release
+#                                                                E Int'l Involvement
+#                                                                F D-escalation
+#
+# Example: CAMEO code 010 has a code 0x1000 in PICO
+#
+
+
+
 010:0x1000#Make Public Statement
 011:0x1000-0xFFFF
 012:0x100C

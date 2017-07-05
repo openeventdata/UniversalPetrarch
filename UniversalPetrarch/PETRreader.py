@@ -720,10 +720,10 @@ def read_internal_coding_ontology(pico_path):
                 elif operations[i-1]=='+':
                     result = result + hexnumbers[i]
 
-            PETRglobals.InternalCodingOntology[mappings[0]] = hex(result)
+            PETRglobals.InternalCodingOntology[mappings[0]] = result
         else:
             #if the line is "113:0x7002"
-            PETRglobals.InternalCodingOntology[mappings[0]] = hex(int(mappings[1],16))
+            PETRglobals.InternalCodingOntology[mappings[0]] = int(mappings[1],16)
         line = read_FIN_line()
     close_FIN()
 
