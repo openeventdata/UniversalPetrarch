@@ -168,6 +168,10 @@ def read_dictionaries(validation=False):
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 
+    print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
+    pico_path = utilities._get_data('data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
+    PETRreader.read_internal_coding_ontology(pico_path)
+
 # ========================== PRIMARY CODING FUNCTIONS ====================== #
 
 
