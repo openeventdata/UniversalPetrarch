@@ -1,6 +1,9 @@
 # UniversalPetrarch
 Language-agnostic political event coding using universal dependencies
 
+This branch is for an assortment of new developments, starting with stress-testing. For further information, contact
+Philip Schrodt (schrodt735@gmail.com)
+
 ## Contents
 
 
