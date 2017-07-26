@@ -311,6 +311,7 @@ def open_validation_file(xml_root):
 
 def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpipe_2.1.xml"):
     """ Unit tests using a validation file. """
+    global allrecords, allcorrect, alluncoded, allextra
 
     def get_line_attribute(target):
         """ quick and dirty function for extracting well-formed attributes"""
@@ -393,10 +394,9 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
             event = event[1:]
             event = event.replace("~","")
             res = res+"\n("+event+")"
-        return (res[1:])
+        return res[1:]
 
     def parse_verb(strs,phrase_dict,text,parsed):
-        str_out = ""
         str_arr = str(strs).strip("{").split(",")
         #print("Verb/Noun")
         fout.write("Verbs found:\n") 
@@ -407,16 +407,12 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
                 np = sentence.get_verbPhrase(int(x[:str_num].strip()))
                 str_add = x[:str_num].strip() + " : text = " + str(np.text) +", head="+ str(np.head) +", meaning="+ str(np.meaning)+", code="+ str(np.code)+" ,passive="+str(np.passive) + "\n"
                 fout.write(str_add)
-                str_out = str_out + str_add
             except Exception as e:
-                #write_str.append(str_out)
                 print(e)
                 fout.write(" --> Exception: " + e + '\n')
-        write_str.append(str_out)
         return
 
     def parse_noun(strs,phrase_dict,text,parsed):
-        str_out = ""
         str_arr = str(strs).strip("{").split(",")
         fout.write("Nouns found:\n") 
         for x in str_arr:
@@ -427,16 +423,12 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
                 np.get_meaning()
                 str_add =  x[:str_num].strip() + " : head = " + str(np.head) +", text="+ str(np.text) +", meaning="+str(np.meaning)+", matched_txt="+str(np.matched_txt)+ "\n"
                 fout.write(str_add)                
-                str_out = str_out + str_add        
             except Exception as e:
-                write_str.append(str_out)
                 print(e)
-                fout.write(" --> Exception: " + e + '\n')
-        write_str.append(str_out)
+                fout.write(" --> Exception: " + str(e) + '\n')
         return
 
     def parse_triplets(triplets, phrase_dict):
-        res = ""
         fout.write("Triplets found:\n") 
         for triple in triplets:
             strs = triplets[triple]
@@ -447,53 +439,77 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
             event = "(" + phrase_dict[codes[0]] + "," + phrase_dict[codes[1]] + "," + phrase_dict[codes[2]] + ")"
             str_add = str(triple) + event +": Meaning = " + str(meaning) + ", VerbCode = " + str(verbcode) + ", Matched Text = " + str(matched_text) + "\n"
             fout.write(str_add)                
-            res = res + str_add
-        write_str.append(res)
         return 
 
     def validate_record(idstrg, text, parse):
-        global write_str
+        global allrecords, allcorrect, alluncoded, allextra
         print("Entering", idstrg)
+        allrecords += 1
         fout.write("Record ID: " + idstrg + '\n')
         fout.write("Text:\n" + text + '\n')
         fout.write("Parse:\n " + parse)
         fout.write("Expected events:\n")
         for edict in valrecord['events']:
-            fout.write(edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
+            if "noevents" in edict:
+                fout.write("noevents\n")                 
+            else:
+                fout.write(edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
         
         phrase_dict = parse_parser(parse)
         parsed = utilities._format_ud_parsed_str(parse)
         dict = {idstrg: {u'sents': {u'0': {u'content': text, u'parsed': parsed}},
             u'meta': {u'date': u'19950101'}}}
-        write_str = []
         return_dict = "" 
         try: 
             return_dict = petrarch_ud.do_coding(dict)
         except Exception as e: 
             fout.write("Petrarch Runtime Error " + str(e) + '\n')
+#        fout.write("Mk0: " + str(return_dict[idstrg]['sents']['0']['events']))
         try:
             if 'events' in return_dict[idstrg]['sents']['0']:
                 print(return_dict[idstrg]['sents']['0']['events'])
+#                fout.write("Mk1: " + str(return_dict[idstrg]['sents']['0']['events']))
                 event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
-                write_str = [text.replace("\n"," "),parsed.replace("\n"," "),"([ARN],[GON],050)",str(return_dict[idstrg]['sents']['0']['events']),event_out]
-                fout.write("Coded events1:\n")
+                fout.write("Coded events:\n")
+                nfound = 0
+                ncoded = 0
                 for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
-                    fout.write(evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")\n")
-                
-                fout.write(str(return_dict[idstrg]['sents']['0']['events']) + '\n' + event_out + '\n')
+                    try:
+                        fout.write(evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")
+                        ncoded += 1
+                        for edict in valrecord['events']:
+                            if "noevents" in edict:
+                                fout.write("  ERROR: NO EVENTS\n")
+                                break                 
+                            else:
+                                if (edict['eventcode'] == evt[2] and
+                                    edict['sourcecode'] == evt[0][0] and
+                                    edict['targetcode'] == evt[1][0]) :
+                                    fout.write("  CORRECT\n")
+                                    nfound += 1
+                                    break
+                        else:
+                            fout.write("  ERROR\n")
+                                                                
+                    except:
+                        pass                
+                fout.write("Event source:\n")
+                fout.write(str(return_dict[idstrg]['sents']['0']['events']) + '\n')
             else:
                 fout.write("No events returned\n")
         except:
             fout.write(idstrg + " Failed\n")  # not clear why we'd hit this...
             print(idstrg + " Failed")
-        #Print the verbs
+        fout.write("Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) + "   Extra events: " + str(ncoded - nfound)  + '\n') 
+        allcorrect += nfound
+        alluncoded += len(valrecord['events']) - nfound
+        allextra += ncoded - nfound
         if 'verbs' in return_dict[idstrg]['sents']['0']:
             parse_verb(return_dict[idstrg]['sents']['0']['verbs'],phrase_dict,text,parsed)
         if 'nouns' in return_dict[idstrg]['sents']['0']:
             parse_noun(return_dict[idstrg]['sents']['0']['nouns'],phrase_dict,text,parsed)
         if 'triplets' in return_dict[idstrg]['sents']['0']:
             parse_triplets(return_dict[idstrg]['sents']['0']['triplets'],phrase_dict)
-#        fout.write(str(write_str)  + '\n')
         fout.write('\n')
 
     fin = open(filepath,'r')
@@ -513,6 +529,7 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
 
 
     nvalid = 0
+    allrecords, allcorrect, alluncoded, allextra = 0, 0, 0, 0
     ka = 0
     kb = 0
     line = fin.readline() 
@@ -537,16 +554,21 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
             line = fin.readline() # get the rest of the record
             while len(line) > 0: 
                 if line.startswith("<EventCoding"):
-                    theevent = {
-                                'coding' : line[line.find(" ") + 1:line.find(">")],  # not actually using this
-                                'eventcode': get_line_attribute('eventcode'),
-                                'sourcecode' :  get_line_attribute('sourcecode'),
-                                'targetcode' : get_line_attribute('targetcode')
-                                }
-                    if 'events' in valrecord:
-                        valrecord['events'].append(theevent)
+                    if 'noevents="True"' in line:
+                        print('Mk-2')
+                        valrecord['events'] = ["noevents"]    
                     else:
-                        valrecord['events'] = [theevent]    
+                        theevent = {
+                                    'coding' : line[line.find(" ") + 1:line.find(">")],  # not actually using this
+                                    'eventcode': get_line_attribute('eventcode'),
+                                    'sourcecode' :  get_line_attribute('sourcecode'),
+                                    'targetcode' : get_line_attribute('targetcode'),
+                                    'coded': False
+                                    }
+                        if 'events' in valrecord:
+                            valrecord['events'].append(theevent)
+                        else:
+                            valrecord['events'] = [theevent]    
 
                 elif line.startswith("<Text"):
                     thetext = ""
@@ -566,13 +588,15 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
                     break
                 line = fin.readline() 
 
+            if valrecord['category'] != "DEMO":
+                break
             print("\nRecord:",valrecord['id'])
             """for k, v in valrecord.items():
                 print(k)
                 print(v)"""
             validate_record(valrecord['id'], valrecord['text'], valrecord['parse'])
             kb += 1
-            if kb > 6: break
+#            if kb > 60: break
             
             """if recordType == 'Config':
                 change_Config_Options(valrecord.attrib)
@@ -615,7 +639,13 @@ def do_validation(filepath="data/text/PETR.UnitTest.records.parsing_parsed_udpip
             
         line = fin.readline() 
 
+    fout.write("\nSummary:\n")
+    fout.write("Record evaluated:" + str(allrecords) + "\n")
+    fout.write("Correct events:" + str(allcorrect) + "\n")
+    fout.write("Uncoded events:" + str(alluncoded) + "\n")
+    fout.write("Extra events:" + str(allextra) + "\n")
     fin.close()
+    fout.close()
     exit()
 
 
