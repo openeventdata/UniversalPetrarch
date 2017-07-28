@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Validation>
 <!--
+#    <Include>valid DEMO ACTOR VERB AGENT COMPOUND PARSING PATTERN DATE MODIFY SYNSET ERROR</Include>
 ##########################################################################################
 #
 #                               PETRARCH UNIT TEST RECORDS
@@ -36,13 +37,13 @@
 -->
 
 <Environment>
-    <Verbfile>PETR.Validate.verbs.txt</Verbfile>
+    <Verbfile>PETR.Validate.verbs.2.0.txt</Verbfile>
     <Actorfile>PETR.Validate.actors.txt</Actorfile>
     <Agentfile>PETR.Validate.agents.txt</Agentfile>
     <Discardfile>PETR.Validate.discards.txt</Discardfile>
     <PICOfile>PETR.Validate.Internal.Coding.Ontology.txt</PICOfile>
     <Errorfile>Errors.unit-test.txt</Errorfile>
-    <Include>valid DEMO ACTOR VERB AGENT COMPOUND PARSING PATTERN DATE MODIFY SYNSET ERROR</Include>
+    <Include>valid DEMO ACTOR VERB AGENT COMPOUND PATTERN DATE MODIFY SYNSET </Include>
     <Pause>Stop</Pause>
     <Config option="stop_on_error" value="True" />
 </Environment>		
@@ -6242,6 +6243,7 @@ Gollum was known to break into an anti- Gondor parade on Saturday.
 <!-- This was done using a pattern in TABARI but is now handled by the parse -->
 <!--  { HOB / GON / 111 } */ -->
 <!-- Last update: TABARI validation -->
+<EventCoding noevents="True" />
 <Text>
 Gollum was in an accord with an anti- Gondor parade on Saturday. 
 </Text>
