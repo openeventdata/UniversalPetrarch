@@ -47,7 +47,14 @@ REVISION HISTORY:
 =========================================================================================================
 """
 from __future__ import print_function
-import petrarch_ud, PETRglobals, PETRreader, utilities, codecs, PETRgraph 
+
+import codecs
+import logging
+import utilities
+import PETRreader
+import PETRgraph 
+import petrarch_ud
+import PETRglobals
 
 global allrecords, allcorrect, alluncoded, allextra, allnull, ValidInclude
 
@@ -244,9 +251,11 @@ def validate_record(valrecord):
             fout.write(str_add)                
         return 
 
+    logger = logging.getLogger('petr_log.validate')
     parse = valrecord['parse']
     idstrg = valrecord['id']
-    print("evaluatinging", idstrg)
+    print("evaluating", idstrg)
+    logger.debug("\nevaluating: "+ idstrg)
     allrecords += 1
     fout.write("Record ID: " + idstrg + '\n')
     fout.write("Text:\n" + valrecord['text'] + '\n')
@@ -352,6 +361,9 @@ def do_validation():
     while len(line) > 0:  # loop through the file
         ka += 1
 #        if ka > 36: break
+        if line.startswith("<Stop"):
+            print("Exiting: <Stop> record ")
+            break
 
         if line.startswith("<Sentence "):
             valrecord = {}
@@ -405,8 +417,8 @@ def do_validation():
             """for k, v in valrecord.items():
                 print(k)
                 print(v)"""
-            """ if valrecord['category'] != 'DEMO':  # debugging option to stop evaluation after the DEMO records
-                break """
+            if valrecord['category'] != 'DEMO':  # debugging option to stop evaluation after the DEMO records
+                break 
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude:
                 validate_record(valrecord)
                 kb += 1
@@ -418,9 +430,6 @@ def do_validation():
                  # for the time being
             if recordType == 'Config':
                 change_Config_Options(valrecord.attrib)
-            if recordType == 'Stop':
-                print("Exiting: <Stop> record ")
-                break
             if recordType == 'Sentence':
                 try:
                     vresult = evaluate_validation_record(valrecord)
@@ -466,6 +475,8 @@ if __name__ == '__main__':
         print("can't find the file", filepath)
         exit()
     fout = open("Validations_out1.txt", 'w')
+
+    utilities.init_logger('UD-PETR_Validate.log', False)
 
     do_validation()
 
