@@ -162,6 +162,16 @@ def get_environment():
     return ValidInclude, ValidExclude, ValidPause, ValidOnly
 
 
+def process_reciprocals(returnevents):
+    """ temporary function to resolve the reciprocal codes """
+    for key, evt in returnevents.items():
+        if evt[2] and ":" in evt[2]:
+            returnevents.pop(key, None)
+            part = evt[2].partition(":")
+            returnevents[key + "R1"] = [evt[0], evt[1], part[0]]
+            returnevents[key + "R2"] = [evt[1], evt[0], part[2]]
+
+
 def validate_record(valrecord):
     """ primary procedure which calls the coder with the parse in valrecord and compares the coded results with the expected 
         as well as writing assorted intermediate data structures to fout per test_script_ud.py """
@@ -170,6 +180,7 @@ def validate_record(valrecord):
 
     def process_event_output(str):
         """ from test_script_ud.py """
+        logger.debug("pso(): " + str)
         str = str.replace("{","")
         str = str.replace("}","")
         res = ""
@@ -203,7 +214,7 @@ def validate_record(valrecord):
         if 'verbs' not in return_dict[idstrg]['sents']['0']:
             return
         str_arr = str(return_dict[idstrg]['sents']['0']['verbs']).strip("{").split(",")
-        #print("Verb/Noun")
+#        print("Verb/Noun", str_arr)
         fout.write("Verbs found:\n") 
         for x in str_arr:
             str_num = x.find(":")		
@@ -252,6 +263,7 @@ def validate_record(valrecord):
         return 
 
     logger = logging.getLogger('petr_log.validate')
+#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
     parse = valrecord['parse']
     idstrg = valrecord['id']
     print("evaluating", idstrg)
@@ -272,55 +284,57 @@ def validate_record(valrecord):
     dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
         u'meta': {u'date': u'19950101'}}}
     return_dict = "" 
-    try: 
+    return_dict = petrarch_ud.do_coding(dict)  # 17.07.31: by-pass the try block for now so errors can be isolated
+    """try: 
         return_dict = petrarch_ud.do_coding(dict)
     except Exception as e: 
-        fout.write("petrarch_ud.do_coding() runtime error " + str(e) + '\n')
+        fout.write("petrarch_ud.do_coding() runtime error " + str(e) + '\n')"""
 
-    try:
-        if 'events' in return_dict[idstrg]['sents']['0']:
-            print(return_dict[idstrg]['sents']['0']['events'])
-            event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
-            fout.write("Coded events:\n")
-            nfound, ncoded, nnull = 0, 0, 0
-            for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
-                try:
-                    if evt[0][0][:3] == "---" and evt[1][0][:3] == "---" :
-                        nnull += 1
-                        continue
-                except:   # handles [] cases
+#    try:  # 17.07.31: by-pass the try block for now so errors can be isolated
+    if 'events' in return_dict[idstrg]['sents']['0']:
+        print(return_dict[idstrg]['sents']['0']['events'])
+        process_reciprocals(return_dict[idstrg]['sents']['0']['events'])
+        event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
+        fout.write("Coded events:\n")
+        nfound, ncoded, nnull = 0, 0, 0
+        for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
+            try:
+                if evt[0][0][:3] == "---" or evt[1][0][:3] == "---" :
                     nnull += 1
-                    continue       
-                try:
-                    fout.write(evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
-                    ncoded += 1
-                    for edict in valrecord['events']:
-                        if "noevents" in edict:
-                            fout.write("  ERROR: NO EVENTS\n")
-                            break                 
-                        else:
-                            if (edict['eventcode'] == evt[2] and
-                                edict['sourcecode'] == evt[0][0] and
-                                edict['targetcode'] == evt[1][0]) :
-                                fout.write("  CORRECT\n")
-                                nfound += 1
-                                break
+                    continue
+            except:   # handles [] cases
+                nnull += 1
+                continue       
+            try:
+                fout.write(evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
+                ncoded += 1
+                for edict in valrecord['events']:
+                    if "noevents" in edict:
+                        fout.write("  ERROR: NO EVENTS\n")
+                        break                 
                     else:
-                        fout.write("  ERROR\n")
-                                                            
-                except:
-                    pass
-                if nnull > 0:
-                    fout.write("Null events: " + str(nnull)  + '\n')                
-            fout.write("Event source:\n")
-            fout.write(str(return_dict[idstrg]['sents']['0']['events']) + '\n')
-        else:
-            fout.write("No events returned\n")
-    except:
+                        if (edict['eventcode'] == evt[2] and
+                            edict['sourcecode'] == evt[0][0] and
+                            edict['targetcode'] == evt[1][0]) :
+                            fout.write("  CORRECT\n")
+                            nfound += 1
+                            break
+                else:
+                    fout.write("  ERROR\n")
+                                                        
+            except:
+                pass
+        if nnull > 0:
+            fout.write("Null events: " + str(nnull)  + '\n')                
+        fout.write("Event source:\n")
+        fout.write(str(return_dict[idstrg]['sents']['0']['events']) + '\n')
+    else:
+        fout.write("No events returned\n")
+    """except:
         fout.write(idstrg + " Failed\n")  # not clear why we'd hit this, or more to the point, that 'try' block should be more compartmentalized
         print(idstrg + " Failed")
         fout.write('\n')
-        return
+        return"""
         
     fout.write("Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
                 + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
