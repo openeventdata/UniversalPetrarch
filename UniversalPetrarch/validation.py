@@ -56,7 +56,7 @@ import PETRgraph
 import petrarch_ud
 import PETRglobals
 
-global allrecords, allcorrect, alluncoded, allextra, allnull, ValidInclude
+#global allrecords, allcorrect, alluncoded, allextra, allnull, ValidInclude
 
 # ========================== VALIDATION FUNCTIONS ========================== #
 
@@ -162,21 +162,10 @@ def get_environment():
     return ValidInclude, ValidExclude, ValidPause, ValidOnly
 
 
-def process_reciprocals(returnevents):
-    """ temporary function to resolve the reciprocal codes """
-    for key, evt in returnevents.items():
-        if evt[2] and ":" in evt[2]:
-            returnevents.pop(key, None)
-            part = evt[2].partition(":")
-            returnevents[key + "R1"] = [evt[0], evt[1], part[0]]
-            returnevents[key + "R2"] = [evt[1], evt[0], part[2]]
-
 
 def validate_record(valrecord):
     """ primary procedure which calls the coder with the parse in valrecord and compares the coded results with the expected 
         as well as writing assorted intermediate data structures to fout per test_script_ud.py """
-
-    global allrecords, allcorrect, alluncoded, allextra, allnull
 
     def process_event_output(str):
         """ from test_script_ud.py """
@@ -221,7 +210,7 @@ def validate_record(valrecord):
             try:        
                 np = sentence.get_verbPhrase(int(x[:str_num].strip()))
                 str_add = x[:str_num].strip() + " : text = " + str(np.text) +", head="+ str(np.head) +", meaning="+ str(np.meaning)+", code="+ str(np.code)+" ,passive="+str(np.passive) + "\n"
-                fout.write(str_add)
+                fout.write("    " + str_add)
             except Exception as e:
                 print(e)
                 fout.write(" --> Exception generating sentence.get_verbPhrase(): " + str(e) + '\n')
@@ -239,7 +228,7 @@ def validate_record(valrecord):
                 np = sentence.get_nounPharse(int(x[:str_num].strip()))
                 np.get_meaning()
                 str_add =  x[:str_num].strip() + " : head = " + str(np.head) +", text="+ str(np.text) +", meaning="+str(np.meaning)+", matched_txt="+str(np.matched_txt)+ "\n"
-                fout.write(str_add)                
+                fout.write("    " + str_add)                
             except Exception as e:
                 print(e)
                 fout.write(" --> Exception generating sentence.get_nounPharse(): " + str(e) + '\n')
@@ -259,7 +248,7 @@ def validate_record(valrecord):
             codes = str(triple).split("#")
             event = "(" + phrase_dict[codes[0]] + "," + phrase_dict[codes[1]] + "," + phrase_dict[codes[2]] + ")"
             str_add = str(triple) + event +": Meaning = " + str(meaning) + ", VerbCode = " + str(verbcode) + ", Matched Text = " + str(matched_text) + "\n"
-            fout.write(str_add)                
+            fout.write("    " + str_add)                
         return 
 
     logger = logging.getLogger('petr_log.validate')
@@ -268,16 +257,17 @@ def validate_record(valrecord):
     idstrg = valrecord['id']
     print("evaluating", idstrg)
     logger.debug("\nevaluating: "+ idstrg)
-    allrecords += 1
     fout.write("Record ID: " + idstrg + '\n')
-    fout.write("Text:\n" + valrecord['text'] + '\n')
-    fout.write("Parse:\n " + parse)
+    fout.write("Text:\n    " + valrecord['text'] + '\n')
+    fout.write("Parse:\n")
+    for strg in parse[:-1].split("\n"):
+        fout.write("    " +  strg  + '\n')
     fout.write("Expected events:\n")
     for edict in valrecord['events']:
         if "noevents" in edict:
-            fout.write("noevents\n")                 
+            fout.write("    noevents\n")                 
         else:
-            fout.write(edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
+            fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
     
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
@@ -291,22 +281,22 @@ def validate_record(valrecord):
         fout.write("petrarch_ud.do_coding() runtime error " + str(e) + '\n')"""
 
 #    try:  # 17.07.31: by-pass the try block for now so errors can be isolated
-    if 'events' in return_dict[idstrg]['sents']['0']:
+    fout.write("Coded events:\n")
+    if 'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
         print(return_dict[idstrg]['sents']['0']['events'])
-        process_reciprocals(return_dict[idstrg]['sents']['0']['events'])
         event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
-        fout.write("Coded events:\n")
+        
         nfound, ncoded, nnull = 0, 0, 0
         for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
             try:
-                if evt[0][0][:3] == "---" or evt[1][0][:3] == "---" :
+                if evt[0][0] == "---" or evt[1][0] == "---" :
                     nnull += 1
                     continue
             except:   # handles [] cases
                 nnull += 1
                 continue       
             try:
-                fout.write(evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
+                fout.write("    " + evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
                 ncoded += 1
                 for edict in valrecord['events']:
                     if "noevents" in edict:
@@ -324,25 +314,39 @@ def validate_record(valrecord):
                                                         
             except:
                 pass
+        if ncoded == 0:
+            fout.write("    No events returned  ERROR\n")
         if nnull > 0:
             fout.write("Null events: " + str(nnull)  + '\n')                
         fout.write("Event source:\n")
-        fout.write(str(return_dict[idstrg]['sents']['0']['events']) + '\n')
+        fout.write("    " + str(return_dict[idstrg]['sents']['0']['events']) + '\n')
     else:
-        fout.write("No events returned\n")
+        fout.write("    No events returned")
+        if "noevents" in valrecord['events'][0]:
+            nfound, ncoded, nnull = 1, 1, 0  # count this as a match
+            fout.write("  CORRECT\n")            
+        else:
+            nfound, ncoded, nnull = 0, 0, 0
+            fout.write("  ERROR\n")
+        
     """except:
         fout.write(idstrg + " Failed\n")  # not clear why we'd hit this, or more to the point, that 'try' block should be more compartmentalized
         print(idstrg + " Failed")
         fout.write('\n')
         return"""
         
-    fout.write("Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
+    fout.write("Stats:\n    Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
                 + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
-    allcorrect += nfound
-    alluncoded += len(valrecord['events']) - nfound
-    allextra += ncoded - nfound
-    allnull += nnull
-
+    if valrecord['category'] in valid_counts:
+        valid_counts[valrecord['category']][0] += 1  # records
+        valid_counts[valrecord['category']][1] += nfound  # correct
+        valid_counts[valrecord['category']][2] += len(valrecord['events']) - nfound  # uncoded
+        valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
+        valid_counts[valrecord['category']][4] += nnull            # null
+    else:
+        valid_counts[valrecord['category']] = [1, nfound, len(valrecord['events']) - nfound, ncoded - nfound, nnull]
+        valid_counts['catlist'].append(valrecord['category'])  # keep track of the order of the categories found
+    
     try:        
         sentence = PETRgraph.Sentence(parsed, valrecord['text'] , 0000)
     except Exception as e:
@@ -357,7 +361,7 @@ def validate_record(valrecord):
 
 def do_validation():
     """ Unit tests using a validation file. """
-    global allrecords, allcorrect, alluncoded, allextra, allnull, ValidInclude
+    global valid_counts, ValidInclude
 
     def get_line_attribute(target):
         """ quick and dirty function for extracting well-formed XML attributes"""
@@ -368,7 +372,8 @@ def do_validation():
     print("Reading dictionaries")
     petrarch_ud.read_dictionaries()
 
-    allrecords, allcorrect, alluncoded, allextra, allnull = 0, 0, 0, 0, 0
+    valid_counts = {'catlist': []}
+#    allrecords, allcorrect, alluncoded, allextra, allnull = 0, 0, 0, 0, 0
     ka = 0 # debugging counters
     kb = 0
     line = fin.readline() 
@@ -376,7 +381,7 @@ def do_validation():
         ka += 1
 #        if ka > 36: break
         if line.startswith("<Stop"):
-            print("Exiting: <Stop> record ")
+            print("\nExiting: <Stop> record ")
             break
 
         if line.startswith("<Sentence "):
@@ -431,8 +436,8 @@ def do_validation():
             """for k, v in valrecord.items():
                 print(k)
                 print(v)"""
-            if valrecord['category'] != 'DEMO':  # debugging option to stop evaluation after the DEMO records
-                break 
+            """if valrecord['category'] != 'DEMO':  # debugging option to stop evaluation after the DEMO records
+                break """
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude:
                 validate_record(valrecord)
                 kb += 1
@@ -495,15 +500,28 @@ if __name__ == '__main__':
     do_validation()
 
     fout.write("\nSummary:\n")
-    fout.write("Categories included: " + str(ValidInclude) + "\n")
-    fout.write("Records evaluated: " + str(allrecords) + "\n")
-    fout.write("Correct events: " + str(allcorrect) + "\n")
-    fout.write("Uncoded events: " + str(alluncoded) + "\n")
-    fout.write("Extra events: " + str(allextra) + "\n")
-    fout.write("Null events: " + str(allnull) + "\n")
-    print("\nRecords evaluated:", allrecords)
-    print("Correct events:", allcorrect)
-    print("Uncoded events:", alluncoded)
+#    fout.write("Categories included: " + str(ValidInclude) + "\n")
+    fout.write("Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  \n")
+    valid_counts['Total'] = [0, 0, 0, 0, 0]
+    valid_counts['catlist'].append('Total')
+    for catstrg in valid_counts['catlist']:
+        fout.write("{:10s}".format(catstrg))
+        print(catstrg + ": " + str(valid_counts[catstrg]))
+        for ka in range(5):
+            fout.write("{:10d}".format(valid_counts[catstrg][ka]))
+            if catstrg != "Total":
+                valid_counts['Total'][ka] += valid_counts[catstrg][ka]
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][1] * 100.0)/(valid_counts[catstrg][1] + valid_counts[catstrg][2])))
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][2] * 100.0)/(valid_counts[catstrg][1] + valid_counts[catstrg][2])))
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][3] * 100.0)/(valid_counts[catstrg][0])))  # this as percent of records
+        fout.write('\n')
+    fout.write("TP = correct/(correct + uncoded) \n")
+    fout.write("FN = uncoded/(correct + uncoded) = 100 - TP \n")
+    fout.write("FP = extra/records\n")
+    print("\nRecords evaluated:{:4d}".format(valid_counts['Total'][0]))
+    print("Correct events:   {:4d}".format(valid_counts['Total'][1]))
+    print("Uncoded events:   {:4d}".format(valid_counts['Total'][2]))
+    print("Extra events:     {:4d}".format(valid_counts['Total'][3]))
 
     fin.close()
     fout.close()

@@ -41,7 +41,7 @@ def main():
 
         read_dictionaries()
         start_time = time.time()
-        print('\n\n')
+#        print('\n\n')
         #'''
         paths = PETRglobals.TextFileList
         if cli_args.inputs:
@@ -265,7 +265,7 @@ def do_coding(event_dict):
     NDiscardSent = 0
     NDiscardStory = 0
 
-    logger = logging.getLogger('petr_log')
+    logger = logging.getLogger('petr_log.do_coding')
     times = 0
     sents = 0
     for key, val in sorted(event_dict.items()):
@@ -288,7 +288,7 @@ def do_coding(event_dict):
                     'date'] if 'date' in event_dict[key]['sents'][sent] else StoryDate
                 Date = PETRreader.dstr_to_ordate(SentenceDate)
 
-                print("\n", SentenceID)
+#                print("\n", SentenceID)
                 parsed = event_dict[key]['sents'][sent]['parsed']
                 treestr = parsed
                 
@@ -312,42 +312,63 @@ def do_coding(event_dict):
                 print(sentence.txt)
                 #raw_input("check")
                 # this is the entry point into the processing in PETRtree
-                coded_events = sentence.get_events()
+                coded_events = sentence.get_events()  # coded_events is just sentence.events
 
                 event_dict[key]['sents'][sent]['events'] = sentence.events
                 event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
                 event_dict[key]['sents'][sent]['nouns'] = sentence.nouns
                 event_dict[key]['sents'][sent]['triplets'] = sentence.triplets
 
-                logger.debug("check events:")
-                for eventID,event in event_dict[key]['sents'][sent]['events'].items():
-                    logger.debug("event:" + eventID)
-                    logger.debug(event)
+                logger.debug("raw events:")
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    logger.debug("event ==> " + eventID + " : " + str(event))
 
-                #raw_input("Press Enter to continue...")
+                # process reciprocals
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    if event[2] and ":" in event[2]:
+                        part = event[2].partition(":")
+                        event_dict[key]['sents'][sent]['events'][eventID + "R1"] = [event[0], event[1], part[0]]
+                        event_dict[key]['sents'][sent]['events'][eventID + "R2"] = [event[1], event[0], part[2]]
+                        event_dict[key]['sents'][sent]['events'].pop(eventID, None)
+
+                # expand compound sources                
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    if len(event[0]) > 1 and event[1] != ['---']:
+                        for ka, src in enumerate(event[0]):
+                            if src != '---':
+                                event_dict[key]['sents'][sent]['events'][eventID + "-CS" + str(ka + 1)] = [[src],event[1],event[2]]
+                        event_dict[key]['sents'][sent]['events'].pop(eventID, None)
+
+                # expand compound targets                
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    if len(event[1]) > 1 and event[0] != ['---']:
+                        for ka, tar in enumerate(event[1]):
+                            if tar != '---':
+                                event_dict[key]['sents'][sent]['events'][eventID + "-CT" + str(ka + 1)] = [event[0], [tar], event[2]]
+                        event_dict[key]['sents'][sent]['events'].pop(eventID, None)
+
+                # remove self-references to compound targets                
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    if event[1] == event[0]:
+                        event_dict[key]['sents'][sent]['events'].pop(eventID, None)
+
+                # remove duplicates
+                unilist = []                
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    if event not in unilist:
+                        unilist.append(event)
+                    else:
+                        event_dict[key]['sents'][sent]['events'].pop(eventID, None)                            
+
+                logger.debug("processed events:")
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
+                    logger.debug("event ==> " + eventID + " : " + str(event))
+
                 code_time = time.time() - t1
-
-                '''
-                if PETRglobals.NullVerbs or PETRglobals.NullActors:
-                    event_dict[key]['meta'] = meta
-                    event_dict[key]['text'] = sentence.txt
-                elif PETRglobals.NullActors:
-                    event_dict[key]['events'] = coded_events
-                    coded_events = None   # skips additional processing
-                    event_dict[key]['text'] = sentence.txt
-                else:
-                    # 16.04.30 pas: we're using the key value 'meta' at two
-                    # very different
-                    event_dict[key]['meta']['verbs'] = meta
-                    # levels of event_dict -- see the code about ten lines below -- and
-                    # this is potentially confusing, so it probably would be useful to
-                    # change one of those
-                '''
 
                 del(sentence)
                 times += code_time
                 sents += 1
-                # print('\t\t',code_time)
 
                                        
                 if coded_events and PETRglobals.IssueFileName != "":
