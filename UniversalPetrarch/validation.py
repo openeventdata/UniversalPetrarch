@@ -272,7 +272,7 @@ def validate_record(valrecord):
     phrase_dict = parse_parser(parse)
     parsed = utilities._format_ud_parsed_str(parse)
     dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
-        u'meta': {u'date': u'19950101'}}}
+        u'meta': {u'date': valrecord['date']}}}
     return_dict = "" 
     return_dict = petrarch_ud.do_coding(dict)  # 17.07.31: by-pass the try block for now so errors can be isolated
     """try: 
