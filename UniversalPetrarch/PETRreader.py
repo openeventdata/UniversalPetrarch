@@ -902,6 +902,21 @@ def read_verb_dictionary(verb_path):
             prep_pats.append((p, pnps))
         return nps, prep_pats
 
+    def add_mille_pattern(verbstrg, millestrg, code):
+        millestrg = millestrg.replace(">","> ")
+        millestrg = millestrg.replace("["," [ ")
+        millestrg = millestrg.replace("("," ( ")
+        millestrg = millestrg.replace("]"," ] ")
+        millestrg = millestrg.replace(")"," ) ")        
+        millestrg = millestrg.replace("  "," ")        
+        if verbstrg in PETRglobals.VerbDict['mille']:
+            PETRglobals.VerbDict['mille'][verbstrg].append((millestrg[:-1].split(" "), code)) # ignore final ""
+        else:
+            PETRglobals.VerbDict['mille'][verbstrg] = [(millestrg[:-1].split(" "), code)]
+
+        
+    PETRglobals.VerbDict['mille'] = {}
+    add_mille_pattern("CONDEMNED",">dobj[ATTACK]>nmod[(BY +)]", "112") 
 
     for line in file:
         if line.startswith("<!"):
@@ -1702,8 +1717,15 @@ def show_verb_dictionary(filename=''):
     if len(filename) > 0:
         fout = open(filename, 'w')
         fout.write('PETRARCH Verb Dictionary Internal Format\n')
-        fout.write('Run time: ' + PETRglobals.RunTimeString + '\n')
+#        fout.write('Run time: ' + PETRglobals.RunTimeString + '\n')
 
+        fout.write("VERBS\n")
+        for locword, loclist in PETRglobals.VerbDict['verbs'].items():
+            fout.write(locword + '==> ' + str(loclist) + '\n')
+        fout.write("PHRASES\n")
+        for locword, loclist in PETRglobals.VerbDict['phrases'].items():
+            fout.write(locword + '==> ' + str(loclist) + '\n')
+        """ code from PETR-1
         for locword, loclist in PETRglobals.VerbDict.items():
             if locword[0] == '&':   # debug: skip the synsets
                 continue
@@ -1717,10 +1739,10 @@ def show_verb_dictionary(filename=''):
             else:
                 # pointer
                 fout.write(
-                    '-> ' + str(loclist[2]) + ' [' + loclist[1] + ']\n')
+                    '-> ' + str(loclist[2]) + ' [' + loclist[1] + ']\n')"""
         fout.close()
 
-    else:
+    else: # this is for the PETR-1 dictionary structure
         for locword, loclist in PETRglobals.VerbDict.items():
             print(locword, end=' ')
             if loclist[0]:

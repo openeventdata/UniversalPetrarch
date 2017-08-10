@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 
 import networkx as nx
 import PETRglobals
@@ -7,6 +8,7 @@ import PETRreader
 import logging
 import utilities
 from sets import Set
+import sys
 
 class NoLoggingFilter(logging.Filter):
     """ used to suppress specific loggers """
@@ -28,11 +30,11 @@ class NounPhrase:
         self.matched_txt = None
         self.prep_phrase = []
 
-    """def __repr__(self):
-        sb = "NounPhrase: "
+    def __repr__(self):
+        sb = "\n    NounPhrase:\n        "
         for key, val in self.__dict__.items():
-            sb += key + "='" + str(val) + "', " 
-        return sb[:-2]"""
+            sb += key + "='" + str(val) + "',\n        " 
+        return sb[:-2]
 
     def get_meaning(self):
         logger = logging.getLogger('petr_log.NPgetmeaning')
@@ -42,11 +44,13 @@ class NounPhrase:
         # main part is extracted by removing all the prepositional phrases in the noun phrase
 
         npMainText = self.text
+        logger.debug("self: " + str(self))
+        logger.debug("npMainText initial: " + str(npMainText))
         for prep_phrase in self.prep_phrase:
-            logger.debug("pphrase:"+prep_phrase.text)
+            logger.debug("removing pphrase: " + prep_phrase.text)
             npMainText = npMainText.replace(prep_phrase.text,"")
 
-        logger.debug("npMainText:"+npMainText)
+        logger.debug("npMainText edited: " + npMainText)
         codes,roots,matched_txt = self.textMatching(npMainText.upper().split(" "))
         actorcodes, agentcodes = self.resolve_codes(codes)
         if actorcodes and agentcodes:
@@ -58,14 +62,20 @@ class NounPhrase:
 
 
         # 2. if actor code is not found, matching the entire noun phrase string in the actor or agent dictionary
+        
+        logger.debug("self.text.upper: " + self.text.upper())  # 17.08.02 WTF?? -- we've lost all of the parsing info here!!
         npText = self.text.upper().split(" ")
-        codes,roots,matched_txt = self.textMatching(npText)
+        codes,roots,matched_txt = self.textMatching(npText)  # 17.08.02: roots is not used
 
-        actorcodes, agentcodes = self.resolve_codes(codes)
+        actorcodes, agentcodes = self.resolve_codes(codes) # just splits these into actor and agent codes
         self.meaning = self.mix_codes(agentcodes, actorcodes)
         self.matched_txt = matched_txt
+        logger.debug("final vals ==>actorcodes: " + str(actorcodes) + ' agentcodes:' + str(agentcodes))
+        logger.debug("              self.meaning: "	 + str(self.meaning))
+        logger.debug("              self.matched_txt: " + str(self.matched_txt))
+        
 
-        return codes,roots,matched_txt
+        return codes,roots,matched_txt  # 17.08.02: I don't see that these return values are ever used
 
     def textMatching(self,npText):
         codes = []
@@ -98,7 +108,7 @@ class NounPhrase:
 
         return codes,roots,matched_txt
 
-    def code_extraction(self,path, words, length, so_far=""):
+    def code_extraction(self, path, words, length, so_far=""):
         """ this method returns the code of noun phrase string in the actor or agent dictionary
         """
         # --            print('NPgm-rec-lev:',len(getouterframes(currentframe(1))))  # --
@@ -437,6 +447,7 @@ class Sentence:
         #self.verb_analysis = {}
         self.events = {}
         self.metadata = {'nouns': [], 'verbs':[],'triplets':[]}
+#        self.show_graph()  ### debugging
     
 
     def str_to_graph(self,str):
@@ -444,7 +455,7 @@ class Sentence:
         parsed = self.parse.split("\n")
         #print(parsed)
 
-        dpgraph.add_node(0, token = 'ROOT')
+        dpgraph.add_node(0, token = 'ROOT', pos = 'ROOT')  # give the 'root' edge something to link to
         for p in parsed:
             temp = p.split("\t")
 
@@ -452,11 +463,22 @@ class Sentence:
             dpgraph.add_edge(int(temp[6]),int(temp[0]),relation = temp[7])
 
         return dpgraph
+        
+    def show_graph(self):
+        """ pretty printer for udgraph """
+        print("--------")
+        for node in self.udgraph:
+            print("{:2d}  {:s} : {:s}".format(node, self.udgraph.node[node]['token'], self.udgraph.node[node]['pos']))
+            print("   <== ", self.udgraph.predecessors(node))
+            for link in self.udgraph.successors(node):
+                print("    {:2d}  {:s}".format(link, self.udgraph[node][link]))
+            
+
 
     def get_rootNode(self):
         for successor in self.udgraph.successors(0):
-            #if('relation' in self.udgraph[0][successor]):
-                #print(self.udgraph[nodeID][successor]['relation'])
+            """if('relation' in udgraph[0][successor]):
+                print("=++: ", udgraph[0][successor]['relation'])"""
             if self.udgraph[0][successor]['relation'] in ['root']:
                 root = successor
                 #if the root node is a verb, add it directly and find whether any conjunctive verb exists
@@ -478,97 +500,7 @@ class Sentence:
                 for rsuccessor in rsuccessors:
                     if self.udgraph[root][rsuccessor]['relation'] in ['conj','parataxis']:
                         self.rootID.append(rsuccessor)
-
-                #raw_input("roots: "+("#").join(str(x) for x in self.rootID))
-
-        #raw_input("roots: "+("#").join(str(x) for x in self.rootID))
                             
-
-
-    def get_nounPhrase(self, nounhead):
-        """
-            Extract noun phrase given the head of the phrase
-
-        """
-        logger = logging.getLogger('petr_log.getNP')
-#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
-
-        npIDs=[]
-        prep_phrase = []
-        if(self.udgraph.node[nounhead]['pos'] in ['NOUN','ADJ','PROPN']):
-            allsuccessors = nx.dfs_successors(self.udgraph,nounhead)
-
-            flag = True
-            parents = [nounhead]
-            
-            
-            while len(parents)>0:
-                temp = []
-                '''ignore the conjunt nouns''' 
-                for parent in parents:
-                    if parent in allsuccessors.keys():
-                        for child in allsuccessors[parent]:
-                            if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
-                                npIDs.append(child)
-                                temp.append(child)
-                            if parent==nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
-                                # extract prepositional phrases in a noun phrase
-                                #logger.debug(self.udgraph[nounhead][child]['relation'])
-                                #logger.debug(self.udgraph.node[nounhead])
-                                nmod_successors = nx.dfs_successors(self.udgraph,child)
-                                
-                                pptemp = []
-                                pptemp.append(child)
-                                for key in nmod_successors.keys():
-                                    pptemp.extend(nmod_successors[key]) 
-                                pptemp.sort()
-                                logger.debug(pptemp)
-                                if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
-
-                                    prep_phrase.append(pptemp)
-
-                parents = temp
-            
-            '''
-            for parent,child in allsuccessors.items():
-                print(str(parent))
-                print(child)
-            '''     
-
-
-            #for value in allsuccessors.values():
-            #   npIDs.extend(value)
-            #print(npIDs)
-
-        npIDs.append(nounhead)
-        npTokens =[]
-        npIDs.sort()
-        #print(npIDs)
-        #if self.udgraph.node[npIDs[0]]['pos']=='ADP':
-        #   npIDs = npIDs[1:]
-        for npID in npIDs:
-            npTokens.append(self.udgraph.node[npID]['token'])
-            
-        nounPhrasetext = (' ').join(npTokens)
-
-        np = NounPhrase(self,npIDs,nounhead,self.date)
-        np.text = nounPhrasetext
-        np.head = self.udgraph.node[nounhead]['token']
-
-        logger.debug("noun text:" + nounPhrasetext)
-        for pp in prep_phrase:
-            ppTokens = []
-            for ppID in pp:
-                ppTokens.append(self.udgraph.node[ppID]['token'])
-
-            pptext = (' ').join(ppTokens)
-            pphrase = PrepPhrase(self,pp)
-            pphrase.text = pptext
-            np.prep_phrase.append(pphrase)
-
-            logger.debug("prep phrase text:" + pptext)
-
-        return np
 
     def get_nounPhrases(self, nounhead):
         """
@@ -586,19 +518,18 @@ class Sentence:
         nps = []
 
         logger = logging.getLogger('petr_log.getNPs')
-#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
+        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
 
         nmod_conjs = {}
         npIDs=[]
         prep_phrase = []
+        logger.debug("Mk1: " + str(self.udgraph.node[nounhead]))
         if(self.udgraph.node[nounhead]['pos'] in ['NOUN','ADJ','PROPN','PRON']):
             allsuccessors = nx.dfs_successors(self.udgraph,nounhead)
-
-            flag = True
             parents = [nounhead]
-            
-            
+                       
             while len(parents)>0:
+#                logger.debug("Mk2: " + str(parents))
                 temp = []
                 '''ignore the conjunt nouns''' 
                 parentgen = (parent for parent in parents if parent in allsuccessors.keys())
@@ -616,10 +547,11 @@ class Sentence:
                             temp.append(child)
                             
                             if parent in nmod_conjs and child in nmod_conjs[parent]:
-                                print(str(parent)+":"+str(child))
+                                logger.debug("parent-child ==> " + str(parent) + ":" + str(child))
                             else:
                                 npIDs.append(child)
     
+#                logger.debug("Mk3: " + str(temp))
                 parents = temp
 
             parents = [nounhead]
@@ -642,9 +574,8 @@ class Sentence:
                             for key in nmod_successors.keys():
                                 pptemp.extend(nmod_successors[key]) 
                             pptemp.sort()
-                            logger.debug(pptemp)
+                            logger.debug("pptemp: " + str(pptemp))
                             if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
-
                                 prep_phrase.append(pptemp)
 
                 parents = temp
@@ -683,6 +614,7 @@ class Sentence:
         np.head = self.udgraph.node[nounhead]['token']
 
         for pp in prep_phrase:
+#            logger.debug("prep_phrase2: " + str(pp))
             ppTokens = []
             for ppID in pp:
                 ppTokens.append(self.udgraph.node[ppID]['token'])
@@ -697,7 +629,7 @@ class Sentence:
         nps.append(np)
 
         for nmod,nmodchildren in nmod_conjs.items():
-            logger.debug("nmod:"+str(nmod)+":"+self.udgraph.node[nmod]['token'])
+            logger.debug("nmod ==> " + str(nmod) + ":" + self.udgraph.node[nmod]['token'])
             for nmodchild in nmodchildren:
                 logger.debug("nmod-child: " + str(nmodchild) + ":" + self.udgraph.node[nmodchild]['token'])
                 conjnpIDs=[]
@@ -723,9 +655,12 @@ class Sentence:
                 nps.append(conjnp)
 
         self.metadata['nouns'].extend(nps)
+        logger.debug("nps: " + str(nps))  # DEBUG
         return nps
 
     def get_verbPhrase(self,verbhead):
+        logger = logging.getLogger("petr_log.get_verb_phr")
+#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
 
         vpIDs = []
         self.verbIDs.append(verbhead)
@@ -740,20 +675,6 @@ class Sentence:
                     vpIDs.append(successor)
                 if self.udgraph[verbhead][successor]['relation'].startswith('neg'):
                     vp.negative = True
-                '''
-                if self.udgraph[verbhead][successor]['relation'].startswith('advcl'):
-                    # check the to + verb structure
-                    if self.udgraph.node[successor]['pos']=="VERB":
-                        for ss in self.udgraph.successors(successor):
-                            if self.udgraph[successor][ss]['relation'].startswith('mark') and self.udgraph.node[ss]['pos']=='PART':
-                                vpIDs.append(successor)
-                                vpIDs.append(ss)
-                                self.verbIDs.append(successor)
-                                vp.verbIDs.append(successor)
-                '''
-
-
-
 
         vpIDs.append(verbhead)
         vpTokens =[]
@@ -764,31 +685,26 @@ class Sentence:
         verbPhrasetext = (' ').join(vpTokens)
         
         vp.text = verbPhrasetext
+        logger.debug("vphr:" + verbPhrasetext)
         vp.head = self.udgraph.node[verbhead]['token']
         
         return vp
 
 
-
-
-
     def get_source_target(self,verbIDs):
         logger = logging.getLogger("petr_log.get_src_tar")
 #        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
+
         def resolve_pronoun(pronounID,verbID,pronounrole):
             predecessors = self.udgraph.predecessors(verbID)
             for predecessor in predecessors:
-                if 'relation' in self.udgraph[predecessor][verbID] and self.udgraph[predecessor][verbID]['relation'] in ['ccomp']: 
+                if 'relation' in self.udgraph[predecessor][verbID] and self.udgraph[predecessor][verbID]['relation'] == 'ccomp': 
                     logger.debug("resolve pronoun: found the governer of ccomp verb:"+ self.udgraph.node[predecessor]['token'])
                     psource,ptarget,pothernoun = self.get_source_target([predecessor])
-                    if pronounrole in ['source']:
+                    if pronounrole == 'source':
                         logger.debug("resolve pronoun: found resolved source: " + str(len(psource)))
-                        return psource
-                        
-            return []
-                        
-                        
-                    
+                        return psource                        
+            return []                    
                     
         source = []
         target = []
@@ -798,27 +714,25 @@ class Sentence:
                 #print(str(verbID)+"\t"+str(successor)+"\t"+self.udgraph.node[successor]['pos'])
                 if('relation' in self.udgraph[verbID][successor]):
                     #print(self.udgraph[nodeID][successor]['relation'])
-                    if(self.udgraph[verbID][successor]['relation']=='nsubj'):
-                        #source.append(self.get_nounPhrase(successor))
-                        if self.udgraph.node[successor]['pos'] in ['PRON']:
+                    if self.udgraph[verbID][successor]['relation']=='nsubj':
+                        if self.udgraph.node[successor]['pos'] == 'PRON':
                             source.extend(resolve_pronoun(successor,verbID,'source'))
                         else:
                             source.extend(self.get_nounPhrases(successor))
                             source.extend(self.get_conj_noun(successor))
 
-                    elif(self.udgraph[verbID][successor]['relation'] in ['dobj','iobj','nsubjpass']):
-                        #target.append(self.get_nounPhrase(successor))
+                    elif self.udgraph[verbID][successor]['relation'] in ['dobj','iobj','nsubjpass']:
                         target.extend(self.get_nounPhrases(successor))
                         target.extend(self.get_conj_noun(successor))
-                        if self.udgraph[verbID][successor]['relation'] in ['nsubjpass']:
+                        if self.udgraph[verbID][successor]['relation'] == 'nsubjpass':
                             self.verbs[verbID].passive = True
 
-                    elif(self.udgraph[verbID][successor]['relation'] in ['nmod']):
-                        #othernoun.append(self.get_nounPhrase(successor))
+                    elif self.udgraph[verbID][successor]['relation'] == 'nmod':
                         othernoun.extend(self.get_nounPhrases(successor))
                         othernoun.extend(self.get_conj_noun(successor))
 
         return source, target, othernoun
+
 
     def get_conj_noun(self,nodeID):
         """ method for extracting other conjunt nouns of this noun
@@ -863,7 +777,7 @@ class Sentence:
 
 
     def get_phrases(self):
-        logger = logging.getLogger("petr_log.getPhrase")
+        logger = logging.getLogger("petr_log.getPhrases")
         for node in self.udgraph.nodes(data=True):
             nodeID = node[0]
             attrs = node[1]
@@ -1049,7 +963,7 @@ class Sentence:
     def get_verb_code(self):
 
         logger = logging.getLogger('petr_log.get_verb_code')
-        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
+#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
 
         def match_phrase(path, noun_phrase):
             # Having matched the head of the phrase, this matches the full noun
@@ -1106,7 +1020,8 @@ class Sentence:
 
 
         def match_noun(path, noun_phrase):
-            logger.debug("mn-entry")
+            logger = logging.getLogger('petr_log.match_noun')
+    #        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
             
             if not isinstance(noun_phrase,basestring):
                 logger.debug("noun:"+noun_phrase.head+"#"+noun_phrase.text)
@@ -1247,13 +1162,118 @@ class Sentence:
                 return match
             else:
                 return False
+                
+        def match_mille_pattern(locverb):
+            global patsrc, pattar  # uh, just how global are these...enigmatic Python scope rules...
+        
+            def get_phrase_strg(curnode): # this is probably redundant...
+                phstrg = ""
+                npIDs = [ksucc]
+                for jsucc in sorted(self.udgraph.successors(ksucc)): 
+                    phstrg += " " + self.udgraph.node[jsucc]['token'].upper()
+                    npIDs.append(jsucc)  
+                phstrg += " " + self.udgraph.node[ksucc]['token'].upper()
+                print("GPS: " + str(phstrg))  # DEBUG
+                return phstrg, npIDs
+                
+            def get_local_NP(curnode):
+                npIDs = [curnode]
+                for jsucc in sorted(self.udgraph.successors(curnode)): 
+                    npIDs.append(jsucc)  
+                npTokens =[]
+                npIDs.sort()
+                for npID in npIDs:
+                    npTokens.append(self.udgraph.node[npID]['token'].upper())            
+                nounPhrasetext = (' ').join(npTokens)
+                print("local_np text:" + nounPhrasetext)
+                np = NounPhrase(self,npIDs,curnode,self.date)
+                np.text = nounPhrasetext  # hmmm, we're just going to split this again, and never really use it as a string
+                np.head = self.udgraph.node[curnode]['token']
+                return np
+
+                
+            def match_token_phrase(curnode, phrlist):
+                print("MTP:", curnode, str(phrlist))
+                np = get_local_NP(curnode)
+                tarstrg = phrlist[0]
+                if tarstrg in np.text:
+                    print("Found: " + tarstrg)
+                    codes,roots,matched_txt = np.textMatching(np.text.split(" "))
+                    print("Codes:",codes)
+                    np.get_meaning()
+                    print("Meaning:", np.meaning)
+                    if "+" in phrlist:
+                        return None, np
+                    else:
+                        return np, None
+                else:
+                    return None, None
+            
+            def match_successor(curnode, curpatdx):
+                global patsrc, pattar
+                relstrg = patlist[curpatdx + 1]
+                print("MS relstrg:",relstrg)
+                for succ in self.udgraph.successors(curnode):
+                    print("successors : " + "    {:2d}  {:s}".format(succ, self.udgraph[curnode][succ]))
+                    if self.udgraph[curnode][succ]['relation'] == relstrg:
+                        if patlist[patdx + 3] == "(":
+                            phrlist = patlist[patdx + 4:patlist.index(")",patdx + 3)]
+                            print("Checking phrase", phrlist)
+                            if "+" in phrlist or "$" in phrlist:
+                                patsrc, pattar = match_token_phrase(succ, phrlist)
+                                if patsrc or pattar:
+                                    return None, None  # these won't be used
+                        else:
+                            print("Checking",self.udgraph.node[succ]['token'], patlist[patdx + 3])
+                            if self.udgraph.node[succ]['token'].upper() == patlist[patdx + 3]:
+                                return succ , patlist.index(']',curpatdx) + 1
+                else:
+                    return None, None
+
+                
+            if locverb.text.upper() in PETRglobals.VerbDict['mille']:
+                logger = logging.getLogger('petr_log.match_mille')
+        #        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
+                logger.debug("checking MILLE for: " + locverb.text)
+                patsrc, pattar =  None, None
+                for milletup in PETRglobals.VerbDict['mille'][locverb.text.upper()]:
+                    patlist = milletup[0]
+                    logger.debug("checking mille pat: " + str(patlist))
+                    print("checking mille pat: " + str(patlist))
+                    patdx = 0
+                    node = locverb.headID
+                    while patdx < len(patlist):
+                        if patlist[patdx] == '>':
+                            newnode, newdx = match_successor(node, patdx)
+                            if patsrc or pattar:
+                                print("patcode:",milletup[1])
+                                return patsrc, pattar, milletup[1]                                
+                            if not newnode:
+                                return None, None, None
+                            else:
+                                node = newnode
+                                patdx = newdx                            
+                            
+                        print("newnode: " + str(newnode)  + ' ' + self.udgraph.node[newnode]['token'])  # DEBUG
+                        print("self.udgraph[newnode]: " + str(self.udgraph[newnode]))  # DEBUG 
+                        print("self.udgraph.node[newnode]['token']: " + str(self.udgraph.node[newnode]['token']))  # DEBUG                                     
+            else:
+                return None, None, None
+
 
         for triple in self.metadata['triplets']:
             source = triple[0]
             target = triple[1]
             verb = triple[2]
+            logger.debug("1.0-finding code of verb:"+verb.text)                 
+            
+            """ check mille patterns """
+            patsrc, pattar, patverbcode = match_mille_pattern(verb)
+            print("CMP:",patsrc, pattar, patverbcode)
+                                
 
             '''get code from verb dictionary'''
+            print("Mk1")
             logger.debug("finding code of verb:"+verb.text)                 
             verbDictionary = PETRglobals.VerbDict['verbs']
             verbDictPath = verbDictionary
@@ -1266,12 +1286,14 @@ class Sentence:
             matched_txts = []
 
             verbtokens = verb.text.upper().split(" ")
+            logger.debug("verbtokens: " + str(verbtokens)) # DEBUG
             for vidx in range(0,len(verbtokens)):
                 verbtext = verbtokens[vidx]
                 logger.debug("match vp token:"+verbtext)
                 if verbtext in verbDictPath:
                     matched_txt = []
                     tempverbDictPath = verbDictPath[verbtext]
+                    logger.debug("tempverbDictPath: " + str(tempverbDictPath)) # DEBUG
                     matched_txt.append(verbtext)
 
 
@@ -1310,10 +1332,13 @@ class Sentence:
             '''get code from pattern dictionary'''
             patternDictionary = PETRglobals.VerbDict['phrases']
             patternDictPath = patternDictionary
+            logger.debug("patternDictPath: " + str(patternDictPath)) # DEBUG
+            logger.debug("meaning: " + str(meaning)) # DEBUG
             matched_pattern = None
             if meaning in patternDictionary:
                 patternDictPath = patternDictPath[meaning]
                 logger.debug("processing source:")
+                logger.debug("patternDictPath-2: " + str(patternDictPath))  # DEBUG
                 match = match_noun(patternDictPath,source)
                 if match:
                     code = match['code']
@@ -1351,44 +1376,6 @@ class Sentence:
                     match = lowermatch
 
 
-                '''
-                if '*' in patternDictPath:
-                    patternDictPath = patternDictPath['*']
-                    logger.debug("'*' matched")
-
-                
-                if len(verb.vpIDs)>1:
-                    logger.debug("matching prep:")
-                    temppatternDictPath = patternDictPath
-                    found = False
-                    if '|' in temppatternDictPath:
-                        logger.debug("'|' matched")
-                        temppatternDictPath = temppatternDictPath['|']
-                        for vpID in verb.vpIDs:
-                            if(vpID <= verb.headID):
-                                continue
-                            if self.udgraph.node[vpID]['pos']=='ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
-                                temppatternDictPath = temppatternDictPath[self.udgraph.node[vpID]['token'].upper()]
-                                logger.debug("prep matched:"+self.udgraph.node[vpID]['token'].upper())
-                                found = True
-
-                    if found==True:
-                        patternDictPath = temppatternDictPath
-                        if '#' in patternDictPath:
-                            patternDictPath = patternDictPath['#']
-                            match = patternDictPath
-                        if '-' in patternDictPath:
-                            patternDictPath = patternDictPath['-']
-
-                    if match:
-                        code = match['code']
-                        matched_pattern = match['line']
-                        logger.debug("matched:"+code+"\t"+matched_pattern)
-
-                        
-                logger.debug("processing target:")
-                match = match_noun(patternDictPath,target)
-                '''
                 if match:
                     code = match['code']
                     matched_pattern = match['line']
@@ -1410,10 +1397,19 @@ class Sentence:
                     target = newtarget if not isinstance(newtarget,basestring) else target
                     
 
-            tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
-                       ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
-                       str(verb.headID)+"#"+str(len(self.triplets))
-            newtriple = (source,target,verb)
+            if patverbcode:
+                code = patverbcode
+            if pattar:
+                tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
+                           '-#' + \
+                           str(verb.headID)+"#"+str(len(self.triplets))
+                newtriple = (source,pattar,verb)
+            else:
+                tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
+                           ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
+                           str(verb.headID)+"#"+str(len(self.triplets))
+                newtriple = (source,target,verb)
+
 
             if code != None:
                 if len(code.split(":"))==2:
@@ -1460,7 +1456,7 @@ class Sentence:
     
     def get_events(self):
         logger = logging.getLogger('petr_log.get_events')
-#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
+        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
 
         self.get_phrases()
         self.filter_triplet_with_time_expression()
@@ -1496,7 +1492,7 @@ class Sentence:
             if not isinstance(target,basestring):
                 target.get_meaning() 
                 target_meaning = target.meaning if target.meaning != None else ['---']
-                logger.debug("target: "+ target.head+" code: "+(("#").join(target.meaning) if target.meaning != None else '-'))
+                logger.debug("target==> " + target.head + " code: "+(("#").join(target.meaning) if target.meaning != None else '-'))
                 self.nouns[target.headID]=target
 
             verb = triple['triple'][2]
