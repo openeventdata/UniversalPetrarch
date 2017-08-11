@@ -2186,7 +2186,6 @@ def read_agent_dictionary(agent_path):
 #		print subdict[marker]
 
     def store_marker(agent, code):
-        global subdict
         if agent[agent.find('!') + 1:].find('!') < 0:
             ka = agent.find('!')
             logger.warning("Substitution marker \"" +
@@ -2219,7 +2218,6 @@ def read_agent_dictionary(agent_path):
 
     line = read_FIN_line()
     while len(line) > 0:  # loop through the file
-
         if '!' in line and '=' in line:  # synonym set
             define_marker(line)
             line = read_FIN_line()
@@ -2235,6 +2233,7 @@ def read_agent_dictionary(agent_path):
         agent = part[0].strip() + ' '
         if '!' in part[0]:
             store_marker(agent, code)  # handle a substitution marker
+            agent, plural = None, None # store_marker() has already stored these
         elif '{' in part[0]:
             if '}' not in part[0]:
                 logger.warning(brackerrorstr + enderrorstr)
@@ -2251,13 +2250,18 @@ def read_agent_dictionary(agent_path):
             else:
                 plural = agent[:-1] + 'S'
 
-        store_agent(agent, code)
-        if len(plural) > 0:
+        if agent:
+            store_agent(agent, code)
+        if plural and len(plural) > 0:
             store_agent(plural + ' ', code)
 
         line = read_FIN_line()
 
     close_FIN()
+    
+    """for key,val in PETRglobals.AgentDict.items():
+        print(key," ==> ", val)
+    exit()"""
 
 # ==== Input format reading
 
