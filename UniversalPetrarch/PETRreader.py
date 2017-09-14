@@ -1077,6 +1077,8 @@ def read_verb_dictionary(verb_path):
             if words[-1].startswith("["):
                 code = words.pop()
 
+            #2017.9.14 match the lemma form of verb
+            '''
             if not (len(words) > 1 or '{' in word):
 
                 if stem.endswith("S") or stem.endswith("X") or stem.endswith("Z"):
@@ -1095,6 +1097,7 @@ def read_verb_dictionary(verb_path):
                     words.append(stem[:-1] + "ING")
                 else:
                     words.append(stem + "ING")
+            '''
 
             for w in words:
                 wstem = w

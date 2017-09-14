@@ -741,7 +741,8 @@ class Sentence:
 		vpTokens =[]
 		vpIDs.sort()
 		for vpID in vpIDs:
-			vpTokens.append(self.udgraph.node[vpID]['token'])
+			#vpTokens.append(self.udgraph.node[vpID]['token'])
+			vpTokens.append(self.udgraph.node[vpID]['lemma'])
 
 		verbPhrasetext = (' ').join(vpTokens)
 		
@@ -937,7 +938,8 @@ class Sentence:
 
 							newverb = VerbPhrase(self,vpIDs,verb.headID)
 							for vpID in vpIDs:
-								vpTokens.append(self.udgraph.node[vpID]['token'])
+								#vpTokens.append(self.udgraph.node[vpID]['token'])
+								vpTokens.append(self.udgraph.node[vpID]['lemma'])
 
 							verbPhrasetext = (' ').join(vpTokens)
 							
