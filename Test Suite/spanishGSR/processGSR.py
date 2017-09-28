@@ -12,9 +12,37 @@ class ProtestDoc:
 		self.sentences = {}
 		self.T={}
 		self.R={}
+		self.location = []
+
+class T:
+	def __init__(self,text,start,end,ttype):
+
+		self.text = text
+		self.start = start
+		self.end = end
+		self.type = ttype
+		self.sentence_id = None
+
+class R:
+	def __init__(self,rtype,arg1,arg2):
+		self.type = rtype
+		self.arg1 = arg1
+		self.arg2 = arg2
+		self.sentence_id = None
+
+class Sentence:
+	def __init__(self,text,start,end):
+		self.text = text
+		self.start = start
+		self.end = end
+		self.location = []
+		self.event = []
 
 
 def parse_annotation_file(filename):
+	'''
+	read annotation file and return ids of sentences which contain events
+	'''
 	rawtext = codecs.open(filename+".txt","r",encoding='utf8')
 	anntext = codecs.open(filename+".ann","r",encoding='utf8')
 
@@ -31,10 +59,13 @@ def parse_annotation_file(filename):
 			start = start +1
 			lineid += 1
 			continue
-		doc.sentences[lineid]={}
-		doc.sentences[lineid]['text']=line
-		doc.sentences[lineid]['start']=start
-		doc.sentences[lineid]['end']=start+len(line)
+
+		stext=line
+		sstart=start
+		send=start+len(line)
+
+		doc.sentences[lineid]=Sentence(stext,sstart,send)
+
 		start = start+len(line)+1
 		lineid += 1
 
@@ -43,36 +74,54 @@ def parse_annotation_file(filename):
 	for line in anntext:
 		if line.startswith("T"):
 			temp = line.split("\t")
-			doc.T[temp[0]]={}
 			if len(temp)!=3:
 				raw_input(filename)
 				raw_input(line)
 
 			temp2 = temp[1].split(" ")
-			doc.T[temp[0]]['type']=temp2[0]
-			doc.T[temp[0]]['start'] = int(temp2[1])
-			doc.T[temp[0]]['end'] = int(temp2[-1])
+			
+			ttype=temp2[0]
+			tstart = int(temp2[1])
+			tend = int(temp2[-1])
+			ttext = temp[-1].replace("\n","")
+			doc.T[temp[0]] = T(ttext,tstart,tend,ttype)
 
-			doc.T[temp[0]]['text'] = temp[-1].replace("\n","")
 		elif line.startswith("R"):
 			temp = line.replace("\t"," ").split(" ")
-			doc.R[temp[0]]={}
-			doc.R[temp[0]]['type']=temp[1]
-			doc.R[temp[0]]['Arg1']=temp[2].split(":")[1]
-			doc.R[temp[0]]['Arg2']=temp[3].split(":")[1]
+			rtype=temp[1]
+			rArg1=temp[2].split(":")[1]
+			rArg2=temp[3].split(":")[1]
+			doc.R[temp[0]]= R(rtype,rArg1,rArg2)
 
-	print(doc.text)
-	for key,value in doc.sentences.items():
-		print(key)
-		print(value)
 
-	
+	#print(doc.text)
+	#for key,value in doc.sentences.items():
+		#print(key)
+		#print(value)
+
+	# find sentences that contain event
 	for key,Tvalue in doc.T.items():
-		if Tvalue['type'] in ['material_conflict','verbal_conflict']:
+		if Tvalue.type in ['material_conflict','verbal_conflict']:
 			for sid,sentence in doc.sentences.items():
-				if Tvalue['start']>=sentence['start'] and Tvalue['end']<=sentence['end']:
-					print(key+"\t"+Tvalue['text']+"\t"+str(sid))
+				if Tvalue.start>=sentence.start and Tvalue.end<=sentence.end:
+					print(key+"\t"+Tvalue.text+"\t"+str(sid))
+					#raw_input()
+					Tvalue.sentence_id = sid
 					eventsids.append(sid)
+
+	# find sentences that contain locations
+	for key,Tvalue in doc.T.items():
+		if Tvalue.type in ['location']:
+			for sid,sentence in doc.sentences.items():
+				if Tvalue.start>=sentence.start and Tvalue.end<=sentence.end:
+					print(key+"\t"+Tvalue.text+"\t"+str(sid))
+					if sid in eventsids:
+						doc.sentences[sid].location.append(key)
+						print("in event sentence")
+					else:
+						doc.location.append(key)
+						print("not in event sentence")
+					#raw_input()
 
 	return doc,list(set(eventsids))
 
@@ -81,24 +130,33 @@ def generate_event_text(fileDictionary):
 		processed =[]
 		doc = value['doc']
 		for key, Rvalue in sorted(doc.R.items()):
-			Rtype = Rvalue['type']
+			Rtype = Rvalue.type
 			event = None
 			source = None
 			target = None
 			if Rtype == 'srcAct':
-				source = doc.T[Rvalue['Arg1']]
-				event =  doc.T[Rvalue['Arg2']]
+				source = doc.T[Rvalue.arg1]
+				event =  doc.T[Rvalue.arg2]
 			elif Rtype == 'actTar':
-				event = doc.T[Rvalue['Arg1']]
-				target =  doc.T[Rvalue['Arg2']]
+				event = doc.T[Rvalue.arg1]
+				target =  doc.T[Rvalue.arg2]
 			
 			for sid,sentence in doc.sentences.items():
-				if event['start']>=sentence['start'] and event['end']<=sentence['end']:
-					if 'event' in doc.sentences[sid]:
-						doc.sentences[sid]['event'].append((event['text'],source['text'] if source != None else "",target['text'] if target != None else ""))
-					else:
-						doc.sentences[sid]['event']=[]
-						doc.sentences[sid]['event'].append((event['text'],source['text'] if source != None else "",target['text'] if target != None else ""))
+				if event.start >=sentence.start and event.end<=sentence.end:
+					doc.sentences[sid].event.append((event.text,source.text if source != None else "",target.text if target != None else ""))
+		
+		#find event that doesn't have source or target
+		tempevent = {}
+		for key,Tvalue in doc.T.items():
+			if Tvalue.type in ['material_conflict','verbal_conflict']:
+				if Tvalue.sentence_id != None and len(doc.sentences[Tvalue.sentence_id].event) == 0:
+					if Tvalue.sentence_id not in tempevent:
+						tempevent[Tvalue.sentence_id]=[]
+					tempevent[Tvalue.sentence_id].append(Tvalue.text)
+
+		for sid, events in tempevent.items():
+			for event in events:
+				doc.sentences[sid].event.append((event,"",""))
 
 
 
@@ -113,11 +171,16 @@ def write_sentence_xml(fileDictionary,outputfile):
 			source = filename.split("_")[0]
 			name = filename.split("/")[-1]
 			sentence = ET.SubElement(root, "Sentence", {"date":date,"id":name+"_"+str(sid),"source":source,"sentence":"true"})
-			if 'event' in fileDictionary[filename]['doc'].sentences[sid]:
-				for event in fileDictionary[filename]['doc'].sentences[sid]['event']:
-					ET.SubElement(sentence,"EventText",{"eventtext":event[0],"sourcetext":event[1],"targettext":event[2]})
-			ET.SubElement(sentence,"Text").text = fileDictionary[filename]['doc'].sentences[sid]['text']
-			outputlines.append(fileDictionary[filename]['doc'].sentences[sid]['text'].replace("."," .").replace(","," ,"))
+			for event in fileDictionary[filename]['doc'].sentences[sid].event:
+				ET.SubElement(sentence,"EventText",{"eventtext":event[0],"sourcetext":event[1],"targettext":event[2]})
+			for location in fileDictionary[filename]['doc'].sentences[sid].location:
+				ET.SubElement(sentence,"Location",{"loc_in_sentence":"true"}).text = fileDictionary[filename]['doc'].T[location].text
+				#ET.SubElement(sentence,"Location").text = fileDictionary[filename]['doc'].T[location].text
+			for location in fileDictionary[filename]['doc'].location:
+				ET.SubElement(sentence,"Location",{"loc_in_sentence":"false"}).text = fileDictionary[filename]['doc'].T[location].text
+				#ET.SubElement(sentence,"Location").text = fileDictionary[filename]['doc'].T[location].text
+			ET.SubElement(sentence,"Text").text = fileDictionary[filename]['doc'].sentences[sid].text
+			outputlines.append(fileDictionary[filename]['doc'].sentences[sid].text.replace("."," .").replace(","," ,"))
 
 
 	tree = ET.ElementTree(root)
@@ -139,5 +202,5 @@ for filename in filelist:
 	fileDictionary[filename]['sids']=eventsids
 
 generate_event_text(fileDictionary)
-write_sentence_xml(fileDictionary,"spanish_protest_event.xml")
+write_sentence_xml(fileDictionary,"spanish_protest_event_test.xml")
 
