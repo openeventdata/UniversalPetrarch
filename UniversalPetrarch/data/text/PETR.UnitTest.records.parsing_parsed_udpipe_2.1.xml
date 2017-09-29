@@ -35,9 +35,10 @@
 #
 ##########################################################################################
 -->
+    <Include>AGENT</Include>-->
 
 <Environment>
-    <Verbfile>PETR.Validate.verbs.2.0.txt</Verbfile>
+    <Verbfile>PETR.Validate.verbs.2.1.txt</Verbfile>
     <Actorfile>PETR.Validate.actors.txt</Actorfile>
     <Agentfile>PETR.Validate.agents.txt</Agentfile>
     <Discardfile>PETR.Validate.discards.txt</Discardfile>
@@ -58,6 +59,93 @@
 ##########################################################################################
 -->
 
+<Sentence category="AGENT" date="19950106" id="AGENT-09" sentence="true">
+<!-- Just another simple agent assignment -->
+<!-- Last update: TABARI validation -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
+<Text>
+The Calenardhon government condemned an attack by Osgiliath soldiers 
+in south Ithilen on Thursday 
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	3	name	_	_
+3	government	government	NOUN	NN	Number=Sing	4	nsubj	_	_
+4	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	an	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
+6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
+7	by	by	ADP	IN	_	9	case	_	_
+8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
+10	in	in	ADP	IN	_	12	case	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
+13	on	on	ADP	IN	_	14	case	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
+</Parse></Sentence>
+
+
+
+<!--Stop></Stop-->
+
+<Sentence category="PATTERN" date="19920102" id="PATTERN-10" sentence="true">
+<!-- Test of pattern recognition of IN_ above verb with + and $  -->
+<!-- Last update: TABARI validation -->
+<EventCoding eventcode="075" sourcecode="GON" targetcode="HOB" />
+<Text>
+Gollum was seen to break in an anti- Gondor parade on Saturday. 
+</Text>
+<Parse>
+1	Gollum	Gollum	PROPN	NNP	Number=Sing	3	nsubjpass	_	_
+2	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	auxpass	_	_
+3	seen	see	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	break	break	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	in	in	ADP	IN	_	5	compound:prt	_	_
+7	an	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+8	anti-	anti-	SYM	SYM	_	10	punct	_	_
+9	Gondor	Gondor	NOUN	NN	Number=Sing	10	compound	_	_
+10	parade	parade	NOUN	NN	Number=Sing	5	dobj	_	_
+11	on	on	ADP	IN	_	12	case	_	_
+12	Saturday	Saturday	PROPN	NNP	Number=Sing	5	nmod	_	_
+13	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="DEMO" date="19950106" id="DEMO-06" sentence="true">
+<!-- Coding two events from a compound sentence, coding first from pattern CONDEMN.P1 -->
+<!-- Last update: 17.08.07 pas -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
+<EventCoding eventcode="033" sourcecode="CALGOV" targetcode="ITH" />
+<Text>
+The Calenardhon government condemned an attack by Osgiliath soldiers 
+in south Ithilen on Thursday and promised aid to the affected Ithilen villages. 
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	3	name	_	_
+3	government	government	NOUN	NN	Number=Sing	4	nsubj	_	_
+4	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	an	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
+6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
+7	by	by	ADP	IN	_	9	case	_	_
+8	Osgiliath	Osgiliath	DET	DT	_	9	det	_	_
+9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
+10	in	in	ADP	IN	_	12	case	_	_
+11	south	south	ADV	RB	_	12	advmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
+13	on	on	ADP	IN	_	14	case	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
+15	and	and	CONJ	CC	_	4	cc	_	_
+16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	4	conj	_	_
+17	aid	aid	NOUN	NN	Number=Sing	16	dobj	_	_
+18	to	to	ADP	IN	_	22	case	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+20	affected	affect	VERB	VBN	Tense=Past|VerbForm=Part	22	amod	_	_
+21	Ithilen	Ithilen	PROPN	NNP	Number=Sing	22	compound	_	_
+22	villages	villag	NOUN	NNS	Number=Plur	17	nmod	_	_
+23	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
 
 <!--Stop></Stop-->
 
@@ -138,8 +226,8 @@ said on Saturday.
 <!-- Single word possessive and paired events: -->
 <!--      LEFT [040:040] generates a "visit" and "receive visit" -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="040" sourcecode="DAGGOV" targetcode="GON" />
-<EventCoding eventcode="040" sourcecode="GON" targetcode="DAGGOV" />
+<EventCoding eventcode="042" sourcecode="DAGGOV" targetcode="GON" />
+<EventCoding eventcode="043" sourcecode="GON" targetcode="DAGGOV" />
 <Text>
 Dagolath's first Deputy Prime Minister Telemar left for 
 Minas Tirith on Wednesday for meetings of the joint transport 
@@ -180,8 +268,8 @@ committee with Arnor, the Dagolathi news agency reported.
 <Sentence category="DEMO" date="19950103" id="DEMO-03" sentence="true">
 <!-- Multi-word possessive and a paired event -->
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="040" sourcecode="ELF" targetcode="GON" />
-<EventCoding eventcode="040" sourcecode="GON" targetcode="ELF" />
+<EventCoding eventcode="042" sourcecode="ELF" targetcode="GON" />
+<EventCoding eventcode="043" sourcecode="GON" targetcode="ELF" />
 <Text>
 Caras Galadhon's new mayor left yesterday for Minas Tirith for meetings of 
 the joint transport committee with Arnor. 
@@ -277,11 +365,10 @@ An Eriadorian was shot dead in Osgiliath, the state's fiercest foe.
 </Parse></Sentence>
 
 
-
 <Sentence category="DEMO" date="19950106" id="DEMO-06" sentence="true">
-<!-- [Coding two events from a compound sentence] -->
-<!-- Last update: TABARI validation -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Coding two events from a compound sentence, coding first from pattern CONDEMN.P1 -->
+<!-- Last update: 17.08.07 pas -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
 <EventCoding eventcode="033" sourcecode="CALGOV" targetcode="ITH" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
@@ -299,9 +386,9 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	south	south	ADV	RB	_	12	advmod	_	_
-12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
 15	and	and	CONJ	CC	_	4	cc	_	_
 16	promised	promise	VERB	VBN	Tense=Past|VerbForm=Part	4	conj	_	_
 17	aid	aid	NOUN	NN	Number=Sing	16	dobj	_	_
@@ -312,6 +399,7 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 22	villages	villag	NOUN	NNS	Number=Plur	17	nmod	_	_
 23	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
+
 
 <Sentence category="DEMO" date="19950107" id="DEMO-07" sentence="true">
 <!-- [Compound target] -->
@@ -657,8 +745,8 @@ Douzu community.
 
 <Sentence category="DEMO" date="19950117" id="DEMO-17" sentence="true">
 <!-- Last update: TABARI validation -->
-<EventCoding eventcode="040" sourcecode="BREGOV" targetcode="GON" />
-<EventCoding eventcode="040" sourcecode="GON" targetcode="BREGOV" />
+<EventCoding eventcode="042" sourcecode="BREGOV" targetcode="GON" />
+<EventCoding eventcode="043" sourcecode="GON" targetcode="BREGOV" />
 <Text>
 Bree President Romendacil arrived in Gondor on Monday on his first 
 official foreign visit since pro-restoration demonstrators 
@@ -1462,8 +1550,8 @@ said on Saturday.
 
 <Sentence category="AGENT" date="19950106" id="AGENT-09" sentence="true">
 <!-- Just another simple agent assignment -->
-<!-- Last update: TABARI validation -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Last update: MILLE validation 17.08.10 -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
 <Text>
 The Calenardhon government condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
@@ -1480,9 +1568,9 @@ in south Ithilen on Thursday
 9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	south	south	ADV	RB	_	12	advmod	_	_
-12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
 </Parse></Sentence>
 
 <Sentence category="AGENT" date="19950101" id="AGENTS-10" sentence="true">
@@ -1542,16 +1630,16 @@ ties with Minas Tirith border police.
 
 <Sentence category="AGENT" date="19950106" id="AGENT-12" sentence="true">
 <!-- Just another simple agent assignment with an automatically generated plural -->
-<!-- Last update: 23 Nov 2013 -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Last update: MILLE validation 17.08.10 -->
+<EventCoding eventcode="112" sourcecode="CALLEG" targetcode="OSGMIL" />
 <Text>
-The Calenardhon government condemned an attack by Osgiliath soldiers 
+The Calenardhon Congresses condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
 </Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	3	name	_	_
-3	government	government	NOUN	NN	Number=Sing	4	nsubj	_	_
+3	Congresses	Congresses	NOUN	NNPS	Number=Plur	4	nsubj	_	_
 4	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	an	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
@@ -1560,24 +1648,24 @@ in south Ithilen on Thursday
 9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	south	south	ADV	RB	_	12	advmod	_	_
-12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
 </Parse></Sentence>
 
 
 <Sentence category="AGENT" date="19950106" id="AGENT-13" sentence="true">
 <!-- Simple agent assignment with an agent generated from a substitution set -->
-<!-- Last update: 22 April 2014 -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Last update: MILLE validation 17.08.10 -->
+<EventCoding eventcode="112" sourcecode="CALLEG" targetcode="OSGMIL" />
 <Text>
-The Calenardhon government condemned an attack by Osgiliath soldiers 
+The Calenardhon Congressmen condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
 </Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Calenardhon	Calenardhon	PROPN	NNP	Number=Sing	3	name	_	_
-3	government	government	NOUN	NN	Number=Sing	4	nsubj	_	_
+3	Congressmen	Congressmen	PROPN	NNPS	Number=Plur	4	nsubj	_	_
 4	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 5	an	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
 6	attack	attack	NOUN	NN	Number=Sing	4	dobj	_	_
@@ -1586,16 +1674,16 @@ in south Ithilen on Thursday
 9	soldiers	soldier	NOUN	NNS	Number=Plur	6	nmod	_	_
 10	in	in	ADP	IN	_	12	case	_	_
 11	south	south	ADV	RB	_	12	advmod	_	_
-12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	Ithilen	Ithilen	PROPN	NNP	Number=Sing	6	nmod	_	_
 13	on	on	ADP	IN	_	14	case	_	_
-14	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
+14	Thursday	Thursday	PROPN	NNP	Number=Sing	6	nmod	_	_
 </Parse></Sentence>
 
 
 <Sentence category="AGENT" date="19950106" id="AGENT-14" sentence="true">
 <!-- Simple agent assignment with an agent generated from a substitution set -->
-<!-- Last update: 23 April 2014 -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Last update: MILLE validation 17.08.10 -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
 <Text>
 The Calenardhon Ministry of Silly Walks condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
@@ -1615,16 +1703,17 @@ in south Ithilen on Thursday
 12	soldiers	soldier	NOUN	NNS	Number=Plur	9	nmod	_	_
 13	in	in	ADP	IN	_	15	case	_	_
 14	south	south	ADV	RB	_	15	advmod	_	_
-15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 16	on	on	ADP	IN	_	17	case	_	_
-17	Thursday	Thursday	PROPN	NNP	Number=Sing	12	nmod	_	_
+17	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 </Parse></Sentence>
 
 
 <Sentence category="AGENT" date="19950106" id="AGENT-15" sentence="true">
 <!-- Simple agent assignment with an agent generated from a substitution set -->
-<!-- Last update: 23 April 2014 -->
-<EventCoding eventcode="111" sourcecode="CALGOV" targetcode="OSGMIL" />
+<!-- Differs from AGENT-14 in "Minister" vs "Ministry" -->
+<!-- Last update: MILLE validation 17.08.10 -->
+<EventCoding eventcode="112" sourcecode="CALGOV" targetcode="OSGMIL" />
 <Text>
 The Calenardhon Minister of Silly Walks condemned an attack by Osgiliath soldiers 
 in south Ithilen on Thursday 
@@ -1644,9 +1733,9 @@ in south Ithilen on Thursday
 12	soldiers	soldier	NOUN	NNS	Number=Plur	9	nmod	_	_
 13	in	in	ADP	IN	_	15	case	_	_
 14	south	south	ADV	RB	_	15	advmod	_	_
-15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	Ithilen	Ithilen	PROPN	NNP	Number=Sing	9	nmod	_	_
 16	on	on	ADP	IN	_	17	case	_	_
-17	Thursday	Thursday	PROPN	NNP	Number=Sing	12	nmod	_	_
+17	Thursday	Thursday	PROPN	NNP	Number=Sing	9	nmod	_	_
 </Parse></Sentence>
 
 
@@ -2069,7 +2158,6 @@ diplomatic ties with Osgiliath after a 12-year rift.
 <!-- Last update: 25-April-2014 -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor and Gondor welcome a resumption of formal diplomatic ties with  
 Osgiliath after a 12-year rift, the primary official news agency said 
@@ -2111,7 +2199,6 @@ on Thursday.
 <!-- Last update: 9 Dec 2013 -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="GON" />
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="OSG" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor welcomed a resumption of formal diplomatic ties between Gondor 
 and Osgiliath after a 12-year rift, the primary official news agency said 
@@ -2610,7 +2697,6 @@ on Thursday.
 <!-- from the final phrase -->
 <!-- Last update: 22-Apr-2014 -->
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 The lions and the evil awful Gondor welcomed a resumption of formal diplomatic  
 ties with Osgiliath after a 12-year rift, the primary official news agency  said 
@@ -2655,7 +2741,6 @@ on Thursday.
 <!--           same code, so the duplicate event is eliminated  -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Lions, tigers, and Gondor welcomed a resumption of formal diplomatic ties  
 with Osgiliath after a 12-year rift, the primary official news agency  said 
@@ -2699,6 +2784,11 @@ on Thursday.
 <!-- Test <adjctv><conj><adjctv> construction; ; shouldn't generate a -->
 <!-- compound phrase -->
 <!-- Last update: TABARI validation -->
+<!-- 17.08.04 pas: This one is subtle as Calimehtar does to CAL as a tell-tale, but -->
+<!-- by that same token, one would never actually encounter a sentence like this, -->
+<!-- instead getting a form <XXX> <adj> and <adj> <XXX> with both XXX being the same code -->
+<!-- and the "correct" coding here is actually unclear: see COMPOUND-18 -->
+
 <EventCoding eventcode="130" sourcecode="ITHGOV" targetcode="DOL" />
 <Text>
 Ithilen's awful and evil minister Calimehtar warned of the Prince of 
@@ -2722,7 +2812,35 @@ Dol Amroth.
 15	.	.	PUNCT	.	_	8	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="COMPOUND" date="19950104" id="COMPOUND-18" sentence="true">
+<Sentence category="COMPOUND" date="19990809" id="COMPOUND-18" sentence="true">
+<!-- Test <adjctv><conj><adjctv> construction; coded as CALGOV in TAB and as ITHGOV -->
+<!-- in PETR, which given the weirdness of the sentence will do. It remains here for  -->
+<!-- robustness checking -->
+<!-- Last update: TABARI validation with update -->
+<EventCoding eventcode="130" sourcecode="ITHGOV" targetcode="DOL" />
+<Text>
+Ithilen's awful and cool minister Calimehtar warned of the Prince of 
+Dol Amroth. 
+</Text>
+<Parse>
+1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nmod:poss	_	_
+2	's	be	PART	POS	_	1	case	_	_
+3	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
+4	and	and	CONJ	CC	_	3	cc	_	_
+5	cool	cool	ADJ	JJ	Degree=Pos	3	conj	_	_
+6	minister	minister	NOUN	NN	Number=Sing	7	compound	_	_
+7	Calimehtar	Calimehtar	PROPN	NNP	Number=Sing	8	nsubj	_	_
+8	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+9	of	of	ADP	IN	_	11	case	_	_
+10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+11	Prince	Prince	PROPN	NNP	Number=Sing	8	nmod	_	_
+12	of	of	ADP	IN	_	14	case	_	_
+13	Dol	Dol	PROPN	NNP	Number=Sing	14	name	_	_
+14	Amroth	Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
+15	.	.	PUNCT	.	_	8	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="COMPOUND" date="19950104" id="COMPOUND-19" sentence="true">
 <!-- [Codes a compound source] -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="OSG" />
 <EventCoding eventcode="050" sourcecode="GON" targetcode="OSG" />
@@ -2757,34 +2875,6 @@ on Thursday.
 23	on	on	ADP	IN	_	24	case	_	_
 24	Thursday	Thursday	PROPN	NNP	Number=Sing	22	nmod	_	_
 25	.	.	PUNCT	.	_	4	punct	_	_
-</Parse></Sentence>
-
-<Sentence category="COMPOUND" date="19990809" id="COMPOUND-19" sentence="true">
-<!-- Test <adjctv><conj><adjctv> construction; coded as CALGOV in TAB and as ITHGOV -->
-<!-- in PETR, which given the weirdness of the sentence will do. It remains here for  -->
-<!-- robustness checking -->
-<!-- Last update: TABARI validation with update -->
-<EventCoding eventcode="130" sourcecode="ITHGOV" targetcode="DOL" />
-<Text>
-Ithilen's awful and cool minister Calimehtar warned of the Prince of 
-Dol Amroth. 
-</Text>
-<Parse>
-1	Ithilen	Ithilen	PROPN	NNP	Number=Sing	7	nmod:poss	_	_
-2	's	be	PART	POS	_	1	case	_	_
-3	awful	awful	ADJ	JJ	Degree=Pos	6	amod	_	_
-4	and	and	CONJ	CC	_	3	cc	_	_
-5	cool	cool	ADJ	JJ	Degree=Pos	3	conj	_	_
-6	minister	minister	NOUN	NN	Number=Sing	7	compound	_	_
-7	Calimehtar	Calimehtar	PROPN	NNP	Number=Sing	8	nsubj	_	_
-8	warned	warn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-9	of	of	ADP	IN	_	11	case	_	_
-10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
-11	Prince	Prince	PROPN	NNP	Number=Sing	8	nmod	_	_
-12	of	of	ADP	IN	_	14	case	_	_
-13	Dol	Dol	PROPN	NNP	Number=Sing	14	name	_	_
-14	Amroth	Amroth	PROPN	NNP	Number=Sing	11	nmod	_	_
-15	.	.	PUNCT	.	_	8	punct	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19990809" id="COMPOUND-20" sentence="true">
@@ -2844,7 +2934,8 @@ Ithilen and the government of Gondor warned their populations about the Prince o
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19990809" id="COMPOUND-22" sentence="true">
-<!-- Test <actor><conj><detr><actor> construction with a check on a skip of a coded (NE-->
+<!-- Test <actor><conj><detr><actor> construction with a check on a skip of a coded (NE -->
+<! -- See pattern WARN.P2 -->
 <!-- Last update: TABARI validation with modifications -->
 <EventCoding eventcode="130" sourcecode="ITH" targetcode="DOL" />
 <EventCoding eventcode="130" sourcecode="GONGOV" targetcode="DOL" />
@@ -2894,6 +2985,7 @@ on Saturday.
 11	Saturday	Saturday	PROPN	NNP	Number=Sing	8	nmod	_	_
 12	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
+
 <Sentence category="COMPOUND" date="19950106" id="COMPOUND-24" sentence="true">
 <!-- [Coding two events from a compound sentence] -->
 <!-- Last update: TABARI validation -->
@@ -2933,6 +3025,8 @@ in south Ithilen on Thursday and promised aid to the affected Ithilen villages.
 <!-- Test <noun><conj><noun> construction when first noun is part of an -->
 <!-- actor phrase. Also tests the forwarding of an adjective  -->
 <!-- Last update: TABARI validation with modifications -->
+<!-- 17.08.04 pas: This is more of a test of pattern WARN.P3, and isn't really -->
+<!-- a sentence, so it might be replaced -->
 <EventCoding eventcode="130" sourcecode="DNKMED" targetcode="DOL" />
 <EventCoding eventcode="130" sourcecode="DNKGOV" targetcode="DOL" />
 <Text>
@@ -2961,9 +3055,10 @@ Danish media and government warned at the Gondor of the Prince of Dol Amroth.
 <!-- actor phrase. This is more plausibly grammatical, which shifts the target. -->
 <!-- Last update: 14.05.09 -->
 <EventCoding eventcode="130" sourcecode="DNKMED" targetcode="GON" />
-<EventCoding eventcode="130" sourcecode="---GOV" targetcode="GON" />
+<EventCoding eventcode="130" sourcecode="DNKGOV" targetcode="GON" />
 <Text>
-The Danish media and government warned the population of Gondor of the Prince of Dol Amroth. </Text>
+The Danish media and government warned the population of Gondor of the Prince of Dol Amroth. 
+</Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	Danish	Danish	ADJ	JJ	Degree=Pos	3	amod	_	_
@@ -2987,9 +3082,10 @@ The Danish media and government warned the population of Gondor of the Prince of
 <Sentence category="COMPOUND" date="19990809" id="COMPOUND-27" sentence="true">
 <!-- Check the duplication of multiple adjectives in a compound phrase -->
 <!-- Markup of the (CC phrase was manipulated to produce a tree that would code this way -->
+<!-- 17.08.04 via pattern WARN.P3 and hence isn't really a sentence... -->
 <!-- Last update: 14.05.09 -->
-<EventCoding eventcode="130" sourcecode="DNKMUSMED" targetcode="GON" />
-<EventCoding eventcode="130" sourcecode="DNKMUSGOV" targetcode="GON" />
+<EventCoding eventcode="130" sourcecode="DNKMUSMED" targetcode="DOL" />
+<EventCoding eventcode="130" sourcecode="DNKMUSGOV" targetcode="DOL" />
 <Text>
 The Danish Islamist media and government warned at the Gondor of the Prince of Dol Amroth. 
 </Text>
@@ -3026,44 +3122,43 @@ and Gondor's dramatic cooperation and its eye-catching development are of
 great significance to the region and even the entire world, he noted. 
 </Text>
 <Parse>
-1	Frodo	Frodo	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	2	nsubj	_	_
-2	said	say	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
-3	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
-4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
-5	deep	deep	VERB	VBN	Tense=Past|VerbForm=Part	2	ccomp	_	_
-6	satisfaction	satisfaction	NOUN	NN	Number=Sing	5	dobj	_	_
-7	toward	toward	ADP	IN	_	8	case	_	_
-8	Gondor	Gondor	PROPN	NNP	Number=Sing	5	nmod	_	_
-9	and	and	CONJ	CC	_	8	cc	_	_
-10	Arnor	Arnor	PROPN	NNP	Number=Sing	12	nmod:poss	_	_
-11	's	's	PART	POS	_	10	case	_	_
-12	Elrond	Elrond	PROPN	NNP	Number=Sing	8	conj	_	_
-13	,	,	PUNCT	,	_	5	punct	_	_
-14	and	and	CONJ	CC	_	5	cc	_	_
-15	Gondor	Gondor	PROPN	NNP	Number=Sing	18	nmod:poss	_	_
-16	's	's	PART	POS	_	15	case	_	_
-17	dramatic	dramatic	ADJ	JJ	Degree=Pos	18	amod	_	_
-18	cooperation	cooperation	NOUN	NN	Number=Sing	5	conj	_	_
-19	and	and	CONJ	CC	_	18	cc	_	_
-20	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
-21	eye-catching	eye-catching	ADJ	JJ	Degree=Pos	22	amod	_	_
-22	development	development	NOUN	NN	Number=Sing	18	conj	_	_
-23	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	26	cop	_	_
-24	of	of	ADP	IN	_	26	case	_	_
-25	great	great	ADJ	JJ	Degree=Pos	26	amod	_	_
-26	significance	significance	NOUN	NN	Number=Sing	37	ccomp	_	_
-27	to	to	ADP	IN	_	29	case	_	_
-28	the	the	DET	DT	Definite=Def|PronType=Art	29	det	_	_
-29	region	region	NOUN	NN	Number=Sing	26	nmod	_	_
-30	and	and	CONJ	CC	_	26	cc	_	_
-31	even	even	ADV	RB	_	34	advmod	_	_
-32	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
-33	entire	entire	ADJ	JJ	Degree=Pos	34	amod	_	_
-34	world	world	NOUN	NN	Number=Sing	26	conj	_	_
-35	,	,	PUNCT	,	_	37	punct	_	_
-36	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	37	nsubj	_	_
-37	noted	not	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	ccomp	_	_
-38	.	.	PUNCT	.	_	37	punct	_	_
+1	Frodo	Frodo	NNP	PERSON	_	2	nsubj	_	_
+2	said	say	VBD	O	_	37	ccomp	_	_
+3	he	he	PRP	O	_	4	nsubj	_	_
+4	has	have	VBZ	O	_	2	dep	_	_
+5	deep	deep	JJ	O	_	6	amod	_	_
+6	satisfaction	satisfaction	NN	O	_	4	dobj	_	_
+7	toward	toward	IN	O	_	8	case	_	_
+8	Gondor	Gondor	NNP	PERSON	_	6	nmod	_	_
+9	and	and	CC	O	_	6	cc	_	_
+10	Arnor	Arnor	NNP	PERSON	_	12	nmod:poss	_	_
+11	's	's	POS	O	_	10	case	_	_
+12	Elrond	Elrond	NNP	O	_	6	conj	_	_
+19	,	,	PUNCT	,	_	37	punct	_	_
+14	and	and	CC	O	_	12	cc	_	_
+15	Gondor	Gondor	NNP	PERSON	_	18	nmod:poss	_	_
+16	's	's	POS	O	_	15	case	_	_
+17	dramatic	dramatic	JJ	O	_	18	amod	_	_
+18	cooperation	cooperation	NN	O	_	12	conj	_	_
+19	and	and	CC	O	_	4	cc	_	_
+20	its	its	PRP$	O	_	22	nmod:poss	_	_
+21	eye-catching	eye-catching	JJ	O	_	22	amod	_	_
+22	development	development	NN	O	_	26	nsubj	_	_
+23	are	be	VBP	O	_	26	cop	_	_
+24	of	of	IN	O	_	26	case	_	_
+25	great	great	JJ	O	_	26	amod	_	_
+26	significance	significance	NN	O	_	4	conj	_	_
+27	to	to	TO	O	_	29	case	_	_
+28	the	the	DT	O	_	29	det	_	_
+29	region	region	NN	O	_	26	nmod	_	_
+30	and	and	CC	O	_	29	cc	_	_
+31	even	even	RB	O	_	34	advmod	_	_
+32	the	the	DT	O	_	34	det	_	_
+33	entire	entire	JJ	O	_	34	amod	_	_
+34	world	world	NN	O	_	29	conj	_	_
+19	,	,	PUNCT	,	_	37	punct	_	_
+36	he	he	PRP	O	_	37	nsubj	_	_
+37	noted	note	VBD	O	_	0	ROOT	_	_
 </Parse></Sentence>
 
 <Sentence category="COMPOUND" date="19950106" id="COMPOUND-29" sentence="true">
@@ -4018,7 +4113,6 @@ said on Saturday.
 <!-- for the heck of it...also turn off end comma clause deletion  -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="HOB" targetcode="GON" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Stinker is about to restore full diplomatic ties with Gondor almost 
 five years after crowds trashed its embassy, a senior official 
@@ -7585,7 +7679,6 @@ official said on Saturday.
 <!--  Should match the internal clause and terminal clause -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="050" sourcecode="ARN" targetcode="GON" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor is about to restore full diplomatic ties with Gondor, almost 
 five years after Calenardhon crowds burned down its embassy,  a senior 
@@ -7627,7 +7720,6 @@ official said on Saturday.
 <!--  Should match BURNED DOWN (NE EMBASSY and the terminal clause -->
 <!-- Last update: TABARI validation -->
 <EventCoding eventcode="222" sourcecode="CAL" targetcode="---" />
-<EventCoding eventcode="010" sourcecode="---GOV" targetcode="---" />
 <Text>
 Arnor is about to improve full diplomatic ties with Gondor, almost 
 five years after Calenardhon crowds burned down its embassy,  a 
