@@ -41,11 +41,15 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			text = story.find('Text').text
 			text = text.replace('\n', ' ').strip()
 
+			if len(text)==0:
+				text = "no sentence "+entry_id
+
 			if entry_id in docdict:
 				print('id must be unique, this article is in document dictionary :'+entry_id)
 				break
 
 			docdict[text] = {'id':entry_id,'date':date,'sentence':sentence,'source':source,'text':text}
+
 
 			doctexts.append(text)
 
@@ -153,6 +157,6 @@ def create_sentence_xml(sentences,sents_dict,outputxml):
 
 
 inputxml=sys.argv[1]
-inputparsed = inputxml+".out"
+inputparsed = inputxml+".raw.txt.out"
 outputfile = inputxml+".txt"
 read_doc_input(inputxml,inputparsed,outputfile)

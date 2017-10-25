@@ -30,6 +30,8 @@ def update_xml_input(inputfile,parsedfile,outputfile):
 				j = j + 1
 			j = j+1
 			
+			for oldparse in elem.findall('Parse'):
+				elem.remove(oldparse)
 			parse = ET.SubElement(elem,"Parse")
 			parse.text = ''.join(parsed)
 
