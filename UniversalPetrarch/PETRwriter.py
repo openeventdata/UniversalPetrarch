@@ -77,7 +77,8 @@ def write_events(event_dict, output_file):
             story_date = event[0]
             source = event[1]
             target = event[2]
-            code = filter(lambda a: not a == '\n', event[3])
+            code = event[3]
+            #code = filter(lambda a: not a == '\n', event[3])
 
             ids = ';'.join(filtered_events[event]['ids'])
 
@@ -131,9 +132,14 @@ def write_events(event_dict, output_file):
                 else:
                     event_str += '\t---\t---'
 
-            story_output.append(event_str)
+            story_output.append(ids+"\t"+event_str)
 
-        story_events = '\n'.join(story_output)
+        #sort output by story ids
+        sorted_story_output = []
+        for story in sorted(story_output):
+            sorted_story_output.append(story[story.find('\t')+1:])
+
+        story_events = '\n'.join(sorted_story_output)
         event_output.append(story_events)
 
     # Filter out blank lines

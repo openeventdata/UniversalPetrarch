@@ -272,6 +272,7 @@ class NounPhrase:
 		"""
 		
 		finalcode = None
+		nodatecode = None
 		matched_code = []
 
 		#curdate = self.date
@@ -787,7 +788,7 @@ class Sentence:
 							source.extend(self.get_nounPharses(successor))
 							source.extend(self.get_conj_noun(successor))
 
-					elif(self.udgraph[verbID][successor]['relation'] in ['dobj','iobj','nsubjpass']):
+					elif(self.udgraph[verbID][successor]['relation'] in ['obj','dobj','iobj','nsubjpass']):
 						#target.append(self.get_nounPharse(successor))
 						target.extend(self.get_nounPharses(successor))
 						target.extend(self.get_conj_noun(successor))
@@ -857,7 +858,7 @@ class Sentence:
 				#print(str(nodeID)+"\t"+attrs['pos']+"\t"+(" ").join(str(e) for e in self.udgraph.successors(nodeID)))
 				#print(self.udgraph.successors(nodeID))
 				verb = self.get_verbPhrase(nodeID)
-
+				logger.debug("extracting verb:"+verb.text)
 				#if verb.headID in self.verbs:
 				#	raw_input("verb:"+self.verbs[verb.headID].text)
 				#else:
@@ -1579,7 +1580,8 @@ class Sentence:
 				logger.debug(self.events[eventID][1])
 				#if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None']: 
 				#and self.events[evnetID][2] != PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code'] :
-				if self.events[eventID][2] not in ['---',None,'None'] and self.events[eventID][2] != PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code']:
+				if self.events[eventID][2] not in ['---',None,'None'] and self.events[eventID][2] != PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']['code']:
+				#PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code']:
 					finalverbs[vid] = self.events[eventID][2]
 
 		for vid,value in finalverbs.items():

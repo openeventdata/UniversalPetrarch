@@ -40,6 +40,7 @@ def main():
                                                         'PETR_config.ini'))
 
         read_dictionaries()
+
         start_time = time.time()
         print('\n\n')
         #'''
@@ -131,7 +132,7 @@ PETRARCH
 
     batch_command.add_argument('-d', '--debug',
                                help="""Enable debug info""",
-                               action="store_true")
+                               required=False)
 
     batch_command.set_defaults(debug=False)
 
@@ -140,6 +141,10 @@ PETRARCH
 
     
 def read_dictionaries(validation=False):
+
+    print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
+    pico_path = utilities._get_data('data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
+    PETRreader.read_internal_coding_ontology(pico_path)
 
     print('Verb dictionary:', PETRglobals.VerbFileName)
     verb_path = utilities._get_data(
@@ -168,9 +173,7 @@ def read_dictionaries(validation=False):
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 
-    print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
-    pico_path = utilities._get_data('data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
-    PETRreader.read_internal_coding_ontology(pico_path)
+   
 
 # ========================== PRIMARY CODING FUNCTIONS ====================== #
 
@@ -324,6 +327,10 @@ def do_coding(event_dict):
                     logger.debug("event:" + eventID)
                     logger.debug(event)
 
+                for tID,triplet in event_dict[key]['sents'][sent]['triplets'].items():
+                    logger.debug("triplet:" + tID)
+                    logger.debug(triplet['matched_txt'])
+
                 #raw_input("Press Enter to continue...")
                 code_time = time.time() - t1
 
@@ -396,7 +403,7 @@ def run(filepaths, out_file, s_parsed):
     #if not s_parsed:
     #    events = utilities.stanford_parse(events)
     updated_events = do_coding(events)
-    #PETRwriter.write_events(updated_events, 'evts.' + out_file)
+    PETRwriter.write_events(updated_events, 'evts.' + out_file)
     
 if __name__ == '__main__':
     main()

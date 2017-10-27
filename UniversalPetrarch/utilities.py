@@ -310,7 +310,14 @@ def story_filter(story_dict, story_id):
                 # do not print unresolved agents
                 try:
                     alist = [story_date]
-                    alist.extend(event)
+
+                    source = sent_dict['events'][event][0]
+                    alist.append((" ").join(source))
+                    target = sent_dict['events'][event][1]
+                    alist.append((" ").join(target))
+                    alist.append(sent_dict['events'][event][2])
+
+
                     event_tuple = tuple(alist)
                     filtered[event_tuple]
                     if 'issues' in sent_dict:
@@ -326,6 +333,31 @@ def story_filter(story_dict, story_id):
                     filtered[event_tuple]['ids'].append(sent_id)
 # if event_tuple[1:] in text_dict:  # log an error here if we can't find a
 # non-null case?
+                    if event in sent_dict['triplets']:
+                        indexes = event.split('#')
+
+                        sourcetext='---'
+                        if indexes[0] !='-':
+                            sourceid = int(indexes[0])
+                            sourcetext = (" ").join(sent_dict['nouns'][sourceid].matched_txt)
+
+                        targettext='---'
+                        if indexes[1] !='-':
+                            targetid = int(indexes[1])
+                            targettext = (" ").join(sent_dict['nouns'][targetid].matched_txt)
+
+                        verbtext = sent_dict['triplets'][event]['triple'][2].text
+
+                        if PETRglobals.WriteActorText:
+                            filtered[event_tuple]['actortext'] = [sourcetext,targettext]
+                        if PETRglobals.WriteEventText:
+                            eventtext = str(sent_dict['triplets'][event]['matched_txt'].replace("*",verbtext))
+                            if eventtext.find('[') != -1:
+                                eventtext = eventtext[0:eventtext.find('[')]
+                            filtered[event_tuple]['eventtext'] = eventtext
+
+
+                    '''
                     if 'actortext' in sent_dict['meta'] and event_tuple[1:] in sent_dict['meta'][
                             'actortext']:  # 16.04.29 this is a revised version of the above test: it catches cases where extract_phrases() returns a null
                         if PETRglobals.WriteActorText:
@@ -337,6 +369,8 @@ def story_filter(story_dict, story_id):
                         if PETRglobals.WriteActorRoot:
                             filtered[event_tuple]['actorroot'] = sent_dict[
                                 'meta']['actorroot'][event_tuple[1:]]
+                    '''
+
 
                 except IndexError:  # 16.04.29 pas it would be helpful to log an error here...
                     pass

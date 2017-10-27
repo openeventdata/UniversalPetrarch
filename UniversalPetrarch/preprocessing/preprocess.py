@@ -66,6 +66,7 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			#print(line)
 			#parsedlines.append(line.replace("\n"," ").strip())
 	i = 0
+	'''
 	while i <len(parsedfile):
 		line = parsedfile[i]
 		if "Sentence #" in line:
@@ -81,6 +82,22 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 				line = parsedfile[i]
 			#print(temp)
 			parsedlines.append(temp.replace('\n', ' ').strip())
+		i = i+1
+	'''
+	while i<len(parsedfile):
+		line = parsedfile[i]
+		if "Sentence #" in line:
+			i = i+2
+			continue
+		elif line.startswith('['):
+			temp = line.split("] ")
+			tokens = []
+			for token in temp:
+				text = token.split(' ')[0]
+				word = text[text.find('=')+1:]
+				tokens.append(word)
+			parsedlines.append((' ').join(tokens).replace('\n', ' ').strip())
+			#raw_input((' ').join(tokens))
 		i = i+1
 
 
@@ -104,8 +121,10 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 		#print(doc.encode('UTF-8').find(line))
 		#break
 		#'''
-		line = line.replace("&gt;",">").replace("&lt;","<").replace("&amp;","&")
-		if doc.encode('UTF-8').find(line) ==-1:
+		line = line.replace("&gt;",">").replace("&lt;","<").replace("&amp;","&").replace("-LRB-","(").replace("-RRB-", ")").replace("-LSB-", "[").replace("-RSB-", "]").replace("-LCB-", "{").replace("-RCB-", "}")
+		templine = line.replace(" ","")
+		tempdoc = doc.replace(" ","")
+		if tempdoc.encode('UTF-8').find(templine) ==-1:
 			#print(processed)
 			#if processed>=33223:
 			#	print(line)
@@ -114,8 +133,9 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			doctexts.remove(doc)
 			sentidx = 1
 			doc = doctexts[0]
+			tempdoc = doc.replace(" ","")
 		
-		if doc.encode('UTF-8').find(line) != -1:
+		if tempdoc.encode('UTF-8').find(templine) != -1:
 			#print(docdict[doc]['id']+"#"+line)
 			key = docdict[doc]['id']+"#"+line
 			sents.append(key)
