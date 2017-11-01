@@ -25,10 +25,12 @@ Language-agnostic political event coding using universal dependencies
 * If your input data is just raw text, you need to preprocess the data to get part-of-speech tags and dependency parsed trees. Those are the toolkits that you will need to do preprocessing:
 	1. tokenizer
 		* you will need Standford Corenlp to do sentence splitting and tokenization, which can be downloaded at (http://stanfordnlp.github.io/CoreNLP/download.html)
-		* For Arabic documents, you will need Stanford word segmenter as well. You can download via the [link](http://nlp.stanford.edu/software/segmenter.html#Download) and unzip it.
+		* For Arabic documents, you will need Stanford word segmenter as well. You can download via the [link](http://nlp.stanford.edu/software/segmenter.html#Download) and unzip it. Put the segmenter under directory UniversalPetrarch/preprocessing/segmenter/
+
 
 	2. POS tagger and dependency parser  
-		You will need UDpipe. Its pre-compiled binary package (udpipe-1.0.0-bin.zip) can be downloaded at [here](https://github.com/ufal/udpipe/releases/tag/v1.0.0). To use UDpipe, a language model is needed, which can be downloaded at [here](https://ufal.mff.cuni.cz/udpipe#download)
+		* You will need UDpipe. Its pre-compiled binary package (udpipe-1.0.0-bin.zip) can be downloaded at [here](https://github.com/ufal/udpipe/releases/tag/v1.0.0). Put it under directory UniversalPetrarch/preprocessing/udpipe-1.0.0/
+		* To use UDpipe, a language model is needed, which can be downloaded at [here](https://ufal.mff.cuni.cz/udpipe#download). Put the model under directory UniversalPetrarch/preprocessing/udpipe-1.0.0/model
 
 
 
@@ -61,27 +63,30 @@ Language-agnostic political event coding using universal dependencies
 	</Sentences>
 	```
 * Usage  
-	Shell scripts preprocess_sentence.sh and preprocess_document.sh are provided to do preprocessing of an English or Spanish input file. Shell scripts preprocess_sentence_ar.sh and preprocess_document_ar.sh are provided to do preprocessing of an Arabic input file. 
+	Shell scripts run_sentence.sh and run_document.sh are provided to do preprocessing of an English, Spanish or Arabic input file. 
 
-	```
-	usage: preprocess_sentence.sh INPUT_FILE  
-		   preprocess_document.sh INPUT_FILE
-	```
+	
+	``usage: run_sentence.sh INPUT_FILE LANGUAGE``
+	``	     run_document.sh INPUT_FILE LANGUAGE``
 
-	Before runing preprocess_sentence.sh or preprocess_document.sh, you need change the value of following parameters based on your situation
+	Required Arguments:  
+	``INPUT_FILE	name of the input XML file. ``  
+	``LANGEUAGE	language of the input XML file. [english|spanish|arabic]``
+
+	Before runing run_sentence.sh or run_document.sh, you need change the value of following parameters based on your situation
 
 	``` 
 	* SCRIPT: the location where you put folder "preprocess_scripts"
 	example:
-	SCRIPT=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/scripts
+	SCRIPT=../scripts
 
 	* FILE: the location where you put the input file 
 	example:
-	FILE=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/data/text
+	FILE=../data/text
 
 	* STANFORD_SEG: the location where the stanford segmenter is saved
 	example:
-	STANFORD_SEG=/users/ljwinnie/Downloads/stanford-segmenter-2015-12-09
+	STANFORD_SEG=segmenter
 
 	* STANFORD_CORENLP: the location where the Stanford CoreNLP is saved
 	example:
@@ -89,23 +94,19 @@ Language-agnostic political event coding using universal dependencies
 
 	* STANFORD_PROPERTY: the location where the property file used for Stanford CoreNLP is saved
 	example:
-	STANFORD_PROPERTY=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/preprocessing/config/StanfordCoreNLP-english.properties
+	STANFORD_PROPERTY=/config/StanfordCoreNLP-english.properties
 
 	* udpipePath: the location where UDpipe is saved
 	example:
-	/users/ljwinnie/toolbox/udpipe-1.0.0-bin 
-	
-	* languageModel: the location where the language model used in UDpipe is saved
-	example:
-	/users/ljwinnie/toolbox/udpipe-1.0.0-bin/model/english-ud-1.2-160523.udpipe
+	udpipePath=udpipe-1.0.0-bin 
 	
 	```
 * Example of usage
 
-``> ./run_document.sh Sample_english_doc.xml``  
+``> ./run_document.sh Sample_english_doc.xml english``  
 The result from running above command are files Sample_english_doc.xml-sent.xml and Sample_english_doc-sent_parsed.xml 
 
-``> ./run_sentence.sh Sample_english_sent.xml``  
+``> ./run_sentence.sh Sample_english_sent.xml english``  
 The result from running above command is file Sample_english_sent_parsed.xml 
 
 
