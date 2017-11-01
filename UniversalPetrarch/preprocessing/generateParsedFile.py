@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 
+import io
 import xml.etree.ElementTree as ET
 import sys
 
 def update_xml_input(inputfile,parsedfile,outputfile):
 	
-	pfile = open(parsedfile)
+	pfile = io.open(parsedfile,'r',encoding='utf-8')
 	plines = pfile.readlines()
 	pfile.close()
 
 	j = 0;
 
-	tree = ET.parse(inputfile)
+	xml_file = io.open(inputfile,'rb')
+	#xml_file = io.open(inputfile,'r', encoding='utf-8')
+
+	tree = ET.parse(xml_file)
 	root = tree.getroot()
 
 	for elem in root:
@@ -25,8 +29,8 @@ def update_xml_input(inputfile,parsedfile,outputfile):
 				print('Need to properly format your XML...')
 				break
 
-			while not plines[j].isspace():
-				parsed.append(plines[j].decode("utf-8"))
+			while j < len(plines) and not plines[j].isspace():
+				parsed.append(plines[j])
 				j = j + 1
 			j = j+1
 			

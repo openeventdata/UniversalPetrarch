@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import io
 import xml.etree.ElementTree as ET
 import sys
 
@@ -19,10 +20,14 @@ def read_sentence_input(inputxml,outputfile):
 	docdict = {}
 	doctexts = []
 
-	tree = ET.iterparse(inputxml)
+	xml_file = io.open(inputxml,'rb')#, encoding='utf-8')
+	tree = ET.iterparse(xml_file)
+	#tree = ET.fromstring(xml_file)
 	
 	for event, elem in tree:
 		if event == "end" and elem.tag == "Sentence":
+	#for elem in tree:
+		#if elem.tag == "Sentence":
 			story = elem
 
 			# Check to make sure all the proper XML attributes are included
@@ -51,9 +56,11 @@ def read_sentence_input(inputxml,outputfile):
 
 			elem.clear()
 
-	ofile = open(outputfile,'w')
+	ofile = io.open(outputfile,'w',encoding='utf-8')
 	for line in doctexts:
-		ofile.write(line.encode('utf-8')+"\n")
+		line = line+u'\n'
+		#input(type(line))
+		ofile.write(line)
 	ofile.close()
 
 

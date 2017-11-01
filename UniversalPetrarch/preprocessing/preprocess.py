@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import io
 import xml.etree.ElementTree as ET
 import sys
 
@@ -21,7 +21,9 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 	doctexts = []
 	output = []
 
-	tree = ET.iterparse(inputxml)
+	#xml_file = io.open(inputxml,'r', encoding='utf-8')
+	xml_file = io.open(inputxml,'rb')
+	tree = ET.iterparse(xml_file)
 	
 	for event, elem in tree:
 		if event == "end" and elem.tag == "Sentence":
@@ -56,37 +58,17 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			elem.clear()
 
 	#read Stanford CoreNLP parsed file		
-	parsed = open(inputparsed)
+	parsed = io.open(inputparsed,'r',encoding='utf-8')
 	parsedfile = parsed.readlines()
 	parsedlines = []
-	#for line in parsedfile:
-		#if "Sentence #" in line or "[" in line:
-		#	continue
-		#else:
-			#print(line)
-			#parsedlines.append(line.replace("\n"," ").strip())
+	originallines = []
+	
 	i = 0
-	'''
-	while i <len(parsedfile):
-		line = parsedfile[i]
-		if "Sentence #" in line:
-			i = i+1
-			continue
-		elif not line.startswith('['):
-			temp = line
-			i = i+1
-			line = parsedfile[i]
-			while(not line.startswith('[')):
-				temp = temp+line
-				i = i+1
-				line = parsedfile[i]
-			#print(temp)
-			parsedlines.append(temp.replace('\n', ' ').strip())
-		i = i+1
-	'''
+
 	while i<len(parsedfile):
 		line = parsedfile[i]
 		if "Sentence #" in line:
+			originallines.append(parsedfile[i+1].strip())
 			i = i+2
 			continue
 		elif line.startswith('['):
@@ -97,7 +79,6 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 				word = text[text.find('=')+1:]
 				tokens.append(word)
 			parsedlines.append((' ').join(tokens).replace('\n', ' ').strip())
-			#raw_input((' ').join(tokens))
 		i = i+1
 
 
@@ -107,56 +88,32 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 	sents_dict = {}
 	sents = []
 	sentidx = 1
-	#print(len(doctexts))
-	#print(len(parsedlines))
-	#raw_input("Press Enter to continue...")
 
-	processed = 0;
-	for line in parsedlines:
-		doc = doctexts[0]
-		#print(doc)
-		#print(line+"#")
-		#print(isinstance(doc,str))
-		#print(isinstance(line,str))
-		#print(doc.encode('UTF-8').find(line))
-		#break
-		#'''
-		line = line.replace("&gt;",">").replace("&lt;","<").replace("&amp;","&").replace("-LRB-","(").replace("-RRB-", ")").replace("-LSB-", "[").replace("-RSB-", "]").replace("-LCB-", "{").replace("-RCB-", "}")
-		templine = line.replace(" ","")
-		tempdoc = doc.replace(" ","")
-		if tempdoc.encode('UTF-8').find(templine) ==-1:
-			#print(processed)
-			#if processed>=33223:
-			#	print(line)
-			#	print(doc)
-			#	raw_input("Press Enter to continue...")
-			doctexts.remove(doc)
-			sentidx = 1
-			doc = doctexts[0]
-			tempdoc = doc.replace(" ","")
-		
-		if tempdoc.encode('UTF-8').find(templine) != -1:
-			#print(docdict[doc]['id']+"#"+line)
-			key = docdict[doc]['id']+"#"+line
+	for idx in range(0,len(parsedlines)):
+		doc = doctexts[idx]
+
+		originalline = originallines[idx]
+		parsedline = parsedlines[idx]
+		#line.replace("&gt;",">").replace("&lt;","<").replace("&amp;","&").replace("-LRB-","(").replace("-RRB-", ")").replace("-LSB-", "[").replace("-RSB-", "]").replace("-LCB-", "{").replace("-RCB-", "}")
+
+	
+
+		if doc == originalline:
+			#print(docdict[doc]['id']+"#"+parsedline)
+			key = docdict[doc]['id']+"#"+parsedline
 			sents.append(key)
-			output.append(line+"\n")
+			output.append(parsedline+"\n")
 			sents_dict[key] = {}
 			sents_dict[key]['sentence_id']=str(sentidx)
 			sents_dict[key].update(docdict[doc])
 			#print(sents_dict[key]['sentence_id']+":"+key)
 			sentidx = sentidx + 1
+		else:
+			print("tokenized sentence not found:")
+			print(originalline)
 		
-		processed = processed+1
-		#'''
 
-	#print(len(parsedlines))
-	#print(len(sents))
-	#for sent in sents:
-		#print(sent)
-		#print(sents_dict.get(sent).get('sentence_id'))
-		#print(sents_dict[sent]['sentence_id']+":"+key)
-
-	ofile = open(outputfile,'w')
+	ofile = io.open(outputfile,'w',encoding='utf-8')
 	for line in output:
 		ofile.write(line)
 	ofile.close()
@@ -169,8 +126,7 @@ def create_sentence_xml(sentences,sents_dict,outputxml):
 		sentinfo = sents_dict[s]
 		#print(s+" "+sentinfo['id']+"-"+sentinfo['sentence_id'])
 		sentence = ET.SubElement(root,"Sentence", {"date":sentinfo['date'],"source":sentinfo['source'],"id":sentinfo['id']+"-"+sentinfo['sentence_id'],"sentence":sentinfo['sentence']})
-		ET.SubElement(sentence,"Text").text = s[s.index('#')+1:].decode('UTF-8')
-
+		ET.SubElement(sentence,"Text").text = s[s.index('#')+1:]
 	tree = ET.ElementTree(root)
 	tree.write(outputxml,'UTF-8')
 

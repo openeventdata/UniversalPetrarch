@@ -2279,7 +2279,7 @@ def read_xml_input(filepaths, parsed=False):
                 # Check to make sure all the proper XML attributes are included
                 attribute_check = [key in story.attrib for key in
                                    ['date', 'id', 'sentence', 'source']]
-                if not attribute_check:
+                if False in attribute_check:
                     print('Need to properly format your XML...')
                     break
 
@@ -2304,6 +2304,11 @@ def read_xml_input(filepaths, parsed=False):
                                     'source': story.attrib['source']}
                     content_dict = {'sents': {sent_id: sent_dict},
                                     'meta': meta_content}
+
+                    if entry_id not in holding:
+                        holding[entry_id] = content_dict
+                    else:
+                        holding[entry_id]['sents'][sent_id] = sent_dict
                 else:
                     entry_id = story.attrib['id']
 
@@ -2319,10 +2324,10 @@ def read_xml_input(filepaths, parsed=False):
                     meta_content = {'date': story.attrib['date']}
                     content_dict = {'sents': sent_dict, 'meta': meta_content}
 
-                if entry_id not in holding:
-                    holding[entry_id] = content_dict
-                else:
-                    holding[entry_id]['sents'][sent_id] = sent_dict
+                    if entry_id not in holding:
+                        holding[entry_id] = content_dict
+                    else:
+                        holding[entry_id]['sents'] = sent_dict
 
                 elem.clear()
 
