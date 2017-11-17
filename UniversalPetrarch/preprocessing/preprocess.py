@@ -59,7 +59,8 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 
 	#read Stanford CoreNLP parsed file		
 	parsed = io.open(inputparsed,'r',encoding='utf-8')
-	parsedfile = parsed.readlines()
+	parsedtemp = parsed.read().replace("]\n[","] [")
+	parsedfile = parsedtemp.split("\n")
 	parsedlines = []
 	originallines = []
 	
@@ -67,6 +68,7 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 
 	while i<len(parsedfile):
 		line = parsedfile[i]
+		
 		if "Sentence #" in line:
 			originallines.append(parsedfile[i+1].strip())
 			i = i+2
