@@ -7,15 +7,16 @@ SCRIPT=../scripts
 FILEPATH=../data/text
 STANFORD_SEG=segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
-STANFORD_PROPERTY=config/StanfordCoreNLP-${language}.properties
-STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2015-01-29
+STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2017-06-09
 
 udpipePath=udpipe-1.0.0
 
 
-if [ "$language" = "arabic" ] 
+if [ "$language" = "AR" ] 
 then
-	languageModel=${udpipePath}/model/${language}-ud-1.4.udpipe
+	languageModel=${udpipePath}/model/arabic-ud-1.4.udpipe
+	STANFORD_PROPERTY=config/StanfordCoreNLP-arabic.properties
+
 
 	echo "Generate sentence xml file..."
 	python preprocess_sent.py ${FILEPATH}/$FILENAME
@@ -30,7 +31,18 @@ then
 
 else
 
-	languageModel=${udpipePath}/model/${language}-ud-1.2-160523.udpipe
+	if [ "$language" = "ES" ] 
+	then
+		languageModel=${udpipePath}/model/spanish-ud-1.2-160523.udpipe
+		STANFORD_PROPERTY=config/StanfordCoreNLP-spanish.properties
+
+	elif [ "$language" = "EN" ]
+	then
+		languageModel=${udpipePath}/model/english-ud-1.2-160523.udpipe
+		STANFORD_PROPERTY=config/StanfordCoreNLP-english.properties
+
+	fi
+
 
 	echo "Prepare file for stanford CoreNLP"
 	python preprocess_sent.py ${FILEPATH}/$FILENAME

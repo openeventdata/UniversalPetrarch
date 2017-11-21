@@ -71,7 +71,7 @@ Language-agnostic political event coding using universal dependencies
 
 	Required Arguments:  
 	``INPUT_FILE	name of the input XML file. ``  
-	``LANGEUAGE	language of the input XML file. [english|spanish|arabic]``
+	``LANGEUAGE	language of the input XML file. [EN|ES|AR]``
 
 	Before runing run_sentence.sh or run_document.sh, you need change the value of following parameters based on your situation
 
@@ -103,10 +103,10 @@ Language-agnostic political event coding using universal dependencies
 	```
 * Example of usage
 
-``> ./run_document.sh Sample_english_doc.xml english``  
+``> ./run_document.sh Sample_english_doc.xml EN``  
 The result from running above command are files Sample_english_doc.xml-sent.xml and Sample_english_doc-sent_parsed.xml 
 
-``> ./run_sentence.sh Sample_english_sent.xml english``  
+``> ./run_sentence.sh Sample_english_sent.xml EN``  
 The result from running above command is file Sample_english_sent_parsed.xml 
 
 

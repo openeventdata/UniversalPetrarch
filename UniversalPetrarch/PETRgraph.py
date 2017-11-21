@@ -1580,7 +1580,7 @@ class Sentence:
 				logger.debug(self.events[eventID][1])
 				#if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None']: 
 				#and self.events[evnetID][2] != PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code'] :
-				if self.events[eventID][2] not in ['---',None,'None'] and self.events[eventID][2] != PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']['code']:
+				if self.events[eventID][2] not in ['---',None,'None'] and triplet['triple'][2].head.upper() in PETRglobals.VerbDict['verbs'] and self.events[eventID][2] != PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']['code']:
 				#PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code']:
 					finalverbs[vid] = self.events[eventID][2]
 
