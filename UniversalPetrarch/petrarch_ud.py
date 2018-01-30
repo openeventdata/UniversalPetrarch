@@ -157,10 +157,10 @@ def read_dictionaries(validation=False):
         actor_path = utilities._get_data('data/dictionaries', actdict)
         PETRreader.read_actor_dictionary(actor_path)
 
-    print('Agent dictionary:', PETRglobals.AgentFileName)
-    agent_path = utilities._get_data('data/dictionaries',
-                                     PETRglobals.AgentFileName)
-    PETRreader.read_agent_dictionary(agent_path)
+    print('Agent dictionary:', PETRglobals.AgentFileList)
+    for agentdict in PETRglobals.AgentFileList:
+        agent_path = utilities._get_data('data/dictionaries', agentdict)
+        PETRreader.read_agent_dictionary(agent_path)
 
     print('Discard dictionary:', PETRglobals.DiscardFileName)
     discard_path = utilities._get_data('data/dictionaries',
@@ -331,7 +331,8 @@ def do_coding(event_dict):
                     logger.debug("triplet:" + tID)
                     logger.debug(triplet['matched_txt'])
 
-                #raw_input("Press Enter to continue...")
+                #if key == "GOLD":
+                #    raw_input("Press Enter to continue...")
                 code_time = time.time() - t1
 
                 '''

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ##	PETRreader.py [module]
 ##
 # Dictionary and text input routines for the PETRARCH event coder
@@ -47,6 +49,8 @@ import math  # required for ordinal date calculations
 import logging
 import xml.etree.ElementTree as ET
 from functools import reduce
+reload(sys) 
+sys.setdefaultencoding('utf-8')
 
 try:
     from ConfigParser import ConfigParser
@@ -123,9 +127,9 @@ def parse_Config(config_path):
 
     try:
         PETRglobals.VerbFileName = parser.get('Dictionaries', 'verbfile_name')
-        PETRglobals.AgentFileName = parser.get(
-            'Dictionaries',
-            'agentfile_name')
+
+        filestring = parser.get('Dictionaries', 'agentfile_name')
+        PETRglobals.AgentFileList = filestring.split(', ')
 #		print "pc",PETRglobals.AgentFileName
         PETRglobals.DiscardFileName = parser.get(
             'Dictionaries',
@@ -721,9 +725,11 @@ def read_internal_coding_ontology(pico_path):
                     result = result + hexnumbers[i]
 
             PETRglobals.InternalCodingOntology[mappings[0]] = result
+            
         else:
             #if the line is "113:0x7002"
             PETRglobals.InternalCodingOntology[mappings[0]] = int(mappings[1],16)
+        
         line = read_FIN_line()
     close_FIN()
 
@@ -904,6 +910,7 @@ def read_verb_dictionary(verb_path):
 
 
     for line in file:
+        #print(line)
         if line.startswith("<!"):
             record_patterns = 0
             continue
@@ -921,7 +928,7 @@ def read_verb_dictionary(verb_path):
             if not record_patterns:
                 continue
             pattern = line[1:].split("#")[0]
-            # print(line)
+            #print(line)
             for pat in resolve_synset(pattern):
                 segs = pat.split("*")
 
@@ -933,6 +940,8 @@ def read_verb_dictionary(verb_path):
 
                 path = PETRglobals.VerbDict[
                     'phrases'].setdefault(block_meaning, {})
+                #if path:
+                    #raw_input(path)
                 if not pre == ([], []):
                     if pre[0]: # pre-verb noun phrase
                         count = 1
@@ -1017,7 +1026,9 @@ def read_verb_dictionary(verb_path):
         elif syn and line.startswith("&"): #read SYNONYM SETS block information
             block_meaning = line.strip()
         elif syn and line.startswith("+"): #read SYNONYM SETS
-            term = line.strip()[1:]
+            #print(line)
+            term = line.strip()[1:].decode('utf-8')
+            #print(term[-1])
             
             if "_" in term[-1] and "_" in term[:-1]:
                 temp = term[:-1]
@@ -1045,8 +1056,9 @@ def read_verb_dictionary(verb_path):
             path = PETRglobals.VerbDict['transformations']
             while len(ev2) > 1:
                 source = ev2[0]
+
                 verb = reduce(lambda a, b: a + b, map(lambda c: utilities.convert_code(PETRglobals.VerbDict[
-                              'verbs'][c]['#']['#']['code'])[0] if not c == "Q" else -1, ev2[-1].split("_")), 0)
+                              'verbs'][c]['#']['#'][0]['code'])[0] if not c == "Q" else -1, ev2[-1].split("_")), 0)
 
                 path = path.setdefault(verb, {})
                 path = path.setdefault(source, {})
@@ -1067,8 +1079,9 @@ def read_verb_dictionary(verb_path):
             stem = words[0]
             if "_" in stem:
                 # We're dealing with a compound verb
-                #                print(stem)
+                #print(stem)
                 segs = stem.split('+')
+
                 front = segs[0].split('_')
                 back = segs[1].split('_')[1:]
                 stem = segs[1].split('_')[0]
@@ -1077,6 +1090,7 @@ def read_verb_dictionary(verb_path):
             if words[-1].startswith("["):
                 code = words.pop()
 
+            '''
             if not (len(words) > 1 or '{' in word):
 
                 if stem.endswith("S") or stem.endswith("X") or stem.endswith("Z"):
@@ -1095,10 +1109,12 @@ def read_verb_dictionary(verb_path):
                     words.append(stem[:-1] + "ING")
                 else:
                     words.append(stem + "ING")
+            '''
 
             for w in words:
+                #print(w)
                 wstem = w
-                if "_" in w:
+                if "_" in w: #
                     segs = w.split('+')
                     front = segs[0].split('_')
                     back = segs[1].split('_')[1:]
@@ -1116,18 +1132,30 @@ def read_verb_dictionary(verb_path):
                     if not item:
                         continue
                     path = path.setdefault(item, {})
-                path = path.setdefault(
-                    "#", {'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
+                pathcheck = path.get("#")
+                if pathcheck:
+                    #print(wstem)
+                    #raw_input(pathcheck)
+                    path["#"].append({'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
+                else:
+                    path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]}])
+                    #path = path.setdefault("#", {'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
 
-    # print(sorted(PETRglobals.VerbDict['phrases'].keys()))
-    # print(PETRglobals.VerbDict.__sizeof__())
-    # print(PETRglobals.VerbDict['phrases'].__sizeof__())
-    # exit()
+    #PETRglobals.VerbDict['synsets'] = synsets
+    #print(sorted(PETRglobals.VerbDict['phrases'].keys()))
+    #print(PETRglobals.VerbDict.__sizeof__())
+    #print(PETRglobals.VerbDict['phrases'].__sizeof__())
+    
+    #exit()
     # for root , k in sorted(PETRglobals.VerbDict['verbs'].items()):
-    #    print(root)
-    #    print("\t",k)
+    #     print(root)
+    #     print("\t",k)
+    #     count +=1
+    #     if count == 20:
+    #         break
+    # raw_input()
 
-
+'''
 def _read_verb_dictionary(verb_path):
     """ Reads the verb dictionary from VerbFileName """
 
@@ -1575,7 +1603,7 @@ def _read_verb_dictionary(verb_path):
     ka = 0   # primary verb count ( debug )
     line = read_FIN_line()
     while len(line) > 0:  # loop through the file
-
+        #print(line)
         if '[' in line:
             part = line.partition('[')
             verb = part[0].strip()
@@ -1687,6 +1715,7 @@ def _read_verb_dictionary(verb_path):
                     make_verb_forms(curcode, line)
             ka += 1   # counting primary verbs
             line = read_FIN_line()
+            print(line)
 
     close_FIN()
 
@@ -1695,7 +1724,7 @@ def _read_verb_dictionary(verb_path):
     #    for i,j in v.items():
     #        print('\t',i,j)
     # exit()
-
+'''
 
 def show_verb_dictionary(filename=''):
     # debugging function: displays VerbDict to screen or writes to filename
@@ -1943,10 +1972,15 @@ def read_actor_dictionary(actorfile):
     current_acts = []
     datelist = []
     while len(line) > 0:
-        #print(line)
+        flag = False
+        #if "[USA]" in line:
+            #flag = True;
+            #raw_input(line)
+        
         if line[0] == '[':  # Date
             data = line[1:-1].split()
             code = data[0]
+            
             if len(data)==1:
                 dates = []
             else:
@@ -1968,6 +2002,7 @@ def read_actor_dictionary(actorfile):
                         current_acts) > 0:  # store the root phrase if we're only to use it
                     datelist.append(current_acts[0])
                 for targ in current_acts:
+                    temptarg = targ
                     actordict = PETRglobals.ActorDict
                     while targ != []:
                         if targ[0] in [' ', '']:
@@ -1986,6 +2021,10 @@ def read_actor_dictionary(actorfile):
                         actordict["#"] = []
 
                     actordict["#"].extend(check_date_boundaries(datelist))
+
+                    #if temptarg[0] in ["DE"]:
+                        #print(line)
+                        #raw_input(PETRglobals.ActorDict[temptarg[0]])
 
                 datelist = []  # reset for the new actor
                 current_acts = []
@@ -2027,6 +2066,7 @@ def read_actor_dictionary(actorfile):
                     datelist.append((code, dates))
 
                 actor = actortemp.replace("_", ' ').split()
+                #print(actor)
 
 
             current_acts.append(actor)
@@ -2134,15 +2174,15 @@ def read_agent_dictionary(agent_path):
     def store_agent(nounst, code):
         # parses nounstring and stores the result with code
 
-        list = PETRglobals.AgentDict
+        agent_list = PETRglobals.AgentDict
         targ = nounst.replace("_", ' ').split()
         while targ != []:
             if targ[0] in [' ', '']:
                 targ = targ[1:]
                 continue
-            list = list.setdefault(targ[0], {})
+            agent_list = agent_list.setdefault(targ[0], {})
             targ = targ[1:]
-        list["#"] = code
+        agent_list["#"] = code
 
         return
 
@@ -2192,9 +2232,10 @@ def read_agent_dictionary(agent_path):
 
     # note that this will be ignored if there are no errors
     logger = logging.getLogger('petr_log')
-    logger.info("Reading " + PETRglobals.AgentFileName + "\n")
+    logger.info("Reading " + (",").join(PETRglobals.AgentFileList) + "\n")
     open_FIN(agent_path, "agent")
 
+    #lines = {}
     line = read_FIN_line()
     while len(line) > 0:  # loop through the file
 
@@ -2208,9 +2249,17 @@ def read_agent_dictionary(agent_path):
             line = read_FIN_line()
             continue
 
+        
         part = line.partition('[')
         code = part[2].partition(']')[0].strip()
         agent = part[0].strip() + ' '
+
+        #if code in lines:
+        #    lines[code].append(line)
+        #else:
+        #    lines[code]=[]
+        #    lines[code].append(line)
+
         if '!' in part[0]:
             store_marker(agent, code)  # handle a substitution marker
         elif '{' in part[0]:
@@ -2221,19 +2270,30 @@ def read_agent_dictionary(agent_path):
             agent = part[0][:part[0].find('{')].strip() + ' '
             # this will automatically set the null case
             plural = part[0][part[0].find('{') + 1:part[0].find('}')].strip()
+        #else:
+            #plural=''
+        #'''
         else:
-            if 'Y' == agent[-2]:
+            if 'Y' == agent[-2].upper():
                 plural = agent[:-2] + 'IES'  # space is added below
-            elif 'S' == agent[-2]:
+            elif 'S' == agent[-2].upper():
                 plural = agent[:-1] + 'ES'
             else:
                 plural = agent[:-1] + 'S'
+        #'''
 
         store_agent(agent, code)
         if len(plural) > 0:
             store_agent(plural + ' ', code)
 
         line = read_FIN_line()
+    '''
+    for key in lines.keys():
+        linesset = set(lines[key]) 
+        for l in sorted(linesset):
+            print(l.replace("\n",""))
+        raw_input("")
+    '''
 
     close_FIN()
 
@@ -2279,7 +2339,7 @@ def read_xml_input(filepaths, parsed=False):
                 # Check to make sure all the proper XML attributes are included
                 attribute_check = [key in story.attrib for key in
                                    ['date', 'id', 'sentence', 'source']]
-                if False in attribute_check:
+                if not attribute_check:
                     print('Need to properly format your XML...')
                     break
 
@@ -2294,8 +2354,9 @@ def read_xml_input(filepaths, parsed=False):
                     parsed_content = ''
 
                 # Get the sentence information
-                if story.attrib['sentence'] == 'True':
-                    entry_id, sent_id = story.attrib['id'].split('_')
+                if story.attrib['sentence'].lower() == 'true':
+                    entry_id = story.attrib['id'][0:story.attrib['id'].rfind('_')]
+                    sent_id = story.attrib['id'][story.attrib['id'].rfind('_')+1]
 
                     text = story.find('Text').text
                     text = text.replace('\n', ' ').replace('  ', ' ')
@@ -2304,11 +2365,6 @@ def read_xml_input(filepaths, parsed=False):
                                     'source': story.attrib['source']}
                     content_dict = {'sents': {sent_id: sent_dict},
                                     'meta': meta_content}
-
-                    if entry_id not in holding:
-                        holding[entry_id] = content_dict
-                    else:
-                        holding[entry_id]['sents'][sent_id] = sent_dict
                 else:
                     entry_id = story.attrib['id']
 
@@ -2324,10 +2380,10 @@ def read_xml_input(filepaths, parsed=False):
                     meta_content = {'date': story.attrib['date']}
                     content_dict = {'sents': sent_dict, 'meta': meta_content}
 
-                    if entry_id not in holding:
-                        holding[entry_id] = content_dict
-                    else:
-                        holding[entry_id]['sents'] = sent_dict
+                if entry_id not in holding:
+                    holding[entry_id] = content_dict
+                else:
+                    holding[entry_id]['sents'][sent_id] = sent_dict
 
                 elem.clear()
 
