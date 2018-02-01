@@ -1840,6 +1840,9 @@ def dstr_to_ordate(datestring):
     if day <= 0:
         raise DateError
 
+    if month > 12:
+        raise DateError
+        
     if month == 2:
         if year % 400 == 0:
             if day > 29:
