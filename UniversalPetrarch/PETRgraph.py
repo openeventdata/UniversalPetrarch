@@ -429,7 +429,7 @@ class Sentence:
 		parsed = self.parse.split("\n")
 		#print(parsed)
 
-		dpgraph.add_node(0, token = 'ROOT')
+		dpgraph.add_node(0, token = 'ROOT',pos = 'ROOT',lemma = 'ROOT')
 		for p in parsed:
 			temp = p.split("\t")
 
@@ -592,9 +592,10 @@ class Sentence:
 							#find noun modifiers conjuctions
 							if self.udgraph[parent][child]['relation'] in ['nmod']:
 								nmod_conjs[child]=[]
-								for nmodchild in allsuccessors[child]:
-									if self.udgraph[child][nmodchild]['relation'] in ['conj']:
-										nmod_conjs[child].append(nmodchild)
+								if child in allsuccessors.keys():
+									for nmodchild in allsuccessors[child]:
+										if self.udgraph[child][nmodchild]['relation'] in ['conj']:
+											nmod_conjs[child].append(nmodchild)
 
 							temp.append(child)
 							
@@ -871,7 +872,7 @@ class Sentence:
 				#check for conjuncting verbs
 				predecessors = self.udgraph.predecessors(verb.headID)
 				for predecessor in predecessors:
-					if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj']:
+					if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and self.udgraph.node[predecessor]['pos']=='VERB':
 						logger.debug("found conj verb:"+ self.udgraph.node[predecessor]['token'])
 						psource,ptarget,pothernoun = self.get_source_target([predecessor])
 						source.extend(psource)
@@ -1262,8 +1263,16 @@ class Sentence:
 
 					if "#" in tempverbDictPath:
 						try:
-							code = tempverbDictPath['#']['#']['code']
-							meaning = tempverbDictPath['#']['#']['meaning']
+							for item in tempverbDictPath['#']['#']:
+								#code = tempverbDictPath['#']['#']['code']
+								#meaning = tempverbDictPath['#']['#']['meaning']
+								code = item['code']
+								meaning = item['meaning']
+
+								if (code != None and meaning != None):
+									codes.append(code)
+									meanings.append(meaning)
+									matched_txts.append(matched_txt)
 						except:
 							print("passing:"+verb.text)
 							pass
@@ -1290,103 +1299,107 @@ class Sentence:
 			patternDictionary = PETRglobals.VerbDict['phrases']
 			patternDictPath = patternDictionary
 			matched_pattern = None
-			if meaning in patternDictionary:
-				patternDictPath = patternDictPath[meaning]
-				logger.debug("processing source:")
-				match = match_noun(patternDictPath,source)
-				if match:
-					code = match['code']
-					matched_pattern = match['line']
-					logger.debug("matched:"+code+"\t"+matched_pattern)
-
-				pairmatch = False
-				if '%' in patternDictPath: 
-					temppatternDictPath = patternDictPath['%']
-					logger.debug("'%' matched")
-					pairmatch = match_lower(temppatternDictPath,verb,target)
-					if pairmatch:
-						code = pairmatch['code']
-						matched_pattern = pairmatch['line']
-						logger.debug("pair matched:"+code+"\t"+matched_pattern)
-
-				if '+' in patternDictPath: 
-					temppatternDictPath = patternDictPath['+']
-					logger.debug("'+' matched")
-					match = match_lower(temppatternDictPath,verb,target)
+			for m in meanings:
+				patternDictPath = patternDictionary
+				if m in patternDictionary:
+					patternDictPath = patternDictPath[m]
+					logger.debug("processing source:")
+					match = match_noun(patternDictPath,source)
 					if match:
 						code = match['code']
 						matched_pattern = match['line']
 						logger.debug("matched:"+code+"\t"+matched_pattern)
 
-				lowermatch = match_lower(patternDictPath,verb,target)
-				
-				if pairmatch and "(" in pairmatch['line']:
-					match = pairmatch
-				elif lowermatch and "(" in lowermatch['line']:
-					match = lowermatch
-				elif pairmatch:
-					match = pairmatch
-				elif lowermatch:
-					match = lowermatch
+					pairmatch = False
+					if '%' in patternDictPath: 
+						temppatternDictPath = patternDictPath['%']
+						logger.debug("'%' matched")
+						pairmatch = match_lower(temppatternDictPath,verb,target)
+						if pairmatch:
+							code = pairmatch['code']
+							matched_pattern = pairmatch['line']
+							logger.debug("pair matched:"+code+"\t"+matched_pattern)
+
+					if '+' in patternDictPath: 
+						temppatternDictPath = patternDictPath['+']
+						logger.debug("'+' matched")
+						match = match_lower(temppatternDictPath,verb,target)
+						if match:
+							code = match['code']
+							matched_pattern = match['line']
+							logger.debug("matched:"+code+"\t"+matched_pattern)
 
 
-				'''
-				if '*' in patternDictPath:
-					patternDictPath = patternDictPath['*']
-					logger.debug("'*' matched")
+					lowermatch = match_lower(patternDictPath,verb,target)
+					
+					if pairmatch and "(" in pairmatch['line']:
+						match = pairmatch
+					elif lowermatch and "(" in lowermatch['line']:
+						match = lowermatch
+					elif pairmatch:
+						match = pairmatch
+					elif lowermatch:
+						match = lowermatch
 
-				
-				if len(verb.vpIDs)>1:
-					logger.debug("matching prep:")
-					temppatternDictPath = patternDictPath
-					found = False
-					if '|' in temppatternDictPath:
-						logger.debug("'|' matched")
-						temppatternDictPath = temppatternDictPath['|']
-						for vpID in verb.vpIDs:
-							if(vpID <= verb.headID):
-								continue
-							if self.udgraph.node[vpID]['pos']=='ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
-								temppatternDictPath = temppatternDictPath[self.udgraph.node[vpID]['token'].upper()]
-								logger.debug("prep matched:"+self.udgraph.node[vpID]['token'].upper())
-								found = True
 
-					if found==True:
-						patternDictPath = temppatternDictPath
-						if '#' in patternDictPath:
-							patternDictPath = patternDictPath['#']
-							match = patternDictPath
-						if '-' in patternDictPath:
-							patternDictPath = patternDictPath['-']
+					'''
+					if '*' in patternDictPath:
+						patternDictPath = patternDictPath['*']
+						logger.debug("'*' matched")
 
+					
+					if len(verb.vpIDs)>1:
+						logger.debug("matching prep:")
+						temppatternDictPath = patternDictPath
+						found = False
+						if '|' in temppatternDictPath:
+							logger.debug("'|' matched")
+							temppatternDictPath = temppatternDictPath['|']
+							for vpID in verb.vpIDs:
+								if(vpID <= verb.headID):
+									continue
+								if self.udgraph.node[vpID]['pos']=='ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
+									temppatternDictPath = temppatternDictPath[self.udgraph.node[vpID]['token'].upper()]
+									logger.debug("prep matched:"+self.udgraph.node[vpID]['token'].upper())
+									found = True
+
+						if found==True:
+							patternDictPath = temppatternDictPath
+							if '#' in patternDictPath:
+								patternDictPath = patternDictPath['#']
+								match = patternDictPath
+							if '-' in patternDictPath:
+								patternDictPath = patternDictPath['-']
+
+
+						if match:
+							code = match['code']
+							matched_pattern = match['line']
+							logger.debug("matched:"+code+"\t"+matched_pattern)
+
+							
+					logger.debug("processing target:")
+					match = match_noun(patternDictPath,target)
+					'''
 					if match:
 						code = match['code']
 						matched_pattern = match['line']
+						#switch source and target
+						newsource = '-'
+						newtarget = '-'
+
+						if not verb.passive and "+" in matched_pattern and matched_pattern.index("+") < matched_pattern.index("*"):
+							newsource = target
+							logger.debug("+ in pattern, switch target to source")
+
+						if not verb.passive and "$" in matched_pattern and matched_pattern.index("$") > matched_pattern.index("*"):
+							newtarget = source
+							logger.debug("$ in pattern, switch source to target")
+
 						logger.debug("matched:"+code+"\t"+matched_pattern)
 
-						
-				logger.debug("processing target:")
-				match = match_noun(patternDictPath,target)
-				'''
-				if match:
-					code = match['code']
-					matched_pattern = match['line']
-					#switch source and target
-					newsource = '-'
-					newtarget = '-'
-
-					if not verb.passive and "+" in matched_pattern and matched_pattern.index("+") < matched_pattern.index("*"):
-						newsource = target
-						logger.debug("+ in pattern, switch target to source")
-
-					if not verb.passive and "$" in matched_pattern and matched_pattern.index("$") > matched_pattern.index("*"):
-						newtarget = source
-						logger.debug("$ in pattern, switch source to target")
-
-					logger.debug("matched:"+code+"\t"+matched_pattern)
-
-					source = newsource if not isinstance(newsource,basestring) else source
-					target = newtarget if not isinstance(newtarget,basestring) else target
+						source = newsource if not isinstance(newsource,basestring) else source
+						target = newtarget if not isinstance(newtarget,basestring) else target
 					
 
 			tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
@@ -1405,7 +1418,7 @@ class Sentence:
 					verbcode = code
 				if verb.negative == True:
 					#raw_input("before negated:"+verbcode)
-					if int(verbcode)<=200: 
+					if verbcode not in ['-','---']  and int(verbcode)<=200 : 
 					#validation verbs have codes over 200, add this condition to make sure the program is not crashed. 
 						tempcode = utilities.convert_code(verbcode)[0] - 0xFFFF
 						tempverbcode = str(utilities.convert_code(tempcode,0))
@@ -1424,7 +1437,7 @@ class Sentence:
 			self.triplets[tripleID]['triple']=newtriple
 			self.triplets[tripleID]['verbcode'] = verbcode
 			self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
-			self.triplets[tripleID]['meaning'] = meaning
+			self.triplets[tripleID]['meaning'] = (",").join(meanings)
 
 			#raw_input("Press Enter to continue...")
 	
@@ -1580,7 +1593,7 @@ class Sentence:
 				logger.debug(self.events[eventID][1])
 				#if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None']: 
 				#and self.events[evnetID][2] != PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code'] :
-				if self.events[eventID][2] not in ['---',None,'None'] and triplet['triple'][2].head.upper() in PETRglobals.VerbDict['verbs'] and self.events[eventID][2] != PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']['code']:
+				if self.events[eventID][2] not in ['---',None,'None'] and triplet['triple'][2].head.upper() in PETRglobals.VerbDict['verbs'] and (self.events[eventID][2] != code['code'] for code in PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']):
 				#PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code']:
 					finalverbs[vid] = self.events[eventID][2]
 
