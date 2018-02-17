@@ -59,11 +59,11 @@ def main():
                     cli_args.inputs +
                     '" could not be located\nPlease enter a valid directory or file of source texts.')
                 sys.exit()
-        
+
         out = "" #PETRglobals.EventFileName
         if cli_args.outputs:
                 out = cli_args.outputs
-             
+
         if cli_args.command_name == 'parse':
             run(paths, out, cli_args.parsed)
 
@@ -86,10 +86,10 @@ PETRARCH
 
     sub_parse = aparse.add_subparsers(dest='command_name')
     parse_command = sub_parse.add_parser('parse', help=""" DEPRECATED Command to run the
-                                         PETRARCH parser. Do not use unless you've used it before. If you need to 
+                                         PETRARCH parser. Do not use unless you've used it before. If you need to
                                          process unparsed text, see the README""",
                                          description="""DEPRECATED Command to run the
-                                         PETRARCH parser. Do not use unless you've used it before.If you need to 
+                                         PETRARCH parser. Do not use unless you've used it before.If you need to
                                          process unparsed text, see the README""")
     parse_command.add_argument('-i', '--inputs',
                                help='File, or directory of files, to parse.',
@@ -107,8 +107,8 @@ PETRARCH
     parse_command.add_argument('-d', '--debug',
                                help="""Enable debug info""",
                                required=False)
-    
-    
+
+
     batch_command = sub_parse.add_parser('batch', help="""Command to run a batch
                                          process from parsed files specified by
                                          an optional config file.""",
@@ -119,14 +119,14 @@ PETRARCH
                                help="""Filepath for the PETRARCH configuration
                                file. Defaults to PETR_config.ini""",
                                required=False)
-                               
+
     batch_command.add_argument('-i', '--inputs',
-                               help="""Filepath for the input XML file. Defaults to 
+                               help="""Filepath for the input XML file. Defaults to
                                data/text/Gigaword.sample.PETR.xml""",
                                required=False)
-                               
+
     batch_command.add_argument('-o', '--outputs',
-                               help="""Filepath for the output XML file. Defaults to 
+                               help="""Filepath for the output XML file. Defaults to
                                data/text/Gigaword.sample.PETR.xml""",
                                required=False)
 
@@ -139,7 +139,7 @@ PETRARCH
     args = aparse.parse_args()
     return args
 
-    
+
 def read_dictionaries(validation=False):
 
     print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
@@ -151,7 +151,7 @@ def read_dictionaries(validation=False):
         'data/dictionaries',
         PETRglobals.VerbFileName)
     PETRreader.read_verb_dictionary(verb_path)
-    
+
     print('Actor dictionaries:', PETRglobals.ActorFileList)
     for actdict in PETRglobals.ActorFileList:
         actor_path = utilities._get_data('data/dictionaries', actdict)
@@ -173,7 +173,7 @@ def read_dictionaries(validation=False):
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 
-   
+
 
 # ========================== PRIMARY CODING FUNCTIONS ====================== #
 
@@ -250,7 +250,7 @@ def get_issues(SentenceText):
             index += 1
     return issues
 
-    
+
 def do_coding(event_dict):
     """
     Main coding loop Note that entering any character other than 'Enter' at the
@@ -294,7 +294,7 @@ def do_coding(event_dict):
                 print("\n", SentenceID)
                 parsed = event_dict[key]['sents'][sent]['parsed']
                 treestr = parsed
-                
+
                 disc = check_discards(SentenceText)
                 if disc[0] > 0:
                     if disc[0] == 1:
@@ -308,7 +308,7 @@ def do_coding(event_dict):
                         SkipStory = True
                         NDiscardStory += 1
                         break
-                
+
 
                 t1 = time.time()
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
@@ -357,12 +357,12 @@ def do_coding(event_dict):
                 sents += 1
                 # print('\t\t',code_time)
 
-                                       
+
                 if coded_events and PETRglobals.IssueFileName != "":
                     event_issues = get_issues(SentenceText)
                     if event_issues:
                         event_dict[key]['sents'][sent]['issues'] = event_issues
-                        
+
                 if PETRglobals.PauseBySentence:
                     if len(raw_input("Press Enter to continue...")) > 0:
                         sys.exit()
@@ -406,11 +406,10 @@ def run(filepaths, out_file, s_parsed):
     updated_events = do_coding(events)
     PETRwriter.write_events(updated_events, 'evts.' + out_file)
 
-
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
     # this is called externally
-    utilities.init_logger('PETRARCH.log',True)
+    utilities.init_logger('PETRARCH.log')
     logger = logging.getLogger('petr_log')
     if config:
         print('Using user-specified config: {}'.format(config))
@@ -445,7 +444,7 @@ def run_pipeline(data, out_file=None, config=None, write_output=True,
         sys.exit()
     elif write_output and out_file:
         PETRwriter.write_events(updated_events, out_file)
-    
+
 
 if __name__ == '__main__':
     main()
