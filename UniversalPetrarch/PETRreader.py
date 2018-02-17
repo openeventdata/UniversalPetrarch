@@ -1,43 +1,5 @@
 # -*- coding: utf-8 -*-
 
-##	PETRreader.py [module]
-##
-# Dictionary and text input routines for the PETRARCH event coder
-##
-# CODE REPOSITORY: https://github.com/eventdata/PETRARCH
-##
-# SYSTEM REQUIREMENTS
-# This program has been successfully run under Mac OS 10.10; it is standard Python 2.7
-# so it should also run in Unix or Windows.
-#
-# INITIAL PROVENANCE:
-# Programmer: Philip A. Schrodt
-#			  Parus Analytics
-#			  Charlottesville, VA, 22901 U.S.A.
-#			  http://eventdata.parusanalytics.com
-#
-#
-#             Clayton Norris
-#             Caerus Associates/ University of Chicago
-#
-# GitHub repository: https://github.com/openeventdata/petrarch
-#
-# Copyright (c) 2014	Philip A. Schrodt.	All rights reserved.
-#
-# This project is part of the Open Event Data Alliance tool set; earlier developments
-# were funded in part by National Science Foundation grant SES-1259190
-#
-# This code is covered under the MIT license
-#
-# Report bugs to: schrodt735@gmail.com
-#
-# REVISION HISTORY:
-# 22-Nov-13:	Initial version
-# Summer-14:	Numerous modifications to handle synonyms in actor and verb dictionaries
-# 20-Nov-14:	write_actor_root/text added to parse_Config
-# ------------------------------------------------------------------------
-
-
 from __future__ import print_function
 from __future__ import unicode_literals
 
@@ -49,9 +11,10 @@ import math  # required for ordinal date calculations
 import logging
 import xml.etree.ElementTree as ET
 from functools import reduce
-reload(sys) 
-sys.setdefaultencoding('utf-8')
-
+import sys
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
 try:
     from ConfigParser import ConfigParser
 except ImportError:
@@ -712,7 +675,7 @@ def read_internal_coding_ontology(pico_path):
                 idx = tempstring.find(oper)
                 hexnumbers.append(int(tempstring[0:idx-1],16))
                 tempstring = tempstring[idx+1:]
-            
+
             hexnumbers.append(int(tempstring,16))
             #print(hexnumbers)
             #raw_input()
@@ -725,11 +688,11 @@ def read_internal_coding_ontology(pico_path):
                     result = result + hexnumbers[i]
 
             PETRglobals.InternalCodingOntology[mappings[0]] = result
-            
+
         else:
             #if the line is "113:0x7002"
             PETRglobals.InternalCodingOntology[mappings[0]] = int(mappings[1],16)
-        
+
         line = read_FIN_line()
     close_FIN()
 
@@ -794,7 +757,7 @@ def read_verb_dictionary(verb_path):
 
         ===example===:
             * &SECURITY (OVER {&WEAPON ATTACK})                 [151]
-    
+
         First the function resolves synset SECURITY. For each word and its plural in SECURITY, the function resolves
         synset WEAPON.
         The output is:
@@ -987,7 +950,7 @@ def read_verb_dictionary(verb_path):
                     path = path.setdefault('*', {})
                     if post[0]: # post-verb noun phrase
                         count = 1
-                                        
+
                         for noun in post[0]:
                             if not isinstance(noun, tuple):
                                 path = path.setdefault(noun, {})
@@ -1029,7 +992,7 @@ def read_verb_dictionary(verb_path):
             #print(line)
             term = line.strip()[1:].decode('utf-8')
             #print(term[-1])
-            
+
             if "_" in term[-1] and "_" in term[:-1]:
                 temp = term[:-1]
                 if len(temp.replace("_", " ").split()) > 1:
@@ -1041,10 +1004,10 @@ def read_verb_dictionary(verb_path):
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "}"
             elif " " in term:
-                temp = "{" + term + "}"                       
+                temp = "{" + term + "}"
             else:
                 temp = term
-            
+
             synsets[block_meaning] = synsets.setdefault(block_meaning, []) + [temp]
         elif line.startswith("~"):
             # VERB TRANSFORMATION
@@ -1145,7 +1108,7 @@ def read_verb_dictionary(verb_path):
     #print(sorted(PETRglobals.VerbDict['phrases'].keys()))
     #print(PETRglobals.VerbDict.__sizeof__())
     #print(PETRglobals.VerbDict['phrases'].__sizeof__())
-    
+
     #exit()
     # for root , k in sorted(PETRglobals.VerbDict['verbs'].items()):
     #     print(root)
@@ -1842,7 +1805,7 @@ def dstr_to_ordate(datestring):
 
     if month > 12:
         raise DateError
-        
+
     if month == 2:
         if year % 400 == 0:
             if day > 29:
@@ -1905,16 +1868,16 @@ def ordate_to_dstr(ordate):
 def read_actor_dictionary(actorfile):
     """ This is a simple dictionary of dictionaries indexed on the words in the actor string. The final node has the
         key '#' and contains codes with their date restrictions and, optionally, the root phrase in the case
-        of synonyms. 
+        of synonyms.
 
         <date : applies to times before or equal to date
         >date : applies to times after or equal to date
         date-date: applies to times between dates, both boundaries are included
 
-        Example: 
+        Example:
 
         UFFE_ELLEMANN_JENSEN_  [IGOEUREEC 820701-821231][IGOEUREEC 870701-871231] # president of the CoEU from DENMARK# IGOrulers.txt
-        
+
         the actor above is stored as:
 
         {u'UFFE': {u'ELLEMANN': {u'JENSEN': {u'#': [(u'IGOEUREEC', [u'820701', u'821231']), (u'IGOEUREEC', [u'870701', u'871231'])]}}}}
@@ -1924,10 +1887,10 @@ def read_actor_dictionary(actorfile):
     def check_date_boundaries(datelist):
         """
             This function checks the date boundaries.
-            1. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [date2, date3], 
+            1. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [date2, date3],
             the date restriction of actor_code1 will be updated as [date1,date2-1]
 
-            2. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [>date2], 
+            2. If actor_code1 has date restriction [date1, date2] and actor_code2 has date restriction [>date2],
             the date restriction of actor_code1 will be updated as [date1,date2-1]
 
         """
@@ -1959,9 +1922,9 @@ def read_actor_dictionary(actorfile):
                    newitem = (item[0],[start_date,new_end_date])
                    updated_datelist.append(newitem)
                 else:
-                    updated_datelist.append(item) 
+                    updated_datelist.append(item)
             else:
-                updated_datelist.append(item) 
+                updated_datelist.append(item)
 
         return updated_datelist
 
@@ -1979,11 +1942,11 @@ def read_actor_dictionary(actorfile):
         #if "[USA]" in line:
             #flag = True;
             #raw_input(line)
-        
+
         if line[0] == '[':  # Date
             data = line[1:-1].split()
             code = data[0]
-            
+
             if len(data)==1:
                 dates = []
             else:
@@ -2073,7 +2036,7 @@ def read_actor_dictionary(actorfile):
 
 
             current_acts.append(actor)
-            
+
 
         line = read_FIN_line().strip()
 
@@ -2252,7 +2215,7 @@ def read_agent_dictionary(agent_path):
             line = read_FIN_line()
             continue
 
-        
+
         part = line.partition('[')
         code = part[2].partition(']')[0].strip()
         agent = part[0].strip() + ' '
@@ -2292,7 +2255,7 @@ def read_agent_dictionary(agent_path):
         line = read_FIN_line()
     '''
     for key in lines.keys():
-        linesset = set(lines[key]) 
+        linesset = set(lines[key])
         for l in sorted(linesset):
             print(l.replace("\n",""))
         raw_input("")
