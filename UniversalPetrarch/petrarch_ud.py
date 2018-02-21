@@ -322,7 +322,7 @@ def do_coding(event_dict):
                 event_dict[key]['sents'][sent]['nouns'] = sentence.nouns
                 event_dict[key]['sents'][sent]['triplets'] = sentence.triplets
 
-                logger.debug("check events:")
+                logger.debug("check events of id:"+SentenceID)
                 for eventID,event in event_dict[key]['sents'][sent]['events'].items():
                     logger.debug("event:" + eventID)
                     logger.debug(event)
@@ -364,7 +364,7 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['issues'] = event_issues
                         
                 if PETRglobals.PauseBySentence:
-                    if len(input("Press Enter to continue...")) > 0:
+                    if len(raw_input("Press Enter to continue...")) > 0:
                         sys.exit()
 
                 prev_code = coded_events
@@ -405,6 +405,47 @@ def run(filepaths, out_file, s_parsed):
     #    events = utilities.stanford_parse(events)
     updated_events = do_coding(events)
     PETRwriter.write_events(updated_events, 'evts.' + out_file)
+
+
+def run_pipeline(data, out_file=None, config=None, write_output=True,
+                 parsed=False):
+    # this is called externally
+    utilities.init_logger('PETRARCH.log',True)
+    logger = logging.getLogger('petr_log')
+    if config:
+        print('Using user-specified config: {}'.format(config))
+        logger.info('Using user-specified config: {}'.format(config))
+        PETRreader.parse_Config(config)
+    else:
+        logger.info('Using default config file.')
+        logger.info(
+            'Config path: {}'.format(
+                utilities._get_data(
+                    'data/config/',
+                    'PETR_config.ini')))
+        PETRreader.parse_Config(utilities._get_data('data/config/',
+                                                    'PETR_config.ini'))
+
+    read_dictionaries()
+
+    logger.info('Hitting read events...')
+    events = PETRreader.read_pipeline_input(data)
+    if parsed:
+        logger.info('Hitting do_coding')
+        updated_events = do_coding(events)
+    else:
+        events = utilities.stanford_parse(events)
+        updated_events = do_coding(events)
+    if not write_output:
+        output_events = PETRwriter.pipe_output(updated_events)
+        return output_events
+    elif write_output and not out_file:
+        print('Please specify an output file...')
+        logger.warning('Need an output file. ¯\_(ツ)_/¯')
+        sys.exit()
+    elif write_output and out_file:
+        PETRwriter.write_events(updated_events, out_file)
     
+
 if __name__ == '__main__':
     main()
