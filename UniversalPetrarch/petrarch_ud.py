@@ -409,7 +409,7 @@ def run(filepaths, out_file, s_parsed):
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
     # this is called externally
-    utilities.init_logger('PETRARCH.log', 'INFO')
+    utilities.init_logger('PETRARCH.log',True)
     logger = logging.getLogger('petr_log')
     if config:
         print('Using user-specified config: {}'.format(config))
@@ -444,7 +444,7 @@ def run_pipeline(data, out_file=None, config=None, write_output=True,
         sys.exit()
     elif write_output and out_file:
         PETRwriter.write_events(updated_events, out_file)
-
+    
 
 if __name__ == '__main__':
     main()
