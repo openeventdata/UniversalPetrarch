@@ -351,6 +351,7 @@ class VerbPhrase:
 
 		self.vpIDs = vpIDs
 		self.text = ""
+		self.rawtext = ""
 		self.head = None
 		self.headID = headID
 		self.verbIDs = []
@@ -741,14 +742,17 @@ class Sentence:
 
 		vpIDs.append(verbhead)
 		vpTokens =[]
+		vpTokensraw = []
 		vpIDs.sort()
 		for vpID in vpIDs:
-			vpTokens.append(self.udgraph.node[vpID]['token'])
+			vpTokensraw.append(self.udgraph.node[vpID]['token'])
+			vpTokens.append(self.udgraph.node[vpID]['lemma'])
 
 		verbPhrasetext = (' ').join(vpTokens)
 		
 		vp.text = verbPhrasetext
-		vp.head = self.udgraph.node[verbhead]['token']
+		vp.rawtext = (' ').join(vpTokensraw)
+		vp.head = self.udgraph.node[verbhead]['lemma']
 		
 		return vp
 
@@ -932,6 +936,7 @@ class Sentence:
 					for o in othernoun:
 						if self.udgraph.node[o.npIDs[0]]['pos']=='ADP':
 							vpTokens = []
+							vpTokensraw = []
 							vpIDs = []
 							vpIDs.extend(verb.vpIDs)
 							vpIDs.append(o.npIDs[0])
@@ -939,11 +944,14 @@ class Sentence:
 
 							newverb = VerbPhrase(self,vpIDs,verb.headID)
 							for vpID in vpIDs:
-								vpTokens.append(self.udgraph.node[vpID]['token'])
+								vpTokensraw.append(self.udgraph.node[vpID]['token'])
+								vpTokens.append(self.udgraph.node[vpID]['lemma'])
+
 
 							verbPhrasetext = (' ').join(vpTokens)
 							
 							newverb.text = verbPhrasetext
+							newverb.rawtext = (' ').join(vpTokensraw)
 							newverb.head = verb.head
 							newverb.passive = verb.passive
 							newverb.negative = verb.negative
@@ -1534,27 +1542,35 @@ class Sentence:
 						#(source_meaning,target_meaning,triple['verbcode'])
 						logger.debug("root"+str(root))
 						for reventID, revent in root_event[root].items():
-
 							event_before_transfer = (revent[0],current_event,revent[2])
-							if revent[0] and revent[2] not in ['---']:
+							if revent[0] not in ['---']: #
 								event_after_transfer = self.match_transform(event_before_transfer)
+								current_eventID = tripleID
+
 							elif current_event[0] and current_event[1]:
 								event_after_transfer = [current_event]
+								current_eventID = tripleID
+
 							else:
 								event_after_transfer = [event_before_transfer]
+								current_eventID = reventID
 								
 							logger.debug("event"+tripleID+"transformation:")
 							logger.debug(event_after_transfer)
 
 							for e in event_after_transfer:
 								if isinstance(e,tuple) and not isinstance(e[1],tuple):
-									if reventID not in self.events:
-										self.events[reventID] = []
-										self.events[reventID].extend(list(e))
+									if current_eventID not in self.events:
+										self.events[current_eventID] = []
+										self.events[current_eventID].extend(list(e))
 									else:
 										logger.debug(reventID+" repeated")
-										self.events[reventID+"0"] = []
-										self.events[reventID+"0"].extend(list(e))
+										tempID = reventID
+										while tempID in self.events:
+											tempID = tempID + "0"
+										self.events[tempID] = []
+										self.events[tempID].extend(list(e))
+											
 									
 
 								elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]== None and e[1][2] != None :
@@ -1574,6 +1590,7 @@ class Sentence:
 					self.events[eventID].extend(root_event[root][eventID])
 
 		# check the verb codes
+		'''
 		finalverbs = {} 
 		for eventID in self.events:
 			if eventID not in self.triplets:
@@ -1607,7 +1624,7 @@ class Sentence:
 			ids = eventID.split("#")
 			vid = ids[2]
 			self.events[eventID][2] = finalverbs[vid]
-	
+		'''
 
 		# handle paired event, add comments
 		allactors = {}
@@ -1642,7 +1659,9 @@ class Sentence:
 		If the transformation is present, adjust the event accordingly.
 		If no transformation is present, check if the event is of the form:
 
-		            a ( b . Q ) P , where Q is not a top-level verb.
+		            1. a ( b . Q ) P , where Q is not a top-level verb.
+		            2. a ( a b Q ) P , where Q is not a top-level verb.
+		            3. a ( [] b Q ) P , where Q is not a top-level verb.
 
 		    and then convert this to ( a b P+Q )
 
@@ -1690,12 +1709,19 @@ class Sentence:
 				return [(list(v2a[path[0]]), v2a[path[1]], verb)], line
 
 			if isinstance(event, tuple):
+				if e[2] in [None,'---']:
+					return False
+				#print(event)
 				actor = None if not event[0] else tuple(event[0])
-				
+				#print(actor)
 				eventcode = utilities.convert_code(event[2])[0]
 				codelist = [eventcode] #, eventcode - eventcode % 0x10,eventcode - eventcode % 0x100, eventcode - eventcode % 0x1000]
+				#print(eventcode)
+				#print(pdict)
+				#print(codelist)
 				masks = filter(lambda a: a in pdict, codelist)
 				
+				#print(masks)
 				logger.debug("actor:")
 				logger.debug(actor)
 
@@ -1745,7 +1771,6 @@ class Sentence:
 			logger.debug(e)
 
 			t = recurse(PETRglobals.VerbDict['transformations'], e)
-			#print(t)
 			if t:
 				logger.debug("transformation is present:")
 				logger.debug("t:")
@@ -1778,6 +1803,28 @@ class Sentence:
 					event = (e[0], [e[1][0]], utilities.convert_code(code_combined,0))
 					logger.debug(event)
 					return [event]
+				elif e[0] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0]==e[1][0]:
+
+					logger.debug("the event is of the form: a ( a b Q ) P")
+					if e[2] in [None,'---']:
+						code_combined = utilities.convert_code(e[1][2])[0]
+					else:
+						code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+					event = (e[0], e[1][1], utilities.convert_code(code_combined,0))
+					logger.debug(event)
+
+					return [event]
+				elif e[0] and isinstance(e[1], tuple) and not e[1][0] and e[1][2]:
+					logger.debug("the event is of the form: a ( [] b Q ) P")
+					if e[2] in [None,'---']:
+						code_combined = utilities.convert_code(e[1][2])[0]
+					else:
+						code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
+					event = (e[0], e[1][1], utilities.convert_code(code_combined,0))
+					logger.debug(event)
+
+					return[event]
+
 
 		except Exception as ex:
 			pass  # print(ex)

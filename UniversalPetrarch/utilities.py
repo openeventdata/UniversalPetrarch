@@ -469,13 +469,18 @@ def combine_code(selfcode, to_add):
     combined value
 
     """
-    
+    #print(selfcode)
+    #print(to_add)
     if to_add <= 0:
         return to_add + selfcode
-    if selfcode >= 0x1000 and to_add >= 0x1000:
+    if selfcode > 0x1000 and to_add > 0x1000:
         return to_add  # If both verbs are high-level, take the lower nested one. I think this is what we want?
     if to_add >= selfcode:
         return to_add
+    if selfcode == 0x1000:
+        return to_add
+    if to_add == 0x1000:
+        return selfcode
 
     return selfcode + to_add
 
