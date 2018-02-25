@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/scripts
-FILE=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/data/text
+FILE=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch  #/data/text
 STANFORD_SEG=/Users/ahalterman/MIT/NSF_RIDIR/stanford-segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
 STANFORD_PROPERTY=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/preprocessing/config/StanfordCoreNLP-english.properties
@@ -12,10 +12,10 @@ STANFORD_CORENLP=/Users/ahalterman/MIT/NSF_RIDIR/stanford-corenlp
 FILENAME=$1
 
 echo "Call Stanford CoreNLP to do sentence splitting..."
-java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -file ${FILE}/$FILENAME -outputFormat text -outputDirectory ${FILE}
+java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -file ${FILE}/$FILENAME -outputFormat text -outputDirectory ${FILE}/data/text/ 
 
 echo "Generate sentence xml file..."
-python preprocess_doc.py ${FILE}/$FILENAME
+python2 preprocessing/preprocess_doc.py ${FILE}/$FILENAME
 
 SFILENAME=$FILENAME-sent.xml
 
@@ -27,7 +27,7 @@ ${udpipePath}/udpipe --tag --parse --outfile=${FILE}/$SFILENAME.conll.predpos.pr
 
 
 echo "Ouput parsed xml file..."
-python generateParsedFile.py ${FILE}/$SFILENAME
+python2 $FILE/preprocessing/generateParsedFile.py ${FILE}/$SFILENAME
 
 
 rm ${FILE}/$FILENAME.out
