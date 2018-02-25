@@ -280,12 +280,12 @@ def do_coding(event_dict):
         StoryDate = event_dict[key]['meta']['date']
         for sent in val['sents']:
             NSent += 1
+            SentenceID = '{}_{}'.format(key, sent)
             if 'parsed' in event_dict[key]['sents'][sent]:
                 if 'config' in val['sents'][sent]:
                     for _, config in event_dict[key]['sents'][sent]['config'].items():
                         change_Config_Options(config)
 
-                SentenceID = '{}_{}'.format(key, sent)
                 SentenceText = event_dict[key]['sents'][sent]['content']
                 SentenceDate = event_dict[key]['sents'][sent][
                     'date'] if 'date' in event_dict[key]['sents'][sent] else StoryDate
@@ -409,7 +409,7 @@ def run(filepaths, out_file, s_parsed):
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
     # this is called externally
-    utilities.init_logger('PETRARCH.log')
+    utilities.init_logger('PETRARCH.log', 'INFO')
     logger = logging.getLogger('petr_log')
     if config:
         print('Using user-specified config: {}'.format(config))
