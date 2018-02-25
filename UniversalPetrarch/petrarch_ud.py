@@ -409,7 +409,7 @@ def run(filepaths, out_file, s_parsed):
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
     # this is called externally
-    utilities.init_logger('PETRARCH.log',True)
+    utilities.init_logger('PETRARCH.log', 'INFO')
     logger = logging.getLogger('petr_log')
     if config:
         print('Using user-specified config: {}'.format(config))
