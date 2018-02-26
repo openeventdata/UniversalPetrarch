@@ -36,11 +36,16 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			entry_id = story.attrib['id'];
 			mongoid = story.attrib['mongoId']
 			date = story.attrib['date']
+			date = date[0:date.find("T")].replace("-","")
 			sentence = story.attrib['sentence']
 			source = story.attrib['source']
 
 			text = story.find('Text').text
-			text = text.replace('\n', ' ').strip()
+			if text is None:
+				text = ""
+			else:
+				text = text.replace('\n', ' ').strip()
+
 
 			if entry_id in docdict:
 				print('id must be unique, this article is in document dictionary :'+entry_id)
@@ -107,7 +112,7 @@ def read_doc_input(inputxml,inputparsed,outputfile):
 			#if processed>=33223:
 			#	print(line)
 			#	print(doc)
-			#	raw_input("Press Enter to continue...")
+			#raw_input("Press Enter to continue...")
 			doctexts.remove(doc)
 			sentidx = 1
 			doc = doctexts[0]
@@ -147,7 +152,7 @@ def create_sentence_xml(sentences,sents_dict,outputxml):
 		#print(isinstance(s,unicode))
 		sentinfo = sents_dict[s]
 		#print(s+" "+sentinfo['id']+"-"+sentinfo['sentence_id'])
-		sentence = ET.SubElement(root,"Sentence", {"date":sentinfo['date'],"source":sentinfo['source'],"id":sentinfo['id']+"-"+sentinfo['sentence_id'],"sentence":sentinfo['sentence']})
+		sentence = ET.SubElement(root,"Sentence", {"date":sentinfo['date'],"source":sentinfo['source'],"id":sentinfo['id']+"_"+sentinfo['sentence_id'],"sentence":sentinfo['sentence']})
 		ET.SubElement(sentence,"Text").text = s[s.index('#')+1:].decode('UTF-8')
 
 	tree = ET.ElementTree(root)

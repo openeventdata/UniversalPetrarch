@@ -1,36 +1,80 @@
 #!/bin/bash
 
-SCRIPT=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/scripts
-FILE=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/data/text
-STANFORD_SEG=/users/ljwinnie/Downloads/stanford-segmenter-2015-12-09
-CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
-STANFORD_PROPERTY=/users/ljwinnie/Desktop/petrarch2/UniversalPetrarch/preprocessing/config/StanfordCoreNLP-spanish.properties
-udpipePath=/users/ljwinnie/toolbox/udpipe-1.0.0-bin
-languageModel=/users/ljwinnie/toolbox/udpipe-1.0.0-bin/model/spanish-ud-1.2-160523.udpipe
-STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2015-01-29
-
 FILENAME=$1
+language=$2
 
-echo "Call Stanford CoreNLP to do sentence splitting..."
-java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -file ${FILE}/$FILENAME -outputFormat text -outputDirectory ${FILE}
+SCRIPT=../scripts
+FILEPATH=text
+STANFORD_SEG=segmenter
+CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
+STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2017-06-09
 
-echo "Generate sentence xml file..."
-python preprocess_doc.py ${FILE}/$FILENAME
+udpipePath=udpipe-1.0.0
 
-SFILENAME=$FILENAME-sent.xml
+
+
+if [ "$language" = "AR" ] 
+then
+	languageModel=${udpipePath}/model/arabic-ud-1.4.udpipe
+	STANFORD_PROPERTY=config/StanfordCoreNLP-arabic.properties
+	
+	echo "Call Stanford CoreNLP to do sentence splitting..."
+	java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -file ${FILEPATH}/$FILENAME -outputFormat text -outputDirectory ${FILEPATH}
+
+	echo "Generate sentence xml file..."
+	python preprocess_doc.py ${FILEPATH}/$FILENAME
+
+	SFILENAME=$FILENAME-sent.xml
+	
+	echo "Call Stanford Segmenter to do word segmenting..."
+	java -mx1g -cp $CLASSPATH edu.stanford.nlp.international.arabic.process.ArabicSegmenter -loadClassifier $STANFORD_SEG/data/arabic-segmenter-atb+bn+arztrain.ser.gz -textFile ${FILEPATH}/$FILENAME-sent.txt > ${FILEPATH}/$SFILENAME.segmented
+
+	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$SFILENAME.segmented > ${FILEPATH}/$SFILENAME.conll
+
+	rm ${FILEPATH}/$SFILENAME.segmented
+
+	
+else 
+
+	if [ "$language" = "ES" ] 
+	then
+		languageModel=${udpipePath}/model/spanish-ud-1.2-160523.udpipe
+		STANFORD_PROPERTY=config/StanfordCoreNLP-spanish.properties
+
+	elif [ "$language" = "EN" ]
+	then
+		languageModel=${udpipePath}/model/english-ud-1.2-160523.udpipe
+		STANFORD_PROPERTY=config/StanfordCoreNLP-english.properties
+
+	fi
+	
+	echo "Call Stanford CoreNLP to do sentence splitting..."
+	java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -file ${FILEPATH}/$FILENAME -outputFormat text -outputDirectory ${FILEPATH}
+
+	echo "Generate sentence xml file..."
+	python preprocess_doc.py ${FILEPATH}/$FILENAME
+
+	SFILENAME=$FILENAME-sent.xml
+
+
+	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$FILENAME-sent.txt > ${FILEPATH}/$SFILENAME.conll
+	
+	
+fi
 
 echo "Call udpipe to do pos tagging and dependency parsing..."
-${SCRIPT}/create_conll_corpus_from_text.pl ${FILE}/$FILENAME-sent.txt > ${FILE}/$FILENAME.conll
-${udpipePath}/udpipe --tag --parse --outfile=${FILE}/$SFILENAME.conll.predpos.pred --input=conllu $languageModel ${FILE}/$FILENAME.conll 
+echo "Udpipe model path: "
+echo $languageModel
+${udpipePath}/udpipe --tag --parse --outfile=${FILEPATH}/$SFILENAME.conll.predpos.pred --input=conllu $languageModel ${FILEPATH}/$SFILENAME.conll 
 # Creates $FILENAME.conll.predpos.pred
 
 
 
 echo "Ouput parsed xml file..."
-python generateParsedFile.py ${FILE}/$SFILENAME
+python generateParsedFile.py ${FILEPATH}/$SFILENAME
 
 
-rm ${FILE}/$FILENAME.out
-rm ${FILE}/$FILENAME-sent.txt
-rm ${FILE}/$FILENAME.conll
-rm ${FILE}/$SFILENAME.conll.predpos.pred
+rm ${FILEPATH}/$FILENAME.out
+rm ${FILEPATH}/$FILENAME-sent.txt
+rm ${FILEPATH}/$SFILENAME.conll
+rm ${FILEPATH}/$SFILENAME.conll.predpos.pred
