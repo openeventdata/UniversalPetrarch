@@ -2395,14 +2395,16 @@ def read_pipeline_input(pipeline_list):
         if 'corefs' in entry:
             corefs = entry['corefs']
             meta_content.update({'corefs': corefs})
-
-        split_sents = _sentence_segmenter(entry['content'])
+        if len(parsetrees) == 1:
+            split_sents = [entry['content']]
+        else:
+            split_sents = _sentence_segmenter(entry['content'])
         # TODO Make the number of sents a setting
         sent_dict = {}
         for i, sent in enumerate(split_sents[:7]):
             if parsetrees:
                 try:
-                    tree = utilities._format_parsed_str(parsetrees[i])
+                    tree = utilities._format_ud_parsed_str(parsetrees[i])
                 except IndexError:
                     tree = ''
                 sent_dict[i] = {'content': sent, 'parsed': tree}
