@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-
-
 import networkx as nx
 import PETRglobals
 import PETRreader
 import logging
 import utilities
-from sets import Set
+import sys
+if sys.version[0] == '2':
+    from sets import Set
 
 
 class NounPhrase:

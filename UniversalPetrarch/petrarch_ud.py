@@ -3,6 +3,13 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import sys
+if sys.version[0] == '3':
+    print("""Universal Petrarch is currently only tested on Python 2. If you
+encounter errors with Python 3, try switching to Python 2.
+Alternatively, pull requests enabling Python 3 compatibility would be very
+welcome! https://github.com/openeventdata/UniversalPetrarch/""")
+
 import os
 import sys
 import glob
@@ -401,6 +408,7 @@ def do_coding(event_dict):
 def run(filepaths, out_file, s_parsed):
     # this is the routine called from main()
     events = PETRreader.read_xml_input(filepaths, s_parsed)
+    logger.debug("Incoming data from XML: ", events)
     #if not s_parsed:
     #    events = utilities.stanford_parse(events)
     updated_events = do_coding(events)
@@ -429,12 +437,12 @@ def run_pipeline(data, out_file=None, config=None, write_output=True,
 
     logger.info('Hitting read events...')
     events = PETRreader.read_pipeline_input(data)
+    logger.debug("read_pipeline_input: ", events)
     if parsed:
         logger.info('Hitting do_coding')
         updated_events = do_coding(events)
     else:
-        events = utilities.stanford_parse(events)
-        updated_events = do_coding(events)
+        logger.warning("Events must be parsed")
     if not write_output:
         output_events = PETRwriter.pipe_output(updated_events)
         return output_events
@@ -444,7 +452,7 @@ def run_pipeline(data, out_file=None, config=None, write_output=True,
         sys.exit()
     elif write_output and out_file:
         PETRwriter.write_events(updated_events, out_file)
-    
+
 
 if __name__ == '__main__':
     main()
