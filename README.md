@@ -27,10 +27,11 @@ you will need to do preprocessing:
 
 
 
-## 2. Usage
+## Preprocessing 
 
 
-### Input data format  
+
+### XML Input data format  
 
 The input data should be in XML format, each element is an article or a sentence. Here are two examples:  
 
@@ -58,13 +59,13 @@ Brazil and the United States are seeking to deepen a partnership in energy, espe
 </Sentences>
 ```
 
-### Usage  
+### Preprocessing Usage  
 
 Shell scripts run_sentence.sh and run_document.sh are provided to do preprocessing of an English, Spanish or Arabic input file. 
 
 ```
-usage: run_sentence.sh INPUT_FILE LANGUAGE
-	     run_document.sh INPUT_FILE LANGUAGE
+run_sentence.sh INPUT_FILE LANGUAGE
+run_document.sh INPUT_FILE LANGUAGE
 ```
 
 Required Arguments:  
@@ -74,7 +75,7 @@ INPUT_FILE	name of the input XML file.
 LANGEUAGE	language of the input XML file. [EN|ES|AR]
 ```
 
-Before runing run_sentence.sh or run_document.sh, you need change the value of following parameters based on your situation
+Before running `run_sentence.sh` or `run_document.sh`, you need change the value of following parameters based on your situation
 
 ``` 
 * SCRIPT: the location where you put folder "preprocess_scripts"
@@ -116,11 +117,17 @@ The result from running above command is file `Sample_english_sent_parsed.xml`
 
 ## UniversalPetrarch
 
-Input data format
 
-Running UniversalPetrarch  
+UniversalPetrarch can accept the same JSON story format the other OEDA tools
+use. For an example of this format, please see
+[`UniveralPetrarch/tests/test_json_pipeline.py`](https://github.com/openeventdata/UniversalPetrarch/blob/master/UniversalPetrarch/tests/test_json_pipeline.py). This data can be fed to `petrarch_ud.run_pipeline` for processing.
 
-`usage: python petrarch_ud.py batch -i INPUT_FILE -o OUTPUT_FILE -c CONFIG_FILE -d`
+Alternatively, UniversalPetrarch can be run directly on the XML files produced
+in the pre-processing step:
+
+```
+python petrarch_ud.py batch -i INPUT_FILE -o OUTPUT_FILE -c CONFIG_FILE -d
+```
 
 Required Arguments:  
 
