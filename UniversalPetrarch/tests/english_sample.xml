@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20150609" id="GOLD_4" sentence="True" source="AFP">
+<EventCoding eventcode="057" sourcecode="UKR" targetcode="IGOEUREEC" />
+<Text>
+Ukraine ratified a sweeping agreement with the European Union on Tuesday.
+</Text>
+<Parse>1	Ukraine	Ukraine	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	ratified	ratify	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+4	sweeping	sweeping	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	agreement	agreement	NOUN	NN	Number=Sing	2	dobj	_	_
+6	with	with	ADP	IN	_	9	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+8	European	european	PROPN	NNP	Number=Sing	9	compound	_	_
+9	Union	Union	PROPN	NNP	Number=Sing	5	nmod	_	_
+10	on	on	ADP	IN	_	11	case	_	_
+11	Tuesday	Tuesday	PROPN	NNP	Number=Sing	2	nmod	_	_
+12	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+<Sentence date="20150609" id="SYNSET_0" sentence="True" source="AFP">
+<EventCoding eventcode="1014" sourcecode="USAGOV" targetcode="IRN" />
+<Text>
+Obama ordered an investigation against Iran
+</Text>
+<Parse>1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	ordered	order	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	an	a	DET	DT	Definite=Ind|PronType=Art	4	det	_	_
+4	investigation	investigation	NOUN	NN	Number=Sing	2	dobj	_	_
+5	against	against	ADP	IN	_	6	case	_	_
+6	Iran	Iran	PROPN	NNP	Number=Sing	4	nmod	_	_
+</Parse></Sentence>
+<Sentence date="20080806" id="AFP0808020857_1" sentence="True" source="AFP">
+<EventCoding eventcode="084" sourcecode="ISR" targetcode="PSEGOV" />
+<Text>
+Israel on Wednesday released the mayor of the northern West Bank city of 
+Nablus, a member of the Islamist Hamas movement jailed over a year ago, 
+Palestinian security officials said. 
+</Text>
+<Parse>1	Israel	Israel	PROPN	NNP	Number=Sing	4	nsubj	_	_
+2	on	on	ADP	IN	_	3	case	_	_
+3	Wednesday	Wednesday	PROPN	NNP	Number=Sing	1	nmod	_	_
+4	released	release	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+6	mayor	mayor	NOUN	NN	Number=Sing	4	dobj	_	_
+7	of	of	ADP	IN	_	12	case	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+9	northern	northern	ADJ	JJ	Degree=Pos	12	amod	_	_
+10	West	west	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Bank	Bank	PROPN	NNP	Number=Sing	12	compound	_	_
+12	city	city	NOUN	NN	Number=Sing	6	nmod	_	_
+13	of	of	ADP	IN	_	14	case	_	_
+14	Nablus	Nablus	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	,	,	PUNCT	,	_	4	punct	_	_
+16	a	a	DET	DT	Definite=Ind|PronType=Art	17	det	_	_
+17	member	member	NOUN	NN	Number=Sing	4	nmod:npmod	_	_
+18	of	of	ADP	IN	_	22	case	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+20	Islamist	Islamist	PROPN	NNP	Number=Sing	22	compound	_	_
+21	Hamas	Hamas	PROPN	NNP	Number=Sing	22	compound	_	_
+22	movement	movement	NOUN	NN	Number=Sing	17	nmod	_	_
+23	jailed	jaile	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
+24	over	over	ADP	IN	_	26	case	_	_
+25	a	a	DET	DT	Definite=Ind|PronType=Art	26	det	_	_
+26	year	year	NOUN	NN	Number=Sing	23	nmod	_	_
+27	ago	ago	ADV	RB	_	26	advmod	_	_
+28	,	,	PUNCT	,	_	17	punct	_	_
+29	Palestinian	palestinian	ADJ	JJ	Degree=Pos	30	amod	_	_
+30	security	security	NOUN	NN	Number=Sing	31	compound	_	_
+31	officials	official	NOUN	NNS	Number=Plur	32	nsubj	_	_
+32	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	acl:relcl	_	_
+33	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+<Sentence date="19790822" id="REUT-790822-0018_1" sentence="True" source="Reuters">
+<EventCoding eventcode="0842" sourcecode="JOR" targetcode="PSE" />
+<Text>
+Jordan has agreed to release 75 Palestinian prisoners , Palestinian sources said in Beirut today .
+</Text>
+<Parse>1	Jordan	Jordan	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	agreed	agree	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	release	release	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	75	75	NUM	CD	NumType=Card	8	nummod	_	_
+7	Palestinian	palestinian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	prisoners	prisoner	NOUN	NNS	Number=Plur	12	nsubj	_	_
+9	,	,	PUNCT	,	_	8	punct	_	_
+10	Palestinian	palestinian	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	sources	source	NOUN	NNS	Number=Plur	8	appos	_	_
+12	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	ccomp	_	_
+13	in	in	ADP	IN	_	14	case	_	_
+14	Beirut	Beirut	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	today	today	NOUN	NN	Number=Sing	12	nmod:tmod	_	_
+16	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+<Sentence date="19820810" id="REUT-820810-0025_1" sentence="True" source="Reuters">
+<EventCoding eventcode="0871" sourcecode="USAGOV" targetcode="LBN" />
+<Text>
+The Reagan administration has urged all parties to observe scrupulously ceasefire in Beirut , saying U.S.-led negotiations to settle the crisis in Lebanon are in a critical phase .
+</Text>
+<Parse>1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Reagan	Reagan	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	administration	administration	NOUN	NN	Number=Sing	5	nsubj	_	_
+4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	urged	urge	VERB	VBN	Tense=Past|VerbForm=Part	28	csubj	_	_
+6	all	all	DET	DT	_	7	det	_	_
+7	parties	party	NOUN	NNS	Number=Plur	5	dobj	_	_
+8	to	to	PART	TO	_	9	mark	_	_
+9	observe	observe	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+10	scrupulously	scrupulously	ADV	RB	_	11	advmod	_	_
+11	ceasefire	ceasefire	NOUN	NN	Number=Sing	9	dobj	_	_
+12	in	in	ADP	IN	_	13	case	_	_
+13	Beirut	Beirut	PROPN	NNP	Number=Sing	11	nmod	_	_
+14	,	,	PUNCT	,	_	9	punct	_	_
+15	saying	say	VERB	VBG	VerbForm=Ger	9	advcl	_	_
+16	U.S.-led	U.S.-led	ADJ	JJ	Degree=Pos	17	amod	_	_
+17	negotiations	negotiation	NOUN	NNS	Number=Plur	15	dobj	_	_
+18	to	to	PART	TO	_	19	mark	_	_
+19	settle	settle	VERB	VB	VerbForm=Inf	15	advcl	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+21	crisis	crisis	NOUN	NN	Number=Sing	19	dobj	_	_
+22	in	in	ADP	IN	_	23	case	_	_
+23	Lebanon	Lebanon	PROPN	NNP	Number=Sing	19	nmod	_	_
+24	are	be	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	28	cop	_	_
+25	in	in	ADP	IN	_	28	case	_	_
+26	a	a	DET	DT	Definite=Ind|PronType=Art	28	det	_	_
+27	critical	critical	ADJ	JJ	Degree=Pos	28	amod	_	_
+28	phase	phase	NOUN	NN	Number=Sing	0	root	_	_
+29	.	.	PUNCT	.	_	28	punct	_	_
+</Parse></Sentence>
+</Sentences>

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-
-
 import networkx as nx
 import PETRglobals
 import PETRreader
 import logging
 import utilities
-from sets import Set
+import sys
+if sys.version[0] == '2':
+    from sets import Set
 
 
 class NounPhrase:
@@ -160,7 +160,7 @@ class NounPhrase:
 		"""
 
 		# --        print('mc-entry',actors,agents)
-		
+
 
 		def mix(a,b):
 			if not b[1:] in a[-len(b[1:]):] and b[0] in '~':
@@ -170,7 +170,7 @@ class NounPhrase:
 				# handle agents such as "NGO~"
 				return b[:-1] + a
 			else:
-				return a 
+				return a
 
 		codes = set()
 		actors = actors if actors else ['~']
@@ -270,7 +270,7 @@ class NounPhrase:
 		</Sentence>
 
 		"""
-		
+
 		finalcode = None
 		nodatecode = None
 		matched_code = []
@@ -293,7 +293,7 @@ class NounPhrase:
 
 			#print(("\n").join(date))
 			#print("curdate:"+ str(self.date))
-			
+
 			if not date:
 				nodatecode = j[0]
 			elif len(date) == 1:
@@ -367,13 +367,13 @@ class VerbPhrase:
 class Sentence:
 	"""
     Holds the information of a sentence and its dependency tree.
-    
+
 
     Methods
     -------
-    
+
     __init__ : Initialization and instantiation
-    
+
     str_to_graph: Reads UD parse into memory
 	"""
 
@@ -395,7 +395,7 @@ class Sentence:
         nouns: dictionary
                noun phrases in the sentence
                key is the headID in the dependency parse tree graph, value is a NounPhrase object
-        
+
         udgraph: graph
         		 store denpendency parse tree as a graph
 
@@ -423,7 +423,7 @@ class Sentence:
 		#self.verb_analysis = {}
 		self.events = {}
 		self.metadata = {'nouns': [], 'verbs':[],'triplets':[]}
-    
+
 
 	def str_to_graph(self,str):
 		dpgraph = nx.DiGraph()
@@ -449,7 +449,7 @@ class Sentence:
 				#if the root node is a verb, add it directly and find whether any conjunctive verb exists
 				if self.udgraph.node[root]['pos'] == 'VERB':
 					self.rootID.append(root)
-				
+
 				else:
 					#if the root node is not a verb
 					#if a copula relation exist, find the verb connected to the root, and the verb as root
@@ -469,7 +469,7 @@ class Sentence:
 				#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
 
 		#raw_input("roots: "+("#").join(str(x) for x in self.rootID))
-							
+
 
 
 	def get_nounPharse(self, nounhead):
@@ -485,11 +485,11 @@ class Sentence:
 
 			flag = True
 			parents = [nounhead]
-			
-			
+
+
 			while len(parents)>0:
 				temp = []
-				'''ignore the conjunt nouns''' 
+				'''ignore the conjunt nouns'''
 				for parent in parents:
 					if parent in allsuccessors.keys():
 						for child in allsuccessors[parent]:
@@ -501,11 +501,11 @@ class Sentence:
 								#logger.debug(self.udgraph[nounhead][child]['relation'])
 								#logger.debug(self.udgraph.node[nounhead])
 								nmod_successors = nx.dfs_successors(self.udgraph,child)
-								
+
 								pptemp = []
 								pptemp.append(child)
 								for key in nmod_successors.keys():
-									pptemp.extend(nmod_successors[key]) 
+									pptemp.extend(nmod_successors[key])
 								pptemp.sort()
 								logger.debug(pptemp)
 								if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
@@ -513,12 +513,12 @@ class Sentence:
 									prep_phrase.append(pptemp)
 
 				parents = temp
-			
+
 			'''
 			for parent,child in allsuccessors.items():
 				print(str(parent))
 				print(child)
-			'''		
+			'''
 
 
 			#for value in allsuccessors.values():
@@ -533,7 +533,7 @@ class Sentence:
 		#	npIDs = npIDs[1:]
 		for npID in npIDs:
 			npTokens.append(self.udgraph.node[npID]['token'])
-			
+
 		nounPhrasetext = (' ').join(npTokens)
 
 		np = NounPhrase(self,npIDs,nounhead,self.date)
@@ -557,16 +557,16 @@ class Sentence:
 
 	def get_nounPharses(self, nounhead):
 		"""
-			Extract noun phrases given the head of the phrase. 
+			Extract noun phrases given the head of the phrase.
 			It is an extension of funciton get_nounPharse()
 			1. If conjunctions are found in the modifiers, split the noun phrases into several noun phrases.
 			e.g. "the ambassadors of Arnor, Osgiliath and Gondor"
 			three noun phrases will be generated: the ambassadors of Arnor, the ambassadors of Osgiliath , the ambassadors of Gondor"
-			
+
 			2. apply modifier to each conjunctive nouns
 			e.g. "Lawmakers and officials in Arnor"
 			two noun phrases will be generated: lawmakers in Arnor, officials in Arnor
-			
+
 		"""
 		nps = []
 
@@ -580,16 +580,16 @@ class Sentence:
 
 			flag = True
 			parents = [nounhead]
-			
-			
+
+
 			while len(parents)>0:
 				temp = []
-				'''ignore the conjunt nouns''' 
+				'''ignore the conjunt nouns'''
 				parentgen = (parent for parent in parents if parent in allsuccessors.keys())
 				for parent in parentgen:
 					for child in allsuccessors[parent]:
 						if parent!=nounhead or self.udgraph[parent][child]['relation'] not in ['cc','conj']:
-							
+
 							#find noun modifiers conjuctions
 							if self.udgraph[parent][child]['relation'] in ['nmod']:
 								nmod_conjs[child]=[]
@@ -599,12 +599,12 @@ class Sentence:
 											nmod_conjs[child].append(nmodchild)
 
 							temp.append(child)
-							
+
 							if parent in nmod_conjs and child in nmod_conjs[parent]:
 								print(str(parent)+":"+str(child))
 							else:
 								npIDs.append(child)
-	
+
 				parents = temp
 
 			parents = [nounhead]
@@ -621,11 +621,11 @@ class Sentence:
 						if parent==nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
 							# extract prepositional phrases in a noun phrase
 							nmod_successors = nx.dfs_successors(self.udgraph,child)
-							
+
 							pptemp = []
 							pptemp.append(child)
 							for key in nmod_successors.keys():
-								pptemp.extend(nmod_successors[key]) 
+								pptemp.extend(nmod_successors[key])
 							pptemp.sort()
 							logger.debug(pptemp)
 							if self.udgraph.node[pptemp[0]]['pos'] in ['ADP']:
@@ -633,20 +633,20 @@ class Sentence:
 								prep_phrase.append(pptemp)
 
 				parents = temp
-			
+
 			'''
 			for parent,child in allsuccessors.items():
 				print(str(parent))
 				print(child)
-			'''		
-			'''	
+			'''
+			'''
 
 			for nmod,nmodchildren in nmod_conjs.items():
 				print("nmod:"+str(nmod)+":"+self.udgraph.node[nmod]['token'])
 				for nmodchild in nmodchildren:
 					print("nmodchild:"+str(nmodchild)+":"+self.udgraph.node[nmodchild]['token'])
 			'''
-				
+
 				#if len(nmodchildren)>0:
 					#raw_input(" compound nous")
 
@@ -659,7 +659,7 @@ class Sentence:
 		#	npIDs = npIDs[1:]
 		for npID in npIDs:
 			npTokens.append(self.udgraph.node[npID]['token'])
-			
+
 		nounPhrasetext = (' ').join(npTokens)
 		logger.debug("noun:"+nounPhrasetext)
 
@@ -697,7 +697,7 @@ class Sentence:
 					else:
 						conjnpIDs.append(npID)
 						conjnpTokens.append(self.udgraph.node[npID]['token'])
-			
+
 				conjnounPhrasetext = (' ').join(conjnpTokens)
 				logger.debug("conjnoun:"+conjnounPhrasetext)
 
@@ -749,11 +749,11 @@ class Sentence:
 			vpTokens.append(self.udgraph.node[vpID]['lemma'])
 
 		verbPhrasetext = (' ').join(vpTokens)
-		
+
 		vp.text = verbPhrasetext
 		vp.rawtext = (' ').join(vpTokensraw)
 		vp.head = self.udgraph.node[verbhead]['lemma']
-		
+
 		return vp
 
 
@@ -765,18 +765,18 @@ class Sentence:
 		def resolve_pronoun(pronounID,verbID,pronounrole):
 			predecessors = self.udgraph.predecessors(verbID)
 			for predecessor in predecessors:
-				if 'relation' in self.udgraph[predecessor][verbID] and self.udgraph[predecessor][verbID]['relation'] in ['ccomp']: 
+				if 'relation' in self.udgraph[predecessor][verbID] and self.udgraph[predecessor][verbID]['relation'] in ['ccomp']:
 					logger.debug("resolve pronoun: found the governer of ccomp verb:"+ self.udgraph.node[predecessor]['token'])
 					psource,ptarget,pothernoun = self.get_source_target([predecessor])
 					if pronounrole in ['source']:
 						logger.debug("resolve pronoun: found resolved source:"+str(len(psource)))
 						return psource
-						
+
 			return []
-						
-						
-					
-					
+
+
+
+
 		source = []
 		target = []
 		othernoun = []
@@ -809,7 +809,7 @@ class Sentence:
 
 	def get_conj_noun(self,nodeID):
 		""" method for extracting other conjunt nouns of this noun
-			for example: Brazil and the United States, given the nodeID of Brazil, 
+			for example: Brazil and the United States, given the nodeID of Brazil,
 			it will return noun phrase object of "the United States"
 
 			apply modifier to each conjunctive nouns
@@ -870,7 +870,7 @@ class Sentence:
 				#	self.verbs[verb.headID] = verb
 				if verb.headID not in self.verbs:
 					self.verbs[verb.headID] = verb
-					
+
 				source,target,othernoun = self.get_source_target(verb.verbIDs)
 
 				#check for conjuncting verbs
@@ -882,18 +882,18 @@ class Sentence:
 						source.extend(psource)
 
 				#find the subject for 'xcomp' relation
-				#An open clausal complement (xcomp) of a verb or an adjective is a predicative or clausal complement without its own subject. 
-				#The reference of the subject is necessarily determined by an argument external to the xcomp 
+				#An open clausal complement (xcomp) of a verb or an adjective is a predicative or clausal complement without its own subject.
+				#The reference of the subject is necessarily determined by an argument external to the xcomp
 				#(normally by the object of the next higher clause, if there is one, or else by the subject of the next higher clause).
 				for predecessor in predecessors:
-					if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['xcomp']: 
+					if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['xcomp']:
 						logger.debug("found the governer of xcomp verb:"+ self.udgraph.node[predecessor]['token'])
 						psource,ptarget,pothernoun = self.get_source_target([predecessor])
 						if len(ptarget)>0:
 							source.extend(ptarget)
 						elif len(psource)>0:
 							source.extend(psource)
-						#raw_input("find xcomp relation")					
+						#raw_input("find xcomp relation")
 
 				#find targets from the subjects of subordinate clause
 				for successor in self.udgraph.successors(verb.headID):
@@ -904,15 +904,15 @@ class Sentence:
 							#raw_input("verb:"+self.verbs[successor].text)
 						#else:
 						#	self.verbs[successor] = cverb
-							
+
 						if cverb not in self.verbs:
-							self.verbs[successor] = cverb	
-							
+							self.verbs[successor] = cverb
+
 						logger.debug("found the ccomp verb:"+ self.udgraph.node[successor]['token'])
 						ssource,starget,sothernoun = self.get_source_target([successor])
 						if len(ssource)>0:
 							target.extend(ssource)
-					
+
 				#for t in target: print(t)
 				if len(source)==0 and len(target)>0:
 					for t in target:
@@ -931,7 +931,7 @@ class Sentence:
 
 				#othernoun are usually prepositional phrase, combine the verb and preposition as the new verb phrase
 				#make the noun phrase in prepositional phrase as new target
-				#improvement is still needed			
+				#improvement is still needed
 				if len(othernoun)>0:
 					for o in othernoun:
 						if self.udgraph.node[o.npIDs[0]]['pos']=='ADP':
@@ -949,14 +949,14 @@ class Sentence:
 
 
 							verbPhrasetext = (' ').join(vpTokens)
-							
+
 							newverb.text = verbPhrasetext
 							newverb.rawtext = (' ').join(vpTokensraw)
 							newverb.head = verb.head
 							newverb.passive = verb.passive
 							newverb.negative = verb.negative
 							logger.debug("construct new vp:"+newverb.text)
-						
+
 							newnoun = NounPhrase(self,o.npIDs[1:],o.headID,o.date)
 							targetTokens = []
 							for tID in newnoun.npIDs:
@@ -975,7 +975,7 @@ class Sentence:
 									for s in source:
 										triplet = (s,newtarget,newverb)
 										self.metadata['triplets'].append(triplet)
-										
+
 							else:
 								newsource = newnoun
 								logger.debug("construct new source:"+newsource.text)
@@ -988,10 +988,10 @@ class Sentence:
 										triplet = (newsource,t,newverb)
 										self.metadata['triplets'].append(triplet)
 
-							# if the noun has conjunction, build a new triplet using the verb and conjunction 
+							# if the noun has conjunction, build a new triplet using the verb and conjunction
 							for successor in self.udgraph.successors(o.headID):
 								if 'relation' in self.udgraph[o.headID][successor] and self.udgraph[o.headID][successor]['relation'] in ['conj']:
-									
+
 									newconjnpids = o.npIDs[1:]
 									headidx = newconjnpids.index(o.headID)
 									newconjnpids[headidx] = successor
@@ -1015,7 +1015,7 @@ class Sentence:
 											for s in source:
 												triplet = (s,newtarget,newverb)
 												self.metadata['triplets'].append(triplet)
-										
+
 									else:
 										newsource = newconjnoun
 										logger.debug("construct new source:"+newsource.text)
@@ -1034,7 +1034,7 @@ class Sentence:
 				#self.metadata['nouns'].extend(target)
 				#self.metadata['nouns'].extend(othernoun)
 
-		
+
 
 
 	def get_verb_code(self):
@@ -1049,7 +1049,7 @@ class Sentence:
 
 			cfound = True
 			match = ""
-			for npID in filter(lambda a: a!=noun_phrase.headID,noun_phrase.npIDs):				
+			for npID in filter(lambda a: a!=noun_phrase.headID,noun_phrase.npIDs):
 				nptoken = self.udgraph.node[npID]['token'].upper()
 				nplemma = self.udgraph.node[npID]['lemma'].upper()
 
@@ -1066,8 +1066,8 @@ class Sentence:
 				if nptoken in path:
 					subpath = path[nptoken]
 					logger.debug(subpath)
-					
-					cfound = True	
+
+					cfound = True
 					match = reroute(subpath, lambda a: match_phrase(a, None))
 					#if match:
 						#return match
@@ -1076,8 +1076,8 @@ class Sentence:
 				elif nplemma in path:
 					subpath = path[nplemma]
 					logger.debug(subpath)
-					
-					cfound = True	
+
+					cfound = True
 					match = reroute(subpath, lambda a: match_phrase(a, None))
 					#if match:
 						#return match
@@ -1096,7 +1096,7 @@ class Sentence:
 
 		def match_noun(path, noun_phrase):
 			logger.debug("mn-entry")
-			
+
 			if not isinstance(noun_phrase,basestring):
 				logger.debug("noun:"+noun_phrase.head+"#"+noun_phrase.text)
 				head = noun_phrase.head.upper()
@@ -1115,7 +1115,7 @@ class Sentence:
 					if match:
 						logger.debug(match)
 						return match
-			
+
 			if "$" in path:
 				#print("$ "+path)
 				temppath = path["$"]
@@ -1242,7 +1242,7 @@ class Sentence:
 			verb = triple[2]
 
 			'''get code from verb dictionary'''
-			logger.debug("finding code of verb:"+verb.text)					
+			logger.debug("finding code of verb:"+verb.text)
 			verbDictionary = PETRglobals.VerbDict['verbs']
 			verbDictPath = verbDictionary
 			code = None
@@ -1296,12 +1296,12 @@ class Sentence:
 				logger.debug(matched_txts)
 				#raw_input("verb pharse has length large than 1")
 
-					
-			if code != None and meaning != None:	
+
+			if code != None and meaning != None:
 				logger.debug(code+"\t"+meaning+"\t"+verb.text+"\t"+(" ").join(matched_txt)+"\t"+str(len(verb.vpIDs)))
 			else:
 				logger.debug("None code and none meaning")
-			
+
 
 			'''get code from pattern dictionary'''
 			patternDictionary = PETRglobals.VerbDict['phrases']
@@ -1319,7 +1319,7 @@ class Sentence:
 						logger.debug("matched:"+code+"\t"+matched_pattern)
 
 					pairmatch = False
-					if '%' in patternDictPath: 
+					if '%' in patternDictPath:
 						temppatternDictPath = patternDictPath['%']
 						logger.debug("'%' matched")
 						pairmatch = match_lower(temppatternDictPath,verb,target)
@@ -1328,7 +1328,7 @@ class Sentence:
 							matched_pattern = pairmatch['line']
 							logger.debug("pair matched:"+code+"\t"+matched_pattern)
 
-					if '+' in patternDictPath: 
+					if '+' in patternDictPath:
 						temppatternDictPath = patternDictPath['+']
 						logger.debug("'+' matched")
 						match = match_lower(temppatternDictPath,verb,target)
@@ -1339,7 +1339,7 @@ class Sentence:
 
 
 					lowermatch = match_lower(patternDictPath,verb,target)
-					
+
 					if pairmatch and "(" in pairmatch['line']:
 						match = pairmatch
 					elif lowermatch and "(" in lowermatch['line']:
@@ -1355,7 +1355,7 @@ class Sentence:
 						patternDictPath = patternDictPath['*']
 						logger.debug("'*' matched")
 
-					
+
 					if len(verb.vpIDs)>1:
 						logger.debug("matching prep:")
 						temppatternDictPath = patternDictPath
@@ -1385,7 +1385,7 @@ class Sentence:
 							matched_pattern = match['line']
 							logger.debug("matched:"+code+"\t"+matched_pattern)
 
-							
+
 					logger.debug("processing target:")
 					match = match_noun(patternDictPath,target)
 					'''
@@ -1408,7 +1408,7 @@ class Sentence:
 
 						source = newsource if not isinstance(newsource,basestring) else source
 						target = newtarget if not isinstance(newtarget,basestring) else target
-					
+
 
 			tripleID = ('-' if isinstance(source,basestring) else str(source.headID)) + '#' + \
 			           ('-' if isinstance(target,basestring) else str(target.headID)) + '#' + \
@@ -1426,8 +1426,8 @@ class Sentence:
 					verbcode = code
 				if verb.negative == True:
 					#raw_input("before negated:"+verbcode)
-					if verbcode not in ['-','---']  and int(verbcode)<=200 : 
-					#validation verbs have codes over 200, add this condition to make sure the program is not crashed. 
+					if verbcode not in ['-','---']  and int(verbcode)<=200 :
+					#validation verbs have codes over 200, add this condition to make sure the program is not crashed.
 						tempcode = utilities.convert_code(verbcode)[0] - 0xFFFF
 						tempverbcode = str(utilities.convert_code(tempcode,0))
 						logger.debug("negated:"+verbcode+"\thex:"+hex(tempcode))
@@ -1436,19 +1436,19 @@ class Sentence:
 						else:
 							verbcode = tempverbcode
 						#raw_input("find negated verb:")
-				
+
 			else:
 				verbcode = None
 
 
-			self.triplets[tripleID] = {}   
+			self.triplets[tripleID] = {}
 			self.triplets[tripleID]['triple']=newtriple
 			self.triplets[tripleID]['verbcode'] = verbcode
 			self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
 			self.triplets[tripleID]['meaning'] = (",").join(meanings)
 
 			#raw_input("Press Enter to continue...")
-	
+
 	def get_events(self):
 		logger = logging.getLogger('petr_log.PETRgraph')
 		self.get_phrases()
@@ -1472,17 +1472,17 @@ class Sentence:
 			if '%' in triple['matched_txt'] and  (not target or not isinstance(target,basestring) or target == '-'):
 				paired_event[tripleID]=triple
 				#continue
-			
+
 			source_meaning=''
 			if not isinstance(source,basestring):
-				source.get_meaning() 
+				source.get_meaning()
 				source_meaning=source.meaning if source.meaning != None else ''
 				logger.debug("source: "+ source.head+" code: "+(("#").join(source.meaning) if source.meaning != None else '-'))
 				self.nouns[source.headID]=source
 
 			target_meaning=['---']
 			if not isinstance(target,basestring):
-				target.get_meaning() 
+				target.get_meaning()
 				target_meaning=target.meaning if target.meaning != None else ['---']
 				logger.debug("target: "+ target.head+" code: "+(("#").join(target.meaning) if target.meaning != None else '-'))
 				self.nouns[target.headID]=target
@@ -1525,12 +1525,12 @@ class Sentence:
 				continue
 
 			verb = triple['triple'][2]
-			
+
 
 			if len(root_event)==0:
 				self.events[tripleID]=[]
 				self.events[tripleID]=(list(triple['event']))
-				
+
 			for root in self.rootID:
 				if root not in root_event:
 					continue
@@ -1554,7 +1554,7 @@ class Sentence:
 							else:
 								event_after_transfer = [event_before_transfer]
 								current_eventID = reventID
-								
+
 							logger.debug("event"+tripleID+"transformation:")
 							logger.debug(event_after_transfer)
 
@@ -1570,8 +1570,8 @@ class Sentence:
 											tempID = tempID + "0"
 										self.events[tempID] = []
 										self.events[tempID].extend(list(e))
-											
-									
+
+
 
 								elif isinstance(e,tuple) and isinstance(e[1],tuple) and e[2]== None and e[1][2] != None :
 									if tripleID not in self.events:
@@ -1591,7 +1591,7 @@ class Sentence:
 
 		# check the verb codes
 		'''
-		finalverbs = {} 
+		finalverbs = {}
 		for eventID in self.events:
 			if eventID not in self.triplets:
 				continue
@@ -1608,7 +1608,7 @@ class Sentence:
 				finalverbs[vid] = self.events[eventID][2]
 			else:
 				logger.debug(self.events[eventID][1])
-				#if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None']: 
+				#if len(self.events[eventID][1])==0 and self.events[eventID][2] not in ['---',None,'None']:
 				#and self.events[evnetID][2] != PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code'] :
 				if self.events[eventID][2] not in ['---',None,'None'] and triplet['triple'][2].head.upper() in PETRglobals.VerbDict['verbs'] and (self.events[eventID][2] != code['code'] for code in PETRglobals.VerbDict['verbs'][triplet['triple'][2].head.upper()]['#']['#']):
 				#PETRglobals.VerbDict['verbs'][triplet['meaning']]['#']['#']['code']:
@@ -1648,7 +1648,7 @@ class Sentence:
 						idx = idx + 1
 
 		return self.events
-			
+
 
 
 	def match_transform(self, e):
@@ -1692,7 +1692,7 @@ class Sentence:
 
 			'''
 			logger.debug("recurse entry..")
-            
+
 			path = pdict
 			if isinstance(pdict, list):
 				#transfromation pattern is found
@@ -1720,7 +1720,7 @@ class Sentence:
 				#print(pdict)
 				#print(codelist)
 				masks = filter(lambda a: a in pdict, codelist)
-				
+
 				#print(masks)
 				logger.debug("actor:")
 				logger.debug(actor)
@@ -1759,7 +1759,7 @@ class Sentence:
 						v2a[var] = actor
 						a2v[actor] = var
 					return recurse(path[var], event[1], a2v, v2a)
-			
+
 			#logger.debug("no transformation is present")
 
 			return False
@@ -1767,7 +1767,7 @@ class Sentence:
 
 		logger.debug("match_transform entry...")
 
-		try:            
+		try:
 			logger.debug(e)
 
 			t = recurse(PETRglobals.VerbDict['transformations'], e)
@@ -1798,7 +1798,7 @@ class Sentence:
 							logger.debug(event)
 							results.append(event)
 						return results
-					
+
 					code_combined = utilities.combine_code(utilities.convert_code(e[2])[0],utilities.convert_code(e[1][2])[0])
 					event = (e[0], [e[1][0]], utilities.convert_code(code_combined,0))
 					logger.debug(event)
@@ -1833,7 +1833,7 @@ class Sentence:
 
 	def filter_triplet_with_time_expression(self):
 		#filter out triplet containing time expressions as target
-		#only works for English now 
+		#only works for English now
 		timeexps=Set(['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'])
 
 		def has_time_expression(triplet):
@@ -1847,7 +1847,7 @@ class Sentence:
 				return False
 
 		self.metadata['triplets'] = [t for t in self.metadata['triplets'] if not has_time_expression(t)]
-			
+
 
 
 

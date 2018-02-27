@@ -1,13 +1,14 @@
 #!/bin/bash
 
-FILENAME=$1
-language=$2
-
-SCRIPT=../scripts
-FILEPATH=text
-STANFORD_SEG=segmenter
+SCRIPT=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/scripts
+FILE=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/data/text
+STANFORD_SEG=/Users/ahalterman/MIT/NSF_RIDIR/stanford-segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
-STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2017-06-09
+STANFORD_PROPERTY=/Users/ahalterman/MIT/NSF_RIDIR/UniversalPetrarch/UniversalPetrarch/preprocessing/config/StanfordCoreNLP-english.properties
+udpipePath=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/bin-osx
+languageModel=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/models/english-ud-1.2-160523.udpipe
+STANFORD_CORENLP=/Users/ahalterman/MIT/NSF_RIDIR/stanford-corenlp
+
 
 udpipePath=udpipe-1.0.0
 

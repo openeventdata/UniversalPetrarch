@@ -7,9 +7,9 @@ SCRIPT=../scripts
 FILEPATH=../data/text
 STANFORD_SEG=segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
-STANFORD_CORENLP=/users/ljwinnie/toolbox/stanford-corenlp-full-2017-06-09
+STANFORD_CORENLP=/Users/ahalterman/MIT/NSF_RIDIR/stanford-corenlp
 
-udpipePath=udpipe-1.0.0
+udpipePath=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/bin-osx
 
 
 if [ "$language" = "AR" ] 
@@ -38,7 +38,7 @@ else
 
 	elif [ "$language" = "EN" ]
 	then
-		languageModel=${udpipePath}/model/english-ud-1.2-160523.udpipe
+		languageModel=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/models/english-ud-1.2-160523.udpipe
 		STANFORD_PROPERTY=config/StanfordCoreNLP-english.properties
 
 	fi
