@@ -29,10 +29,35 @@ class NounPhrase:
 		# 1. matching the main part of noun phrase string in the actor or agent dictionary
 		# main part is extracted by removing all the prepositional phrases in the noun phrase
 
-		npMainText = self.text
-		for prep_phrase in self.prep_phrase:
-			logger.debug("pphrase:"+prep_phrase.text)
-			npMainText = npMainText.replace(prep_phrase.text,"")
+		#npMainText = self.text
+		#for prep_phrase in self.prep_phrase:
+		#	logger.debug("pphrase:"+prep_phrase.text)
+		#	npMainText = npMainText.replace(prep_phrase.text,"")
+
+		direct_modifier_ids = [] #find direct modifiers of noun head, remove preposition phrases
+		for successor in self.sentence.udgraph.successors(self.headID):
+			relation = self.sentence.udgraph[self.headID][successor]['relation']
+			if relation in ['amod','compound','det','name'] or relation.startswith("nmod"):
+				direct_modifier_ids.append(successor)
+				direct_modifier_ids.extend(self.sentence.udgraph.successors(successor))
+
+		direct_modifier_ids.sort()
+		#print(direct_modifier_ids)
+
+		npMainTextIds = []
+		npMainTextIds.extend(direct_modifier_ids)
+		npMainTextIds.append(self.headID)
+		npMainTextIds.sort()
+		npMainTokens = []
+		for npID in range(npMainTextIds[0],min(npMainTextIds[-1],self.npIDs[-1])+1):
+			npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
+		npMainText = (" ").join(npMainTokens)
+		#print(self.text)
+		#print(npMainTextIds)
+		#print(npMainText)
+		if npMainText not in self.text:
+			npMainText = self.text
+			#print(npMainText)
 
 		logger.debug("npMainText:"+npMainText)
 		codes,roots,matched_txt = self.textMatching(npMainText.upper().split(" "))
@@ -62,28 +87,30 @@ class NounPhrase:
 
 		index = 0
 		while index < len(npText):
-		    match = self.code_extraction(PETRglobals.ActorDict, npText[index:], 0)  # checking for actors
-		    if match:
-		        # --                print('NPgm-m-1:',match)
-		        codes += match[0]
-		        roots += match[3]
-		        index += match[2]
-		        matched_txt += [match[1]]
+			
+			match = self.code_extraction(PETRglobals.ActorDict, npText[index:], 0)  # checking for actors
+			if match:
+				# --                print('NPgm-m-1:',match)
+				codes += match[0]
+				roots += match[3]
+				index += match[2]
+				matched_txt += [match[1]]
 		# --                print('NPgm-1:',matched_txt)
-		        continue
+				continue
 
-		    match = self.code_extraction(PETRglobals.AgentDict, npText[index:], 0)  # checking for agents
-		    if match:
+			match = self.code_extraction(PETRglobals.AgentDict, npText[index:], 0)  # checking for agents
+
+			if match:
 		        # --                print('NPgm-2.0:',roots)
-		        codes += match[0]
-		        roots += [['~']]
-		        index += match[2]
-		        matched_txt += [match[1]]
-		        """print('NPgm-2:',matched_txt) # --
-		        print('NPgm-2.1:',roots)"""
-		        continue
-		    index += 1
-
+				codes += match[0]
+				roots += [['~']]
+				index += match[2]
+				matched_txt += [match[1]]
+				"""print('NPgm-2:',matched_txt) # --
+				print('NPgm-2.1:',roots)"""
+				continue
+			
+			index += 1
 		return codes,roots,matched_txt
 
 	def code_extraction(self,path, words, length, so_far=""):
@@ -92,22 +119,24 @@ class NounPhrase:
 		# --            print('NPgm-rec-lev:',len(getouterframes(currentframe(1))))  # --
 
 		if words and words[0] in path:
-		    match = self.code_extraction(path[words[0]], words[1:], length + 1, so_far + " " + words[0])
-		    if match:
-		        return match
+			match = self.code_extraction(path[words[0]], words[1:], length + 1, so_far + " " + words[0])
+			if match:
+				return match
+
 		if '#' in path:
-		    if isinstance(path["#"], list):
-		        code = self.check_date(path['#'])
-		        if not code is None:
-		            # --                         print('NPgm-rec-1:',code)  # --
-		            # --                         print('NPgm-rec-1.1:',path['#'][-1])
-		            # 16.04.25 this branch always resolves to an actor;
-		            # path['#'][-1] is the root string
-		            return [code], so_far, length, [path['#'][-1]]
-		    else:
-		        # --                    print('NPgm-rec-2:',path['#'])
-		        # 16.04.25 this branch always resolves to an agent
-		        return [path['#']], so_far, length
+			if isinstance(path["#"], list):
+				code = self.check_date(path['#'])
+				if not code is None:
+
+					# --                         print('NPgm-rec-1:',code)  # --
+					# --                         print('NPgm-rec-1.1:',path['#'][-1])
+					# 16.04.25 this branch always resolves to an actor;
+					# path['#'][-1] is the root string
+					return [code], so_far, length, [path['#'][-1]]
+			else:
+				# --                    print('NPgm-rec-2:',path['#'])
+				# 16.04.25 this branch always resolves to an agent
+				return [path['#']], so_far, length
 		return False
 
 	def resolve_codes(self, codes):
@@ -135,7 +164,7 @@ class NounPhrase:
 		agentcodes = []
 		for code in codes:
 			if not code:
-			    continue
+				continue
 			if code.startswith("~") or code.endswith("~"):
 				agentcodes.append(code)
 			else:
@@ -418,7 +447,7 @@ class Sentence:
 		self.triplets = {}
 		self.rootID = []
 		self.verbIDs = []
-		self.txt = ""
+		self.txt = text
 		self.udgraph = self.str_to_graph(parse)
 		#self.verb_analysis = {}
 		self.events = {}
@@ -596,7 +625,9 @@ class Sentence:
 								if child in allsuccessors.keys():
 									for nmodchild in allsuccessors[child]:
 										if self.udgraph[child][nmodchild]['relation'] in ['conj']:
-											nmod_conjs[child].append(nmodchild)
+											if self.udgraph.node[nmodchild]['pos'] in ['NOUN','PROPN']:
+
+												nmod_conjs[child].append(nmodchild)
 
 							temp.append(child)
 

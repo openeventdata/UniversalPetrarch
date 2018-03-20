@@ -40,7 +40,7 @@ InternalCodingOntology = {}
 IssueList = []
 IssueCodes = []
 
-ConfigFileName = "PETR_config.ini"
+ConfigFileName = ""
 VerbFileName = ""  # verb dictionary
 ActorFileList = []  # actor dictionary
 AgentFileList = []  # agent dictionary

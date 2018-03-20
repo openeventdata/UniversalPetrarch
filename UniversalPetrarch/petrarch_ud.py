@@ -40,9 +40,12 @@ def main():
             print('Using user-specified config: {}'.format(cli_args.config))
             logger.info(
                 'Using user-specified config: {}'.format(cli_args.config))
+            PETRglobals.ConfigFileName = cli_args.config
+
             PETRreader.parse_Config(cli_args.config)
         else:
             logger.info('Using default config file.')
+            PETRglobals.ConfigFileName = 'PETR_config.ini'
             PETRreader.parse_Config(utilities._get_data('data/config/',
                                                         'PETR_config.ini'))
 
@@ -168,6 +171,14 @@ def read_dictionaries(validation=False):
     for agentdict in PETRglobals.AgentFileList:
         agent_path = utilities._get_data('data/dictionaries', agentdict)
         PETRreader.read_agent_dictionary(agent_path)
+
+    #if '#' in PETRglobals.AgentDict.keys():
+    #    print(PETRglobals.AgentDict['#'])
+    #    raw_input()
+    #for key, value in PETRglobals.AgentDict.items():
+    #    print("key:",key)
+    #    print('value:',value)
+    #   raw_input()
 
     print('Discard dictionary:', PETRglobals.DiscardFileName)
     discard_path = utilities._get_data('data/dictionaries',
@@ -406,6 +417,8 @@ def do_coding(event_dict):
 
 
 def run(filepaths, out_file, s_parsed):
+    logger = logging.getLogger('petr_log')
+
     # this is the routine called from main()
     events = PETRreader.read_xml_input(filepaths, s_parsed)
     logger.debug("Incoming data from XML: ", events)
