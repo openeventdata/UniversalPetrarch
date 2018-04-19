@@ -90,6 +90,7 @@ def parse_Config(config_path):
 
     try:
         PETRglobals.VerbFileName = parser.get('Dictionaries', 'verbfile_name')
+        PETRglobals.P1VerbFileName = parser.get('Dictionaries','P1verbfile_name')
 
         filestring = parser.get('Dictionaries', 'agentfile_name')
         PETRglobals.AgentFileList = filestring.split(', ')
@@ -104,6 +105,9 @@ def parse_Config(config_path):
 
         filestring = parser.get('Dictionaries', 'actorfile_list')
         PETRglobals.ActorFileList = filestring.split(', ')
+
+        PETRglobals.CodeWithPetrarch1 = get_config_boolean('use_Petrarch1_verb_dictionary')
+        PETRglobals.CodeWithPetrarch2 = get_config_boolean('use_Petrarch2_verb_dictionary')
 
         # otherwise this was set in command line
         if len(PETRglobals.TextFileList) == 0:
@@ -1118,8 +1122,8 @@ def read_verb_dictionary(verb_path):
     #         break
     # raw_input()
 
-'''
-def _read_verb_dictionary(verb_path):
+
+def read_petrarch1_verb_dictionary(verb_path):
     """ Reads the verb dictionary from VerbFileName """
 
     """
@@ -1377,13 +1381,13 @@ def _read_verb_dictionary(verb_path):
 
     """
     global theverb, verb  # <14.05.07> : not needed, right?
-    PETRglobals.VerbDict = {'verbs': {}, 'phrases': {}}
+    PETRglobals.P1VerbDict = {'verbs': {}, 'phrases': {}}
 
     def add_dict_tree(targ, verb, meaning="", code='---',
                       upper=[], synset=False, dict='phrases', line=""):
         # DOUBLE CHECK THAT VERB =/= targ[0]
         prev = verb
-        list = PETRglobals.VerbDict[dict].setdefault(verb, {})
+        list = PETRglobals.P1VerbDict[dict].setdefault(verb, {})
         while targ != []:
             if targ[0] in [' ', '']:
                 targ = targ[1:]
@@ -1447,9 +1451,9 @@ def _read_verb_dictionary(verb_path):
         while ka < len(phlist):
             if len(phlist[ka]) > 0:
                 if (phlist[ka][0] == '&') and (
-                        phlist[ka] not in PETRglobals.VerbDict):
+                        phlist[ka] not in PETRglobals.P1VerbDict):
                     print("WTF", phlist[ka])
-                    print(sorted(PETRglobals.VerbDict.keys()))
+                    print(sorted(PETRglobals.P1VerbDict.keys()))
                     exit()
 
                     logger.warning("Synset " + phlist[ka] +
@@ -1618,7 +1622,7 @@ def _read_verb_dictionary(verb_path):
                 verb = verb[:-1]  # remove final blank and _
             else:
                 noplural = False
-            PETRglobals.VerbDict[verb] = {}
+            PETRglobals.P1VerbDict[verb] = {}
             line = read_FIN_line()
             while line[0] == '+':
                 wordstr = line[1:].strip()
@@ -1678,7 +1682,7 @@ def _read_verb_dictionary(verb_path):
                     make_verb_forms(curcode, line)
             ka += 1   # counting primary verbs
             line = read_FIN_line()
-            print(line)
+            #print(line)
 
     close_FIN()
 
@@ -1687,7 +1691,7 @@ def _read_verb_dictionary(verb_path):
     #    for i,j in v.items():
     #        print('\t',i,j)
     # exit()
-'''
+#'''
 
 def show_verb_dictionary(filename=''):
     # debugging function: displays VerbDict to screen or writes to filename

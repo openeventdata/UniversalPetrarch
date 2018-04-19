@@ -32,6 +32,7 @@
 # in more detail in the config.ini file.
 
 VerbDict = {'verbs':{}, 'phrases':{}, 'transformations' : {}}  # verb dictionary
+P1VerbDict = {'verbs':{},'phrases':{}} ## PETRARCH 1 style verb dictionary
 ActorDict = {}  # actor dictionary
 ActorCodes = []  # actor code list
 AgentDict = {}  # agent dictionary
@@ -42,6 +43,7 @@ IssueCodes = []
 
 ConfigFileName = ""
 VerbFileName = ""  # verb dictionary
+P1VerbFileName = "" # PETRARCH 1 style verb dictionary
 ActorFileList = []  # actor dictionary
 AgentFileList = []  # agent dictionary
 DiscardFileName = ""  # discard list
@@ -60,7 +62,7 @@ NewActorLength = 0  # Maximum length for new actors extracted from noun phrases
 
 # CODING OPTIONS
 # Defaults are more or less equivalent to TABARI
-RequireDyad = True  # Events require a non-null source and target
+RequireDyad = False  # Events require a non-null source and target
 StoponError = False  # Raise stop exception on errors rather than recovering
 
 # OUTPUT OPTIONS
@@ -93,6 +95,9 @@ CommaEMin = 2
 CommaEMax = 8
 
 stanfordnlp = ''
+
+CodeWithPetrarch1 = True # if code with petrarch1 verb dictionaries
+CodeWithPetrarch2 = True # if code with petrarch2 verb dictionaries
 
 # TEMPORARY VARIABLES
 # <14.11.20> Temporary in the sense that these won't be needed when we eventually

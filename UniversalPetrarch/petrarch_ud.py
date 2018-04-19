@@ -18,6 +18,7 @@ import types
 import logging
 import argparse
 import xml.etree.ElementTree as ET
+import codecs
 
 import PETRglobals  # global variables
 import PETRreader
@@ -25,14 +26,14 @@ import PETRwriter
 import utilities
 import PETRgraph
 
+
 def main():
 
     cli_args = parse_cli_args()
-    utilities.init_logger('PETRARCH.log',True)
+    utilities.init_logger('PETRARCH.log', cli_args.debug)
     logger = logging.getLogger('petr_log')
 
     PETRglobals.RunTimeString = time.asctime()
-
 
     if cli_args.command_name == 'parse' or cli_args.command_name == 'batch':
 
@@ -53,7 +54,7 @@ def main():
 
         start_time = time.time()
         print('\n\n')
-        #'''
+
         paths = PETRglobals.TextFileList
         if cli_args.inputs:
             if os.path.isdir(cli_args.inputs):
@@ -83,7 +84,7 @@ def main():
         print("Coding time:", time.time() - start_time)
 
     print("Finished")
-	#'''
+
 
 def parse_cli_args():
     """Function to parse the command-line arguments for PETRARCH."""
@@ -140,11 +141,10 @@ PETRARCH
                                data/text/Gigaword.sample.PETR.xml""",
                                required=False)
 
-    batch_command.add_argument('-d', '--debug',
-                               help="""Enable debug info""",
-                               required=False)
+    batch_command.add_argument('-d', '--debug', action = 'store_true', default = False,  
+                               help = """Enable debug info""")
 
-    batch_command.set_defaults(debug=False)
+    #batch_command.set_defaults(debug=False)
 
     args = aparse.parse_args()
     return args
@@ -162,6 +162,13 @@ def read_dictionaries(validation=False):
         PETRglobals.VerbFileName)
     PETRreader.read_verb_dictionary(verb_path)
 
+    if PETRglobals.CodeWithPetrarch1:
+        print('Petrarch 1 Verb dictionary:', PETRglobals.P1VerbFileName)
+        verb_path = utilities._get_data(
+            'data/dictionaries',
+            PETRglobals.P1VerbFileName)
+        PETRreader.read_petrarch1_verb_dictionary(verb_path)
+
     print('Actor dictionaries:', PETRglobals.ActorFileList)
     for actdict in PETRglobals.ActorFileList:
         actor_path = utilities._get_data('data/dictionaries', actdict)
@@ -171,14 +178,6 @@ def read_dictionaries(validation=False):
     for agentdict in PETRglobals.AgentFileList:
         agent_path = utilities._get_data('data/dictionaries', agentdict)
         PETRreader.read_agent_dictionary(agent_path)
-
-    #if '#' in PETRglobals.AgentDict.keys():
-    #    print(PETRglobals.AgentDict['#'])
-    #    raw_input()
-    #for key, value in PETRglobals.AgentDict.items():
-    #    print("key:",key)
-    #    print('value:',value)
-    #   raw_input()
 
     print('Discard dictionary:', PETRglobals.DiscardFileName)
     discard_path = utilities._get_data('data/dictionaries',
@@ -289,12 +288,14 @@ def do_coding(event_dict):
     logger = logging.getLogger('petr_log')
     times = 0
     sents = 0
+
     for key, val in sorted(event_dict.items()):
         NStory += 1
         prev_code = []
 
         SkipStory = False
         print('\n\nProcessing story {}'.format(key))
+
         StoryDate = event_dict[key]['meta']['date']
         for sent in val['sents']:
             NSent += 1
@@ -327,30 +328,45 @@ def do_coding(event_dict):
                         NDiscardStory += 1
                         break
 
-
                 t1 = time.time()
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
-                print(sentence.txt)
-                #raw_input("check")
-                # this is the entry point into the processing in PETRtree
-                coded_events = sentence.get_events()
+                # print(sentence.txt)
+                # this is the entry point into the processing in PETRgraph
+                coded_events = {}
 
-                event_dict[key]['sents'][sent]['events'] = sentence.events
-                event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
-                event_dict[key]['sents'][sent]['nouns'] = sentence.nouns
-                event_dict[key]['sents'][sent]['triplets'] = sentence.triplets
+                if PETRglobals.CodeWithPetrarch2:
+                    p2_coded_events = sentence.get_events()
+                    coded_events.update(p2_coded_events)
+
+                    event_dict[key]['sents'][sent]['events'] = sentence.events
+                    event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
+                    event_dict[key]['sents'][sent]['nouns'] = sentence.nouns
+                    event_dict[key]['sents'][sent]['triplets'] = sentence.triplets
+                                
+                if PETRglobals.CodeWithPetrarch1:
+                    p1_coded_events = sentence.get_events_from_petrarch1_patterns()
+                    
+                    event_dict[key]['sents'][sent].setdefault('events', {})
+                    event_dict[key]['sents'][sent].setdefault('triplets', {})
+                    for i in range(0,len(p1_coded_events)):
+                        event_dict[key]['sents'][sent]['events']['p1_'+str(i)] = [[p1_coded_events[i][0]],[p1_coded_events[i][1]],p1_coded_events[i][2]]
+                        
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)] = {}
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['matched_txt'] = p1_coded_events[i][5]
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['source_text'] = p1_coded_events[i][3] if p1_coded_events[i][3] != None else "---"
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['target_text'] = p1_coded_events[i][4] if p1_coded_events[i][4] != None else "---"
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['verb_text'] = p1_coded_events[i][6]
+                        coded_events['p1_'+str(i)]= event_dict[key]['sents'][sent]['events']['p1_'+str(i)]
 
                 logger.debug("check events of id:"+SentenceID)
-                for eventID,event in event_dict[key]['sents'][sent]['events'].items():
+                for eventID, event in event_dict[key]['sents'][sent]['events'].items():
                     logger.debug("event:" + eventID)
                     logger.debug(event)
 
-                for tID,triplet in event_dict[key]['sents'][sent]['triplets'].items():
+                for tID, triplet in event_dict[key]['sents'][sent]['triplets'].items():
                     logger.debug("triplet:" + tID)
                     logger.debug(triplet['matched_txt'])
-
-                #if key == "GOLD":
-                #    raw_input("Press Enter to continue...")
+                
                 code_time = time.time() - t1
 
                 '''
@@ -385,7 +401,6 @@ def do_coding(event_dict):
                     if len(raw_input("Press Enter to continue...")) > 0:
                         sys.exit()
 
-                prev_code = coded_events
                 NEvents += len(coded_events.values())
                 if len(coded_events) == 0:
                     NEmpty += 1
@@ -413,6 +428,7 @@ def do_coding(event_dict):
         NEmpty)
     print("Average Coding time = ", times / sents if sents else 0)
 # --    print('DC-exit:',event_dict)
+
     return event_dict
 
 
@@ -422,9 +438,10 @@ def run(filepaths, out_file, s_parsed):
     # this is the routine called from main()
     events = PETRreader.read_xml_input(filepaths, s_parsed)
     logger.debug("Incoming data from XML: ", events)
-    #if not s_parsed:
+    # if not s_parsed:
     #    events = utilities.stanford_parse(events)
     updated_events = do_coding(events)
+
     PETRwriter.write_events(updated_events, 'evts.' + out_file)
 
 def run_pipeline(data, out_file=None, config=None, write_output=True,

@@ -334,27 +334,37 @@ def story_filter(story_dict, story_id):
 # if event_tuple[1:] in text_dict:  # log an error here if we can't find a
 # non-null case?
                     if event in sent_dict['triplets']:
-                        indexes = event.split('#')
+                        if not event.startswith("p1_"):
+                            # get source, target, matched text for events using Petrarch2 dictionary
+                            indexes = event.split('#')
 
-                        sourcetext='---'
-                        if indexes[0] !='-':
-                            sourceid = int(indexes[0])
-                            sourcetext = (" ").join(sent_dict['nouns'][sourceid].matched_txt)
+                            sourcetext='---'
+                            if indexes[0] !='-':
+                                sourceid = int(indexes[0])
+                                sourcetext = (" ").join(sent_dict['nouns'][sourceid].matched_txt)
 
-                        targettext='---'
-                        if indexes[1] !='-':
-                            targetid = int(indexes[1])
-                            targettext = (" ").join(sent_dict['nouns'][targetid].matched_txt)
+                            targettext='---'
+                            if indexes[1] !='-':
+                                targetid = int(indexes[1])
+                                targettext = (" ").join(sent_dict['nouns'][targetid].matched_txt)
 
-                        verbtext = sent_dict['triplets'][event]['triple'][2].text
+                            verbtext = sent_dict['triplets'][event]['triple'][2].text
 
-                        if PETRglobals.WriteActorText:
-                            filtered[event_tuple]['actortext'] = [sourcetext,targettext]
-                        if PETRglobals.WriteEventText:
-                            eventtext = str(sent_dict['triplets'][event]['matched_txt'].replace("*",verbtext))
-                            if eventtext.find('[') != -1:
-                                eventtext = eventtext[0:eventtext.find('[')]
-                            filtered[event_tuple]['eventtext'] = eventtext
+                            if PETRglobals.WriteActorText:
+                                filtered[event_tuple]['actortext'] = [sourcetext,targettext]
+                            if PETRglobals.WriteEventText:
+                                #eventtext = str(sent_dict['triplets'][event]['matched_txt'].replace("*",verbtext))
+                                #if eventtext.find('[') != -1:
+                                #    eventtext = eventtext[0:eventtext.find('[')]
+                                eventtext = str(sent_dict['triplets'][event]['matched_txt'])
+                                filtered[event_tuple]['eventtext'] = eventtext
+                        else:
+                            # get source, target, matched text for events using Petrarch1 dictionary
+                            if PETRglobals.WriteActorText:
+                                filtered[event_tuple]['actortext'] = [sent_dict['triplets'][event]['source_text'], sent_dict['triplets'][event]['target_text']]
+                            if PETRglobals.WriteEventText:
+                                eventtext = str(sent_dict['triplets'][event]['matched_txt'])
+                                filtered[event_tuple]['eventtext'] = eventtext
 
 
                     '''
