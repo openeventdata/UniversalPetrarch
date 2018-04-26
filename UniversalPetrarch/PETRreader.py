@@ -2326,7 +2326,7 @@ def read_xml_input(filepaths, parsed=False):
                 # Get the sentence information
                 if story.attrib['sentence'].lower() == 'true':
                     entry_id = story.attrib['id'][0:story.attrib['id'].rfind('_')]
-                    sent_id = story.attrib['id'][story.attrib['id'].rfind('_')+1]
+                    sent_id = story.attrib['id'][story.attrib['id'].rfind('_')+1:]
 
                     text = story.find('Text').text
                     text = text.replace('\n', ' ').replace('  ', ' ')
@@ -2335,6 +2335,12 @@ def read_xml_input(filepaths, parsed=False):
                                     'source': story.attrib['source']}
                     content_dict = {'sents': {sent_id: sent_dict},
                                     'meta': meta_content}
+
+                    if entry_id not in holding:
+                        holding[entry_id] = content_dict
+                    else:
+                        holding[entry_id]['sents'][sent_id] = sent_dict
+
                 else:
                     entry_id = story.attrib['id']
 
@@ -2344,16 +2350,21 @@ def read_xml_input(filepaths, parsed=False):
                     # TODO Make the number of sents a setting
                     sent_dict = {}
                     for i, sent in enumerate(split_sents[:7]):
-                        sent_dict[i] = {'content': sent, 'parsed':
-                                        parsed_content}
+                        sent_dict[str(i)] = {'content': sent, 'parsed':
+                                        parsed_content, 'date': story.attrib['date']}
 
                     meta_content = {'date': story.attrib['date']}
                     content_dict = {'sents': sent_dict, 'meta': meta_content}
 
-                if entry_id not in holding:
-                    holding[entry_id] = content_dict
-                else:
-                    holding[entry_id]['sents'][sent_id] = sent_dict
+                    if entry_id not in holding:
+                        holding[entry_id] = content_dict
+                    else:
+                        print("This entry_id exists, extending the sentence dictionary of this entry_id\n", entry_id)
+                        maxid = 0
+                        if len(holding[entry_id]['sents'].keys()) > 0:
+                            maxid = max([int(idx) for idx in holding[entry_id]['sents'].keys()])
+                        for sent_id in content_dict['sents']:
+                            holding[entry_id]['sents'][str(int(sent_id) + maxid)] = content_dict['sents'][sent_id]
 
                 elem.clear()
 
@@ -2451,7 +2462,7 @@ def _sentence_segmenter(paragr):
     """
     # this is relatively high because we are only looking for sentences that
     # will have subject and object
-    MIN_SENTLENGTH = 100
+    MIN_SENTLENGTH = 0
     MAX_SENTLENGTH = 512
 
     # sentence termination pattern used in sentence_segmenter(paragr)
