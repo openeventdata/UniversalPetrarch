@@ -485,6 +485,8 @@ An instantiated Sentence object
         return dpgraph
 
     def get_rootNode(self):
+        rootID = []
+        # find the head verbs of the sentence
         for successor in self.udgraph.successors(0):
             # if('relation' in self.udgraph[0][successor]):
                 # print(self.udgraph[nodeID][successor]['relation'])
@@ -493,15 +495,15 @@ An instantiated Sentence object
                 # if the root node is a verb, add it directly and find whether
                 # any conjunctive verb exists
                 if self.udgraph.node[root]['pos'] == 'VERB':
-                    self.rootID.append(root)
+                    rootID.append(root)
 
                 else:
                     # if the root node is not a verb
                     # if a copula relation exist, find the verb connected to
-                    # the root, and the verb as root
+                    # the root, and use the verb as root
                     for rsuccessor in self.udgraph.successors(root):
                         if self.udgraph[root][rsuccessor]['relation'] != 'cop' and self.udgraph.node[rsuccessor]['pos'] == 'VERB':
-                            self.rootID.append(rsuccessor)
+                            rootID.append(rsuccessor)
                             #raw_input('root is not verb')
 
                 # raw_input("roots: "+("#").join(str(x) for x in self.rootID))
@@ -511,11 +513,12 @@ An instantiated Sentence object
                 rsuccessors = self.udgraph.successors(root)
                 for rsuccessor in rsuccessors:
                     if self.udgraph[root][rsuccessor]['relation'] in ['conj', 'parataxis']:
-                        self.rootID.append(rsuccessor)
+                        rootID.append(rsuccessor)
 
                 # raw_input("roots: "+("#").join(str(x) for x in self.rootID))
 
         # raw_input("roots: "+("#").join(str(x) for x in self.rootID))
+        return rootID
 
     def get_nounPharse(self, nounhead):
         """
@@ -529,7 +532,6 @@ An instantiated Sentence object
         if(self.udgraph.node[nounhead]['pos'] in ['NOUN', 'ADJ', 'PROPN']):
             allsuccessors = nx.dfs_successors(self.udgraph, nounhead)
 
-            flag = True
             parents = [nounhead]
 
             while len(parents) > 0:
@@ -541,6 +543,7 @@ An instantiated Sentence object
                             if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj']:
                                 npIDs.append(child)
                                 temp.append(child)
+                               
                             if parent == nounhead and self.udgraph[nounhead][child]['relation'] in ['nmod']:
                                 # extract prepositional phrases in a noun phrase
                                 # logger.debug(self.udgraph[nounhead][child]['relation'])
@@ -856,8 +859,8 @@ An instantiated Sentence object
 
     def get_conj_noun(self, nodeID):
         """ method for extracting other conjunt nouns of this noun
-                for example: Brazil and the United States, given the nodeID of Brazil,
-                it will return noun phrase object of "the United States"
+                for example: Brazil and the United States, 
+                Given the nodeID of Brazil, it will return noun phrase object of "the United States"
 
                 apply modifier to each conjunctive nouns
                 e.g. "Lawmakers and officials in Arnor"
@@ -1535,7 +1538,7 @@ An instantiated Sentence object
         self.get_phrases()
         self.filter_triplet_with_time_expression()
         self.get_verb_code()
-        self.get_rootNode()
+        self.rootID = self.get_rootNode()
 
         root_event = {}
         root_eventID = {}
@@ -1949,7 +1952,7 @@ An instantiated Sentence object
         self.metadata['triplets'] = [t for t in self.metadata[
             'triplets'] if not has_time_expression(t)]
 
-    def get_upper_seq(self, kword, nouns):
+    def get_upper_seq(self, kword, nouns, compound_nouns):
         """
         Generate the upper sequence starting from kword; Upper sequence currently
         terminated by clause boundary.
@@ -1989,10 +1992,26 @@ An instantiated Sentence object
             nounEndStart[noun.npIDs[-1]]['start'] = noun.npIDs[0]
             nounEndStart[noun.npIDs[-1]]['noun'] = noun
 
+        compoundEndStart = {} # key is end idx, value is start idx
+        for compound in compound_nouns:
+            compoundEndStart[compound[1]] = compound[0]
+
+
         nounmark = False
         nounstart = kword
         currnoun = None
+        ccount = 0
+        cstart = kword
+        cmark = False
+
         while kword >= 1:  # 1 is the index of first word in the sentence, 0 is "ROOT"
+            if kword in compoundEndStart.keys():
+                ccount += 1
+                UpperSeq.append("~NEC" + str(ccount))
+                cstart = compoundEndStart[kword]
+                cmark = True
+
+
             if kword in nounEndStart.keys():
                 UpperSeq.append("~NE")
                 nounmark = True
@@ -2018,11 +2037,17 @@ An instantiated Sentence object
             # 		nounmark = False
             # 		nounstart = kword
             # 		currnoun = None
+
+            if cmark and kword == cstart:
+                UpperSeq.append("(NEC" + str(ccount))
+                cmark = False
+                cstart = kword
+
             kword -= 1
 
         return UpperSeq
 
-    def get_lower_seq(self, kword, endtag, nouns):
+    def get_lower_seq(self, kword, endtag, nouns, compound_nouns):
         """
         Generate the lower sequence starting from kword; lower sequence includes only
         words in the VP.
@@ -2051,10 +2076,28 @@ An instantiated Sentence object
             nounStartEnd[noun.npIDs[0]]['noun'] = noun
             # endlist.append(noun.npIDs[-1])
 
+        compoundStartEnd = {} # key is start idx, value is end idx
+        for compound in compound_nouns:
+            compoundStartEnd[compound[0]] = compound[1]
+
         nounmark = False
         nounend = kword
         currnoun = None
+
+        cend = kword
+        cmark = False
+        ccount = 0
+
+        order = kword
         while kword < endtag:
+            if kword in compoundStartEnd.keys() and cmark == False:
+                cmark = True
+                cend = compoundStartEnd[kword]
+                ccount += 1
+                LowerSeq.append("(NEC" + str(ccount))
+                order += 1
+
+
             if kword in nounStartEnd.keys() and nounmark == False:
                 nounmark = True
                 nounend = nounStartEnd[kword]['end']
@@ -2063,7 +2106,7 @@ An instantiated Sentence object
                 noun_meaning_list = [
                     "---"] if currnoun.meaning == [] else currnoun.meaning
                 noun_meaning = ("#").join(noun_meaning_list)
-                LowerSeq.append("(NE<" + str(kword) + ">" + noun_meaning)
+                LowerSeq.append("(NE<" + str(order) + ">" + noun_meaning)
 
                 # print("kword", kword, "end", nounend)
 
@@ -2075,7 +2118,16 @@ An instantiated Sentence object
                 nounend = kword
                 currnoun = None
 
+            if cmark and kword == cend:
+                LowerSeq.append("~NEC"+str(ccount))
+
+                cmark = False
+                cend = kword
+                order += 1
+
+
             kword += 1
+            order += 1
 
         return LowerSeq
 
@@ -2118,11 +2170,11 @@ An instantiated Sentence object
             CodedEvents = CodedEvents_
             global SentenceLoc
             for thissrc in codessrc:
-                if '(NEC' in thissrc:
-                    logger.warning(
-                        '(NEC source code found in make_event_strings(): {}'.format(self.ID))
-                    CodedEvents = []
-                    return
+                #if '(NEC' in thissrc:
+                #    logger.warning(
+                #        '(NEC source code found in make_event_strings(): {}'.format(self.ID))
+                #    CodedEvents = []
+                #    return
                 srclist = extract_code_fields(thissrc)
 
                 if srclist[0][0:3] == '---' and len(SentenceLoc) > 0:
@@ -2130,11 +2182,11 @@ An instantiated Sentence object
                     # implemented <>
                     srclist[0] = SentenceLoc + srclist[0][3:]
                 for thistar in codestar:
-                    if '(NEC' in thistar:
-                        logger.warning(
-                            '(NEC target code found in make_event_strings(): {}'.format(self.ID))
-                        CodedEvents = []
-                        return
+                    #if '(NEC' in thistar:
+                    #    logger.warning(
+                    #        '(NEC target code found in make_event_strings(): {}'.format(self.ID))
+                    #    CodedEvents = []
+                    #    return
                     tarlist = extract_code_fields(thistar)
                     # skip self-references based on code
                     if srclist[0] != tarlist[0]:
@@ -2221,7 +2273,7 @@ An instantiated Sentence object
         # print(CodedEvents)
         # raw_input()
 
-        if len(CodedEvents) == 0:
+        if not CodedEvents or len(CodedEvents) == 0:
             return CodedEvents
 
         # remove duplicates
@@ -2380,26 +2432,43 @@ An instantiated Sentence object
             raise CheckVerbsError
 
         logger = logging.getLogger("petr_log.petrarch1")
-        nouns = self.get_all_nounPhrases()
+        nouns, compound_nouns = self.get_all_nounPhrases()
         # raw_input()
 
         CodedEvents = []
         SourceLoc = ""
 
+        head_verbs = self.get_rootNode()
+
+        other_verbs = []
         for node in self.udgraph.nodes(data=True):
             nodeID = node[0]
             attrs = node[1]
 
+            if nodeID in head_verbs:
+                continue
+
+            if 'pos' in attrs and attrs['pos'] == 'VERB':
+                other_verbs.append(nodeID)
+        other_verbs.sort()
+
+        verbs = [] #order the head verbs first and then other verbs.  
+        verbs.extend(head_verbs)
+        verbs.extend(other_verbs)
+
+        for verbID in verbs:
+            attrs = self.udgraph.node[verbID]
+            
             if 'pos' in attrs and attrs['pos'] == 'VERB':
 
-                verb = self.get_verbPhrase(nodeID)
+                verb = self.get_verbPhrase(verbID)
                 verbhead = verb.head.upper()
                 logger.debug("CV-0: %s  %s", verb.text,
                              verbhead in PETRglobals.P1VerbDict['verbs'])
                 # raw_input()
                 IsPassive = False
-                for successor in self.udgraph.successors(nodeID):
-                    if 'relation' in self.udgraph[nodeID][successor] and self.udgraph[nodeID][successor]['relation'] in ['auxpass']:
+                for successor in self.udgraph.successors(verbID):
+                    if 'relation' in self.udgraph[verbID][successor] and self.udgraph[verbID][successor]['relation'] in ['auxpass']:
                         IsPassive = True
                         break
                 # raw_input(IsPassive)
@@ -2485,10 +2554,10 @@ An instantiated Sentence object
                             "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
 
                     # Find code from pattern dictionary
-                    upper = self.get_upper_seq(verb_start - 1, nouns)
+                    upper = self.get_upper_seq(verb_start - 1, nouns, compound_nouns)
                     logger.debug("Upper sequence: %s", upper)
                     lower = self.get_lower_seq(
-                        verb_end + 1, len(self.udgraph.node), nouns)
+                        verb_end + 1, len(self.udgraph.node), nouns, compound_nouns)
                     logger.debug("Lower sequence: %s", lower)
                     # raw_input()
 
@@ -2542,8 +2611,7 @@ An instantiated Sentence object
                                 logger.debug("line: %s", line)
                                 # for event in CodedEvents:
                                 # event.append(line)
-                    # raw_input()
-            if CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
+            if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
                 break
 
         # return CodedEvents,SourceLoc
@@ -2706,7 +2774,7 @@ An instantiated Sentence object
 
                 # check for compound phrase
                 elif (not in_NE) and in_NEC and (not option > 5) and '%' in path:
-                    # logger.debug("Matching compound %s %i", phrase, i)
+                    logger.debug("Matching compound %s %i", phrase, i)
                     ka = i
 
                     while '(NEC' not in phrase[ka]:
@@ -2879,7 +2947,7 @@ An instantiated Sentence object
                 matchlist += [target]
                 path = path['+']
 
-                # logger.debug("Matching phrase target %s", target)
+                logger.debug("Matching phrase target %s", target)
                 continue
 
             # check for source match
@@ -2944,7 +3012,7 @@ An instantiated Sentence object
                 continue
 
             elif '#' in path:
-                # logger.debug("Lower pattern matched %s", matchlist)
+                logger.debug("Lower pattern matched %s", matchlist)
 
                 result, data = upper_match(path['#'])
                 if result:
@@ -3036,19 +3104,20 @@ An instantiated Sentence object
         """
         SourceLoc = Src
         kseq = 0
+        # print(LowerSeq[Trg[0]])
         while kseq < len(UpperSeq):
-            if ('(NEC' in UpperSeq[kseq]) and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
+            if ('(NEC' in UpperSeq[kseq]): # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
                 SourceLoc = [kseq, True]
                 return SourceLoc
 
-            if ('(NE' in UpperSeq[kseq]) and ('>---' not in UpperSeq[kseq]) and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
+            if ('(NE' in UpperSeq[kseq]) and ('>---' not in UpperSeq[kseq]): #and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
 
                 SourceLoc = [kseq, True]
                 return SourceLoc
             kseq += 1
         kseq = 0
         while kseq < len(UpperSeq):
-            if ('(NE' in UpperSeq[kseq]) and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
+            if ('(NE' in UpperSeq[kseq]): # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
                 SourceLoc = [kseq, True]
                 return SourceLoc
             kseq += 1
@@ -3063,6 +3132,7 @@ An instantiated Sentence object
         """
         logger = logging.getLogger("petr_log.petrarch1")
         nouns = []
+        compound_nouns = []
 
         for node in self.udgraph.nodes(data=True):
             nodeID = node[0]
@@ -3079,12 +3149,67 @@ An instantiated Sentence object
 
                 if found:
                     noun = self.get_nounPharse(nodeID)
-                    noun.get_meaning()
-                    noun.meaning = [
-                        "---"] if noun.meaning == [] else noun.meaning
-                    #noun_meaning=noun.meaning if noun.meaning != None else ''
-                    logger.debug("noun: " + noun.head + " code: " +
-                                 (("#").join(noun.meaning) if noun.meaning != None else '-'))
                     nouns.append(noun)
 
-        return nouns
+                    conj_nouns = self.get_conj_noun_for_petrarch1(nodeID, noun)
+                    nouns.extend(conj_nouns)
+
+                    if conj_nouns:
+                        ids = []
+                        ids.extend(noun.npIDs)
+                        for conj in conj_nouns:
+                            ids.extend(conj.npIDs)
+                        ids.sort()
+                        compound_nouns.append((ids[0], ids[-1])) #start_idx and end_idx of compound noun phrase
+                        print("compound:", (ids[0], ids[-1]))
+
+        
+        for noun in nouns:
+            noun.get_meaning()
+            noun.meaning = ["---"] if noun.meaning == [] else noun.meaning
+            logger.debug("noun: " + noun.head + " code: " +
+                                 (("#").join(noun.meaning) if noun.meaning != None else '-'))
+
+        return nouns, compound_nouns
+
+    def get_conj_noun_for_petrarch1(self, nodeID, noun):
+        """ method for extracting other conjunt nouns of this noun
+            for example: Brazil and the United States, 
+            Given the nodeID of Brazil, it will return noun phrase object of "the United States"
+
+            apply modifiers to each conjunt nouns
+            e.g. "Lawmakers and officials in Arnor"
+            two noun phrases will be generated: lawmakers in Arnor, officials in Arnor
+
+            Note: this function now is used for Petrarch 1 pattern matching only
+
+        """
+        conj_noun = []
+        for successor in self.udgraph.successors(nodeID):
+            if(self.udgraph[nodeID][successor]['relation'] == 'conj'):
+                # conj_noun.append(self.get_nounPharse(successor))
+                conjnouns = self.get_nounPharse(successor)
+
+                for conjnoun in [conjnouns]:
+                    conjnoun.prep_phrase.extend(noun.prep_phrase)
+                    for prep in conjnoun.prep_phrase:
+                        conjnoun.npIDs.extend(prep.ppIDs)
+
+                    tempprepset = set(conjnoun.prep_phrase)
+                    conjnoun.prep_phrase = list(tempprepset)
+
+                    tempIDset = set(conjnoun.npIDs)
+                    conjnoun.npIDs = list(tempIDset)
+                    conjnoun.npIDs.sort()
+                    # print(conjnoun.prep_phrase)
+                    npTokens = []
+                    for npID in conjnoun.npIDs:
+                        npTokens.append(
+                            self.udgraph.node[npID]['token'])
+
+                    nntext = (' ').join(npTokens)
+                    conjnoun.text = nntext
+
+                conj_noun.extend([conjnouns])
+
+        return conj_noun
