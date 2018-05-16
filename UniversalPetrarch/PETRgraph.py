@@ -22,6 +22,7 @@ class NounPhrase:
         self.sentence = sentence
         self.matched_txt = None
         self.prep_phrase = []
+        self.compound_modifier = False
 
     def get_meaning(self):
         logger = logging.getLogger('petr_log.NPgetmeaning')
@@ -62,7 +63,7 @@ class NounPhrase:
             npMainText = self.text
             # print(npMainText)
 
-        logger.debug("npMainText:" + npMainText)
+        logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
         codes, roots, matched_txt = self.textMatching(
             npMainText.upper().split(" "))
         actorcodes, agentcodes = self.resolve_codes(codes)
@@ -100,10 +101,11 @@ class NounPhrase:
                 # --                print('NPgm-m-1:',match)
                 codes += match[0]
                 roots += match[3]
-                index += match[2]
+                #index += match[2]
                 matched_txt += [match[1]]
         # --                print('NPgm-1:',matched_txt)
-                break
+                if not self.compound_modifier:
+                    break
 
             index += 1
 
@@ -117,7 +119,7 @@ class NounPhrase:
                 # --                print('NPgm-2.0:',roots)
                 codes += match[0]
                 roots += [['~']]
-                index += match[2]
+                #index += match[2]
                 matched_txt += [match[1]]
                 """print('NPgm-2:',matched_txt) # --
                 print('NPgm-2.1:',roots)"""
@@ -486,6 +488,7 @@ An instantiated Sentence object
 
     def get_rootNode(self):
         rootID = []
+        conjID = {} # (conjunct verb id:its parent verb id)
         # find the head verbs of the sentence
         for successor in self.udgraph.successors(0):
             # if('relation' in self.udgraph[0][successor]):
@@ -514,11 +517,13 @@ An instantiated Sentence object
                 for rsuccessor in rsuccessors:
                     if self.udgraph[root][rsuccessor]['relation'] in ['conj', 'parataxis']:
                         rootID.append(rsuccessor)
+                        if self.udgraph[root][rsuccessor]['relation'] == 'conj':
+                            conjID[rsuccessor] = root
 
                 # raw_input("roots: "+("#").join(str(x) for x in self.rootID))
 
         # raw_input("roots: "+("#").join(str(x) for x in self.rootID))
-        return rootID
+        return rootID, conjID
 
     def get_nounPharse(self, nounhead):
         """
@@ -529,6 +534,8 @@ An instantiated Sentence object
         logger = logging.getLogger('petr_log.getNP')
         npIDs = []
         prep_phrase = []
+        found_compound_modifier = False
+
         if(self.udgraph.node[nounhead]['pos'] in ['NOUN', 'ADJ', 'PROPN']):
             allsuccessors = nx.dfs_successors(self.udgraph, nounhead)
 
@@ -540,7 +547,7 @@ An instantiated Sentence object
                 for parent in parents:
                     if parent in allsuccessors.keys():
                         for child in allsuccessors[parent]:
-                            if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj']:
+                            if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj', 'punct']:
                                 npIDs.append(child)
                                 temp.append(child)
                                
@@ -572,7 +579,27 @@ An instantiated Sentence object
             # for value in allsuccessors.values():
             #	npIDs.extend(value)
             # print(npIDs)
+            parents = [nounhead]
+            while len(parents) > 0:
+                temp = []
+                '''ignore the conjunt nouns'''
+                parentgen = (parent for parent in parents if parent in allsuccessors.keys())
+                for parent in parentgen:
+                    for child in allsuccessors[parent]:
+                        if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj']:
+                            temp.append(child)
+                            # find noun modifiers conjuctions
+                            #print(parent, child)
+                            if self.udgraph[parent][child]['relation'] in ['nmod'] and child in allsuccessors.keys():
+                                for nmodchild in allsuccessors[child]:
+                                    if self.udgraph[child][nmodchild]['relation'] in ['conj'] and self.udgraph.node[nmodchild]['pos'] in ['NOUN', 'PROPN']:
+                                        found_compound_modifier = True
 
+
+                parents = temp
+                                               
+
+        #print(found_compound_modifier)
         npIDs.append(nounhead)
         npTokens = []
         npIDs.sort()
@@ -587,6 +614,7 @@ An instantiated Sentence object
         np = NounPhrase(self, npIDs, nounhead, self.date)
         np.text = nounPhrasetext
         np.head = self.udgraph.node[nounhead]['token']
+        np.compound_modifier = found_compound_modifier
 
         logger.debug("noun:" + nounPhrasetext)
         for pp in prep_phrase:
@@ -1538,7 +1566,7 @@ An instantiated Sentence object
         self.get_phrases()
         self.filter_triplet_with_time_expression()
         self.get_verb_code()
-        self.rootID = self.get_rootNode()
+        self.rootID,_ = self.get_rootNode()
 
         root_event = {}
         root_eventID = {}
@@ -1992,9 +2020,43 @@ An instantiated Sentence object
             nounEndStart[noun.npIDs[-1]]['start'] = noun.npIDs[0]
             nounEndStart[noun.npIDs[-1]]['noun'] = noun
 
+        '''
+        for end in nounEndStart.keys():
+            start = nounEndStart[end]['start']
+            all_meanings = nounEndStart[end]['noun'].meaning
+            #print(all_meanings)
+
+            check_compound = False
+            compound_range = None
+            for compound in compound_nouns:
+                if start <= compound[0] and end >= compound[1]:
+                    check_compound = True
+                    compound_range = compound
+                    break
+
+            if check_compound:
+                meanings = []
+                for noun in nouns:
+                    if compound_range[0] <= noun.npIDs[0] and compound_range[1] >= noun.npIDs[-1]:
+                        meanings.extend(noun.meaning)
+
+                all_meanings.extend(meanings)
+
+            all_meanings = list(set(all_meanings))
+            #print(all_meanings)
+            if check_compound:
+                nounEndStart[end]['noun'].meaning = all_meanings
+        '''
+
         compoundEndStart = {} # key is end idx, value is start idx
         for compound in compound_nouns:
-            compoundEndStart[compound[1]] = compound[0]
+            compound_start = compound[0]
+            for end in nounEndStart.keys():
+                if end <= compound[1]:
+                    ne_start = nounEndStart[end]['start']
+                    if ne_start <= compound_start:
+                        compound_start = ne_start
+            compoundEndStart[compound[1]] = compound_start
 
 
         nounmark = False
@@ -2023,7 +2085,7 @@ An instantiated Sentence object
             if nounmark and kword == nounstart:
                 noun_meaning_list = [
                     "---"] if currnoun.meaning == [] else currnoun.meaning
-                noun_meaning = ("#").join(noun_meaning_list)
+                noun_meaning = ("/").join([m.replace('~','---') for m in noun_meaning_list])
                 UpperSeq.append("(NE<" + str(kword) + ">" + noun_meaning)
                 nounmark = False
                 nounstart = kword
@@ -2076,9 +2138,47 @@ An instantiated Sentence object
             nounStartEnd[noun.npIDs[0]]['noun'] = noun
             # endlist.append(noun.npIDs[-1])
 
+        for start in nounStartEnd.keys():
+            end = nounStartEnd[start]['end']
+            all_meanings = nounStartEnd[start]['noun'].meaning
+            #print(all_meanings)
+
+            check_compound = False
+            compound_range = None
+            for compound in compound_nouns:
+                if start <= compound[0] and end >= compound[1]:
+                    check_compound = True
+                    compound_range = compound
+                    break
+
+            if check_compound:
+                meanings = []
+                for noun in nouns:
+                    if compound_range[0] <= noun.npIDs[0] and compound_range[1] >= noun.npIDs[-1]:
+                        meanings.extend(noun.meaning)
+
+                all_meanings.extend(meanings)
+
+            all_meanings = list(set(all_meanings))
+            #print(all_meanings)
+            if check_compound:
+                nounStartEnd[start]['noun'].meaning = all_meanings
+                #raw_input()
+
         compoundStartEnd = {} # key is start idx, value is end idx
         for compound in compound_nouns:
-            compoundStartEnd[compound[0]] = compound[1]
+            #print(compound)
+            compound_start = compound[0]
+            temp_start = 1000
+            for start in nounStartEnd.keys():
+                #print(start,nounStartEnd[start])
+                if start <= compound[0] and start <= temp_start and nounStartEnd[start]['end'] == compound[1]:
+                    temp_start = start
+            if temp_start < compound_start:
+                compound_start = temp_start
+            #print(compound_start)
+            #raw_input()
+            compoundStartEnd[compound_start] = compound[1]
 
         nounmark = False
         nounend = kword
@@ -2105,7 +2205,7 @@ An instantiated Sentence object
 
                 noun_meaning_list = [
                     "---"] if currnoun.meaning == [] else currnoun.meaning
-                noun_meaning = ("#").join(noun_meaning_list)
+                noun_meaning = ("/").join([m.replace('~','---') for m in noun_meaning_list])
                 LowerSeq.append("(NE<" + str(order) + ">" + noun_meaning)
 
                 # print("kword", kword, "end", nounend)
@@ -2438,7 +2538,7 @@ An instantiated Sentence object
         CodedEvents = []
         SourceLoc = ""
 
-        head_verbs = self.get_rootNode()
+        head_verbs, conj_verbs = self.get_rootNode()
 
         other_verbs = []
         for node in self.udgraph.nodes(data=True):
@@ -2554,12 +2654,14 @@ An instantiated Sentence object
                             "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
 
                     # Find code from pattern dictionary
+                    if verb_start in conj_verbs.keys():
+                        verb_start = conj_verbs[verb_start]
                     upper = self.get_upper_seq(verb_start - 1, nouns, compound_nouns)
                     logger.debug("Upper sequence: %s", upper)
                     lower = self.get_lower_seq(
                         verb_end + 1, len(self.udgraph.node), nouns, compound_nouns)
                     logger.debug("Lower sequence: %s", lower)
-                    # raw_input()
+                    #raw_input()
 
                     if not meaning == '':
                         patternlist = PETRglobals.P1VerbDict[
@@ -2800,7 +2902,7 @@ An instantiated Sentence object
                     elif '~NE' in phrase[i]:
                         in_NE = not in_NE
 
-                    if i < len(lower) - 1:  # ?? why
+                    if i < len(upper) - 1:  # ?? why
                         i += 1
                         continue
 
@@ -2879,6 +2981,7 @@ An instantiated Sentence object
                 #logger.debug('checking %s, option: %i,phrase_actor: %s, %s,%s', lower[i],option,phrase_actor,in_NE,path.keys())
 
             skipcheck = self.skip_item(lower[i])
+            #print(lower[i], "skip:", skipcheck, "option:",option)
 
             # return to last point of departure
 
@@ -2913,7 +3016,7 @@ An instantiated Sentence object
 
             # check direct word match
             if lower[i] in path and not option > 0:
-                # logger.debug("lower matched a word %s", lower[i])
+                logger.debug("lower matched a word %s", lower[i])
 
                 matchlist.append(lower[i])
                 pathleft.append((path, i, 1))
@@ -3105,12 +3208,20 @@ An instantiated Sentence object
         SourceLoc = Src
         kseq = 0
         # print(LowerSeq[Trg[0]])
+        in_NEC = False
+        in_NE = False
         while kseq < len(UpperSeq):
-            if ('(NEC' in UpperSeq[kseq]): # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
+            #print(UpperSeq[kseq])
+            if "~NEC" in UpperSeq[kseq]:
+                in_NEC = not in_NEC
+            elif "~NE" in UpperSeq[kseq]:
+                in_NE = not in_NE
+
+            if in_NEC and '(NEC' in UpperSeq[kseq]: # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
                 SourceLoc = [kseq, True]
                 return SourceLoc
 
-            if ('(NE' in UpperSeq[kseq]) and ('>---' not in UpperSeq[kseq]): #and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
+            if in_NE and not in_NEC and '(NE' in UpperSeq[kseq] and ('>---' not in UpperSeq[kseq]): #and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
 
                 SourceLoc = [kseq, True]
                 return SourceLoc
@@ -3161,7 +3272,7 @@ An instantiated Sentence object
                             ids.extend(conj.npIDs)
                         ids.sort()
                         compound_nouns.append((ids[0], ids[-1])) #start_idx and end_idx of compound noun phrase
-                        print("compound:", (ids[0], ids[-1]))
+                        #print("compound:", (ids[0], ids[-1]))
 
         
         for noun in nouns:
