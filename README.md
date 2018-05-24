@@ -139,3 +139,26 @@ Optional Arguments:
 ``-c CONFIG_FILE  Filepath for the PETRARCH configuration file. Defaults to PETR_config.ini``  
 ``-d turn on debug mode``
 
+## validation.py
+
+This program runs the validation (functional) tests in the hard-coded file `validate/PETR_Validate_records_2_02.xml` with a set of dictionary files which are also in validate/. Both the program and validate/ should be at the same directory level as `petrarch_ud.py` and its various support files. To run, just use
+
+``python validation.py``
+
+Output from the program is in the file `Validation_output.txt`: this shows the results for each of the records as well as a summary by category. The format of the `PETR_Validate_records_2_02.xml` should be fairly obvious from the existing 250 or so cases; you can use the UD parser at http://lindat.mff.cuni.cz/services/udpipe/run.php to generate new cases (be sure to select the English model unless you want your parse to be in Czech...)
+
+`validation.py` simply calls routines within the UD-PETRARCH system itself and should require no modifications of that code. The current version was tested against the code on the master branch downloaded on 24-May-2018 and returned the results
+
+```
+Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  
+DEMO              35        28        21         7        58    57.14%    42.86%    20.00%
+COMPOUND          34        65        20         6        79    76.47%    23.53%    17.65%
+DATE              21        18         4         0        28    81.82%    18.18%     0.00%
+ACTOR             11         3         8         3        11    27.27%    72.73%    27.27%
+VERB              22        19         3         1        32    86.36%    13.64%     4.55%
+PATTERN           25        17         8         7        26    68.00%    32.00%    28.00%
+MODIFY            20        12         8         5        39    60.00%    40.00%    25.00%
+SYNSET            52        36        16        16       100    69.23%    30.77%    30.77%
+AGENT             23        13        11        11        17    54.17%    45.83%    47.83%
+Total            243       211        99        56       390    68.06%    31.94%    23.05%
+```
