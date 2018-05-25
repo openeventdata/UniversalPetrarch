@@ -141,11 +141,11 @@ Optional Arguments:
 
 ## validation.py
 
-This program runs the validation (functional) tests in the hard-coded file `validate/PETR_Validate_records_2_02.xml` with a set of dictionary files which are also in validate/. Both the program and validate/ should be at the same directory level as `petrarch_ud.py` and its various support files. To run, just use
+This program runs the functional validation tests for UniversalPetrarch. In default mode, both the program and the `validate/` directory should be at the same directory level as `petrarch_ud.py` and its various support files. To run, just use
 
 ``python validation.py``
 
-Output from the program is in the file `Validation_output.txt`: this shows the results for each of the records as well as a summary by category. The format of the `PETR_Validate_records_2_02.xml` should be fairly obvious from the existing 250 or so cases; you can use the UD parser at http://lindat.mff.cuni.cz/services/udpipe/run.php to generate new cases (be sure to select the English model unless you want your parse to be in Czech...)
+Output from the program is in the file `Validation_output.txt`: this shows the results for each of the records as well as a summary of accuracy by category. The program also produces a `UD-PETR_Validate.log` file with the detail controlled by the `debug` parameter in the call to `utilities.init_logger()` in `__main__`. The format of the `PETR_Validate_records_2_02.xml` should be fairly obvious from the existing 250 or so cases; you can use the UD parser at http://lindat.mff.cuni.cz/services/udpipe/run.php to generate new cases (be sure to select the English model unless you want your parse to be in Czech...)
 
 ### Command line options
 
