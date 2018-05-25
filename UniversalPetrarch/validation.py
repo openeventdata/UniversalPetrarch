@@ -212,23 +212,6 @@ def validate_record(valrecord):
                 fout.write(" --> Exception generating sentence.get_verbPhrase(): " + str(e) + '\n')
         return
 
-    def parse_noun(phrase_dict,sentence):
-        """ from test_script_ud.py with minor modifications: currently deactivated """
-        if 'nouns' in return_dict[idstrg]['sents']['0']:
-            return
-        str_arr = str(return_dict[idstrg]['sents']['0']['nouns']).strip("{").split(",")
-        fout.write("Nouns found:\n") 
-        for x in str_arr:
-            str_num = x.find(":")		
-            try:        
-                np = sentence.get_nounPharse(int(x[:str_num].strip()))
-                np.get_meaning()
-                str_add =  x[:str_num].strip() + " : head = " + str(np.head) +", text="+ str(np.text) +", meaning="+str(np.meaning)+", matched_txt="+str(np.matched_txt)+ "\n"
-                fout.write("    " + str_add)                
-            except Exception as e:
-                print(e)
-                fout.write(" --> Exception generating sentence.get_nounPharse(): " + str(e) + '\n')
-        return
 
     def parse_triplets(phrase_dict):
         """ from test_script_ud.py with minor modifications """
@@ -351,7 +334,6 @@ def validate_record(valrecord):
         fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
 
     parse_verb(phrase_dict, sentence)
-    parse_noun(phrase_dict, sentence)
     parse_triplets(phrase_dict)
     fout.write('\n')
 
