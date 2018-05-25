@@ -147,6 +147,16 @@ This program runs the validation (functional) tests in the hard-coded file `vali
 
 Output from the program is in the file `Validation_output.txt`: this shows the results for each of the records as well as a summary by category. The format of the `PETR_Validate_records_2_02.xml` should be fairly obvious from the existing 250 or so cases; you can use the UD parser at http://lindat.mff.cuni.cz/services/udpipe/run.php to generate new cases (be sure to select the English model unless you want your parse to be in Czech...)
 
+### Command line options
+
+None : Read the validation file `PETR_Validate_records_2_02.xml` and dictionaries from `validate/` directory
+
+``-d``: Read the validation file `PETR_Validate_records_2_02.debug.xml` and dictionaries from `validate/` directory
+
+``-i <filename>``: Read the validation file `<filename>` from `data/text/` and read dictionaries from `data/dictionaries/` 
+
+### Benchmark results
+
 `validation.py` simply calls routines within the UD-PETRARCH system itself and should require no modifications of that code. The current version was tested against the code on the master branch downloaded on 24-May-2018 and returned the results
 
 ```
