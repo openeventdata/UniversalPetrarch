@@ -153,16 +153,24 @@ None : Read the validation file `PETR_Validate_records_2_02.xml` and dictionarie
 
 ``-d``: Read the validation file `PETR_Validate_records_2_02.debug.xml` and dictionaries from `validate/` directory
 
-``-i <filename>``: Read the validation file `<filename>` from `data/text/` and read dictionaries from `data/dictionaries/` 
+``-i <filename>``: Read the validation file `<filename>` from `data/text/` and read dictionaries from `data/dictionaries/`
+
+### Validation files
+
+`validate/PETR_Validate_records_2_02.xml`: Primary validation records based on TABARI and PETRARCH-1 "Lord of the Rings" suite (around 250 cases); uses validation dictionaries in `validate/`.
+
+`data/text/PETR2_GSR_validation.xml`: Validation records based on the PETRARCH-2 GSR test cases (74 cases); uses standard dictionaries in `data/dictionaries`.
+
 
 ### Benchmark results
 
 `validation.py` simply calls routines within the UD-PETRARCH system itself and should require no modifications of that code. The current version was tested against the code on the master branch downloaded on 24-May-2018 and returned the results
 
 ```
+Summary: PETR_Validate_records_2_02.xml at 180525-152003
 Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  
 DEMO              35        28        21         7        58    57.14%    42.86%    20.00%
-COMPOUND          34        65        20         6        79    76.47%    23.53%    17.65%
+COMPOUND          35        67        20         6        79    77.01%    22.99%    17.14%
 DATE              21        18         4         0        28    81.82%    18.18%     0.00%
 ACTOR             11         3         8         3        11    27.27%    72.73%    27.27%
 VERB              22        19         3         1        32    86.36%    13.64%     4.55%
@@ -170,5 +178,5 @@ PATTERN           25        17         8         7        26    68.00%    32.00%
 MODIFY            20        12         8         5        39    60.00%    40.00%    25.00%
 SYNSET            52        36        16        16       100    69.23%    30.77%    30.77%
 AGENT             23        13        11        11        17    54.17%    45.83%    47.83%
-Total            243       211        99        56       390    68.06%    31.94%    23.05%
+Total            244       213        99        56       390    68.27%    31.73%    22.95%
 ```
