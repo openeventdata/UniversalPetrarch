@@ -409,7 +409,6 @@ class VerbPhrase:
         self.passive = False
         self.negative = False
 
-
 class Sentence:
     """
 Holds the information of a sentence and its dependency tree.
@@ -468,7 +467,8 @@ An instantiated Sentence object
         self.udgraph = self.str_to_graph(parse)
         #self.verb_analysis = {}
         self.events = {}
-        self.metadata = {'nouns': [], 'verbs': [], 'triplets': []}
+        self.metadata = {'nouns': [], 'verbs': [], 'triplets': [], 'othernoun':{}}
+        self.tempnouns = []
 
     def str_to_graph(self, str):
         dpgraph = nx.DiGraph()
@@ -939,13 +939,10 @@ An instantiated Sentence object
             if 'pos' in attrs and attrs['pos'] == 'VERB':
 
                 #print(str(nodeID)+"\t"+attrs['pos']+"\t"+(" ").join(str(e) for e in self.udgraph.successors(nodeID)))
-                # print(self.udgraph.successors(nodeID))
+                #print(self.udgraph.successors(nodeID))
                 verb = self.get_verbPhrase(nodeID)
                 logger.debug("extracting verb:" + verb.text)
-                # if verb.headID in self.verbs:
-                #	raw_input("verb:"+self.verbs[verb.headID].text)
-                # else:
-                #	self.verbs[verb.headID] = verb
+                
                 if verb.headID not in self.verbs:
                     self.verbs[verb.headID] = verb
 
@@ -1015,9 +1012,12 @@ An instantiated Sentence object
                             triplet = (s, t, verb)
                             self.metadata['triplets'].append(triplet)
 
+                self.metadata['othernoun'][verb.headID] = othernoun
+
                 # othernoun are usually prepositional phrase, combine the verb and preposition as the new verb phrase
                 # make the noun phrase in prepositional phrase as new target
                 # improvement is still needed
+                '''
                 if len(othernoun) > 0:
                     for o in othernoun:
                         if self.udgraph.node[o.npIDs[0]]['pos'] == 'ADP':
@@ -1134,6 +1134,7 @@ An instantiated Sentence object
                                                     'triplets'].append(triplet)
 
                                     #raw_input("found conjective other noun")
+                '''
                 self.metadata['verbs'].append(verb)
                 # self.metadata['nouns'].extend(source)
                 # self.metadata['nouns'].extend(target)
@@ -1152,25 +1153,20 @@ An instantiated Sentence object
             cfound = True
             match = ""
             for npID in filter(lambda a: a != noun_phrase.headID, noun_phrase.npIDs):
+
                 nptoken = self.udgraph.node[npID]['token'].upper()
                 nplemma = self.udgraph.node[npID]['lemma'].upper()
+                #pos = self.udgraph.node[npID]['pos']
 
                 logger.debug(str(npID) + " " + nptoken + " " + str(cfound))
 
-                barfound = False
-                if '-' in path and cfound:
-                    path = path['-']
-                    barfound = True
-                if '|' in path:
-                    path = path['|']
-
-                logger.debug(path)
+                logger.debug(path)              
                 if nptoken in path:
                     subpath = path[nptoken]
                     logger.debug(subpath)
 
                     cfound = True
-                    match = reroute(subpath, lambda a: match_phrase(a, None))
+                    match = reroute(subpath, lambda a: match_phrase(a, None),lambda a: False,lambda a: False,lambda a: False,0)
                     # if match:
                     # return match
 
@@ -1180,7 +1176,7 @@ An instantiated Sentence object
                     logger.debug(subpath)
 
                     cfound = True
-                    match = reroute(subpath, lambda a: match_phrase(a, None))
+                    match = reroute(subpath, lambda a: match_phrase(a, None),lambda a: False,lambda a: False,lambda a: False,0)
                     # if match:
                     # return match
 
@@ -1191,89 +1187,153 @@ An instantiated Sentence object
             if match:
                 return match
 
-            return reroute(path, lambda a: match_phrase(a, noun_phrase))
-
-        # def match_continus_noun(path,noun_phrase,start_ID):
+            return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
 
         def match_noun(path, noun_phrase):
             logger.debug("mn-entry")
 
-            if not isinstance(noun_phrase, basestring):
-                logger.debug("noun:" + noun_phrase.head +
-                             "#" + noun_phrase.text)
-                head = noun_phrase.head.upper()
-                headlemma = self.udgraph.node[
-                    noun_phrase.headID]['lemma'].upper()
-                if head in path:
-                    subpath = path[head]
-                    logger.debug(head + " found in pattern dictionary")
-                    match = reroute(subpath, (lambda a: match_phrase(
-                        a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
-                    if match:
-                        logger.debug(match)
-                        return match
-                elif headlemma in path:
-                    subpath = path[headlemma]
-                    logger.debug(
-                        headlemma + " found in pattern dictionary (lemma)")
-                    match = reroute(subpath, (lambda a: match_phrase(
-                        a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
-                    if match:
-                        logger.debug(match)
-                        return match
+            return_path = path
 
-            if "$" in path:
-                #print("$ "+path)
-                temppath = path["$"]
-                if "#" in temppath:
-                    match = temppath['#']
-                    if match:
-                        logger.debug(match)
-                        return match
+            if noun_phrase != None:
 
-            if "#" in path:
-                match = path['#']
+                if not isinstance(noun_phrase, basestring):
+                    logger.debug("noun:" + noun_phrase.head +
+                                 "#" + noun_phrase.text)
+
+                    pos = self.udgraph.node[noun_phrase.npIDs[0]]['pos']
+
+                    if pos == "ADP":
+                        prep = self.udgraph.node[noun_phrase.npIDs[0]]['token'].upper()
+                        if '|' in path:
+                            subpath = path['|']
+
+                            if prep in subpath:
+                                subpath = subpath[prep]
+
+                            pp_np = None
+                            for np in self.tempnouns:
+                                if np.npIDs[0] == noun_phrase.npIDs[1]:
+                                    pp_np = np
+                                    #print("pp_np", pp_np.text)
+                                    #raw_input()
+                            match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
+                            #print("match:", match)
+                            if match:
+                                return match
+                            return_path = subpath
+
+                    head = noun_phrase.head.upper()
+                    headlemma = self.udgraph.node[noun_phrase.headID]['lemma'].upper()
+
+
+
+                    if head in path:
+                        subpath = path[head]
+                        logger.debug(head + " found in pattern dictionary")
+
+                        #print(len(noun_phrase.prep_phrase))
+                        for pp in noun_phrase.prep_phrase:
+                            #print(pp.text)
+                            skip = lambda a: False
+                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
+                            match = reroute(subpath, skip, skip, matchphrase, skip)
+                            if match:
+                                logger.debug(match)
+                                return match
+                            return_path = subpath
+
+                        #print("head in path:", subpath)
+                        match = reroute(subpath, (lambda a: match_phrase(
+                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,(lambda a: match_phrase(
+                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,lambda a: False,lambda a: False)
+                        if match:
+                            logger.debug(match)
+                            return match
+
+                    elif headlemma in path:
+                        subpath = path[headlemma]
+                        logger.debug(headlemma + " found in pattern dictionary (lemma)")
+
+                        for pp in noun_phrase.prep_phrase:
+                            skip = lambda a: False
+                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
+                            match = reroute(subpath, skip, skip, matchphrase, skip)
+                            if match:
+                                logger.debug(match)
+                                return match
+
+                        match = reroute(subpath, (lambda a: match_phrase(
+                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
+                        if match:
+                            logger.debug(match)
+                            return match
+
+            if "^" in path:
+                skip = lambda a: False
+                return_path = path['^']
+                return reroute(path['^'], lambda a: match_phrase(a, noun_phrase),skip,skip,skip,1)
+
+            return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
+            
+
+        def match_prep(path,prep_phrase):
+            prep = self.udgraph.node[prep_phrase.ppIDs[0]]['token'].upper()
+            #print("prep:", prep_phrase.text)
+            if prep in path: 
+                #print(path[prep])
+                subpath = path[prep]
+
+                pp_np = None
+                for np in self.tempnouns:
+                    if np.npIDs[0] == prep_phrase.ppIDs[1]:
+                        pp_np = np
+                        #print("pp_np", pp_np.text)
+                match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
+                #print("match:", match)
                 if match:
-                    logger.debug(match)
                     return match
 
-        def match_prep(path, prep_phrase):
-            print("mp-entry")
+            return reroute(path, o2=match_prep)
+
 
         def reroute(subpath, o1=match_noun, o2=match_noun, o3=match_prep, o4=match_noun, exit=1):
-            # print('rr-entry:') # ,subpath
+            #print('rr-entry:') # ,subpath
+            #print(subpath)
             if not o1:  # match_noun() can call reroute() with o1 == None; guessing returning False is the appropriate response pas 16.04.21
                 return False
             if '-' in subpath:
                 match = o1(subpath['-'])
                 if match:
-                    #print('rr-- match')
+                    print('rr-- match')
                     # print(match)
                     return match
 
             if '$' in subpath:
-                # print('rr$ found')
-                match = reroute(subpath['$'], True)
+                print('rr$ found')
+                match = reroute(subpath['$'], True,lambda a: False,lambda a: False,lambda a: False, 1)
                 if match:
                     # print('rr$ match')
                     return match
 
             if ',' in subpath:
-                # print('rr-,')
+                print('rr-,')
                 # print(subpath[','])
-                match = reroute(subpath[','], True)
+                match = reroute(subpath[','], True,lambda a: False,lambda a: False,lambda a: False, 1)
                 if match:
                     # print(match)
                     return match
 
             if '|' in subpath:
-                print('rr-|')
-                # print(subpath['|'])
-                #raw_input("match preposition")
-                #match = o3(subpath['|'])
-                # if match:
-                #    print(match)
-                #    return match
+                #print('rr-|')
+                #print(subpath['|'])
+
+                match = o3(subpath['|'])
+                #match = reroute(subpath['|'], True)
+                #print(match)
+                if match:
+                    #print(match) 
+                    #raw_input()
+                    return match
 
             if '*' in subpath:
                 print('rr-*')
@@ -1285,67 +1345,56 @@ An instantiated Sentence object
                 #	return match
 
             if '#' in subpath and exit:
-                # print('rr-#')
+                #print('rr-#')
                 # print(subpath['#'])
                 return subpath['#']
 
-            # print('rr-False')
+            #print('rr-False')
             return False
 
         def match_lower(path, verb, target):
+           
             match = False
+  
             if '*' in path:
                 path = path['*']
                 logger.debug("'*' matched")
 
-            if "$" in path:
-                path = path["$"]
-                logger.debug("'$' matched")
-
-            if len(verb.vpIDs) > 1:
-                logger.debug("matching prep:")
-                temppatternDictPath = path
-                found = False
-                if '|' in temppatternDictPath:
-                    logger.debug("'|' matched")
-                    temppatternDictPath = temppatternDictPath['|']
-                    for vpID in verb.vpIDs:
-                        if(vpID <= verb.headID):
-                            continue
-                        if self.udgraph.node[vpID]['pos'] == 'ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
-                            temppatternDictPath = temppatternDictPath[
-                                self.udgraph.node[vpID]['token'].upper()]
-                            logger.debug(
-                                "prep matched:" + self.udgraph.node[vpID]['token'].upper())
-                            found = True
-
-                if found == True:
-                    path = temppatternDictPath
-                    if '#' in path:
-                        path = path['#']
-                        match = path
-                    if '-' in path:
-                        path = path['-']
-
-                if match:
-                    code = match['code']
-                    matched_pattern = match['line']
-                    logger.debug("matched:" + code + "\t" + matched_pattern)
-
             logger.debug("processing target:")
-            targetmatch = match_noun(path, target)
+            #find all noun phrases and preprositional phrase that is related to current verb
+            allnps = []
+            if isinstance(target, NounPhrase):
+                allnps.append(target)
+            
+            allnps.extend(self.metadata['othernoun'][verb.headID])
+            allnps = list(set(allnps))
 
+            #for np in allnps:
+                #print(np.headID, np.text)
+
+            targetmatch = False
+            for np in allnps:
+                temptargetmatch = match_noun(path, np)
+                #print(np.headID, np.text)
+                #print(temptargetmatch)
+                if temptargetmatch:
+                    targetmatch = temptargetmatch
+
+            
             if targetmatch:
                 return targetmatch
             elif match:
                 return match
             else:
                 return False
+            
 
         for triple in self.metadata['triplets']:
             source = triple[0]
             target = triple[1]
             verb = triple[2]
+
+            #print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
 
             '''get code from verb dictionary'''
             logger.debug("finding code of verb:" + verb.text)
@@ -1456,45 +1505,6 @@ An instantiated Sentence object
                     elif lowermatch:
                         match = lowermatch
 
-                    '''
-					if '*' in patternDictPath:
-						patternDictPath = patternDictPath['*']
-						logger.debug("'*' matched")
-
-
-					if len(verb.vpIDs)>1:
-						logger.debug("matching prep:")
-						temppatternDictPath = patternDictPath
-						found = False
-						if '|' in temppatternDictPath:
-							logger.debug("'|' matched")
-							temppatternDictPath = temppatternDictPath['|']
-							for vpID in verb.vpIDs:
-								if(vpID <= verb.headID):
-									continue
-								if self.udgraph.node[vpID]['pos']=='ADP' and self.udgraph.node[vpID]['token'].upper() in temppatternDictPath:
-									temppatternDictPath = temppatternDictPath[self.udgraph.node[vpID]['token'].upper()]
-									logger.debug("prep matched:"+self.udgraph.node[vpID]['token'].upper())
-									found = True
-
-						if found==True:
-							patternDictPath = temppatternDictPath
-							if '#' in patternDictPath:
-								patternDictPath = patternDictPath['#']
-								match = patternDictPath
-							if '-' in patternDictPath:
-								patternDictPath = patternDictPath['-']
-
-
-						if match:
-							code = match['code']
-							matched_pattern = match['line']
-							logger.debug("matched:"+code+"\t"+matched_pattern)
-
-
-					logger.debug("processing target:")
-					match = match_noun(patternDictPath,target)
-					'''
                     if match:
                         code = match['code']
                         matched_pattern = match['line']
@@ -1555,8 +1565,7 @@ An instantiated Sentence object
             self.triplets[tripleID] = {}
             self.triplets[tripleID]['triple'] = newtriple
             self.triplets[tripleID]['verbcode'] = verbcode
-            self.triplets[tripleID][
-                'matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
+            self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
             self.triplets[tripleID]['meaning'] = (",").join(meanings)
 
             #raw_input("Press Enter to continue...")
@@ -1565,6 +1574,9 @@ An instantiated Sentence object
         logger = logging.getLogger('petr_log.PETRgraph')
         self.get_phrases()
         self.filter_triplet_with_time_expression()
+
+        self.tempnouns, _ = self.get_all_nounPhrases()
+        
         self.get_verb_code()
         self.rootID,_ = self.get_rootNode()
 
@@ -1605,6 +1617,27 @@ An instantiated Sentence object
 
             verb = triple['triple'][2]
 
+            if target_meaning in [['---'],[]] or isinstance(target, basestring):
+                #print("finding new target:")
+                closest = len(self.udgraph.node)
+                newtarget_meaning = ['---']
+                for noun in self.metadata['othernoun'][verb.headID]:
+                    if noun.headID >= verb.headID and noun.headID <= closest:
+                        newtarget = noun
+                        newtarget.get_meaning()
+                        newtarget_meaning = newtarget.meaning if newtarget.meaning != None else ['---']
+                        if newtarget_meaning not in [['---'],[]]:
+                            closest = noun.headID
+                            target = newtarget
+
+                if newtarget_meaning != ['---']:
+                    target = newtarget
+                    self.nouns[target.headID] = target
+                    target_meaning = newtarget_meaning
+                    #print("new target found,",target.text, target_meaning)
+
+
+
             if verb.headID in self.rootID and tripleID not in paired_event:
                 if verb.headID in root_eventID:
                     root_event[verb.headID][tripleID] = ([s.replace('~', '---') for s in source_meaning], [
@@ -1641,6 +1674,8 @@ An instantiated Sentence object
             # return {}
 
         for tripleID, triple in self.triplets.items():
+            transfered = True
+
             if tripleID in paired_event:
                 continue
 
@@ -1653,7 +1688,7 @@ An instantiated Sentence object
             for root in self.rootID:
                 if root not in root_event:
                     continue
-
+                
                 if verb.headID in self.udgraph.neighbors(root):
                     relation_with_root = self.udgraph[
                         root][verb.headID]['relation']
@@ -1701,12 +1736,16 @@ An instantiated Sentence object
                                         self.events[tripleID].extend(
                                             list(e[1]))
 
+                                if e == event_before_transfer and isinstance(e[1], tuple) and e[1][2] != None:
+                                    self.events[current_eventID]=list(e[1])
+                                    transfered = False
+
         logger.debug("self.events: " + str(len(self.events)))
         for key, value in self.events.items():
             logger.debug(key + ":")
             logger.debug(value)
 
-        if(len(self.events) == 0):
+        if (len(self.events) == 0) or not transfered:
             for root in root_eventID:
                 for eventID in root_eventID[root]:
                     self.events[eventID] = []
