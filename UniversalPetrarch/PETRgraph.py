@@ -41,7 +41,7 @@ class NounPhrase:
         for successor in self.sentence.udgraph.successors(self.headID):
             relation = self.sentence.udgraph[
                 self.headID][successor]['relation']
-            if relation in ['amod', 'compound', 'det', 'name'] or relation.startswith("nmod"):
+            if relation in ['amod', 'compound', 'det', 'name','flat'] or relation.startswith("nmod"):
                 direct_modifier_ids.append(successor)
                 direct_modifier_ids.extend(
                     self.sentence.udgraph.successors(successor))
@@ -66,7 +66,7 @@ class NounPhrase:
         logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
         codes, roots, matched_txt = self.textMatching(
             npMainText.upper().split(" "))
-        actorcodes, agentcodes = self.resolve_codes(codes)
+        actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
         logger.debug("actorcodes:" + (",").join(actorcodes))
         logger.debug("agentcodes:" + (",").join(agentcodes))
         if actorcodes or agentcodes:
@@ -81,7 +81,7 @@ class NounPhrase:
         npText = self.text.upper().split(" ")
         codes, roots, matched_txt = self.textMatching(npText)
 
-        actorcodes, agentcodes = self.resolve_codes(codes)
+        actorcodes, agentcodes = self.resolve_codes(codes,matched_txt)
         self.meaning = self.mix_codes(agentcodes, actorcodes)
         self.matched_txt = matched_txt
 
@@ -154,9 +154,14 @@ class NounPhrase:
                 return [path['#']], so_far, length
         return False
 
-    def resolve_codes(self, codes):
+    def resolve_codes(self, codes, matched_txt):
         """
         Method that divides a list of mixed codes into actor and agent codes
+
+        for agent codes, if more than two agent codes matched, keep the code with longest matched text
+        e.g. MAIN OPPOSITION GROUP ~MOP
+             OPPOSITION GROUP ~OPP
+             keep ~MOP
 
         Parameters
         -----------
@@ -177,11 +182,28 @@ class NounPhrase:
 
         actorcodes = []
         agentcodes = []
-        for code in codes:
+        existagents = []
+        for i in range(0, len(codes)):
+            code = codes[i]
+            matched = matched_txt[i]
             if not code:
                 continue
             if code.startswith("~") or code.endswith("~"):
-                agentcodes.append(code)
+                exist = False
+                for j in range(0, len(existagents)):
+                    agent = existagents[j]
+                    if matched in agent:
+                        exist = True
+
+                        if len(matched) > agent:
+                            existagents[j] = matched
+                            agentcodes[j] = code
+
+                        break
+
+                if not exist:
+                    existagents.append(matched)
+                    agentcodes.append(code)
             else:
                 actorcodes.append(code)
 
@@ -878,7 +900,7 @@ An instantiated Sentence object
                         if self.udgraph[verbID][successor]['relation'] in ['nsubjpass']:
                             self.verbs[verbID].passive = True
 
-                    elif(self.udgraph[verbID][successor]['relation'] in ['nmod']):
+                    elif(self.udgraph[verbID][successor]['relation'] in ['nmod','obl']):
                         # othernoun.append(self.get_nounPharse(successor))
                         othernoun.extend(self.get_nounPharses(successor))
                         othernoun.extend(self.get_conj_noun(successor))
@@ -1232,15 +1254,30 @@ An instantiated Sentence object
                         logger.debug(head + " found in pattern dictionary")
 
                         #print(len(noun_phrase.prep_phrase))
+                        matches = []
                         for pp in noun_phrase.prep_phrase:
+                            #check all the prepositional phrases in a noun phrase
                             #print(pp.text)
                             skip = lambda a: False
                             matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
                             match = reroute(subpath, skip, skip, matchphrase, skip)
                             if match:
-                                logger.debug(match)
-                                return match
+                                #logger.debug(match)
+                                matches.append(match)
                             return_path = subpath
+
+                        if len(matches)>0: #if more than one patterns matched, return the longest pattern
+                            longestmatch = {'line':""}
+                            longestline = ''
+                            for match in matches:
+                                line = match['line'][0:match['line'].find("[")]
+                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
+
+                                if len(longestline) < len(line):
+                                    longestmatch = match
+                            logger.debug(longestmatch)
+                            return longestmatch
+                                
 
                         #print("head in path:", subpath)
                         match = reroute(subpath, (lambda a: match_phrase(
@@ -3293,7 +3330,7 @@ An instantiated Sentence object
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'dobj', 'iobj', 'nsubjpass']:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass','obl']:
                         found = True
                         break
 

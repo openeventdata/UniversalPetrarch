@@ -2232,6 +2232,7 @@ def read_agent_dictionary(agent_path):
 
         if '!' in part[0]:
             store_marker(agent, code)  # handle a substitution marker
+            plural = ''
         elif '{' in part[0]:
             if '}' not in part[0]:
                 logger.warning(brackerrorstr + enderrorstr)
