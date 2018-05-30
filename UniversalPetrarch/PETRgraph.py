@@ -569,7 +569,7 @@ An instantiated Sentence object
                 for parent in parents:
                     if parent in allsuccessors.keys():
                         for child in allsuccessors[parent]:
-                            if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj', 'punct']:
+                            if parent != nounhead or self.udgraph[parent][child]['relation'] not in ['cc', 'conj', 'punct','appos']:
                                 npIDs.append(child)
                                 temp.append(child)
                                
@@ -885,11 +885,14 @@ An instantiated Sentence object
                 if('relation' in self.udgraph[verbID][successor]):
                     # print(self.udgraph[nodeID][successor]['relation'])
                     if(self.udgraph[verbID][successor]['relation'] == 'nsubj'):
+                        logger.debug("find subj location:"+str(successor))
                         # source.append(self.get_nounPharse(successor))
+                        resolved = []
                         if self.udgraph.node[successor]['pos'] in ['PRON']:
-                            source.extend(resolve_pronoun(
-                                successor, verbID, 'source'))
-                        else:
+                            resolved = resolve_pronoun(successor, verbID, 'source')
+                            source.extend(resolved)
+
+                        if len(resolved)==0:
                             source.extend(self.get_nounPharses(successor))
                             source.extend(self.get_conj_noun(successor))
 
@@ -918,7 +921,7 @@ An instantiated Sentence object
         """
         conj_noun = []
         for successor in self.udgraph.successors(nodeID):
-            if(self.udgraph[nodeID][successor]['relation'] == 'conj'):
+            if(self.udgraph[nodeID][successor]['relation'] in ['conj','appos']):
                 # conj_noun.append(self.get_nounPharse(successor))
                 conjnouns = self.get_nounPharses(successor)
 
@@ -1028,6 +1031,9 @@ An instantiated Sentence object
                     for s in source:
                         triplet = (s, "-", verb)
                         self.metadata['triplets'].append(triplet)
+                elif len(source)==0 and len(target)==0:
+                    triplet = ("-", "-", verb)
+                    self.metadata['triplets'].append(triplet)
                 else:
                     for s in source:
                         for t in target:
@@ -1431,7 +1437,7 @@ An instantiated Sentence object
             target = triple[1]
             verb = triple[2]
 
-            #print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
+            print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
 
             '''get code from verb dictionary'''
             logger.debug("finding code of verb:" + verb.text)
@@ -1573,6 +1579,8 @@ An instantiated Sentence object
             newtriple = (source, target, verb)
 
             if code != None:
+                ''' 
+                # handle passive voice
                 if len(code.split(":")) == 2:
                     active_code, passive_code = code.split(":")
                     if verb.passive == True:
@@ -1581,6 +1589,8 @@ An instantiated Sentence object
                         verbcode = active_code
                 else:
                     verbcode = code
+                '''
+                verbcode = code
                 if verb.negative == True:
                     #raw_input("before negated:"+verbcode)
                     if verbcode not in ['-', '---'] and int(verbcode) <= 200:
@@ -1698,7 +1708,7 @@ An instantiated Sentence object
                 #	logger.debug("verb:"+verb.text+" relation:"+relation_with_root)
 
             event = ([s.replace('~', '---') for s in source_meaning],
-                     [t.replace('~', '---') for t in target_meaning], triple['verbcode'])
+                         [t.replace('~', '---') for t in target_meaning], triple['verbcode'])
             logger.debug(event)
 
             events[tripleID] = event
@@ -1847,6 +1857,16 @@ An instantiated Sentence object
                         self.events[tripleID] = [
                             actors[sid], actors[tid], verbcode]
                         idx = idx + 1
+
+        for eventID, event in self.events.items(): # symmetric events
+            #print(event)
+            if event[2] not in [None,0] and ":" in event[2]:
+                codes = event[2].split(":")
+                if codes[0]:
+                    self.events[eventID+"#s1"] = [event[0],event[1],codes[0]]
+                if codes[1]:
+                    self.events[eventID+"#s2"] = [event[1],event[0],codes[1]]
+                self.events.pop(eventID)
 
         return self.events
 
