@@ -55,6 +55,7 @@ import textwrap
 import os.path
 import logging
 import codecs
+import ast
 import sys
 
 import PETRreader
@@ -62,6 +63,9 @@ import PETRgraph
 import petrarch_ud
 import PETRglobals
 
+doing_compare = False
+doing_P1 = False
+doing_P2 = False
 
 # ========================== VALIDATION FUNCTIONS ========================== #
 
@@ -120,7 +124,7 @@ def get_environment():
             PETRglobals.VerbFileName = line[line.find(">") + 1:line.find("</")]
 
         elif '<Actorfile' in line:
-            PETRglobals.ActorFileList = [line[line.find(">") + 1:line.find("</")]]
+            PETRglobals.ActorFileList = line[line.find(">") + 1:line.find("</")].split(',')
 
         elif '<Agentfile' in line:
             PETRglobals.AgentFileList = [line[line.find(">") + 1:line.find("</")]]
@@ -237,12 +241,13 @@ def validate_record(valrecord):
     print("evaluating", idstrg)
     logger.debug("\nevaluating: "+ idstrg)
     fout.write("Record ID: " + idstrg + '\n')
-    fout.write("Text:\n")
-    for li in textwrap.wrap(valrecord['text'], width = 100):
-        fout.write("    " + li + '\n')
-    fout.write("Parse:\n")
-    for strg in parse[:-1].split("\n"):
-        fout.write("    " +  strg  + '\n')
+    if not doing_compare:
+        fout.write("Text:\n")
+        for li in textwrap.wrap(valrecord['text'], width = 100):
+            fout.write("    " + li + '\n')
+        fout.write("Parse:\n")
+        for strg in parse[:-1].split("\n"):
+            fout.write("    " +  strg  + '\n')
     fout.write("Expected events:\n")
     for edict in valrecord['events']:
         if "noevents" in edict:
@@ -302,9 +307,10 @@ def validate_record(valrecord):
                 fout.write("ERROR\n")
         if nnull > 0:
             fout.write("Null events: " + str(nnull)  + '\n')                
-        fout.write("Event source:\n")
-        for key, val in return_dict[idstrg]['sents']['0']['events'].items():
-            fout.write("    " + key  + ': ' + str(val) + '\n')
+        if not doing_compare:
+            fout.write("Event source:\n")
+            for key, val in return_dict[idstrg]['sents']['0']['events'].items():
+                fout.write("    " + key  + ': ' + str(val) + '\n')
     else:
         fout.write("    No events returned")
         if "noevents" in valrecord['events'][0]:
@@ -333,22 +339,20 @@ def validate_record(valrecord):
         print(" --> Exception generating PETRgraph.Sentence(): ",e)
         fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
 
-    parse_verb(phrase_dict, sentence)
-    parse_triplets(phrase_dict)
+    if not doing_compare:
+        parse_verb(phrase_dict, sentence)
+        parse_triplets(phrase_dict)
     fout.write('\n')
 
 
 def do_validation():
-    """ Unit tests using a validation file. """
-    global valid_counts
+    """ Functional tests using a validation file. """
 
     def get_line_attribute(target):
         """ quick and dirty function for extracting well-formed XML attributes"""
         part = line.partition(target)
         return part[2][2:part[2].find('"',3)]
 
-    valid_counts = {'catlist': []}
-#    allrecords, allcorrect, alluncoded, allextra, allnull = 0, 0, 0, 0, 0
     ka = 0 # debugging counters
     kb = 0
     line = fin.readline() 
@@ -386,6 +390,16 @@ def do_validation():
                         else:
                             valrecord['events'] = [theevent]    
 
+                elif (line.startswith("<P1Event ") and doing_P1) or (line.startswith("<P2Event ") and doing_P2):
+                     thelist = ast.literal_eval(line[9:-2])
+                     valrecord['events'] = []
+                     for li in thelist:
+                        theevent = {'eventcode'  : li[2],
+                                    'sourcecode' : li[0],
+                                    'targetcode' : li[1],
+                                    'coded': False
+                                    }
+                        valrecord['events'].append(theevent)
                 elif line.startswith("<Text"):
                     thetext = ""
                     line = fin.readline() 
@@ -423,6 +437,14 @@ if __name__ == '__main__':
     elif "-i" in sys.argv:
         directory_name = "data/text"
         filename = sys.argv[sys.argv.index("-i") + 1] 
+    elif "-p1" in sys.argv or "-p2" in sys.argv:
+        doing_compare = True
+        directory_name = "P1-2_compare"
+        filename = "P1-2_compare_dictionaries.xml" 
+        if "-p1" in sys.argv:
+            doing_P1 = True
+        else:
+            doing_P2 = True 
     else:
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.xml"  # path to validation file
@@ -445,7 +467,8 @@ if __name__ == '__main__':
         read_validate_dictionaries()
     else:
         petrarch_ud.read_dictionaries()
-
+        
+    valid_counts = {'catlist': []}
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
     if PETRglobals.CodeWithPetrarch1:
@@ -455,8 +478,19 @@ if __name__ == '__main__':
     fout.write('Discard dictionary: ' + PETRglobals.DiscardFileName + "\n")
     fout.write('PICO file:          ' + PETRglobals.InternalCodingOntologyFileName + "\n\n" )
 
-    do_validation()
+    if not doing_compare:
+        do_validation()
+    else:
+        fin.close()
+        for filename in open(os.path.join(directory_name, "files.list.txt"),'r'):
+            if filename.startswith("==="):
+                break
+            fin = open(os.path.join(directory_name, filename[:-1]),'r')
+            do_validation()
+            fin.close()
 
+    if doing_compare:
+        filename = "P1/2 comparison files"
     fout.write("\nSummary: " + filename + " at " + timestamp + "\n")
 #    fout.write("Categories included: " + str(ValidInclude) + "\n")
     fout.write("Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  \n")
@@ -476,10 +510,10 @@ if __name__ == '__main__':
     fout.write("TP = correct/(correct + uncoded) \n")
     fout.write("FN = uncoded/(correct + uncoded) = 100 - TP \n")
     fout.write("FP = extra/records\n")
-    print("\nRecords evaluated:{:4d}".format(valid_counts['Total'][0]))
-    print("Correct events:   {:4d} {:8.2f}%".format(valid_counts['Total'][1], (valid_counts['Total'][1] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
-    print("Uncoded events:   {:4d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
-    print("Extra events:     {:4d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
+    print("\nRecords evaluated:{:8d}".format(valid_counts['Total'][0]))
+    print("Correct events:   {:8d} {:8.2f}%".format(valid_counts['Total'][1], (valid_counts['Total'][1] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
+    print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
+    print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
     print("===========================\n")
 
     fin.close()
