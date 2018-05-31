@@ -20,7 +20,7 @@
 -->
 <Environment>
     <Verbfile>CAMEO.2.0.txt</Verbfile>
-    <Actorfile>Phoenix.Countries.actors.txt</Actorfile>
+    <Actorfile>Phoenix.Countries.actors.txt,Phoenix.International.actors.txt,Phoenix.MilNonState.actors.txt</Actorfile>
     <Agentfile>Phoenix.agents.txt</Agentfile>
     <Discardfile>Phoenix.discards.txt</Discardfile>
     <PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
