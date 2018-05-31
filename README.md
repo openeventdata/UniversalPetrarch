@@ -180,3 +180,51 @@ SYNSET            52        36        16        16       100    69.23%    30.77%
 AGENT             23        13        11        11        17    54.17%    45.83%    47.83%
 Total            244       213        99        56       390    68.27%    31.73%    22.95%
 ```
+
+### Bulk comparison coding
+
+The -p1 and -p2 options can be used to run comparisons against a large number of records coded with PETRARCH-1 and -2. We've been using this internally to test against 20,000 records: those files are too extensive to post on GitHub under fair use exemptions, so this section will attempt to describe for to set this up.
+
+At present, the name of the comparison directory is hard-coded as `P1-2_compare` and this should be at the same level as the `validation.py` program. Inside that directory is a file named `P1-2_compare_dictionaries.xml` which contains the `<Environment>` section of the validation XML file. The directory should also contain a file `files.list.txt` which is a list of the files to be coded.
+
+These files are similar to the `<Sentences>` section of the XML file but contain records of the form
+
+```
+<Sentence date="20150219" id="5502e474-2a15-48e0-8c13-1e2a6d2f9337_2" category="COMPARE" evaluate="true">
+<P1Event [['AUT', 'SRBGOV', '046'], ['SRBGOV', 'AUT', '046']]>
+<P2Event [['SRBGOV', 'AUT', '010'], ['SRBGOV', 'MEAREB', '010']]>
+<Text>
+- The Serbian foreign minister spoke in Vienna on Thursday in his role as OSCE chairperson, during
+the winter session of the organization's parliamentary assembly .
+</Text>
+<Parse>
+1	-	-	PUNCT	NFP	_	6	punct	_	_
+2	The	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+3	Serbian	Serbian	ADJ	JJ	Degree=Pos	5	amod	_	_
+4	foreign	foreign	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	minister	minister	NOUN	NN	Number=Sing	6	nsubj	_	_
+6	spoke	speak	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	in	in	ADP	IN	_	8	case	_	_
+8	Vienna	Vienna	PROPN	NNP	Number=Sing	6	obl	_	_
+9	on	on	ADP	IN	_	10	case	_	_
+10	Thursday	Thursday	PROPN	NNP	Number=Sing	6	obl	_	_
+11	in	in	ADP	IN	_	13	case	_	_
+12	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	13	nmod:poss	_	_
+13	role	role	NOUN	NN	Number=Sing	6	obl	_	_
+14	as	as	ADP	IN	_	16	case	_	_
+15	OSCE	Osce	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	chairperson	chairperson	NOUN	NN	Number=Sing	6	obl	_	_
+17	,	,	PUNCT	,	_	6	punct	_	_
+18	during	during	ADP	IN	_	21	case	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+20	winter	winter	NOUN	NN	Number=Sing	21	compound	_	_
+21	session	session	NOUN	NN	Number=Sing	6	obl	_	_
+22	of	of	ADP	IN	_	27	case	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
+24	organization	organization	NOUN	NN	Number=Sing	27	nmod:poss	_	_
+25	's	's	PART	POS	_	24	case	_	_
+26	parliamentary	parliamentary	NOUN	NN	Number=Sing	27	compound	_	_
+27	assembly	assembly	NOUN	NN	Number=Sing	21	nmod	_	_
+28	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+```
