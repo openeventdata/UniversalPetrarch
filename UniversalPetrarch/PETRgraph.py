@@ -950,6 +950,9 @@ An instantiated Sentence object
 
                 conj_noun.extend(conjnouns)
 
+                if self.udgraph[nodeID][successor]['relation'] == 'appos': # get conj nouns from appos nouns
+                    conj_noun.extend(self.get_conj_noun(successor))
+
         return conj_noun
 
     def get_phrases(self):
@@ -1422,8 +1425,8 @@ An instantiated Sentence object
                 #print(temptargetmatch)
                 if temptargetmatch:
                     targetmatch = temptargetmatch
-
-            
+            if len(allnps)==0:
+                match = reroute(path,lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
             if targetmatch:
                 return targetmatch
             elif match:
@@ -1437,7 +1440,7 @@ An instantiated Sentence object
             target = triple[1]
             verb = triple[2]
 
-            print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
+            #print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
 
             '''get code from verb dictionary'''
             logger.debug("finding code of verb:" + verb.text)
@@ -1622,7 +1625,7 @@ An instantiated Sentence object
         self.get_phrases()
         self.filter_triplet_with_time_expression()
 
-        self.tempnouns, _ = self.get_all_nounPhrases()
+        self.tempnouns, compound_nouns = self.get_all_nounPhrases()
         
         self.get_verb_code()
         self.rootID,_ = self.get_rootNode()
@@ -1664,7 +1667,7 @@ An instantiated Sentence object
 
             verb = triple['triple'][2]
 
-            if target_meaning in [['---'],[]] or isinstance(target, basestring):
+            if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 #print("finding new target:")
                 closest = len(self.udgraph.node)
                 newtarget_meaning = ['---']
@@ -1678,10 +1681,15 @@ An instantiated Sentence object
                             target = newtarget
 
                 if newtarget_meaning != ['---']:
-                    target = newtarget
-                    self.nouns[target.headID] = target
-                    target_meaning = newtarget_meaning
-                    #print("new target found,",target.text, target_meaning)
+                    if target_meaning in [['---'],[]] or isinstance(target, basestring):
+                        target = newtarget
+                        self.nouns[target.headID] = target
+                        target_meaning = newtarget_meaning
+                        #print("new target found,",target.text, target_meaning)
+                    elif verb.passive and source_meaning in [['---'],[],'']:
+                        source = newtarget
+                        self.nouns[source.headID] = source
+                        source_meaning = newtarget_meaning
 
 
 
@@ -2003,7 +2011,7 @@ An instantiated Sentence object
                 #print(16 ** 3)
                 #print(c / (16 ** 3))
                 # not e[1][2] / (16 ** 3):
-                if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] != e[1][0]:
+                if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] != e[1][0] and e[1][1]:
                     logger.debug(utilities.convert_code(e[2])[0])
                     logger.debug(e[2])
 
@@ -2027,7 +2035,7 @@ An instantiated Sentence object
                              utilities.convert_code(code_combined, 0))
                     logger.debug(event)
                     return [event]
-                elif e[0] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] == e[1][0]:
+                elif e[0] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] == e[1][0] and e[1][1]:
 
                     logger.debug("the event is of the form: a ( a b Q ) P")
                     if e[2] in [None, '---']:
@@ -2040,7 +2048,7 @@ An instantiated Sentence object
                     logger.debug(event)
 
                     return [event]
-                elif e[0] and isinstance(e[1], tuple) and not e[1][0] and e[1][2]:
+                elif e[0] and isinstance(e[1], tuple) and not e[1][0] and e[1][2] and e[1][1]:
                     logger.debug("the event is of the form: a ( [] b Q ) P")
                     if e[2] in [None, '---']:
                         code_combined = utilities.convert_code(e[1][2])[0]
