@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20160528" id="512a377a-d971-4d77-a623-e2e097f977c1_1" category="COMPARE" evaluate="true">
+<P1Event [['IRNGOV', 'IRQGOVUAF', '010']]>
+<P2Event [['IRNGOV', '---MUS', '010']]>
+<Text>
+Iran's Foreign Minister Mohammad Javad Zarif says the Islamic Republic throws its weight behind the
+Iraqi government's fight against Daesh terrorists .
+</Text>
+<Parse>
+1	Iran	Iran	PROPN	NNP	Number=Sing	4	nmod:poss	_	_
+2	's	's	PART	POS	_	1	case	_	_
+3	Foreign	Foreign	PROPN	NNP	Number=Sing	4	compound	_	_
+4	Minister	Minister	PROPN	NNP	Number=Sing	8	nsubj	_	_
+5	Mohammad	Mohammad	PROPN	NNP	Number=Sing	4	flat	_	_
+6	Javad	Javad	PROPN	NNP	Number=Sing	4	flat	_	_
+7	Zarif	Zarif	PROPN	NNP	Number=Sing	4	flat	_	_
+8	says	say	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+10	Islamic	Islamic	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Republic	Republic	PROPN	NNP	Number=Sing	12	nsubj	_	_
+12	throws	throw	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	ccomp	_	_
+13	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
+14	weight	weight	NOUN	NN	Number=Sing	12	obj	_	_
+15	behind	behind	ADP	IN	_	20	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+17	Iraqi	iraqi	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	government	government	NOUN	NN	Number=Sing	20	nmod:poss	_	_
+19	's	's	PART	POS	_	18	case	_	_
+20	fight	fight	NOUN	NN	Number=Sing	12	obl	_	_
+21	against	against	ADP	IN	_	23	case	_	_
+22	Daesh	Daesh	PROPN	NNP	Number=Sing	23	compound	_	_
+23	terrorists	terrorist	NOUN	NNS	Number=Plur	20	nmod	_	_
+24	.	.	PUNCT	.	_	8	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160528" id="512a377a-d971-4d77-a623-e2e097f977c1_2" category="COMPARE" evaluate="true">
+<P1Event [['AFGMUS', 'IRQGOV', '051']]>
+<P2Event [['IRNMUS', 'IRQGOV', '050']]>
+<Text>
+`` The Islamic Republic of Iran always views the expansion of Tehran-Baghdad ties as one of its
+priorities and supports the Iraqi government's campaign against Daesh that aims to destabilize
+Iraq's security and unity,'' Zarif said in a meeting with Chairman of the Islamic Supreme Council of
+Iraq -LRB- ISCI -RRB- Ammar Hakim in Tehran on Tuesday .
+</Text>
+<Parse>
+1	``	``	SYM	$	_	4	case	_	_
+2	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+3	Islamic	Islamic	PROPN	NNP	Number=Sing	4	compound	_	_
+4	Republic	republic	PROPN	NNP	Number=Sing	8	nsubj	_	_
+5	of	of	ADP	IN	_	6	case	_	_
+6	Iran	Iran	PROPN	NNP	Number=Sing	4	nmod	_	_
+7	always	always	ADV	RB	_	8	advmod	_	_
+8	views	view	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	40	ccomp	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+10	expansion	expansion	NOUN	NN	Number=Sing	8	obj	_	_
+11	of	of	ADP	IN	_	13	case	_	_
+12	Tehran-Baghdad	Tehran-Baghdad	ADJ	JJ	Degree=Pos	13	amod	_	_
+13	ties	tie	NOUN	NNS	Number=Plur	10	nmod	_	_
+14	as	as	ADP	IN	_	15	case	_	_
+15	one	one	NUM	CD	NumType=Card	8	obl	_	_
+16	of	of	ADP	IN	_	18	case	_	_
+17	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	18	nmod:poss	_	_
+18	priorities	priorities	NOUN	NNS	Number=Plur	15	nmod	_	_
+19	and	and	CCONJ	CC	_	20	cc	_	_
+20	supports	support	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	conj	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+22	Iraqi	iraqi	ADJ	JJ	Degree=Pos	23	amod	_	_
+23	government	government	NOUN	NN	Number=Sing	25	nmod:poss	_	_
+24	's	's	PART	POS	_	23	case	_	_
+25	campaign	campaign	NOUN	NN	Number=Sing	20	obj	_	_
+26	against	against	ADP	IN	_	27	case	_	_
+27	Daesh	Daesh	PROPN	NNP	Number=Sing	25	nmod	_	_
+28	that	that	PRON	WDT	PronType=Rel	29	nsubj	_	_
+29	aims	aim	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	acl:relcl	_	_
+30	to	to	PART	TO	_	31	mark	_	_
+31	destabilize	destabilize	VERB	VB	VerbForm=Inf	29	xcomp	_	_
+32	Iraq	Iraq	PROPN	NNP	Number=Sing	34	nmod:poss	_	_
+33	's	's	PART	POS	_	32	case	_	_
+34	security	security	NOUN	NN	Number=Sing	31	obj	_	_
+35	and	and	CCONJ	CC	_	36	cc	_	_
+36	unity	unity	NOUN	NN	Number=Sing	34	conj	_	_
+37	,	,	PUNCT	,	_	40	punct	_	_
+38	''	''	PUNCT	''	_	40	punct	_	_
+39	Zarif	Zarif	PROPN	NNP	Number=Sing	40	nsubj	_	_
+40	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+41	in	in	ADP	IN	_	43	case	_	_
+42	a	a	DET	DT	Definite=Ind|PronType=Art	43	det	_	_
+43	meeting	meeting	NOUN	NN	Number=Sing	40	obl	_	_
+44	with	with	ADP	IN	_	45	case	_	_
+45	Chairman	chairman	NOUN	NN	Number=Sing	43	nmod	_	_
+46	of	of	ADP	IN	_	50	case	_	_
+47	the	the	DET	DT	Definite=Def|PronType=Art	50	det	_	_
+48	Islamic	Islamic	PROPN	NNP	Number=Sing	50	compound	_	_
+49	Supreme	Supreme	PROPN	NNP	Number=Sing	50	compound	_	_
+50	Council	Council	PROPN	NNP	Number=Sing	57	nmod	_	_
+51	of	of	ADP	IN	_	52	case	_	_
+52	Iraq	Iraq	PROPN	NNP	Number=Sing	50	nmod	_	_
+53	-LRB-	-LRB-	PUNCT	HYPH	_	54	punct	_	_
+54	ISCI	Isci	PROPN	NNP	Number=Sing	57	compound	_	_
+55	-RRB-	-RRB-	PUNCT	HYPH	_	54	punct	_	_
+56	Ammar	Ammar	PROPN	NNP	Number=Sing	54	flat	_	_
+57	Hakim	Hakim	PROPN	NNP	Number=Sing	45	flat	_	_
+58	in	in	ADP	IN	_	59	case	_	_
+59	Tehran	Tehran	PROPN	NNP	Number=Sing	45	nmod	_	_
+60	on	on	ADP	IN	_	61	case	_	_
+61	Tuesday	Tuesday	PROPN	NNP	Number=Sing	43	nmod	_	_
+62	.	.	PUNCT	.	_	40	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20161108" id="512a4537-b386-4512-b568-e28a5fce16bb_4" category="COMPARE" evaluate="true">
+<P1Event [['CAN', 'MNCUSA', '173']]>
+<P2Event [['CAN', 'MNCUSA', '171']]>
+<Text>
+Air Canada has taken delivery of 10 Boeing 787 Dreamliners from its order of 37 planes, considered
+key to its fleet replacement plans .
+</Text>
+<Parse>
+1	Air	Air	PROPN	NNP	Number=Sing	2	compound	_	_
+2	Canada	Canada	PROPN	NNP	Number=Sing	4	nsubj	_	_
+3	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+4	taken	take	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+5	delivery	delivery	NOUN	NN	Number=Sing	4	obj	_	_
+6	of	of	ADP	IN	_	10	case	_	_
+7	10	10	NUM	CD	NumType=Card	10	nummod	_	_
+8	Boeing	Boeing	NOUN	NN	Number=Sing	10	compound	_	_
+9	787	787	NUM	CD	NumType=Card	10	nummod	_	_
+10	Dreamliners	Dreamliner	NOUN	NNS	Number=Plur	5	nmod	_	_
+11	from	from	ADP	IN	_	13	case	_	_
+12	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	13	nmod:poss	_	_
+13	order	order	NOUN	NN	Number=Sing	4	obl	_	_
+14	of	of	ADP	IN	_	16	case	_	_
+15	37	37	NUM	CD	NumType=Card	16	nummod	_	_
+16	planes	plane	NOUN	NNS	Number=Plur	13	nmod	_	_
+17	,	,	PUNCT	,	_	4	punct	_	_
+18	considered	consider	VERB	VBN	Tense=Past|VerbForm=Part	4	parataxis	_	_
+19	key	key	ADJ	JJ	Degree=Pos	18	xcomp	_	_
+20	to	to	ADP	IN	_	24	case	_	_
+21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	24	nmod:poss	_	_
+22	fleet	fleet	NOUN	NN	Number=Sing	23	compound	_	_
+23	replacement	replacement	NOUN	NN	Number=Sing	24	compound	_	_
+24	plans	plan	NOUN	NNS	Number=Plur	18	obl	_	_
+25	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160308" id="512d1bee-34c2-4db2-9d61-dbb5f55aeabc_4" category="COMPARE" evaluate="true">
+<P1Event [['IGOUNODEVWBK', 'UZB', '071']]>
+<P2Event [['IGOUNO', 'UZB', '071']]>
+<Text>
+In addition, the WB provides a fund of $ 105 million to Uzbekistan for implementation of the project
+of rehabilitation of sewer networks in Bukhara and Samarkand .
+</Text>
+<Parse>
+1	In	in	ADP	IN	_	2	case	_	_
+2	addition	addition	NOUN	NN	Number=Sing	6	obl	_	_
+3	,	,	PUNCT	,	_	6	punct	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+5	WB	WB	PROPN	NNP	Number=Sing	6	nsubj	_	_
+6	provides	provide	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+8	fund	fund	NOUN	NN	Number=Sing	6	obj	_	_
+9	of	of	ADP	IN	_	10	case	_	_
+10	$	$	SYM	$	_	8	nmod	_	_
+11	105	105	NUM	CD	NumType=Card	12	compound	_	_
+12	million	million	NUM	CD	NumType=Card	10	nummod	_	_
+13	to	to	ADP	IN	_	14	case	_	_
+14	Uzbekistan	Uzbekistan	PROPN	NNP	Number=Sing	10	nmod	_	_
+15	for	for	ADP	IN	_	16	case	_	_
+16	implementation	implementation	NOUN	NN	Number=Sing	6	obl	_	_
+17	of	of	ADP	IN	_	19	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
+19	project	project	NOUN	NN	Number=Sing	16	nmod	_	_
+20	of	of	ADP	IN	_	21	case	_	_
+21	rehabilitation	rehabilitation	NOUN	NN	Number=Sing	19	nmod	_	_
+22	of	of	ADP	IN	_	24	case	_	_
+23	sewer	sewer	NOUN	NN	Number=Sing	24	compound	_	_
+24	networks	network	NOUN	NNS	Number=Plur	21	nmod	_	_
+25	in	in	ADP	IN	_	26	case	_	_
+26	Bukhara	Bukhara	PROPN	NNP	Number=Sing	6	nmod	_	_
+27	and	and	CCONJ	CC	_	28	cc	_	_
+28	Samarkand	Samarkand	PROPN	NNP	Number=Sing	26	conj	_	_
+29	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160312" id="512d41b8-2eb1-46bd-aebf-d167d6c82bce_2" category="COMPARE" evaluate="true">
+<P1Event [['GBRGOV', 'ESPGOV', '050']]>
+<P2Event [['GBRGOV', 'ESPGOV', '050']]>
+<Text>
+In a series of memos to London, British diplomats revealed a sharp contrast between the Spanish
+government's public statements on Spain's North African enclaves and what was being said behind
+closed doors .
+</Text>
+<Parse>
+1	In	in	ADP	IN	_	3	case	_	_
+2	a	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
+3	series	series	NOUN	NN	Number=Sing	11	obl	_	_
+4	of	of	ADP	IN	_	5	case	_	_
+5	memos	memo	NOUN	NNS	Number=Plur	3	nmod	_	_
+6	to	to	ADP	IN	_	7	case	_	_
+7	London	London	PROPN	NNP	Number=Sing	5	nmod	_	_
+8	,	,	PUNCT	,	_	11	punct	_	_
+9	British	british	ADJ	JJ	Degree=Pos	10	amod	_	_
+10	diplomats	diplomat	NOUN	NNS	Number=Plur	11	nsubj	_	_
+11	revealed	reveal	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+12	a	a	DET	DT	Definite=Ind|PronType=Art	14	det	_	_
+13	sharp	sharp	ADJ	JJ	Degree=Pos	14	amod	_	_
+14	contrast	contrast	NOUN	NN	Number=Sing	11	obj	_	_
+15	between	between	ADP	IN	_	21	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+17	Spanish	spanish	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	government	government	NOUN	NN	Number=Sing	21	nmod:poss	_	_
+19	's	's	PART	POS	_	18	case	_	_
+20	public	public	ADJ	JJ	Degree=Pos	21	amod	_	_
+21	statements	statement	NOUN	NNS	Number=Plur	14	nmod	_	_
+22	on	on	ADP	IN	_	27	case	_	_
+23	Spain	Spain	PROPN	NNP	Number=Sing	27	nmod:poss	_	_
+24	's	's	PART	POS	_	23	case	_	_
+25	North	North	PROPN	NNP	Number=Sing	27	compound	_	_
+26	African	african	ADJ	JJ	Degree=Pos	27	amod	_	_
+27	enclaves	enclave	NOUN	NNS	Number=Plur	21	nmod	_	_
+28	and	and	CCONJ	CC	_	32	cc	_	_
+29	what	what	PRON	WP	PronType=Int	32	nsubj:pass	_	_
+30	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	32	aux	_	_
+31	being	be	AUX	VBG	VerbForm=Ger	32	aux:pass	_	_
+32	said	say	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	21	acl:relcl	_	_
+33	behind	behind	ADP	IN	_	35	case	_	_
+34	closed	closed	VERB	VBN	Tense=Past|VerbForm=Part	35	amod	_	_
+35	doors	door	NOUN	NNS	Number=Plur	32	obl	_	_
+36	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160625" id="512d63ed-c8ff-4478-864a-88f260a03a69_3" category="COMPARE" evaluate="true">
+<P1Event [['IRNGOV', 'IRQ', '110']]>
+<P2Event [['IRNGOV', 'IRQ', '010']]>
+<Text>
+The former Iranian Foreign Minister lamented that totalitarian regimes were resisting recent
+democratic developments in the region, highlighting the situation in Iraq where he said despite the
+rich academic discourse on free thinking Islamic traditions, the state was not flourishing as the
+non-democratic rulers of the region are pressing against .
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+2	former	former	ADJ	JJ	Degree=Pos	5	amod	_	_
+3	Iranian	iranian	ADJ	JJ	Degree=Pos	5	amod	_	_
+4	Foreign	Foreign	PROPN	NNP	Number=Sing	5	compound	_	_
+5	Minister	Minister	PROPN	NNP	Number=Sing	6	nsubj	_	_
+6	lamented	lament	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	that	that	SCONJ	IN	_	11	mark	_	_
+8	totalitarian	totalitarian	ADJ	JJ	Degree=Pos	9	amod	_	_
+9	regimes	regime	NOUN	NNS	Number=Plur	11	nsubj	_	_
+10	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	aux	_	_
+11	resisting	resist	VERB	VBG	Tense=Pres|VerbForm=Part	6	ccomp	_	_
+12	recent	recent	ADJ	JJ	Degree=Pos	14	amod	_	_
+13	democratic	democratic	ADJ	JJ	Degree=Pos	14	amod	_	_
+14	developments	development	NOUN	NNS	Number=Plur	11	obj	_	_
+15	in	in	ADP	IN	_	17	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	17	det	_	_
+17	region	region	NOUN	NN	Number=Sing	14	nmod	_	_
+18	,	,	PUNCT	,	_	11	punct	_	_
+19	highlighting	highlight	VERB	VBG	VerbForm=Ger	11	advcl	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+21	situation	situation	NOUN	NN	Number=Sing	19	obj	_	_
+22	in	in	ADP	IN	_	23	case	_	_
+23	Iraq	Iraq	PROPN	NNP	Number=Sing	19	obl	_	_
+24	where	where	ADV	WRB	PronType=Rel	26	advmod	_	_
+25	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	acl:relcl	_	_
+27	despite	despite	ADP	IN	_	31	case	_	_
+28	the	the	DET	DT	Definite=Def|PronType=Art	31	det	_	_
+29	rich	rich	ADJ	JJ	Degree=Pos	31	amod	_	_
+30	academic	academic	ADJ	JJ	Degree=Pos	31	amod	_	_
+31	discourse	discourse	NOUN	NN	Number=Sing	26	obl	_	_
+32	on	on	ADP	IN	_	36	case	_	_
+33	free	free	ADJ	JJ	Degree=Pos	36	amod	_	_
+34	thinking	think	VERB	VBG	VerbForm=Ger	36	amod	_	_
+35	Islamic	Islamic	PROPN	NNP	Number=Sing	36	compound	_	_
+36	traditions	tradition	NOUN	NNS	Number=Plur	31	nmod	_	_
+37	,	,	PUNCT	,	_	42	punct	_	_
+38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
+39	state	state	NOUN	NN	Number=Sing	42	nsubj	_	_
+40	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	42	aux	_	_
+41	not	not	PART	RB	_	42	advmod	_	_
+42	flourishing	flourish	VERB	VBG	Tense=Pres|VerbForm=Part	6	conj	_	_
+43	as	as	ADP	IN	_	46	case	_	_
+44	the	the	DET	DT	Definite=Def|PronType=Art	46	det	_	_
+45	non-democratic	non-democratic	ADJ	JJ	Degree=Pos	46	amod	_	_
+46	rulers	ruler	NOUN	NNS	Number=Plur	42	obl	_	_
+47	of	of	ADP	IN	_	49	case	_	_
+48	the	the	DET	DT	Definite=Def|PronType=Art	49	det	_	_
+49	region	region	NOUN	NN	Number=Sing	46	nmod	_	_
+50	are	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	51	aux	_	_
+51	pressing	press	VERB	VBG	Tense=Pres|VerbForm=Part	6	conj	_	_
+52	against	against	ADP	IN	_	51	case	_	_
+53	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160624" id="512ee7c6-6728-479f-8b85-c297638f3a30_1" category="COMPARE" evaluate="true">
+<P1Event [['IMGMUSALQ', 'AFGREBMUS', '130']]>
+<P2Event [['IMGMUS', 'AFGREB', '030']]>
+<Text>
+Al-Qaeda leader Ayman al-Zawahiri on Thursday pledged his group's allegiance to new Taliban chief
+Mullah Akhtar Mansour who is facing a bitter struggle over his leadership .
+</Text>
+<Parse>
+1	Al-Qaeda	Al-Qaeda	PROPN	NNP	Number=Sing	2	compound	_	_
+2	leader	leader	NOUN	NN	Number=Sing	3	compound	_	_
+3	Ayman	Ayman	PROPN	NNP	Number=Sing	7	nsubj	_	_
+4	al-Zawahiri	al-Zawahiri	PROPN	NNP	Number=Sing	3	flat	_	_
+5	on	on	ADP	IN	_	6	case	_	_
+6	Thursday	Thursday	PROPN	NNP	Number=Sing	3	flat	_	_
+7	pledged	pledge	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+8	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	9	nmod:poss	_	_
+9	group	group	NOUN	NN	Number=Sing	11	nmod:poss	_	_
+10	's	's	PART	POS	_	9	case	_	_
+11	allegiance	allegiance	NOUN	NN	Number=Sing	7	obj	_	_
+12	to	to	ADP	IN	_	18	case	_	_
+13	new	new	ADJ	JJ	Degree=Pos	18	amod	_	_
+14	Taliban	Taliban	PROPN	NNP	Number=Sing	16	compound	_	_
+15	chief	chief	NOUN	NN	Number=Sing	16	compound	_	_
+16	Mullah	Mullah	PROPN	NNP	Number=Sing	18	compound	_	_
+17	Akhtar	Akhtar	PROPN	NNP	Number=Sing	18	compound	_	_
+18	Mansour	Mansour	PROPN	NNP	Number=Sing	11	nmod	_	_
+19	who	who	PRON	WP	PronType=Rel	21	nsubj	_	_
+20	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	21	aux	_	_
+21	facing	face	VERB	VBG	Tense=Pres|VerbForm=Part	18	acl:relcl	_	_
+22	a	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
+23	bitter	bitter	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	struggle	struggle	NOUN	NN	Number=Sing	21	obj	_	_
+25	over	over	ADP	IN	_	27	case	_	_
+26	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	27	nmod:poss	_	_
+27	leadership	leadership	NOUN	NN	Number=Sing	24	nmod	_	_
+28	.	.	PUNCT	.	_	7	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160624" id="512ee7c6-6728-479f-8b85-c297638f3a30_2" category="COMPARE" evaluate="true">
+<P1Event [['IMGMUSISI', 'AFGREBCOPMUS', '130']]>
+<P2Event [['IMGMUS', 'AFGREB', '130']]>
+<Text>
+- Mansour, a trusted deputy of longtime Taliban leader Mullah Omar whose death was confirmed last
+month, is taking charge as the movement faces growing internal divisions and is threatened by the
+rise of the Islamic State group, which is making inroads in Afghanistan .
+</Text>
+<Parse>
+1	-	-	PUNCT	NFP	_	2	punct	_	_
+2	Mansour	Mansour	PROPN	NNP	Number=Sing	21	nsubj	_	_
+3	,	,	PUNCT	,	_	2	punct	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	6	det	_	_
+5	trusted	trust	VERB	VBN	Tense=Past|VerbForm=Part	6	amod	_	_
+6	deputy	deputy	NOUN	NN	Number=Sing	2	appos	_	_
+7	of	of	ADP	IN	_	10	case	_	_
+8	longtime	longtime	ADJ	JJ	Degree=Pos	10	amod	_	_
+9	Taliban	Taliban	PROPN	NNP	Number=Sing	10	compound	_	_
+10	leader	leader	NOUN	NN	Number=Sing	6	nmod	_	_
+11	Mullah	Mullah	PROPN	NNP	Number=Sing	2	flat	_	_
+12	Omar	Omar	PROPN	NNP	Number=Sing	2	flat	_	_
+13	whose	whose	PRON	WP$	Poss=Yes|PronType=Int	14	nmod:poss	_	_
+14	death	death	NOUN	NN	Number=Sing	16	nsubj:pass	_	_
+15	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	16	aux:pass	_	_
+16	confirmed	confirm	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	2	acl:relcl	_	_
+17	last	last	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	month	month	NOUN	NN	Number=Sing	16	obl:tmod	_	_
+19	,	,	PUNCT	,	_	21	punct	_	_
+20	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	21	aux	_	_
+21	taking	take	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+22	charge	charge	NOUN	NN	Number=Sing	21	obj	_	_
+23	as	as	ADP	IN	_	26	mark	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+25	movement	movement	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	21	advcl	_	_
+27	growing	grow	VERB	VBG	VerbForm=Ger	26	acl	_	_
+28	internal	internal	ADJ	JJ	Degree=Pos	29	amod	_	_
+29	divisions	division	NOUN	NNS	Number=Plur	27	obj	_	_
+30	and	and	CCONJ	CC	_	32	cc	_	_
+31	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	32	aux:pass	_	_
+32	threatened	threaten	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	21	conj	_	_
+33	by	by	ADP	IN	_	35	case	_	_
+34	the	the	DET	DT	Definite=Def|PronType=Art	35	det	_	_
+35	rise	rise	NOUN	NN	Number=Sing	32	obl	_	_
+36	of	of	ADP	IN	_	40	case	_	_
+37	the	the	DET	DT	Definite=Def|PronType=Art	40	det	_	_
+38	Islamic	Islamic	PROPN	NNP	Number=Sing	40	compound	_	_
+39	State	State	PROPN	NNP	Number=Sing	40	compound	_	_
+40	group	group	NOUN	NN	Number=Sing	35	nmod	_	_
+41	,	,	PUNCT	,	_	35	punct	_	_
+42	which	which	PRON	WDT	PronType=Rel	44	nsubj	_	_
+43	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	44	aux	_	_
+44	making	make	VERB	VBG	Tense=Pres|VerbForm=Part	35	acl:relcl	_	_
+45	inroads	inroad	NOUN	NNS	Number=Plur	44	obj	_	_
+46	in	in	ADP	IN	_	47	case	_	_
+47	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	44	obl	_	_
+48	.	.	PUNCT	.	_	21	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160625" id="512fb6c6-9cd5-4d19-8c93-676d81005f0b_2" category="COMPARE" evaluate="true">
+<P1Event [['PHLMIL', 'JPN', '190']]>
+<P2Event [['PHLMIL', 'JPN', '190']]>
+<Text>
+The Philippine Army Dragon Boat Team with a Zamboangueño member bested 17 other countries in Japan's
+Dragon Boat Festival held recently .
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+2	Philippine	Philippine	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	Army	Army	PROPN	NNP	Number=Sing	5	compound	_	_
+4	Dragon	dragon	PROPN	NNP	Number=Sing	5	compound	_	_
+5	Boat	Boat	PROPN	NNP	Number=Sing	6	compound	_	_
+6	Team	team	NOUN	NN	Number=Sing	11	nsubj	_	_
+7	with	with	ADP	IN	_	10	case	_	_
+8	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+9	Zamboangueño	Zamboangueño	PROPN	NNP	Number=Sing	10	compound	_	_
+10	member	member	NOUN	NN	Number=Sing	6	nmod	_	_
+11	bested	beste	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+12	17	17	NUM	CD	NumType=Card	14	nummod	_	_
+13	other	other	ADJ	JJ	Degree=Pos	14	amod	_	_
+14	countries	country	NOUN	NNS	Number=Plur	21	nsubj	_	_
+15	in	in	ADP	IN	_	20	case	_	_
+16	Japan	Japan	PROPN	NNP	Number=Sing	20	nmod:poss	_	_
+17	's	's	PART	POS	_	16	case	_	_
+18	Dragon	Dragon	PROPN	NNP	Number=Sing	19	compound	_	_
+19	Boat	boat	PROPN	NNP	Number=Sing	20	compound	_	_
+20	Festival	Festival	PROPN	NNP	Number=Sing	14	nmod	_	_
+21	held	hold	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	11	ccomp	_	_
+22	recently	recently	ADV	RB	_	21	advmod	_	_
+23	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20161101" id="512fc272-36b0-46ba-a5e6-cac30931580d_1" category="COMPARE" evaluate="true">
+<P1Event [['ZAFGOV', 'CHNGOV', '040'], ['CHNGOV', 'ZAFGOV', '040']]>
+<P2Event [['ZAFGOV', 'CHNGOV', '040'], ['ZAFGOV', 'ZAF', '040']]>
+<Text>
+On October 10 local time, President Jacob Zuma of South Africa met with State Councilor Yang Jiechi
+in Johannesburg .
+</Text>
+<Parse>
+1	On	on	ADP	IN	_	2	case	_	_
+2	October	October	PROPN	NNP	Number=Sing	13	obl	_	_
+3	10	10	NUM	CD	NumType=Card	5	nummod	_	_
+4	local	local	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	time	time	NOUN	NN	Number=Sing	2	nmod:tmod	_	_
+6	,	,	PUNCT	,	_	7	punct	_	_
+7	President	President	PROPN	NNP	Number=Sing	13	nsubj	_	_
+8	Jacob	Jacob	PROPN	NNP	Number=Sing	7	flat	_	_
+9	Zuma	Zuma	PROPN	NNP	Number=Sing	7	flat	_	_
+10	of	of	ADP	IN	_	12	case	_	_
+11	South	South	PROPN	NNP	Number=Sing	12	compound	_	_
+12	Africa	Africa	PROPN	NNP	Number=Sing	7	nmod	_	_
+13	met	meet	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+14	with	with	ADP	IN	_	18	case	_	_
+15	State	State	PROPN	NNP	Number=Sing	16	compound	_	_
+16	Councilor	Councilor	PROPN	NNP	Number=Sing	18	compound	_	_
+17	Yang	Yang	PROPN	NNP	Number=Sing	18	compound	_	_
+18	Jiechi	Jiechi	PROPN	NNP	Number=Sing	13	obl	_	_
+19	in	in	ADP	IN	_	20	case	_	_
+20	Johannesburg	Johannesburg	PROPN	NNP	Number=Sing	13	obl	_	_
+21	.	.	PUNCT	.	_	13	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160312" id="512fcc5f-0b83-49ae-88e7-5c1ad08a2b26_3" category="COMPARE" evaluate="true">
+<P1Event [['MNCUSA', 'USABUS', '010'], ['MNCUSA', 'USABUS', '010']]>
+<P2Event [['MNCUSA', 'USABUS', '010']]>
+<Text>
+`` The number of devices is just exploding around us,'' Microsoft's Terry Myerson said during a
+presentation to press and analysts at the company's headquarters in Redmond, Washington .
+</Text>
+<Parse>
+1	``	``	SYM	$	_	8	nsubj	_	_
+2	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+3	number	number	NOUN	NN	Number=Sing	1	appos	_	_
+4	of	of	ADP	IN	_	5	case	_	_
+5	devices	device	NOUN	NNS	Number=Plur	3	nmod	_	_
+6	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	aux	_	_
+7	just	just	ADV	RB	_	8	advmod	_	_
+8	exploding	explode	VERB	VBG	Tense=Pres|VerbForm=Part	17	ccomp	_	_
+9	around	around	ADP	IN	_	10	case	_	_
+10	us	we	PRON	PRP	Case=Acc|Number=Plur|Person=1|PronType=Prs	8	obl	_	_
+11	,	,	PUNCT	,	_	8	punct	_	_
+12	''	''	PUNCT	''	_	8	punct	_	_
+13	Microsoft	Microsoft	PROPN	NNP	Number=Sing	15	nmod:poss	_	_
+14	's	's	PART	POS	_	13	case	_	_
+15	Terry	Terry	PROPN	NNP	Number=Sing	17	nsubj	_	_
+16	Myerson	Myerson	PROPN	NNP	Number=Sing	15	flat	_	_
+17	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+18	during	during	ADP	IN	_	20	case	_	_
+19	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
+20	presentation	presentation	NOUN	NN	Number=Sing	17	obl	_	_
+21	to	to	PART	TO	_	22	mark	_	_
+22	press	press	VERB	VB	VerbForm=Inf	20	acl	_	_
+23	and	and	CCONJ	CC	_	24	cc	_	_
+24	analysts	analyst	NOUN	NNS	Number=Plur	22	conj	_	_
+25	at	at	ADP	IN	_	29	case	_	_
+26	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
+27	company	company	NOUN	NN	Number=Sing	29	nmod:poss	_	_
+28	's	's	PART	POS	_	27	case	_	_
+29	headquarters	headquarters	NOUN	NNS	Number=Plur	22	obl	_	_
+30	in	in	ADP	IN	_	31	case	_	_
+31	Redmond	Redmond	PROPN	NNP	Number=Sing	29	nmod	_	_
+32	,	,	PUNCT	,	_	31	punct	_	_
+33	Washington	Washington	PROPN	NNP	Number=Sing	31	appos	_	_
+34	.	.	PUNCT	.	_	17	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160408" id="5132385b-ebc5-4f1a-bd6b-c848f2d2a489_3" category="COMPARE" evaluate="true">
+<P1Event [['CZEGOV', 'CZE', '062']]>
+<P2Event [['CZEGOV', 'CZE', '060']]>
+<Text>
+The Czech government has to date granted fast-track permanent residence to 140 ethnic Czechs in
+Ukraine .
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Czech	Czech	PROPN	NNP	Number=Sing	3	compound	_	_
+3	government	government	NOUN	NN	Number=Sing	4	nsubj	_	_
+4	has	have	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+5	to	to	PART	TO	_	6	mark	_	_
+6	date	date	NOUN	NN	Number=Sing	4	xcomp	_	_
+7	granted	grant	VERB	VBN	Tense=Past|VerbForm=Part	6	acl	_	_
+8	fast-track	fast-track	ADJ	JJ	Degree=Pos	10	amod	_	_
+9	permanent	permanent	ADJ	JJ	Degree=Pos	10	amod	_	_
+10	residence	residence	NOUN	NN	Number=Sing	7	obj	_	_
+11	to	to	ADP	IN	_	14	case	_	_
+12	140	140	NUM	CD	NumType=Card	14	nummod	_	_
+13	ethnic	ethnic	ADJ	JJ	Degree=Pos	14	amod	_	_
+14	Czechs	Czech	NOUN	NNS	Number=Plur	7	obl	_	_
+15	in	in	ADP	IN	_	16	case	_	_
+16	Ukraine	Ukraine	PROPN	NNP	Number=Sing	14	nmod	_	_
+17	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160423" id="51329f32-2f3c-48ae-b3ca-cf7af796119a_4" category="COMPARE" evaluate="true">
+<P1Event [['IRQELI', 'MED', '010']]>
+<P2Event [['---ELI', 'MED', '010']]>
+<Text>
+If Abe strips the spirit of the Murayama Statement, the result would be unconscionable -- Japan will
+lose the trust of the international community and be isolated,'' the former prime minister told
+Xinhua in a recent exclusive interview .
+</Text>
+<Parse>
+1	If	if	SCONJ	IN	_	3	mark	_	_
+2	Abe	Abe	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	strips	strip	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	15	advcl	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+5	spirit	spirit	NOUN	NN	Number=Sing	3	obj	_	_
+6	of	of	ADP	IN	_	9	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+8	Murayama	Murayama	PROPN	NNP	Number=Sing	9	compound	_	_
+9	Statement	statement	PROPN	NNP	Number=Sing	5	nmod	_	_
+10	,	,	PUNCT	,	_	15	punct	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+12	result	result	NOUN	NN	Number=Sing	15	nsubj	_	_
+13	would	would	AUX	MD	VerbForm=Fin	15	aux	_	_
+14	be	be	AUX	VB	VerbForm=Inf	15	cop	_	_
+15	unconscionable	unconscionable	ADJ	JJ	Degree=Pos	35	nsubj	_	_
+16	--	--	PUNCT	,	_	19	punct	_	_
+17	Japan	Japan	PROPN	NNP	Number=Sing	19	nsubj	_	_
+18	will	will	AUX	MD	VerbForm=Fin	19	aux	_	_
+19	lose	lose	VERB	VB	VerbForm=Inf	15	ccomp	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+21	trust	trust	NOUN	NN	Number=Sing	19	obj	_	_
+22	of	of	ADP	IN	_	25	case	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+24	international	international	ADJ	JJ	Degree=Pos	25	amod	_	_
+25	community	community	NOUN	NN	Number=Sing	21	nmod	_	_
+26	and	and	CCONJ	CC	_	28	cc	_	_
+27	be	be	AUX	VB	VerbForm=Inf	28	aux:pass	_	_
+28	isolated	isolate	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	19	conj	_	_
+29	,	,	PUNCT	,	_	19	punct	_	_
+30	''	''	PUNCT	``	_	15	punct	_	_
+31	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
+32	former	former	ADJ	JJ	Degree=Pos	34	amod	_	_
+33	prime	prime	ADJ	JJ	Degree=Pos	34	amod	_	_
+34	minister	minister	NOUN	NN	Number=Sing	15	appos	_	_
+35	told	tell	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+36	Xinhua	Xinhua	PROPN	NNP	Number=Sing	35	obj	_	_
+37	in	in	ADP	IN	_	41	case	_	_
+38	a	a	DET	DT	Definite=Ind|PronType=Art	41	det	_	_
+39	recent	recent	ADJ	JJ	Degree=Pos	41	amod	_	_
+40	exclusive	exclusive	ADJ	JJ	Degree=Pos	41	amod	_	_
+41	interview	interview	NOUN	NN	Number=Sing	35	obl	_	_
+42	.	.	PUNCT	.	_	35	punct	_	_
+</Parse></Sentence>
+</Sentences>

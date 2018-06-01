@@ -1,0 +1,521 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20160514" id="54e95a0a-f874-4282-864b-cb7d9f7411be_6" category="COMPARE" evaluate="true">
+<P1Event [['NGOHRIGOVHRI', 'MED', '010']]>
+<P2Event [['---HRI', 'MED', '010']]>
+<Text>
+`` The -LRB- Myanmar -RRB- government has created conditions of life designed to be destructive to
+the Rohingya, leading people to take the seas in huge numbers,'' Matthew Smith, from the human
+rights group Fortify Rights, told AFP .
+</Text>
+<Parse>
+1	``	``	SYM	$	_	4	case	_	_
+2	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+3	-LRB-	-LRB-	NOUN	NN	Number=Sing	4	compound	_	_
+4	Myanmar	Myanmar	PROPN	NNP	Number=Sing	8	obl	_	_
+5	-RRB-	-RRB-	PUNCT	:	_	8	punct	_	_
+6	government	government	NOUN	NN	Number=Sing	8	nsubj	_	_
+7	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	aux	_	_
+8	created	create	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+9	conditions	condition	NOUN	NNS	Number=Plur	8	obj	_	_
+10	of	of	ADP	IN	_	11	case	_	_
+11	life	life	NOUN	NN	Number=Sing	9	nmod	_	_
+12	designed	design	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
+13	to	to	PART	TO	_	15	mark	_	_
+14	be	be	AUX	VB	VerbForm=Inf	15	cop	_	_
+15	destructive	destructive	ADJ	JJ	Degree=Pos	12	advcl	_	_
+16	to	to	ADP	IN	_	18	case	_	_
+17	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+18	Rohingya	Rohingya	PROPN	NNP	Number=Sing	15	obl	_	_
+19	,	,	PUNCT	,	_	8	punct	_	_
+20	leading	lead	VERB	VBG	VerbForm=Ger	21	amod	_	_
+21	people	people	NOUN	NNS	Number=Plur	8	obj	_	_
+22	to	to	PART	TO	_	23	mark	_	_
+23	take	take	VERB	VB	VerbForm=Inf	21	acl	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+25	seas	sea	NOUN	NN	Number=Sing	23	obj	_	_
+26	in	in	ADP	IN	_	28	case	_	_
+27	huge	huge	ADJ	JJ	Degree=Pos	28	amod	_	_
+28	numbers	number	NOUN	NNS	Number=Plur	23	obl	_	_
+29	,	,	PUNCT	,	_	8	punct	_	_
+30	''	''	PUNCT	''	_	8	punct	_	_
+31	Matthew	Matthew	PROPN	NNP	Number=Sing	8	appos	_	_
+32	Smith	Smith	PROPN	NNP	Number=Sing	31	flat	_	_
+33	,	,	PUNCT	,	_	8	punct	_	_
+34	from	from	ADP	IN	_	40	case	_	_
+35	the	the	DET	DT	Definite=Def|PronType=Art	40	det	_	_
+36	human	human	ADJ	JJ	Degree=Pos	38	amod	_	_
+37	rights	rights	NOUN	NNS	Number=Plur	38	compound	_	_
+38	group	group	NOUN	NN	Number=Sing	40	compound	_	_
+39	Fortify	Fortify	PROPN	NNP	Number=Sing	40	compound	_	_
+40	Rights	rights	PROPN	NNPS	Number=Plur	8	obl	_	_
+41	,	,	PUNCT	,	_	8	punct	_	_
+42	told	tell	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	parataxis	_	_
+43	AFP	AFP	PROPN	NNP	Number=Sing	42	obj	_	_
+44	.	.	PUNCT	.	_	8	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence date="20160622" id="54eae7fe-6780-4794-8b06-155dd3c367a5_1" category="COMPARE" evaluate="true">
+<P1Event [['PAK', 'IRQELIGOV', '080'], ['PAK', 'IRQELIGOV', '080']]>
+<P2Event [['PAKGOV', '---GOV', '080']]>
+<Text>
+Friday, May 22, 2015 - Islamabad -- President Mamnoon Hussain has approved the Prime Minister'
+sadvicefor honoring the late envoys and spouses who lost their lives in the Naltar helicopter
+accident on May 8 with ` Sitara-e-Pakistan' award .
+</Text>
+<Parse>
+1	Friday	Friday	PROPN	NNP	Number=Sing	6	obl:tmod	_	_
+2	,	,	PUNCT	,	_	1	punct	_	_
+3	May	May	PROPN	NNP	Number=Sing	1	appos	_	_
+4	22	22	NUM	CD	NumType=Card	3	nummod	_	_
+5	,	,	PUNCT	,	_	1	punct	_	_
+6	2015	2015	NUM	CD	NumType=Card	8	nummod	_	_
+7	-	-	PUNCT	HYPH	_	6	punct	_	_
+8	Islamabad	Islamabad	PROPN	NNP	Number=Sing	14	nsubj	_	_
+9	--	--	PUNCT	,	_	8	punct	_	_
+10	President	President	PROPN	NNP	Number=Sing	8	appos	_	_
+11	Mamnoon	Mamnoon	PROPN	NNP	Number=Sing	10	flat	_	_
+12	Hussain	Hussain	PROPN	NNP	Number=Sing	10	flat	_	_
+13	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	14	aux	_	_
+14	approved	approve	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+15	the	the	DET	DT	Definite=Def|PronType=Art	17	det	_	_
+16	Prime	Prime	PROPN	NNP	Number=Sing	17	compound	_	_
+17	Minister	Minister	PROPN	NNP	Number=Sing	19	nmod:poss	_	_
+18	'	'	PART	POS	_	17	case	_	_
+19	sadvicefor	sadvicefor	NOUN	NN	Number=Sing	14	obj	_	_
+20	honoring	honor	VERB	VBG	VerbForm=Ger	19	acl	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+22	late	late	ADJ	JJ	Degree=Pos	23	amod	_	_
+23	envoys	envoy	NOUN	NNS	Number=Plur	20	obj	_	_
+24	and	and	CCONJ	CC	_	25	cc	_	_
+25	spouses	spouse	NOUN	NNS	Number=Plur	23	conj	_	_
+26	who	who	PRON	WP	PronType=Rel	27	nsubj	_	_
+27	lost	lose	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	23	acl:relcl	_	_
+28	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	29	nmod:poss	_	_
+29	lives	life	NOUN	NNS	Number=Plur	27	obj	_	_
+30	in	in	ADP	IN	_	34	case	_	_
+31	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
+32	Naltar	Naltar	PROPN	NNP	Number=Sing	33	compound	_	_
+33	helicopter	helicopter	NOUN	NN	Number=Sing	34	compound	_	_
+34	accident	accident	NOUN	NN	Number=Sing	27	obl	_	_
+35	on	on	ADP	IN	_	36	case	_	_
+36	May	May	PROPN	NNP	Number=Sing	27	obl	_	_
+37	8	8	NUM	CD	NumType=Card	36	nummod	_	_
+38	with	with	ADP	IN	_	42	case	_	_
+39	`	`	PUNCT	``	_	42	punct	_	_
+40	Sitara-e-Pakistan	Sitara-e-Pakistan	PROPN	NNP	Number=Sing	42	compound	_	_
+41	'	'	PUNCT	''	_	42	punct	_	_
+42	award	award	NOUN	NN	Number=Sing	36	nmod	_	_
+43	.	.	PUNCT	.	_	14	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160821" id="54ece72f-1e21-4df0-b4de-96872ded6062_2" category="COMPARE" evaluate="true">
+<P1Event [['IND', 'FRAREB', '173']]>
+<P2Event [['FRAREB', 'INDGOV', '030']]>
+<Text>
+Unemployed Tamil youth from Sri Lanka were taken to India and clandestinely trained under the
+auspices of the Indian Government .
+</Text>
+<Parse>
+1	Unemployed	unemploye	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+2	Tamil	Tamil	PROPN	NNP	Number=Sing	3	compound	_	_
+3	youth	youth	PROPN	NNP	Number=Sing	1	obj	_	_
+4	from	from	ADP	IN	_	6	case	_	_
+5	Sri	Sri	PROPN	NNP	Number=Sing	6	compound	_	_
+6	Lanka	Lanka	PROPN	NNP	Number=Sing	1	obl	_	_
+7	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	aux:pass	_	_
+8	taken	take	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	1	ccomp	_	_
+9	to	to	ADP	IN	_	10	case	_	_
+10	India	India	PROPN	NNP	Number=Sing	8	obl	_	_
+11	and	and	CCONJ	CC	_	13	cc	_	_
+12	clandestinely	clandestinely	ADV	RB	_	13	advmod	_	_
+13	trained	train	VERB	VBN	Tense=Past|VerbForm=Part	10	conj	_	_
+14	under	under	ADP	IN	_	16	case	_	_
+15	the	the	DET	DT	Definite=Def|PronType=Art	16	det	_	_
+16	auspices	auspices	NOUN	NNS	Number=Plur	8	obl	_	_
+17	of	of	ADP	IN	_	20	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
+19	Indian	indian	ADJ	JJ	Degree=Pos	20	amod	_	_
+20	Government	government	NOUN	NN	Number=Sing	16	nmod	_	_
+21	.	.	PUNCT	.	_	1	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160707" id="54ed33ca-fb54-4ab4-acf2-6d117c73d16e_1" category="COMPARE" evaluate="true">
+<P1Event [['FRA', 'FRAGOV', '173']]>
+<P2Event [['FRAGOV', 'FRAGOV', '111']]>
+<Text>
+French Interior Minister Bernard Cazeneuve condemned on Tuesday mayors in France who have said they
+are only prepared to allow Christian refugees to settle in their towns .
+</Text>
+<Parse>
+1	French	french	ADJ	JJ	Degree=Pos	3	amod	_	_
+2	Interior	Interior	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Minister	Minister	PROPN	NNP	Number=Sing	6	nsubj	_	_
+4	Bernard	Bernard	PROPN	NNP	Number=Sing	3	flat	_	_
+5	Cazeneuve	Cazeneuve	PROPN	NNP	Number=Sing	3	flat	_	_
+6	condemned	condemn	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	on	on	ADP	IN	_	9	case	_	_
+8	Tuesday	Tuesday	PROPN	NNP	Number=Sing	9	compound	_	_
+9	mayors	mayors	NOUN	NNS	Number=Plur	6	obl	_	_
+10	in	in	ADP	IN	_	11	case	_	_
+11	France	France	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	who	who	PRON	WP	PronType=Rel	14	nsubj	_	_
+13	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	14	aux	_	_
+14	said	say	VERB	VBN	Tense=Past|VerbForm=Part	6	acl:relcl	_	_
+15	they	they	PRON	PRP	Case=Nom|Number=Plur|Person=3|PronType=Prs	18	nsubj	_	_
+16	are	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	18	cop	_	_
+17	only	only	ADV	RB	_	18	advmod	_	_
+18	prepared	prepared	ADJ	JJ	Degree=Pos	14	ccomp	_	_
+19	to	to	PART	TO	_	20	mark	_	_
+20	allow	allow	VERB	VB	VerbForm=Inf	18	advcl	_	_
+21	Christian	christian	ADJ	JJ	Degree=Pos	22	amod	_	_
+22	refugees	refugee	NOUN	NNS	Number=Plur	20	obj	_	_
+23	to	to	PART	TO	_	24	mark	_	_
+24	settle	settle	VERB	VB	VerbForm=Inf	20	xcomp	_	_
+25	in	in	ADP	IN	_	27	case	_	_
+26	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	27	nmod:poss	_	_
+27	towns	town	NOUN	NNS	Number=Plur	24	obl	_	_
+28	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160708" id="54f1c50a-03a4-44d9-8275-a94d2b11f791_2" category="COMPARE" evaluate="true">
+<P1Event [['VENGOV', 'COL', '010']]>
+<P2Event [['VENGOV', 'COL', '100']]>
+<Text>
+President Nicolas Maduro announced the reinforcements on Monday, when he also said he had ordered
+more of his country's vast border with Colombia closed .
+</Text>
+<Parse>
+1	President	President	PROPN	NNP	Number=Sing	4	nsubj	_	_
+2	Nicolas	Nicolas	PROPN	NNP	Number=Sing	1	flat	_	_
+3	Maduro	Maduro	PROPN	NNP	Number=Sing	1	flat	_	_
+4	announced	announce	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+6	reinforcements	reinforcement	NOUN	NNS	Number=Plur	4	obj	_	_
+7	on	on	ADP	IN	_	8	case	_	_
+8	Monday	Monday	PROPN	NNP	Number=Sing	4	obl	_	_
+9	,	,	PUNCT	,	_	4	punct	_	_
+10	when	when	ADV	WRB	PronType=Int	13	mark	_	_
+11	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	nsubj	_	_
+12	also	also	ADV	RB	_	13	advmod	_	_
+13	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	advcl	_	_
+14	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	16	nsubj	_	_
+15	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	aux	_	_
+16	ordered	order	VERB	VBN	Tense=Past|VerbForm=Part	13	ccomp	_	_
+17	more	more	ADJ	JJR	Degree=Cmp	16	obj	_	_
+18	of	of	ADP	IN	_	23	case	_	_
+19	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	20	nmod:poss	_	_
+20	country	country	NOUN	NN	Number=Sing	23	nmod:poss	_	_
+21	's	's	PART	POS	_	20	case	_	_
+22	vast	vast	ADJ	JJ	Degree=Pos	23	amod	_	_
+23	border	border	NOUN	NN	Number=Sing	17	obl	_	_
+24	with	with	ADP	IN	_	25	case	_	_
+25	Colombia	Colombia	PROPN	NNP	Number=Sing	26	nsubj	_	_
+26	closed	close	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	23	acl:relcl	_	_
+27	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence date="20160422" id="54f4b252-d288-445a-bed3-ae80f8d9a6a8_1" category="COMPARE" evaluate="true">
+<P1Event [['ITACOP', 'IMGMUSALQ', '020']]>
+<P2Event [['ITACOP', '---PPL', '173']]>
+<Text>
+Italian police on Friday arrested 10 people and were looking for eight others suspected of belonging
+to an armed group linked to al-Qaida who had plotted attacks in Pakistan and Afghanistan and at
+least at one point the Vatican .
+</Text>
+<Parse>
+1	Italian	italian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	police	police	NOUN	NN	Number=Sing	5	nsubj	_	_
+3	on	on	ADP	IN	_	4	case	_	_
+4	Friday	Friday	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	arrested	arrest	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	10	10	NUM	CD	NumType=Card	7	nummod	_	_
+7	people	people	NOUN	NNS	Number=Plur	5	obj	_	_
+8	and	and	CCONJ	CC	_	10	cc	_	_
+9	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	aux	_	_
+10	looking	look	VERB	VBG	Tense=Pres|VerbForm=Part	5	conj	_	_
+11	for	for	ADP	IN	_	13	case	_	_
+12	eight	eight	NUM	CD	NumType=Card	13	nummod	_	_
+13	others	other	NOUN	NNS	Number=Plur	10	obl	_	_
+14	suspected	suspect	VERB	VBN	Tense=Past|VerbForm=Part	13	acl	_	_
+15	of	of	SCONJ	IN	_	16	mark	_	_
+16	belonging	belong	VERB	VBG	VerbForm=Ger	14	advcl	_	_
+17	to	to	ADP	IN	_	20	case	_	_
+18	an	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
+19	armed	armed	ADJ	JJ	Degree=Pos	20	amod	_	_
+20	group	group	NOUN	NN	Number=Sing	16	obl	_	_
+21	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	20	acl	_	_
+22	to	to	ADP	IN	_	23	case	_	_
+23	al-Qaida	al-Qaida	PROPN	NNP	Number=Sing	21	obl	_	_
+24	who	who	PRON	WP	PronType=Rel	26	nsubj	_	_
+25	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	aux	_	_
+26	plotted	plot	VERB	VBN	Tense=Past|VerbForm=Part	23	acl:relcl	_	_
+27	attacks	attack	NOUN	NNS	Number=Plur	26	obj	_	_
+28	in	in	ADP	IN	_	29	case	_	_
+29	Pakistan	Pakistan	PROPN	NNP	Number=Sing	27	nmod	_	_
+30	and	and	CCONJ	CC	_	31	cc	_	_
+31	Afghanistan	Afghanistan	PROPN	NNP	Number=Sing	29	conj	_	_
+32	and	and	CCONJ	CC	_	37	cc	_	_
+33	at	at	ADV	RB	_	37	advmod	_	_
+34	least	least	ADV	RBS	Degree=Sup	33	fixed	_	_
+35	at	at	ADP	IN	_	37	case	_	_
+36	one	one	NUM	CD	NumType=Card	37	nummod	_	_
+37	point	point	NOUN	NN	Number=Sing	26	conj	_	_
+38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
+39	Vatican	Vatican	PROPN	NNP	Number=Sing	37	appos	_	_
+40	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160309" id="54f4d27e-8fd5-493d-908c-24e6ef9e9a59_4" category="COMPARE" evaluate="true">
+<P1Event [['DEUJUD', 'RUS', '050']]>
+<P2Event [['DEUJUD', 'RUS', '050']]>
+<Text>
+There is a group of US lawyers, there is also a group of German lawyers and I'm dealing with it on
+the Russian side,'' said Kucherena .
+</Text>
+<Parse>
+1	There	there	PRON	EX	_	2	expl	_	_
+2	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	29	ccomp	_	_
+3	a	a	DET	DT	Definite=Ind|PronType=Art	4	det	_	_
+4	group	group	NOUN	NN	Number=Sing	2	nsubj	_	_
+5	of	of	ADP	IN	_	7	case	_	_
+6	US	US	PROPN	NNP	Number=Sing	7	compound	_	_
+7	lawyers	lawyer	NOUN	NNS	Number=Plur	4	nmod	_	_
+8	,	,	PUNCT	,	_	2	punct	_	_
+9	there	there	PRON	EX	_	10	expl	_	_
+10	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	2	parataxis	_	_
+11	also	also	ADV	RB	_	10	advmod	_	_
+12	a	a	DET	DT	Definite=Ind|PronType=Art	13	det	_	_
+13	group	group	NOUN	NN	Number=Sing	10	nsubj	_	_
+14	of	of	ADP	IN	_	16	case	_	_
+15	German	german	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	lawyers	lawyer	NOUN	NNS	Number=Plur	13	nmod	_	_
+17	and	and	CCONJ	CC	_	20	cc	_	_
+18	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	20	nsubj	_	_
+19	'm	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	20	aux	_	_
+20	dealing	deal	VERB	VBG	Tense=Pres|VerbForm=Part	10	conj	_	_
+21	with	with	ADP	IN	_	22	case	_	_
+22	it	it	PRON	PRP	Case=Acc|Gender=Neut|Number=Sing|Person=3|PronType=Prs	20	obl	_	_
+23	on	on	ADP	IN	_	26	case	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
+25	Russian	russian	ADJ	JJ	Degree=Pos	26	amod	_	_
+26	side	side	NOUN	NN	Number=Sing	20	obl	_	_
+27	,	,	PUNCT	,	_	29	punct	_	_
+28	''	''	PUNCT	''	_	29	punct	_	_
+29	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+30	Kucherena	Kucherena	PROPN	NNP	Number=Sing	29	nsubj	_	_
+31	.	.	PUNCT	.	_	29	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160426" id="54f6812b-b1c2-4562-a0c8-3d53557c6d6e_1" category="COMPARE" evaluate="true">
+<P1Event [['PRK', 'KORMIL', '130']]>
+<P2Event [['PRK', 'KORMIL', '171']]>
+<Text>
+North Korea has threatened to take military action against South Korea if Seoul fails to remove the
+loudspeakers it has recently reinstalled at the two country's border to broadcast anti-Pyongyang
+messages .
+</Text>
+<Parse>
+1	North	North	PROPN	NNP	Number=Sing	2	compound	_	_
+2	Korea	Korea	PROPN	NNP	Number=Sing	4	nsubj	_	_
+3	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+4	threatened	threaten	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+5	to	to	PART	TO	_	6	mark	_	_
+6	take	take	VERB	VB	VerbForm=Inf	4	xcomp	_	_
+7	military	military	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	action	action	NOUN	NN	Number=Sing	6	obj	_	_
+9	against	against	ADP	IN	_	11	case	_	_
+10	South	South	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Korea	Korea	PROPN	NNP	Number=Sing	8	nmod	_	_
+12	if	if	SCONJ	IN	_	16	mark	_	_
+13	Seoul	Seoul	ADJ	JJ	Degree=Pos	14	amod	_	_
+14	fails	fail	NOUN	NNS	Number=Plur	16	nsubj	_	_
+15	to	to	PART	TO	_	16	mark	_	_
+16	remove	remove	VERB	VB	VerbForm=Inf	6	advcl	_	_
+17	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+18	loudspeakers	loudspeaker	NOUN	NNS	Number=Plur	16	obj	_	_
+19	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	22	nsubj	_	_
+20	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	22	aux	_	_
+21	recently	recently	ADV	RB	_	22	advmod	_	_
+22	reinstalled	reinstall	VERB	VBN	Tense=Past|VerbForm=Part	4	parataxis	_	_
+23	at	at	ADP	IN	_	28	case	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
+25	two	two	NUM	CD	NumType=Card	26	nummod	_	_
+26	country	country	NOUN	NN	Number=Sing	28	nmod:poss	_	_
+27	's	's	PART	POS	_	26	case	_	_
+28	border	border	NOUN	NN	Number=Sing	22	obl	_	_
+29	to	to	PART	TO	_	30	mark	_	_
+30	broadcast	broadcast	VERB	VB	VerbForm=Inf	22	advcl	_	_
+31	anti-Pyongyang	anti-Pyongyang	NOUN	NN	Number=Sing	32	compound	_	_
+32	messages	message	NOUN	NNS	Number=Plur	30	obj	_	_
+33	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160414" id="54f7c6e0-28ff-4c58-ad3a-ba5f4d47d6ec_5" category="COMPARE" evaluate="true">
+<P1Event [['SLEGOV', 'CHNGOV', '051']]>
+<P2Event [['SLEGOV', 'CHNGOV', '051']]>
+<Text>
+Alpha Kanu continued to commend the Chinese Government for its assistance to eradicate poverty
+asserting that Sierra Leone was among the first countries to support China to become a member of the
+United Nations -LRB- UN -RRB- in the 1970s .
+</Text>
+<Parse>
+1	Alpha	Alpha	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	Kanu	Kanu	PROPN	NNP	Number=Sing	1	flat	_	_
+3	continued	continue	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	commend	commend	VERB	VB	VerbForm=Inf	3	advcl	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Chinese	chinese	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	Government	government	NOUN	NN	Number=Sing	5	obj	_	_
+9	for	for	ADP	IN	_	11	case	_	_
+10	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
+11	assistance	assistance	NOUN	NN	Number=Sing	5	obl	_	_
+12	to	to	PART	TO	_	13	mark	_	_
+13	eradicate	eradicate	VERB	VB	VerbForm=Inf	11	acl	_	_
+14	poverty	poverty	NOUN	NN	Number=Sing	13	obj	_	_
+15	asserting	assert	VERB	VBG	VerbForm=Ger	14	acl	_	_
+16	that	that	SCONJ	IN	_	23	mark	_	_
+17	Sierra	Sierra	PROPN	NNP	Number=Sing	23	nsubj	_	_
+18	Leone	Leone	PROPN	NNP	Number=Sing	17	flat	_	_
+19	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	23	cop	_	_
+20	among	among	ADP	IN	_	23	case	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+22	first	first	ADJ	JJ	Degree=Pos|NumType=Ord	23	amod	_	_
+23	countries	country	NOUN	NNS	Number=Plur	15	ccomp	_	_
+24	to	to	PART	TO	_	25	mark	_	_
+25	support	support	VERB	VB	VerbForm=Inf	23	acl	_	_
+26	China	China	PROPN	NNP	Number=Sing	25	obj	_	_
+27	to	to	PART	TO	_	28	mark	_	_
+28	become	become	VERB	VB	VerbForm=Inf	25	advcl	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	30	det	_	_
+30	member	member	NOUN	NN	Number=Sing	28	xcomp	_	_
+31	of	of	ADP	IN	_	37	case	_	_
+32	the	the	DET	DT	Definite=Def|PronType=Art	37	det	_	_
+33	United	United	PROPN	NNP	Number=Sing	34	compound	_	_
+34	Nations	Nations	PROPN	NNP	Number=Sing	37	compound	_	_
+35	-LRB-	-LRB-	PUNCT	HYPH	_	37	punct	_	_
+36	UN	UN	PROPN	NNP	Number=Sing	37	compound	_	_
+37	-RRB-	-RRB-	NOUN	NN	Number=Sing	30	nmod	_	_
+38	in	in	ADP	IN	_	40	case	_	_
+39	the	the	DET	DT	Definite=Def|PronType=Art	40	det	_	_
+40	1970s	1970	NOUN	NNS	Number=Plur	37	nmod	_	_
+41	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160603" id="54f8ab85-289a-4249-ada4-48f1697dd9ad_3" category="COMPARE" evaluate="true">
+<P1Event [['MNCJPNGOV', 'JPNBUS', '010']]>
+<P2Event [['MNCJPN', 'JPNBUS', '010']]>
+<Text>
+If there is a morsel of consumer doubt, then we have to deal with it,'' Toyota President Akio Toyoda
+told reporters on the sidelines of a reception Thursday for the Japanese Automobile Manufacturers
+Association .
+</Text>
+<Parse>
+1	If	if	SCONJ	IN	_	3	mark	_	_
+2	there	there	PRON	EX	_	3	expl	_	_
+3	is	be	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	12	advcl	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	morsel	morsel	NOUN	NN	Number=Sing	3	nsubj	_	_
+6	of	of	ADP	IN	_	8	case	_	_
+7	consumer	consumer	NOUN	NN	Number=Sing	8	compound	_	_
+8	doubt	doubt	NOUN	NN	Number=Sing	5	nmod	_	_
+9	,	,	PUNCT	,	_	12	punct	_	_
+10	then	then	ADV	RB	PronType=Dem	12	advmod	_	_
+11	we	we	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	12	nsubj	_	_
+12	have	have	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	23	ccomp	_	_
+13	to	to	PART	TO	_	14	mark	_	_
+14	deal	deal	VERB	VB	VerbForm=Inf	12	xcomp	_	_
+15	with	with	ADP	IN	_	16	case	_	_
+16	it	it	PRON	PRP	Case=Acc|Gender=Neut|Number=Sing|Person=3|PronType=Prs	14	obl	_	_
+17	,	,	PUNCT	,	_	23	punct	_	_
+18	''	''	PUNCT	''	_	23	punct	_	_
+19	Toyota	Toyota	PROPN	NNP	Number=Sing	20	compound	_	_
+20	President	President	PROPN	NNP	Number=Sing	23	nsubj	_	_
+21	Akio	Akio	PROPN	NNP	Number=Sing	20	flat	_	_
+22	Toyoda	Toyoda	PROPN	NNP	Number=Sing	20	flat	_	_
+23	told	tell	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+24	reporters	reporter	NOUN	NNS	Number=Plur	23	obj	_	_
+25	on	on	ADP	IN	_	27	case	_	_
+26	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
+27	sidelines	sideline	NOUN	NNS	Number=Plur	23	obl	_	_
+28	of	of	ADP	IN	_	30	case	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	30	det	_	_
+30	reception	reception	NOUN	NN	Number=Sing	27	nmod	_	_
+31	Thursday	Thursday	PROPN	NNP	Number=Sing	30	compound	_	_
+32	for	for	ADP	IN	_	37	case	_	_
+33	the	the	DET	DT	Definite=Def|PronType=Art	37	det	_	_
+34	Japanese	japanese	ADJ	JJ	Degree=Pos	36	amod	_	_
+35	Automobile	Automobile	PROPN	NNP	Number=Sing	36	compound	_	_
+36	Manufacturers	manufacturers	PROPN	NNPS	Number=Plur	37	compound	_	_
+37	Association	Association	PROPN	NNP	Number=Sing	31	nmod	_	_
+38	.	.	PUNCT	.	_	23	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160216" id="54faed5f-5953-4687-967e-982d61b29a78_3" category="COMPARE" evaluate="true">
+<P1Event [['CHN', 'IND', '040']]>
+<P2Event [['CHN', 'IND', '040']]>
+<Text>
+As China went through massive development phase in the last decades becoming the second
+largesteconomy, China faced the same dilemma as India whether to increase the speed of its tracks or
+go for the construction of bullet trains, he told an Indian media and think tank delegation at a
+briefing .
+</Text>
+<Parse>
+1	As	as	SCONJ	IN	_	3	mark	_	_
+2	China	China	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	went	go	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	advcl	_	_
+4	through	through	ADP	IN	_	7	case	_	_
+5	massive	massive	ADJ	JJ	Degree=Pos	7	amod	_	_
+6	development	development	NOUN	NN	Number=Sing	7	compound	_	_
+7	phase	phase	NOUN	NN	Number=Sing	3	obl	_	_
+8	in	in	ADP	IN	_	11	case	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+10	last	last	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	decades	decade	NOUN	NNS	Number=Plur	3	obl	_	_
+12	becoming	become	VERB	VBG	VerbForm=Ger	3	advcl	_	_
+13	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
+14	second	second	ADJ	JJ	Degree=Pos|NumType=Ord	15	amod	_	_
+15	largesteconomy	largesteconomy	NOUN	NN	Number=Sing	12	obj	_	_
+16	,	,	PUNCT	,	_	18	punct	_	_
+17	China	China	PROPN	NNP	Number=Sing	18	nsubj	_	_
+18	faced	face	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	21	det	_	_
+20	same	same	ADJ	JJ	Degree=Pos	21	amod	_	_
+21	dilemma	dilemma	NOUN	NN	Number=Sing	18	obj	_	_
+22	as	as	ADP	IN	_	23	case	_	_
+23	India	India	PROPN	NNP	Number=Sing	18	obl	_	_
+24	whether	whether	SCONJ	IN	_	26	mark	_	_
+25	to	to	PART	TO	_	24	fixed	_	_
+26	increase	increase	VERB	VB	VerbForm=Inf	18	advcl	_	_
+27	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
+28	speed	speed	NOUN	NN	Number=Sing	26	obj	_	_
+29	of	of	ADP	IN	_	31	case	_	_
+30	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	31	nmod:poss	_	_
+31	tracks	track	NOUN	NNS	Number=Plur	28	nmod	_	_
+32	or	or	CCONJ	CC	_	33	cc	_	_
+33	go	go	VERB	VB	VerbForm=Inf	26	conj	_	_
+34	for	for	ADP	IN	_	36	case	_	_
+35	the	the	DET	DT	Definite=Def|PronType=Art	36	det	_	_
+36	construction	construction	NOUN	NN	Number=Sing	33	obl	_	_
+37	of	of	ADP	IN	_	39	case	_	_
+38	bullet	bullet	NOUN	NN	Number=Sing	39	compound	_	_
+39	trains	train	NOUN	NNS	Number=Plur	36	nmod	_	_
+40	,	,	PUNCT	,	_	18	punct	_	_
+41	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	42	nsubj	_	_
+42	told	tell	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	18	parataxis	_	_
+43	an	a	DET	DT	Definite=Ind|PronType=Art	45	det	_	_
+44	Indian	indian	ADJ	JJ	Degree=Pos	45	amod	_	_
+45	media	media	NOUN	NN	Number=Sing	42	obj	_	_
+46	and	and	CCONJ	CC	_	47	cc	_	_
+47	think	think	VERB	VB	VerbForm=Inf	42	conj	_	_
+48	tank	tank	NOUN	NN	Number=Sing	49	compound	_	_
+49	delegation	delegation	NOUN	NN	Number=Sing	47	obj	_	_
+50	at	at	ADP	IN	_	52	case	_	_
+51	a	a	DET	DT	Definite=Ind|PronType=Art	52	det	_	_
+52	briefing	briefing	NOUN	NN	Number=Sing	49	nmod	_	_
+53	.	.	PUNCT	.	_	18	punct	_	_
+</Parse></Sentence>
+</Sentences>

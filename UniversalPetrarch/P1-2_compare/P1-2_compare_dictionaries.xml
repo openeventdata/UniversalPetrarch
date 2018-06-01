@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Validation>
+<!--
+##########################################################################################################################################
+#
+#                                            PETRARCH-2 VALIDATION RECORDS
+#                                    To run: python validation.py -i PETR2_GSR_validation.xml 
+#                                    Version compatibility: Runs using UDP master 24-May-2018
+#                                              Last Update: 25 May 2018
+#
+#   PETRARCH-2 did not implement an extended functional validation suite, just a small number of unit tests, but had about 40 test-like  
+#   records embedded in the GigaWord.sample.PETR.xml file, which was at some point converted to UD format as 
+#   GigaWord.sample.PETR_parsed.xml. This file consists of those records, plus the TEST_* records which hadn't been converted earlier,
+#   then the addition of <EventCoding...> records based on the PETR-2 output from GigaWord.sample.PETR.xml file. 
+#
+#   REVISION HISTORY
+#   May-2018: Initial version 
+#
+##########################################################################################################################################
+-->
+<Environment>
+    <Verbfile>CAMEO.2.0.txt</Verbfile>
+    <Actorfile>Phoenix.Countries.actors.txt,Phoenix.International.actors.txt,Phoenix.MilNonState.actors.txt</Actorfile>
+    <Agentfile>Phoenix.agents.txt</Agentfile>
+    <Discardfile>Phoenix.discards.txt</Discardfile>
+    <PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
+    <Include>valid COMPARE </Include>
+</Environment>		
+

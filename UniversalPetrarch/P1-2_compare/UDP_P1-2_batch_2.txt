@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sentences>
+<Sentence date="20160325" id="2e1bde2e-25d2-4fa1-a3e2-696575e17d19_1" category="COMPARE" evaluate="true">
+<P1Event [['CHNBUS', 'LBRBUS', '010']]>
+<P2Event [['CHNBUS', 'LBRBUS', '010']]>
+<Text>
+A high-powered Chinese business delegation in the country has informed local Liberian business
+entrepreneurs that they are in the country to seek new partnership with them to ensure that both
+countries explore in agriculture, infrastructure and energy .
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+2	high-powered	high-powered	ADJ	JJ	Degree=Pos	5	amod	_	_
+3	Chinese	chinese	ADJ	JJ	Degree=Pos	5	amod	_	_
+4	business	business	NOUN	NN	Number=Sing	5	compound	_	_
+5	delegation	delegation	NOUN	NN	Number=Sing	10	nsubj	_	_
+6	in	in	ADP	IN	_	8	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+8	country	country	NOUN	NN	Number=Sing	5	nmod	_	_
+9	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	10	aux	_	_
+10	informed	inform	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+11	local	local	ADJ	JJ	Degree=Pos	14	amod	_	_
+12	Liberian	Liberian	ADJ	JJ	Degree=Pos	14	amod	_	_
+13	business	business	NOUN	NN	Number=Sing	14	compound	_	_
+14	entrepreneurs	entrepreneur	NOUN	NNS	Number=Plur	10	obj	_	_
+15	that	that	SCONJ	IN	_	20	mark	_	_
+16	they	they	PRON	PRP	Case=Nom|Number=Plur|Person=3|PronType=Prs	20	nsubj	_	_
+17	are	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	20	cop	_	_
+18	in	in	ADP	IN	_	20	case	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
+20	country	country	NOUN	NN	Number=Sing	10	ccomp	_	_
+21	to	to	PART	TO	_	22	mark	_	_
+22	seek	seek	VERB	VB	VerbForm=Inf	20	acl	_	_
+23	new	new	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	partnership	partnership	NOUN	NN	Number=Sing	22	obj	_	_
+25	with	with	ADP	IN	_	26	case	_	_
+26	them	they	PRON	PRP	Case=Acc|Number=Plur|Person=3|PronType=Prs	22	obl	_	_
+27	to	to	PART	TO	_	28	mark	_	_
+28	ensure	ensure	VERB	VB	VerbForm=Inf	22	advcl	_	_
+29	that	that	SCONJ	IN	_	32	mark	_	_
+30	both	both	DET	DT	_	31	det	_	_
+31	countries	country	NOUN	NNS	Number=Plur	32	nsubj	_	_
+32	explore	explore	VERB	VB	VerbForm=Inf	28	ccomp	_	_
+33	in	in	ADP	IN	_	34	case	_	_
+34	agriculture	agriculture	NOUN	NN	Number=Sing	32	obl	_	_
+35	,	,	PUNCT	,	_	36	punct	_	_
+36	infrastructure	infrastructure	NOUN	NN	Number=Sing	34	conj	_	_
+37	and	and	CCONJ	CC	_	38	cc	_	_
+38	energy	energy	NOUN	NN	Number=Sing	34	conj	_	_
+39	.	.	PUNCT	.	_	10	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20161119" id="2e1c3313-758b-4d39-b003-425231efc197_1" category="COMPARE" evaluate="true">
+<P1Event [['INDGOV', 'AFGLAB', '050']]>
+<P2Event [['INDGOV', 'AFGLAB', '050']]>
+<Text>
+`` Government of India is committed to support the Afghan civil employees through its technical
+facilities as this country tried its best in the last one decade for training of Afghans,'' says
+Deputy Chief of Mission
+</Text>
+<Parse>
+1	``	``	SYM	$	_	2	nmod:poss	_	_
+2	Government	government	NOUN	NN	Number=Sing	6	nsubj	_	_
+3	of	of	ADP	IN	_	4	case	_	_
+4	India	India	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	cop	_	_
+6	committed	committed	ADJ	JJ	Degree=Pos	34	ccomp	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	support	support	VERB	VB	VerbForm=Inf	6	advcl	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+10	Afghan	afghan	ADJ	JJ	Degree=Pos	12	amod	_	_
+11	civil	civil	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	employees	employee	NOUN	NNS	Number=Plur	8	obj	_	_
+13	through	through	ADP	IN	_	16	case	_	_
+14	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
+15	technical	technical	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	facilities	facility	NOUN	NNS	Number=Plur	8	obl	_	_
+17	as	as	ADP	IN	_	19	case	_	_
+18	this	this	DET	DT	Number=Sing|PronType=Dem	19	det	_	_
+19	country	country	NOUN	NN	Number=Sing	16	nmod	_	_
+20	tried	try	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	acl:relcl	_	_
+21	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	22	nmod:poss	_	_
+22	best	best	ADJ	JJS	Degree=Sup	20	obj	_	_
+23	in	in	ADP	IN	_	27	case	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
+25	last	last	ADJ	JJ	Degree=Pos	27	amod	_	_
+26	one	one	NUM	CD	NumType=Card	27	nummod	_	_
+27	decade	decade	NOUN	NN	Number=Sing	20	obl	_	_
+28	for	for	ADP	IN	_	29	case	_	_
+29	training	training	NOUN	NN	Number=Sing	27	nmod	_	_
+30	of	of	ADP	IN	_	31	case	_	_
+31	Afghans	Afghans	PROPN	NNPS	Number=Plur	29	nmod	_	_
+32	,	,	PUNCT	,	_	34	punct	_	_
+33	''	''	PUNCT	''	_	34	punct	_	_
+34	says	say	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+35	Deputy	deputy	PROPN	NNP	Number=Sing	36	compound	_	_
+36	Chief	Chief	PROPN	NNP	Number=Sing	34	nsubj	_	_
+37	of	of	ADP	IN	_	38	case	_	_
+38	Mission	mission	PROPN	NNP	Number=Sing	36	nmod	_	_
+</Parse></Sentence>
+
+<Sentence date="20160713" id="2e1f3ebf-1f74-4891-b4d5-f3f9d85f6916_2" category="COMPARE" evaluate="true">
+<P1Event [['USAEDU', 'ZWEHLH', '110']]>
+<P2Event [['USAEDU', 'ZWE', '074']]>
+<Text>
+Sabrina Corgatelli, an accountant for Idaho State University, appeared onNBC's `` Today'' show on
+Mondayto defend trophy hunting amid mounting international outrage over last month's killing of
+Cecil, Zimbabwe's most famous lion, by an American dentist .
+</Text>
+<Parse>
+1	Sabrina	Sabrina	PROPN	NNP	Number=Sing	11	nsubj	_	_
+2	Corgatelli	Corgatelli	PROPN	NNP	Number=Sing	1	flat	_	_
+3	,	,	PUNCT	,	_	1	punct	_	_
+4	an	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	accountant	accountant	NOUN	NN	Number=Sing	1	appos	_	_
+6	for	for	ADP	IN	_	9	case	_	_
+7	Idaho	Idaho	PROPN	NNP	Number=Sing	9	compound	_	_
+8	State	State	PROPN	NNP	Number=Sing	9	compound	_	_
+9	University	University	PROPN	NNP	Number=Sing	5	nmod	_	_
+10	,	,	PUNCT	,	_	11	punct	_	_
+11	appeared	appear	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+12	onNBC	onNBC	PROPN	NNP	Number=Sing	15	nmod:poss	_	_
+13	's	's	PART	POS	_	12	case	_	_
+14	``	``	SYM	$	_	15	punct	_	_
+15	Today	today	NOUN	NN	Number=Sing	11	obj	_	_
+16	''	''	PUNCT	''	_	15	punct	_	_
+17	show	show	NOUN	NN	Number=Sing	15	appos	_	_
+18	on	on	ADP	IN	_	21	case	_	_
+19	Mondayto	Mondayto	PROPN	NNP	Number=Sing	21	compound	_	_
+20	defend	defend	NOUN	NN	Number=Sing	21	compound	_	_
+21	trophy	trophy	NOUN	NN	Number=Sing	17	nmod	_	_
+22	hunting	hunt	VERB	VBG	VerbForm=Ger	17	acl	_	_
+23	amid	amid	X	AFX	_	22	advmod	_	_
+24	mounting	mount	VERB	VBG	VerbForm=Ger	22	advcl	_	_
+25	international	international	ADJ	JJ	Degree=Pos	26	amod	_	_
+26	outrage	outrage	NOUN	NN	Number=Sing	24	obj	_	_
+27	over	over	ADP	IN	_	31	case	_	_
+28	last	last	ADJ	JJ	Degree=Pos	29	amod	_	_
+29	month	month	NOUN	NN	Number=Sing	31	nmod:poss	_	_
+30	's	's	PART	POS	_	29	case	_	_
+31	killing	killing	NOUN	NN	Number=Sing	24	obl	_	_
+32	of	of	ADP	IN	_	33	case	_	_
+33	Cecil	Cecil	PROPN	NNP	Number=Sing	31	nmod	_	_
+34	,	,	PUNCT	,	_	33	punct	_	_
+35	Zimbabwe	Zimbabwe	PROPN	NNP	Number=Sing	39	nmod:poss	_	_
+36	's	's	PART	POS	_	35	case	_	_
+37	most	most	ADV	RBS	_	38	advmod	_	_
+38	famous	famous	ADJ	JJ	Degree=Pos	39	amod	_	_
+39	lion	lion	NOUN	NN	Number=Sing	33	appos	_	_
+40	,	,	PUNCT	,	_	11	punct	_	_
+41	by	by	ADP	IN	_	44	case	_	_
+42	an	a	DET	DT	Definite=Ind|PronType=Art	44	det	_	_
+43	American	american	ADJ	JJ	Degree=Pos	44	amod	_	_
+44	dentist	dentist	NOUN	NN	Number=Sing	11	obl	_	_
+45	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160410" id="2e202cee-98ec-4246-9cad-d92a64075082_2" category="COMPARE" evaluate="true">
+<P1Event [['GBRGOV', 'MNCGBR', '112'], ['USAGOV', 'MNCGBR', '112'], ['MNCGBR', 'USAGOV', '112'], ['MNCGBR', 'GBRGOV', '112']]>
+<P2Event [['USAGOV', 'MNCUSA', '112'], ['USAGOV', 'MNCCHE', '112'], ['GBRGOV', 'MNCUSA', '112'], ['GBRGOV', 'MNCCHE', '112']]>
+<Text>
+Authorities in the United States and Britain accused traders at Citigroup, JP Morgan, Barclays, UBS
+and Royal Bank of Scotland of brazenly cheating their clients to boost their own profits using
+invitation-only chatrooms and coded language to coordinate their trades .
+</Text>
+<Parse>
+1	Authorities	authority	NOUN	NNS	Number=Plur	0	root	_	_
+2	in	in	ADP	IN	_	5	case	_	_
+3	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+4	United	United	PROPN	NNP	Number=Sing	5	compound	_	_
+5	States	States	PROPN	NNP	Number=Sing	1	nmod	_	_
+6	and	and	CCONJ	CC	_	7	cc	_	_
+7	Britain	Britain	PROPN	NNP	Number=Sing	5	conj	_	_
+8	accused	accuse	VERB	VBN	Tense=Past|VerbForm=Part	9	amod	_	_
+9	traders	trader	NOUN	NNS	Number=Plur	5	conj	_	_
+10	at	at	ADP	IN	_	11	case	_	_
+11	Citigroup	Citigroup	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	,	,	PUNCT	,	_	14	punct	_	_
+13	JP	JP	PROPN	NNP	Number=Sing	14	compound	_	_
+14	Morgan	Morgan	PROPN	NNP	Number=Sing	5	conj	_	_
+15	,	,	PUNCT	,	_	16	punct	_	_
+16	Barclays	Barclays	PROPN	NNP	Number=Sing	5	conj	_	_
+17	,	,	PUNCT	,	_	18	punct	_	_
+18	UBS	Ubs	PROPN	NNP	Number=Sing	5	conj	_	_
+19	and	and	CCONJ	CC	_	21	cc	_	_
+20	Royal	Royal	PROPN	NNP	Number=Sing	21	compound	_	_
+21	Bank	Bank	PROPN	NNP	Number=Sing	5	conj	_	_
+22	of	of	ADP	IN	_	23	case	_	_
+23	Scotland	Scotland	PROPN	NNP	Number=Sing	21	nmod	_	_
+24	of	of	SCONJ	IN	_	26	mark	_	_
+25	brazenly	brazenly	ADV	RB	_	26	advmod	_	_
+26	cheating	cheat	VERB	VBG	VerbForm=Ger	21	acl	_	_
+27	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	28	nmod:poss	_	_
+28	clients	client	NOUN	NNS	Number=Plur	26	obj	_	_
+29	to	to	PART	TO	_	30	mark	_	_
+30	boost	boost	VERB	VB	VerbForm=Inf	26	advcl	_	_
+31	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	33	nmod:poss	_	_
+32	own	own	ADJ	JJ	Degree=Pos	33	amod	_	_
+33	profits	profit	NOUN	NNS	Number=Plur	30	obj	_	_
+34	using	use	VERB	VBG	VerbForm=Ger	30	advcl	_	_
+35	invitation-only	invitation-only	ADV	RB	_	36	advmod	_	_
+36	chatrooms	chatroom	NOUN	NNS	Number=Plur	34	obj	_	_
+37	and	and	CCONJ	CC	_	38	cc	_	_
+38	coded	code	VERB	VBN	Tense=Past|VerbForm=Part	34	conj	_	_
+39	language	language	NOUN	NN	Number=Sing	38	obj	_	_
+40	to	to	PART	TO	_	41	mark	_	_
+41	coordinate	coordinate	VERB	VB	VerbForm=Inf	39	acl	_	_
+42	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	43	nmod:poss	_	_
+43	trades	trade	NOUN	NNS	Number=Plur	41	obj	_	_
+44	.	.	PUNCT	.	_	1	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160414" id="2e205590-64e6-4059-89e6-0c55af20565f_1" category="COMPARE" evaluate="true">
+<P1Event [['FIN', 'IGOEUREECMIL', '030']]>
+<P2Event [['FIN', 'IGOEUR', '031']]>
+<Text>
+Finland plans to increase its participation in the EU military management of the human trafficking
+crisis in the Mediterranean .
+</Text>
+<Parse>
+1	Finland	Finland	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	plans	plan	NOUN	NNS	Number=Plur	0	root	_	_
+3	to	to	PART	TO	_	4	mark	_	_
+4	increase	increase	VERB	VB	VerbForm=Inf	2	acl	_	_
+5	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	6	nmod:poss	_	_
+6	participation	participation	NOUN	NN	Number=Sing	4	obj	_	_
+7	in	in	ADP	IN	_	11	case	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+9	EU	EU	PROPN	NNP	Number=Sing	11	compound	_	_
+10	military	military	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	management	management	NOUN	NN	Number=Sing	6	nmod	_	_
+12	of	of	ADP	IN	_	16	case	_	_
+13	the	the	DET	DT	Definite=Def|PronType=Art	16	det	_	_
+14	human	human	ADJ	JJ	Degree=Pos	16	amod	_	_
+15	trafficking	trafficking	NOUN	NN	Number=Sing	16	compound	_	_
+16	crisis	crisis	NOUN	NN	Number=Sing	11	nmod	_	_
+17	in	in	ADP	IN	_	19	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
+19	Mediterranean	Mediterranean	PROPN	NNP	Number=Sing	16	nmod	_	_
+20	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160322" id="2e212660-92b6-41b3-864e-9c292ef1f4be_1" category="COMPARE" evaluate="true">
+<P1Event [['IGOEUREEC', 'IGOUNOGOVCRM', '027']]>
+<P2Event [['IGOEUR', 'IGOUNO', '027']]>
+<Text>
+The European Union is seeking a U.N. Security Council resolution within days to let its members hunt
+down human traffickers in the Mediterranean and destroy their boats, a senior EU official said
+Tuesday .
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	European	European	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Union	Union	PROPN	NNP	Number=Sing	5	nsubj	_	_
+4	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	seeking	seek	VERB	VBG	Tense=Pres|VerbForm=Part	33	ccomp	_	_
+6	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+7	U.N.	U.N.	PROPN	NNP	Number=Sing	9	compound	_	_
+8	Security	Security	PROPN	NNP	Number=Sing	9	compound	_	_
+9	Council	Council	PROPN	NNP	Number=Sing	10	compound	_	_
+10	resolution	resolution	NOUN	NN	Number=Sing	5	obj	_	_
+11	within	within	ADP	IN	_	12	case	_	_
+12	days	day	NOUN	NNS	Number=Plur	5	obl	_	_
+13	to	to	PART	TO	_	14	mark	_	_
+14	let	let	VERB	VB	VerbForm=Inf	5	advcl	_	_
+15	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	16	nmod:poss	_	_
+16	members	member	NOUN	NNS	Number=Plur	14	obj	_	_
+17	hunt	hunt	VERB	VB	VerbForm=Inf	14	xcomp	_	_
+18	down	down	ADP	RP	_	17	compound:prt	_	_
+19	human	human	ADJ	JJ	Degree=Pos	20	amod	_	_
+20	traffickers	trafficker	NOUN	NNS	Number=Plur	17	obj	_	_
+21	in	in	ADP	IN	_	23	case	_	_
+22	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+23	Mediterranean	Mediterranean	PROPN	NNP	Number=Sing	20	nmod	_	_
+24	and	and	CCONJ	CC	_	25	cc	_	_
+25	destroy	destroy	VERB	VB	VerbForm=Inf	14	conj	_	_
+26	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	27	nmod:poss	_	_
+27	boats	boat	NOUN	NNS	Number=Plur	25	obj	_	_
+28	,	,	PUNCT	,	_	5	punct	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	32	det	_	_
+30	senior	senior	ADJ	JJ	Degree=Pos	32	amod	_	_
+31	EU	EU	PROPN	NNP	Number=Sing	32	compound	_	_
+32	official	official	NOUN	NN	Number=Sing	33	nsubj	_	_
+33	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+34	Tuesday	Tuesday	PROPN	NNP	Number=Sing	33	obl:tmod	_	_
+35	.	.	PUNCT	.	_	33	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160320" id="2e21392c-5034-4690-a643-298312b1e735_2" category="COMPARE" evaluate="true">
+<P1Event [['ISRGOV', 'ISR', '010']]>
+<P2Event [['ISR', 'ISR', '010']]>
+<Text>
+`` The man has gained much operational experience ; he is gravely wounded from previous
+assassination attempts, and he has rings of operatives around him who protect him,'' Yaakov Peri,
+the former head of Israel's domestic security agency -LRB- Shin Bet -RRB- m said in a Thursday
+interview with Israeli daily Yedioth Ahronoth .
+</Text>
+<Parse>
+1	``	``	SYM	$	_	5	punct	_	_
+2	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+3	man	man	NOUN	NN	Number=Sing	5	nsubj	_	_
+4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	gained	gain	VERB	VBN	Tense=Past|VerbForm=Part	49	ccomp	_	_
+6	much	much	ADJ	JJ	Degree=Pos	8	amod	_	_
+7	operational	operational	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	experience	experience	NOUN	NN	Number=Sing	5	obj	_	_
+9	;	;	PUNCT	,	_	5	punct	_	_
+10	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	13	nsubj	_	_
+11	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	cop	_	_
+12	gravely	gravely	ADV	RB	_	13	advmod	_	_
+13	wounded	wounded	ADJ	JJ	Degree=Pos	5	parataxis	_	_
+14	from	from	ADP	IN	_	17	case	_	_
+15	previous	previous	ADJ	JJ	Degree=Pos	17	amod	_	_
+16	assassination	assassination	NOUN	NN	Number=Sing	17	compound	_	_
+17	attempts	attempt	NOUN	NNS	Number=Plur	13	obl	_	_
+18	,	,	PUNCT	,	_	21	punct	_	_
+19	and	and	CCONJ	CC	_	21	cc	_	_
+20	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	21	nsubj	_	_
+21	has	have	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	conj	_	_
+22	rings	ring	NOUN	NNS	Number=Plur	21	obj	_	_
+23	of	of	ADP	IN	_	24	case	_	_
+24	operatives	operative	NOUN	NNS	Number=Plur	22	nmod	_	_
+25	around	around	ADP	IN	_	26	case	_	_
+26	him	he	PRON	PRP	Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs	24	nmod	_	_
+27	who	who	PRON	WP	PronType=Rel	28	nsubj	_	_
+28	protect	protect	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	24	acl:relcl	_	_
+29	him	he	PRON	PRP	Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs	28	obj	_	_
+30	,	,	PUNCT	,	_	49	punct	_	_
+31	''	''	PUNCT	''	_	49	punct	_	_
+32	Yaakov	Yaakov	PROPN	NNP	Number=Sing	49	nsubj:pass	_	_
+33	Peri	Peri	PROPN	NNP	Number=Sing	32	flat	_	_
+34	,	,	PUNCT	,	_	32	punct	_	_
+35	the	the	DET	DT	Definite=Def|PronType=Art	37	det	_	_
+36	former	former	ADJ	JJ	Degree=Pos	37	amod	_	_
+37	head	head	NOUN	NN	Number=Sing	32	appos	_	_
+38	of	of	ADP	IN	_	43	case	_	_
+39	Israel	Israel	PROPN	NNP	Number=Sing	43	nmod:poss	_	_
+40	's	's	PART	POS	_	39	case	_	_
+41	domestic	domestic	ADJ	JJ	Degree=Pos	43	amod	_	_
+42	security	security	NOUN	NN	Number=Sing	43	compound	_	_
+43	agency	agency	NOUN	NN	Number=Sing	37	nmod	_	_
+44	-LRB-	-LRB-	PUNCT	HYPH	_	46	punct	_	_
+45	Shin	Shin	PROPN	NNP	Number=Sing	46	compound	_	_
+46	Bet	bet	PROPN	NNP	Number=Sing	32	appos	_	_
+47	-RRB-	-rrb-	PUNCT	,	_	49	punct	_	_
+48	m	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	49	aux:pass	_	_
+49	said	say	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+50	in	in	ADP	IN	_	53	case	_	_
+51	a	a	DET	DT	Definite=Ind|PronType=Art	53	det	_	_
+52	Thursday	Thursday	PROPN	NNP	Number=Sing	53	compound	_	_
+53	interview	interview	NOUN	NN	Number=Sing	49	obl	_	_
+54	with	with	ADP	IN	_	58	case	_	_
+55	Israeli	israeli	ADJ	JJ	Degree=Pos	56	amod	_	_
+56	daily	daily	ADJ	JJ	Degree=Pos	58	amod	_	_
+57	Yedioth	Yedioth	PROPN	NNP	Number=Sing	58	compound	_	_
+58	Ahronoth	Ahronoth	PROPN	NNP	Number=Sing	53	nmod	_	_
+59	.	.	PUNCT	.	_	49	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20160920" id="2e220412-bb57-4881-85a1-96031667b377_1" category="COMPARE" evaluate="true">
+<P1Event [['DEPUTY FOREIGN MINISTER GRIGORY KARASIN', 'IGOEUREECGOV', '040']]>
+<P2Event [['---GOV', 'RUS', '040'], ['---GOV', 'IGOEUR', '040']]>
+<Text>
+On September 18, State Secretary/Deputy Foreign Minister Grigory Karasin met with Head of the EU
+Delegation to Russia Vygaudas Ušackas .
+</Text>
+<Parse>
+1	On	on	ADP	IN	_	2	case	_	_
+2	September	September	PROPN	NNP	Number=Sing	11	obl	_	_
+3	18	18	NUM	CD	NumType=Card	2	nummod	_	_
+4	,	,	PUNCT	,	_	11	punct	_	_
+5	State	State	PROPN	NNP	Number=Sing	6	compound	_	_
+6	Secretary/Deputy	Secretary/Deputy	PROPN	NNP	Number=Sing	7	compound	_	_
+7	Foreign	Foreign	PROPN	NNP	Number=Sing	8	compound	_	_
+8	Minister	Minister	PROPN	NNP	Number=Sing	11	nsubj	_	_
+9	Grigory	Grigory	PROPN	NNP	Number=Sing	8	flat	_	_
+10	Karasin	Karasin	PROPN	NNP	Number=Sing	8	flat	_	_
+11	met	meet	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+12	with	with	ADP	IN	_	13	case	_	_
+13	Head	head	PROPN	NNP	Number=Sing	11	obl	_	_
+14	of	of	ADP	IN	_	17	case	_	_
+15	the	the	DET	DT	Definite=Def|PronType=Art	17	det	_	_
+16	EU	EU	PROPN	NNP	Number=Sing	17	compound	_	_
+17	Delegation	delegation	PROPN	NNP	Number=Sing	13	nmod	_	_
+18	to	to	ADP	IN	_	21	case	_	_
+19	Russia	Russia	PROPN	NNP	Number=Sing	21	compound	_	_
+20	Vygaudas	Vygaudas	PROPN	NNP	Number=Sing	21	compound	_	_
+21	Ušackas	Ušackas	PROPN	NNP	Number=Sing	11	obl	_	_
+22	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+<Sentence date="20161121" id="2e223b4e-062f-4138-80ff-3557ea3dc052_7" category="COMPARE" evaluate="true">
+<P1Event [['MNCJPNGOV', 'JPN', '010']]>
+<P2Event [['MNCJPN', 'JPN', '010']]>
+<Text>
+In overseas markets, we changed course to add new products to our lineup, such as larger home
+appliances,'' Panasonic President Kazuhiro Tsuga said at a news conference in Tokyo .
+</Text>
+<Parse>
+1	In	in	ADP	IN	_	3	case	_	_
+2	overseas	overseas	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	markets	market	NOUN	NNS	Number=Plur	6	obl	_	_
+4	,	,	PUNCT	,	_	6	punct	_	_
+5	we	we	PRON	PRP	Case=Nom|Number=Plur|Person=1|PronType=Prs	6	nsubj	_	_
+6	changed	change	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	27	ccomp	_	_
+7	course	course	ADV	RB	_	9	advmod	_	_
+8	to	to	PART	TO	_	9	mark	_	_
+9	add	add	VERB	VB	VerbForm=Inf	6	xcomp	_	_
+10	new	new	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	products	product	NOUN	NNS	Number=Plur	9	obj	_	_
+12	to	to	ADP	IN	_	14	case	_	_
+13	our	we	PRON	PRP$	Number=Plur|Person=1|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
+14	lineup	lineup	NOUN	NN	Number=Sing	9	obl	_	_
+15	,	,	PUNCT	,	_	14	punct	_	_
+16	such	such	ADJ	JJ	Degree=Pos	20	case	_	_
+17	as	as	ADP	IN	_	16	fixed	_	_
+18	larger	larger	ADJ	JJR	Degree=Cmp	20	amod	_	_
+19	home	home	NOUN	NN	Number=Sing	20	compound	_	_
+20	appliances	appliance	NOUN	NNS	Number=Plur	14	nmod	_	_
+21	,	,	PUNCT	,	_	27	punct	_	_
+22	''	''	PUNCT	''	_	27	punct	_	_
+23	Panasonic	Panasonic	PROPN	NNP	Number=Sing	24	compound	_	_
+24	President	President	PROPN	NNP	Number=Sing	27	nsubj	_	_
+25	Kazuhiro	Kazuhiro	PROPN	NNP	Number=Sing	24	flat	_	_
+26	Tsuga	Tsuga	PROPN	NNP	Number=Sing	24	flat	_	_
+27	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+28	at	at	ADP	IN	_	31	case	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	31	det	_	_
+30	news	news	NOUN	NN	Number=Sing	31	compound	_	_
+31	conference	conference	NOUN	NN	Number=Sing	27	obl	_	_
+32	in	in	ADP	IN	_	33	case	_	_
+33	Tokyo	Tokyo	PROPN	NNP	Number=Sing	31	nmod	_	_
+34	.	.	PUNCT	.	_	27	punct	_	_
+</Parse></Sentence>
+</Sentences>
