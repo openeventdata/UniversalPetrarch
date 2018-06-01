@@ -74,6 +74,8 @@ def write_events(event_dict, output_file):
         else:
             url = ''
         for event in filtered_events:
+            if not isinstance(event[3], basestring): # occasional issue in PETR-2 due to mishandling of multi-word verb PAS 15.04.03, modified 18.06.01
+                continue
             story_date = event[0]
             source = event[1]
             target = event[2]
@@ -92,14 +94,7 @@ def write_events(event_dict, output_file):
             print('Event: {}\t{}\t{}\t{}\t{}\t{}'.format(story_date, source,
                                                          target, code, ids,
                                                          StorySource))
-#            event_str = '{}\t{}\t{}\t{}'.format(story_date,source,target,code)
-            # 15.04.30: a very crude hack around an error involving multi-word
-            # verbs
-            if not isinstance(event[3], basestring):
-                event_str = '\t'.join(
-                    event[:3]) + '\t010\t' + '\t'.join(event[4:])
-            else:
-                event_str = '\t'.join(event)
+            event_str = '\t'.join(event)
             # print(event_str)
             if joined_issues:
                 event_str += '\t{}'.format(joined_issues)
