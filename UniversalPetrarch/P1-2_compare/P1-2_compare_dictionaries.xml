@@ -3,15 +3,12 @@
 <!--
 ##########################################################################################################################################
 #
-#                                            PETRARCH-2 VALIDATION RECORDS
-#                                    To run: python validation.py -i PETR2_GSR_validation.xml 
+#                                            UDP BATCH COMPARISON DICTIONARIES
+#                                          To run: python validation.py -p1/-p2 
 #                                    Version compatibility: Runs using UDP master 24-May-2018
-#                                              Last Update: 25 May 2018
+#                                               Last Update: 31 May 2018
 #
-#   PETRARCH-2 did not implement an extended functional validation suite, just a small number of unit tests, but had about 40 test-like  
-#   records embedded in the GigaWord.sample.PETR.xml file, which was at some point converted to UD format as 
-#   GigaWord.sample.PETR_parsed.xml. This file consists of those records, plus the TEST_* records which hadn't been converted earlier,
-#   then the addition of <EventCoding...> records based on the PETR-2 output from GigaWord.sample.PETR.xml file. 
+#   This is the dictionary file for the PETRARCH-1/2 batch comparison with UD-PETRARCH.  
 #
 #   REVISION HISTORY
 #   May-2018: Initial version 
@@ -24,6 +21,6 @@
     <Agentfile>Phoenix.agents.txt</Agentfile>
     <Discardfile>Phoenix.discards.txt</Discardfile>
     <PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
-    <Include>valid COMPARE </Include>
+    <Include>COMPARE </Include>
 </Environment>		
 
