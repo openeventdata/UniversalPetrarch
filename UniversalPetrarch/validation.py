@@ -3,13 +3,17 @@
 """
 validation.py
 
-Runs validation -- functional testing -- cases for UniversalPetrarch
+Runs validation -- functional testing -- cases for UniversalPetrarch. For details, see README.md on 
+https://github.com/openeventdata/UniversalPetrarch/tree/dev-validate  
 
 TO RUN PROGRAM:
 
-python validation.py [-d]
+python validation.py [-d] [-i filename] [-p1] [-p2]
 
-  -d: use alternatve file, typically a debug file. Input files are hard coded.
+  -d: use alternatve file with dictionaries in validate/, typically a debug file. Input files are hard coded.
+  -i <filename>: use alternative file with dictionaries in data/dictionaries
+  -p1/-p2: batch comparison 
+  
 
 PROGRAMMING NOTES:
 
@@ -20,6 +24,8 @@ PROGRAMMING NOTES:
     
 2.  The PETR_Validate_records_2_02.xml file is currently XML and could be read as such, but in all likelihood this will soon to 
     transitioned over to YAML, so the fields are being processed without using XML tools.
+    
+3. In the current version, only PETR-2 dictionaries are used, even for the -p1 option.
     
 SYSTEM REQUIREMENTS
 This program has been successfully run under Mac OS 10.10.5; it is standard Python 3.5 so it should also run in Unix or Windows. 
@@ -44,6 +50,7 @@ Report bugs to: schrodt735@gmail.com
 REVISION HISTORY:
 27-Jul-17:	Initial version based on parallel function in PETRARCH-1
 24-May-18: Modified to work with Universal-PETR off-the-shelf
+01-Jun-18: -p1 and -p2 options added
 
 =========================================================================================================
 """
@@ -260,11 +267,7 @@ def validate_record(valrecord):
     dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
         u'meta': {u'date': valrecord['date']}}}
     return_dict = "" 
-    return_dict = petrarch_ud.do_coding(dict)  # 17.07.31: by-pass the try block for now so errors can be isolated
-    """try: 
-        return_dict = petrarch_ud.do_coding(dict)
-    except Exception as e: 
-        fout.write("petrarch_ud.do_coding() runtime error " + str(e) + '\n')"""
+    return_dict = petrarch_ud.do_coding(dict)
 
     fout.write("Coded events:\n")
     if 'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
@@ -295,7 +298,22 @@ def validate_record(valrecord):
                             nfound += 1
                             break
                 else:
-                    fout.write("  ERROR\n")
+                    fout.write("  ERROR\n") # do we ever hit this now?
+
+                if doing_compare and len(valrecord['events']) == 1 and len(return_dict[idstrg]['sents']['0']['events']) == 1:
+                    type_counts[0] += 1
+                    if valrecord['events'][0]['eventcode'] == evt[2]:
+                        type_counts[1] += 1
+                    if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
+                        type_counts[2] += 1
+                    if valrecord['events'][0]['sourcecode'] == evt[0][0]:
+                        type_counts[3] += 1
+                    if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
+                        type_counts[4] += 1
+                    if valrecord['events'][0]['targetcode'] == evt[1][0]:
+                        type_counts[5] += 1
+                    if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
+                        type_counts[6] += 1
                                                         
             except:
                 pass
@@ -374,7 +392,7 @@ def do_validation():
             idline = line
             line = fin.readline() # get the rest of the record
             while len(line) > 0: 
-                if line.startswith("<EventCoding"):
+                if line.startswith("<EventCoding") and not doing_compare:
                     if 'noevents="True"' in line:
                         valrecord['events'] = ["noevents"]    
                     else:
@@ -469,6 +487,8 @@ if __name__ == '__main__':
         petrarch_ud.read_dictionaries()
         
     valid_counts = {'catlist': []}
+    if doing_compare:
+        type_counts = [0,0,0,0,0,0,0]
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
     if PETRglobals.CodeWithPetrarch1:
@@ -515,6 +535,14 @@ if __name__ == '__main__':
     print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
     print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
     print("===========================\n")
+    if doing_compare:
+        print("Accuracy on coded single event cases:")
+        fout.write("\nAccuracy on coded single event cases:\n")
+        for ka, lbl in enumerate(["", "Event", "Cue category", "Source", "Source primary", "Target", "Target primary"]):
+            if ka == 0: continue
+            print("{:14s}:   {:8d} {:8.2f}%".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
+            fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
+        print("===========================\n")
 
     fin.close()
     fout.close()
