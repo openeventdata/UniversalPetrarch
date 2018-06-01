@@ -155,6 +155,8 @@ None : Read the validation file `PETR_Validate_records_2_02.xml` and dictionarie
 
 ``-i <filename>``: Read the validation file `<filename>` from `data/text/` and read dictionaries from `data/dictionaries/`
 
+`-p1`, `-p2`: see batch comparison discussion below
+
 ### Validation files
 
 `validate/PETR_Validate_records_2_02.xml`: Primary validation records based on TABARI and PETRARCH-1 "Lord of the Rings" suite (around 250 cases); uses validation dictionaries in `validate/`.
@@ -181,11 +183,11 @@ AGENT             23        13        11        11        17    54.17%    45.83%
 Total            244       213        99        56       390    68.27%    31.73%    22.95%
 ```
 
-### Bulk comparison coding
+### Batch comparison coding
 
-The `-p1` and `-p2` options can be used to run comparisons against a large number of records coded with PETRARCH-1 and -2. We've been using this internally to test against 20,000 records: those files are too extensive to post on GitHub under fair use exemptions, so this section will attempt to describe how to set this up.
+The `-p1` and `-p2` options can be used to run comparisons against a large number of records coded with PETRARCH-1 and -2. We've been using this internally to test against 20,000 records: those files are too extensive to post on GitHub under fair use exemptions, but an example of the set-up with a small number of texts is included.
 
-At present, the name of the comparison directory is hard-coded as `P1-2_compare/` and this should be at the same level as the `validation.py` program. Inside that directory is a file named `P1-2_compare_dictionaries.xml` which contains the `<Environment>` section of the validation XML file. The directory should also contain a file `files.list.txt` which is a list of the files to be coded; this allows a large corpus to be segmented into a set of smaller and thus more manageable files. A line beginning with `===` in this file will cause the evaluation of further files to stop. A example of this directory with a small number of texts is included.
+At present, the name of the batch comparison directory is hard-coded as `P1-2_compare/` and this should be at the same level as the `validation.py` program. Inside that directory is a file named `P1-2_compare_dictionaries.xml` which contains the `<Environment>` section of the validation XML file. The directory should also contain a file `files.list.txt` which is a list of the files to be coded; this allows a large corpus to be segmented into a set of smaller and thus more manageable files. A line beginning with `===` in this file will cause the evaluation of further files to stop. 
 
 These files are similar to the `<Sentences>` section of the XML file but contain records of the form
 
@@ -209,6 +211,6 @@ the winter session of the organization's parliamentary assembly.
 </Parse></Sentence>
 ```
 
-The `<P1Event...` and `<P2Event...` lines contain a Python list of lists -- these are read using `ast.literal_eval()` -- of the coded events in the order `[<source code>, <target code>, <event code>]`. If there are `<EventCoding...` records, these will be ignored.
+The `<P1Event...` and `<P2Event...` lines contain a Python list of lists -- these are read using Python's `ast.literal_eval()` -- of the coded events in the order `[<source code>, <target code>, <event code>]`. If there are `<EventCoding...` records, these will be ignored. The `category` labels can be used in the same manner as they are in the other validation options, with the categories to be evaluated specified in the `<Include>...</Include>` line in `P1-2_compare_dictionaries.xml`.
 
 Because of the large number of records usually evaluated when `-p1` or `-p2` are used, the coding information in the `Validation_output.txt` file is more abbreviated and includes only the sentence ID and the comparison of the codings, not the text, parse or internal coding information.
