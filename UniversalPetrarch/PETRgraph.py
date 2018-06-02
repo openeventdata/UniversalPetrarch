@@ -1621,6 +1621,38 @@ An instantiated Sentence object
             #raw_input("Press Enter to continue...")
 
     def get_events(self):
+
+        def resolve_synset(line):
+            synsets = PETRglobals.VerbDict['synsets']
+            segs = line.split()
+            syns = filter(lambda a: '&' in a, segs)
+            lines = []
+            words = []
+            
+            if syns:
+                syn = syns[0].replace(
+                    "{", "").replace(
+                    "}", "").replace(
+                    "(", "").replace(
+                    ")", "")
+                if syn in synsets:
+                    for word in synsets[syn]:
+                        if '_' in word[-1]:
+                            baseword = word[0:-1]
+                        else:
+                            baseword = word
+
+                        lines += resolve_synset(line.replace(syn, baseword, 1))#resolve synset recursively
+
+                        plural = PETRreader.make_plural_noun(word)
+                        if plural:
+                            lines += resolve_synset(line.replace(syn, plural, 1))
+                    return lines
+                else:
+                    print("Undefined synset", syn)
+            return [line]
+
+
         logger = logging.getLogger('petr_log.PETRgraph')
         self.get_phrases()
         self.filter_triplet_with_time_expression()
@@ -1667,11 +1699,50 @@ An instantiated Sentence object
 
             verb = triple['triple'][2]
 
+            # check if target is part of the matched pattern.
+            if target_meaning not in [['---'],[]]:
+                print(target.matched_txt)
+                print(triple['matched_txt'])
+
+                if "&" in triple['matched_txt']:
+                    lines = resolve_synset(triple['matched_txt'])
+                    for token in target.matched_txt:
+                        for line in lines:
+                            #print(line)
+                            if token in line:
+                                target_meaning = ['---']
+
+                for token in target.matched_txt:
+                    if token in triple['matched_txt']:
+                        target_meaning = ['---']
+
             if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 #print("finding new target:")
                 closest = len(self.udgraph.node)
                 newtarget_meaning = ['---']
+
+                uniq_nouns = []
+                nounStartEnd = {}
                 for noun in self.metadata['othernoun'][verb.headID]:
+                    # handle overlapped noun phrases
+                    # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
+                    # print(noun.npIDs)
+                    print(noun.text)
+
+                    if noun.npIDs[0] in nounStartEnd.keys():
+                        old_range = nounStartEnd[noun.npIDs[0]]['end'] - noun.npIDs[0]
+                        new_range = noun.npIDs[-1] - noun.npIDs[0]
+                        if new_range < old_range:
+                            continue
+
+                    nounStartEnd[noun.npIDs[0]] = {}
+                    nounStartEnd[noun.npIDs[0]]['end'] = noun.npIDs[-1]
+                    nounStartEnd[noun.npIDs[0]]['noun'] = noun
+                    uniq_nouns.append(noun)
+
+
+
+                for noun in uniq_nouns:
                     if noun.headID >= verb.headID and noun.headID <= closest:
                         newtarget = noun
                         newtarget.get_meaning()
@@ -2227,7 +2298,7 @@ An instantiated Sentence object
         nounStartEnd = {}  # key is start idx, value is end idx
         for noun in nouns:
             # handle overlapped noun phrases
-            # e.g. "A court in Guyana", "Guyana"
+            # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
             # print(noun.npIDs)
             # print(noun.text)
 

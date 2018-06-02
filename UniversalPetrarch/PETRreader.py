@@ -1108,7 +1108,7 @@ def read_verb_dictionary(verb_path):
                     path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]}])
                     #path = path.setdefault("#", {'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
 
-    #PETRglobals.VerbDict['synsets'] = synsets
+    PETRglobals.VerbDict['synsets'] = synsets
     #print(sorted(PETRglobals.VerbDict['phrases'].keys()))
     #print(PETRglobals.VerbDict.__sizeof__())
     #print(PETRglobals.VerbDict['phrases'].__sizeof__())
