@@ -752,6 +752,8 @@ An instantiated Sentence object
 
             # if len(nmodchildren)>0:
             #raw_input(" compound nous")
+        #else:
+            #return nps
 
         npIDs.append(nounhead)
         npTokens = []
@@ -1243,7 +1245,7 @@ An instantiated Sentence object
 
                             pp_np = None
                             for np in self.tempnouns:
-                                if np.npIDs[0] == noun_phrase.npIDs[1]:
+                                if len(noun_phrase.npIDs)> 1 and np.npIDs[0] == noun_phrase.npIDs[1]:
                                     pp_np = np
                                     #print("pp_np", pp_np.text)
                                     #raw_input()
@@ -1652,6 +1654,8 @@ An instantiated Sentence object
                     print("Undefined synset", syn)
             return [line]
 
+        def sortbyverbID(tripleID):
+            return int(tripleID.split("#")[2])
 
         logger = logging.getLogger('petr_log.PETRgraph')
         self.get_phrases()
@@ -1701,8 +1705,8 @@ An instantiated Sentence object
 
             # check if target is part of the matched pattern.
             if target_meaning not in [['---'],[]]:
-                print(target.matched_txt)
-                print(triple['matched_txt'])
+                #print(target.matched_txt)
+                #print(triple['matched_txt'])
 
                 if "&" in triple['matched_txt']:
                     lines = resolve_synset(triple['matched_txt'])
@@ -1727,7 +1731,7 @@ An instantiated Sentence object
                     # handle overlapped noun phrases
                     # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
                     # print(noun.npIDs)
-                    print(noun.text)
+                    #print(noun.text)
 
                     if noun.npIDs[0] in nounStartEnd.keys():
                         old_range = nounStartEnd[noun.npIDs[0]]['end'] - noun.npIDs[0]
@@ -1799,7 +1803,13 @@ An instantiated Sentence object
             logger.debug("root_event is None")
             # return {}
 
-        for tripleID, triple in self.triplets.items():
+        grandchild_verbs = {}
+
+        for tripleID in sorted(self.triplets.keys(),key=sortbyverbID):
+            #print(tripleID)
+            #print(triple['event'])
+            #print(grandchild_verbs.keys())
+            triple = self.triplets[tripleID]
             transfered = True
 
             if tripleID in paired_event:
@@ -1815,56 +1825,68 @@ An instantiated Sentence object
                 if root not in root_event:
                     continue
                 
+                is_lower_verb = False
                 if verb.headID in self.udgraph.neighbors(root):
                     relation_with_root = self.udgraph[
                         root][verb.headID]['relation']
                     if relation_with_root in ['advcl', 'ccomp', 'xcomp']:
-                        current_event = triple['event']  # 4.27
-                        #(source_meaning,target_meaning,triple['verbcode'])
-                        logger.debug("root" + str(root))
-                        for reventID, revent in root_event[root].items():
-                            event_before_transfer = (
-                                revent[0], current_event, revent[2])
-                            if revent[0] not in ['---']:
-                                event_after_transfer = self.match_transform(
-                                    event_before_transfer)
-                                current_eventID = tripleID
+                        is_lower_verb = True
+                        #find child of current verb in relation "conj"
+                        for child in self.udgraph.neighbors(verb.headID):
+                            if self.udgraph[verb.headID][child]['relation'] in ['conj']:
+                                grandchild_verbs[child] = relation_with_root
+                                #raw_input(child)
+                elif verb.headID in grandchild_verbs.keys():
+                    is_lower_verb = True
 
-                            elif current_event[0] and current_event[1]:
-                                event_after_transfer = [current_event]
-                                current_eventID = tripleID
+                if is_lower_verb:
 
-                            else:
-                                event_after_transfer = [event_before_transfer]
-                                current_eventID = reventID
+                    current_event = triple['event']  # 4.27
+                    #(source_meaning,target_meaning,triple['verbcode'])
+                    logger.debug("root" + str(root))
+                    for reventID, revent in root_event[root].items():
+                        event_before_transfer = (
+                            revent[0], current_event, revent[2])
+                        if revent[0] not in ['---']:
+                            event_after_transfer = self.match_transform(
+                                event_before_transfer)
+                            current_eventID = tripleID
 
-                            logger.debug("event" + tripleID +
-                                         "transformation:")
-                            logger.debug(event_after_transfer)
+                        elif current_event[0] and current_event[1]:
+                            event_after_transfer = [current_event]
+                            current_eventID = tripleID
 
-                            for e in event_after_transfer:
-                                if isinstance(e, tuple) and not isinstance(e[1], tuple):
-                                    if current_eventID not in self.events:
-                                        self.events[current_eventID] = []
-                                        self.events[
-                                            current_eventID].extend(list(e))
-                                    else:
-                                        logger.debug(reventID + " repeated")
-                                        tempID = reventID
-                                        while tempID in self.events:
-                                            tempID = tempID + "0"
-                                        self.events[tempID] = []
-                                        self.events[tempID].extend(list(e))
+                        else:
+                            event_after_transfer = [event_before_transfer]
+                            current_eventID = reventID
 
-                                elif isinstance(e, tuple) and isinstance(e[1], tuple) and e[2] == None and e[1][2] != None:
-                                    if tripleID not in self.events:
-                                        self.events[tripleID] = []
-                                        self.events[tripleID].extend(
-                                            list(e[1]))
+                        logger.debug("event" + tripleID +
+                                     "transformation:")
+                        logger.debug(event_after_transfer)
 
-                                if e == event_before_transfer and isinstance(e[1], tuple) and e[1][2] != None:
-                                    self.events[current_eventID]=list(e[1])
-                                    transfered = False
+                        for e in event_after_transfer:
+                            if isinstance(e, tuple) and not isinstance(e[1], tuple):
+                                if current_eventID not in self.events:
+                                    self.events[current_eventID] = []
+                                    self.events[
+                                        current_eventID].extend(list(e))
+                                else:
+                                    logger.debug(reventID + " repeated")
+                                    tempID = reventID
+                                    while tempID in self.events:
+                                        tempID = tempID + "0"
+                                    self.events[tempID] = []
+                                    self.events[tempID].extend(list(e))
+
+                            elif isinstance(e, tuple) and isinstance(e[1], tuple) and e[2] == None and e[1][2] != None:
+                                if tripleID not in self.events:
+                                    self.events[tripleID] = []
+                                    self.events[tripleID].extend(
+                                        list(e[1]))
+
+                            if e == event_before_transfer and isinstance(e[1], tuple) and e[1][2] != None:
+                                self.events[current_eventID]=list(e[1])
+                                transfered = False
 
         logger.debug("self.events: " + str(len(self.events)))
         for key, value in self.events.items():
@@ -3429,7 +3451,7 @@ An instantiated Sentence object
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass','obl']:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass']:
                         found = True
                         break
 
