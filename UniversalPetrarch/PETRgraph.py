@@ -1226,6 +1226,33 @@ An instantiated Sentence object
 
             return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
 
+        def match_prep_in_noun(subpath, noun_phrase):
+            #print(len(noun_phrase.prep_phrase))
+            matches = []
+            for pp in noun_phrase.prep_phrase:
+                #check all the prepositional phrases in a noun phrase
+                #print(pp.text)
+                skip = lambda a: False
+                matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
+                match = reroute(subpath, skip, skip, matchphrase, skip)
+                if match:
+                    #logger.debug(match)
+                    matches.append(match)
+
+            if len(matches)>0: #if more than one patterns matched, return the longest pattern
+                longestmatch = {'line':""}
+                longestline = ''
+                for match in matches:
+                    line = match['line'][0:match['line'].find("[")]
+                    longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
+
+                    if len(longestline) < len(line):
+                        longestmatch = match
+                logger.debug(longestmatch)
+                return longestmatch
+
+            return False
+
         def match_noun(path, noun_phrase):
             logger.debug("mn-entry")
 
@@ -1268,37 +1295,16 @@ An instantiated Sentence object
                     head = noun_phrase.head.upper()
                     headlemma = self.udgraph.node[noun_phrase.headID]['lemma'].upper()
 
-
-
                     if head in path:
                         subpath = path[head]
                         logger.debug(head + " found in pattern dictionary")
 
-                        #print(len(noun_phrase.prep_phrase))
-                        matches = []
-                        for pp in noun_phrase.prep_phrase:
-                            #check all the prepositional phrases in a noun phrase
-                            #print(pp.text)
-                            skip = lambda a: False
-                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                            match = reroute(subpath, skip, skip, matchphrase, skip)
-                            if match:
-                                #logger.debug(match)
-                                matches.append(match)
-                            return_path = subpath
-
-                        if len(matches)>0: #if more than one patterns matched, return the longest pattern
-                            longestmatch = {'line':""}
-                            longestline = ''
-                            for match in matches:
-                                line = match['line'][0:match['line'].find("[")]
-                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
-
-                                if len(longestline) < len(line):
-                                    longestmatch = match
-                            logger.debug(longestmatch)
-                            return longestmatch
-                                
+                        #check all the prepositional phrases in a noun phrase
+                        prepmatch = match_prep_in_noun(subpath,noun_phrase)
+                        
+                        if prepmatch:
+                            logger.debug(prepmatch)
+                            return prepmatch 
 
                         #print("head in path:", subpath)
                         match = reroute(subpath, (lambda a: match_phrase(
@@ -1312,16 +1318,17 @@ An instantiated Sentence object
                         subpath = path[headlemma]
                         logger.debug(headlemma + " found in pattern dictionary (lemma)")
 
-                        for pp in noun_phrase.prep_phrase:
-                            skip = lambda a: False
-                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                            match = reroute(subpath, skip, skip, matchphrase, skip)
-                            if match:
-                                logger.debug(match)
-                                return match
-
+                        #check all the prepositional phrases in a noun phrase
+                        prepmatch = match_prep_in_noun(subpath,noun_phrase)
+                        
+                        if prepmatch:
+                            logger.debug(prepmatch)
+                            return prepmatch 
+                                
+                        #print("head in path:", subpath)
                         match = reroute(subpath, (lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
+                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,(lambda a: match_phrase(
+                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,lambda a: False,lambda a: False)
                         if match:
                             logger.debug(match)
                             return match
@@ -1437,6 +1444,7 @@ An instantiated Sentence object
                 #print(temptargetmatch)
                 if temptargetmatch:
                     targetmatch = temptargetmatch
+
             if len(allnps)==0:
                 match = reroute(path,lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
             if targetmatch:
@@ -2465,7 +2473,8 @@ An instantiated Sentence object
                             actors[sid], actors[tid], verbcode]
                         idx = idx + 1
 
-        for eventID, event in self.events.items(): # symmetric events
+        # symmetric events, [xxx:yyy] pattern
+        for eventID, event in self.events.items(): 
             #print(event)
             if event[2] not in [None,0] and ":" in event[2]:
                 codes = event[2].split(":")
@@ -2473,6 +2482,13 @@ An instantiated Sentence object
                     self.events[eventID+"#s1"] = [event[0],event[1],codes[0]]
                 if codes[1]:
                     self.events[eventID+"#s2"] = [event[1],event[0],codes[1]]
+                self.events.pop(eventID)
+
+        # remove None events
+        for eventID, event in self.events.items():
+            if event[2] in [None, "---", "None"]:
+                print(event)
+                #raw_input()
                 self.events.pop(eventID)
 
         return self.events
@@ -2678,6 +2694,7 @@ An instantiated Sentence object
                              utilities.convert_code(code_combined, 0))
                     logger.debug(event)
                     return [event]
+                #'''
                 elif e[0] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] == e[1][0] and e[1][1]:
 
                     logger.debug("the event is of the form: a ( a b Q ) P")
@@ -2691,6 +2708,7 @@ An instantiated Sentence object
                     logger.debug(event)
 
                     return [event]
+                '''
                 elif e[0] and isinstance(e[1], tuple) and not e[1][0] and e[1][2] and e[1][1]:
                     logger.debug("the event is of the form: a ( [] b Q ) P")
                     logger.debug(e[2])
@@ -2721,6 +2739,7 @@ An instantiated Sentence object
                     logger.debug(event)
 
                     return[event]
+                '''
 
         except Exception as ex:
             pass  # print(ex)
