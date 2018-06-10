@@ -2261,7 +2261,7 @@ An instantiated Sentence object
 
             target_meaning = ['---']
             if not isinstance(target, basestring):
-                target.get_meaning()
+                tarcodes,_, tarmatched_txt = target.get_meaning()
                 target_meaning = target.meaning if target.meaning != None else [
                     '---']
                 logger.debug("target: " + target.head + " code: " +
@@ -2274,6 +2274,7 @@ An instantiated Sentence object
             if target_meaning not in [['---'],[]]:
                 #print(target.matched_txt)
                 #print(triple['matched_txt'])
+                overlap = []
 
                 if "&" in triple['matched_txt']:
                     lines = resolve_synset(triple['matched_txt'])
@@ -2282,12 +2283,32 @@ An instantiated Sentence object
                         for line in lines:
                             #print(line)
                             if token in line:
-                                target_meaning = ['---']
+                                overlap.append(token)
+                                #target_meaning = ['---']
 
                 for token in target.matched_txt:
                     if token in triple['matched_txt']:
-                        target_meaning = ['---']
-                #raw_input()
+                        overlap.append(token)
+                        #target_meaning = ['---']
+
+                if overlap and len(target.matched_txt) != len(overlap):
+                    # only part of the target actor is in the matched pattern
+                    no_overlap_codes = []
+                    no_overlap_text = []
+                    for i in range(0, len(tarmatched_txt)):
+                        if tarmatched_txt[i].strip() not in overlap:
+                            no_overlap_codes.append(tarcodes[i])
+                            no_overlap_text.append(tarmatched_txt[i])
+
+                    newactorcodes, newagentcodes = target.resolve_codes(no_overlap_codes, no_overlap_text)
+                    meaning = target.mix_codes(newagentcodes, newactorcodes)
+                    meaning = meaning if meaning != None else ['---']
+                    target_meaning = meaning                    
+
+                elif overlap and len(target.matched_txt) == len(overlap):
+                    # entire target actor is in the matched pattern
+                    target_meaning = ['---']
+
 
             if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 #print("finding new target:")
@@ -2725,9 +2746,9 @@ An instantiated Sentence object
                     #print("a2v:")
                     #print(a2v)
                     #print("event1:")
-                    #print(event[1])
-                    
-                    return recurse(path[var], event[1], a2v, v2a)
+                    #print(event)
+                    if event:
+                        return recurse(path[var], event[1], a2v, v2a)
                     
 
 
