@@ -1338,7 +1338,8 @@ An instantiated Sentence object
                                         pp_np = np
                                         #print("pp_np", pp_np.text)
                                         #raw_input()
-                                match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
+                                matchphrase = lambda a: match_prep(a, pp_np) if isinstance(pp_np, PrepPhrase) else None
+                                match = reroute(subpath,lambda a: match_noun(a, pp_np), matchphrase, matchphrase)
 
                             elif len(noun_phrase.npIDs)== 1: 
                                 #print(subpath)
@@ -1802,7 +1803,8 @@ An instantiated Sentence object
                                         pp_np = np
                                         #print("pp_np", pp_np.text)
                                         #raw_input()
-                                match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
+                                matchphrase = lambda a: match_prep(a, pp_np) if isinstance(pp_np, PrepPhrase) else None
+                                match = reroute(subpath,lambda a: match_noun(a, pp_np), matchphrase,matchphrase)
 
                             elif len(noun_phrase.npIDs)== 1: 
                                 #print(subpath)
@@ -2018,12 +2020,25 @@ An instantiated Sentence object
         verbtokens = verb.text.upper().split(" ")
         for vidx in range(0, len(verbtokens)):
             verbtext = verbtokens[vidx]
+            verbtext_withe = verbtext
             logger.debug("match vp token:" + verbtext)
+            if not verbtext.endswith("E"):  
+                #handle lemmatization error: incorrectly remove "E" in verbs, e.g. "upgrading" has wrong lemma "upgrad"
+                verbtext_withe = verbtext + "E"
+
+            verbfound = False
+            matched_txt = []
             if verbtext in verbDictPath:
-                matched_txt = []
+                
                 tempverbDictPath = verbDictPath[verbtext]
                 matched_txt.append(verbtext)
+                verbfound = True
+            elif verbtext_withe in verbDictPath:
+                tempverbDictPath = verbDictPath[verbtext_withe]
+                matched_txt.append(verbtext_withe)
+                verbfound = True
 
+            if verbfound:
                 for j in range(vidx, len(verbtokens)):
                     if verbtokens[j] in tempverbDictPath:
                         tempverbDictPath = tempverbDictPath[verbtokens[j]]
