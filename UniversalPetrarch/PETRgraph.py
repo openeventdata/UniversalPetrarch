@@ -558,7 +558,24 @@ An instantiated Sentence object
                 # any conjunctive verb exists
                 if self.udgraph.node[root]['pos'] == 'VERB':
                     rootID.append(root)
+                    
+                    '''
+                    # if the sentence has expletive or pleonastic nominals. e.g "it is...", "there is..."
+                    found_expl = False
+                    for rsuccessor in self.udgraph.successors(root):
+                        if self.udgraph[root][rsuccessor]['relation'] == 'expl':
+                            found_expl = True
+                            raw_input(self.udgraph.node[root])
+                            break
 
+                    if not found_expl:
+                        rootID.append(root)
+                    else:
+                        for rsuccessor in self.udgraph.successors(root):
+                            if self.udgraph.node[rsuccessor]['pos'] == 'VERB':
+                                raw_input(self.udgraph.node[rsuccessor])
+                                rootID.append(rsuccessor)
+                    '''
                 else:
                     # if the root node is not a verb
                     # if a copula relation exist, find the verb connected to
@@ -1215,6 +1232,13 @@ An instantiated Sentence object
                 # self.metadata['nouns'].extend(othernoun)
 
     def get_verb_code(self):
+
+        for triple in self.metadata['triplets']:
+            verbcode, matched, meanings, tripleID, triple_dict = self.get_verb_code_per_triplet(triple)
+            self.triplets[tripleID] = triple_dict
+
+
+    def get_verb_code_per_triplet(self, triple):
         logger = logging.getLogger('petr_log.PETRgraph')
 
         def match_token(path, token):
@@ -1291,7 +1315,7 @@ An instantiated Sentence object
                 #print(pp.text)
                 skip = lambda a: False
                 matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                match = reroute(subpath, skip, skip, matchphrase, skip)
+                match = reroute(subpath, lambda a: match_token(a, ""), skip, matchphrase, skip)
                 if match:
                     #logger.debug(match)
                     matches.append(match)
@@ -1300,8 +1324,8 @@ An instantiated Sentence object
                 longestmatch = {'line':""}
                 longestline = ''
                 for match in matches:
-                    line = match['line'][0:match['line'].find("[")]
-                    longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
+                    line = match['line'][0:match['line'].find("[")].strip()
+                    longestline = longestmatch['line'][0:longestmatch['line'].find("[")].strip()
 
                     if len(longestline) < len(line):
                         longestmatch = match
@@ -1353,52 +1377,61 @@ An instantiated Sentence object
 
                     head = noun_phrase.head.upper()
                     headlemma = self.udgraph.node[noun_phrase.headID]['lemma'].upper()
+                    subpath = path
+                    found_head = False
 
                     if head in path:
                         subpath = path[head]
                         logger.debug(head + " found in pattern dictionary")
-
-                        #check all the prepositional phrases in a noun phrase
-                        prepmatch = match_prep_in_noun(subpath,noun_phrase)
+                        found_head = True
                         
-                        if prepmatch:
-                            logger.debug(prepmatch)
-                            return prepmatch 
-
-                        #print("head in path:", subpath)
-                        match = reroute(subpath, (lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,(lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,lambda a: False,lambda a: False)
-                        if match:
-                            logger.debug(match)
-                            return match
-                        return_path = subpath
-                        #print("return_path_2:",return_path)
-
                     elif headlemma in path:
                         subpath = path[headlemma]
                         logger.debug(headlemma + " found in pattern dictionary (lemma)")
+                        found_head = True
 
-                        #check all the prepositional phrases in a noun phrase
-                        prepmatch = match_prep_in_noun(subpath,noun_phrase)
-                        
-                        if prepmatch:
-                            logger.debug(prepmatch)
-                            return prepmatch 
-                                
+                    if found_head:
+                        matches = []
+
                         #print("head in path:", subpath)
                         match = reroute(subpath, (lambda a: match_phrase(
                             a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,(lambda a: match_phrase(
                             a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,lambda a: False,lambda a: False)
                         if match:
                             logger.debug(match)
-                            return match
+                            matches.append(match)
+                            #return match
                         return_path = subpath
-                        #print("return_path_3:",return_path)
+                        #print("return_path_2:",return_path)
+
+                        #check all the prepositional phrases in a noun phrase
+                        prepmatch = match_prep_in_noun(subpath,noun_phrase)
+                        
+                        if prepmatch:
+                            #print("prepmatch:")
+                            logger.debug(prepmatch)
+                            matches.append(prepmatch)
+                            #return prepmatch 
+
+                        #matches = list(set(matches))
+                        if len(matches)>0: #if more than one patterns matched, return the longest pattern
+                            logger.debug("more than one match")
+                            longestmatch = {'line':""}
+                            longestline = ''
+                            for match in matches:
+                                line = match['line'][0:match['line'].find("[")]
+                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
+
+                                if len(longestline) < len(line):
+                                    longestmatch = match
+                            logger.debug(longestmatch)
+                            
+                            return longestmatch
 
             if "^" in path:
                 skip = lambda a: False
                 return_path = path['^']
+                #print("^ found", return_path)
                 return reroute(path['^'], lambda a: match_phrase(a, noun_phrase),skip,skip,skip,1)
 
             return_path = path
@@ -1419,7 +1452,6 @@ An instantiated Sentence object
                         pp_np = np
                         #print("pp_np", pp_np.text)
                 match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
-                #print("match:", match)
                 if match:
                     return match
 
@@ -1434,19 +1466,19 @@ An instantiated Sentence object
             if '-' in subpath:
                 match = o1(subpath['-'])
                 if match:
-                    print('rr-- match')
+                    #print('rr-- match')
                     # print(match)
                     return match
 
             if '$' in subpath:
-                #print('rr$ found')
+                # print('rr$ found')
                 match = reroute(subpath['$'], True,lambda a: False,lambda a: False,lambda a: False, 1)
                 if match:
                     # print('rr$ match')
                     return match
 
             if ',' in subpath:
-                #print('rr-,')
+                # print('rr-,')
                 # print(subpath[','])
                 match = reroute(subpath[','], True,lambda a: False,lambda a: False,lambda a: False, 1)
                 if match:
@@ -1499,9 +1531,6 @@ An instantiated Sentence object
             allnps.extend(self.metadata['othernoun'][verb.headID])
             allnps = list(set(allnps))
 
-            #for np in allnps:
-                #print(np.headID, np.text)
-
             targetmatch = False
             for np in allnps:
                 temptargetmatch = match_noun(path, np)
@@ -1511,483 +1540,6 @@ An instantiated Sentence object
                 if temptargetmatch:
                     targetmatch = temptargetmatch
 
-            if len(allnps)==0:
-                match = reroute(path,lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
-            if targetmatch:
-                return targetmatch
-            elif match:
-                return match
-            else:
-                return False
-            
-
-        for triple in self.metadata['triplets']:
-            source = triple[0]
-            target = triple[1]
-            verb = triple[2]
-
-            #print('-' if isinstance(source, basestring) else source.text, '-' if isinstance(target, basestring) else target.text, verb.text)
-
-            '''get code from verb dictionary'''
-            logger.debug("finding code of verb:" + verb.text)
-
-            verbDictionary = PETRglobals.VerbDict['verbs']
-            verbDictPath = verbDictionary
-            code = None
-            meaning = None
-            matched_txt = []
-
-            codes = []
-            meanings = []
-            matched_txts = []
-
-            verbtokens = verb.text.upper().split(" ")
-            for vidx in range(0, len(verbtokens)):
-                verbtext = verbtokens[vidx]
-                logger.debug("match vp token:" + verbtext)
-                if verbtext in verbDictPath:
-                    matched_txt = []
-                    tempverbDictPath = verbDictPath[verbtext]
-                    matched_txt.append(verbtext)
-
-                    for j in range(vidx, len(verbtokens)):
-                        if verbtokens[j] in tempverbDictPath:
-                            tempverbDictPath = tempverbDictPath[verbtokens[j]]
-                            matched_txt.append(verbtokens[j])
-
-                    if "#" in tempverbDictPath:
-                        try:
-                            for item in tempverbDictPath['#']['#']:
-                                # code = tempverbDictPath['#']['#']['code']
-                                # meaning =
-                                # tempverbDictPath['#']['#']['meaning']
-                                code = item['code']
-                                meaning = item['meaning']
-
-                                if (code != None and meaning != None):
-                                    codes.append(code)
-                                    meanings.append(meaning)
-                                    matched_txts.append(matched_txt)
-                        except:
-                            print("passing:" + verb.text)
-                            pass
-
-                    if (code != None and meaning != None):
-                        codes.append(code)
-                        meanings.append(meaning)
-                        matched_txts.append(matched_txt)
-
-            if(len(verbtokens) > 1):
-                logger.debug(codes)
-                logger.debug(meanings)
-                logger.debug(matched_txts)
-                #raw_input("verb pharse has length large than 1")
-
-            if code != None and meaning != None:
-                logger.debug(code + "\t" + meaning + "\t" + verb.text + "\t" +
-                             (" ").join(matched_txt) + "\t" + str(len(verb.vpIDs)))
-            else:
-                logger.debug("None code and none meaning")
-
-            '''get code from pattern dictionary'''
-            patternDictionary = PETRglobals.VerbDict['phrases']
-            patternDictPath = patternDictionary
-            matched_pattern = None
-            for m in meanings:
-                patternDictPath = patternDictionary
-                if m in patternDictionary:
-                    patternDictPath = patternDictPath[m]
-                    logger.debug("processing source:")
-                    match = match_noun(patternDictPath, source)
-                    if match:
-                        code = match['code']
-                        matched_pattern = match['line']
-                        logger.debug("matched:" + code +
-                                     "\t" + matched_pattern)
-
-                    pairmatch = False
-                    if '%' in patternDictPath:
-                        temppatternDictPath = patternDictPath['%']
-                        logger.debug("'%' matched")
-                        pairmatch = match_lower(
-                            temppatternDictPath, verb, target)
-                        if pairmatch:
-                            code = pairmatch['code']
-                            matched_pattern = pairmatch['line']
-                            logger.debug("pair matched:" + code +
-                                         "\t" + matched_pattern)
-
-                    if '+' in patternDictPath:
-                        temppatternDictPath = patternDictPath['+']
-                        logger.debug("'+' matched")
-                        match = match_lower(temppatternDictPath, verb, target)
-                        if match:
-                            code = match['code']
-                            matched_pattern = match['line']
-                            logger.debug("matched:" + code +
-                                         "\t" + matched_pattern)
-
-                    lowermatch = match_lower(patternDictPath, verb, target)
-
-                    if pairmatch and "(" in pairmatch['line']:
-                        match = pairmatch
-                    elif lowermatch and "(" in lowermatch['line']:
-                        match = lowermatch
-                    elif pairmatch:
-                        match = pairmatch
-                    elif lowermatch:
-                        match = lowermatch
-
-                    if match:
-                        code = match['code']
-                        matched_pattern = match['line']
-                        # switch source and target
-                        newsource = '-'
-                        newtarget = '-'
-
-                        if not verb.passive and "+" in matched_pattern and matched_pattern.index("+") < matched_pattern.index("*"):
-                            newsource = target
-                            logger.debug(
-                                "+ in pattern, switch target to source")
-
-                        if not verb.passive and "$" in matched_pattern and matched_pattern.index("$") > matched_pattern.index("*"):
-                            newtarget = source
-                            logger.debug(
-                                "$ in pattern, switch source to target")
-
-                        logger.debug("matched:" + code +
-                                     "\t" + matched_pattern)
-
-                        source = newsource if not isinstance(
-                            newsource, basestring) else source
-                        target = newtarget if not isinstance(
-                            newtarget, basestring) else target
-
-            tripleID = ('-' if isinstance(source, basestring) else str(source.headID)) + '#' + \
-                       ('-' if isinstance(target, basestring) else str(target.headID)) + '#' + \
-                str(verb.headID) + "#" + str(len(self.triplets))
-            newtriple = (source, target, verb)
-
-            if code != None:
-                ''' 
-                # handle passive voice
-                if len(code.split(":")) == 2:
-                    active_code, passive_code = code.split(":")
-                    if verb.passive == True:
-                        verbcode = passive_code
-                    else:
-                        verbcode = active_code
-                else:
-                    verbcode = code
-                '''
-                verbcode = code
-                if verb.negative == True:
-                    #raw_input("before negated:"+verbcode)
-                    if verbcode not in ['-', '---'] and int(verbcode) <= 200:
-                        # validation verbs have codes over 200, add this
-                        # condition to make sure the program is not crashed.
-                        tempcode = utilities.convert_code(verbcode)[0] - 0xFFFF
-                        tempverbcode = str(utilities.convert_code(tempcode, 0))
-                        logger.debug("negated:" + verbcode +
-                                     "\thex:" + hex(tempcode))
-                        if tempverbcode == "0":
-                            verbcode = verbcode + "#" + hex(tempcode)
-                        else:
-                            verbcode = tempverbcode
-                        #raw_input("find negated verb:")
-
-            else:
-                verbcode = None
-
-            self.triplets[tripleID] = {}
-            self.triplets[tripleID]['triple'] = newtriple
-            self.triplets[tripleID]['verbcode'] = verbcode
-            self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
-            self.triplets[tripleID]['meaning'] = (",").join(meanings)
-
-            #raw_input("Press Enter to continue...")
-
-    def get_verb_code_per_triplet(self,triple):
-        logger = logging.getLogger('petr_log.PETRgraph')
-        def match_token(path, token):
-            logger.debug("mtoken-entry")
-
-            if not token:
-                return
-
-            if token in path:
-                subpath = path[token]
-
-                match = reroute(subpath, lambda a: match_phrase(a, None),lambda a: False,lambda a: False,lambda a: False)
-
-                if match:
-                    return match
-
-            return False
-
-
-        def match_phrase(path, noun_phrase):
-            # Having matched the head of the phrase, this matches the full noun
-            # phrase, if specified
-            logger.debug("mphrase-entry")
-            if not noun_phrase:
-                return False
-
-            cfound = True
-            match = ""
-            for npID in filter(lambda a: a != noun_phrase.headID, noun_phrase.npIDs):
-
-                nptoken = self.udgraph.node[npID]['token'].upper()
-                nplemma = self.udgraph.node[npID]['lemma'].upper()
-                pos = self.udgraph.node[npID]['pos']
-
-                logger.debug(str(npID) + " " + nptoken + " " + str(cfound))
-                logger.debug(path.keys())   
-    
-                if nptoken in path:
-                    subpath = path[nptoken]
-                    logger.debug(subpath)
-
-                    cfound = True
-                    match = reroute(path, lambda a: match_phrase(a, None),lambda a: False,lambda a: False,lambda a: False,0)
-
-                    # if match:
-                    # return match
-                    path = subpath
-                elif nplemma in path:
-                    subpath = path[nplemma]
-                    logger.debug(subpath)
-
-                    cfound = True
-                    match = reroute(subpath, lambda a: match_phrase(a, None),lambda a: False,lambda a: False,lambda a: False,0)
-                    # if match:
-                    # return match
-
-                    path = subpath
-                else:
-                    pathcheck = reroute(path, lambda a: match_phrase(a, None),lambda a: False,lambda a: match_token(a, nptoken),lambda a: False,0)
-                    if pathcheck:
-                        path = pathcheck
-                    #cfound = False
-            if match:
-                #raw_input(match)
-                return match
-
-            return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
-
-        def match_noun(path, noun_phrase):
-            logger.debug("mn-entry")
-
-            return_path = path
-
-            if noun_phrase != None:
-
-                if not isinstance(noun_phrase, basestring):
-                    logger.debug("noun:" + noun_phrase.head +
-                                 "#" + noun_phrase.text)
-
-                    pos = self.udgraph.node[noun_phrase.npIDs[0]]['pos']
-
-                    if pos == "ADP":
-                        prep = self.udgraph.node[noun_phrase.npIDs[0]]['token'].upper()
-                        if '|' in path:
-                            subpath = path['|']
-
-                            if prep in subpath:
-                                subpath = subpath[prep]
-
-                            pp_np = None
-                            if len(noun_phrase.npIDs)> 1:
-                                for np in self.tempnouns:
-                                    if np.npIDs[0] == noun_phrase.npIDs[1]:
-                                        pp_np = np
-                                        #print("pp_np", pp_np.text)
-                                        #raw_input()
-                                matchphrase = lambda a: match_prep(a, pp_np) if isinstance(pp_np, PrepPhrase) else None
-                                match = reroute(subpath,lambda a: match_noun(a, pp_np), matchphrase,matchphrase)
-
-                            elif len(noun_phrase.npIDs)== 1: 
-                                #print(subpath)
-                                match = reroute(subpath, lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
-
-                            #print("match:", match)
-                            if match:
-                                return match
-                            return_path = subpath
-
-                    head = noun_phrase.head.upper()
-                    headlemma = self.udgraph.node[noun_phrase.headID]['lemma'].upper()
-
-
-
-                    if head in path:
-                        subpath = path[head]
-                        logger.debug(head + " found in pattern dictionary")
-
-                        #print(len(noun_phrase.prep_phrase))
-                        matches = []
-                        for pp in noun_phrase.prep_phrase:
-                            #check all the prepositional phrases in a noun phrase
-                            #print(pp.text)
-                            skip = lambda a: False
-                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                            match = reroute(subpath, skip, skip, matchphrase, skip)
-                            if match:
-                                #logger.debug(match)
-                                matches.append(match)
-                            return_path = subpath
-
-                        if len(matches)>0: #if more than one patterns matched, return the longest pattern
-                            logger.debug("more than one match")
-                            longestmatch = {'line':""}
-                            longestline = ''
-                            for match in matches:
-                                line = match['line'][0:match['line'].find("[")]
-                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
-
-                                if len(longestline) < len(line):
-                                    longestmatch = match
-                            logger.debug(longestmatch)
-                            return longestmatch
-                                
-
-                        #print("head in path:", subpath)
-                        match = reroute(subpath, (lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,(lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None,lambda a: False,lambda a: False)
-                        if match:
-                            logger.debug(match)
-                            return match
-
-                    elif headlemma in path:
-                        subpath = path[headlemma]
-                        logger.debug(headlemma + " found in pattern dictionary (lemma)")
-
-                        for pp in noun_phrase.prep_phrase:
-                            skip = lambda a: False
-                            matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                            match = reroute(subpath, skip, skip, matchphrase, skip)
-                            if match:
-                                logger.debug(match)
-                                return match
-
-                        match = reroute(subpath, (lambda a: match_phrase(
-                            a, noun_phrase)) if isinstance(noun_phrase, NounPhrase) else None)
-                        if match:
-                            logger.debug(match)
-                            return match
-
-            if "^" in path:
-                skip = lambda a: False
-                return_path = path['^']
-                return reroute(path['^'], lambda a: match_phrase(a, noun_phrase),skip,skip,skip,1)
-
-            return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
-            
-
-        def match_prep(path,prep_phrase):
-            prep = self.udgraph.node[prep_phrase.ppIDs[0]]['token'].upper()
-            #print("prep:", prep_phrase.text)
-            if prep in path: 
-                #print(path[prep])
-                subpath = path[prep]
-
-                pp_np = None
-                for np in self.tempnouns:
-                    if np.npIDs[0] == prep_phrase.ppIDs[1]:
-                        pp_np = np
-                        #print("pp_np", pp_np.text)
-                match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
-                #print("match:", match)
-                if match:
-                    return match
-
-            return reroute(path, o2=match_prep)
-
-
-        def reroute(subpath, o1=match_noun, o2=match_noun, o3=match_prep, o4=match_noun, exit=1):
-            #print('rr-entry:') # ,subpath
-            #print(subpath)
-            if not o1:  # match_noun() can call reroute() with o1 == None; guessing returning False is the appropriate response pas 16.04.21
-                return False
-            if '-' in subpath:
-                match = o1(subpath['-'])
-                if match:
-                    print('rr-- match')
-                    # print(match)
-                    return match
-
-            if '$' in subpath:
-                print('rr$ found')
-                match = reroute(subpath['$'], True,lambda a: False,lambda a: False,lambda a: False, 1)
-                if match:
-                    # print('rr$ match')
-                    return match
-
-            if ',' in subpath:
-                print('rr-,')
-                # print(subpath[','])
-                match = reroute(subpath[','], True,lambda a: False,lambda a: False,lambda a: False, 1)
-                if match:
-                    # print(match)
-                    return match
-
-            if '|' in subpath:
-                #print('rr-|')
-                #print(subpath['|'])
-
-                match = o3(subpath['|'])
-                #match = reroute(subpath['|'], True)
-                #print(match)
-                if match:
-                    #print(match) 
-                    #raw_input()
-                    return match
-
-            #if '*' in subpath:
-                #print('rr-*')
-                # print(subpath['*'])
-                # return subpath['*']
-                #match = o4(subpath['*'])
-                # if match:
-                #   print(match)
-                #   return match
-
-            if '#' in subpath and exit:
-                #print('rr-#')
-                # print(subpath['#'])
-                return subpath['#']
-
-            #print('rr-False')
-            return False
-
-        def match_lower(path, verb, target):
-           
-            match = False
-  
-            if '*' in path:
-                path = path['*']
-                logger.debug("'*' matched")
-
-            logger.debug("processing target:")
-            #find all noun phrases and preprositional phrase that is related to current verb
-            allnps = []
-            if isinstance(target, NounPhrase):
-                allnps.append(target)
-            
-            allnps.extend(self.metadata['othernoun'][verb.headID])
-            allnps = list(set(allnps))
-
-            #for np in allnps:
-                #print(np.headID, np.text)
-
-            targetmatch = False
-            for np in allnps:
-                temptargetmatch = match_noun(path, np)
-                #print(np.headID, np.text)
-                #print(temptargetmatch)
-                if temptargetmatch:
-                    targetmatch = temptargetmatch
             if len(allnps)==0:
                 match = reroute(path,lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
             if targetmatch:
@@ -2021,15 +1573,18 @@ An instantiated Sentence object
         for vidx in range(0, len(verbtokens)):
             verbtext = verbtokens[vidx]
             verbtext_withe = verbtext
+            verbtext_woe = verbtext
             logger.debug("match vp token:" + verbtext)
             if not verbtext.endswith("E"):  
                 #handle lemmatization error: incorrectly remove "E" in verbs, e.g. "upgrading" has wrong lemma "upgrad"
                 verbtext_withe = verbtext + "E"
+            else:
+                #handle lemmatization error: incorrectly leave "E" in verbs, e.g. "jailed" has wrong lemma "jaile"
+                verbtext_woe = verbtext[:-1]
 
             verbfound = False
             matched_txt = []
             if verbtext in verbDictPath:
-                
                 tempverbDictPath = verbDictPath[verbtext]
                 matched_txt.append(verbtext)
                 verbfound = True
@@ -2037,6 +1592,12 @@ An instantiated Sentence object
                 tempverbDictPath = verbDictPath[verbtext_withe]
                 matched_txt.append(verbtext_withe)
                 verbfound = True
+            elif verbtext_woe in verbDictPath:
+                tempverbDictPath = verbDictPath[verbtext_woe]
+                matched_txt.append(verbtext_woe)
+                verbfound = True
+                #raw_input(verbtext_woe)
+
 
             if verbfound:
                 for j in range(vidx, len(verbtokens)):
@@ -2151,7 +1712,7 @@ An instantiated Sentence object
                         newsource, basestring) else source
                     target = newtarget if not isinstance(
                         newtarget, basestring) else target
-
+            
         tripleID = ('-' if isinstance(source, basestring) else str(source.headID)) + '#' + \
                    ('-' if isinstance(target, basestring) else str(target.headID)) + '#' + \
             str(verb.headID) + "#" + str(len(self.triplets))
@@ -2188,17 +1749,14 @@ An instantiated Sentence object
         else:
             verbcode = None
 
+        triple_dict = {}
+        triple_dict['triple'] = newtriple
+        triple_dict['verbcode'] = verbcode
+        triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
+        triple_dict['meaning'] = (",").join(meanings)
 
-        #self.triplets[tripleID] = {}
-        #self.triplets[tripleID]['triple'] = newtriple
-        #self.triplets[tripleID]['verbcode'] = verbcode
-        #self.triplets[tripleID]['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
-        #self.triplets[tripleID]['meaning'] = (",").join(meanings)
-
-            #raw_input("Press Enter to continue...")
-        matched_item = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
-        return verbcode, matched_item,(",").join(meanings)
-
+        #raw_input("Press Enter to continue...")
+        return verbcode, triple_dict['matched_txt'],triple_dict['meaning'],tripleID, triple_dict
 
     def get_events(self):
 
@@ -2374,7 +1932,7 @@ An instantiated Sentence object
                     
             #'''
             #check if verb code updates:
-            newverbcode, newmatched_txt, newmeanings = self.get_verb_code_per_triplet((source,target,verb))
+            newverbcode, newmatched_txt, newmeanings, _ , _ = self.get_verb_code_per_triplet((source,target,verb))
             #print(triple['verbcode'],newverbcode,newmatched_txt,newmeanings)
             if triple['verbcode'] != newverbcode:
                 if newverbcode not in ['---',None] and "*" in newmatched_txt and "*" not in triple['matched_txt']:
@@ -2491,10 +2049,10 @@ An instantiated Sentence object
 
                         for e in event_after_transfer:
                             if isinstance(e, tuple) and not isinstance(e[1], tuple):
+                                #print("case 1")
                                 if current_eventID not in self.events:
                                     self.events[current_eventID] = []
-                                    self.events[
-                                        current_eventID].extend(list(e))
+                                    self.events[current_eventID].extend(list(e))
                                     transfered_rootID.append(root)
 
                                 else:
@@ -2508,14 +2066,32 @@ An instantiated Sentence object
 
 
                             elif isinstance(e, tuple) and isinstance(e[1], tuple) and e[2] == None and e[1][2] != None:
+                                #print("case 2")
                                 if tripleID not in self.events:
                                     self.events[tripleID] = []
                                     self.events[tripleID].extend(
                                         list(e[1]))
-                                    transfered_rootID.append(root)
+                                else:
+                                    logger.debug(reventID + " repeated")
+                                    tempID = reventID
+                                    while tempID in self.events:
+                                        tempID = tempID + "0"
+                                    self.events[tempID] = []
+                                    self.events[tempID].extend(list(e[1]))
+                                transfered_rootID.append(root)
+
 
                             if e == event_before_transfer and isinstance(e[1], tuple) and e[1][2] != None:
-                                self.events[current_eventID]=list(e[1])
+                                if current_eventID not in self.events:
+                                    self.events[current_eventID]=list(e[1])
+                                else:
+                                    logger.debug(reventID + " repeated")
+                                    tempID = reventID
+                                    while tempID in self.events:
+                                        tempID = tempID + "0"
+                                    self.events[tempID] = []
+                                    self.events[tempID].extend(list(e[1]))
+
                                 transfered = False
 
         logger.debug("self.events: " + str(len(self.events)))
@@ -2611,11 +2187,15 @@ An instantiated Sentence object
         for eventID, event in self.events.items():
             if event[2] in [None, "---", "None"]:
                 #if event code is none
-                print(event)
+                #print(event)
                 #raw_input()
                 self.events.pop(eventID)
-            elif event[0] in [None, "---", "None",[]] and event[1] in [None, "---", "None",[]]:
+            elif event[0] in [None, ["None"],[],['---']] and event[1] in [None, ["None"],[],['---']]:
                 #if both source and target code are none
+                self.events.pop(eventID)
+            elif event[2] in ["010"]:
+                #print(event)
+                #raw_input()
                 self.events.pop(eventID)
 
         return self.events
