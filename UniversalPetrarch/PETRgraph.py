@@ -1315,10 +1315,15 @@ An instantiated Sentence object
                 #print(pp.text)
                 skip = lambda a: False
                 matchphrase = lambda a: match_prep(a, pp) if isinstance(pp, PrepPhrase) else None
-                match = reroute(subpath, lambda a: match_token(a, ""), skip, matchphrase, skip)
-                if match:
-                    #logger.debug(match)
-                    matches.append(match)
+                match, return_path = reroute1(subpath, lambda a: match_token(a, ""), skip, matchphrase, skip)
+                
+                if isinstance(match, tuple) and not match[0]:
+                    subpath = match[1]
+                elif not isinstance(match, tuple):
+                    if match:
+                        logger.debug(match)
+                        matches.append(match)
+
 
             if len(matches)>0: #if more than one patterns matched, return the longest pattern
                 longestmatch = {'line':""}
@@ -1363,11 +1368,11 @@ An instantiated Sentence object
                                         #print("pp_np", pp_np.text)
                                         #raw_input()
                                 matchphrase = lambda a: match_prep(a, pp_np) if isinstance(pp_np, PrepPhrase) else None
-                                match = reroute(subpath,lambda a: match_noun(a, pp_np), matchphrase, matchphrase)
+                                match = reroute1(subpath,lambda a: match_noun(a, pp_np), matchphrase, matchphrase)
 
                             elif len(noun_phrase.npIDs)== 1: 
                                 #print(subpath)
-                                match = reroute(subpath, lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
+                                match = reroute1(subpath, lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
 
                             #print("match:", match)
                             if match:
@@ -1419,24 +1424,24 @@ An instantiated Sentence object
                             longestmatch = {'line':""}
                             longestline = ''
                             for match in matches:
-                                line = match['line'][0:match['line'].find("[")]
-                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")]
+                                line = match['line'][0:match['line'].find("[")].strip()
+                                longestline = longestmatch['line'][0:longestmatch['line'].find("[")].strip()
 
                                 if len(longestline) < len(line):
                                     longestmatch = match
                             logger.debug(longestmatch)
                             
-                            return longestmatch
+                            return longestmatch, False
 
             if "^" in path:
                 skip = lambda a: False
                 return_path = path['^']
                 #print("^ found", return_path)
-                return reroute(path['^'], lambda a: match_phrase(a, noun_phrase),skip,skip,skip,1)
+                return reroute1(path['^'], lambda a: match_phrase(a, noun_phrase),skip,skip,skip,1)
 
             return_path = path
             #print("return_path_4:",return_path)
-            return reroute(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
+            return reroute1(path, lambda a: match_phrase(a, noun_phrase),lambda a: False,lambda a: False,lambda a: False,1)
             
 
         def match_prep(path,prep_phrase):
@@ -1451,7 +1456,7 @@ An instantiated Sentence object
                     if np.npIDs[0] == prep_phrase.ppIDs[1]:
                         pp_np = np
                         #print("pp_np", pp_np.text)
-                match = reroute(subpath,lambda a: match_noun(a, pp_np), match_prep)
+                match, return_path = reroute1(subpath,lambda a: match_noun(a, pp_np), match_prep)
                 if match:
                     return match
 
@@ -1514,6 +1519,106 @@ An instantiated Sentence object
             #print('rr-False')
             return False
 
+        def reroute1(subpath, o1=match_noun, o2=match_noun, o3=match_prep, o4=match_noun, exit=1):
+            #print('rr-entry:') # ,subpath
+            #print(subpath)
+            return_path = subpath
+            if not o1:  # match_noun() can call reroute() with o1 == None; guessing returning False is the appropriate response pas 16.04.21
+                return False, return_path
+            if '-' in subpath:
+                match = o1(subpath['-'])
+                return_path = subpath
+                if match:
+                    #print('rr-- match')
+                    # print(match)
+                    return match,return_path
+
+            if '$' in subpath:
+                #print('rr$ found')
+                match, _ = reroute1(subpath['$'], True,lambda a: False,lambda a: False,lambda a: False, 1)
+                return_path = subpath
+                if match:
+                    # print('rr$ match')
+                    return match, return_path
+
+            if ',' in subpath:
+                #print('rr-,')
+                # print(subpath[','])
+                match, _ = reroute1(subpath[','], True,lambda a: False,lambda a: False,lambda a: False, 1)
+                return_path = subpath
+                if match:
+                    # print(match)
+                    return match, return_path
+
+            if '|' in subpath:
+                #print('rr-|')
+                #print(subpath['|'])
+
+                match = o3(subpath['|'])
+                return_path = subpath
+                #match = reroute(subpath['|'], True)
+                #print(match)
+                if match:
+                    #print(match) 
+                    #raw_input()
+                    return match, return_path
+
+            #if '*' in subpath:
+                #print('rr-*')
+                # print(subpath['*'])
+                # return subpath['*']
+                #match = o4(subpath['*'])
+                # if match:
+                #   print(match)
+                #   return match
+
+            if '#' in subpath and exit:
+                #print('rr-#')
+                # print(subpath['#'])
+                return subpath['#'], return_path
+
+            #print('rr-False')
+            return False, return_path
+
+        def match_entire_lower_part(path, target):
+            #entire lower part of verb
+            if isinstance(target, NounPhrase) and len(self.metadata['othernoun'][verb.headID]) > 0:
+
+                npIDs = []
+                np_pp = []
+                npTokens = []
+
+                nounhead = target.headID 
+                npIDs.extend(target.npIDs)
+                np_pp.extend(target.prep_phrase)
+
+                for othernoun in self.metadata['othernoun'][verb.headID]:
+                    npIDs.extend(othernoun.npIDs)
+                    temppp = PrepPhrase(self,othernoun.npIDs)
+                    temppp.text = othernoun.text
+                    np_pp.append(temppp)
+
+                npIDs = list(set(npIDs))
+                npIDs.sort()
+                for npID in npIDs:
+                    npTokens.append(self.udgraph.node[npID]['token'])
+
+                nounPhrasetext = (' ').join(npTokens)
+
+                fulltarget = NounPhrase(self, npIDs, nounhead, self.date)
+                fulltarget.text = nounPhrasetext
+                #print(fulltarget.text)
+                fulltarget.head = self.udgraph.node[nounhead]['token']
+                fulltarget.prep_phrase = np_pp
+                fulltargetmatch,_ = match_noun(path, fulltarget)
+                if not isinstance(fulltargetmatch, tuple) and fulltargetmatch:
+                    #print("full target match")
+                    #raw_input(fulltargetmatch)
+                    return fulltargetmatch
+
+            return False
+
+
         def match_lower(path, verb, target):
            
             match = False
@@ -1531,18 +1636,25 @@ An instantiated Sentence object
             allnps.extend(self.metadata['othernoun'][verb.headID])
             allnps = list(set(allnps))
 
+            fulltargetmatch = match_entire_lower_part(path, target)
+
             targetmatch = False
             for np in allnps:
-                temptargetmatch = match_noun(path, np)
+                temptargetmatch,_ = match_noun(path, np)
                 #print(np.headID, np.text)
                 #print(temptargetmatch)
                 #raw_input()
-                if temptargetmatch:
+                if not isinstance(temptargetmatch, tuple) and temptargetmatch:
                     targetmatch = temptargetmatch
+                elif isinstance(temptargetmatch, tuple) and temptargetmatch[0]:
+                    targetmatch = temptargetmatch[0]
 
             if len(allnps)==0:
                 match = reroute(path,lambda a: False,lambda a: False,lambda a: False,lambda a: False,1)
-            if targetmatch:
+            
+            if fulltargetmatch:
+                return fulltargetmatch
+            elif targetmatch:
                 return targetmatch
             elif match:
                 return match
@@ -1648,7 +1760,7 @@ An instantiated Sentence object
             if m in patternDictionary:
                 patternDictPath = patternDictPath[m]
                 logger.debug("processing source:")
-                match = match_noun(patternDictPath, source)
+                match,_ = match_noun(patternDictPath, source)
                 if match:
                     code = match['code']
                     matched_pattern = match['line']
@@ -1929,6 +2041,47 @@ An instantiated Sentence object
                         self.nouns[target.headID] = target
                         target_meaning = newtarget_meaning
                         #print("new target found,",target.text, target_meaning)
+
+            if not verb.passive and source_meaning in [['---'],[],'']:
+                #print("finding new source:")
+                closest = len(self.udgraph.node)
+                newsource_meaning = ['---']
+
+                uniq_nouns = {}
+                nounStartEnd = {}
+                for noun in  self.tempnouns:
+                    # handle overlapped noun phrases
+                    # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
+                    # print(noun.npIDs)
+                    #print(noun.text)
+
+                    if noun.npIDs[0] in nounStartEnd.keys():
+                        old_range = nounStartEnd[noun.npIDs[0]]['end'] - noun.npIDs[0]
+                        new_range = noun.npIDs[-1] - noun.npIDs[0]
+                        if new_range < old_range:
+                            continue
+
+                    nounStartEnd[noun.npIDs[0]] = {}
+                    nounStartEnd[noun.npIDs[0]]['end'] = noun.npIDs[-1]
+                    nounStartEnd[noun.npIDs[0]]['noun'] = noun
+                    uniq_nouns[noun.npIDs[0]]=noun
+
+                for nounID in sorted(uniq_nouns.iterkeys(),reverse=True):
+                    noun = uniq_nouns[nounID]
+                    if noun.headID <= verb.headID and noun.headID <= closest:
+                        newsource = noun
+                        newsource.get_meaning()
+                        newsource_meaning = newsource.meaning if newsource.meaning != None else ['---']
+                        if newsource_meaning not in [['---'],[]]:
+                            closest = noun.headID
+                            source = newsource
+                            break
+
+                if newsource_meaning not in [['---'],[]]:
+                    
+                    source = newsource
+                    self.nouns[source.headID] = source
+                    source_meaning = newsource_meaning
                     
             #'''
             #check if verb code updates:
@@ -1971,7 +2124,7 @@ An instantiated Sentence object
 
             # If there are multiple actors in a cooperation
             # scenario, code their cooperation as well
-            if source_meaning not in [['---'],[],''] and (target_meaning in [['---'],[]] or isinstance(target, basestring)) and triple['verbcode'] and triple['verbcode'][
+            if source_meaning not in [['---'],[],''] and (target_meaning in [['---']] or isinstance(target, basestring)) and triple['verbcode'] and triple['verbcode'][
                     :2] in ["03", "04", "05", "06"]:
                 paired_event[tripleID] = triple
                 #raw_input(tripleID)
@@ -2049,20 +2202,25 @@ An instantiated Sentence object
 
                         for e in event_after_transfer:
                             if isinstance(e, tuple) and not isinstance(e[1], tuple):
-                                #print("case 1")
-                                if current_eventID not in self.events:
-                                    self.events[current_eventID] = []
-                                    self.events[current_eventID].extend(list(e))
-                                    transfered_rootID.append(root)
-
+                                if e[2] == 0:
+                                    #usually caused by the fact that P+Q doesn't map to another CAMEO code
+                                    e = event_before_transfer
+                                    transfered = False
                                 else:
-                                    logger.debug(reventID + " repeated")
-                                    tempID = reventID
-                                    while tempID in self.events:
-                                        tempID = tempID + "0"
-                                    self.events[tempID] = []
-                                    self.events[tempID].extend(list(e))
-                                    transfered_rootID.append(root)
+                                    #print("case 1")
+                                    if current_eventID not in self.events:
+                                        self.events[current_eventID] = []
+                                        self.events[current_eventID].extend(list(e))
+                                        transfered_rootID.append(root)
+
+                                    else:
+                                        logger.debug(reventID + " repeated")
+                                        tempID = reventID
+                                        while tempID in self.events:
+                                            tempID = tempID + "0"
+                                        self.events[tempID] = []
+                                        self.events[tempID].extend(list(e))
+                                        transfered_rootID.append(root)
 
 
                             elif isinstance(e, tuple) and isinstance(e[1], tuple) and e[2] == None and e[1][2] != None:
@@ -2197,6 +2355,13 @@ An instantiated Sentence object
                 #print(event)
                 #raw_input()
                 self.events.pop(eventID)
+            else:
+                if isinstance(event, tuple):
+                    event = list(event)
+                if event[0] in [None, ["None"],[],['---']]:
+                    event[0] = ['---']
+                if event[1] in [None, ["None"],[],['---']]:
+                    event[1] = ['---']
 
         return self.events
 
@@ -2250,7 +2415,7 @@ An instantiated Sentence object
                 line = pdict[1]
                 path = pdict[0]
                 verb = utilities.convert_code(path[2])[0] if not path[
-                    2] == "Q" else v2a["Q"]
+                    2] == "Q" else utilities.convert_code(v2a["Q"])[0]
                 #verb = utilities.convert_code(verb)
                 if isinstance(v2a[path[1]], tuple):
                     results = []
@@ -2375,7 +2540,7 @@ An instantiated Sentence object
                 #print(16 ** 3)
                 #print(c / (16 ** 3))
                 # not e[1][2] / (16 ** 3):
-                if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] != e[1][0] and e[1][1]:
+                if e[0] and e[2] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] != e[1][0]:
 
                     logger.debug(utilities.convert_code(e[2])[0])
                     logger.debug(e[2])
