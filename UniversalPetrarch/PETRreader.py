@@ -669,16 +669,18 @@ def read_internal_coding_ontology(pico_path):
             #print(operations)
             #raw_input()
             hexnumbers = []
-            tempstring = mappings[1][1:] #find the first hex, e.g -0xFFFF
+            tempstring = mappings[1][0:] #find the first hex, e.g -0xFFFF
+            #print(tempstring)
             idx = tempstring.find(operations[0])+1
             hexnumbers.append(int(mappings[1][0:idx-1],16))
-            tempstring = mappings[1][idx+1:]
+            tempstring = mappings[1][idx:]
 
             for i in range(1,len(operations)): #iteratively to find the rests
                 oper = operations[i]
                 idx = tempstring.find(oper)
                 hexnumbers.append(int(tempstring[0:idx-1],16))
                 tempstring = tempstring[idx+1:]
+                #print(tempstring)
 
             hexnumbers.append(int(tempstring,16))
             #print(hexnumbers)
