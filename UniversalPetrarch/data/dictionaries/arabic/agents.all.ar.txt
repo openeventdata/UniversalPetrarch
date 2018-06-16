@@ -1,0 +1,3044 @@
+
+
+
+# SEP IS DEPRECIATED. SOME SEPS ARE OPP INSTEAD OF REB, THOUGH
+ARMED_SEPARATIST [~REB]انفصالي مسلحي
+
+ARMED_SEPARATIST_MOVEMENT [~REB]حركة انفصالية مسلحة
+
+ARMY_FOR_THE_LIBERATION_  [~REB]جيش للتحرير
+
+ETHNIC_SEPARATISTS [~REB] # ?انفصاليين عرقيين
+
+FRONT_FOR_THE_LIBERATION_  [~REB]جبهة التحرير
+
+LIBERATION_ARMY_  [~REB]جيش التحرير
+
+LIBERATION_FORCES_  [~REB]قوى التحرير
+
+LIBERATION_FRONT_  [~REB]جبهة التحرير
+
+LIBERATION_MOVEMENT  [~OPP]حركة تحرير
+
+POPULAR_MOVEMENT_FOR_THE_LIBERATION_  [~REB]حركة جماهيرية من أجل التحرير
+
+PRO_INDEPENDENCE_ACTIVIST [~OPP] # ? REB SEEMED WRONG ناشط مؤيد للاستقلال
+
+REBEL_SEPARATIST [~REB] انفصاليين متمردين
+
+SEPARATIST [~REB]انفصالي
+
+SEPARATIST_GROUP [~REB]مجموعة انفصالية
+
+SEPARATIST_GUERRILLA [~REB]حرب عصابات انفصالية
+
+SEPARATIST_LEADER [~REB]قائد انفصالي
+
+SEPARATIST_MILITANT [~REB]مقاتل انفصالي
+
+SEPARATIST_MOVEMENT [~REB]حركة انفصالية
+
+SEPARATIST_REBEL [~REB]متمردين انفصاليين
+
+
+INTERNATIONAL_TERRORIST [~IMG]إرهابي دولي
+
+
+ASYLUM_SEEKER [~REF]طالب لجوء
+BOAT_PEOPLE [~REF]لاجئي القوارب
+
+DISPLACED_FAMILY [~REF]عائلة مهجّرة
+
+DISPLACED_PEOPLE {} [~REF]النازحين
+
+DISPLACED_PERSON [~REF]مهجّر
+
+DISPLACED_RESIDENT [~REF]رئيس مهجّر
+
+EXPATRIATE [~REF]مغترب
+
+INDIGENOUS_REFUGEE [~REF]اللاجئين الأصليين
+
+REFUGEE RETURNEE [~REF]اللاجئين العائدين
+
+REFUGEE [~REF]لاجئين
+
+RETURNEE [~REF]عائدين
+
+STATELESS_PERSON [~REF]شخص بدون جنسية
+
+
+
+
+AGRICULTURIST [~AGR]مزارع
+
+CATTLE!PERSON! [~AGR]مربي ماشية
+
+CATTLE_RANCHER [~AGR]مربي ماشية
+
+CROPPER [~AGR]حصاد
+
+CULTIVATOR [~AGR]الفلاحة
+
+DAIRY!PERSON! [~AGR]صناعة الألبان
+
+DAIRY_FARMER [~AGR]مزارع ألبان
+
+FARMER [~AGR]مزارع
+
+FARM_LABOURER [~AGR]عامل المزرعة
+
+FARM_WORKER [~AGR]عامل مزرعة
+
+FISHER [~AGR]صياد
+
+FISHER!PERSON! [~AGR]صيد
+
+GRANGER [~AGR]فلاح
+GRANGER [~AGR]عضو في جمعية مزارعين
+
+HERDS!PERSON! [~AGR]رعاية الماشية
+
+HUSBAND!PERSON![~AGR]زراعة
+
+INDIGENOUS_FARMER [~AGR]المزارعين الأصليين
+
+MILLS_ASSOCIATION [~AGR]جمعية المطاحن
+
+ORCHARDIST [~AGR]بستاني
+
+PEASANT [~AGR]فلاح
+
+RANCHER [~AGR]مربي أبقار
+
+SHARECROPPER [~AGR]محاصص
+SHARECROPPER [~AGR]مرابع
+
+SHARECROP_FARMER [~AGR]مزارع محاصصة
+
+
+
+SUBSISTENCE_FARMER [~AGR]مزارع الكفاف
+
+TENANT_FARMER [~AGR]مزارع مستأجر
+
+
+
+
+BUDDHIST_CLERGY!PERSON![~BUD]رجل دين بوذي
+
+BUDDHIST_CLERGY [~BUD]رجل دين بوذي
+
+BUDDHIST_MISSIONARY [~BUD]مبشر بوذي
+
+BUDDHIST_MONASTARY [~BUD]دير بوذي
+
+BUDDHIST_MONK [~BUD]راهب بوذي
+
+BUDDHIST_PRIEST [~BUD]كاهن بوذي
+
+BUDDHIST_STUDENT [~BUDEDU]تلميذ بوذي
+
+BUDDHIST_WARRIOR [~BUDUAF]محارب البوذية
+
+
+AEROSPACE [~BUS]الطيران
+AIRLINE [~BUS]شركة طيران
+AIRLINE_BUSINESS [~BUS]شركات الطيران
+AIRWAY [~BUS]الهوائية
+AGROBUSINESS [~BUSAGR]الزراعية
+ARMS_INDUSTRY [~BUSMIL]صناعة الأسلحة
+AUTOMAKER [~BUS]صناعة السيارات 
+AUTO_MAKER [~BUS]صناعة السيارات
+AUTO_MANUFACTURER [~BUS]مصنع سيارات
+#BANK [~BUS]مصرف
+BARGAINER [~BUS]مقايض
+BARGAINER [~BUS]مساوم
+BOSS [~BUS]رئيس
+BUSINESS!PERSON! [~BUS]رجل أعمال 
+BUSINESS [~BUS]عمل
+BUSINESS_EXECUTIVE [~BUS]مدير أعمال
+BUSINESS_EXECUTIVE [~BUS] أعمال تنفيذية
+BUSINESS_LEADER [~BUS]كبار رجال الأعمال
+BUSINESS_TYCOON [~BUS]رجل أعمال ثري 
+CABINETMAKER [~BUS]نجار موبيليا
+CABINETMAKER [~BUS]نجار أثاث فاخر
+CARGO_SHIP [~BUS]سفينة تجارية
+CARGO_VESSEL [~BUS]سفينة بضائع
+CARMAKER [~BUS]مصنع سيارات
+CAR_MANUFACTURER [~BUS]صناعة السيارات
+CEO [~BUS]المدير التنفيذي 
+CHAMBER_OF_COMMERCE {CHAMBERS_OF_COMMERCE} [~BUS]غرفة التجارة
+CHAMBER_OF_COMMERCE_AND_INDUSTRY [~BUS]غرفة الصناعة والتجارة
+COMMERCIAL_BANK [~BUS]بنك تجاري
+COMMERCIAL_ENTERPRISE [~BUS]مؤسسة تجارية
+COMPANY [~BUS]شركة
+COMPANY_OWNER [~BUS]مالك شركة
+COMPUTER_MAKER [~BUS]منتج كمبيوتر
+COMPUTER_MAKER [~BUS]منتج حاسوب
+CONGLOMERATE [~BUS]تكتل
+CONGLOMERATE [~BUS]تجمع
+CONGLOMERATE [~BUS]تجمهر
+CONTAINERSHIP [~BUS]حاوية
+CONTAINER_SHIP [~BUS]حاوية
+CONTAINER_VESSEL [~BUS]سفينة حاويات
+CORPORATE_EXECUTIVE [~BUS]مدير شركة
+CORPORATION [~BUS]شركة
+CREDIT_UNION [~BUS]اتحاد ائتمان 
+CREDIT_UNION [~BUS]جمعية تعاونية للتسليف
+DEFENCE_INDUSTRY [~BUS]صناعة الدفاع
+DEFENCE_CONTRACTOR [~BUS]مقاول دفاع
+ELECTRONICS_MAKER [~BUS]مصنع إلكترونيات
+EMPLOYER [~BUS]رب العمل
+EMPLOYER [~BUS]صاحب العمل
+ENERGY_CORP [~BUS]شركة طاقة
+ENTREPRENEUR [~BUS]مقاول
+ENTREPRENEUR [~BUS]متعهد
+EXPORTER [~BUS]مصدر
+FREIGHTER [~BUS]عربة شحن
+FREIGHTER [~BUS]عربة بضائع
+FURNITURE_MAKER [~BUS]مصنع مفروشات
+GAS_CORP [~BUS]شركة غاز
+GAS_CORP [~BUS]شركة بنزين
+GENERAL_CONTRACTOR [~BUS]مقاول عام 
+HOLDING_COMPANY [~BUS]شركة قابضة
+HOLDING_COMPANY [~BUS]شركة مالكة لرأس المال
+INDUSTRY [~BUS]صناعة
+INVESTOR [~BUS]مستثمر
+JUMBOJET [~BUS]طائرة الجامبو
+JUMBO_JET  [~BUS]طائرة الجامبو
+LANDLORD [~BUS]المالك
+LEADING_BANK [~BUS]البنك الرائد
+MANUFACTURER [~BUS]صناعة
+MERCHANDISER [~BUS]التاجر
+MERCHANT [~BUS]تاجر
+MERCHANT_SHIP [~BUS]سفينة تجارية
+MERCHANT_VESSEL [~BUS]سفينة تجارية
+MONGER [~BUS]بائع
+MONGER [~BUS]داعية
+OILER [~BUS]مزيتة
+OIL_CORP [~BUS]شركة نفط
+OIL_GROUP [~BUS]مجموعة النفط
+OIL_TANKER [~BUS]خزان نفط
+OWNERS_OF_PRIVATE_COMPANIES {} [~BUS]أصحاب شركات خاصة
+PRIVATE_BANK [~BUS]مصرف خاص
+PRODUCER [~BUS]منتج
+SAVINGS_AND_LOAN [~BUS]الإدخار والقروض
+SECURITIES_EXCHANGE [~BUS]ضمانات بورصة
+SECURITIES_EXCHANGE [~BUS]ضمانات مقايضة
+SHOP_OWNER [~BUS]صاحب متجر
+SHOP_OWNER [~BUS]صاحب محل
+STEELMAKER [~BUS]مصنع الصلب
+STEELWORKER [~BUS]عامل الفولاذ
+STEEL_TYCOON [~BUS]ثري الفولاذ
+SUPERTANKER [~BUS]ناقلة بترول ضخمة 
+TANKER [~BUS]ناقلة نفط
+TANKER [~BUS] صهريج
+TOP_EXECUTIVE [~BUS]رئيس أعلى
+TOURISM_INDUSTRY [~BUS]صناعة السياحة
+TOURISM_OFFICE [~BUS]مكتب السياحة
+TRADER [~BUS]تاجر
+TRANSPORT_COMPAN [~BUS]شركة نقل
+TYCOON [~BUS]ثري
+WAITER [~BUS]نادل
+WAITRESS [~BUS]نادرة
+
+
+ADOPTION_GROUP [~CVL]تبني
+AIRLINER [~CVL]طائرة
+ATHLETE [~CVL]رياضي
+BACKPACKER [~CVL]رحال
+CHIEF_ENGINEER [~CVL] كبير المهندسين
+CHILD [~CVL]طفل
+CHILDREN [~CVL]أطفال
+CITIZEN [~CVL]مواطن
+CIVIC_GROUP [~CVL]مجموعة مدنية
+CIVILIAN [~CVL]مدنيين
+CIVIL_SOCIETY [~CVL]المجتمع المدني
+COLONIST [~CVL]مستعمر
+COMMERCIAL_JET [~CVL]طائرة تجارية
+COMMUNITY [~CVL]مجتمع
+CONSTITUENT [~CVL]ناخب 
+CONSTITUENT [~CVL]تأسيسي 
+CUSTOMER [~CVL]زبون
+ELECTOR [~CVL]ناخب
+ELECTORATE [~CVL]جمهور الناخبين
+ENGINEER [~CVL]مهندس
+ETHNIC_GROUP [~CVL]مجموعة عرقية
+ETHNIC_MINORITY [~CVL]أقلية عرقية
+ETHNIC_MINORITY_RACES [~CVL]أقلية عرقية
+EXCURSIONIST [~CVL]المتنزه
+GIRL  [~CVL]فتاة
+HIKER [~CVL]متنزه
+HIKER [~CVL]مسافر
+HUNTER [~CVL]صياد
+IMMIGRANT [~CVL]مهاجر
+INDIGENOUS_PEOPLE [~CVL]السكان الأصليين
+INFANT [~CVL]رضيع
+JETLINER [~CVL]طائرة
+LANDHOLDER [~CVL]مالك الأرض
+LANDOWNER [~CVL]صاحب الأرض
+MIGRANT [~CVL]مهاجر
+MIGRANT_WORKER [~CVL]عامل مهاجر
+MOB  [~CVL]تجمهر
+MOTHER [~CVL]أم
+MOURNER [~CVL]المتفجع
+MOURNER [~CVL]الإنسان في حالة الحداد
+# NATIONAL [~CVL]وطني
+NATIVE [~CVL]أصلي
+NATIVE_PEOPLE [~CVL]السكان الأصليون
+NATURALIZED [~CVL]المتجنس
+NEIGHBORHOOD [~CVL]حي
+NEIGHBOURHOOD [~CVL]حي
+NONCOMBATANT [~CVL]غير المقاتلين
+NON-COMBATANT [~CVL]غير المقاتلين
+NON-NATIVE [~CVL]غير الأصليين
+NON-RESIDENT [~CVL]غير مقيم
+ONLOOKER [~CVL]متفرج
+ONLOOKER [~CVL]مشاهد
+PASSENGER [~CVL]راكب
+PASSENGER_AIRLINER [~CVL]  طائرة ركاب
+PASSENGER_JET  [~CVL] طائرة ركاب  # PAS 14.01.27: ORIGINAL CONTEXT WAS TERRORIST ATTACKS BUT THIS IS TOO GENERAL ALH: GIVEN MALAYIA STUFF, I THINK IT'S WORTH KEEPING
+POPULATION [~CVL] عدد السكان 
+PRIVATE_CITIZEN [~CVL]مواطن 
+PROPERTY_OWNER [~CVL]صاحب عقار
+RABBLE {} [~CVL]حشد
+RABBLE {} [~CVL]رعاع
+REPATRIATE [~CVL]شخص معاد لوطنه
+RESIDENT  [~CVL] مقيم
+RESIDENT_OF_THE_CAPITAL {RESIDENTS_OF_THE_CAPITAL} [~CVL]سكان العاصمة
+SCIENTIST [~CVL]عالم
+SETTLEMENT [~CVL]مستوطنة
+SHOPKEEPER [~CVL]صاحب متجر
+SHOPKEEPER [~CVL] بقال
+SIGHTSEER [~CVL]المتفرج على معالم المدينة
+SLUM_DWELLER [~CVL]سكان الأحياء الفقيرة 
+SMALL_TOWN [~CVL]بلدة صغيرة
+# SOLDIERS_FAMILIES [~CVL] عائلات الجنود # FIGURE OUT POSSESSIVE
+TAXPAYERS [~CVL]دافعي الضرائب
+TENANT [~CVL]مستأجر
+THE_POOR {} [~CVL]الفقير
+TOURER [~CVL]السيارة السياحية
+TOURIST [~CVL]سياحي
+TOWNSPERSON [~CVL]ابن المدن
+TOWNSPEOPLE [~CVL]ابناء المدن
+TRAVELER [~CVL]المسافر
+TRAVELLER [~CVL]المسافر
+VICTIM [~CVL]ضحية
+VICTIMS [~CVL]ضحايا
+VILLAGER [~CVL]قروي
+VILLAGE [~CVL]قرية
+VILLAGE [~CVL]ضيعة
+VOTER [~CVL]مصوت
+VOTER [~CVL]ناخب
+WOMAN [~CVL] أمرأة # POSSIBILITY FOR MIS-CODING. THIS IS PROVISIONAL
+WOMAN [~CVL] سيدة # POSSIBILITY FOR MIS-CODING. THIS IS PROVISIONAL
+WOMEN [~CVL] نساء
+
+ACADEMIC [~EDU]أكاديمي
+ACADEMICIAN [~EDU]أكاديمي
+COLLEGE [~EDU]كلية
+COLLEGIAN [~EDU]طالب كلية
+CONSERVATORY [~EDU]معهد عالي للموسيقى
+DEAN [~EDU]عميد
+DOCTORAL_CANDIDATE [~EDU]مرشح الدكتوراه
+DOCTORAL_STUDENT [~EDU]طالب دكتوراه
+ECONOMIC_EXPERT [~EDU]خبير اقتصادي
+ECONOMIST [~EDU]عالم إقتصاد
+EDUCATEE [~EDU]المعلم
+EDUCATIONAL_INSTITUTION [~EDU]مؤسسة تعليمية
+EDUCATOR [~EDU]مرب 
+HEADMASTER [~EDU]مدير المدرسة
+HIGH_SCHOOL [~EDU]مدرسة ثانوية
+HIGH_SCHOOLER [~EDU]طالب ثانوي
+HISTORIAN [~EDU]مؤرخ
+INTELLECTUAL [~EDU]مثقف
+KINDERGARDEN [~EDU]روضة أطفال
+KINDERGARTEN [~EDU]روضة أطفال
+KINDERGARTNER [~EDU]طفل روضة
+KINDERGARTNER [~EDU]معلم روضة
+LECTURER [~EDU]محاضر
+MIDDLE_SCHOOL [~EDU]مدرسة إعدادية
+MIDDLE_SCHOOLER [~EDU]طالب إعدادي
+PRESCHOOL [~EDU]المرحلة التحضيرية
+PROFESSOR [~EDU]دكتور جامعي
+PROFESSOR_EMERITUS [~EDU]أستاذ جامعي فخري 
+PROFESSOR_EMERITUS [~EDU]أستاذ جامعي متقاعد 
+PUPIL [~EDU]تلميذ
+RESEARCH_INSTITUTION [~EDU]معهد أبحاث
+SCHOLAR [~EDU]علامة
+SCHOOL [~EDU]مدرسة
+SCHOOLHOUSE [~EDU]عمارة المدرسة
+SCHOOLTEACHER [~EDU]معلم مدرسة
+SCIENCE_CONGRESS [~EDU]مؤتمر علمي
+SOCIOLOGIST [~EDU]متخصص بعلم الإجتماع
+STUDENT [~EDU]طالب
+STUDENTS_AND_PROFESSOR [~EDU]طالب وأستاذ جامعي
+STUDENTS_AND_TEACHER [~EDU]طالب وأستاذ
+TEACHER [~EDU]أستاذ
+TEACHER [~EDU]معلم
+UNIVERSITY [~EDU]جامعة
+STATE_UNIVERSITY [~EDU]جامعة الدولة
+FIRST_GRADER [~EDU]طالب صف أول
+SECOND_GRADER [~EDU]طالب صف ثاني 
+THIRD_GRADER [~EDU]طالب صف ثالث
+FOURTH_GRADER [~EDU]طالب صف رابع
+FIFTH_GRADER [~EDU]طالب صف خامس
+SIXTH_GRADER [~EDU]طالب صف سادس
+SEVENTH_GRADER [~EDU]طالب صف سابع
+EIGHTH_GRADER [~EDU]طالب صف ثامن
+NINTH_GRADER [~EDU]طالب صف تاسع
+TENTH_GRADER [~EDU]طالب صف عاشر
+ELEVENTH_GRADER [~EDU]طالب صف حادي عشر
+TWELFTH_GRADER [~EDU]طالب صف ثاني عشر
+TWELFTH_GRADER [~EDU]طالب صف بكالوريا  
+
+
+
+CONSERVATIONIST [~ENV]حامي البيئة
+DEPARMENT_OF_ENVIRONMENT [~ENV} قسم البيئة
+
+ECOLOGIST [~ENV]عالم بيئة
+
+ECO_WARRIOR [~ENV]محارب بيئة
+
+ENVIRONMENTALIST [~ENV]مناصر لحماية البيئة
+
+GREEN_PARTY [~ENV] # SHOULD SORT OUT THE PTY THING, BUT NOT YET الحزر الأخضر
+
+TREE_HUGGER [~ENV]معانق الشجرة
+
+WILDLIFE_CONSERVATIONIST [~ENV]حامي الحياة البرية
+
+ANAESTHESIOLOGIST [~HLH]طبيب مخدر
+ANESTHETIST [~HLH]طبيب مخدر
+CARDIOLOGIST [~HLH]طبيب قلبية
+CAREGIVER [~HLH]معتني
+CAREGIVER [~HLH]مقدم الرعاية
+CASEWORKER [~HLH]عامل إجتماعي
+DENTIST [~HLH]طبيب أسنان
+DOC {} [~HLH]طبيب
+DOCTOR [~HLH]طبيب
+FOSTER-NURSE [~HLH]ممرضة راعية
+GASTROENTEROLOGIST [~HLH]طبيب الجهاز الهضمي
+GENERAL_PRACTITIONER [~HLH]طبيب عام
+GRADUATE_NURSE [~HLH]ممرضة الدراسات العليا
+GYNECOLOGIST [~HLH]طبيب نسائية
+HEALTHCARE_FACILITIY [~HLH]مرفق الرعاية الصحية
+HEALTH_CARE_PROVIDER [~HLH]مقدم الرعاية الصحية
+HEALTH_FACILITY [~HLH]مرفق صحي
+HEALTH_PROFESSIONAL [~HLH]أخصائي صحي 
+HOSPITAL [~HLH]مستشفى
+HOUSE_PHYSICIAN [~HLH]طبيب مقيم
+INFIRMARY [~HLH]دار العجزة
+INTERNIST [~HLH]طبيب داخلية
+INTERNIST [~HLH]طبيب باطني
+MEDIC [~HLH]طبيب
+MEDICAL_!PERSON! [~HLH]طبيب
+MEDICAL_ASSOCIATION [~HLH]الجمعية الطبية
+MEDICAL_BUILDING [~HLH]مبنى طبي
+MEDICAL_INSTITUTION [~HLH]مؤسسة طبية
+MEDICAL_PERSONNEL [~HLH]الملاك الطبي
+MEDICAL_PERSONNEL [~HLH]العاملين في المجال الطبي
+MEDICAL_PRACTITIONER [~HLH]طبيب
+MEDICAL_SOCIAL_WORKER [~HLH]عامل إجتماعي طبي
+MEDICAL_SPECIALIST [~HLH]أختصاصي طبي
+MEDICO [~HLH]طبيب
+MENTAL_INSTITUTION [~HLH]مصحة عقلية
+MIDWIFE {MIDWIVE} [~HLH]قابلة قانونية
+NANNY [~HLH]مربية
+NEUROLOGIST [~HLH]طبيب عصبية
+NEUROSURGEON [~HLH]جراح عصبية
+NURSE [~HLH]ممرضة
+NURSEMAID [~HLH]مربية أطفال
+NURSE_ANESTHETIST [~HLH]ممرضة تخدير
+NURSE_PRACTITIONER [~HLH]ممرضة ممارسة
+ONCOLOGIST [~HLH]طبيب الأورام السرطانية
+OPERATING_SURGEON [~HLH]جراح 
+OPTHAMOLOGIST [~HLH]طبيب العيون
+ORTHOPEDIC_SURGEON [~HLH] جراح عظمية
+ORTHOPEDIST [~HLH]طبيب عظمية
+PEDIATRICIAN [~HLH]طبيب أطفال
+PHARMACEUTICAL_FIRM [~HLH]شركة أدوية
+PHYSICIAN [~HLH]طبيب
+PODIATRIST [~HLH]طبيب الأرجل
+PRIMARY_HEALTH_PROVIDER [~HLH]مزود الرعاية الصحية الرئيسية
+PSYCHIATRIST [~HLH]طبيب أمراض نفسية
+REGISTERED_NURSE [~HLH]ممرضة مرخصة
+RESIDENT_PHYSICIAN [~HLH]طبيب مقيم
+SANATARIUM [~HLH]مصحة
+SANATORIUM [~HLH]مصحة
+SANITARIUM [~HLH]مصحة
+SOCIAL_WORKER [~HLH]عامل إجتماعي
+SURGEON [~HLH]طبيب جراح
+TINGINIST [~HLH]تنجنيست
+TRAINED_NURSE [~HLH]ممرضة متدربة
+UROLOGIST [~HLH]طبيب أمراض بولية
+WELFARE_WORKER [~HLH]موظف الشؤون الإجتماعية
+
+
+
+
+OBSERVERS_IN [IGO~]المراقبين في
+PEACEKEEPING_TROOPS {} [IGO~]قوات حفظ الأمن
+
+TRUCE_MONITOR [IGO~]مراقبة الهدنة
+
+
+
+
+CANTOR [~JEW]قائد جوقة ترتيل
+HASID [~JEW]هازيدي 
+
+HASIDIM [~JEW]الهازيدية
+
+HEBREW  [~JEW]اللغة العبرية
+
+JEW [~JEW]يهودي
+
+JEWISH [~JEW]يهودي
+
+ORTHODOX_JEW [~JEW]يهودي أرثوذوكسي
+
+RABBI [~JEW]الحاخام اليهودي
+
+TORAH_SCHOLAR [~JEW]عالم التوراة
+
+
+
+ADJUDICATION_COURT [~JUD]محكمة القضاء 
+ADVOCATE [~JUD]محام
+
+ANTI_GRAFT_COURT [~JUD]محكمة مكافحة الكسب غير المشروع
+
+ANTI_TERRORISM_COURT [~JUD]محكمة مكافحة الإرهاب
+
+ANTI_TERROR_COURT [~JUD]محكمة مكافحة الإرهاب
+
+APPEALS_COURT [~JUD]محكمة الإستئناف
+
+APPELLATE_COURT [~JUD]محكمة الإستئناف
+
+ASSOCIATE_JUSTICE [~JUD]قاضي مساعد
+
+ATTORNEY [~JUD]محامي
+
+ATTORNEY-GENERAL [~JUD]محامي عام
+
+BARRISTER [~JUD]محامي في المحاكم العليا
+
+CHANCERY [~JUD]مكتب المحفوظات
+CHANCERY [~JUD] المحكمة العليا
+
+CHIEF_COURT_JUDGE [~JUD]قاضي المحكمة
+
+CHIEF_JUSTICE [~JUD]رئيس المحكمة العليا
+
+CHIEF_JUSTICE_OF_THE_SUPREME_COURT
+{CHIEF_JUSTICES_OF_THE_SUPREME_COURT} [~JUD]رئيس القضاة في المحكمة العليا
+
+CIRCUIT_COURT_OF_APPEALS {CIRCUIT_COURTS_OF_APPEALS } [~JUD]محكمة دائرة الإستئناف
+
+CIVIL_COURTS [~JUD]المحاكم المدنية
+
+CONSISTORY [~JUD]محكمة كنسية
+
+CONSTITUTIONAL_COUNCIL [~JUD]دستوري
+
+CONSTITUTIONAL_COURT [~JUD]محكمة دستورية
+
+CONVEYANCER [~JUD]نقل الملكية
+
+COUNCIL_OF_JUDGES {COUNCILS_OF_JUDGES } [~JUD]مجلس القضاة
+
+COUNSELLOR-AT-LAW [~JUD]مستشار في القانون
+
+COUNSELLOR [~JUD]مستشار
+
+COUNSELOR [~JUD]مستشار
+
+COUNSEL [~JUD]مستشار قانوني
+
+COURT_JUDGE [~JUD]قاضي محكمة
+
+COURT_JUSTICE [~JUD]محكمة العدل
+
+COURT_OFFICIAL [~JUD]مسؤول قضائي
+
+COURT_OF_APPEALS {COURTS_OF_APPEALS} [~JUD]محكمة الإستئناف
+
+COURT_OF_CHANCERY [~JUD] المحكمة العليا
+COURT_OF_CHANCERY [~JUD]محكمة قاضي القضاة
+
+COURT_SUPREME [~JUD]المحكمة العليا
+
+THE_COURT [~JUD]المحكمة
+
+CRIMINAL_BARRISTER [~JUD]محامي جنائي
+
+DEFENSE_ATTORNEY [~JUD]محامي دفاع
+
+DEFENSE_LAWYER [~JUD]محامي دفاع
+
+DISTRICT_COURT [~JUD]محكمة المقاطعة
+
+FEDERAL_COURT [~JUD]المحكمة الفيديرالية
+FEDERAL_COURT [~JUD]المحكمة الاتحادية
+
+FEDERAL_JUDGE [~JUD]قاضي فيديرالي
+FEDERAL_JUDGE [~JUD]قاضي اتحادي
+
+FEDERAL_JUDICIARY [~JUD]قضاء فيديرالي 
+FEDERAL_JUDICIARY [~JUD]قضاء اتحادي 
+
+FEDERAL_SUPREME_COURT [~JUD]المحكمة العليا الفيديرالية
+FEDERAL_SUPREME_COURT [~JUD]المحكمة العليا الاتحادية
+
+HIGH_COURT [~JUD]المحكمة العليا
+
+JUDGE [~JUD]قاضي
+
+JUDICATORY [~JUD]هيئة قضائية
+
+JUDICATURE [~JUD]قضاء
+
+JUDICIAL_BRANCH [~JUD]فرع قضائي
+
+JUDICIAL_SYSTEM [~JUD]نظام قضائي
+
+JUDICIARY [~JUD]السلطة القضائية
+
+JUSTICE_OF_THE_PEACE {JUSTICES_OF_THE_PEACE} [~JUD] قاضي الصلح 
+
+JUSTICE_SYSTEM [~JUD]النظام القضائي
+
+LAWYER [~JUD]محامي
+
+MAGISTRATE [~JUD]القاضي
+
+MUNICIPAL_COURT [~JUD]محكمة البلدية 
+
+NATIONAL_COURT [~JUD]محكمة وطنية
+
+# PEOPLE'S_COURT [~JUD]محكمة الشعب
+
+PLEADER [~JUD]المدافع
+PLEADER [~JUD]الملتمس
+PLEADER [~JUD]المناشد
+
+PROCURATORATE [~JUD]النيابة العامة
+
+PROSECUTING_ATTORNEY [~JUD]محامي الادعاء
+
+PROSECUTING_OFFICER [~JUD]ضابط الادعاء
+
+PROSECUTOR [~JUD]مدع
+
+PUBLIC_DEFENDER [~JUD]محامي عام
+
+PUBLIC_PROSECUTOR [~JUD]نائب عام
+
+RELIGIOUS_COURT [~JUDREL]محكمة دينية
+
+ROYAL_COURT [~JUD]محكمة ملكية
+
+SHARIAH_COURT [~JUDMUS]محكمة شرعية
+
+SHARIA_COURT [~JUDMUS]محكمة شرعية
+
+SPECIAL_COURT [~JUD]محكمة خاصة
+
+STATE_SUPREME_COURT [~JUD]محكمة الولاية العليا
+
+STIPENDIARY [~JUD]ذو راتب
+STIPENDIARY [~JUD]ذو معاش
+
+STIPENDIARY_MAGISTRATE [~JUD]قاضي بمرتب
+
+SUPERIOR_COURT [~JUD]المحكمة العليا
+
+SUPREME_COURT [~JUD]المحكمة العليا
+
+SUPREME_PEOPLE _COURT  [~JUD]محكمة الشعب العليا
+
+#SUPREME_PEOPLE'S_COURT [~JUD]محكمة الشعب العليا
+
+TRIAL_ATTORNEY [~JUD]محامي 
+
+TRIAL_LAWYER [~JUD]محامي
+
+TRIBUNAL [~JUD]محكمة
+
+
+
+
+
+ASSEMBLAGE [~LEG]تجمع
+ASSEMBLIES [~LEG]مجالس
+
+ASSEMBLY_FEDERALE [~LEG]تجمع اتحادي
+
+CHAMBER [~LEG]غرفة
+
+CHAMBER_OF_DEPUTIES [~LEG]مجلس النواب
+
+CONGRESS!PERSON!  [~LEG]عضو الهيئة التشريعية 
+CONGRESS!PERSON!  [~LEG]عضو في الكونغرس 
+
+CONGRESS [~LEG]الهيئة التشريعية 
+CONGRESS [~LEG] الكونغرس 
+
+CONSERVATIVE_COALITION [~LEG]الإئتلاف المحافظ
+
+COUNCIL_OF_THE_UNION [~LEG]مجلس النقابة 
+
+DELEGATE [~LEG]مندوب 
+DELEGATE [~LEG]مفوض 
+DELEGATE [~LEG]نائب 
+DELEGATE [~LEG]موفد 
+
+DELEGATION_OF_THE_SENATE [~LEG]وفد مجلس الشيوخ
+
+ELECTED_BODIES [~LEG]الهيئات المنتخبة
+
+FEDERAL_EXECUTIVE_COUNCIL [~LEG]المجلس التنفيذي الاتحادي 
+
+FEDERAL_LEGISLATIVE_COUNCIL [~LEG]المجلس التشريعي الاتحادي
+
+FEDERAL_NATIONAL_COUNCIL [~LEG]المجلس الوطني الاتحادي
+
+FEDERATION_COUNCIL [~LEG]المجلس الفيدرالي
+FEDERATION_COUNCIL [~LEG]المجلس الاتحادي
+
+GENERAL_ASSEMBLY [~LEG]الجمعية العامة
+
+HOUSE_OF_ASSEMBLY [~LEG]مجلس النواب
+
+HOUSE_OF_COMMONS [~LEG]مجلس العموم
+
+HOUSE_OF_COUNCILLORS [~LEG]مجلس المستشارين 
+
+HOUSE_OF_REPRESENTATIVES {} [~LEG]مجلس النواب
+
+HOUSE_SPEAKER [~LEG]رئيس مجلس النواب
+
+LAWGIVER [~LEG]مشرع
+
+LAWMAKER [~LEG]مشرع
+
+LEADER_OF_PARLIAMENT [~LEG]رئيس البرلمان
+LEADER_OF_PARLIAMENT [~LEG]رئيس مجلس النواب
+
+LEFT_WING_COALITION [~LEG]الائتلاف اليساري
+
+LEGISLATIVE_ASSEMBLY [~LEG]المجلس التشريعي
+
+LEGISLATIVE_BODY [~LEG]الهيئة التشريعية 
+
+LEGISLATIVE_CHAMBER [~LEG]غرفة تشريعية 
+
+LEGISLATIVE_COUNCIL [~LEG]المجلس التشريعي
+
+LEGISLATOR [~LEG]مشرع
+
+LEGISLATURE [~LEG]مشرع
+
+LOWER_HOUSE_OF_PARLIAMENT [~LEG]مجلس النواب
+
+MAJORITY_PARTY [~LEG]حزب الأغلبية
+
+MEMBER_OF_PARLIAMENT {MEMBERS_OF_PARLIAMENT} [~LEG]عضو في البرلمان
+
+MEMBER_OF_CONGRESS {MEMBERS_OF_CONGRESS}  [~LEG]عضو في الكونغرس
+MEMBER_OF_CONGRESS {MEMBERS_OF_CONGRESS}  [~LEG]عضو في الهيئة التشريعية
+
+MEMBER_OF_THE_SENATE {MEMBERS_OF_THE_SENATE}  [~LEG]عضو في مجلس الشيوخ
+
+MEMBER_OF_THE_LEGISLATURE  {MEMBERS_OF_THE_SENATE}  [~LEG]عضو في المجلس التشريعي
+
+MP [~LEG]النائب
+
+NATIONAL_ASSEMBLY [~LEG]الجمعية الوطنية 
+
+NATIONAL_COUNCIL [~LEG]المجلس الوطني
+
+PARLIAMENTARIAN [~LEG]عضو في البرلمان 
+
+PARLIAMENT [~LEG]البرلمان 
+PARLIAMENT [~LEG]مجلس النواب 
+
+PARLIAMENT_HOUSE [~LEG]مبنى البرلمان
+
+PEOPLE'S_ASSEMBLY [~LEG]مجلس الشعب 
+
+PRESIDENT_OF_THE_SENATE [~LEG]رئيس مجلس الشيوخ
+
+PROMULGATOR [~LEG]معلن
+
+REPRESENTATIVE'S_COUNCIL [~LEG]مجلس النواب
+
+REPRESENTATIVES [~LEG]ممثلين 
+
+REPRESENTATIVE_ASSEMBLY [~LEG]جمعية النواب
+
+RIGHT_WING_COALITION [~LEG]الائتلاف اليميني
+
+SENATE [~LEG]مجلس الشيوخ
+
+SENATE_DELEGATION [~LEG]مندوبي مجلس الشيوخ
+SENATE_DELEGATION [~LEG]وفد مجلس الشيوخ
+
+SENATE_OF_THE_REPUBLIC [~LEG]مجلس شيوخ الجمهورية
+
+SENATE_PRESIDENT [~LEG]رئيس مجلس الشيوخ
+
+SENATOR [~LEG]عضو مجلس الشيوخ
+
+SPEAKER_OF_LEGISLATURE {} [~LEG]رئيس المجلس التشريعي 
+
+SPEAKER_OF_PARLIAMENT {} [~LEG]رئيس البرلمان
+SPEAKER_OF_PARLIAMENT {} [~LEG]رئيس الاتحاد
+
+SPEAKER_OF_THE_HOUSE {} [~LEG]رئيس مجلس النواب
+
+STATE_ASSEMBLY [~LEG]الولاية
+
+STATE_DUMA [~LEG]مجلس الدوما
+
+UPPER_HOUSE [~LEG]البيت الأعلى
+
+
+
+
+BLOGGER [~MED]مدون
+BLOG [~MED]مدونة
+
+BROADCASTING_COMPANY [~MED]شركة بث
+
+BROADCASTING_CORP [~MED]شركة بث
+
+CHIEF_EDITOR [~MED]رئيس تحرير
+
+COLUMNIST [~MED]كاتب عمود
+
+COMMENTATOR [~MED]معلق 
+
+COMMUNICATIONS_ORG {} [~MED]منظمة اتصالات 
+
+CORRESPONDENT [~MED]مراسل
+
+EDITORIALIST [~MED]كاتب زاوية التحرير
+
+EDITOR_IN_CHIEF {EDITORS_IN_CHIEF} [~MED]رئيس تحرير
+
+EDITOR_OF_NEWSPAPER {EDITORS_OF_NEWSPAPER}[~MED]رئيس تحرير صحيفة 
+
+FILMAKER [~MED]مخرج
+
+FOREIGN_CORRESPONDENT [~MED]مراسل أجنبي
+
+GAZETTE [~MED]جريدة رسمية 
+
+INTERNET_SITE [~MED]موقع إلكتروني
+
+JOURNALIST [~MED]صحافي 
+
+LEADING_NEWS {} [~MED]أخبار رائدة
+
+LOCAL_MEDIA {} [~MED]وسائل إعلام محلية 
+
+LOCAL_PRESS {} [~MED]صحافة محلية
+
+MAGAZINE [~MED]مجلة
+
+MAGAZINE_EDITOR [~MED] محرر مجلة
+
+MANAGING_EDITOR [~MED]مدير التحرير
+
+MEDIA [~MED]وسائل الإعلام 
+
+NATIONAL_PRESS [~MED]وسائل إعلام وطنية 
+
+NEWSPAPER!PERSON!  [~MED]صحافة 
+
+NEWSPAPER [~MED]صحيفة 
+
+NEWSPAPER_CHIEF_EDITOR [~MED]رئيس تحرير صحيفة 
+
+NEWSPAPER_EDITOR [~MED] محرر صحيفة 
+
+NEWSPAPER_PUBLISHER [~MED]ناشر صحيفة
+
+NEWSWRITER [~MED]كاتب الأخبار
+
+NEWS_AGENCY [~MED]وكالة أخبار
+
+NEWS_EDITOR [~MED]محرر أخبار
+
+NEWS_MAGAZINE [~MED]مجلة أخبار
+
+NEWS_ORGANISATION [~MED]مؤسسة إخبارية
+
+NEWS_ORGANIZATION [~MED]مؤسسة إخبارية 
+
+NEWS_OUTLET [~MED]وسيلة إعلامية 
+
+NEWS_STATION [~MED]محطة إخبارية
+
+PRESS_AGENCY [~MED]وكالة أنباء 
+
+PRESS_ASSOCIATION [~MED]جمعية الصحافة 
+
+PRESS_PHOTOGRAPHER [~MED]مصور صحفي
+
+PUBLICATION [~MED]منشور
+
+PUBLIC_RADIO {} [~MED]إذاعة عامة
+
+PUBLIC_TELEVISION [~MED]تلفزيون عام
+
+PUBLISHER [~MED]ناشر
+
+PUBLISHING_COMPANY [~MED]شركة نشر
+
+PUBLISHING_FIRM [~MED]شركة نشر
+
+PUBLISHING_HOUSE [~MED]دار نشر
+
+PULP_MAGAZINE [~MED]مجلة مثيرة 
+
+RADIO_STATION [~MED]محطة إذاعية 
+
+REPORTER [~MED]صحافي 
+
+SPOKES!PERSON!  [~MED]ناطق رسمي 
+
+TABLOID [~MED]صحيفة شعبية 
+
+TELECOM CONSULTANT [~MED]مستشار اتصالات 
+
+TELECOM FIRM [~MED]شركة اتصالات 
+
+TELECOM [~MED]اتصالات 
+
+TELEVISION [~MED]تلفزيون 
+
+TV [~MED]تلفزيون 
+
+WAR_CORRESPONDENT [~MED]مراسل حربي
+
+WEBSITE [~MED]موقع
+
+WEB_SITE [~MED]موقع
+
+WIRE_SERVICE [~MED] خدمة سلكية
+
+WRITER [~MED]كاتب
+
+
+
+
+
+EXTREMIST_WAHHABI [~MUSRAD]وهابي متطرف
+FUNDAMENTALIST_MUSLIMS [~MUSRAD]المسلمين الأصوليين 
+
+HARDLINE_ISLAMIC [~MUS]الإسلام المتشدد
+
+IMAM [~MUS]إمام 
+
+ISLAMIC [~MUS]إسلامي 
+
+ISLAMIC_CLERIC [~MUS]رجل دين إسلامي 
+
+ISLAMIC_COUNCIL [~MUS]مجلس إسلامي
+
+ISLAMIC_EXTREMIST التطرف الإسلامي 
+
+ISLAMIC_EXTREMIST_GROUP [~MUSRAD]مجموعةإسلامية متطرفة  
+
+ISLAMIC_FRONT_  [~MUSREB]جبهة إسلامية 
+
+ISLAMIC_FUNDAMENTALIST [~MUS] الأصولية الإسلامية  
+
+ISLAMIC_MILITANT [~MUSUAF] مقاتل أسلامي
+
+ISLAMIC_MISSIONARY [~MUS]مبشر إسلامي
+
+ISLAMIC_PREACHER [~MUS]داعية إسلامي 
+
+ISLAMIST [~MUS]الإسلامية 
+
+ISLAMIST_CLERIC [~MUS]رجل دين إسلامي 
+
+ISLAMIST_GROUP [~MUS]جماعة إسلامية 
+
+ISLAMIST_MISSIONARY [~MUS]مبشر إسلامي 
+
+MOSLEM [~MUS]مسلم
+
+MOSLEM_CLERIC [~MUS]رجل دين مسلم
+
+MOSLEM_SETTLER [~MUS]مستوطن مسلم 
+
+MULLAH [~MUS]الملا
+
+MUSLIM [~MUS]مسلم
+
+MUSLIM_CLERIC [~MUS]رجل دين مسلم 
+
+MUSLIM_DOCTOR [~MUSHLH]طبيب مسلم 
+
+MUSLIM_EXTREMIST [~MUSRAD]مسلم متطرف
+
+MUSLIM_HOSPITAL [~MUSHLH]مشفى إسلامي 
+
+MUSLIM_MIGRANT [~MUS]مهاجر مسلم 
+
+MUSLIM_MILITANT [~MUSUAF]مقاتل مسلم 
+
+MUSLIM_MISSIONARY [~MUS]مبشر مسلم
+
+MUSLIM_PILGRIM [~MUS]حاج مسلم 
+
+MUSLIM_RADICAL [~MUSRAD]مسلم متطرف
+
+# MUSLIM_SAINT [~MUS]   # PAS 14.01.27: GENERALLY IS GOING TO BE AN HISTORICAL REFERENCE قديس مسلم
+
+RADICAL_ISLAMISTS [~MUSRAD]الإسلاميين المتطرفين 
+
+RADICAL_SALAFI [~MUSRAD]السلفيين المتطرفين 
+
+SALAFI_JIHADIST [~MUSRAD] الجهاديين السلفيين 
+
+
+
+
+
+
+
+
+ACTIVIST [~OPP]ناشط
+AGITATED_STUDENTS [~OPPEDU]طلاب مهتاجين
+
+ANTI_GOVERNMENT_ACTIVIST [~OPP]ناشط ضد الحكومة
+
+ANTI_GOVERNMENT_ORGANIZATION [~OPP]منظمة ضد الحكومة
+
+ANTI_GOVERNMENT_POLITICAL_ACTIVIST [~OPP]ناشط سياسي ضد الحكومة
+
+ANTI_GOVERNMENT_STUDENT [~OPPEDU]طالب ضد الحكومة
+
+ANTI_GOVERNMENT_UNDERGROUND_GROUP [~OPP]مجموعة تحت الأرض المضادة للحكومة
+
+ANTI_GOVERNMENT_YOUTH [~OPPEDU]شباب ضد الحكومة
+
+ANTI_MILITARY_ACTIVIST [~OPP]ناشط ضد الجيش
+
+ARMY_DESERTER [~OPP]هارب من الجيش
+
+CAMPAIGNER  [~OPP]حملة
+
+COALITION_OF_MINORITY_PARTIES [~OPP]أئتلاف الأحزاب الأقلية
+
+COALITION_OF_OPPOSITION_PARTIES [~OPP]أئتلاف الأحزاب المعارضة
+
+CRUSADER [~OPP]صليبي
+
+CYBERDISSIDENTS [~OPP]المنشقين
+
+DEFECTOR [~OPP]فار
+
+DEMOCRACY_ACTIVIST [~OPP]ناشط الديمقراطية
+
+DEMOCRATIC_OPPOSITION_LEADER [~OPP]زعيم المعارضة الديمقراطية
+
+DEMONSTRATOR [~OPP]متظاهر
+
+DESERTER [~OPP]هارب من الجندية
+
+DETAINEE [~OPP]المعتقل
+
+DISSENTER [~OPP]المنشق
+
+DISSIDENT [~OPP]منشق
+
+DISSIDENT_STUDENT [~OPPEDU]طالب منشق
+
+ELECTORAL_ALLIANCE [~OPP]تحالف انتخابي
+
+ETHNIC_MINORITY_PARTIES [~OPP]أحزاب الأقليات العرقية
+
+EXILE [~OPP]منفى
+
+EXILED_GOVERNMENT [~OPP]حكومة منفية
+
+EXILED_LEADER [~OPP]قائد منفي
+
+EXILED_OPPOSITION [~OPP]معارضة منفية
+
+EXILED_OPPOSITION_POLITICIAN [~OPP]معارض سياسي منفي
+
+EXILED_POLITICIAN [~OPP]سياسي منفي
+
+EXILED_PRIME_MINISTER [~OPP]رئيس وزراء منفي
+
+EXILED_REGIME [~OPP]نظام منفي
+
+GOVERNMENT_DEFECTOR [~OPP]منشق حكومة
+
+GOVERNMENT_IN_EXILE [~OPP]حكومة في المنفى
+
+HUMAN_RIGHTS_ACTIVIST [~OPP]ناشط حقوق الإنسان
+
+ILLEGAL_MOVEMENT [~OPP]حركة غير قانونية
+
+ILLEGAL_PARTY [~OPP]حزب غير قانوني 
+
+LEADER_IN_EXILE [~OPP]قائد في المنفى
+
+MAIN_OPPOSITION [~OPP] حزب المعارضة الرئيسي
+
+MASS_OPPOSITION [~OPPCVL]معارضة جماهيرية
+
+MILITARY_DEFECTOR [~OPP]منشق عسكري
+
+MILITARY_DESERTER [~OPP]هارب عسكري
+
+MP_OF_THE_OPPOSITION [~OPP]نائب من المعارضة
+
+MUTINEER [~OPP]متمرد
+
+NATIONAL_TRAITOR [~OPP]خائن وطني
+
+NAVY_DESERTER [~OPP]هارب بحري
+
+OBJECTOR [~OPP]معترض
+
+OPPOSITION_ACTIVIST [~OPP]ناشط معارض
+
+OPPOSITION_ALLIANCE [~OPP]تحالف معارضة
+
+OPPOSITION_COALITION [~OPP]إئتلاف المعارضة
+
+OPPOSITION_DAILY [~OPPMED]أوبوزيشون ديلي
+
+OPPOSITION_DEMONSTRATOR [~OPP] متظاهر معارضة
+
+OPPOSITION_EDITOR [~OPPMED]محرر معارضة
+
+OPPOSITION_FACTION [~OPP]فصيل المعارضة
+
+OPPOSITION_FORCES  [~OPPUAF]قوات المعارضة
+
+OPPOSITION_JOURNALIST [~OPPMED]صحفي المعارضة
+
+OPPOSITION_LEADER [~OPP]قائد معارضة
+
+OPPOSITION_MP [~OPP]نائب معارضة 
+
+OPPOSITION_MPS [~OPP]نواب معارضة 
+
+OPPOSITION_NEWSPAPER [~OPPMED]جريدة معارضة
+
+OPPOSITION_PARLIAMENT [~OPP]مجلس تشريعي المعارضة
+
+OPPOSITION_PARTIES [~OPP]أحزاب المعارضة
+
+OPPOSITION_PARTY [~OPP]حزب معارضة
+
+OPPOSITION_PARTY_DEMONSTRATOR [~OPP]متظاهر حزب المعارضة
+
+OPPOSITION_POLITICAL_PARTY [~OPP]حزب سياسي المعارضة 
+
+OPPOSITION_PUBLISHER [~OPPMED]ناشر المعارضة
+
+OPPOSITION_REPORTER [~OPPMED]مراسل المعارضة
+
+OPPOSITION_SENATOR [~OPP]عضو مجلس شيوخ المعارضة
+
+OPPOSITION_STUDENT_LEADER [~OPPEDU]قائد طلاب المعارضة
+
+OPPOSITION_SUPPORTER [~OPP]داعم المعارضة
+
+OUSTED_FOREIGN_MINISTER [~OPP]وزير خارجية مخلوع
+
+OUSTED_LEADER [~OPP]قائد مخلوع
+
+OUSTED_PREMIER [~OPP]رئيس وزراء مخلوع
+
+OUSTED_PRIME_MINISTER [~OPP]رئيس وزراء مخلوع
+
+OUTLAWED_PARTIES [~OPP]الأحزاب المحظورة
+
+OUTLAWED_PARTY [~OPP]حزب محظور
+
+PARALLEL_GOVERNMENT [~OPP]حكومة موازية
+
+PICKETER [~OPP]المحتج
+
+POLITICAL_ALLIANCE [~OPP]حلفاء سياسيين
+
+POLITICAL_DETAINEE [~OPP]معتقل سياسي
+
+POLITICAL_PARTY_IN_EXILE [~OPP]حزب سياسي في المنفى 
+
+POLITICAL_PRISONER [~OPP]سجين سياسي
+
+POLITICAL_WING [~OPP]جناح سياسي
+
+PRIME_MINISTER_IN_EXILE [~OPP]رئيس وزراء في المنفى
+
+PRO-DEMOCRACY_GROUP [~OPPDEV]مجموعة مؤيدة للديمقراطية
+
+PRO-DEMOCRACY_LEADER [~OPP]قائد مؤيد للديمقراطية
+
+PRO-DEMOCRACY_MOVEMENT [~OPP]حركة مؤيدة للديمقراطية
+
+PRO-DEMOCRACY_POLITICAL_ACTIVIST [~OPP]ناشط سياسي مؤيد للديمقراطية
+
+PRO-DEMOCRATIC_LEADER [~OPP]قائد ديمقراطي مؤيد
+
+PROTESTER [~OPP]محتج
+
+PROTESTING_STUDENT [~OPPEDU]طالب محتج
+
+PROTESTING_WORKER [~OPPLAB]عامل محتج
+
+PROTEST_GROUP [~OPP]مجموعة احتجاج
+
+PROTEST_LEADER [~OPP]قائد احتجاج
+
+PRO_DEMOCRACY_GROUP [~OPPDEV]مجموعة مؤيدة للديمقراطية
+
+PRO_DEMOCRACY_LEADER [~OPP]قائد مؤيد للديمقراطية
+
+PRO_DEMOCRACY_MOVEMENT [~OPP]حركة مؤيدة للديمقراطية
+
+PRO_DEMOCRACY_POLITICAL_ACTIVIST [~OPP]ناشط سياسي مؤيد للديمقراطية
+
+PRO_DEMOCRATIC_LEADER [~OPP]قائد ديمقراطي مؤيد
+
+RECREANT [~OPP]جبان
+
+REFORMER [~OPP]مصلح
+
+REFORMIST [~OPP]إصلاحي
+
+RESISTANCE_MOVEMENT [~OPP]حركة معارضة
+
+RIOTER [~OPP]متظاهر
+
+SOCIAL_REFORMER [~OPP]مصلح اجتماعي
+
+SPOKESMAN_FOR_THE_OPPOSITION [~OPP]متحدث باسم المعارضة
+
+STRIKE_ACTIVIST [~OPPLAB]ناشط إضراب
+
+STRIKING_NURSE [~OPPHLH]ممرضة إضراب
+
+STUDENT_DEMONSTRATOR [~OPPEDU] متظاهر طالب
+
+STUDENT_DISSIDENT [~OPPEDU]منشق طالب
+
+STUDENT_OPPOSITION [~OPPEDU]معارض طالب
+
+STUDENT_PROTESTER [~OPPEDU]محتج طالب
+
+TURNCOAT [~OPP]مرتد
+
+UNDERGROUND_OPPOSITION [~OPP]معارضة تحت الأرض
+
+UNSPECIFIED_OPPOSITION [~OPP]معارضة غير محددة
+
+YOUTH_PROTESTER [~OPPEDU]احتجاج شبابي
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COMMUNIST_REBEL [~REB]تمرد شيوعي
+COUP_D'ETAT_LEADER [~REB]قائد إنقلاب
+COUP_LEADER [~REB]قائد إنقلاب
+COUP_MAKER [~REB]صانع إنقلاب
+COUP_PLOTTER [~REB]مصمم إنقلاب
+ALLEGED_MILITANTS [~REB المكافحين المزعومين
+ANTI_GOVERNMENT_ARMED_GROUP [~REB]مجموعة مسلحة ضد الحكومة
+
+ANTI_GOVERNMENT_FORCE [~REB]قوة مضادة للحكومة
+
+ANTI_GOVERNMENT_INSURGENT [~REB] تمرد ضد الحكومة
+
+ANTI_JUNTA_TERRORIST_GROUP [~REB]مجموعة إرهابية ضد المجلس العسكري 
+
+ANTI-GOVERNMENT_ARMED_GROUP [~REB]مجموعة مسلحة ضد الحكومة 
+
+ANTI-GOVERNMENT_FORCE [~REB]قوة مضادة للحكومة
+
+ANTI-GOVERNMENT_INSURGENT [~REB] تمرد ضد الحكومة 
+
+ANTI-JUNTA_TERRORIST_GROUP [~REB]مجموعة إرهابية ضد المجلس العسكري
+
+ARMED_DISSIDENT [~REB]منشق مسلح
+
+ARMED_INSURGENCY [~REB]تمرد مسلح
+
+ARMED_INSURGENT [~REB]متمرد مسلح
+
+ARMED_INSURGENT_GROUP [~REB]مجموعة متمردة مسلحة
+
+ARMED_OPPOSITION_GROUP [~REB]مجموعة معارضة مسلحة
+
+ARMED_REBEL [~REB]ثوار مسلحين
+
+ARMED_REBEL_GROUP [~REB]جماعة متمردة مسلحة 
+
+ARMED_TRIBAL_REBEL [~REB]تمرد قبلي مسلح
+
+# MOVE THESE TO THE RELIGION SECTIONS?
+
+BUDDHIST_REBEL [~REBBUD]متمردين بوذيين
+
+BUDDHIST_REBEL_GROUP [~REBBUD]مجموعة متمردة بوذية
+
+BUDDHIST_REBEL_LEADER [~REBBUD]قائد ثورة بوذي
+
+CHRISTIAN_REBEL [~REBCHR]متمرد مسيحي 
+
+CHRISTIAN_REBEL_GROUP [~REBCHR]مجموعة متمردة مسيحية
+
+CHRISTIAN_REBEL_LEADER [~REBCHR]قائد ثورة مسيحية
+
+DEMOCRATIC_PARTY  [~PTY]حزب ديمقراطي
+
+DISSIDENT_SOLDIER [~REB]جندي منشق
+
+ENEMY_INSURGENT [~REB]عدو متمرد
+
+ETHNIC_INSURGENCY [~REB]تمرد عرقي
+
+ETHNIC_MINORITY_REBEL [~REB] متمردين من الأقليات العرقية
+
+ETHNIC_REBEL [~REB] تمرد عرقي
+
+EXTEMIST_SOLDIER [~RAD]جندي متطرف
+
+EXTREMIST [~RAD]متطرف
+
+FREEDOM_FIGHTER [~REB]محارب من أجل الحرية
+
+GUERILLA [~REB]حرب عصابات
+
+GUERILLA_ARMY [~REB]جيش عصابات
+
+GUERILLA_FACTION [~REB]حركة حرب العصابات
+
+GUERILLA_FORCE [~REB]قوة حرب العصابات
+
+GUERILLA_LEADER  [~REB]قائد حرب عصابات 
+
+GUERRILLA [~REB]حرب عصابات
+
+GUERRILLA_ARMY [~REB]جيش العصابات
+
+GUERRILLA_FORCE [~REB] قوة حرب العصابات
+
+GUERRILLA_LEADERSHIP [~REB]قيادة حرب العصابات
+
+GUERRILLA_LEADER [~REB]قائد حرب عصابات
+
+HINDU_REBEL [~REBHIN]تمرد هندوسي
+
+HINDU_REBEL_GROUP [~REBHIN]جماعة تمرد هندوسي
+
+HINDU_REBEL_LEADER [~REBHIN]قائد تمرد هندوسي
+
+INSURGENCE [~REB]متمرد
+
+INSURGENCY [~REB]تمرد
+
+INSURGENCY_LEADER [~REB]قائد تمرد
+
+INSURGENCY_MOVEMENT [~REB]حركة تمرد
+
+INSURGENT [~REB]متمرد
+
+INSURGENT_FORCE [~REB]قوة متمردة
+
+INSURGENT_GROUP [~REB]جماعة متمردة
+
+INSURGENT_LEADERSHIP [~REB]قيادة متمردة
+
+INSURGENT_LEADER [~REB]قائد متمرد
+
+INSURGENT_MOVEMENT [~REB]حركة متمردة 
+
+INSURGENT_ORGANIZATION [~REB]منظمة متمردة
+
+INSURRECTIONIST [~REB]تمردية
+
+ISLAMIC_REBEL [~REBMUS] تمرد إسلامي 
+
+ISLAMIC_REBEL_GROUP [~REBMUS]جماعة متمردة إسلامية 
+
+ISLAMIC_REBEL_LEADER [~REBMUS]قائد تمرد إسلامي
+
+LEFTIST_PARTY [~PTY]حزب يساري
+
+LOOTER [~REB]الناهب
+
+LOW_LEVEL_INSURGENCY [~REB]تمرد منخفض المستوى
+
+MILITANT_MOVEMENT [~REB]حركة عسكرية
+
+MILITANT_WING [~REB]جناح عسكري
+
+MOSLEM_EXTREMIST [~REBMUS]متطرفين مسلمين
+
+MUSLIM_REBEL [~REBMUS]متمردين إسلاميين
+
+MUSLIM_REBEL_GROUP [~REBMUS]جماعة متمردة مسلمة
+
+MUSLIM_REBEL_LEADER [~REBMUS]قائد تمرد مسلم
+
+MUSLIM_SEPARATIST_REBEL [~REBMUS]متمردين انفصاليين مسلمين
+
+NATIONAL_REVOLUTIONARY_ORGANIZATION [~REB]منظمة ثورية وطنية
+
+OPPOSITION_FORCE [~REB]قوة معارضة
+
+PARTY'S_MILITARY_WING [~REB]جناح عسكري للحزب
+
+PARTY_ALLIANCE [~PTY]تحالف الأحزاب
+
+PARTY_LEADER [~PTY]قائد حزب
+
+PARTY_MEMBER [~PTY]عضو حزب
+
+PARTY_PRESIDENT [~PTY]رئيس حزب
+
+PILLAGER [~REB]الناهب
+
+PLUNDERER [~REB]الغانم
+
+POLITICAL_PARTIES [~PTY]أحزاب سياسية
+
+POLITICAL_PARTY [~PTY]حزب سياسي
+
+POLITICIAN [~PTY]سياسي
+
+PRESIDENTIAL_CANDIDATE [~PTY]مرشح رئاسي
+
+RADICAL_LEFTIST_GROUP [~RAD]جماعة يسارية متطرفة
+
+RAIDER [~REB]معتد
+
+REACTIONARIES [~RAD]الرجعيين
+
+REBELLION [~REB]تمرد
+
+REBEL [~REB]متمرد
+
+REBEL_ARMIES [~REB]جيوش المتمردين
+
+REBEL_ARMY [~REB]جيش المتمردين
+
+REBEL_BASE [~REB]قاعدة المتمردين
+
+REBEL_COMMANDER [~REB]قائد المتمردين
+
+REBEL_COMMANDO [~REB]قائد المتمردين
+
+REBEL_DELEGATION [~REB]وفد المتمردين
+
+REBEL_FORCE [~REB]قوة المتمردين
+
+REBEL_GROUP [~REB]مجموعة متمردة
+
+REBEL_INSURGENT [~REB]ثوار متمردين
+
+REBEL_LEADER [~REB]قائد متمرد
+
+REBEL_SOLDIER [~REB]جندي متمرد
+
+REBEL_SOURCE [~REB]مصدر المتمردين
+
+REBEL_STUDENT [~REBEDU]طالب متمرد
+
+RESISTANCE_ARMY [~REB]جيش المقاومة
+
+RESISTANCE_COMMANDER [~REB]قائد المقاومة
+
+RESISTANCE_GROUP [~REB]مجموعة مقاومة
+
+RESISTANCE_LEADER [~REB]قائد مقاومة
+
+REVOLT [~REB]تمرد
+
+REVOLUTIONARY_FRONT_  [~REB]جبهة ثورية
+
+REVOLUTIONARY_MOVEMENT_  [~REB]حركة ثورية
+
+SHIA_MILITIA [~REBMUS]ميليشيا شيعية
+
+SHI'A_MILITIA [~REBMUS]ميليشيا شيعية
+
+SHIITE_MILITIA [~REBMUS]ميليشيا شيعية
+
+SHI'ITE_MILITIA [~REBMUS]ميليشيا شيعية
+
+SUNNI_INSURGENT [~REBMUS]متمردين سنة
+
+SUNNI [~MUS]سني
+
+STUDENT_ARMY [~REB]جيش طالب
+
+SUICIDE_BOMBER [~REB]انتحاري
+
+TERRORIST_INSURGENT [~REB]متمرد ارهابي
+
+TERRORIST_INSURGENT_GROUP [~REB]مجموعة متمردة ارهابية
+
+TERRORIST_INSURGENT_ORGANIZATION [~REB]منظمة متمردة ارهابية
+
+TOP_LEFT_LEADER [~PTY]زعيم يساري رفيع المستوى
+
+TOP_RIGHT_LEADER [~PTY]زعيم يميني رفيع المستوى
+
+TRIBAL_INSURGENT [~REB]تمرد قبائلي
+
+TRIBAL_REBEL [~REB]تمرد قبائلي
+
+UNDERGROUND_ARMY [~REB]جيش تحت الأرض
+
+UNDERGROUND_FORCE [~REB]قوة تحت الأرض
+
+UNDERGROUND_REBEL [~REB]تمرد تحت الأرض
+
+UNDERGROUND_RESISTANCE [~REB]مقاومة تحت الأرض
+
+UPRISING [~REB]انتفاضة
+
+URBAN_GUERILLA [~REB]حرب عصابات في المناطق المدنية
+
+
+
+
+ABBOT  [~REL]رئيس الدير
+BELIEVER [~REL]مؤمن
+
+CLERGY!PERSON!  [~REL] رجل دين مسيحي
+
+CLERGY [~REL]رجل دين مسيحي
+
+CLERIC [~REL]رجل الدين
+
+HOLY_!PERSON!  [~REL]شخص مقدس
+
+HOLY_PERSON [~REL]شخص مقدس
+
+LEADING_RELIGIOUS_AUTHORITY [~REL]المرجعية الدينية الرائدة
+
+MENDICANT [~REL]متسول
+
+MILITANT_MONK [~RELUAF]راهب متشدد
+
+MILITANT_PRIEST [~RELUAF]كاهن متشدد
+
+MISSIONARY [~REL]مبشّر
+
+MONASTERY [~REL]دير
+
+MONK [~REL]راهب
+
+PILGRIM [~REL]حاج
+
+PREACHER [~REL]واعظ
+
+PRIEST [~REL]كاهن
+
+RELIGION  [~REL]ديانة
+
+RELIGIOUS_GROUP [~REL]مجموعة دينية
+
+RELIGIOUS_ORGANIZATION [~REL]منظمة دينية
+
+RELIGIOUS_PERSON [~REL]رجل دين
+
+RELIGIOUS_LEADER [~REL]قائد ديني
+
+WORSHIPER [~REL]عابد
+
+WORSHIPPER [~REL]عابد
+
+
+
+
+CENTRAL_INTELLIGENCE_BUREAU [~SPY]وكالة الاستخبارات المركزية
+CHIEF_OF_INTELLIGENCE [~SPY]رئيس الاستخبارات
+
+COVERT_OPERATIVE [~SPY]عميلة
+
+FOREIGN_INTELLIGENCE_SERVICE [~SPY]جهاز الاستخبارات الخارجية
+
+INTELLIGENCE  [~SPY]استخبارات
+
+INTELLIGENCE_ACTIVITY [~SPY]نشاط استخباري
+
+INTELLIGENCE_AGENT [~SPY]عميل استخبارات
+
+INTELLIGENCE_APPARATUS [~SPY]جهاز المخابرات
+
+INTELLIGENCE_BUREAU [~SPY]مكتب الاستخبارات
+
+INTELLIGENCE_CHIEF [~SPY]رئيس المخابرات
+
+INTELLIGENCE_COMMUNITY [~SPY]أجهزة الاستخبارات
+
+INTELLIGENCE_INFORMATION [~SPY]معلومات استخباراتية
+
+INTELLIGENCE_OFFICER [~SPY]ضابط مخابرات
+
+INTELLIGENCE_OPERATION [~SPY]عملية استخباراتية
+
+INTELLIGENCE_SERVICE [~SPY] خدمة الاستخبارات
+
+INTER_SERVICE_INTELLIGENCE [~SPY]خدمة الاستخبارات الداخلية
+
+MUHABARAT_ [~SPY]مخابرات
+
+MUKABARAT_ [~SPY]مخابرات
+
+MUKHABARAT_ [~SPY] مخابرات
+
+NATIONAL_INTELLIGENCE_BUREAU [~SPY]وكالة الاستخبارات الوطنية
+
+NATIONAL_SECURITY_SERVICE [~SPY]خدمة الأمن الوطني
+
+OPERATIVE [~SPY]جاسوس
+
+SECRET_AGENT [~SPY]عميل سري
+
+SECRET_POLICE {} [~SPY]شرطي سري
+
+SENIOR_INTELLIGENCE_OFFICER [~SPY]ضابط كبير في المخابرات
+
+SPY [~SPY]جاسوس
+
+SPY_AGENCY [~SPY]وكالة تجسس
+
+SPY_SHIP [~SPY]سفينة تجسس
+
+UNDERCOVER_AGENT [~SPY]عميل متخفّي
+
+
+
+
+
+
+
+ARMED_BAND [~UAF]عصابة مسلحة
+ARMED_CITIZENS [~UAF]مواطنين مسلحين
+
+ARMED_FORCE  [~UAF]قوة مسلحة
+
+ARMED_GANG [~UAF]عصابة مسلحة
+
+ARMED_GROUP [~UAF]مجموعة مسلحة
+
+ARMED_MEN [~UAF]رجال مسلحين
+
+ARMED_PROFESSIONAL [~UAF]مسلحين محترفين
+
+ASSAILANT [~UAF]مهاجم
+
+COMBATANT [~UAF]مقاتل
+
+DEATH_SQUAD [~UAF]فرق الموت
+
+ENEMY_COMBATANT [~UAF]مقاتل العدو
+
+FIGHTER [~UAF]مقاتل
+
+FOREIGN_TERRORIST_ORGANIZATION [~UAF]منظمة إرهابية أجنبية
+
+GUNMAN {} [~UAF]مسلّح
+
+GUNMEN [~UAF]مسلّحين
+
+GUNSLINGER [~UAF]حامل السلاح
+
+GUN_FOR_HIRE [~UAF]سلاح للإيجار
+
+HIRED_GUN [~UAF]سلاح مأجور
+
+HITMAN {HITMEN} [~UAF]قاتل مأجور
+
+HIT_MAN {HIT_MEN} [~UAF]قاتل مأجور
+
+HIT_SQUAD [~UAF]فريق الاغتيال
+
+INFILTRATION_UNIT [~UAF]وحدة المعلومات
+
+JANJAWEED [~UAF]الجنجويد
+
+JIHADIST [~UAFMUS]الجهادية
+
+JIHADISTS [~UAFMUS]الجهاديين
+
+MARAUDER [~UAF]نهّاب
+
+MERCENARY [~UAF]مرتزق
+
+MILITANT [~UAF]مقاتل
+
+MILITARY_WING [~UAF]جناح عسكري
+
+MILITIA [~UAF]ميليشا
+
+MILITIAMAN [~UAF]الجندي الرديف
+
+MILITIAMEN [~UAF]الجنود الرديفين
+
+MILITANT [~UAF]مقاتل
+
+MOSLEM_MILITANT [~UAFMUS]مقاتل مسلم
+
+MUSLIM_MILITANT [~UAFMUS]مقاتل مسلم
+
+MURDEROUS_EXTREMIST [~UAFRAD]متطرف قاتل
+
+PRIVATE_ARMY [~UAF]جيش خاص
+
+PRIVATE_SECURITY_FORCE [~UAF]قوة أمنية خاصة
+
+SELF_DEFENSE_FORCE [~UAF]قوة الدفاع عن النفس
+
+SELF-DFENSE_FORCE [~UAF]قوة الدفاع عن النفس
+
+SELF-DEFENCE_FORCE [~UAF]قوة الدفاع عن النفس
+
+SELF_DEFENCE_FORCE [~UAF]قوة الدفاع عن النفس
+
+SELF-DEFENSE_MILITA [~UAF]ميليشيا الدفاع عن النفس
+
+SELF_DEFENSE_MILITIA [~UAF]ميليشيا الدفاع عن النفس
+
+SOLDIER_OF_FORTUNE [~UAF]مرتزق
+
+TERRORIST [~UAF]إرهابي
+
+TERRORIST_GROUP [~UAF]مجموعة إرهابية
+
+TERRORIST_GROUP_LEADER [~UAF]قائد مجموعة إرهابية
+
+TERRORIST_LEADER [~UAF]قائد إرهابي
+
+TERRORIST_ORGANIZATION [~UAF]منظمة إرهابية
+
+TRIGGERMAN {} [~UAF]قاتل
+
+UNIDENTIFIED_GUNMAN {UNIDENTIFIED_GUNMEN} [~REB]مسلح مجهول 
+
+UNIDENTIFIED_FORCES [~UAF]قوى مجهولة
+
+VIOLENT_GROUP [~UAF]مجموعة عنيفة
+
+
+#DEFENCE_FORCE[~MIL]قوى الدفاع 
+
+A-37B_DRAGONFLY [~MIL] دراغون فلاي -أي-37بي
+
+ADMIRAL [~MIL]عميد بالبحرية 
+
+AH-64D_APACHE [~MIL]أباتشي 64دي
+
+AH-64_APACHE [~MIL]أباتشي 64
+
+AIDE_DE_CAMP [~MIL] مساعد للمعسكر
+
+AIRCRAFT_CARRIER [~MIL]حاملة طائرات 
+
+AIRMAN {} [~MIL]طيار
+
+AIR_FORCE [~MIL]القوى الجوية - سلاح الطيران —السلاح الجوي  
+
+AIR_FORCE_CHIEF [~MIL]قائد القوى الجوية-قائد السلاح الجوي
+
+AIR_FORCE_COMMANDER_IN_CHIEF [~MIL] قائد القوى الجوية-قائد السلاح الجوي
+
+AIR_MARSHAL [~MIL] قائد طيران-مشير في الطيران-فريق في الطيران 
+
+AIR_UNIT [~MIL]وحدة طيران
+
+ANTIAIRCRAFT_MISSILE [~MIL]صاروخ مضاد للطائرات
+
+ANTISHIP_MISSILE [~MIL]صاروخ مضاد للسفن
+
+APACHE_ATTACK_HELICOPTER [~MIL]مروحية الاباتشي المقاتلة- هليوكبتر هجومية من طراز الأباتشي
+
+APACHE_GUNSHIP [~MIL]الاباتشي المقاتلة- الاباتشي المحاربة
+
+ARMED_FORCES [~MIL]القوات المسلحة
+
+ARMED_PATROLS [~MIL]حرس/خفر/دورية مسلحة
+
+ARMED_TROOPS [~MIL] القوى المسلحة-الجيوش المسلحة
+
+ARMY [~MIL] جيش
+
+ARMY_CHIEF [~MIL] قائد الجيش
+
+ARMY_CHIEF_OF_STAFF [~MILGOV] قائد الجيش
+
+ARMY_GENERAL_CHIEF_OF_STAFF [~MILGOV] رئيس هيئة الأركان العامة - رئيس الأركان
+
+ARMY_INTELLIGENCE [~MILSPY]مخابرات عسكرية
+
+ARMY_LT. [~MIL] ملازم في الجيش
+
+ARMY_MEDICAL_SQUAD [~MILHLH] فريق طبي عسكري
+
+ARMY_NATIONAL_GUARD [~MIL] حرس وطني
+
+ARMY_OFFICER [~MIL] ضابط بالجيش
+
+ARMY_PATROL [~MIL]حرس بالجيش 
+
+ARMY_RANGERS [~MIL] حرس أحراش/غابات
+
+ARMY_RESERVE [~MIL]احتياطي بالجيش
+
+ARMY_STAFF [~MIL] أركان الجيش
+
+ARMY_UNIT [~MIL]وحدة في الجيش 
+
+ARMY_VICE_CHIEF_OF_STAFF [~MIL] نائب رئيس أركان الجيش
+
+ARTILLERY [~MIL] المدفعية 
+
+ARTILLERY_SYSTEM [~MIL] نظام مدفعي
+
+ATTACK_CRAFT [~MIL] سفينة هجوم 
+
+ATTACK_HELICOPTER [~MIL]مروحية هجومية 
+
+ATTACK_HELICOPTERS [~MIL]مروحيات هجومية
+
+B-52 [~MIL] بي -52
+
+BARRACKS [~MIL]ثكنات 
+
+BATTALION [~MIL] كتيبة 
+
+BATTALION_COMMANDER [~MIL] قائد كتيبة 
+
+BATTLESHIP [~MIL]بارجة- سفينة حربية
+
+BATTLEWAGON [~MIL] ناقلة/عربة/مركبة حربية
+
+BATTLE_GROUP [~MIL] مجموعة قتالية
+
+BATTLE_TANK [~MIL] دبابة حربية/مدرّعة 
+
+BOMBER [~MIL]مفجّر/قاذقة قنابل
+
+BORDER_GUARD [~MIL]حرس الحدود
+
+BORDER_SECURITY [~MIL]أمن الحدود
+
+BRIGADE_COMMANDER [~MIL]قائد لواء
+
+BRIGADIER_GENERAL [~MIL] عميد
+
+BRIGAIDER [~MIL]قائد لواء 
+
+CAPITAL_SHIP [~MIL]السفينة الأم /القائدة 
+
+CAPTAIN [~MIL]قبطان 
+
+CARRIER [~MIL]حاملة طائرات
+
+CH-47F_CHINOOK [~MIL]  تشينوك 47إف
+
+CHIEF'S_OFFICE [~MIL]  مكتب القائد
+
+CHIEF_OF_STAFF_OF_THE_ARMY [~MILGOV رئيس أركان الجيش
+
+CHIEF_OF_THE_AIR_FORCE [~MILGOV]قائد القوى الجوية
+
+CHIEF_OF_THE_ARMY [~MIL]قائد القوى الحربية
+
+COAST_GUARD [~MIL] خفر سواحل/حرس سواحل
+
+COAST_GUARD_PATROLS [~MIL] دوريات خفر سواحل 
+
+COLONEL [~MIL]عقيد
+
+COMBAT_AIRCRAFT [~MILطائرة مقاتلة 
+
+COMBAT_HELICOPTER [~MIL]مروحية مقاتلة
+
+COMBAT_JET [~MIL] طائرة نفاثة مقاتلة
+
+COMBAT_PLANES [~MIL]طائرة مقاتلة 
+
+COMBAT_SHIP [~MIL]سفينة مقاتلة 
+
+COMBAT_TRAINER [~MIL] مدرّب قتالي
+
+COMBAT_TROOPS [~MIL] قوات مقاتلة
+
+COMMANDANT [~MIL] قائد عسكري
+
+COMMANDER [~MIL]ضابط في البحرية 
+
+COMMANDER_IN_CHIEF_OF_THE_AIR_FORCE [~MIL]قائد السلاح الجوي/ القائد العام للقوات الجوية
+
+COMMANDER_IN_CHIEF_OF_THE_ARMY [~MIL القائد العام للجيش 
+
+COMMANDER_IN_CHIEF_OF_THE_NAVY [~MIL] قائد القوى البحرية
+
+COMMANDING_GENERAL [~MIL]القائد العام 
+
+COMMANDING_OFFICER [~MIL]ضابط قيادة 
+
+COMMANDO [~MIL] مغوار 
+
+CONTROL_FORCES [~MIL] قوات مراقبة 
+
+CORPORAL [~MIL]عرّيف
+
+CORVETTE [~MIL]  الحرّاقة ‫)‬سفينة حربية قديمة)
+
+CRUISER [~MIL]سفينة حربية /طراد
+
+CRUISE_MISSILE [~MIL]صاروخ كروز / صاروخ جوّال  
+
+DEFENSE_FORCE [~MIL]قوة دفاع 
+
+DEFENSE_SERVICE [~MIL]خدمة الدفاع 
+
+DEFENSE_SERVICES_INTELLIGENCE [~MILSPY]خدمات المخابرات الدفاعية  
+
+DESTROYER [~MIL]مدمّرة/هادمة/مهدّمة
+
+DRONE_AIRCRAFT [~MIL] طائرة من دون طيّار
+
+ECHELON [~MIL]قافلة 
+
+ENSIGN [~MIL]علم/راية/حامل العلم/حامل الراية 
+
+EUROFIGHTER_TYPHOON [~MIL]يوروفايتر تايفون 
+
+F-16 [~MIL]إف 16
+
+F-16_JET [~MIL] الطائرة النفّاثة إف 16
+
+F-22A_RAPTOR [~MIL]رابتور إف 22 أي 
+
+F-22_RAPTOR [~MIL] رابتور إف 22 
+
+F-7MG [~MIL]إف 7إم جي
+
+F/A-18 [~MIL]إف‫/‬أي 18
+
+F/A-18E/F_SUPER_HORNET [~MIL] سوبر هورنيت إف إي 18 إي‫/‬إف 
+
+F/A-18_FIGHTER [~MIL] المقاتلة ف/أي 18
+
+F/A-18_FIGHTER_JET [~MIL]   الطائرة النفاثةالمقاتلة إف /أي 18
+
+F/A-22_FIGHTER [~MIL]المقاتلة إف/أي 22 
+
+F/A-22_RAPTOR [~MIL]رابتور إف/أي 22
+
+FIELD_MARSHAL [~MIL] المشير
+
+FIGHTER_AIRCRAFT [~MIL] طائرة محاربة
+
+FIGHTER_BOMBER [~MIL]طائرة قاذفة قنابل 
+
+FIGHTER_BOMBERS [~MIL] طائرات قاذفة للقنابل
+
+FIGHTER_JET [~MIL]طائرة نفّاثة مقاتلة
+
+FIGHTER_PLANE [~MIL] طائرة مقاتلة
+
+FIGHTING_FALCON [~MIL] طائرة الصقر المقاتلة 
+
+FIGHTING_POSITION [~MIL]موقع قتالي 
+
+FIRST_LIEUTENANT [~MIL]ملازم أول 
+
+FLAG_OFFICER [~MIL] ضابط الراية/ضابط بحري/ضابط ذو رتبة عالية 
+
+FRIGATE [~MIL]بارجة 
+
+FUERZAS_ESPECIALES [~MIL]قوات خاصة 
+
+F_16 [~MIL]إف 16 
+
+F_16_JET [~MIL]طائرة نفاثة 16
+
+GARRISON [~MIL]حامية/موقع عسكري 
+
+GENDARMERIE_NATIONALE [~MIL]الدرك الوطني 
+
+GENDERMARIE [~MIL]الدرك 
+
+GENERALISSIMO [~MIL] القائد العام 
+
+GENERALS [~MIL]القادة 
+
+GENERAL_OF_THE_ARMY [~MIL]قائد الجيش 
+
+GOVERNMENT_FORCES [~MIL] القوات الحكومية 
+
+GOVERNMENT_REGIMENT [~MIL] فوج الحكومة 
+
+GOVERNMENT_SOLDIER [~MIL]جندي حكومي 
+
+GOVERNMENT_TROOPS [~MIL]القوات الحكومية 
+
+GOVERNMENT_TROOPS_AND_POLICE {} [~MIL] القوات الحكومية والشرطة 
+
+GROUND_FORCES [~MIL] قوات برّية 
+
+GROUND_TROOP [~MIL] جيش برّي
+
+GUARD_COMMAND [~MIL]قيادة الحرس 
+
+GUARD_SHIP [~MIL]سفينة حراسة
+
+HARRIER_JET [~MIL]الطائرة النفاثة هاريير 
+
+HEAVY_MACHINE_GUN [~MIL] رشاش ثقيل 
+
+HELICOPTER_GUNSHIP [~MIL]  مروحية حربية
+
+HOME_RESERVE [~MIL] احتياط وطني 
+
+HUMVEE [~MIL]  مركبة مرتفعة متعددة الأهداف
+
+INFANTRY [~MIL] المشاة 
+
+JET_FIGHTER [~MIL]طائرة مقاتلة
+
+JOINT_CHIEFS [~MIL] هيئة الأركان المشتركة 
+
+JOINT_CHIEFS_OF_STAFF [~MIL] رؤساء الأركان 
+
+JOINT_STRIKE_FIGHTER [~MIL]مقاتلات الضرب المشتركة 
+
+JUNIOR_OFFICER [~MIL]ظابط صغير 
+
+JUNTA_FORCES [~MIL] قوات المجلس العسكري 
+
+JUNTA_SOLDIER [~MIL]جندي في المجلس العسكري 
+
+JUNTA_TROOP [~MIL]كتيبة في المجلس العسكري
+
+JUNTA_TROOPS  [~MIL] كتائب المجلس العسكري 
+
+LANDING_SHIP [~MIL]سفينة إنزال 
+
+LAND_FORCE [~MIL] قوة برّية 
+
+LIEUTENANT [~MIL]ملازم 
+
+LIEUTENANT_COLONEL [~MIL]مقدّم 
+
+LIEUTENANT_GENERAL [~MIL]فريق 
+
+LIEUTENANT_JUNIOR_GRADE [~MIL] ملازم صغير في الرتبة 
+
+MAJ. [~MIL] رائد 
+
+MAJOR_GENERAL [~MIL]لواء 
+
+MARINES [~MIL] جنود في البحرية 
+
+MARINE_CORP [~MIL]قوات مشاة البحرية 
+
+MARINE_CORPS_GUNNERY_SERGEANT [~MIL] رقيب في قوات المدفعية البحرية
+
+MASTER_SERGEANT [~MIL]رقيب أول 
+
+MI-24VM/HIND [~MIL] ميغ 24إم‫/‬هند
+
+MIG [~MIL]طائرة ميغ
+
+MIG-21PFM [~MIL] PFM طائرة ميغ 21   
+
+MILITARY [~MIL] عسكري/حربي 
+
+MILITARY_ADVISER [~MIL]  مستشار عسكري / مستشار حربي
+
+MILITARY_AIRCRAFT [~MIL]طائرة عسكرية 
+
+MILITARY_AUTHORITIES [~MIL] السلطات العسكرية 
+
+MILITARY_AUTHORITY [~MIL] السلطة العسكرية 
+
+MILITARY_BASE [~MIL]قاعدة عسكرية 
+
+MILITARY_CLIQUE [~MIL] زمرة عسكرية 
+
+MILITARY_COMMISSION [~MIL]لجنة عسكرية 
+
+MILITARY_DELEGATION [~MIL] وفد عسكري 
+
+MILITARY_FORCE [~MIL] قوة عسكرية 
+
+MILITARY_GROUP [~MIL]مجموعة عسكرية 
+
+MILITARY_INTELLIGENCE [~MILSPY] مخابرات عسكرية 
+
+MILITARY_INTELLIGENCE_AGENCY [~MILSPY] وكالة الاستخبارات العسكرية 
+
+MILITARY_INTELLIGENCE_APPARATUS [~MILSPY] جهاز الاستخبارات العسكرية 
+
+MILITARY_INTELLIGENCE_SECRET_POLICE {} [~MILSPY] الشرطة السرية للاستخبارات العسكرية 
+
+MILITARY_JUDGE [~MILJUD]قاضي عسكري 
+
+MILITARY_JUSTICE [~MILJUD] قضاء عسكري 
+
+MILITARY_MACHINE [~MIL]آلة/ماكينة عسكرية 
+
+MILITARY_OFFICER [~MIL]ضابط عسكري 
+
+MILITARY_OFFICIAL [~MIL]مسؤول عسكري 
+
+MILITARY_OPERATIONS_CONTROL_COMMAND [~MIL]قيادة مراقبة العمليات العسكرية 
+
+MILITARY_PATROL [~MIL] دورية عسكرية 
+
+MILITARY_PERSONNEL [~MIL] الملاك العسكري 
+
+MILITARY_POLICE {} [~MILCOP] الشرطة العسكرية 
+
+MILITARY_PRESENCE [~MIL] التواجد العسكري 
+
+MILITARY_REPRESENTATIVE [~MIL]ممثل عسكري 
+
+MILITARY_RESERVE [~MIL]احتياط عسكري 
+
+MILITARY_SPOKES!PERSON!  [~MIL]المتحدث الرسمي العسكري /الناطق الرسمي العسكري 
+
+MILITARY_SUPPORT_PERSONNEL [~MIL]أفراد الدعم العسكري 
+
+MILITARY_TRANSPORT_PLANE [~MIL]طائرة نقل عسكرية 
+
+MILITARY_TRIBUNAL [~MILJUD]محكمة عسكرية 
+
+MIRAGE-2000 [~MIL]ميراج 2000 
+
+MORTAR_POSITION [~MIL] موقع الهاون 
+
+MQ-9_REAPER [~MIL] ريبير 9إم كيو
+
+NATIONAL_ARMY_DETACHMENT [~MIL]مفرزة/كتيبة في الجيش الوطني 
+
+NATIONAL_ARMY_TASK_FORCE [~MIL] فرقة من الجيش الوطني 
+
+NATIONAL_GENDARMERIE [~MIL] الدرك الوطني
+
+NATIONAL_GUARD [~MIL] الحرس الوطني 
+
+NAVAL [~MIL] بحري 
+
+NAVAL_BASE [~MIL]قاعدة بحرية 
+
+NAVAL_DESTROYER [~MIL] مدمّرة بحرية 
+
+NAVAL_OFFICER [~MIL]ضابط بحري 
+
+NAVAL_SHIP [~MIL]سفينة بحرية 
+
+NAVAL_UNIT [~MIL]وحدة بحرية 
+
+NAVY [~MIL] سلاح البحرية / القوات البحرية 
+
+NIGHTHAWK_STEALTH_FIGHTER [~MIL]البومة الشبح المقاتلة 
+
+OFFICER_IN_COMMAND {OFFICERS_IN_COMMAND} [~MIL] ضابط في قيادة‫/‬ضباط في قيادة 
+
+OFFICE_OF_THE_AIR_FORCE_COMMANDER_IN_CHIEF [~MIL]القائد الأعلى لمكتب القوى الجوية 
+
+P-3A_ORION [~MIL]أوريون بي‫-‬3أي 
+
+P-8A_POSEIDON [~MIL] بوسيدون بي‫-‬8أي 
+
+PARAMILITARY [~MIL] شبه عسكري 
+
+PARAMILITARY_FORCE [~MIL]قوة شبه عسكرية
+
+PARAMILITARY_ORGANISATION [~MIL]منظمة شبه عسكرية 
+
+PARAMILITARY_POLICE {} [~MILGOV]شرطة شبه عسكرية 
+
+PARAMILITARY_UNIT [~MIL]وحدة شبه عسكرية 
+
+PARATROOPS [~MIL]المظليين 
+
+PHALANX [~MIL]وحدة عسكرية 
+
+PILOTLESS_PLANE [~MIL]طائرة من دون طيّار 
+
+PREDATOR_DRONE [~MIL] طائرة من دون طيّار (الدرون) البريديتير 
+
+PREDATOR_UAV [~MIL]بريديتور يو أي في 
+
+PRISONER_OF_WAR {PRISONERS_OF_WAR} [~MIL] أسير حرب
+
+PRIVATEER [~MIL] سفينة قرصنة 
+
+REAPER_DRONE [~MIL]درون ريبر طائرة من دون طيّار
+
+REGIMENT [~MIL] فوج
+
+REMOTELY_PILOTED_AIRCRAFT [~MIL]طائرة تحكّم من دون طيّار
+
+REMOTELY_PILOTED_DRONES [~MIL] طائرة تحكّم درون من دون طيّار 
+
+RESERVE_OFFICER [~MIL]ضابط احتياط 
+
+RESERVIST [~MIL]احتياطي 
+
+RF_4C [~MIL] آر إف 4 سي
+
+SCUD_MISSILE [~MIL] صواريخ سكود 
+
+SEAMAN {SEAMEN} [~MIL] جندي 
+
+SECOND_LIEUTENANT [~MIL] ملازم ثاني 
+
+SECURITY_FORCE [~MIL] قوة أمن 
+
+SECURITY_PATROL [~MIL] دورية أمن 
+
+SECURITY_PERSONNEL [~MIL] ملاك الأمن 
+
+SERVICE!PERSON! [~MIL]الخدمة
+
+SHORE_PATROL [~MILCOP] دورية الساحل 
+
+SOLDIER [~MIL]جندي 
+
+SOLDIERS,_ALONG_WITH_THEIR_FAMILIES  [~MIL] الجنود إلى جانب عائلاتهم
+
+SOLDIERS_AND_THEIR_FAMILIES  [~MIL]الجنود وعائلاتهم 
+
+SOLDIERS_WITH_THEIR_FAMILIES  [~MIL] الجنود مع عائلاتهم
+
+SOLDIERY [~MIL]العسكرية‫/‬الجندية 
+
+SPECIAL_BATTALION [~MIL]الكتيبة الخاصة 
+
+SPECIAL_FORCE [~MIL] قوة خاصة 
+
+SPECIAL_OPERATIONS [~MIL]عمليات خاصة 
+
+SPY_PLANE [~MILSPY]طائرة تجسس   
+
+STANDING_ARMY [~MIL]الجيش الدائم  
+
+STEALTH_BOMBER [~MIL]قاذفة قنابل متخفّية 
+
+STEALTH_FIGHTER [~MIL]المقاتلة الشبح 
+
+STRATEGIC_SERVICE [~MIL] الخدمة الاستراتيجية
+
+SU-24 [~MIL]إس يو 24
+
+SU-30MK [~MIL]إس يو 30إم كي
+
+SUBLIEUTENANT [~MIL] ملازم أول 
+
+SUBMERSIBLE_WARSHIP [~MIL] غواصة حربية
+
+SUKHOI_PAK_FA [~MIL]سوخوي باك إف إي
+
+SUPER_HORNET [~MIL] سوبر هورنيت 
+
+TACTICAL_UNIT [~MIL] وحدة تكتيكية 
+
+TACTICAL_VEHICLE [~MIL] عربة تكتيكية 
+
+TOMAHAWK_CRUISE_MISSILE [~MIL] صاروخ كروز توماهوك
+
+TOMAHAWK_MISSILE [~MIL] صاروخ توماهوك 
+
+TOMCAT_FIGHTER [~MIL]المقاتلة تومكات 
+
+TORPEDO_BOAT [~MIL] سفينة الطوربيد/الطوربيد/زورق الطوربيد
+
+TROOP [~MIL]جنود/فرقة/عسكر
+
+UNMANNED_AERIAL_DRONE [~MIL] طائرة جوية درون من دون طيار 
+
+UNMANNED_AERIAL_SYSTEM [~MIL]نظام جوي من دون طيار 
+
+UNMANNED_AERIAL_VEHICLE [~MIL]عربة/ناقلة جوية من دون طيار 
+
+UNMANNED_AIRCRAFT [~MIL]طائرة من دون طيار 
+
+UNMANNED_DRONE [~MIL]درون من دون طيار
+
+UNMANNED_PREDATOR [~MIL]بريديتور من دون طيار
+
+V-22_OSPREY [~MIL] أوسبري -في-22 
+
+WARPLANE [~MIL] طائرة حربية 
+
+WARSHIP [~MIL]سفينة حربية 
+
+WAR_MACHINE [~MIL] آلة حربية 
+
+WAR_VESSEL [~MIL] باخرة حربية 
+
+WEAPONS_STORAGE_FACILITY [~MIL]مرفق تخزين الأسلحة/بناء لتخزين الأسلحة/ مستودع أسلحة
+
+WEEKEND_WARRIOR [~MIL] محارب عطلة نهاية الأسبوع
+
+
+ADMINISTRATION [~GOV] إدارة
+ADMINISTRATIVE_BODY [~GOV] هيئة إدارية
+ADMINISTRATIVE_OFFICIAL [~GOV]موظف إداري 
+ADMINISTRATIVE_UNIT [~GOV] وحدة إدارية
+ADVISORY_BOARD [~GOV]مجلس استشاري
+ADVOCATE_GENERAL [~GOVJUD]المحامي العام
+AGRICULTURE_AND_IRRIGATION_MINISTRY [~GOVAGR] وزارة الزراعة والري
+AGRICULTURE_MINISTER [~GOVAGR]وزارة الزراعة
+AGRICULTURE_SECRETARY [~GOVAGR]وزير الزراعة
+AMBASSADOR [~GOV]سفير
+AMBASSADOR_AT {} [~GOV]سفير في
+AMBASSADOR_FOR {} [~GOV]سفير لل
+AMBASSADOR_TO {} [~GOV]سفير إلى
+ANIMAL_HUSBANDRY_AND_AQUATICS_MINISTER [~GOVAGR]وزير الثروة الحيوانية والمائية
+ANTI_GRAFT_COMMISSION [~GOV]وكالة مكافحة الكسب غير المشروع
+ASSEMBLY_OF_THE_UNION [~GOV]جمعية الاتحاد
+ATOMIC_ENERGY_COMMITTEE [~GOV]لجنة الطاقة الذرية
+ATTORNEY_GENERAL [~GOV]المدعي العام 
+AUDITOR_GENERAL [~GOV]المراجع العام 
+AUTHORITY [~GOV]السلطة
+AUTOCRAT [~GOV]المستبد
+A_CABINET_MEETING  [~GOV]اجتماع لمجلس الوزراء
+BANK_CONTROL_DEPARTMENT [~GOVBUS]إدارة مراقبة المصارف/البنوك
+BORDER_TRADE_DEPARTMENT [~GOVBUS]إدارة تجارة الحدود
+BROADCAST_MINIST [~GOVMED] وزارة البث/الإذاعة
+BUREAUCRACY [~GOV]البيروقراطية/الروتين
+BUREAUCRAT [~GOV]الدواويني
+BUREAU_OF_SPECIAL_INVESTIGATION {} [~GOVCOP]مكتب التحقيقات الخاصة
+BUREAU_OF_SPECIAL_OPERATIONS {} [~GOVSPY] مكتب العمليات الخاصة
+CABINET_MINISTER [~GOV] وزير مجلس الوزراء
+CABINET_OF_MINISTERS {} [~GOV] مجلس الوزراء
+CABINET_SECRETARY [~GOV]مستشار الحكومة
+CARETAKER_ADMINISTRATION [~GOV] إدارة مؤقتة
+CARETAKER_GOVERNMENT [~GOV] حكومة مؤقتة
+CENTRAL_BANK [~GOVBUS]المصرف/البنك المركزي
+CENTRAL_BANK_GOVERNOR [~GOVBUS]حكومة المصرف/البنك المركزي
+CENTRAL_COMMITTEE_FOR_DRUG_ABUSE_CONTROL [~GOV]اللجنة المركزية لمكافحة تعاطي المخدرات
+CENTRAL_ELECTION_COMMISSION [~GOV]وكالة الانتخابات المركزية
+CENTRAL_ELECTION_COMMITTEE [~GOV]لجنة الانتخابات المركزية
+CHAIRMAN_OF_THE_COUNCIL_OF_MINISTERS [~GOV] رئيس مجلس الوزراء
+CHANCELLERY [~GOV]منصب قضائي
+CHANCELLOR [~GOV]قاضي القضاة
+CHARGE_D'AFFAIRES [~GOV]القائم بالأعمال 
+CHIEF EXECUTIVE [~GOV]الرئيس التنفيذي 
+CHIEF_MINISTER [~GOV] رئيس وزراء
+CHIEF_OF_DEFENCE_STAFF [~GOVMIL] رئيس أركان الدفاع
+CHIEF_OF_ELECTION_COMMISSION [~GOV] رئيس وكالة الانتخابات
+CHIEF_OF_STAFF [~GOV] رئيس 
+CHIEF_OF_STATE [~GOV]رئيس الدولة
+CITY_MANAGER [~GOV]مدير المدينة
+CITY_MAYOR [~GOV]رئيس بلدية المدينة
+CIVIL_AUTHORITY [~GOV]السلطة المدنية
+CIVIL_AVIATION_DEPARTMENT [~GOV]قسم الطيران المدني
+CIVIL_AVIATION_DIRECTOR_GENERAL [~GOV]مدير عام الطيران المدني
+CIVIL_AVIATION_OFFICER [~GOV]ضابط الطيران المدني
+CIVIL_AVIATION_STAFF [~GOV]موظفو الطيران المدني
+CIVIL_DEFENSE_DEPARTMENT [~GOVMIL]إدارة الدفاع المدني
+CIVIL_DEFENSE_MINIST [~GOVMIL]وزارة الدفاع المدني
+CIVIL_DEFENSE_SECRETARY [~GOVMIL]وزير الدفاع المدني
+CIVIL_OFFICER [~GOV]ضابط مدني
+CIVIL_SERVANT [~GOV]موظف حكومي
+CIVIL_SERVICE [~GOV]الخدمة العامة
+COALITION_OF_RULING_PARTIES [~GOV]ائتلاف الأحزاب الحاكمة
+COMMERCE_DEPARTMENT [~GOV] وزارة التجارة
+COMMERCE_MINIST [~GOV] إدارة التجارة
+COMMERCE_SECRETARY [~GOV]وزارة التجارة
+COMMITTEE_FOR_DRUG_ABUSE_CONTROL [~GOV]لجنة مكافحة تعاطي المخدرات
+COMMITTEE_OF_STATE [~GOV]لجنة الدولة
+COMMUNICATIONS_BUREAU [~GOVMED] مكتب الاتصالات
+CONSTITUENT_ASSEMBLY [~GOV]الجمعية التأسيسية/الهيئة التشريعية
+CONSTITUTIONAL_MONARCY [~GOV]الملكية الدستورية
+CONSTRUCTION_MINIST [~GOVDEV]وزارة الإنشاء والتعمير
+CONSULATE [~GOV]قنصلية
+CONSUL [~GOV]قنصل
+CONSUL_GENERAL [~GOV] القنصل العام
+CONSUL_GENERAL_OFFICE [~GOV]مكتب القنصل العام
+COOPERATION_MINIST [~GOV]وزارة التعاون
+COUNCIL_OF_MINISTERS [~GOV]مجلس الوزراء 
+COUNCIL_OF_STATE [~GOV]مجلس الدولة
+COURT_OF_AUDITORS [~GOV]ديوان المحاسبة
+CROWN_PRINCE [~GOV]ولي العهد
+CUSTOMS_OFFICIAL [~GOV]موظف الجمارك
+DEFENCE_MINIST [~GOVMIL]وزارة الدفاع	
+DEFENCE_SECRETARY [~GOVMIL] وزير الدفاع
+DEFENSE_DEPARTMENT [~GOVMIL]إدارة الخارجية
+DEFENSE_SERVICES [~GOVMIL]خدمات الدفاع
+DEPARTMENT_FOR_PROTOCOL [~GOV]إدارة للمراسم/للتشريفات الدبلوماسية والعسكرية
+DEPARTMENT_OF_AGRICULTURE [~GOVAGR]إدارة الزراعة
+DEPARTMENT_OF_BANK_CONTROL [~GOVBUS]إدارة الرقابة المصرفية
+DEPARTMENT_OF_BORDER_TRADE [~GOVBUS]إدارة التجارة الحدودية
+DEPARTMENT_OF_CIVIL_AVIATION [~GOV]إدارة الطيران المدني
+DEPARTMENT_OF_CIVIL_DEFENSE [~GOVMIL]إدارة الدفاع المدني 
+DEPARTMENT_OF_COMMERCE [~GOVBUS]إدارة التجارة
+DEPARTMENT_OF_DEFENSE [~GOVMIL]إدارة الدفاع
+DEPARTMENT_OF_EDUCATION [~GOVEDU]إدارة التعليم
+DEPARTMENT_OF_ENVIRONMENT [~GOVENV]إدارة بيئة
+DEPARTMENT_OF_THE_ENVIRONMENT [~GOVENV]إدارة البيئة 
+DEPARTMENT_OF_ENVIRONMENTAL_QUALITY [~GOVENV]إدارة جودة البيئة
+DEPARTMENT_OF_FOREIGN_AFFAIRS [~GOV]إدارة العلاقات الخارجية
+DEPARTMENT_OF_PROTOCOL [~GOV]إدارة المراسم/التشريفات الدبلوماسية والعسكرية
+DEPARTMENT_OF_REVENUE [~GOV] قسم الدخل /الإيرادات
+DEPARTMENT_OF_TOURISM [~GOV]قسم السياحة
+DEPT_OF_TRANSPORTATION [~GOV]قسم النقل 
+DEPT_OF_AGRICULTURE [~GOVAGR]قسم الزراعة
+DEPT_OF_TOURISM [~GOV]قسمة السياحة
+DEPUTY_PRIME_MINISTER [~GOV]نائب رئيس الوزراء
+DESPOT [~GOV]طاغية /مستبد
+DEVELOPMENT_COUNCIL [~GOVDEV]مجلس الإنماء /مجلس التطوير 
+DICTATOR [~GOV]الحاكم المطلق
+DIPLOMATIC_BUILDING [~GOV]مبنى دبلوماسي
+DIPLOMATIC_BUILDING_IN {}  [~GOV]مبنى دبلوماسي في 
+DIPLOMAT [~GOV]دبلوماسي
+DIRECTOR_GENERAL [~GOV]مدير عام
+DIRECTOR_GENERAL_OF_CIVIL_AVIATION [~GOV] مدير عام للطيران المدني
+DIRECTOR_OF_DEFENCE_SERVICES_INTELLIGENCE [~GOVMIL]مدير خدمات إستخبارات الدفاع
+DISASTER_MANAGEMENT_AND_RELIEF_MINIST [~GOV]وزارة  تدبير الكوارث والإغاثة
+DISASTER_MANAGEMENT_MINIST [~GOV]وزارة تدبير الكوارث
+DISTRICT_COMMISSIONER [~GOV]قائمقام /مفوض المحافظة
+ECONOMIC_MINIST [~GOV]وزارة الاقتصاد 
+ECONOMY_SECRETARY [~GOV]وزير الاقتصاد
+EDUCATION_DEPARTMENT [~GOVEDU]قسم التعليم
+EDUCATION_MINIST [~GOVEDU]وزارة التعليم
+EDUCATION_OFFICIAL [~GOVEDU] موظف في التعليم
+EDUCATION_SECRETARY [~GOVEDU]وزير التعليم
+ELECTION_COMMISSION [~GOV]اللجنة الانتخابية
+ELECTION_COMMISSION_MEMBER [~GOV]عضو في اللجنة الانتخابية
+ELECTORAL_COMMISSION [~GOV]اللجنة العليا للانتخابات
+ELECTION_COMPLAINTS_COMMISSION [~GOV] لجنة شكاوى الانتخاب 
+ELECTRICITY_AUTHORITY [~GOV] سلطة الكهرباء
+EMBASSY [~GOV]سفارة
+EMBASSY_IN {}  [~GOV] سفارة في
+EMISSARY [~GOV]بوليس سري
+EMPEROR [~GOV]إمبراطور
+EMPRESS [~GOV]إمبراطورة
+ENERGY_MINIST [~GOV]وزارة الطاقة
+ENERGY_SECRETARY [~GOV]وزير الطاقة
+ENT_AFFAIRS_MINIST [~GOV]وزارة الشؤون الداخلية
+ENVIRONMENTAL_PROTECTION_AGENCY [~ENV] # THERE ARE STATE ONES, NOT JUST THE US EPA وكالة حماية البيئة
+ENVIRONMENT_MINIST [~GOVENV]وزارة البيئة 
+ENVOY [~GOV] مبعوث
+ENVOY_EXTRAORDINARY [~GOV]مبعوث مكلف بمهمة خاصة/مبعوث استثنائي
+EXECUTIVE_DEPARTMENT [~GOVMIL]القسم التنفيذي
+EXTERNAL_AFFAIRS_DEPARTMENT [~GOV]قسم الشؤون الخارجية
+EXTERNAL_AFFAIRS_MINIST [~GOV]وزارة الشؤون الخارجية
+EXTERNAL_RELATIONS_MINIST [~GOV]وزارة العلاقات الخارجية
+FEDERAL_CHANCELLERY [~GOV]المستشارية الإتحادية
+FINANCE_ADMINISTRATION_MINIST [~GOV]وزارة الإدارة المالية
+FINANCE_MINIST [~GOV]وزارة المالية
+FINANCE_OFFICIAL [~GOV]مسؤول مالي
+FINANCE_SERVICES_MINISTER [~GOV]وزارة الخدمات المالية
+FINANCIAL_SECRETARY [~GOV]وزير المالية
+FIREFIGHTER [~GOV]رجل الإطفاء
+FIRE!PERSON! {} [~GOV]المطافئ
+FIRE_BRIGADE [~GOV]لواء المطافئ
+FIRE_BRIGADE_OFFICIAL [~GOV]مسؤول مكافحة الحرائق
+FIRE_BRIGADE_OFFICIAL [~GOV]مسؤول المطافئ
+FIRE_CHIEF [~GOV]رئيس مطافئ
+FIRE_COMPANY [~GOV] شركة مطافئ
+FIRE_DEPARTMENT [~GOV]إدارة مكافحة الحرائق
+FIRE_MARSHAL [~GOV]مشاة المطافئ
+FIRE_SERVICE [~GOV]خدمة المطافئ
+FIRE_WARDEN [~GOV]حارس الحرائق
+FIRE_WARDEN [~GOV]مراقب الحرائق
+FISHERIES_AND_LIVESTOCK_MINIST [~GOVAGR]وزارة الأسماك والثروة الحيوانية
+FOOD_AND_DISASTER_MANAGEMENT_AND_RELIEF_MINIST [~GOV]وزارة الإغاثة وتدبير الكوارث والغذاء
+FOOD_AND_DISASTER_MANAGEMENT_MINIST [~GOV]وزارة تدبير الكوارث والغذاء
+FOOD_MINIST [~GOV]وزارة التغذية
+FOREIGN_AFFAIRS_MINISTRY [~GOV]وزارة العلاقات الخارجية
+FOREIGN_DIPLOMATIC_BUILDING [~GOV]مبنى الدبلوماسيين الأجانب
+FOREIGN_EMBASSY [~GOV]سفارة أجنبية
+FOREIGN_INVESTMENT_COMMISSION [~GOV]لجنة الاستثمار الأجنبي
+FOREIGN_!MINIST! [~GOV]وزارة الخارجية
+FOREIGN_OFFICE [~GOV]مسؤول أجنبي
+FOREIGN_RELATIONS_COMMITTEE [~GOV]لجنة العلاقات الخارجية
+FOREIGN_RELATIONS_MINIST [~GOV]وزارة العلاقات الخارجية
+FOREIGN_SECRETARY [~GOV]وزير الخارجية
+GENERAL_FOR_LAW_AND_ORDER [~GOV]قائد للقانون والنظام
+GENERAL_FOR_LAW_AND_ORDER [~GOV]جنرال للقانون والنظام
+GEOLOGIC_SURVEY_AND_ITS_MINERAL_EXPLORATION_DEPARTMENT [~GOV]دائرة المسح الجيولوجي والتنقيب عن المعادن
+GOVERNANCE [~GOV]الحاكمة
+GOVERNING_PARTY [~GOV]الحزب الحاكم
+GOVERNMENT [~GOV]حكومة
+GOVERNMENT_COMMISSION [~GOV]لجنة حكومية
+GOVERNMENT_DELEGATION [~GOV]مندوب حكومة
+GOVERNMENT_EMPLOYER [~GOVBUS]موظف حكومة
+GOVERNMENT_LAWMAKER [~GOVPTY]مشرع حكومة
+GOVERNMENT_OFFICIAL [~GOV]موظف حكومة
+GOVERNMENT_OFFICIAL [~GOV]مسؤول حكومة
+GOVERNMENT_ORGANIZATION [~GOV]منظمة حكومة
+GOVERNMENT_REPRESENTATIVE [~GOV]مندوب حكومة
+GOVERNMENT_REPRESENTATIVE [~GOV]ممثل حكومة
+GOVERNMENT_RUN FIRM [~GOVBUS]شركة تديرها الحكومة
+GOVERNMENT_SPOKES!PERSON! [~GOV]ناطق باسم الحكومة
+GOVERNMENT_SPOKES!PERSON! [~GOV]متحدث باسم الحكومة
+GOVERNOR [~GOV]محافظ
+GOVERNOR_GENERAL [~GOV]الحاكم العام
+HEAD_OF_GOVERNMENT [~GOV]رئيس الحكومة
+HEAD_OF_STATE [~GOV]رئيس الدولة
+HEALTH_AND_FAMILY_MINIST [~GOVHLH]وزارة الصحة والأسرة
+HEALTH_DEPARTMENT [~GOVHLH]إدارة الصحة
+HEALTH_MINIST [~GOVHLH]وزارة الصحة
+HEALTH_OFFICIAL [~GOVHLH]مسؤول صحة
+HEALTH_PERSONNEL [~GOVHLH]ملاك الصحة 
+HIGHER_EDUCATION_MINIST [~GOVEDU]وزارة التعليمة العالي
+HIGHLY_RANKING_OFFICIAL [~GOV]مسؤول رفيع المستوى
+HIGH_COMMISSION [~GOV]اللجنة العليا
+HIGH_OFFICIAL [~GOV]مسؤول كبير
+HIGH_RANKING_OFFICER [~GOV]ضابط رفيع المستوى
+HOME_AFFAIRS_MINIST [~GOV]وزارة الشؤون الوطنية
+HOME_AND_RELIGIOUS_AFFAIRS_MINIST [~GOVREL]وزارة الشؤون الدينية والوطنية 
+HOME_!MINIST! [~GOV]الوزارة الداخلية 
+HOUSING_AND_PUBLIC_WORKS_!MINIST! [~GOV]وزارة الإسكان والأشغال العامة
+HUMAN_RIGHTS_COMMISSION [~GOVHRI]لجنة حقوق الإنسان 
+IMMIGRATION_!MINIST! [~GOV]وزارة الهجرة
+INDUSTRIES_!MINIST! [~GOVBUS]وزارة الصناعات
+INDUSTRY_!MINIST! [~GOVBUS]وزارة الصناعة
+INFORMATION_AND_CULTURE_!MINIST! [~GOVMED]وزارة الثقافة والإعلام 
+INFORMATION_COMMITTEE [~GOVMED]اللجنة الإعلامية 
+INFORMATION_!MINIST! [~GOVMED]وزارة الإعلام 
+INFORMATION_OFFICE [~GOVMED]مكتب الإعلام 
+INSPECTOR_GENERAL [~GOVCOP]المفتش العام 
+INTERIM_GOVERNMENT [~GOV]الحكومة المؤقتة 
+INTERIM_LEADER [~GOV]قائد مؤقت 
+INTERIM_PRESIDENT [~GOV]رئيس مؤقت 
+INTERIOR_!MINIST! [~GOV]وزير مؤقت 
+INTERIOR_SECRETARY [~GOV]وزير داخلية
+INVESTIGATIVE_COMMISSION [~GOV]لجنة تحقيق
+INVESTMENT_COMMISSION [~GOV]لجنة استثمار
+IRRIGATION_!MINIST! [~GOVAGR]وزارة الري
+JUNTA [~GOV]مجلس سياسي
+JUNTA_CHIEF [~GOV]رئيس المجلس السياسي
+JUSTICE_!MINIST! [~GOV]وزارة العدل
+JUTE_AND_TEXTILES_!MINIST! [~GOV]وزارة القنب والمنسوجات
+KINGDOM [~GOV]مملكة
+KING [~GOV]ملك
+LABOR_AND_EMPLOYMENT_!MINIST! [~GOVLAB]وزارة العمل والتوظيف
+LABOR_DEPARTMENT [~GOVLAB]إدارة العمل
+LABOR_!MINIST! [~GOVLAB]وزارة العمل
+LABOR_SECRETARY [~GOVLAB]وزير العمل
+LABOUR_!MINIST! [~GOVLAB]وزير العمل 
+LAW_JUSTICE_AND_PARLAIMENTARY_AFFAIRS_!MINIST! [~GOV]وزارة القانون والعدل والشؤون البرلمانية
+LAW_!MINIST! [~GOV]وزارة العدل
+LAW_OFFICER [~GOV]وزارة القانون
+LEGATE [~GOV]ممثل للبابا
+LIVESTOCK_AUTHORIT [~GOVAGR]هيئة الثروة الحيوانية
+LIVESTOCK_BREEDING_AND_FISHERY_!MINIST! [~GOVAGR]وزارة تربية الماشية والثروة السمكية
+LOCAL_DRUG_CONTROLLING_AUTHORITIES [~GOV]السلطات المحلية للسيطرة على المخدرات 
+LOCAL_GOVERNMENT,_RURAL_DEVELOPMENT_AND_COOPERATIVES_!MINIST! [~GOVDEV]وزارة الحكومة المحلية والتنمية الريفية والتعاونيات 
+MANPOWER_!MINIST! [~GOVLAB]وزارة القوى العاملة
+MAYOR [~GOV]العمدة
+MEDICAL_OFFICIAL [~GOVHLH]مسؤول طبي
+METEOROLOGICAL_DEPARTMENT [~GOV]إدارة الأرصاد
+MILITARY_BACKED_GOVERNMENT [~GOV]الجيش الداعم للحكومة
+MILITARY_DICTATOR [~GOVMIL]طاغية عسكري
+MILITARY_DICTATOR [~GOVMIL]دكتاتور عسكري
+MILITARY_GOVERNMENT [~GOVMIL]حكومة عسكرية 
+MILITARY_JUNTA [~GOVMIL]مجلس سياسي عسكري
+MILITARY_REGIME [~GOVMIL]نظام عسكري
+MILITARY_RULE [~GOVMIL]حكم عسكري
+MINES_!MINIST! [~GOV]وزارة الألغام
+MINES_OFFICIAL [~GOV]مسؤولين ألغام
+!MINIST!  [~GOV]
+# NOTE: SOME OF THESE ARE REALLY ESOTERIC: THEY WERE EXTRACTED FROM CIA WORLD LEADERS LISTS
+# ALH: ALSO, A BUNCH (ALL?) OF THESE SHOULD ALSO BE OF, RATHER THAN JUST FOR
+!MINIST! FOR_ YOUTH_AND_SPORTS [~GOVوزارة الشباب والرياضة
+!MINIST! FOR_AGRICULTURE,_FISHERIES_AND_FOOD [~GOVAGR]وزارة الزراعةوالأسماك والغذاء
+!MINIST! FOR_AGRICULTURE [~GOVAGR]وزارة الزراعة
+!MINIST! FOR_ANIMAL_HUSBANDRY_AND_AQUATICS [~GOVAGR]وزارة الثروة الحيوانية والمائية
+!MINIST! FOR_ANIMAL_RESOURCES [~GOVAGR]وزارة الموارد الحيوانية
+!MINIST! FOR_CIVIL [~GOVMIL]وزارة الأحوال المدنية
+!MINIST! FOR_COMMERCE [~GOV]وزارة التجارة
+!MINIST! FOR_COMMUNICATIONS [~GOVMED]وزارة الإتصالات
+!MINIST! FOR_COMMUNICATIONS_ENERGY_AND_NATURAL_RESOURCES [~GOV]وزارة فعالية الإتصالات والموارد الطبيعية
+!MINIST! FOR_COMMUNICATION [~GOVMED]وزارة الإتصال
+!MINIST! FOR_COMMUNICATION_AND_CULTURE [~GOVMED]وزارة الإتصال والثقافة
+!MINIST! FOR_COMMUNICATION_AND_INFORMATION_TECHNOLOGY [~GOV]وزارة الإتصال وتكنولوجيا المعلومات
+!MINIST! FOR_CONSTRUCTION [~GOVDEV]وزارة البناء
+!MINIST! FOR_DEFENCE [~GOVMIL]وزارة الدفاع
+!MINIST! FOR_DEFENSE [~GOVMIL]وزارة الدفاع
+!MINIST! FOR_DISASTER_MANAGEMENT [~GOV]وزارة إدارة الكوارث
+!MINIST! FOR_DOMESTIC_TRADE [~GOV]وزارة التجارة الداخلية
+!MINIST! FOR_ECONOMIC_AFFAIRS [~GOV]وزارة العلاقات الخارجية
+!MINIST! FOR_ECONOMIC_AFFAIRS_AND_FINANCE [~GOV]وزارة الشؤون الإقتصادية والمالية
+!MINIST! FOR_ECONOMY [~GOV]وزارة الإقتصاد
+!MINIST! FOR_ECONOMY_AND_FINANCE [~GOV]وزارة الإقتصاد والمال
+!MINIST! FOR_ECONOMY_AND_PLANNING [~GOV]وزارة الإقتصاد والتخطيط
+!MINIST! FOR_ECONOMY_AND_PUBLIC_FINANCE [~GOV]وزارة الإقتصاد والمال العام
+!MINIST! FOR_EDUCATION [~GOVEDU]وزارة التعليم
+!MINIST! FOR_EDUCATION_AND_SCIENCE [~GOVEDU]وزارة التعليم والعلوم
+!MINIST! FOR_ELECTRICITY [~GOV]وزارة الكهرباء
+!MINIST! FOR_EMPLOYMENT_AND_VOCATIONAL_TRAINING [~GOVLAB]وزراة العمل والتدريب المهني 
+!MINIST! FOR_ENERGY [~GOV]وزارة الطاقة
+!MINIST! OF_ENVIRONMENT [~ENV] وزارة البيئة
+!MINIST! FOR_EQUIPMENT [~GOVDEV]وزارة التجهيز
+!MINIST! FOR_EXTERNAL_RELATIONS [~GOV]وزارة العلاقات الخارجية
+!MINIST! FOR_FINANCE [~GOV]وزارة المالية
+!MINIST! FOR_FINANCE_SERVICES [~GOV]وزارة الخدمات المالية
+!MINIST! FOR_FISHERIES [~GOVAGR]وزارة الأسماك
+!MINIST! FOR_FOOD [~GOV]وزارة الغذاء
+!MINIST! FOR_FOREIGN [~GOV]وزارة الخارجية
+!MINIST! FOR_GOVERNMENT [~GOV]وزارة الحكومة
+!MINIST! FOR_HEALTH [~GOVHLH]وزارة الصحة
+!MINIST! FOR_HIGHER_EDUCATION [~GOVEDU]وزارة التعليم العالي
+!MINIST! FOR_HOME [~GOV]وزارة الداخلية
+!MINIST! FOR_HOME_AFFAIRS [~GOV]وزارة الشؤون الداخلية
+!MINIST! FOR_HOME_AND_RELIGIOUS_AFFAIRS [~GOVREL]وزارة الشؤون الدينية والداخلية
+!MINIST! FOR_HOUSING [~GOV]وزارة الإسكان 
+!MINIST! FOR_HYDROCARBONS [~GOVENV]وزارة الهيدروكربونات
+!MINIST! FOR_INDUSTRY [~GOVBUS]وزارة الصناعة 
+!MINIST! FOR_INFORMATION [~GOVMED]وزارة الإعلام
+!MINIST! FOR_INFRASTRUCTURE [~GOVDEV]وزارة البنية التحتية
+!MINIST! FOR_INTERIOR [~GOV]وزارة الداخلية
+!MINIST! FOR_INTERNAL_AFFAIRS [~GOV]وزارة الشؤون الداخلية
+!MINIST! FOR_INTERNATIONAL_COOPERATION [~GOV]وزارة التعاون الدولي
+!MINIST! FOR_INTERNATIONAL_DEVELOPMENT [~GOVDEV]وزارة التنمية الدولية
+!MINIST! FOR_INTERNATIONAL_TRADE [~GOV]وزارة التجارة الدولية
+!MINIST! FOR_IRRIGATION [~GOVAGR]وزارة الري
+!MINIST! FOR_JUSTICE [~GOV]وزارة العدل
+!MINIST! FOR_JUTE_AND_TEXTILES [~GOV]وزارة القنب والمنسوجات
+!MINIST! FOR_LABOR [~GOVLAB]وزارة العمل
+!MINIST! FOR_LABOUR [~GOVLAB]وزارة العمل
+!MINIST! FOR_LANDS,_HOUSING_AND_URBAN_DEVELOPMENT [~GOV]وزارة الأراضي والإسكان وتنمية المدن
+!MINIST! FOR_LANDS [~GOV]وزارة الأراضي
+!MINIST! FOR_LAW [~GOV]وزارة القضاء
+!MINIST! FOR_LIVESTOCK [~GOVAGR]وزارة الثروة الحيوانية
+!MINIST! FOR_LOCAL_GOVERNMENT [~GOVDEV]وزارة الحكومة المحلية
+!MINIST! FOR_MATERIALS [~GOV]وزارة المواد
+!MINIST! FOR_MINERAL_RESOURCES [~GOVENV]وزارة الموارد المعدنية
+!MINIST! FOR_MINES [~GOV]وزارة المناجم
+!MINIST! FOR_MINING_AND_ENERGY [~GOV]وزارة التعدين والطاقة
+!MINIST! FOR_NATIONAL_DEFENCE [~GOVMIL]وزارة الدفاع الوطني
+!MINIST! FOR_NATIONAL_DEVELOPMENT [~GOVDEV]وزارة التطوير الوطني
+!MINIST! FOR_NATIONAL_ECONOMY [~GOV]وزارة الإقتصاد الوطني 
+!MINIST! FOR_NATIONAL_EDUCATION [~GOVEDU]وزارة التربية الوطنية 
+!MINIST! FOR_NATIONAL_PLANNING_AND_ECONOMIC_DEVELOPMENT [~GOVDEV]وزارة التخطيط الوطني و التنمية الإقتصادية
+!MINIST! FOR_NATURAL_RESOURCES [~GOVENV]وزارة الموارد الطبيعية
+!MINIST! FOR_NATURAL_RESOURCES_AND_ENVIRONMENT [~GOVENV]وزارة الموارد الطبيعية والبيئة
+!MINIST! FOR_NGOS [~GOV]وزارة المنظمات غير الحكومية
+!MINIST! FOR_OIL [~GOV]وزارة النفط
+!MINIST! FOR_PETROLEUM [~GOV]وزارة النفط
+!MINIST! FOR_PLANNING [~GOVDEV]وزارة التخطيط
+!MINIST! FOR_PLANNING_AND_DEVELOPMENT [~GOVDEV]وزارة التخطيط التنمية
+!MINIST! FOR_POST_AND_TELECOMMUNICATION [~GOVMED]وزارة البريد والإتصالات
+!MINIST! FOR_PRESIDENTIAL_AFFAIRS [~GOV]وزارة العلاقات الرئاسية
+!MINIST! FOR_PRODUCTION [~GOVBUS]وزارة الإنتاج
+!MINIST! FOR_PROGRESS [~GOV]وزارة التقدم
+!MINIST! FOR_PUBLIC_HEALTH [~GOVHLH]وزارة الصحة العامة
+!MINIST! FOR_PUBLIC_HEALTH_AND_SOCIAL_WELFARE [~GOVHLH]وزارة الصحة العامة والرعاية الإجتماعية
+!MINIST! FOR_PUBLIC_SERVICE [~GOVDEV]وزارة الخدمات العامة
+!MINIST! FOR_PUBLIC_SERVICE_AND_AD!MINIST!RATIVE_REFORM [~GOVDEV]وزارة الخدمة العامة والإصلاح الإداري
+!MINIST! FOR_PUBLIC_UTILITIES [~GOV]وزارة المرافق العامة
+!MINIST! FOR_PUBLIC_WORKS [~GOV]وزارة الأشغال العامة
+!MINIST! FOR_RAIL_TRANSPORT [~GOVMED]وزارة النقل بالسكك الحديدية
+!MINIST! FOR_REGIONAL_COOPERATION [~GOV]وزارة التعاون الإقليمي
+!MINIST! FOR_REGIONAL_DEVELOPMENT [~GOV]وزارة التنمية الإقليمية
+!MINIST! FOR_RELIGIOUS_AFFAIRS [~GOVREL]وزارة الشؤون الدينية
+!MINIST! FOR_ROADS_AND_TRANSPORT [~GOV]وزارة الطرق والنقل
+!MINIST! FOR_RURAL_DEVELOPMENT [~GOVDEV]وزارة التنمية الريفية
+!MINIST! FOR_SCIENCE [~GOV]وزارة العلوم
+!MINIST! FOR_SECURITY [~GOV]وزارة الأمن
+!MINIST! FOR_SHIPPING [~GOV]وزارة النقل البحري
+!MINIST! FOR_SOCIAL_ACTION_AND_NATIONAL_SOLIDARITY [~GOV]وزارة العمل الإجتماعي والتضامن الوطني
+!MINIST! FOR_SOCIAL_AFFAIRS_AND_LABOR [~GOVLAB]وزارة الشؤون الإجتماعية والعمل
+!MINIST! FOR_SOCIAL_WELFARE [~GOVHLH]وزارة الرعاية الإجتماعية
+!MINIST! FOR_SPECIAL_AFFAIRS_OF_TRIBES_PEOPLE [~GOV]وزارة الشؤون الخاصة للقبائل
+!MINIST! FOR_SPECIAL_AFFAIRS [~GOV]وزارة الشؤون الخاصة
+!MINIST! FOR_SPORTS [~GOV]وزارة الرياضة
+!MINIST! FOR_STATE [~GOV]وزارة الدولة
+!MINIST! FOR_STATE_PLANNING [~GOVDEV]وزارة تخطيط الدولة
+!MINIST! FOR_TELECOMMUNICATION [~GOVMED]وزارة الإتصالات السلكية واللاسلكية
+!MINIST! FOR_TERRITORIAL_AD!MINIST!RATION [~GOV]وزارة الإدارة الإقليمية
+!MINIST! FOR_TEXTILES [~GOV]وزارة المنسوجات
+!MINIST! FOR_THE_ATTORNEY_GENERAL [~GOV]وزارة النائب العام
+!MINIST! FOR_THE_CIVIL_SERVICE [~GOV]وزارة الخدمة المدنية
+!MINIST! FOR_THE_ENVIRONMENT [~GOVENV]وزارة البيئة
+!MINIST! FOR_THE_FINANCE_AD!MINIST!RATION [~GOV]وزارة الإدارة المالية
+!MINIST! FOR_THE_INTERIOR [~GOV]وزارة الداخلية
+!MINIST! FOR_THE_PRESIDENCY [~GOV]وزاة الرئاسة
+!MINIST! FOR_THE_TREASURY [~GOV]وزارة الخزنة
+!MINIST! FOR_TOURISM [~GOV]وزارة السياحة
+!MINIST! FOR_TRADE [~GOV]وزارة التجارة
+!MINIST! FOR_TRANSPORT [~GOVMED]وزارة النقل
+!MINIST! FOR_TRANSPORT_AND_COMMUNICATION [~GOVMED]وزارة النقل والإتصال
+!MINIST! FOR_VETERANS_AFFAIRS [~GOVDEV]وزارة شؤون المحابين القدامى
+!MINIST! FOR_WATER [~GOV]وزارة المياه
+!MINIST! FOR_WELFARE [~GOVHLH]وزارة الرعاية
+!MINIST! FOR_WOMEN [~GOVHRI]وزارة المرأة
+!MINIST! FOR_WORKS [~GOV]وزارة الأشغال
+!MINIST! FOR_YOUTH,_SPORTS_AND_RECREATION [~GOV]وزارة الشباب والرياضة والترفيه
+!MINIST! FOR_YOUTH_AND_SPORT [~GOV]وزارة الشباب والرياضة
+# NOTE THAT THE FOR/OF CAN BE FURTHER GENERALIZED USING A SUBSTITUTION SET
+!MINIST! GENERAL_SECRETARIAT_OF_THE_PRESIDENCY [~GOV]وزارة الأمانة العامة لرئاسة الجمهورية
+!MINIST! OF_YOUTH_AND_SPORTS [~GOV]وزارة الشباب والرياضة
+!MINIST! OF_AGRICULTURE [~GOVAGR]وزارة الزراعة
+!MINIST! OF_ANIMAL_HUSBANDRY_AND_AQUATICS [~GOVAGR]وزارة الثروة الحيوانية والمائية
+!MINIST! OF_ANIMAL_RESOURCES [~GOVAGR]وزارة الموارد الحيوانية
+!MINIST! OF_BUDGET [~GOV]وزارة الميزانية
+!MINIST! OF_CITIES [~GOV]وزارة المدن
+!MINIST! OF_CIVIL [~GOVMIL]وزارة الأحوال المدنية
+!MINIST! OF_CIVIL_AVIATION [~GOV]وزارة الطيران المدني
+!MINIST! OF_COMMERCE [~GOV]وزارة التجارة
+!MINIST! OF_COMMUNICATIONS [~GOVMED]وزارة الإتصالات
+!MINIST! OF_COMMUNICATION [~GOVMED]وزارة الإتصال
+!MINIST! OF_COMMUNICATION_AND_CULTURE [~GOVMED]وزارة الإتصال والثقافة
+!MINIST! OF_COMMUNICATION_AND_INFORMATION_TECHNOLOGY [~GOV]وزارة تكنولوجيا الإتصال والمعلومات
+!MINIST! OF_CONSTRUCTION [~GOVDEV]وزارة البناء
+!MINIST! OF_COUNTER_NARCOTICS [~GOV]وزارة مكافحة المخدرات
+!MINIST! OF_DEFENCE [~GOVMIL]وزارة الدفاع
+!MINIST! OF_DEFENSE [~GOVMIL]وزارة الدفاع
+!MINIST! OF_DISASTER_MANAGEMENT [~GOV]وزارة إدارة الكوارث
+!MINIST! OF_DOMESTIC_TRADE [~GOV]وزارة التجارة المحلية
+!MINIST! OF_ECONOMIC_AFFAIRS [~GOV]وزارة الشؤون الإقتصادية
+!MINIST! OF_ECONOMIC_AFFAIRS_AND_FINANCE [~GOV]وزارة الشؤون المالية والإقتصاد
+!MINIST! OF_ECONOMY [~GOV]وزارة الإقتصاد
+!MINIST! OF_ECONOMY_AND_FINANCE [~GOV]وزارة الإقتصاد والمال
+!MINIST! OF_ECONOMY_AND_PLANNING [~GOV]وزارة الإقتصاد والتخطيط
+!MINIST! OF_ECONOMY_AND_PUBLIC_FINANCE [~GOV]وزارة الإقتصاد والمال العام
+!MINIST! OF_EDUCATION [~GOVEDU]وزارة التعليم
+!MINIST! OF_ELECTRICITY [~GOV]وزارة الكهرباء
+!MINIST! OF_EMPLOYMENT_AND_VOCATIONAL_TRAINING [~GOVLAB]وزارة العمل والتدريب المهني
+!MINIST! OF_ENERGY [~GOV]وزارة الطاقة
+!MINIST! OF_ENVIRONMENT [~GOVENV]وزارة البيئة
+!MINIST! OF_EQUIPMENT [~GOVDEV]وزارة المعدات
+!MINIST! OF_EUROPEAN_AFFAIRS [~GOV]وزارة الشؤون الأوروبية
+!MINIST! OF_EUROPEAN_UNION_AFFAIRS [~GOV]وزارة الإتحاد الأوروبي
+!MINIST! OF_EXTERNAL_RELATIONS [~GOV]وزارة العلاقات الخارجية
+!MINIST! OF_FINANCE [~GOV]وزارة المالية
+!MINIST! OF_FINANCE_SERVICES [~GOV]وزارة الخدمات المالية
+!MINIST! OF_FISHERIES [~GOVAGR]وزارة الثروة السمكية
+!MINIST! OF_FOOD [~GOV]وزارة الغذاء
+!MINIST! OF_FOREIGN [~GOV]وزارة الخارجية
+!MINIST! OF_FOREIGN_AFFAIRS [~GOV]وزارة الشؤون الخارجية
+!MINIST! OF_GENDER_AND_YOUTH,_SPORTS_AND_RECREATION [~GOV]وزارة الرياضة والترفيه للشباب والجنس
+!MINIST! OF_GOVERNMENT [~GOV]وزارة الحكومة
+!MINIST! OF_HEALTH [~GOVHLH]وزارة الصحة
+!MINIST! OF_HIGHER_EDUCATION [~GOVEDU]وزارة التعليمة العالي
+!MINIST! OF_HOME_AFFAIRS [~GOV]وزارة الشؤون الوطنية
+!MINIST! OF_HOUSING [~GOV]وزارة الإسكان
+!MINIST! OF_HUMAN_DEVELOPMENT [~GOVDEV]وزارة التنمية البشرية
+!MINIST! OF_HUMAN_DEVELOPMENT_AND_SOCIAL_TRANSFORMATION [~GOVDEV]وزارة التنمية البشرية والتحول الإجتماعي
+!MINIST! OF_HYDROCARBONS [~GOVENV]وزارة الهيدروكربونات
+!MINIST! OF_HYDROCARBONS_AND_ENERGY [~GOV]وزارة الهيدروكاربونات والطاقة
+!MINIST! OF_INDUSTRY [~GOVBUS]وزارة الصناعة
+!MINIST! OF_INDUSTRY_AND_TRADE [~GOVBUS]وزارة الصناعة والتجارة
+!MINIST! OF_INFORMATION [~GOVMED]وزارة المعلومات
+!MINIST! OF_INFRASTRUCTURE [~GOVDEV]وزارة البنية التحتية
+!MINIST! OF_INTERIOR [~GOV]وزارة الداخلية
+!MINIST! OF_INTERNAL_AFFAIRS [~GOV]وزارة الشؤون الداخلية
+!MINIST! OF_INTERNATIONAL_COOPERATION [~GOV]وزارة التعاون الدولي
+!MINIST! OF_INTERNATIONAL_TRADE [~GOV]وزارة التجارة الدولية
+!MINIST! OF_IRRIGATION [~GOVAGR]وزارة الري
+!MINIST! OF_JUSTICE [~GOV]وزارة العدل
+!MINIST! OF_JUTE_AND_TEXTILES [~GOV]وزارة القنب والمنسوجات
+!MINIST! OF_LABOR [~GOVLAB]وزارة العمل
+!MINIST! OF_LABOUR [~GOVLAB]وزارة العمل
+!MINIST! OF_LANDS,_HOUSING_AND_URBAN_DEVELOPMENT [~GOV]وزارة الأراضي والإسكان وتنمية المدن
+!MINIST! OF_LANDS [~GOV]وزارة الأراضي
+!MINIST! OF_LAW [~GOV]وزارة القانون
+!MINIST! OF_LEGAL_DEFENSE_OF_THE_STATE [~GOV]وزارة الدفاع المشروع  للدولة
+!MINIST! OF_LIVESTOCK [~GOVAGR]وزارة الثروة الحيوانية
+!MINIST! OF_LOCAL_GOVERNMENT [~GOVDEV]وزارة الحكومة المحلية
+!MINIST! OF_MATERIALS [~GOV]وزارة المواد
+!MINIST! OF_MINERAL_RESOURCES [~GOVENV]وزارة الثروة المعدنية 
+!MINIST! OF_MINES [~GOV]وزارة المناجم
+!MINIST! OF_MINING_AND_ENERGY [~GOV]وزارة التنقيب والطاقة
+!MINIST! OF_NATIONAL_DEFENCE [~GOVMIL]وزارة الدفاع الوطني
+!MINIST! OF_NATIONAL_DEVELOPMENT [~GOVDEV]وزارة التنمية الوطنية
+!MINIST! OF_NATIONAL_ECONOMY [~GOV]وزارة الإقتصاد الوطني
+!MINIST! OF_NATIONAL_EDUCATION [~GOVEDU]وزارة التعليم الوطني
+!MINIST! OF_NATIONAL_INTEGRATION [~GOV]وزارة الإندماج الوطني
+!MINIST! OF_NATIONAL_PLANNING_AND_ECONOMIC_DEVELOPMENT [~GOVDEV]وزارة التخطيط الوطني والتنمية الإقتصادية
+!MINIST! OF_NATIONAL_SECURITY [~GOVMIL]وزارة الأمن الوطني
+!MINIST! OF_NATURAL_RESOURCES [~GOVENV]وزارة الموارد الطبيعية
+!MINIST! OF_NATURAL_RESOURCES_AND_ENVIRONMENT [~GOVENV]وزارة الموارد الطبيعية و البيئة
+!MINIST! OF_NGOS [~GOV]وزارة المنظمات غير الحكومية
+!MINIST! OF_OIL [~GOV]وزارة النفط
+!MINIST! OF_OIL_AND_ENERGY [~GOV]وزارة النفط والطاقة
+!MINIST! OF_PETROLEUM [~GOV]وزارة النفط
+!MINIST! OF_PLANNING [~GOVDEV]وزارة التخطيط
+!MINIST! OF_PLANNING_AND_DEVELOPMENT [~GOVDEV]وزارة التخطيط والتنمية
+!MINIST! OF_POST_AND_TELECOMMUNICATION [~GOVMED]وزارة البريد والإتصالات السلكية واللاسلكية
+!MINIST! OF_PRESIDENTIAL_AFFAIRS [~GOV]وزارة الشؤون الرئاسية
+!MINIST! OF_PRODUCTION [~GOVBUS]وزارة الإنتاج
+!MINIST! OF_PUBLIC_HEALTH [~GOVHLH]وزارة الصحة العامة
+!MINIST! OF_PUBLIC_HEALTH_AND_SOCIAL_WELFARE [~GOVHLH]وزارة الصحة العامة والإعانة الإجتماعية
+!MINIST! OF_PUBLIC_SERVICE [~GOVDEV]وزارة الخدمة العامة
+!MINIST! OF_PUBLIC_SERVICE_AND_AD!MINIST!RATIVE_REFORM [~GOVDEV]وزارة الخدمة العامة والإصلاح الإداري
+!MINIST! OF_PUBLIC_UTILITIES [~GOV]وزارة المرافق العامة
+!MINIST! OF_PUBLIC_WORKS [~GOV]وزارة الأشغال العامة
+!MINIST! OF_PUBLIC_WORKS_SERVICES_AND_HOUSING [~GOV]وزارة خدمات الأشغال العامة والإسكان
+!MINIST! OF_ORES_AND_SMELTING [~GOV] وزارة الخامات والصهر
+!MINIST! OF_RAIL_TRANSPORT [~GOVMED]وزارة النقل بالسكك الحديدية
+!MINIST! OF_RECONSTRUCTION [~GOV]وزارة إعادة الإعمار
+!MINIST! OF_REGIONAL_COOPERATION [~GOV]وزارة التعاون الإقليمي
+!MINIST! OF_RELIGIOUS_AFFAIRS [~GOVREL]وزارة الشؤون الدينية
+!MINIST! OF_ROADS_AND_TRANSPORT [~GOV]وزارة الطرق والنقل
+!MINIST! OF_RURAL_DEVELOPMENT [~GOVDEV]وزارة التنمية الريفية
+!MINIST! OF_SCIENCE [~GOV]وزارة العلوم
+!MINIST! OF_SECURITY [~GOV]وزارة الأمن
+!MINIST! OF_SHIPPING [~GOV]وزارة النقل البحري
+!MINIST! OF_SOCIAL_ACTION_AND_NATIONAL_SOLIDARITY [~GOV]وزارة العمل الإجتماعي التضامن الوطني
+!MINIST! OF_SOCIAL_AFFAIRS_AND_LABOR [~GOVLAB]وزارة الشؤون الإجتماعية والعمل
+!MINIST! OF_SOCIAL_WELFARE [~GOVHLH]وزارة الإعانة الإجتماعية
+!MINIST! OF_SPORTS [~GOV]وزارة الرياضة
+!MINIST! OF_SPORTS_AND_YOUTH [~GOV]وزارة الرياضة والشباب
+!MINIST! OF_SPORTS_AND_YOUTH_AFFAIRS [~GOV]وزارة شؤون الرياضة والشباب
+!MINIST! OF_SPORTS__YOUTH [~GOV]وزارة رياضة الشباب
+!MINIST! OF_STATE [~GOV]وزارة الدولة
+!MINIST! OF_STATE_PLANNING [~GOVDEV]وزارة تخطيط الدولة
+!MINIST! OF_TELECOMMUNICATION [~GOVMED]وزارة الإتصالات السلكية واللاسلكية 
+!MINIST! OF_TERRITORIAL_AD!MINIST!RATION [~GOV]وزارة الإدارة الإقليمية
+!MINIST! OF_TEXTILES [~GOV]وزارة المنسوجات
+!MINIST! OF_THE_ATTORNEY_GENERAL [~GOV]وزارة النائب العام
+!MINIST! OF_THE_ENVIRONMENT [~GOVENV]وزارة البيئة
+!MINIST! OF_THE_FINANCE_AD!MINIST!RATION [~GOV]وزارة الإدارة المالية
+!MINIST! OF_THE_GENERAL_SECRETARIAT_OF_THE_PRESIDENCY [~GOV]وزارة أمانة الرئاسة
+!MINIST! OF_THE_INTERIOR [~GOV]وزارة الداخلية
+!MINIST! OF_THE_PRESIDENCY [~GOV]وزارة الرئاسة
+!MINIST! OF_THE_TREASURY [~GOV]وزارة الخزنة
+!MINIST! OF_TOURISM [~GOV]وزارة السياحة
+!MINIST! OF_TRADE [~GOV]وزارة التجارة
+!MINIST! OF_TRANSPORT [~GOVMED]وزارة النقل
+!MINIST! OF_VETERANS_AFFAIRS [~GOVDEV]وزارة شؤون المحاربين القدامى
+!MINIST! OF_WATER [~GOV]وزارة المياه
+!MINIST! OF_WATER_RESOURCES_AND_IRRIGATION_ [~GOV]وزارة الري والموارد المائية
+!MINIST! OF_WELFARE [~GOVHLH]وزارة الإعانة 
+!MINIST! OF_WOMEN [~GOVHRI]وزارة المرأة
+!MINIST! OF_WORKS [~GOV]وزارة الأشغال
+!MINIST! OF_YOUTH,_SPORTS_AND_RECREATION [~GOV]وزارة الشباب والرياضة والترفيه
+!MINIST! OF_YOUTH_AND_SPORT [~GOV]وزارة الشباب والرياضة
+MINISTERS_AND_MPS [~GOV]وزراء ونواب
+MINISTERS_OF_STATE [~GOV]وزراء الحكومة
+MINISTER_PLENIPOTENTIARY [~GOV]وزير مفوض
+MINISTER_WITHOUT_PORTFOLIO [~GOV]وزير بلا حقيبة
+MINISTRY_  [~GOV]وزارة
+MINISTRY_DELEGATION_  [~GOV]وفد الوزارة
+MISSION_TO_THE_UNITED_NATIONS [~GOV]مهمة للأمم المتحدة
+MONARCH [~GOV]العاهل
+MPS_OF_THE_RULING_PARTY [~GOV]نواب من الحزب الحاكم
+NATIONAL_AIRLINE [~GOVBUS]شركات طيران وطنية
+NATIONAL_BANK [~GOVBUS]مصرف وطني
+NATIONAL_BOARD_OF_REVENUE [~GOV]المجلس الوطني للإيرادات
+NATIONAL_DEVELOPMENT_COUNCIL [~GOVDEV]مجلس التنمية الوطنية
+NATIONAL_ECONOMIC_COUNCIL [~GOVBUS]مجلس الإقتصاد الوطني 
+NATIONAL_EDUCATION_COMMITTEE [~GOVEDU]لجنة التعليم الوطنية
+NATIONAL_ELECTORAL_COMMISSION [~GOV]لجنة الإنتخابات الوطنية
+NATIONAL_HEALTH_COMMITTEE [~GOVHLH]لجنة الصحة الوطنية
+NATIONAL_INVESTMENT_COMMITTEE [~GOVBUS]لجنة الإستثمار الوطني
+NATIONAL_NEWS_AGENCY [~GOVMED]وكالة الأنباء الوطنية
+NATIONAL_NUTRITIONAL_COUNCIL [~GOVHLH]مجلس الغذاء الوطني
+NATIONAL_PLANNING_AND_ECONOMIC_DEVELOPMENT_!MINIST! [~GOVDEV]وزارة التخطيط الوطني والتنمية الإقتصادية
+NATIONAL_SECURITY_ADVISER [~GOVMIL]مستشار الأمن القومي
+NATIONAL_SECURITY_CHIEF [~GOVMIL]رئيس مجلس الأمن القومي
+NATIONAL_SECURITY_COUNCIL [~GOVMIL]مجلس الأمن القومي 
+NATIONAL_SECURITY_OFFICE [~GOVMIL]مكتب الأمن القومي
+NEUTRAL_CARETAKER_GOVERNMENT [~GOV]حكومة انتقالية حيادية 
+NGOS_!MINIST! [~GOV]وزارة المنظمات غير الحكومية
+NGO_!MINIST! [~GOV]منظمة غير حكومية
+NUCLEAR_ENERGY_COMMITTEE [~GOV]لجنة الطاقة النووية
+OFFICE_OF_THE_CONSUL_GENERAL [~GOV]مكتب القنصل العام
+OFFICE_OF_THE_HIGH_COMMISSION [~GOV]مكتب المفوضية السامية
+OFFICE_OF_THE_UNREPRESENTATIVE [~GOV]مكتب غير تمثيلي
+OFFICIAL_NEWS_AGENCY [~GOVMED]وكالة الأنباء الرسمية
+OFFICIAL_SOURCE [~GOV]مصدر رسمي
+PALACE_OFFCIAL [~GOV]مسؤول القصر
+PARAMOUNT_RULER [~GOV]الحاكم الأعظم
+PARAMOUNT_RULER [~GOV]الحاكم العاهل
+PATENT_OFFICE [~GOVBUS]مكتب براءات الإختراع
+PEOPLE'S_BANK [~GOVBUS]مصرف الشعب
+PEOPLE'S_COMMITTEE [~GOV]اللجان الشعبية
+PEOPLES_BANK [~GOVBUS]بنك الشعوب
+PERMANENT_REPRESENTATIVE_TO_THE_UNITED_NATIONS [~GOV]ممثل دائم للأمم المتحدة
+PETROLEUM_!MINIST! [~GOV]وزير النفط
+PLANNING_COMMISSION [~GOV]لجنة التخطيط
+POLITBURO [~GOV]المكتب السياسي
+POLITBURO_MEMBER [~GOV]عضو المكتب السياسي
+POLITY [~GOV]دولة
+PORT_AUTHORIT [~GOV]هيئة الموانئ
+POSTAL_DEPARTMENT [~GOV]قسم البريد
+POST_AND_TELECOMMUNICATIONS_!MINIST! [~GOVMED]وزارة البريد والإتصالات السلكية واللاسلكية
+POTENTATE [~GOV]العاهل
+POTENTATE [~GOV]الملك
+POWER_SECRETARY [~GOV]وزير الكهرباء
+PRAESIDIUM [~GOV]اللجنة التنفيذية الدائمة
+PREMIER [~GOV] رئيس الوزراء
+PRESIDENTIAL_AIDE [~GOV]مستشار الرئاسة
+PRESIDENTIAL_PALACE [~GOV]قصر رئاسي
+PRESIDENT [~GOV] الرئيس
+PRESIDIUM [~GOV]اللجنة التنفيذية الرئاسية
+PRIME_MINISTER [~GOV]رئيس الوزراء
+PRIME_MINSTER [~GOV]رئيس الوزراء
+PRINCE [~GOV]أمير
+PRIVATIZATION_COMMISSION [~GOVBUS]لجنة الخصخصة
+PRIVITIZATION_COMMISSION [~GOVBUS]لجنة الخصخصة
+PRIVY_COUNCIL [~GOV]المجلس الملكي
+PROGRESS_OF_BORDER_AREAS_AND_NATIONAL_RACES_AND_DEVELOPMENT_AFFAIRS_!MINIST! [~GOV] وزارة تطوير المناطق الحدودية والأعراق الوطنية وشؤون التنمية
+PROSECUTOR_GENERAL [~GOVJUD]المدعي العام
+PROTOCOL_DEPARTMENT [~GOV]قسم البروتوكول
+PROVINCAL_OFFICE [~GOV]مكتب المقاطعة
+PROVINCIAL_OFFICIALS [~GOV]مكتب المقاطعة
+PROVISIONAL_GOVERNMENT [~GOV] الحكومة المؤقتة
+PUBLIC_HEALTH_CHIEF [~GOVHLH]رئيس الصحة العامة
+PUBLIC_RELATIONS_OFFICER [~GOV]مسؤول العلاقات العامة
+PUBLIC_SECTOR [~GOV]قطاع عام
+PUBLIC_SERVICE_COMMISSION [~GOVDEV]لجنة الخدمة العامة
+PUBLIC_WORKS_!MINIST! [~GOV]وزارة الأشغال العامة
+RAIL_TRANSPORT_!MINIST! [~GOVMED]وزارة نقل السكك الحديدية 
+REGIME [~GOV]النظام
+REGIONAL_GOVERNOR [~GOV]حاكم إقليمي
+REGIONAL_REPRESENTATIVE [~GOV] ممثل إقليمي
+REGULATORY_BODY [~GOV]الهيئة التنظيمية
+REGULATOR [~GOV]منظم
+RELIGIOUS_AFFAIRS_BUREAU [~GOVREL]مكتب الشؤون الدينية
+RELIGIOUS_AFFAIRS_!MINIST! [~GOVREL]وزارة الشؤون الدينية 
+REPRESENTATIVE_IN_PARLIAMENT [~GOV]ممثل في البرلمان
+REPRESENTATIVE_TO_THE_UN [~GOV]ممثل للأمم المتحدة
+RESERVE_BANK [~GOVBUS]المصرف الإحتياطي 
+RESERVE_BANK_GOVERNOR [~GOVBUS]حاكم المصرف الإحتياطي
+ROYAL_ADMINISTRATION [~GOV]إدارة ملكية
+ROYAL_ADVISORY [~GOV]مستشار ملكي
+ROYAL_COALITION_GOVERNMENT [~GOV]الحكومة الإئتلافية الملكية 
+ROYAL_GOVERNMENT [~GOV]الحكومة الملكية 
+ROYAL_PALACE [~GOV]القصر الملكي 
+RULER [~GOV]حاكم 
+RULING_ALLIANCE [~GOVPTY]التحالف الحاكم
+RULING_COALITION [~GOV]الائتلاف الحاكم
+RULING_FACTION [~GOV]فصيل حاكم
+RULING_GENERAL [~GOVMIL]الحاكم العام
+RULING_JUNTA [~GOV]المجلس العسكري الحاكم
+RULING_MILITARY_GOVERNMENT [~GOVMIL]الحكومة العسكرية الحاكمة
+RULING_PARTY [~GOV]الحزب الحاكم
+RULING_PARTY_MP [~GOV]الحزب الحاكم النائب
+RULING_PARTY_SENATOR [~GOV]سيناتور الحزب الحاكم
+RULING_PARTY_SENATOR [~GOV]شيخ الحزب الحاكم
+SCIENCE_AND_INFORMATION_TECHNOLOGY_!MINIST! [~GOV]وزارة العلوم وتكنولوجيا المعلومات
+SECRETARIATE [~GOV]أمانة السر
+SECRETARY_OF_AGRICULTURE [~GOVAGR]وزير الزراعة 
+SECRETARY_OF_CIVIL [~GOV]وزير النفط
+SECRETARY_OF_COMMERCE [~GOV]وزير التجارة
+SECRETARY_OF_DEFENSE [~GOVMIL]وزير الدفاع 
+SECRETARY_OF_EDUCATION [~GOVEDU]وزير التعليم
+SECRETARY_OF_ENERGY [~GOV]وزير الطاقة
+SECRETARY_OF_LABOR [~GOVLAB]وزير العمل
+SECRETARY_OF_LABOUR [~GOVLAB]وزير العمل
+SECRETARY_OF_SECURITY_COUNCIL [~GOV]سكرتير مجلس الأمن
+SECRETARY_OF_STATE [~GOV]وزير الخارجية
+SECRETARY_OF_THE_ECONOMY [~GOV]وزير الاقتصاد
+SECRETARY_OF_THE_INTERIOR [~GOV]وزير الداخلية
+SECRETARY_OF_THE_TREASURY [~GOV]وزير الخزنة
+SECURITIES_AND_EXCHANGE_COMMISSION [~GOVBUS]لجنة الصرف والسندات المالية
+SECURITY_COUNCIL [~GOV]مجلس الأمن
+SEMI-OFFICIAL[~GOV]شبه رسمي
+SHIPPING_!MINIST! [~GOV]وزارة الشحن البحري
+SOCIAL_WELFARE_!MINIST! [~GOVHLH]وزارة الرعاية الإجتماعية
+SOLE_POLITICAL_PARTY [~GOV]الحزب السياسي الوحيد
+SOLICITOR_GENERAL [~GOV]النائب العام المساعد
+SOVEREIGN [~GOV]سيادة
+SPACE_AGENCY [~GOV]وكالة الفضاء
+SPECIAL_AFFAIRS_OF_TRIBES_PEOPLE_!MINIST! [~GOV]وزارة الشؤون الخاصة للقبائل
+SPECIAL_COMMISSION [~GOV]لجنة خاصة 
+SPECIAL_ENVOY [~GOV]مبعوث خاص
+STATE-OWNED [~GOVBUS]ملك الدولة
+STATE-OWNED_MEDIA [~GOVMED]وسائل إعلام ملك الدولة 
+STATE-OWNED_NEWS_AGENCY [~GOVMED]وكالة أخبار ملك الدولة
+STATE-OWNED_TELEVISION [~GOVMED]تلفزيون ملك الدولة
+STATE_ATTORNEY_GENERAL [~GOV]النائب العام للدولة
+STATE_AUDITOR_GENERAL [~GOV]المدقق العام للدولة
+STATE_COMMISSION [~GOV]لجنة
+STATE_COMMISSION [~GOV]وكالة
+STATE_COMMISSION [~GOV]عمولة
+STATE_COUNCILOR [~GOV]مجلس الدولة
+STATE_COUNCIL_FOR_LAW_AND_ORDER [~GOV]مجلس الدولة للقانون والنظام
+STATE_COUNCIL_SECRETARY_GENERAL_FOR_LAW_AND_ORDER [~GOV]الأمين العام لمجلس الدولة للقانون النظام
+STATE_DEVELOPMENT_COUNCIL [~GOVDEV]مجلس الدولة للتنمية
+STATE_GENERAL_HOSPITAL [~GOVHLH]المستشفى العام للدولة
+STATE_GOVERNOR [~GOV]حاكم ولاية
+STATE_HOSPITAL [~GOVHLH]مستشفى حكومي
+STATE_LEADER [~GOV]قائد دولة
+STATE_LEADER [~GOV]زعيم دولة
+STATE_MEDIA [~GOVMED]إعلام حكومي
+STATE_!MINIST! [~GOV]وزارة الخارجية
+STATE_NEWS_AGENCY [~GOVMED]وكالة أنباء حكومية
+STATE_NEWS_AGENCY [~GOVMED]وكالة أخبار حكومية
+STATE_OFFICIAL [~GOV]مسؤؤل حكومي
+STATE_OWNED_ENTERPRISE [~GOVBUS]مؤسسة ملك للدولة
+STATE_OWNED_INDUSTRIAL_UNIT [~GOVBUS]وحدة صناعية ملك للدولة
+STATE_OWNED_INSURANCE_ENTERPRISE [~GOVBUS]مؤسسة تأمين ملك للدولة
+STATE_PLANNING_!MINIST! [~GOVDEV]وزارة تخطيط الدولة
+STATE_PROSECUTOR_GENERAL [~GOVJUD]المدعي العام للدولة
+STATE_RUN TELEVISION [~GOVMED]تلفزيون تابع للدولة
+STATE_RUN_MEDIA [~GOVMED]إعلام تابع للدولة
+STATE_SECRETARY [~GOV]وزير الدولة
+STATE_SECURITY_COUNCIL [~GOV]مجلس أمن الدولة
+SUBDISTRICT_LEADER [~GOV]زعيم منطقة فرعية
+SUPREME_LEADER [~GOV]القائد الأعلى
+TECHNOLOGY_!MINIST! [~GOV]وزارة التكنولوجيا
+TELECOMMUNICATIONS_!MINIST! [~GOVMED]وزارة الإتصالات السلكية والللا سلكية
+TELECOMMUNICATION_BOARD [~GOVMED]مجلس الإتصالات السلكية واللاسلكية
+TELECOMMUNICATION_!MINIST! [~GOVMED]وزارة الإتصال السلكي واللاسلكي
+TEXTILES_!MINIST! [~GOV]وزارة المنسوجات
+THE_PM [~GOV]رئيس الوزراء
+THRONE_COUNCIL [~GOV]وزير العرش
+TOURISM_DEPARTMENT [~GOV]قسم السياحة
+TOURISM_!MINIST! [~GOV]وزارة السياحة
+TOURIST_BOARD [~GOV]لجنة السياحة
+TRADE_AND_COMMERCE_!MINIST! [~GOV]وزارة التجارة والمبادلات التجارية
+TRADE_DELEGATION [~GOVBUS]وفد تجاري
+TRADE_!MINIST! [~GOV]وزارة التجارة
+TRADE_OFFICIAL [~GOVBUS]مسؤول تجاري
+TRANSPORTATION_!MINIST! [~GOVMED]وزارة النقل
+TRANSPORT_AND_COMMUNICATION_!MINIST! [~GOVMED]وزارة النقل والإتصالات
+TRANSPORT_AUTHORITY [~GOV]هيئة النقل
+TRANSPORT_!MINIST! [~GOVMED]وزارة النقل
+TREASURY_CHIEF [~GOV]وزير الخزنة
+TREASURY_!MINIST! [~GOV]وزارة الخزنة
+TREASURY_SECRETARY [~GOV]وزير الخزنة
+TYRANT [~GOV]طاغية
+UNDERSECRETARY [~GOV]وكيل الوزارة
+UNIFICATION_!MINIST! [~GOV]توحيد
+VICE_FOREIGN_MINISTER [~GOV]نائب وزير الخارجية
+WATER_AND_FLOOD_CONTROL_!MINIST! [~GOV]وزارة المياه والسيطرة على الفيضانات
+WATER_!MINIST! [~GOV]وزارة المياه
+WATER_RESOURCES_AND_FLOOD_CONTROL_!MINIST! [~GOV]وزارة المصادر المائية والسيطرة على الفيضان
+WATER_RESOURCES_!MINIST! [~GOV]وزارة المصادر المائية
+WELFARE_!MINIST! [~GOVHLH]وزارة الرعاية الإجتماعية
+WOMEN_AND_CHILDREN_AFFAIRS_!MINIST! [~GOV]وزارة شؤون النساء والأطفال
+YOUTH_AND_SPORTS_!MINIST! [~GOV]وزارة الرياضة والشباب
+

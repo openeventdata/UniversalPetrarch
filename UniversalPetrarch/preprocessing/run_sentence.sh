@@ -4,12 +4,13 @@ FILENAME=$1
 language=$2
 
 SCRIPT=../scripts
+# FILEPATH=../data/text
 FILEPATH=../data/text
-STANFORD_SEG=segmenter
+STANFORD_SEG=./segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
-STANFORD_CORENLP=/Users/ahalterman/MIT/NSF_RIDIR/stanford-corenlp
+STANFORD_CORENLP=./stanford-corenlp-full-2018-01-31
+udpipePath=./udpipe-1.0.0-bin/bin-osx
 
-udpipePath=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/bin-osx
 
 
 if [ "$language" = "AR" ] 
@@ -27,7 +28,7 @@ then
 
 	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$FILENAME.segmented > ${FILEPATH}/$FILENAME.conll
 
-	rm ${FILEPATH}/$FILENAME.segmented
+	#rm ${FILEPATH}/$FILENAME.segmented
 
 else
 
@@ -38,7 +39,7 @@ else
 
 	elif [ "$language" = "EN" ]
 	then
-		languageModel=/Users/ahalterman/MIT/NSF_RIDIR/udpipe-1.0.0-bin/models/english-ud-1.2-160523.udpipe
+		languageModel=${udpipePath}/model/english-ud-1.2-160523.udpipe
 		STANFORD_PROPERTY=config/StanfordCoreNLP-english.properties
 
 	fi
@@ -57,8 +58,8 @@ else
 
 	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$FILENAME.txt > ${FILEPATH}/$FILENAME.conll
 
-	rm ${FILEPATH}/$FILENAME.raw.txt.out
-	rm ${FILEPATH}/$FILENAME.txt
+	# rm ${FILEPATH}/$FILENAME.raw.txt.out
+	# rm ${FILEPATH}/$FILENAME.txt
 
 fi
 
@@ -69,9 +70,9 @@ echo $languageModel
 ${udpipePath}/udpipe --tag --parse --outfile=${FILEPATH}/$FILENAME.conll.predpos.pred --input=conllu $languageModel ${FILEPATH}/$FILENAME.conll 
 
 echo "Ouput parsed xml file..."
-python generateParsedFile.py ${FILEPATH}/$FILENAME
+python generateParsedFile.py ${FILEPATH}/$FILENAME "$language"
 
-rm ${FILEPATH}/$FILENAME.raw.txt
-rm ${FILEPATH}/$FILENAME.conll
-rm ${FILEPATH}/$FILENAME.conll.predpos.pred
+# rm ${FILEPATH}/$FILENAME.raw.txt
+# rm ${FILEPATH}/$FILENAME.conll
+# rm ${FILEPATH}/$FILENAME.conll.predpos.pred
 
