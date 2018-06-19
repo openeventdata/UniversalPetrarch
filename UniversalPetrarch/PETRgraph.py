@@ -59,16 +59,11 @@ class NounPhrase:
 
 
             logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
-            codes, roots, matched_txt = self.textMatching(
-                npMainText.upper().split(" "))
+            codes, roots, matched_txt = self.textMatching(npMainText.upper().split(" "))
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
-            logger.debug("actorcodes:" + (",").join(actorcodes))
-            logger.debug("agentcodes:" + (",").join(agentcodes))
+
             if (both and actorcodes and agentcodes) or (not both and (actorcodes or agentcodes)):
                 # if both actor and agent are found, return the code
-                self.meaning = self.mix_codes(agentcodes, actorcodes)
-                self.matched_txt = matched_txt
-                logger.debug("npMainText meaning:" + (",").join(self.meaning))
                 return codes, roots, matched_txt
 
             return False
@@ -94,6 +89,10 @@ class NounPhrase:
 
         if len(main_matched)==1:
             codes, roots, matched_txt = main_matched[0]
+            actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
+            self.meaning = self.mix_codes(agentcodes, actorcodes)
+            self.matched_txt = matched_txt
+            logger.debug("npMainText meaning:" + (",").join(self.meaning))
             return codes, roots, matched_txt
         elif len(main_matched)==2:
             #check if matched_txt from main part 2 contains all matched_txt from main part 1
@@ -103,6 +102,11 @@ class NounPhrase:
                 codes, roots, matched_txt = main_matched[1]
             else:
                 codes, roots, matched_txt = main_matched[0]
+
+            actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
+            self.meaning = self.mix_codes(agentcodes, actorcodes)
+            self.matched_txt = matched_txt
+            logger.debug("npMainText meaning:" + (",").join(self.meaning))
             return codes, roots, matched_txt
 
         # 2. if actor code is not found, matching the entire noun phrase string
@@ -2246,9 +2250,7 @@ An instantiated Sentence object
 
 
         for tripleID in sorted(self.triplets.keys(),key=sortbyverbID):
-            #print(tripleID)
-            #print(triple['event'])
-            #print(grandchild_verbs.keys())
+            
             triple = self.triplets[tripleID]
             transfered = True
 
@@ -2283,6 +2285,9 @@ An instantiated Sentence object
 
                     current_event = triple['event']  # 4.27
                     #(source_meaning,target_meaning,triple['verbcode'])
+                    if current_event[0] == current_event[1]:
+                        continue
+
                     logger.debug("root" + str(root))
                     for reventID, revent in root_event[root].items():
                         event_before_transfer = (
