@@ -26,54 +26,83 @@ class NounPhrase:
 
     def get_meaning(self):
         logger = logging.getLogger('petr_log.NPgetmeaning')
+        def get_meaning_from_core_noun_phrase(relations, both):
+            #extract meaning of main part of noun phrase string from desired relations
+            #relations: list of dependency relations e.g. ['compound', 'det', 'punct','name','flat','nmod']
+            #both: check both actor and agent code. 
+            #      if true, return codes if both actor code and agent code are found. 
+            #      if False, return codes if either actor code or agent code is found.
+            # find direct modifiers of noun head, remove preposition phrases
+            direct_modifier_ids = []
+            for successor in self.sentence.udgraph.successors(self.headID):
+                relation = self.sentence.udgraph[
+                    self.headID][successor]['relation']
+                if relation in relations or ('nmod' in relations and relation.startswith('nmod')): #'amod','det'
+                    direct_modifier_ids.append(successor)
+                    #direct_modifier_ids.extend(self.sentence.udgraph.successors(successor))
+                    succdict = nx.dfs_successors(self.sentence.udgraph,successor)
+                    for x in succdict.keys():
+                        direct_modifier_ids.extend(succdict[x])
+
+
+            direct_modifier_ids.sort()
+
+            npMainTextIds = []
+            npMainTextIds.extend(direct_modifier_ids)
+            npMainTextIds.append(self.headID)
+            npMainTextIds.sort()
+            npMainTokens = []
+
+            for npID in npMainTextIds: #range(npMainTextIds[0], min(npMainTextIds[-1], self.npIDs[-1]) + 1):
+                npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
+            npMainText = (" ").join(npMainTokens)
+
+
+            logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
+            codes, roots, matched_txt = self.textMatching(
+                npMainText.upper().split(" "))
+            actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
+            logger.debug("actorcodes:" + (",").join(actorcodes))
+            logger.debug("agentcodes:" + (",").join(agentcodes))
+            if (both and actorcodes and agentcodes) or (not both and (actorcodes or agentcodes)):
+                # if both actor and agent are found, return the code
+                self.meaning = self.mix_codes(agentcodes, actorcodes)
+                self.matched_txt = matched_txt
+                logger.debug("npMainText meaning:" + (",").join(self.meaning))
+                return codes, roots, matched_txt
+
+            return False
+
 
         # 1. matching the main part of noun phrase string in the actor or agent dictionary
         # main part is extracted by removing all the prepositional phrases in
         # the noun phrase
+        main_matched = []
+        #main part 1: smallest main part of a noun phrase
+        #e.g "The Al Qaeda-linked Somali militant group al-Shabab"
+        #extract codes from main part "Somali militant group al-Shabab" ignoring adjective modifiers
+        noun_matched = get_meaning_from_core_noun_phrase(['compound', 'det', 'punct','name','flat'], True)
+        if noun_matched:
+            main_matched.append(noun_matched)
 
-        # npMainText = self.text
-        # for prep_phrase in self.prep_phrase:
-        #	logger.debug("pphrase:"+prep_phrase.text)
-        #	npMainText = npMainText.replace(prep_phrase.text,"")
+        #main part 2: main part of a noun phrase including adjective modifiers
+        #e.g "Gondor's main opposition group"
+        # "main opposition group" and "opposition group" have different codes, we want the code of "main opposition group" 
+        noun_matched = get_meaning_from_core_noun_phrase(['compound', 'det', 'punct','name','flat','nmod','amod'], False)
+        if noun_matched:
+            main_matched.append(noun_matched)
 
-        # find direct modifiers of noun head, remove preposition phrases
-        direct_modifier_ids = []
-        for successor in self.sentence.udgraph.successors(self.headID):
-            relation = self.sentence.udgraph[
-                self.headID][successor]['relation']
-            if relation in ['amod', 'compound', 'det', 'name','flat'] or relation.startswith("nmod"):
-                direct_modifier_ids.append(successor)
-                direct_modifier_ids.extend(
-                    self.sentence.udgraph.successors(successor))
-
-        direct_modifier_ids.sort()
-        # print(direct_modifier_ids)
-
-        npMainTextIds = []
-        npMainTextIds.extend(direct_modifier_ids)
-        npMainTextIds.append(self.headID)
-        npMainTextIds.sort()
-        npMainTokens = []
-        for npID in range(npMainTextIds[0], min(npMainTextIds[-1], self.npIDs[-1]) + 1):
-            npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
-        npMainText = (" ").join(npMainTokens)
-        # print(self.text)
-        # print(npMainTextIds)
-        if npMainText not in self.text:
-            npMainText = self.text
-            # print(npMainText)
-
-        logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
-        codes, roots, matched_txt = self.textMatching(
-            npMainText.upper().split(" "))
-        actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
-        logger.debug("actorcodes:" + (",").join(actorcodes))
-        logger.debug("agentcodes:" + (",").join(agentcodes))
-        if actorcodes or agentcodes:
-            # if both actor and agent are found, return the code
-            self.meaning = self.mix_codes(agentcodes, actorcodes)
-            self.matched_txt = matched_txt
-            logger.debug("npMainText meaning:" + (",").join(self.meaning))
+        if len(main_matched)==1:
+            codes, roots, matched_txt = main_matched[0]
+            return codes, roots, matched_txt
+        elif len(main_matched)==2:
+            #check if matched_txt from main part 2 contains all matched_txt from main part 1
+            #if true, return codes from main part 2
+            containsall = all(m in main_matched[1][2] for m in main_matched[0][2])
+            if containsall:
+                codes, roots, matched_txt = main_matched[1]
+            else:
+                codes, roots, matched_txt = main_matched[0]
             return codes, roots, matched_txt
 
         # 2. if actor code is not found, matching the entire noun phrase string
@@ -952,11 +981,11 @@ An instantiated Sentence object
                             source.extend(self.get_nounPharses(successor))
                             source.extend(self.get_conj_noun(successor))
 
-                    elif(self.udgraph[verbID][successor]['relation'] in ['obj', 'dobj', 'iobj', 'nsubjpass']):
+                    elif(self.udgraph[verbID][successor]['relation'] in ['obj', 'dobj', 'iobj', 'nsubjpass','nsubj:pass']):
                         # target.append(self.get_nounPharse(successor))
                         target.extend(self.get_nounPharses(successor))
                         target.extend(self.get_conj_noun(successor))
-                        if self.udgraph[verbID][successor]['relation'] in ['nsubjpass']:
+                        if self.udgraph[verbID][successor]['relation'] in ['nsubjpass','nsubj:pass']:
                             self.verbs[verbID].passive = True
                             #print(self.verbs[verbID].passive)
 
@@ -1905,6 +1934,96 @@ An instantiated Sentence object
         def sortbyverbID(tripleID):
             return int(tripleID.split("#")[2])
 
+        def overlap_with_pattern(tokenlist, pattern):
+            overlap = []
+            if "&" in pattern:
+                lines = resolve_synset(pattern)
+                for token in tokenlist:
+                    token = token.strip()
+                    for line in lines:
+                        #print(line)
+                        if token in line:
+                            overlap.append(token.strip())
+                            #target_meaning = ['---']
+
+            for token in tokenlist:
+                if token in pattern:
+                    overlap.append(token.strip())
+            
+            return overlap
+
+
+
+        def find_new_target_actor(verblist, pattern, verb):
+            #print("finding new target:")
+            closest = len(self.udgraph.node)
+            newtarget_meaning = ['---']
+
+            uniq_nouns = {}
+            nounStartEnd = {}
+            for noun in verblist:
+                # handle overlapped noun phrases
+                # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
+                # print(noun.npIDs)
+                #print(noun.text)
+
+                if noun.npIDs[0] in nounStartEnd.keys():
+                    old_range = nounStartEnd[noun.npIDs[0]]['end'] - noun.npIDs[0]
+                    new_range = noun.npIDs[-1] - noun.npIDs[0]
+                    if new_range < old_range:
+                        continue
+
+                nounStartEnd[noun.npIDs[0]] = {}
+                nounStartEnd[noun.npIDs[0]]['end'] = noun.npIDs[-1]
+                nounStartEnd[noun.npIDs[0]]['noun'] = noun
+                uniq_nouns[noun.npIDs[0]]=noun
+
+            newtarget = None
+            for nounID in sorted(uniq_nouns.iterkeys()):
+                noun = uniq_nouns[nounID]
+                #print(noun.text,noun.headID,verb.headID,closest)
+                if noun.headID >= verb.headID and (noun.headID <= closest or (verb.passive and noun.text.startswith("by"))):
+                    newtarget = noun
+                    npTokens = noun.text.upper().split(" ")
+                    tarcodes,_,tarmatched_txt = newtarget.get_meaning()
+                    overlap = overlap_with_pattern(tarmatched_txt,pattern)
+                    newtarget_meaning = newtarget.meaning if newtarget.meaning != None else ['---']
+
+                    if overlap and len(tarmatched_txt) != len(overlap):
+                        # only part of the target actor is in the matched pattern
+                        no_overlap_codes = []
+                        no_overlap_text = []
+
+                        found = False
+                        for i in range(0, len(npTokens)):
+                            if npTokens[i].strip() not in overlap and found:
+                                no_overlap_text.append(npTokens[i])
+                                print(no_overlap_text)
+
+                            if npTokens[i].strip() in overlap:
+                                found = True
+
+                        codes, roots, matched_txt = noun.textMatching(no_overlap_text)
+
+                        if codes:
+                             actorcodes, agentcodes = noun.resolve_codes(codes,matched_txt)
+                             newtarget_meaning = noun.mix_codes(agentcodes, actorcodes)
+                             tarcodes = codes
+                             tarmatched_txt = matched_txt
+
+                    elif overlap and len(tarmatched_txt) == len(overlap):
+                        # entire target actor is in the matched pattern
+                        newtarget_meaning = ['---']
+
+                    if newtarget_meaning not in [['---'],[]]:
+                        closest = noun.headID
+            
+            if newtarget != None:
+                return newtarget, newtarget_meaning,tarcodes,tarmatched_txt
+                        
+            return False
+
+
         logger = logging.getLogger('petr_log.PETRgraph')
         self.get_phrases()
         self.filter_triplet_with_time_expression()
@@ -1922,7 +2041,6 @@ An instantiated Sentence object
         paired_event = {}
 
         for tripleID, triple in self.triplets.items():
-        #for triple in self.metadata['triplets']:
             logger.debug("check event:" + tripleID)
             #logger.debug("check event:")
             #logger.debug(triple)
@@ -1975,64 +2093,49 @@ An instantiated Sentence object
                     if token in triple['matched_txt']:
                         overlap.append(token)
                         #target_meaning = ['---']
-
                 if overlap and len(target.matched_txt) != len(overlap):
                     # only part of the target actor is in the matched pattern
                     no_overlap_codes = []
                     no_overlap_text = []
+                    found = False
                     for i in range(0, len(tarmatched_txt)):
-                        if tarmatched_txt[i].strip() not in overlap:
+                        if tarmatched_txt[i].strip() not in overlap and found:
                             no_overlap_codes.append(tarcodes[i])
                             no_overlap_text.append(tarmatched_txt[i])
+                            #print(no_overlap_text)
 
-                    newactorcodes, newagentcodes = target.resolve_codes(no_overlap_codes, no_overlap_text)
-                    meaning = target.mix_codes(newagentcodes, newactorcodes)
-                    meaning = meaning if meaning != None else ['---']
-                    target_meaning = meaning                    
+                        if tarmatched_txt[i].strip() in overlap:
+                            found = True
+
+                    if len(no_overlap_codes) > 0:
+                        newactorcodes, newagentcodes = target.resolve_codes(no_overlap_codes, no_overlap_text)
+                        meaning = target.mix_codes(newagentcodes, newactorcodes)
+                        meaning = meaning if meaning != None else ['---']
+                        target_meaning = meaning
+                    else:   
+                        target_meaning = ['---']          
 
                 elif overlap and len(target.matched_txt) == len(overlap):
                     # entire target actor is in the matched pattern
                     target_meaning = ['---']
 
-
             if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
-                #print("finding new target:")
-                closest = len(self.udgraph.node)
-                newtarget_meaning = ['---']
-
-                uniq_nouns = {}
-                nounStartEnd = {}
-                for noun in self.metadata['othernoun'][verb.headID]:
-                    # handle overlapped noun phrases
-                    # e.g. "A court in Guyana", "Guyana", pick "A court in Guyana"
-                    # print(noun.npIDs)
-                    #print(noun.text)
-
-                    if noun.npIDs[0] in nounStartEnd.keys():
-                        old_range = nounStartEnd[noun.npIDs[0]]['end'] - noun.npIDs[0]
-                        new_range = noun.npIDs[-1] - noun.npIDs[0]
-                        if new_range < old_range:
-                            continue
-
-                    nounStartEnd[noun.npIDs[0]] = {}
-                    nounStartEnd[noun.npIDs[0]]['end'] = noun.npIDs[-1]
-                    nounStartEnd[noun.npIDs[0]]['noun'] = noun
-                    uniq_nouns[noun.npIDs[0]]=noun
-
-                for nounID in sorted(uniq_nouns.iterkeys()):
-                    noun = uniq_nouns[nounID]
-                    if noun.headID >= verb.headID and noun.headID <= closest:
-                        newtarget = noun
-                        newtarget.get_meaning()
-                        newtarget_meaning = newtarget.meaning if newtarget.meaning != None else ['---']
-                        if newtarget_meaning not in [['---'],[]]:
-                            closest = noun.headID
-                            target = newtarget
-                            break
-
+                verblist = self.metadata['othernoun'][verb.headID]
+                item = find_new_target_actor(verblist,triple['matched_txt'],verb)
+                
+                newtarget = ""
+                newtarget_meaning = []
+                tarcodes = []
+                tarmatched_txt = []
+                if item:
+                    newtarget = item[0]
+                    newtarget_meaning = item[1]
+                    tarcodes = item[2]
+                    tarmatched_txt = item[3]
+                    
                 if newtarget_meaning not in [['---'],[]]:
                     if verb.passive and source_meaning in [['---'],[],'']:
-                        print(str(verb.passive)+" "+source_meaning)
+                        #print(str(verb.passive)+" "+source_meaning)
                         source = newtarget
                         self.nouns[source.headID] = source
                         source_meaning = newtarget_meaning
@@ -2040,6 +2143,7 @@ An instantiated Sentence object
                         target = newtarget
                         self.nouns[target.headID] = target
                         target_meaning = newtarget_meaning
+                        
                         #print("new target found,",target.text, target_meaning)
 
             if not verb.passive and source_meaning in [['---'],[],'']:
@@ -2321,14 +2425,15 @@ An instantiated Sentence object
 
         for verbcode, actors in allactors.items():
             idx = len(self.events)
-            for sid in actors.keys():
-                for tid in actors.keys():
-                    if sid != tid and sid != 'vid' and tid != 'vid':
-                        tripleID = sid + "#" + tid + "#" + \
-                            actors['vid'] + "#" + str(idx)
-                        self.events[tripleID] = [
-                            actors[sid], actors[tid], verbcode]
-                        idx = idx + 1
+            if len(actors) > 1:
+                for sid in actors.keys():
+                    for tid in actors.keys():
+                        if sid != tid and sid != 'vid' and tid != 'vid':
+                            tripleID = sid + "#" + tid + "#" + \
+                                actors['vid'] + "#" + str(idx)
+                            self.events[tripleID] = [
+                                actors[sid], actors[tid], verbcode]
+                            idx = idx + 1
 
         # symmetric events, [xxx:yyy] pattern
         for eventID, event in self.events.items(): 
@@ -3909,7 +4014,7 @@ An instantiated Sentence object
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass']:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
                         found = True
                         break
 
