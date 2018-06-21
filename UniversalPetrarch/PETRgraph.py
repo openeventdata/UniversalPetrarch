@@ -1074,8 +1074,13 @@ An instantiated Sentence object
                 predecessors = self.udgraph.predecessors(verb.headID)
                 for predecessor in predecessors:
                     if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and self.udgraph.node[predecessor]['pos'] == 'VERB':
-                        logger.debug("found conj verb:" +
-                                     self.udgraph.node[predecessor]['token'])
+                        logger.debug("found conj verb:" +self.udgraph.node[predecessor]['token'])
+                        conjverb = self.get_verbPhrase(predecessor)
+                        logger.debug("extracting verb:" + conjverb.text)
+                
+                        if conjverb.headID not in self.verbs:
+                            self.verbs[conjverb.headID] = conjverb
+
                         psource, ptarget, pothernoun = self.get_source_target([
                                                                               predecessor])
                         source.extend(psource)
@@ -4027,7 +4032,7 @@ An instantiated Sentence object
                     noun = self.get_nounPharse(nodeID)
                     nouns.append(noun)
 
-                    conj_nouns = self.get_conj_noun_for_petrarch1(nodeID, noun)
+                    conj_nouns = self.get_conj_noun_for_petrarch1(nodeID, noun) 			
                     nouns.extend(conj_nouns)
 
                     if conj_nouns:
@@ -4075,6 +4080,8 @@ An instantiated Sentence object
                     conjnoun.prep_phrase = list(tempprepset)
 
                     tempIDset = set(conjnoun.npIDs)
+                    if len(tempIDset)==0:
+                        continue
                     conjnoun.npIDs = list(tempIDset)
                     conjnoun.npIDs.sort()
                     # print(conjnoun.prep_phrase)
@@ -4086,6 +4093,6 @@ An instantiated Sentence object
                     nntext = (' ').join(npTokens)
                     conjnoun.text = nntext
 
-                conj_noun.extend([conjnouns])
+                    conj_noun.append(conjnoun)
 
         return conj_noun
