@@ -50,12 +50,14 @@ Report bugs to: schrodt735@gmail.com
 REVISION HISTORY:
 27-Jul-17:	Initial version based on parallel function in PETRARCH-1
 24-May-18: Modified to work with Universal-PETR off-the-shelf
-01-Jun-18: -p1 and -p2 options added
+01-Jun-18: -p1 and -p2 batch coding options added
+21-Jun-18: assorted additional tabulations for the batch coding
 
 =========================================================================================================
 """
 from __future__ import print_function
 
+import collections
 import utilities
 import datetime
 import textwrap
@@ -70,9 +72,15 @@ import PETRgraph
 import petrarch_ud
 import PETRglobals
 
-doing_compare = False
-doing_P1 = False
+doing_compare = False  # using the -p1 or -p2 options
+doing_P1 = False 
 doing_P2 = False
+run_sample_only = True  # used for debugging
+run_sample_only = False # comment-out to debug
+
+cue_counts = collections.Counter()
+allmatch = False
+
 
 # ========================== VALIDATION FUNCTIONS ========================== #
 
@@ -174,6 +182,8 @@ def get_environment():
 def validate_record(valrecord):
     """ primary procedure which calls the coder with the parse in valrecord and compares the coded results with the expected 
         as well as writing assorted intermediate data structures to fout per test_script_ud.py """
+        
+    global cue_counts  # used to get the marginal distribution on the cue categories
 
     def process_event_output(str):
         """ from test_script_ud.py """
@@ -277,7 +287,8 @@ def validate_record(valrecord):
         nfound, ncoded, nnull = 0, 0, 0
         for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
             try:
-                if evt[0][0].startswith("---") or evt[1][0].startswith("---") or evt[2].startswith("---") :
+                #if evt[0][0].startswith("---") or evt[1][0].startswith("---") or evt[2].startswith("---") :  # earlier version that skipped actors with a null primary code
+                if evt[2].startswith("---") :
                     nnull += 1
                     continue
             except:   # handles [] cases
@@ -299,21 +310,33 @@ def validate_record(valrecord):
                             break
                 else:
                     fout.write("  ERROR\n") # do we ever hit this now?
+                    
+                if doing_compare:
+                    cue_counts[evt[2][:2]] += 1
+                    
+                    if allmatch:
+                        match_counts[0] += 1                        
+                        if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
+                            match_counts[1] += 1                        
+                        if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
+                            match_counts[2] += 1                        
+                        if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
+                             match_counts[3] += 1                                               
 
-                if doing_compare and len(valrecord['events']) == 1 and len(return_dict[idstrg]['sents']['0']['events']) == 1:
-                    type_counts[0] += 1
-                    if valrecord['events'][0]['eventcode'] == evt[2]:
-                        type_counts[1] += 1
-                    if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
-                        type_counts[2] += 1
-                    if valrecord['events'][0]['sourcecode'] == evt[0][0]:
-                        type_counts[3] += 1
-                    if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
-                        type_counts[4] += 1
-                    if valrecord['events'][0]['targetcode'] == evt[1][0]:
-                        type_counts[5] += 1
-                    if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
-                        type_counts[6] += 1
+                    if len(valrecord['events']) == 1 and len(return_dict[idstrg]['sents']['0']['events']) == 1:
+                        type_counts[0] += 1
+                        if valrecord['events'][0]['eventcode'] == evt[2]:
+                            type_counts[1] += 1
+                        if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
+                            type_counts[2] += 1
+                        if valrecord['events'][0]['sourcecode'] == evt[0][0]:
+                            type_counts[3] += 1
+                        if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
+                            type_counts[4] += 1
+                        if valrecord['events'][0]['targetcode'] == evt[1][0]:
+                            type_counts[5] += 1
+                        if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
+                            type_counts[6] += 1
                                                         
             except:
                 pass
@@ -365,6 +388,7 @@ def validate_record(valrecord):
 
 def do_validation():
     """ Functional tests using a validation file. """
+    global allmatch   # if doing_compare, P1 and P2 returned the same events
 
     def get_line_attribute(target):
         """ quick and dirty function for extracting well-formed XML attributes"""
@@ -392,6 +416,10 @@ def do_validation():
             idline = line
             line = fin.readline() # get the rest of the record
             while len(line) > 0: 
+                if line.startswith("<P1Event ") or line.startswith("<P2Event "):
+                     thelist = ast.literal_eval(line[9:-2])
+                     valrecord[line[1:3]] = [[li[0][:3], li[1][:3], li[2][:2]]for li in thelist]  # match only on primary actor codes and event cue category
+#                     valrecord[line[1:3]] = thelist # complete match
                 if line.startswith("<EventCoding") and not doing_compare:
                     if 'noevents="True"' in line:
                         valrecord['events'] = ["noevents"]    
@@ -437,6 +465,14 @@ def do_validation():
                 line = fin.readline() 
 
             print("\nRecord:",valrecord['id'])
+            allmatch = False
+            if "P1" in valrecord:
+                for li in valrecord['P1']:
+                    if li not in valrecord['P2']:
+                        break
+                else:
+                    allmatch = True
+                    print("Match:",  valrecord['id'], valrecord['P1'], valrecord['P2'])
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid']:
                 validate_record(valrecord)
                 kb += 1
@@ -457,7 +493,10 @@ if __name__ == '__main__':
         filename = sys.argv[sys.argv.index("-i") + 1] 
     elif "-p1" in sys.argv or "-p2" in sys.argv:
         doing_compare = True
-        directory_name = "P1-2_compare"
+        if run_sample_only:
+            directory_name = "P1-2_compare_sample"
+        else:
+            directory_name = "P1-2_compare"
         filename = "P1-2_compare_dictionaries.xml" 
         if "-p1" in sys.argv:
             doing_P1 = True
@@ -489,6 +528,7 @@ if __name__ == '__main__':
     valid_counts = {'catlist': []}
     if doing_compare:
         type_counts = [0,0,0,0,0,0,0]
+        match_counts = [0,0,0,0]
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
     if PETRglobals.CodeWithPetrarch1:
@@ -510,7 +550,7 @@ if __name__ == '__main__':
             fin.close()
 
     if doing_compare:
-        filename = "P1/2 comparison files"
+        filename = "P1/2 comparison files"  # this is just for labelling purposes
     fout.write("\nSummary: " + filename + " at " + timestamp + "\n")
 #    fout.write("Categories included: " + str(ValidInclude) + "\n")
     fout.write("Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  \n")
@@ -535,13 +575,28 @@ if __name__ == '__main__':
     print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
     print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
     print("===========================\n")
+
     if doing_compare:
-        print("Accuracy on coded single event cases:")
-        fout.write("\nAccuracy on coded single event cases:\n")
+        print("Accuracy on coded single event cases (N = {:d}):".format(type_counts[0]))
+        fout.write("\nAccuracy on coded single event cases (N = {:d}):\n".format(type_counts[0]))
         for ka, lbl in enumerate(["", "Event", "Cue category", "Source", "Source primary", "Target", "Target primary"]):
             if ka == 0: continue
             print("{:14s}:   {:8d} {:8.2f}%".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
             fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
+        print("===========================\n")           
+
+        print("Accuracy on matched event cases (N = {:d}):".format(match_counts[0]))
+        fout.write("\nAccuracy on matched event cases (N = {:d}):\n".format(match_counts[0]))
+        for ka, lbl in enumerate(["", "Cue category", "Source primary",  "Target primary"]):
+            if ka == 0: continue
+            print("{:14s}:   {:8d} {:8.2f}%".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
+            fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
+
+        print("===========================\n")           
+        print("UDP Marginals")
+        tot = sum(cue_counts.values())
+        for key in sorted(cue_counts):
+            print("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
         print("===========================\n")
 
     fin.close()
