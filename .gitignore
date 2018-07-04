@@ -12,6 +12,7 @@ UniversalPetrarch/preprocessing/udpipe-1.0.0-bin/*
 UniversalPetrarch/preprocessing/udpipe-1.0.0/model/udpipe-ud-1.2-160523/*
 UniversalPetrarch/tests/*
 UniversalPetrarch/test_output/*
+UniversalPetrarch/PETRARCH.log
 ar_data/*
 en_input/* 
 UniversalPetrarch/data/text/*

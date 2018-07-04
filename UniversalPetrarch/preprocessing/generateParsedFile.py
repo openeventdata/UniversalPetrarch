@@ -3,6 +3,7 @@
 import io
 import xml.etree.ElementTree as ET
 import sys
+import pyarabic.araby as araby
 
 def update_xml_input(inputfile,parsedfile,outputfile):
 	
@@ -30,6 +31,8 @@ def update_xml_input(inputfile,parsedfile,outputfile):
 				break
 
 			while j < len(plines) and not plines[j].isspace():
+				if language == 'AR' : #remove diacritics
+					plines[j] = araby.strip_tashkeel(plines[j])
 				parsed.append(plines[j])
 				j = j + 1
 			j = j+1
@@ -42,6 +45,7 @@ def update_xml_input(inputfile,parsedfile,outputfile):
 	tree.write(outputFile,encoding='utf-8',xml_declaration=True)
 
 inputFile=sys.argv[1]
+language = sys.argv[2]
 parsedFile = inputFile+".conll.predpos.pred"
 outputFile = inputFile.replace(".xml","")+"_parsed.xml"
 update_xml_input(inputFile,parsedFile,outputFile)
