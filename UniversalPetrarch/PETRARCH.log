@@ -1,8 +1,8 @@
-INFO 2018-07-03 19:59:18,115: Running
-INFO 2018-07-03 19:59:18,115: Using user-specified config: data/config/PETR_AR_config.ini
-INFO 2018-07-03 19:59:18,117: Reading arabic/PETR.Internal.Coding.Ontology.txt
-INFO 2018-07-03 19:59:18,119: Reading arabic/CAMEO.ar.0.1.txt
-INFO 2018-07-03 19:59:18,340: Reading arabic/agents.all.ar_v2.txt
+INFO 2018-07-16 15:28:02,833: Running
+INFO 2018-07-16 15:28:02,833: Using user-specified config: data/config/PETR_AR_config.ini
+INFO 2018-07-16 15:28:02,834: Reading arabic/PETR.Internal.Coding.Ontology.txt
+INFO 2018-07-16 15:28:02,837: Reading arabic/CAMEO.ar.0.2.txt
+INFO 2018-07-16 15:28:03,326: Reading arabic/agents.all.ar_v2.txt
 
-INFO 2018-07-03 19:59:18,361: Reading arabic/discards_ar.txt
-INFO 2018-07-03 19:59:18,362: Reading arabic/issues_ar.txt
+INFO 2018-07-16 15:28:03,346: Reading arabic/discards_ar.txt
+INFO 2018-07-16 15:28:03,346: Reading arabic/issues_ar.txt
