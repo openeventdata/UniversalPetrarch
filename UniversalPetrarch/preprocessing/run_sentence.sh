@@ -9,13 +9,13 @@ FILEPATH=../data/text
 STANFORD_SEG=./segmenter
 CLASSPATH=$STANFORD_SEG/stanford-segmenter-3.6.0.jar:$STANFORD_SEG/slf4j-api.jar
 STANFORD_CORENLP=./stanford-corenlp-full-2018-01-31
-udpipePath=./udpipe-1.0.0-bin/bin-osx
+udpipePath=./udpipe-1.2.0-bin/bin-osx
 
 
 
 if [ "$language" = "AR" ] 
 then
-	languageModel=${udpipePath}/model/arabic-ud-1.4.udpipe
+	languageModel=${udpipePath}/model/arabic-ud-2.0-170801.udpipe
 	STANFORD_PROPERTY=config/StanfordCoreNLP-arabic.properties
 
 

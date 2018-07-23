@@ -2209,8 +2209,9 @@ def read_agent_dictionary(agent_path):
 
     #lines = {}
     line = read_FIN_line()
+    
     while len(line) > 0:  # loop through the file
-
+        print('---->' + line)
         if '!' in line and '=' in line:  # synonym set
             define_marker(line)
             line = read_FIN_line()
