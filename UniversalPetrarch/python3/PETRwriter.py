@@ -71,7 +71,7 @@ def write_events(event_dict, output_file):
         else:
             url = ''
         for event in filtered_events:
-            if not isinstance(event[3], basestring): # occasional issue in PETR-2 due to mishandling of multi-word verb PAS 15.04.03, modified 18.06.01
+            if not isinstance(event[3], str): # occasional issue in PETR-2 due to mishandling of multi-word verb PAS 15.04.03, modified 18.06.01
                 continue
             story_date = event[0]
             source = event[1]
