@@ -1,3 +1,6 @@
+####### SYNONYM SETS ####### 
+
+
 &CURRENCY
 
 +درهم_مغربي_

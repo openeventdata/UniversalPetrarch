@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import io
 import re
 import os
@@ -775,7 +772,7 @@ def read_verb_dictionary(verb_path):
         '''
         segs = line.split()
         # print(line)
-        syns = filter(lambda a: '&' in a, segs)
+        syns = [a for a in segs if '&' in a]
         lines = []
         if syns:
             set = syns[0].replace(
@@ -849,11 +846,10 @@ def read_verb_dictionary(verb_path):
 
             index += 1
 
-        preps = map(lambda a: segment[a[0]:a[1] + 1],
-                    zip(prepstarts, prepends))
+        preps = [segment[a[0]:a[1] + 1] for a in zip(prepstarts, prepends)]
         prep_pats = []
         for phrase in preps:
-            phrase = map(lambda a: a.replace("(", "").replace(")", ""), phrase)
+            phrase = [a.replace("(", "").replace(")", "") for a in phrase]
             p = phrase[0]
             pnps = []
             pmodifiers = []
@@ -996,7 +992,7 @@ def read_verb_dictionary(verb_path):
             block_meaning = line.strip()
         elif syn and line.startswith("+"): #read SYNONYM SETS
             #print(line)
-            term = line.strip()[1:].decode('utf-8')
+            term = line.strip()[1:] #.decode('utf-8')
             #print(term[-1])
 
             if "_" in term[-1] and "_" in term[:-1]:
@@ -1026,8 +1022,8 @@ def read_verb_dictionary(verb_path):
             while len(ev2) > 1:
                 source = ev2[0]
 
-                verb = reduce(lambda a, b: a + b, map(lambda c: utilities.convert_code(PETRglobals.VerbDict[
-                              'verbs'][c]['#']['#'][0]['code'])[0] if not c == "Q" else -1, ev2[-1].split("_")), 0)
+                verb = reduce(lambda a, b: a + b, [utilities.convert_code(PETRglobals.VerbDict[
+                              'verbs'][c]['#']['#'][0]['code'])[0] if not c == "Q" else -1 for c in ev2[-1].split("_")], 0)
 
                 path = path.setdefault(verb, {})
                 path = path.setdefault(source, {})
@@ -1788,7 +1784,8 @@ def dstr_to_ordate(datestring):
 		dstr_to_ordate("16010101")  # 2305814
 	"""
 
-# print datestring        # debug
+    # print(datestring)        # debug
+    
     try:
         if len(datestring) > 7:
             year = int(datestring[:4])
@@ -1851,13 +1848,13 @@ def ordate_to_dstr(ordate):
     """
     ordate += 2305813 #adjust for ANSI date
     L= ordate+68569
-    N= 4*L/146097
-    L= L-(146097*N+3)/4
-    I= 4000*(L+1)/1461001
-    L= L-1461*I/4+31
-    J= 80*L/2447
-    K= L-2447*J/80
-    L= J/11
+    N= 4*L//146097
+    L= L-(146097*N+3)//4
+    I= 4000*(L+1)//1461001
+    L= L-1461*I//4+31
+    J= 80*L//2447
+    K= L-2447*J//80
+    L= J//11
     J= J+2-12*L
     I= 100*(N-49)+I+L
 
@@ -2209,9 +2206,8 @@ def read_agent_dictionary(agent_path):
 
     #lines = {}
     line = read_FIN_line()
-    
     while len(line) > 0:  # loop through the file
-        print('---->' + line)
+
         if '!' in line and '=' in line:  # synonym set
             define_marker(line)
             line = read_FIN_line()

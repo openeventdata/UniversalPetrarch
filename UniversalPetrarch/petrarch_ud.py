@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import sys
+'''
 if sys.version[0] == '3':
     print("""Universal Petrarch is currently only tested on Python 2. If you
 encounter errors with Python 3, try switching to Python 2.
 Alternatively, pull requests enabling Python 3 compatibility would be very
 welcome! https://github.com/openeventdata/UniversalPetrarch/""")
+'''
 
 import os
 import sys
@@ -153,40 +152,40 @@ PETRARCH
 def read_dictionaries(validation=False):
 
     print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
-    pico_path = utilities._get_data('data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
+    pico_path = utilities._get_data('../data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
     PETRreader.read_internal_coding_ontology(pico_path)
 
     print('Verb dictionary:', PETRglobals.VerbFileName)
     verb_path = utilities._get_data(
-        'data/dictionaries',
+        '../data/dictionaries',
         PETRglobals.VerbFileName)
     PETRreader.read_verb_dictionary(verb_path)
 
     if PETRglobals.CodeWithPetrarch1:
         print('Petrarch 1 Verb dictionary:', PETRglobals.P1VerbFileName)
         verb_path = utilities._get_data(
-            'data/dictionaries',
+            '../data/dictionaries',
             PETRglobals.P1VerbFileName)
         PETRreader.read_petrarch1_verb_dictionary(verb_path)
 
     print('Actor dictionaries:', PETRglobals.ActorFileList)
     for actdict in PETRglobals.ActorFileList:
-        actor_path = utilities._get_data('data/dictionaries', actdict)
+        actor_path = utilities._get_data('../data/dictionaries', actdict)
         PETRreader.read_actor_dictionary(actor_path)
-
+   
     print('Agent dictionary:', PETRglobals.AgentFileList)
     for agentdict in PETRglobals.AgentFileList:
-        agent_path = utilities._get_data('data/dictionaries', agentdict)
+        agent_path = utilities._get_data('../data/dictionaries', agentdict)
         PETRreader.read_agent_dictionary(agent_path)
 
     print('Discard dictionary:', PETRglobals.DiscardFileName)
-    discard_path = utilities._get_data('data/dictionaries',
+    discard_path = utilities._get_data('../data/dictionaries',
                                        PETRglobals.DiscardFileName)
     PETRreader.read_discard_list(discard_path)
 
     if PETRglobals.IssueFileName != "":
         print('Issues dictionary:', PETRglobals.IssueFileName)
-        issue_path = utilities._get_data('data/dictionaries',
+        issue_path = utilities._get_data('../data/dictionaries',
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 
@@ -289,17 +288,20 @@ def do_coding(event_dict):
     times = 0
     sents = 0
 
-    for key, val in sorted(event_dict.items()):
+    for key, val in sorted(list(event_dict.items())):
         NStory += 1
         prev_code = []
 
         SkipStory = False
-        print('\n\nProcessing story {}'.format(key))
+        #print('\n\nProcessing story {}'.format(key))
 
         StoryDate = event_dict[key]['meta']['date']
         for sent in val['sents']:
             NSent += 1
             SentenceID = '{}_{}'.format(key, sent)
+            #if "AFP" not in key:
+                #continue
+
             if 'parsed' in event_dict[key]['sents'][sent]:
                 if 'config' in val['sents'][sent]:
                     for _, config in event_dict[key]['sents'][sent]['config'].items():
@@ -311,6 +313,8 @@ def do_coding(event_dict):
                 Date = PETRreader.dstr_to_ordate(SentenceDate)
 
                 print("\n", SentenceID)
+                #if '020675' not in SentenceID:
+                    #continue
                 parsed = event_dict[key]['sents'][sent]['parsed']
                 treestr = parsed
 
@@ -349,6 +353,7 @@ def do_coding(event_dict):
                     event_dict[key]['sents'][sent].setdefault('events', {})
                     event_dict[key]['sents'][sent].setdefault('triplets', {})
                     for i in range(0,len(p1_coded_events)):
+                        #raw_input(p1_coded_events[i])
                         event_dict[key]['sents'][sent]['events']['p1_'+str(i)] = [[p1_coded_events[i][0]],[p1_coded_events[i][1]],p1_coded_events[i][2]]
                         
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)] = {}
@@ -398,8 +403,10 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['issues'] = event_issues
 
                 if PETRglobals.PauseBySentence:
-                    if len(raw_input("Press Enter to continue...")) > 0:
+                    if len((input("Press Enter to continue..."))) > 0:
                         sys.exit()
+
+
 
                 NEvents += len(coded_events.values())
                 if len(coded_events) == 0:

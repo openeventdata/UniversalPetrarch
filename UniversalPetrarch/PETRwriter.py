@@ -23,9 +23,6 @@
 # 22-Nov-13:	Initial version
 # ------------------------------------------------------------------------
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import PETRglobals  # global variables
 import utilities
 import codecs
@@ -74,8 +71,8 @@ def write_events(event_dict, output_file):
         else:
             url = ''
         for event in filtered_events:
-            if not isinstance(event[3], basestring): # occasional issue in PETR-2 due to mishandling of multi-word verb PAS 15.04.03, modified 18.06.01
-                continue
+            # if not isinstance(event[3], basestring): # occasional issue in PETR-2 due to mishandling of multi-word verb PAS 15.04.03, modified 18.06.01
+            #     continue
             story_date = event[0]
             source = event[1]
             target = event[2]
@@ -86,7 +83,7 @@ def write_events(event_dict, output_file):
 
             if 'issues' in filtered_events[event]:
                 iss = filtered_events[event]['issues']
-                issues = ['{},{}'.format(k, v) for k, v in iss.items()]
+                issues = ['{},{}'.format(k, v) for k, v in list(iss.items())]
                 joined_issues = ';'.join(issues)
             else:
                 joined_issues = []
@@ -329,7 +326,7 @@ def pipe_output(event_dict):
 
                 if 'issues' in filtered_events[event]:
                     iss = filtered_events[event]['issues']
-                    issues = ['{},{}'.format(k, v) for k, v in iss.items()]
+                    issues = ['{},{}'.format(k, v) for k, v in list(iss.items())]
                     joined_issues = ';'.join(issues)
                     event_str = (story_date, source, target, code,
                                  joined_issues, ids, url, StorySource)
