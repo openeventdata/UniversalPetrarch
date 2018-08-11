@@ -1508,7 +1508,7 @@ An instantiated Sentence object
             #print(subpath)
             if not o1:  # match_noun() can call reroute() with o1 == None; guessing returning False is the appropriate response pas 16.04.21
                 return False
-            print('-->' , subpath)
+            # print('-->' , subpath)
             if '-' in subpath:
                 match = o1(subpath['-'])
                 if match:

@@ -72,7 +72,7 @@ ${udpipePath}/udpipe --tag --parse --outfile=${FILEPATH}/$FILENAME.conll.predpos
 echo "Ouput parsed xml file..."
 python generateParsedFile.py ${FILEPATH}/$FILENAME "$language"
 
-# rm ${FILEPATH}/$FILENAME.raw.txt
-# rm ${FILEPATH}/$FILENAME.conll
-# rm ${FILEPATH}/$FILENAME.conll.predpos.pred
+rm ${FILEPATH}/$FILENAME.raw.txt
+rm ${FILEPATH}/$FILENAME.conll
+rm ${FILEPATH}/$FILENAME.conll.predpos.pred
 
