@@ -1073,7 +1073,7 @@ An instantiated Sentence object
                 # check for conjuncting verbs
                 predecessors = self.udgraph.predecessors(verb.headID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and self.udgraph.node[predecessor]['pos'] == 'VERB':
+                    if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and 'pos' in self.udgraph.node[predecessor] and self.udgraph.node[predecessor]['pos'] == 'VERB':
                         logger.debug("found conj verb:" +self.udgraph.node[predecessor]['token'])
                         conjverb = self.get_verbPhrase(predecessor)
                         logger.debug("extracting verb:" + conjverb.text)
@@ -1777,10 +1777,10 @@ An instantiated Sentence object
                     meanings.append(meaning)
                     matched_txts.append(matched_txt)
 
-        if(len(verbtokens) > 1):
-            logger.debug(codes)
-            logger.debug(meanings)
-            logger.debug(matched_txts)
+        #if(len(verbtokens) > 1):
+        logger.debug(codes)
+        logger.debug(meanings)
+        logger.debug(matched_txts)
             #raw_input("verb pharse has length large than 1")
 
         if code != None and meaning != None:
@@ -1862,7 +1862,9 @@ An instantiated Sentence object
                         newsource, basestring) else source
                     target = newtarget if not isinstance(
                         newtarget, basestring) else target
-            
+        #print(code)
+        #raw_input()
+
         tripleID = ('-' if isinstance(source, basestring) else str(source.headID)) + '#' + \
                    ('-' if isinstance(target, basestring) else str(target.headID)) + '#' + \
             str(verb.headID) + "#" + str(len(self.triplets))
@@ -2297,7 +2299,8 @@ An instantiated Sentence object
                     for reventID, revent in root_event[root].items():
                         event_before_transfer = (
                             revent[0], current_event, revent[2])
-                        if revent[0] not in ['---']:
+
+                        if revent[0] not in ['---'] and revent[2] not in ['-']: #revent[2] not in ['-'] only happened in spanish
                             event_after_transfer = self.match_transform(
                                 event_before_transfer)
                             current_eventID = tripleID
@@ -2750,7 +2753,7 @@ An instantiated Sentence object
         self.metadata['triplets'] = [t for t in self.metadata[
             'triplets'] if not has_time_expression(t)]
 
-    def get_upper_seq(self, kword, nouns, compound_nouns):
+    def get_upper_seq(self, kword, nouns, compound_nouns, lemma = False):
         """
         Generate the upper sequence starting from kword; Upper sequence currently
         terminated by clause boundary.
@@ -2851,7 +2854,11 @@ An instantiated Sentence object
                 currnoun = nounEndStart[kword]['noun']
                 # print("kword", kword, "start", nounstart)
 
-            UpperSeq.append(self.udgraph.node[kword]['token'].upper())
+            #get lemma or raw text
+            if lemma:
+                UpperSeq.append(self.udgraph.node[kword]['lemma'].upper())
+            else:
+                UpperSeq.append(self.udgraph.node[kword]['token'].upper())
             if nounmark and kword == nounstart:
                 noun_meaning_list = [
                     "---"] if currnoun.meaning == [] else currnoun.meaning
@@ -2879,7 +2886,7 @@ An instantiated Sentence object
 
         return UpperSeq
 
-    def get_lower_seq(self, kword, endtag, nouns, compound_nouns):
+    def get_lower_seq(self, kword, endtag, nouns, compound_nouns, lemma = False):
         """
         Generate the lower sequence starting from kword; lower sequence includes only
         words in the VP.
@@ -2980,7 +2987,10 @@ An instantiated Sentence object
 
                 # print("kword", kword, "end", nounend)
 
-            LowerSeq.append(self.udgraph.node[kword]['token'].upper())
+            if lemma: 
+                LowerSeq.append(self.udgraph.node[kword]['lemma'].upper())
+            else:
+                LowerSeq.append(self.udgraph.node[kword]['token'].upper())
             if nounmark and kword == nounend:
                 LowerSeq.append("~NE")
 
@@ -3059,7 +3069,7 @@ An instantiated Sentence object
                     #    return
                     tarlist = extract_code_fields(thistar)
                     # skip self-references based on code
-                    if srclist[0] != tarlist[0]:
+                    if srclist[0] != tarlist[0] or (srclist[0] == tarlist[0] and tarlist[0] == '---'):
                         if tarlist[0][0:3] == '---' and len(SentenceLoc) > 0:
                             # add location if known -- see note above
                             tarlist[0] = SentenceLoc + tarlist[0][3:]
@@ -3335,6 +3345,8 @@ An instantiated Sentence object
                 verbhead = verb.head.upper()
                 logger.debug("CV-0: %s  %s", verb.text,
                              verbhead in PETRglobals.P1VerbDict['verbs'])
+
+                self.verbs[verbID] = verb
                 # raw_input()
                 IsPassive = False
                 for successor in self.udgraph.successors(verbID):
@@ -3416,75 +3428,82 @@ An instantiated Sentence object
                                 verbdata = patternlist['#']['#']
                                 hasmatch = True
 
-                    if not verbdata == {}:
-                        meaning = verbdata['meaning']
-                        verbcode = verbdata['code']
-                        line = verbdata['line']
-                        logger.debug(
-                            "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
-
+                    
                     # Find code from pattern dictionary
                     if verb_start in conj_verbs.keys():
                         verb_start = conj_verbs[verb_start]
-                    upper = self.get_upper_seq(verb_start - 1, nouns, compound_nouns)
+                    upper = self.get_upper_seq(verb_start - 1, nouns, compound_nouns, False)
+                    upperlemma = self.get_upper_seq(verb_start - 1, nouns, compound_nouns, True)
+
                     logger.debug("Upper sequence: %s", upper)
                     lower = self.get_lower_seq(
-                        verb_end + 1, len(self.udgraph.node), nouns, compound_nouns)
+                        verb_end + 1, len(self.udgraph.node), nouns, compound_nouns, False)
+                    lowerlemma = self.get_lower_seq(
+                        verb_end + 1, len(self.udgraph.node), nouns, compound_nouns, True)
                     logger.debug("Lower sequence: %s", lower)
                     #raw_input()
 
-                    if not meaning == '':
-                        patternlist = PETRglobals.P1VerbDict[
-                            'phrases'][meaning]
-                    # logger.debug("CV-2 patlist: %s", patternlist.keys())
-
-                    vpm, lowsrc, lowtar = self.petrarch1_verb_pattern_match(
-                        patternlist, upper, lower)
-                    hasmatch = False
-                    if not vpm == {}:
-                        hasmatch = True
-                        EventCode = vpm[0]['code']
-                        line = vpm[0]['line']
-                        SourceLoc = lowsrc if not lowsrc == "" else vpm[2]
-                        TargetLoc = lowtar if not lowtar == "" else vpm[1]
-
-                        logger.debug("EventCode: %s,%s,%s,%s",
-                                     EventCode, line, SourceLoc, TargetLoc)
-                    # raw_input()
-
-                    if hasmatch and EventCode == '---':
-                        hasmatch = False
-                    if not hasmatch and verbcode != '---':
+                    for i in range(0,len(verbdata)):
+                        meaning = verbdata[i]['meaning']
+                        verbcode = verbdata[i]['code']
+                        line = verbdata[i]['line']
                         logger.debug(
-                            "Matched on the primary verb %s, %s, %s", verbhead, meaning, line)
-                        EventCode = verbcode
-                        hasmatch = True
+                            "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
+                        verb.meaning = meaning
+                        verb.code = verbcode
 
-                    if hasmatch:
-                        if TargetLoc == "":
-                            TargetLoc = self.find_target(lower, TargetLoc)
-                            logger.debug("CV-3 trg %s", TargetLoc)
+                        if not meaning == '':
+                            patternlist = PETRglobals.P1VerbDict[
+                                'phrases'][meaning]
+                        # logger.debug("CV-2 patlist: %s", patternlist.keys())
 
-                        # print("TargetLoc", TargetLoc)
-                        if not TargetLoc == "":
-                            if SourceLoc == "":
-                                # print(upper)
-                                # print(lower)
-                                # print(TargetLoc == "")
-                                if not TargetLoc[0] == "":
-                                    SourceLoc = self.find_source(
-                                        upper, lower, SourceLoc, TargetLoc)
-                            if not SourceLoc == "":
-                                logger.debug("CV-3 src %s", SourceLoc)
-                                CodedEvents = self.make_event_strings(
-                                    CodedEvents, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+                        vpm, lowsrc, lowtar = self.petrarch1_verb_pattern_match(
+                            patternlist, upperlemma, lowerlemma)
+                        hasmatch = False
+                        if not vpm == {}:
+                            hasmatch = True
+                            EventCode = vpm[0][0]['code']
+                            line = vpm[0][0]['line']
+                            SourceLoc = lowsrc if not lowsrc == "" else vpm[2]
+                            TargetLoc = lowtar if not lowtar == "" else vpm[1]
 
-                                logger.debug("coded_events: %s", CodedEvents)
-                                logger.debug("line: %s", line)
-                                # for event in CodedEvents:
-                                # event.append(line)
-            if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
-                break
+                            logger.debug("EventCode: %s,%s,%s,%s",
+                                         EventCode, line, SourceLoc, TargetLoc)
+                        # raw_input()
+
+                        if hasmatch and EventCode == '---':
+                            hasmatch = False
+                        if not hasmatch and verbcode != '---':
+                            logger.debug(
+                                "Matched on the primary verb %s, %s, %s", verbhead, meaning, line)
+                            EventCode = verbcode
+                            hasmatch = True
+
+                        if hasmatch:
+                            if TargetLoc == "":
+                                TargetLoc = self.find_target(lower, TargetLoc)
+                                logger.debug("CV-3 trg %s", TargetLoc)
+
+                            # print("TargetLoc", TargetLoc)
+                            if not TargetLoc == "":
+                                if SourceLoc == "":
+                                    # print(upper)
+                                    # print(lower)
+                                    # print(TargetLoc == "")
+                                    if not TargetLoc[0] == "":
+                                        SourceLoc = self.find_source(
+                                            upper, lower, SourceLoc, TargetLoc)
+                                if not SourceLoc == "":
+                                    logger.debug("CV-3 src %s", SourceLoc)
+                                    CodedEvents = self.make_event_strings(
+                                        CodedEvents, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+
+                                    logger.debug("coded_events: %s", CodedEvents)
+                                    logger.debug("line: %s", line)
+                                    # for event in CodedEvents:
+                                    # event.append(line)
+            #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
+                #break
 
         # return CodedEvents,SourceLoc
         return CodedEvents

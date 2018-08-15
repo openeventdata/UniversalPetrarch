@@ -1419,7 +1419,9 @@ def read_petrarch1_verb_dictionary(verb_path):
             list = list.setdefault(targ[-1], {})
             targ = targ[:-1]
 
-        list['#'] = {'meaning': meaning, 'code': code, 'line': line}
+        if '#' not in list:
+            list['#'] = []
+        list['#'].append({'meaning': meaning, 'code': code, 'line': line})
 
     def make_phrase_list(thepat):
         """ Converts a pattern phrase into a list of alternating words and connectors """
@@ -1451,8 +1453,8 @@ def read_petrarch1_verb_dictionary(verb_path):
                 if (phlist[ka][0] == '&') and (
                         phlist[ka] not in PETRglobals.P1VerbDict):
                     print("WTF", phlist[ka])
-                    print(sorted(PETRglobals.P1VerbDict.keys()))
-                    exit()
+                    #print(sorted(PETRglobals.P1VerbDict.keys()))
+                    #exit()
 
                     logger.warning("Synset " + phlist[ka] +
                                    " has not been defined; pattern skipped")
@@ -1560,7 +1562,7 @@ def read_petrarch1_verb_dictionary(verb_path):
 
     # note that this will be ignored if there are no errors
     logger = logging.getLogger('petr_log')
-    logger.info("Reading " + PETRglobals.VerbFileName)
+    logger.info("Reading " + PETRglobals.P1VerbFileName)
     open_FIN(verb_path, "verb")
 
     theverb = ''

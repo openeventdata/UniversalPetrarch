@@ -352,6 +352,8 @@ def do_coding(event_dict):
                     
                     event_dict[key]['sents'][sent].setdefault('events', {})
                     event_dict[key]['sents'][sent].setdefault('triplets', {})
+                    event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
+
                     for i in range(0,len(p1_coded_events)):
                         #raw_input(p1_coded_events[i])
                         event_dict[key]['sents'][sent]['events']['p1_'+str(i)] = [[p1_coded_events[i][0]],[p1_coded_events[i][1]],p1_coded_events[i][2]]
@@ -361,6 +363,8 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['source_text'] = p1_coded_events[i][3] if p1_coded_events[i][3] != None else "---"
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['target_text'] = p1_coded_events[i][4] if p1_coded_events[i][4] != None else "---"
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['verb_text'] = p1_coded_events[i][6]
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['verbcode'] = p1_coded_events[i][2]
+                        
                         coded_events['p1_'+str(i)]= event_dict[key]['sents'][sent]['events']['p1_'+str(i)]
 
                 logger.debug("check events of id:"+SentenceID)
