@@ -2301,9 +2301,13 @@ An instantiated Sentence object
                             revent[0], current_event, revent[2])
 
                         if revent[0] not in ['---'] and revent[2] not in ['-']: #revent[2] not in ['-'] only happened in spanish
-                            event_after_transfer = self.match_transform(
+                            event_after_transfer, transfer_pattern = self.match_transform(
                                 event_before_transfer)
                             current_eventID = tripleID
+                            triple["transfermation"] = transfer_pattern
+                            if transferpattern != "None":
+                                triple["before_transfer"] = event_before_transfer
+                                triple["after_transfer"] = event_after_transfer
 
                         elif current_event[0] and current_event[1]:
                             event_after_transfer = [current_event]
@@ -2650,7 +2654,7 @@ An instantiated Sentence object
                     tevent = (event[0],[event[1]],utilities.convert_code(event[2], 0))
                     transfered.append(tevent)
 
-                return transfered
+                return transfered,t[1]
             else:
                 logger.debug("no transformation is present:")
                 #c = utilities.convert_code(e[1][2])[0]
@@ -2675,14 +2679,14 @@ An instantiated Sentence object
                                 code_combined, 0))
                             logger.debug(event)
                             results.append(event)
-                        return results
+                        return results,"a ( b . Q ) P"
 
                     code_combined = utilities.combine_code(utilities.convert_code(e[2])[
                                                            0], utilities.convert_code(e[1][2])[0])
                     event = (e[0], [e[1][0]],
                              utilities.convert_code(code_combined, 0))
                     logger.debug(event)
-                    return [event]
+                    return [event],"a ( b . Q ) P"
                 #'''
                 elif e[0] and isinstance(e[1], tuple) and e[1][0] and e[1][2] and e[0] == e[1][0] and e[1][1]:
 
@@ -2696,7 +2700,7 @@ An instantiated Sentence object
                         code_combined, 0))
                     logger.debug(event)
 
-                    return [event]
+                    return [event],"a ( a b Q ) P"
                 '''
                 elif e[0] and isinstance(e[1], tuple) and not e[1][0] and e[1][2] and e[1][1]:
                     logger.debug("the event is of the form: a ( [] b Q ) P")
@@ -2732,7 +2736,7 @@ An instantiated Sentence object
 
         except Exception as ex:
             pass  # print(ex)
-        return [e]
+        return [e],"None"
 
     def filter_triplet_with_time_expression(self):
         # filter out triplet containing time expressions as target
