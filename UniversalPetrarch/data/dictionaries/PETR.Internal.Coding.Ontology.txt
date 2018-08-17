@@ -1,4 +1,4 @@
-# PETRARCH Internal Coding Ontology (PICO) -->
+ # PETRARCH Internal Coding Ontology (PICO) -->
 # VERSION: 1.0 -->
 # Last Update: 29 June 2017 -->
 #
