@@ -1452,7 +1452,7 @@ def read_petrarch1_verb_dictionary(verb_path):
             if len(phlist[ka]) > 0:
                 if (phlist[ka][0] == '&') and (
                         phlist[ka] not in PETRglobals.P1VerbDict):
-                    print("WTF", phlist[ka])
+                    print("Synset not found:", phlist[ka])
                     #print(sorted(PETRglobals.P1VerbDict.keys()))
                     #exit()
 

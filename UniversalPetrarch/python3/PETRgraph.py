@@ -2308,7 +2308,7 @@ An instantiated Sentence object
                                 event_before_transfer)
                             current_eventID = tripleID
                             triple["transfermation"] = transfer_pattern
-                            if transferpattern != "None":
+                            if transfer_pattern != "None":
                                 triple["before_transfer"] = event_before_transfer
                                 triple["after_transfer"] = event_after_transfer
 
@@ -2698,7 +2698,7 @@ An instantiated Sentence object
                                 code_combined, 0))
                             logger.debug(event)
                             results.append(event)
-                        return results
+                        return results, "a ( b . Q ) P"
 
                     code_combined = utilities.combine_code(utilities.convert_code(e[2])[
                                                            0], utilities.convert_code(e[1][2])[0])
@@ -3399,7 +3399,7 @@ An instantiated Sentence object
                         # e.g. +MEET_WITH
                         i = verb.headID + 1
                         found_flag = True
-                        while found_flag:
+                        while found_flag and i< len(self.udgraph.node) :
                             word = self.udgraph.node[i]['lemma'].upper()
                             if word in patternlist:
                                 if '#' in patternlist[word]:

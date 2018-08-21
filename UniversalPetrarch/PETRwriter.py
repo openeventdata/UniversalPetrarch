@@ -141,10 +141,10 @@ def write_events(event_dict, output_file):
     event_output = [event for event in event_output if event]
     if output_file:
         f = codecs.open(output_file, encoding='utf-8', mode='w')
-        for str in event_output:
+        for line in event_output:
             #             field = str.split('\t')  # debugging
             #            f.write(field[5] + '\n')
-            f.write(str + '\n')
+            f.write(line + '\n')
         f.close()
 
 
