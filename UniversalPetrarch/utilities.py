@@ -39,7 +39,6 @@ from __future__ import unicode_literals
 
 import os
 import logging
-#import corenlp
 import dateutil.parser
 import PETRglobals
 from collections import defaultdict, Counter
@@ -317,8 +316,9 @@ def story_filter(story_dict, story_id):
                     alist.append((" ").join(target))
                     alist.append(sent_dict['events'][event][2])
 
-
+                    #alist.append(sent_id)
                     event_tuple = tuple(alist)
+                    #print(sent_id, event_tuple)
                     filtered[event_tuple]
                     if 'issues' in sent_dict:
                         filtered[event_tuple]['issues'] = Counter()
@@ -590,7 +590,7 @@ def convert_code(code, forward=1):
         return active, passive
 
     else:
-        reverse = dict(map(lambda a: (a[1], a[0]), cat.items()) +  # Other weird quirks
+        reverse = dict([(a[1], a[0]) for a in list(cat.items())] +  # Other weird quirks
                        [(0x30a0, "138"),   # Want to attack
 
                         ])

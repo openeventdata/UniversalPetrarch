@@ -4,11 +4,13 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import sys
+'''
 if sys.version[0] == '3':
     print("""Universal Petrarch is currently only tested on Python 2. If you
 encounter errors with Python 3, try switching to Python 2.
 Alternatively, pull requests enabling Python 3 compatibility would be very
 welcome! https://github.com/openeventdata/UniversalPetrarch/""")
+'''
 
 import os
 import sys
@@ -289,7 +291,7 @@ def do_coding(event_dict):
     times = 0
     sents = 0
 
-    for key, val in sorted(event_dict.items()):
+    for key, val in sorted(list(event_dict.items())):
         NStory += 1
         prev_code = []
 
@@ -403,8 +405,14 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['issues'] = event_issues
 
                 if PETRglobals.PauseBySentence:
-                    if len(raw_input("Press Enter to continue...")) > 0:
-                        sys.exit()
+                    if sys.version[0]=='3':
+                        if len((input("Press Enter to continue..."))) > 0:
+                            sys.exit()
+                    elif sys.version[0] =='2':
+                        if len(raw_input("Press Enter to continue...")) > 0:
+                            sys.exit()
+
+
 
                 NEvents += len(coded_events.values())
                 if len(coded_events) == 0:

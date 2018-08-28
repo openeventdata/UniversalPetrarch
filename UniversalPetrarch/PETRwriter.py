@@ -31,6 +31,10 @@ import utilities
 import codecs
 import json
 
+try:
+    basestring
+except:
+    basestring = str
 
 def get_actor_text(meta_strg):
     """ Extracts the source and target strings from the meta string. """
@@ -86,7 +90,7 @@ def write_events(event_dict, output_file):
 
             if 'issues' in filtered_events[event]:
                 iss = filtered_events[event]['issues']
-                issues = ['{},{}'.format(k, v) for k, v in iss.items()]
+                issues = ['{},{}'.format(k, v) for k, v in list(iss.items())]
                 joined_issues = ';'.join(issues)
             else:
                 joined_issues = []
@@ -329,7 +333,7 @@ def pipe_output(event_dict):
 
                 if 'issues' in filtered_events[event]:
                     iss = filtered_events[event]['issues']
-                    issues = ['{},{}'.format(k, v) for k, v in iss.items()]
+                    issues = ['{},{}'.format(k, v) for k, v in list(iss.items())]
                     joined_issues = ';'.join(issues)
                     event_str = (story_date, source, target, code,
                                  joined_issues, ids, url, StorySource)
