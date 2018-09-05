@@ -313,11 +313,7 @@ def story_filter(story_dict, story_id):
                     alist.append((" ").join(target))
                     alist.append(sent_dict['events'][event][2])
 
-<<<<<<< HEAD
-                    alist.append(sent_id)
-=======
                     #alist.append(sent_id)
->>>>>>> master
                     event_tuple = tuple(alist)
                     #print(sent_id, event_tuple)
                     filtered[event_tuple]
