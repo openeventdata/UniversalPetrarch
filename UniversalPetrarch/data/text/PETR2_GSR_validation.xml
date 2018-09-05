@@ -1,0 +1,2340 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Validation>
+
+##########################################################################################################################################
+#
+#                                            PETRARCH-2 VALIDATION RECORDS
+#                                    To run: python validation.py -i PETR2_GSR_validation.xml 
+#                                    Version compatibility: Runs using UDP master 24-May-2018
+#                                              Last Update: 25 May 2018
+#
+#   PETRARCH-2 did not implement an extended functional validation suite, just a small number of unit tests, but had about 40 test-like  
+#   records embedded in the GigaWord.sample.PETR.xml file, which was at some point converted to UD format as 
+#   GigaWord.sample.PETR_parsed.xml. This file consists of those records, plus the TEST_* records which hadn't been converted earlier,
+#   then the addition of <EventCoding...> records based on the PETR-2 output from GigaWord.sample.PETR.xml file. 
+#
+#   REVISION HISTORY
+#   May-2018: Initial version 
+#	June-2018: fix some incorrect Dependency Parsed trees and some event coding
+#	August-2018: add new records from GitHub issues
+#
+##########################################################################################################################################
+
+<Environment>
+    <Verbfile>CAMEO.2.0.txt</Verbfile>
+    <Actorfile>Phoenix.Countries.actors.txt,Phoenix.International.actors.txt,Phoenix.MilNonState.actors.txt</Actorfile>
+    <Agentfile>Phoenix.agents.txt</Agentfile>
+    <Discardfile>Phoenix.discards.txt</Discardfile>
+    <PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
+    <Include>valid AFP TEST GOLD VERB PASSIVE OTHER </Include>
+</Environment>
+<Sentences>
+<Sentence category="AFP" date="20080804" id="AFP0808020625_4" evaluate="true"/>
+<EventCoding eventcode="042" sourcecode="USA" targetcode="CHN" />
+<Text>
+The stopover came as the US leader prepared to attend the Beijing Olympics, an event which will test
+his vow to keep politics out of the Games.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	stopover	stopover	NOUN	NN	Number=Sing	3	nsubj	_	_
+3	came	come	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	as	as	ADP	IN	_	7	case	_	_
+5	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+6	US	US	PROPN	NNP	Number=Sing	7	compound	_	_
+7	leader	leader	NOUN	NN	Number=Sing	3	obl	_	_
+8	prepared	prepare	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	advcl	_	_
+9	to	to	PART	TO	_	10	mark	_	_
+10	attend	attend	VERB	VB	VerbForm=Inf	8	xcomp	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+12	Beijing	Beijing	PROPN	NNP	Number=Sing	13	compound	_	_
+13	Olympics	Olympics	PROPN	NNPS	Number=Plur	10	obj	_	SpaceAfter=No
+14	,	,	PUNCT	,	_	13	punct	_	_
+15	an	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+16	event	event	NOUN	NN	Number=Sing	13	appos	_	_
+17	which	which	PRON	WDT	PronType=Rel	19	nsubj	_	_
+18	will	will	AUX	MD	VerbForm=Fin	19	aux	_	_
+19	test	test	VERB	VB	VerbForm=Inf	16	acl:relcl	_	_
+20	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	21	nmod:poss	_	_
+21	vow	vow	NOUN	NN	Number=Sing	19	obj	_	_
+22	to	to	PART	TO	_	23	mark	_	_
+23	keep	keep	VERB	VB	VerbForm=Inf	19	advcl	_	_
+24	politics	politics	NOUN	NNS	Number=Plur	23	obj	_	_
+25	out	out	ADP	IN	_	28	case	_	_
+26	of	of	ADP	IN	_	28	case	_	_
+27	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
+28	Games	game	NOUN	NNS	Number=Plur	23	obl	_	SpaceAfter=No
+29	.	.	PUNCT	.	_	3	punct	_	_
+</Parse>
+</Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020675_1" evaluate="true"/>
+<EventCoding eventcode="031" sourcecode="BRA" targetcode="USA" />
+<EventCoding eventcode="031" sourcecode="USA" targetcode="BRA" />
+<Text>
+Brazil and the United States are seeking to deepen a partnership in energy, especially by promoting
+biofuels and other alternatives to oil, US Deputy Secretary of Energy Jeffrey Kupfer said here
+Wednesday.
+</Text>
+<Parse>
+1	Brazil	Brazil	PROPN	NNP	Number=Sing	7	nsubj	_	_
+2	and	and	CONJ	CC	_	1	cc	_	_
+3	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+4	United	United	PROPN	NNP	Number=Sing	5	compound	_	_
+5	States	States	PROPN	NNP	Number=Sing	1	conj	_	_
+6	are	be	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	7	aux	_	_
+7	seeking	seek	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+8	to	to	PART	TO	_	9	mark	_	_
+9	deepen	deepen	VERB	VB	VerbForm=Inf	7	xcomp	_	_
+10	a	a	DET	DT	Definite=Ind|PronType=Art	11	det	_	_
+11	partnership	partnership	NOUN	NN	Number=Sing	9	dobj	_	_
+12	in	in	ADP	IN	_	13	case	_	_
+13	energy	energy	NOUN	NN	Number=Sing	11	nmod	_	_
+14	,	,	PUNCT	,	_	7	punct	_	_
+15	especially	especially	ADV	RB	_	17	advmod	_	_
+16	by	by	SCONJ	IN	_	17	mark	_	_
+17	promoting	promote	VERB	VBG	VerbForm=Ger	7	advcl	_	_
+18	biofuels	biofuel	NOUN	NNS	Number=Plur	17	dobj	_	_
+19	and	and	CONJ	CC	_	18	cc	_	_
+20	other	other	ADJ	JJ	Degree=Pos	21	amod	_	_
+21	alternatives	alternative	NOUN	NNS	Number=Plur	18	conj	_	_
+22	to	to	ADP	IN	_	23	case	_	_
+23	oil	oil	NOUN	NN	Number=Sing	17	nmod	_	_
+24	,	,	PUNCT	,	_	7	punct	_	_
+25	US	US	PROPN	NNP	Number=Sing	27	compound	_	_
+26	Deputy	deputy	PROPN	NNP	Number=Sing	27	compound	_	_
+27	Secretary	Secretary	PROPN	NNP	Number=Sing	32	nsubj	_	_
+28	of	of	ADP	IN	_	31	case	_	_
+29	Energy	Energy	PROPN	NNP	Number=Sing	31	compound	_	_
+30	Jeffrey	Jeffrey	PROPN	NNP	Number=Sing	31	name	_	_
+31	Kupfer	Kupfer	PROPN	NNP	Number=Sing	27	nmod	_	_
+32	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	parataxis	_	_
+33	here	here	ADV	RB	PronType=Dem	32	advmod	_	_
+34	Wednesday	Wednesday	PROPN	NNP	Number=Sing	32	nmod:tmod	_	_
+35	.	.	PUNCT	.	_	7	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="AFP" date="20080806" id="AFP0808020705_1" evaluate="true"/>
+<EventCoding eventcode="173" sourcecode="GUYJUD" targetcode="BRAPPL" />
+<Text>
+A court in Guyana has issued arrest warrants for two Brazilian men sought in the brutal slaying of
+two American missionaries in southern Guyana three years ago, a senior Guyanese police officer said
+Wednesday.
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	2	det	_	_
+2	court	court	NOUN	NN	Number=Sing	6	nsubj	_	_
+3	in	in	ADP	IN	_	4	case	_	_
+4	Guyana	Guyana	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	aux	_	_
+6	issued	issue	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+7	arrest	arrest	ADJ	JJS	Degree=Sup	8	amod	_	_
+8	warrants	warrant	NOUN	NNS	Number=Plur	6	dobj	_	_
+9	for	for	ADP	IN	_	12	case	_	_
+10	two	two	NUM	CD	NumType=Card	12	nummod	_	_
+11	Brazilian	brazilian	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	men	man	NOUN	NNS	Number=Plur	6	nmod	_	_
+13	sought	seek	VERB	VBN	Tense=Past|VerbForm=Part	12	acl	_	_
+14	in	in	ADP	IN	_	17	case	_	_
+15	the	the	DET	DT	Definite=Def|PronType=Art	17	det	_	_
+16	brutal	brutal	ADJ	JJ	Degree=Pos	17	amod	_	_
+17	slaying	slaying	NOUN	NN	Number=Sing	13	nmod	_	_
+18	of	of	ADP	IN	_	21	case	_	_
+19	two	two	NUM	CD	NumType=Card	21	nummod	_	_
+20	American	american	ADJ	JJ	Degree=Pos	21	amod	_	_
+21	missionaries	missionary	NOUN	NNS	Number=Plur	17	nmod	_	_
+22	in	in	ADP	IN	_	24	case	_	_
+23	southern	southern	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	Guyana	Guyana	PROPN	NNP	Number=Sing	21	nmod	_	_
+25	three	three	NUM	CD	NumType=Card	26	nummod	_	_
+26	years	year	NOUN	NNS	Number=Plur	27	nmod:npmod	_	_
+27	ago	ago	ADV	RB	_	6	advmod	_	_
+28	,	,	PUNCT	,	_	6	punct	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	33	det	_	_
+30	senior	senior	ADJ	JJ	Degree=Pos	33	amod	_	_
+31	Guyanese	Guyanese	ADJ	JJ	Degree=Pos	32	amod	_	_
+32	police	police	NOUN	NN	Number=Sing	33	compound	_	_
+33	officer	officer	NOUN	NN	Number=Sing	34	nsubj	_	_
+34	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	parataxis	_	_
+35	Wednesday	Wednesday	PROPN	NNP	Number=Sing	34	nmod:tmod	_	_
+36	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020742_2" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+Washington said such a step enjoyed support from Moscow and Beijing-- which have resisted taking a
+harder line on the Islamic republic-- but China remained mum and Russia's UN ambassador said he was
+unaware of such agreement.
+</Text>
+<Parse>
+1	Washington	Washington	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	such	such	DET	PDT	_	5	det:predet	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	step	step	NOUN	NN	Number=Sing	6	nsubj	_	_
+6	enjoyed	enjoy	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	ccomp	_	_
+7	support	support	NOUN	NN	Number=Sing	6	dobj	_	_
+8	from	from	ADP	IN	_	9	case	_	_
+9	Moscow	Moscow	PROPN	NNP	Number=Sing	7	nmod	_	_
+10	and	and	CONJ	CC	_	9	cc	_	_
+11	Beijing	Beijing	PROPN	NNP	Number=Sing	9	conj	_	_
+12	--	--	PUNCT	,	_	7	punct	_	_
+13	which	which	DET	WDT	PronType=Rel	15	nsubj	_	_
+14	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	15	aux	_	_
+15	resisted	resist	VERB	VBN	Tense=Past|VerbForm=Part	7	acl:relcl	_	_
+16	taking	take	VERB	VBG	VerbForm=Ger	15	ccomp	_	_
+17	a	a	DET	DT	Definite=Ind|PronType=Art	19	det	_	_
+18	harder	harder	ADJ	JJR	Degree=Cmp	19	amod	_	_
+19	line	line	NOUN	NN	Number=Sing	16	dobj	_	_
+20	on	on	ADP	IN	_	23	case	_	_
+21	the	the	DET	DT	Definite=Def|PronType=Art	23	det	_	_
+22	Islamic	Islamic	PROPN	NNP	Number=Sing	23	compound	_	_
+23	republic	republic	PROPN	NNP	Number=Sing	16	nmod	_	_
+24	--	--	PUNCT	,	_	15	punct	_	_
+25	but	but	CONJ	CC	_	15	cc	_	_
+26	China	China	PROPN	NNP	Number=Sing	27	nsubj	_	_
+27	remained	remain	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	conj	_	_
+28	mum	mum	PROPN	NNP	Number=Sing	33	nmod:poss	_	_
+29	and	and	CONJ	CC	_	28	cc	_	_
+30	Russia	Russia	PROPN	NNP	Number=Sing	28	conj	_	_
+31	's	's	PART	POS	_	28	case	_	_
+32	UN	UN	PROPN	NNP	Number=Sing	33	compound	_	_
+33	ambassador	ambassador	NOUN	NN	Number=Sing	34	nsubj	_	_
+34	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	27	ccomp	_	_
+35	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	37	nsubj	_	_
+36	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	37	cop	_	_
+37	unaware	unaware	ADJ	JJ	Degree=Pos	34	ccomp	_	_
+38	of	of	ADP	IN	_	40	case	_	_
+39	such	such	ADJ	JJ	Degree=Pos	40	amod	_	_
+40	agreement	agreement	NOUN	NN	Number=Sing	37	nmod	_	_
+41	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020776_5" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+The statement by the French presidency comes a day before Sarkozy heads to Beijing for the Friday
+opening of the Olympic Games, seeking to mend ties with China frayed by an initial threat to boycott
+the ceremony.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	statement	statement	NOUN	NN	Number=Sing	7	nsubj	_	_
+3	by	by	ADP	IN	_	6	case	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+5	French	french	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	presidency	presidency	NOUN	NN	Number=Sing	2	nmod	_	_
+7	comes	come	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+8	a	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
+9	day	day	NOUN	NN	Number=Sing	7	dobj	_	_
+10	before	before	ADP	IN	_	12	case	_	_
+11	Sarkozy	Sarkozy	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	heads	head	NOUN	NNS	Number=Plur	7	nmod	_	_
+13	to	to	ADP	IN	_	14	case	_	_
+14	Beijing	Beijing	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	for	for	ADP	IN	_	18	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+17	Friday	Friday	PROPN	NNP	Number=Sing	18	compound	_	_
+18	opening	opening	NOUN	NN	Number=Sing	7	nmod	_	_
+19	of	of	ADP	IN	_	22	case	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+21	Olympic	Olympic	PROPN	NNP	Number=Sing	22	compound	_	_
+22	Games	games	PROPN	NNPS	Number=Plur	18	nmod	_	_
+23	,	,	PUNCT	,	_	18	punct	_	_
+24	seeking	seek	VERB	VBG	VerbForm=Ger	18	acl	_	_
+25	to	to	PART	TO	_	26	mark	_	_
+26	mend	mend	VERB	VB	VerbForm=Inf	24	xcomp	_	_
+27	ties	tie	NOUN	NNS	Number=Plur	26	dobj	_	_
+28	with	with	ADP	IN	_	29	case	_	_
+29	China	China	PROPN	NNP	Number=Sing	26	nmod	_	_
+30	frayed	fray	VERB	VBN	Tense=Past|VerbForm=Part	26	advcl	_	_
+31	by	by	ADP	IN	_	34	case	_	_
+32	an	a	DET	DT	Definite=Ind|PronType=Art	34	det	_	_
+33	initial	initial	ADJ	JJ	Degree=Pos	34	amod	_	_
+34	threat	threat	NOUN	NN	Number=Sing	30	nmod	_	_
+35	to	to	PART	TO	_	36	mark	_	_
+36	boycott	boycott	VERB	VB	VerbForm=Inf	30	advcl	_	_
+37	the	the	DET	DT	Definite=Def|PronType=Art	38	det	_	_
+38	ceremony	ceremony	NOUN	NN	Number=Sing	36	dobj	_	_
+39	.	.	PUNCT	.	_	7	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020824_1" evaluate="true"/>
+<EventCoding eventcode="173" sourcecode="TUNJUD" targetcode="NGAEDU" />
+<Text>
+A Tunisian court has jailed a Nigerian student for two years for helping young militants 
+join an armed Islamic group in Lebanon, his lawyer said Wednesday. 
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
+2	Tunisian	Tunisian	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	court	court	NOUN	NN	Number=Sing	5	nsubj	_	_
+4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	jailed	jaile	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+6	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+7	Nigerian	Nigerian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	student	student	NOUN	NN	Number=Sing	5	dobj	_	_
+9	for	for	ADP	IN	_	11	case	_	_
+10	two	two	NUM	CD	NumType=Card	11	nummod	_	_
+11	years	year	NOUN	NNS	Number=Plur	5	nmod	_	_
+12	for	for	SCONJ	IN	_	13	mark	_	_
+13	helping	help	VERB	VBG	VerbForm=Ger	5	advcl	_	_
+14	young	young	ADJ	JJ	Degree=Pos	15	amod	_	_
+15	militants	militant	NOUN	NNS	Number=Plur	13	dobj	_	_
+16	join	join	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	13	xcomp	_	_
+17	an	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
+18	armed	armed	ADJ	JJ	Degree=Pos	20	amod	_	_
+19	Islamic	islamic	PROPN	NNP	Number=Sing	20	compound	_	_
+20	group	group	NOUN	NN	Number=Sing	16	dobj	_	_
+21	in	in	ADP	IN	_	22	case	_	_
+22	Lebanon	Lebanon	PROPN	NNP	Number=Sing	20	nmod	_	_
+23	,	,	PUNCT	,	_	16	punct	_	_
+24	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	25	nmod:poss	_	_
+25	lawyer	lawyer	NOUN	NN	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	16	parataxis	_	_
+27	Wednesday	Wednesday	PROPN	NNP	Number=Sing	26	advmod	_	_
+28	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020840_1" evaluate="true">
+<!-- Discard event  on "1994" -->
+<EventCoding noevents="True" />
+<Text>
+France on Wednesday condemned as`` unacceptable'' allegations by Rwanda that it had played an active
+role in the 1994 genocide, as Kigali said it hoped French officials would be indicted for war
+crimes.
+</Text>
+<Parse>
+1	France	France	PROPN	NNP	Number=Sing	0	root	_	_
+2	on	on	ADP	IN	_	3	case	_	_
+3	Wednesday	Wednesday	PROPN	NNP	Number=Sing	1	nmod	_	_
+4	condemned	condemn	VERB	VBN	Tense=Past|VerbForm=Part	1	acl	_	_
+5	as	as	ADP	IN	_	9	case	_	_
+6	``	``	SYM	$	_	9	det	_	_
+7	unacceptable	unacceptable	ADJ	JJ	Degree=Pos	9	amod	_	_
+8	''	''	PUNCT	''	_	9	punct	_	_
+9	allegations	allegation	NOUN	NNS	Number=Plur	4	nmod	_	_
+10	by	by	ADP	IN	_	11	case	_	_
+11	Rwanda	Rwanda	PROPN	NNP	Number=Sing	9	nmod	_	_
+12	that	that	SCONJ	IN	_	15	mark	_	_
+13	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	15	nsubj	_	_
+14	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	aux	_	_
+15	played	play	VERB	VBN	Tense=Past|VerbForm=Part	9	acl	_	_
+16	an	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
+17	active	active	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	role	role	NOUN	NN	Number=Sing	15	dobj	_	_
+19	in	in	ADP	IN	_	22	case	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+21	1994	1994	NUM	CD	NumType=Card	22	nummod	_	_
+22	genocide	genocide	NOUN	NN	Number=Sing	18	nmod	_	_
+23	,	,	PUNCT	,	_	15	punct	_	_
+24	as	as	SCONJ	IN	_	26	mark	_	_
+25	Kigali	Kigali	PROPN	NNP	Number=Sing	26	nsubj	_	_
+26	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	15	advcl	_	_
+27	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	28	nsubj	_	_
+28	hoped	hope	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	26	ccomp	_	_
+29	French	french	ADJ	JJ	Degree=Pos	28	xcomp	_	_
+30	officials	official	NOUN	NNS	Number=Plur	33	nsubjpass	_	_
+31	would	would	AUX	MD	VerbForm=Fin	33	aux	_	_
+32	be	be	AUX	VB	VerbForm=Inf	33	auxpass	_	_
+33	indicted	indict	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	28	ccomp	_	_
+34	for	for	ADP	IN	_	36	case	_	_
+35	war	war	NOUN	NN	Number=Sing	36	compound	_	_
+36	crimes	crime	NOUN	NNS	Number=Plur	33	nmod	_	_
+37	.	.	PUNCT	.	_	1	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020840_2" evaluate="true"/>
+<EventCoding eventcode="110" sourcecode="RWA" targetcode="FRA" />
+<Text>
+A 500-page report released Tuesday in the Rwandan capital alleged that France was aware of
+preparations for the genocide, and that the French military in Rwanda helped to plan and carry out
+killings.
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
+2	500-page	500-page	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	report	report	NOUN	NN	Number=Sing	4	nsubj	_	_
+4	released	release	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	Tuesday	Tuesday	PROPN	NNP	Number=Sing	4	nmod:tmod	_	_
+6	in	in	ADP	IN	_	9	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+8	Rwandan	Rwandan	PROPN	NNP	Number=Sing	9	compound	_	_
+9	capital	capital	NOUN	NN	Number=Sing	4	nmod	_	_
+10	alleged	allege	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	advcl	_	_
+11	that	that	SCONJ	IN	_	14	mark	_	_
+12	France	France	PROPN	NNP	Number=Sing	14	nsubj	_	_
+13	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	14	cop	_	_
+14	aware	aware	ADJ	JJ	Degree=Pos	10	ccomp	_	_
+15	of	of	ADP	IN	_	16	case	_	_
+16	preparations	preparation	NOUN	NNS	Number=Plur	14	nmod	_	_
+17	for	for	ADP	IN	_	19	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
+19	genocide	genocide	NOUN	NN	Number=Sing	16	nmod	_	_
+20	,	,	PUNCT	,	_	14	punct	_	_
+21	and	and	CONJ	CC	_	14	cc	_	_
+22	that	that	SCONJ	IN	_	28	mark	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+24	French	french	ADJ	JJ	Degree=Pos	25	amod	_	_
+25	military	military	NOUN	NN	Number=Sing	28	nsubj	_	_
+26	in	in	ADP	IN	_	27	case	_	_
+27	Rwanda	Rwanda	PROPN	NNP	Number=Sing	25	nmod	_	_
+28	helped	help	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	14	conj	_	_
+29	to	to	PART	TO	_	30	mark	_	_
+30	plan	plan	VERB	VB	VerbForm=Inf	28	xcomp	_	_
+31	and	and	CONJ	CC	_	30	cc	_	_
+32	carry	carry	VERB	VB	VerbForm=Inf	30	conj	_	_
+33	out	out	ADP	RP	_	32	compound:prt	_	_
+34	killings	killing	NOUN	NNS	Number=Plur	30	dobj	_	_
+35	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020857_1" evaluate="true"/>
+<EventCoding eventcode="084" sourcecode="ISR" targetcode="PSEGOV" />
+<Text>
+Israel on Wednesday released the mayor of the northern West Bank city of Nablus, a member of the
+Islamist Hamas movement jailed over a year ago, Palestinian security officials said.
+</Text>
+<Parse>
+1	Israel	Israel	PROPN	NNP	Number=Sing	4	nsubj	_	_
+2	on	on	ADP	IN	_	3	case	_	_
+3	Wednesday	Wednesday	PROPN	NNP	Number=Sing	1	nmod	_	_
+4	released	release	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+6	mayor	mayor	NOUN	NN	Number=Sing	4	dobj	_	_
+7	of	of	ADP	IN	_	12	case	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+9	northern	northern	ADJ	JJ	Degree=Pos	12	amod	_	_
+10	West	west	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Bank	Bank	PROPN	NNP	Number=Sing	12	compound	_	_
+12	city	city	NOUN	NN	Number=Sing	6	nmod	_	_
+13	of	of	ADP	IN	_	14	case	_	_
+14	Nablus	Nablus	PROPN	NNP	Number=Sing	12	nmod	_	_
+15	,	,	PUNCT	,	_	4	punct	_	_
+16	a	a	DET	DT	Definite=Ind|PronType=Art	17	det	_	_
+17	member	member	NOUN	NN	Number=Sing	4	nmod:npmod	_	_
+18	of	of	ADP	IN	_	22	case	_	_
+19	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+20	Islamist	Islamist	PROPN	NNP	Number=Sing	22	compound	_	_
+21	Hamas	Hamas	PROPN	NNP	Number=Sing	22	compound	_	_
+22	movement	movement	NOUN	NN	Number=Sing	17	nmod	_	_
+23	jailed	jaile	VERB	VBN	Tense=Past|VerbForm=Part	17	acl	_	_
+24	over	over	ADP	IN	_	26	case	_	_
+25	a	a	DET	DT	Definite=Ind|PronType=Art	26	det	_	_
+26	year	year	NOUN	NN	Number=Sing	23	nmod	_	_
+27	ago	ago	ADV	RB	_	26	advmod	_	_
+28	,	,	PUNCT	,	_	17	punct	_	_
+29	Palestinian	palestinian	ADJ	JJ	Degree=Pos	30	amod	_	_
+30	security	security	NOUN	NN	Number=Sing	31	compound	_	_
+31	officials	official	NOUN	NNS	Number=Plur	32	nsubj	_	_
+32	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	17	acl:relcl	_	_
+33	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020857_2" evaluate="true"/>
+<EventCoding eventcode="0352" sourcecode="ISR" targetcode="PSE" />
+<Text>
+The release of Adli Yaish, who had been arrested 15 months ago, came as Israel announced it would free over 150 Palestinian prisoners by the end of August as a goodwill gesture to Palestinian
+president Mahmud Abbas.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	release	release	NOUN	NN	Number=Sing	15	nsubj	_	_
+3	of	of	ADP	IN	_	5	case	_	_
+4	Adli	Adli	PROPN	NNP	Number=Sing	5	name	_	_
+5	Yaish	Yaish	PROPN	NNP	Number=Sing	2	nmod	_	SpaceAfter=No
+6	,	,	PUNCT	,	_	5	punct	_	_
+7	who	who	PRON	WP	PronType=Rel	10	nsubjpass	_	_
+8	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	aux	_	_
+9	been	be	AUX	VBN	Tense=Past|VerbForm=Part	10	auxpass	_	_
+10	arrested	arrest	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	acl:relcl	_	_
+11	15	15	NUM	CD	NumType=Card	12	nummod	_	_
+12	months	month	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
+13	ago	ago	ADV	RB	_	10	advmod	_	SpaceAfter=No
+14	,	,	PUNCT	,	_	15	punct	_	_
+15	came	come	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+16	as	as	SCONJ	IN	_	18	mark	_	_
+17	Israel	Israel	PROPN	NNP	Number=Sing	18	nsubj	_	_
+18	announced	announce	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	21	advcl	_	_
+19	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	21	nsubj	_	_
+20	would	would	AUX	MD	VerbForm=Fin	21	aux	_	_
+21	free	free	VERB	VB	VerbForm=Inf	15	ccomp	_	_
+22	over	over	ADV	RB	_	23	advmod	_	_
+23	150	150	NUM	CD	NumType=Card	25	nummod	_	_
+24	Palestinian	palestinian	ADJ	JJ	Degree=Pos	25	amod	_	_
+25	prisoners	prisoner	NOUN	NNS	Number=Plur	21	dobj	_	_
+26	by	by	ADP	IN	_	28	case	_	_
+27	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
+28	end	end	NOUN	NN	Number=Sing	21	nmod	_	_
+29	of	of	ADP	IN	_	30	case	_	_
+30	August	August	PROPN	NNP	Number=Sing	28	nmod	_	_
+31	as	as	ADP	IN	_	34	case	_	_
+32	a	a	DET	DT	Definite=Ind|PronType=Art	34	det	_	_
+33	goodwill	goodwill	ADJ	JJ	Degree=Pos	34	amod	_	_
+34	gesture	gesture	NOUN	NN	Number=Sing	21	nmod	_	_
+35	to	to	ADP	IN	_	39	case	_	_
+36	Palestinian	palestinian	ADJ	JJ	Degree=Pos	37	amod	_	_
+37	president	president	PROPN	NNP	Number=Sing	39	compound	_	_
+38	Mahmud	Mahmud	PROPN	NNP	Number=Sing	39	name	_	_
+39	Abbas	Abbas	PROPN	NNPS	Number=Plur	34	nmod	_	SpaceAfter=No
+40	.	.	PUNCT	.	_	15	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="121108" id="AFP0808020905_1" evaluate="true"/>
+<!-- PATTERN * TALKS   [046:046]     # HOLD-->
+<EventCoding eventcode="046" sourcecode="LBNGOV" targetcode="USAMIL" />
+<EventCoding eventcode="046" sourcecode="USAMIL" targetcode="LBNGOV" />
+<Text>
+The US commander in Iraq, General David Petraeus, held talks with President Michel Suleiman during a
+surprise visit to Beirut on Wednesday, offering further military support to Lebanon.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	compound	_	_
+3	commander	commander	NOUN	NN	Number=Sing	11	nsubj	_	_
+4	in	in	ADP	IN	_	5	case	_	_
+5	Iraq	Iraq	PROPN	NNP	Number=Sing	3	nmod	_	_
+6	,	,	PUNCT	,	_	3	punct	_	_
+7	General	General	PROPN	NNP	Number=Sing	9	compound	_	_
+8	David	David	PROPN	NNP	Number=Sing	9	name	_	_
+9	Petraeus	Petraeus	PROPN	NNP	Number=Sing	3	appos	_	_
+10	,	,	PUNCT	,	_	11	punct	_	_
+11	held	hold	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+12	talks	talk	NOUN	NNS	Number=Plur	11	dobj	_	_
+13	with	with	ADP	IN	_	16	case	_	_
+14	President	President	PROPN	NNP	Number=Sing	16	compound	_	_
+15	Michel	Michel	PROPN	NNP	Number=Sing	16	name	_	_
+16	Suleiman	Suleiman	PROPN	NNP	Number=Sing	12	nmod	_	_
+17	during	during	ADP	IN	_	20	case	_	_
+18	a	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
+19	surprise	surprise	NOUN	NN	Number=Sing	20	compound	_	_
+20	visit	visit	NOUN	NN	Number=Sing	11	nmod	_	_
+21	to	to	ADP	IN	_	22	case	_	_
+22	Beirut	Beirut	PROPN	NNP	Number=Sing	20	nmod	_	_
+23	on	on	ADP	IN	_	24	case	_	_
+24	Wednesday	Wednesday	PROPN	NNP	Number=Sing	22	nmod	_	_
+25	,	,	PUNCT	,	_	11	punct	_	_
+26	offering	offer	VERB	VBG	VerbForm=Ger	11	advcl	_	_
+27	further	further	ADV	RB	_	28	advmod	_	_
+28	military	military	ADJ	JJ	Degree=Pos	29	amod	_	_
+29	support	support	NOUN	NN	Number=Sing	26	dobj	_	_
+30	to	to	ADP	IN	_	31	case	_	_
+31	Lebanon	Lebanon	PROPN	NNP	Number=Sing	26	nmod	_	_
+32	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020937_1" evaluate="true"/>
+<!-- 18.06.10 PATTERN - * PROTEST  [141]         # STAGE -->
+<EventCoding eventcode="141" sourcecode="GBROPP" targetcode="CHN" />
+<EventCoding eventcode="141" sourcecode="USAOPP" targetcode="CHN" />
+<Text>
+US and British activists staged a dramatic protest in Beijing on Wednesday, scaling a pole and
+unfurling giant`` Free Tibet'' banners close to the stadium where the Olympics will open in two
+days.
+</Text>
+<Parse>
+1	US	US	PROPN	NNP	Number=Sing	4	compound	_	_
+2	and	and	CONJ	CC	_	1	cc	_	_
+3	British	british	ADJ	JJ	Degree=Pos	1	conj	_	_
+4	activists	activist	NOUN	NNS	Number=Plur	5	nsubj	_	_
+5	staged	stage	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+7	dramatic	dramatic	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	protest	protest	NOUN	NN	Number=Sing	5	dobj	_	_
+9	in	in	ADP	IN	_	10	case	_	_
+10	Beijing	Beijing	PROPN	NNP	Number=Sing	8	nmod	_	_
+11	on	on	ADP	IN	_	12	case	_	_
+12	Wednesday	Wednesday	PROPN	NNP	Number=Sing	5	nmod	_	_
+13	,	,	PUNCT	,	_	5	punct	_	_
+14	scaling	scal	VERB	VBG	VerbForm=Ger	5	advcl	_	_
+15	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+16	pole	pole	NOUN	NN	Number=Sing	14	dobj	_	_
+17	and	and	CONJ	CC	_	16	cc	_	_
+18	unfurling	unfurling	ADJ	JJ	Degree=Pos	19	amod	_	_
+19	giant	giant	NOUN	NN	Number=Sing	16	conj	_	_
+20	``	``	SYM	$	_	22	case	_	_
+21	Free	free	ADJ	JJ	Degree=Pos	22	amod	_	_
+22	Tibet	Tibet	NOUN	NN	Number=Sing	16	nmod	_	_
+23	''	''	PUNCT	''	_	22	punct	_	_
+24	banners	banner	NOUN	NNS	Number=Plur	22	appos	_	_
+25	close	close	ADJ	JJ	Degree=Pos	24	amod	_	_
+26	to	to	ADP	IN	_	28	case	_	_
+27	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
+28	stadium	stadium	NOUN	NN	Number=Sing	25	nmod	_	_
+29	where	where	ADV	WRB	PronType=Rel	33	advmod	_	_
+30	the	the	DET	DT	Definite=Def|PronType=Art	31	det	_	_
+31	Olympics	Olympic	PROPN	NNPS	Number=Plur	33	nsubj	_	_
+32	will	will	AUX	MD	VerbForm=Fin	33	aux	_	_
+33	open	open	VERB	VB	VerbForm=Inf	28	acl:relcl	_	_
+34	in	in	ADP	IN	_	36	case	_	_
+35	two	two	NUM	CD	NumType=Card	36	nummod	_	_
+36	days	day	NOUN	NNS	Number=Plur	33	nmod	_	_
+37	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020955_1" evaluate="true">
+<!-- Discard event  on "1994" -->
+<EventCoding noevents="True" />
+<Text>
+Rwanda's information minister said Wednesday she hoped a raft of French political and military
+officials accused of playing a role in the country's 1994 genocide would soon be indicted for war
+crimes.
+</Text>
+<Parse>
+1	Rwanda	Rwanda	PROPN	NNP	Number=Sing	4	nmod:poss	_	_
+2	's	's	PART	POS	_	1	case	_	_
+3	information	information	NOUN	NN	Number=Sing	4	compound	_	_
+4	minister	minister	NOUN	NN	Number=Sing	5	nsubj	_	_
+5	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	Wednesday	Wednesday	PROPN	NNP	Number=Sing	31	nsubjpass	_	_
+7	she	she	PRON	PRP	Case=Nom|Gender=Fem|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	hoped	hope	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	acl:relcl	_	_
+9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+10	raft	raft	NOUN	NN	Number=Sing	8	dobj	_	_
+11	of	of	ADP	IN	_	16	case	_	_
+12	French	french	ADJ	JJ	Degree=Pos	16	amod	_	_
+13	political	political	ADJ	JJ	Degree=Pos	16	amod	_	_
+14	and	and	CONJ	CC	_	13	cc	_	_
+15	military	military	ADJ	JJ	Degree=Pos	13	conj	_	_
+16	officials	official	NOUN	NNS	Number=Plur	10	nmod	_	_
+17	accused	accuse	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
+18	of	of	SCONJ	IN	_	19	mark	_	_
+19	playing	play	VERB	VBG	VerbForm=Ger	17	advcl	_	_
+20	a	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
+21	role	role	NOUN	NN	Number=Sing	19	dobj	_	_
+22	in	in	ADP	IN	_	27	case	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
+24	country	country	NOUN	NN	Number=Sing	27	nmod:poss	_	_
+25	's	's	PART	POS	_	24	case	_	_
+26	1994	1994	NUM	CD	NumType=Card	27	nummod	_	_
+27	genocide	genocide	NOUN	NN	Number=Sing	21	nmod	_	_
+28	would	would	AUX	MD	VerbForm=Fin	31	aux	_	_
+29	soon	soon	ADV	RB	Degree=Pos	31	advmod	_	_
+30	be	be	AUX	VB	VerbForm=Inf	31	auxpass	_	_
+31	indicted	indict	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	ccomp	_	_
+32	for	for	ADP	IN	_	34	case	_	_
+33	war	war	NOUN	NN	Number=Sing	34	compound	_	_
+34	crimes	crime	NOUN	NNS	Number=Plur	31	nmod	_	_
+35	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020957_1" evaluate="true">
+<!-- Discard event on "1994" -->
+<EventCoding noevents="True" />
+<Text>
+France on Wednesday accused Rwanda of making`` unacceptable accusations'' by alleging Paris played
+an active role in the 1994 genocide, but said it was still determined to mend damaged ties with
+Kigali.
+</Text>
+<Parse>
+1	France	France	PROPN	NNP	Number=Sing	5	compound	_	_
+2	on	on	ADP	IN	_	3	case	_	_
+3	Wednesday	Wednesday	PROPN	NNP	Number=Sing	1	nmod	_	_
+4	accused	accuse	VERB	VBN	Tense=Past|VerbForm=Part	5	amod	_	_
+5	Rwanda	Rwanda	PROPN	NNP	Number=Sing	0	root	_	_
+6	of	of	SCONJ	IN	_	7	mark	_	_
+7	making	make	VERB	VBG	VerbForm=Ger	5	acl	_	_
+8	``	``	SYM	$	_	10	punct	_	_
+9	unacceptable	unacceptable	ADJ	JJ	Degree=Pos	10	amod	_	_
+10	accusations	accusation	NOUN	NNS	Number=Plur	7	dobj	_	_
+11	''	''	PUNCT	''	_	5	punct	_	_
+12	by	by	SCONJ	IN	_	13	mark	_	_
+13	alleging	allege	VERB	VBG	VerbForm=Ger	15	advcl	_	_
+14	Paris	Paris	PROPN	NNP	Number=Sing	15	nsubj	_	_
+15	played	play	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	acl	_	_
+16	an	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
+17	active	active	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	role	role	NOUN	NN	Number=Sing	15	dobj	_	_
+19	in	in	ADP	IN	_	22	case	_	_
+20	the	the	DET	DT	Definite=Def|PronType=Art	22	det	_	_
+21	1994	1994	NUM	CD	NumType=Card	22	nummod	_	_
+22	genocide	genocide	NOUN	NN	Number=Sing	18	nmod	_	_
+23	,	,	PUNCT	,	_	5	punct	_	_
+24	but	but	CONJ	CC	_	5	cc	_	_
+25	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
+26	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	29	nsubj	_	_
+27	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	29	cop	_	_
+28	still	still	ADV	RB	_	29	advmod	_	_
+29	determined	determined	ADJ	JJ	Degree=Pos	25	ccomp	_	_
+30	to	to	PART	TO	_	31	mark	_	_
+31	mend	mend	VERB	VB	VerbForm=Inf	29	xcomp	_	_
+32	damaged	damage	VERB	VBN	Tense=Past|VerbForm=Part	33	amod	_	_
+33	ties	tie	NOUN	NNS	Number=Plur	31	dobj	_	_
+34	with	with	ADP	IN	_	35	case	_	_
+35	Kigali	Kigali	PROPN	NNP	Number=Sing	33	nmod	_	_
+36	.	.	PUNCT	.	_	25	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808020957_2" evaluate="true"/>
+<EventCoding eventcode="110" sourcecode="RWA" targetcode="FRA" />
+<Text>
+A 500-page report released Tuesday in the Rwandan capital alleged that France was aware of
+preparations for the genocide, and that the French military in Rwanda contributed to planning the
+massacres and actively took part in the killing.
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	3	det	_	_
+2	500-page	500-page	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	report	report	NOUN	NN	Number=Sing	10	nsubj	_	_
+4	released	release	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	acl	_	_
+5	Tuesday	Tuesday	PROPN	NNP	Number=Sing	4	nmod:tmod	_	_
+6	in	in	ADP	IN	_	9	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+8	Rwandan	Rwandan	PROPN	NNP	Number=Sing	9	compound	_	_
+9	capital	capital	NOUN	NN	Number=Sing	4	nmod	_	_
+10	alleged	allege	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+11	that	that	SCONJ	IN	_	14	mark	_	_
+12	France	France	PROPN	NNP	Number=Sing	14	nsubj	_	_
+13	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	14	cop	_	_
+14	aware	aware	ADJ	JJ	Degree=Pos	10	ccomp	_	_
+15	of	of	ADP	IN	_	16	case	_	_
+16	preparations	preparation	NOUN	NNS	Number=Plur	14	nmod	_	_
+17	for	for	ADP	IN	_	19	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	19	det	_	_
+19	genocide	genocide	NOUN	NN	Number=Sing	16	nmod	_	_
+20	,	,	PUNCT	,	_	14	punct	_	_
+21	and	and	CONJ	CC	_	14	cc	_	_
+22	that	that	SCONJ	IN	_	28	mark	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	25	det	_	_
+24	French	french	ADJ	JJ	Degree=Pos	25	amod	_	_
+25	military	military	NOUN	NN	Number=Sing	28	nsubj	_	_
+26	in	in	ADP	IN	_	27	case	_	_
+27	Rwanda	Rwanda	PROPN	NNP	Number=Sing	25	nmod	_	_
+28	contributed	contribute	VERB	VBN	Tense=Past|VerbForm=Part	14	conj	_	_
+29	to	to	SCONJ	IN	_	30	mark	_	_
+30	planning	plan	VERB	VBG	VerbForm=Ger	28	advcl	_	_
+31	the	the	DET	DT	Definite=Def|PronType=Art	32	det	_	_
+32	massacres	massacre	NOUN	NNS	Number=Plur	30	dobj	_	_
+33	and	and	CONJ	CC	_	28	cc	_	_
+34	actively	actively	ADV	RB	_	35	advmod	_	_
+35	took	take	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	28	conj	_	_
+36	part	part	NOUN	NN	Number=Sing	35	dobj	_	_
+37	in	in	ADP	IN	_	39	case	_	_
+38	the	the	DET	DT	Definite=Def|PronType=Art	39	det	_	_
+39	killing	killing	NOUN	NN	Number=Sing	35	nmod	_	_
+40	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="AFP" date="20080806" id="AFP0808021021_3" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="USAGOV" targetcode="MMROPP" />
+<EventCoding eventcode="060" sourcecode="USAGOV" targetcode="USA" />
+<Text>
+Before leaving for Beijing on Thursday, President Bush scheduled to give a speech here on US relations
+with Asia and meet with exiled dissidents from military-ruled Myanmar.
+</Text>
+<Parse>
+1	Before	before	SCONJ	IN	_	2	mark	_	_
+2	leaving	leave	VERB	VBG	VerbForm=Ger	11	advcl	_	_
+3	for	for	ADP	IN	_	4	case	_	_
+4	Beijing	Beijing	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	on	on	ADP	IN	_	6	case	_	_
+6	Thursday	Thursday	PROPN	NNP	Number=Sing	2	nmod	_	SpaceAfter=No
+7	,	,	PUNCT	,	_	11	punct	_	_
+8	President	President	PROPN	NNP	Number=Sing	9	compound	_	_
+9	Bush	Bush	PROPN	NNP	Number=Sing	11	nsubjpass	_	_
+10	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	11	auxpass	_	_
+11	scheduled	schedule	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+12	to	to	PART	TO	_	13	mark	_	_
+13	give	give	VERB	VB	VerbForm=Inf	11	xcomp	_	_
+14	a	a	DET	DT	Definite=Ind|PronType=Art	15	det	_	_
+15	speech	speech	NOUN	NN	Number=Sing	13	dobj	_	_
+16	here	here	ADV	RB	PronType=Dem	15	advmod	_	_
+17	on	on	ADP	IN	_	19	case	_	_
+18	US	US	PROPN	NNP	Number=Sing	19	compound	_	_
+19	relations	relation	NOUN	NNS	Number=Plur	13	nmod	_	_
+20	with	with	ADP	IN	_	21	case	_	_
+21	Asia	Asia	PROPN	NNP	Number=Sing	19	nmod	_	_
+22	and	and	CONJ	CC	_	13	cc	_	_
+23	meet	meet	VERB	VB	VerbForm=Inf	13	conj	_	_
+24	with	with	ADP	IN	_	26	case	_	_
+25	exiled	exil	VERB	VBN	Tense=Past|VerbForm=Part	26	amod	_	_
+26	dissidents	dissident	NOUN	NNS	Number=Plur	23	nmod	_	_
+27	from	from	ADP	IN	_	30	case	_	_
+28	military	military	ADJ	JJ	Degree=Pos	30	amod	_	_
+29	-ruled	-ruled	ADJ	JJ	Degree=Pos	30	amod	_	_
+30	Myanmar	Myanmar	PROPN	NNP	Number=Sing	26	nmod	_	_
+31	.	.	PUNCT	.	_	11	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="AFP" date="20150609" id="SYRIA_0" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="---REB" targetcode="SYR" />
+<Text>
+Insurgents bombarded a government-held part of Syria's second city Aleppo overnight, killing at
+least eight people, Syrian state media reported
+</Text>
+<Parse>
+1	Insurgents	insurgent	NOUN	NNS	Number=Plur	2	nsubj	_	_
+2	bombarded	bombard	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+4	government-held	government-held	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	part	part	NOUN	NN	Number=Sing	2	dobj	_	_
+6	of	of	ADP	IN	_	11	case	_	_
+7	Syria	Syria	PROPN	NNP	Number=Sing	11	nmod:poss	_	_
+8	's	's	PART	POS	_	7	case	_	_
+9	second	second	ADJ	JJ	Degree=Pos|NumType=Ord	10	amod	_	_
+10	city	city	NOUN	NN	Number=Sing	11	compound	_	_
+11	Aleppo	Aleppo	PROPN	NNP	Number=Sing	5	nmod	_	_
+12	overnight	overnight	ADV	RB	_	2	advmod	_	_
+13	,	,	PUNCT	,	_	2	punct	_	_
+14	killing	kill	VERB	VBG	VerbForm=Ger	2	advcl	_	_
+15	at	at	ADV	RB	_	16	case	_	_
+16	least	least	ADV	RBS	Degree=Sup	17	nmod	_	_
+17	eight	eight	NUM	CD	NumType=Card	18	nummod	_	_
+18	people	people	NOUN	NNS	Number=Plur	14	dobj	_	_
+19	,	,	PUNCT	,	_	18	punct	_	_
+20	Syrian	syrian	ADJ	JJ	Degree=Pos	22	amod	_	_
+21	state	state	NOUN	NN	Number=Sing	22	compound	_	_
+22	media	media	NOUN	NN	Number=Sing	18	appos	_	_
+23	reported	report	VERB	VBN	Tense=Past|VerbForm=Part	22	acl	_	_
+</Parse></Sentence>
+
+
+<Sentence category="AFP" date="20150609" id="SYRIA_1" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="SYROPPHRI" targetcode="---MIL" />
+<Text>
+The Syrian Observatory for Human Rights, a UK-based group that tracks the war, said eight people
+were killed in an air strike by government forces in a separate, rebel-held part of the city.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Syrian	syrian	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	Observatory	Observatory	NOUN	NN	Number=Sing	16	nsubj	_	_
+4	for	for	ADP	IN	_	6	case	_	_
+5	Human	human	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	Rights	rights	NOUN	NNS	Number=Plur	3	nmod	_	_
+7	,	,	PUNCT	,	_	3	punct	_	_
+8	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+9	UK-based	UK-base	VERB	VBN	Tense=Past|VerbForm=Part	10	amod	_	_
+10	group	group	NOUN	NN	Number=Sing	3	appos	_	_
+11	that	that	DET	WDT	PronType=Rel	12	nsubj	_	_
+12	tracks	track	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	10	acl:relcl	_	_
+13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
+14	war	war	NOUN	NN	Number=Sing	12	dobj	_	_
+15	,	,	PUNCT	,	_	16	punct	_	_
+16	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+17	eight	eight	NUM	CD	NumType=Card	18	nummod	_	_
+18	people	people	NOUN	NNS	Number=Plur	20	nsubjpass	_	_
+19	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	20	auxpass	_	_
+20	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	16	ccomp	_	_
+21	in	in	ADP	IN	_	24	case	_	_
+22	an	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
+23	air	air	NOUN	NN	Number=Sing	24	compound	_	_
+24	strike	strike	NOUN	NN	Number=Sing	20	nmod	_	_
+25	by	by	ADP	IN	_	27	case	_	_
+26	government	government	NOUN	NN	Number=Sing	27	compound	_	_
+27	forces	force	NOUN	NNS	Number=Plur	20	nmod	_	_
+28	in	in	ADP	IN	_	33	case	_	_
+29	a	a	DET	DT	Definite=Ind|PronType=Art	33	det	_	_
+30	separate	separate	ADJ	JJ	Degree=Pos	33	amod	_	_
+31	,	,	PUNCT	,	_	33	punct	_	_
+32	rebel-held	rebel-held	ADJ	JJ	Degree=Pos	33	amod	_	_
+33	part	part	NOUN	NN	Number=Sing	20	nmod	_	_
+34	of	of	ADP	IN	_	36	case	_	_
+35	the	the	DET	DT	Definite=Def|PronType=Art	36	det	_	_
+36	city	city	NOUN	NN	Number=Sing	33	nmod	_	_
+37	.	.	PUNCT	.	_	16	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_0" evaluate="true"/>
+<EventCoding eventcode="195" sourcecode="USA" targetcode="IRQMUS" />
+<Text>
+The United States launched an air strike against an Islamic State target southwest of Baghdad, the
+U.S. Central Command said on Monday night, expanding its campaign against the militant group that
+has seized parts of Iraq and Syria.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	States	States	PROPN	NNP	Number=Sing	4	nsubj	_	_
+4	launched	launch	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	an	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+6	air	air	NOUN	NN	Number=Sing	7	compound	_	_
+7	strike	strike	NOUN	NN	Number=Sing	4	dobj	_	_
+8	against	against	ADP	IN	_	13	case	_	_
+9	an	a	DET	DT	Definite=Ind|PronType=Art	13	det	_	_
+10	Islamic	Islamic	PROPN	NNP	Number=Sing	11	compound	_	_
+11	State	State	PROPN	NNP	Number=Sing	12	compound	_	_
+12	target	target	PROPN	NNP	Number=Sing	13	compound	_	_
+13	southwest	southwest	PROPN	NNP	Number=Sing	7	nmod	_	_
+14	of	of	ADP	IN	_	15	case	_	_
+15	Baghdad	Baghdad	PROPN	NNP	Number=Sing	13	nmod	_	_
+16	,	,	PUNCT	,	_	4	punct	_	_
+17	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
+18	U.S.	U.S.	PROPN	NNP	Number=Sing	20	compound	_	_
+19	Central	Central	PROPN	NNP	Number=Sing	20	compound	_	_
+20	Command	Command	PROPN	NNP	Number=Sing	21	nsubj	_	_
+21	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	4	parataxis	_	_
+22	on	on	ADP	IN	_	24	case	_	_
+23	Monday	Monday	PROPN	NNP	Number=Sing	24	compound	_	_
+24	night	night	NOUN	NN	Number=Sing	21	nmod	_	_
+25	,	,	PUNCT	,	_	21	punct	_	_
+26	expanding	expand	VERB	VBG	VerbForm=Ger	21	advcl	_	_
+27	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	28	nmod:poss	_	_
+28	campaign	campaign	NOUN	NN	Number=Sing	26	dobj	_	_
+29	against	against	ADP	IN	_	32	case	_	_
+30	the	the	DET	DT	Definite=Def|PronType=Art	32	det	_	_
+31	militant	militant	ADJ	JJ	Degree=Pos	32	amod	_	_
+32	group	group	NOUN	NN	Number=Sing	26	nmod	_	_
+33	that	that	DET	WDT	PronType=Rel	35	nsubj	_	_
+34	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	35	aux	_	_
+35	seized	seize	VERB	VBN	Tense=Past|VerbForm=Part	32	acl:relcl	_	_
+36	parts	part	NOUN	NNS	Number=Plur	35	dobj	_	_
+37	of	of	ADP	IN	_	38	case	_	_
+38	Iraq	Iraq	PROPN	NNP	Number=Sing	36	nmod	_	_
+39	and	and	CONJ	CC	_	38	cc	_	_
+40	Syria	Syria	PROPN	NNP	Number=Sing	38	conj	_	_
+41	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_1" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="ISR" targetcode="PSEGZA" />
+<Text>
+Israel said a mortar bomb was fired at it from the Gaza Strip on Tuesday in the first such attack
+since a seven-week war in the enclave ended on Aug 26.
+</Text>
+<Parse>
+1	Israel	Israel	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+4	mortar	mortar	NOUN	NN	Number=Sing	5	compound	_	_
+5	bomb	bomb	NOUN	NN	Number=Sing	7	nsubjpass	_	_
+6	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	7	auxpass	_	_
+7	fired	fire	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	2	ccomp	_	_
+8	at	at	ADP	IN	_	9	case	_	_
+9	it	it	PRON	PRP	Case=Acc|Gender=Neut|Number=Sing|Person=3|PronType=Prs	7	nmod	_	_
+10	from	from	ADP	IN	_	13	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+12	Gaza	Gaza	PROPN	NNP	Number=Sing	13	compound	_	_
+13	Strip	Strip	PROPN	NNP	Number=Sing	7	nmod	_	_
+14	on	on	ADP	IN	_	15	case	_	_
+15	Tuesday	Tuesday	PROPN	NNP	Number=Sing	7	nmod	_	_
+16	in	in	ADP	IN	_	20	case	_	_
+17	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
+18	first	first	ADJ	JJ	Degree=Pos|NumType=Ord	20	amod	_	_
+19	such	such	ADJ	JJ	Degree=Pos	20	amod	_	_
+20	attack	attack	NOUN	NN	Number=Sing	15	nmod	_	_
+21	since	since	ADP	IN	_	24	case	_	_
+22	a	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
+23	seven-week	seven-week	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	war	war	NOUN	NN	Number=Sing	28	nmod	_	_
+25	in	in	ADP	IN	_	27	case	_	_
+26	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
+27	enclave	enclave	NOUN	NN	Number=Sing	24	nmod	_	_
+28	ended	end	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	advcl	_	_
+29	on	on	ADP	IN	_	30	case	_	_
+30	Aug	Aug	PROPN	NNP	Number=Sing	28	nmod	_	_
+31	26	26	NUM	CD	NumType=Card	30	nummod	_	_
+32	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_2" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="IRQGOVMIL" targetcode="SYRGOV" />
+<Text>
+Iraq's national security advisor met with Syrian President Bashar Assad Tuesday to discuss efforts
+to counter Islamic State militants, Reuters reports.
+</Text>
+<Parse>
+1	Iraq	Iraq	PROPN	NNP	Number=Sing	5	nmod:poss	_	_
+2	's	's	PART	POS	_	1	case	_	_
+3	national	national	ADJ	JJ	Degree=Pos	4	amod	_	_
+4	security	security	NOUN	NN	Number=Sing	5	compound	_	_
+5	advisor	advisor	NOUN	NN	Number=Sing	6	nsubj	_	_
+6	met	meet	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	with	with	ADP	IN	_	12	case	_	_
+8	Syrian	syrian	ADJ	JJ	Degree=Pos	9	amod	_	_
+9	President	President	PROPN	NNP	Number=Sing	12	compound	_	_
+10	Bashar	Bashar	PROPN	NNP	Number=Sing	12	name	_	_
+11	Assad	Assad	PROPN	NNP	Number=Sing	12	name	_	_
+12	Tuesday	Tuesday	PROPN	NNP	Number=Sing	6	nmod	_	_
+13	to	to	PART	TO	_	14	mark	_	_
+14	discuss	discuss	VERB	VB	VerbForm=Inf	6	advcl	_	_
+15	efforts	effort	NOUN	NNS	Number=Plur	14	dobj	_	_
+16	to	to	PART	TO	_	17	mark	_	_
+17	counter	counter	VERB	VB	VerbForm=Inf	15	acl	_	_
+18	Islamic	Islamic	PROPN	NNP	Number=Sing	19	compound	_	_
+19	State	State	PROPN	NNP	Number=Sing	20	compound	_	_
+20	militants	militant	NOUN	NNS	Number=Plur	17	dobj	_	_
+21	,	,	PUNCT	,	_	20	punct	_	_
+22	Reuters	Reuters	PROPN	NNP	Number=Sing	23	compound	_	_
+23	reports	report	NOUN	NNS	Number=Plur	20	appos	_	_
+24	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_3" evaluate="true"/>
+<EventCoding eventcode="051" sourcecode="UKRLEG" targetcode="IGOEUREEC" />
+<Text>
+Ukrainian lawmakers Tuesday endorsed an association agreement with the European Union, making a
+decisive turn in favor of closer relations with Western neighbors in spite of the 10-month-old
+conflict that possibility has ignited with Russia.
+</Text>
+<Parse>
+1	Ukrainian	Ukrainian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	lawmakers	lawmaker	NOUN	NNS	Number=Plur	4	nsubj	_	_
+3	Tuesday	Tuesday	PROPN	NNP	Number=Sing	2	nmod:tmod	_	_
+4	endorsed	endorse	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	an	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+6	association	association	NOUN	NN	Number=Sing	7	compound	_	_
+7	agreement	agreement	NOUN	NN	Number=Sing	4	dobj	_	_
+8	with	with	ADP	IN	_	11	case	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+10	European	european	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Union	Union	PROPN	NNP	Number=Sing	4	nmod	_	_
+12	,	,	PUNCT	,	_	4	punct	_	_
+13	making	make	VERB	VBG	VerbForm=Ger	4	advcl	_	_
+14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+15	decisive	decisive	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	turn	turn	NOUN	NN	Number=Sing	13	dobj	_	_
+17	in	in	ADP	IN	_	18	case	_	_
+18	favor	favor	NOUN	NN	Number=Sing	13	nmod	_	_
+19	of	of	ADP	IN	_	21	case	_	_
+20	closer	closer	ADJ	JJR	Degree=Cmp	21	amod	_	_
+21	relations	relation	NOUN	NNS	Number=Plur	18	nmod	_	_
+22	with	with	ADP	IN	_	24	case	_	_
+23	Western	western	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	neighbors	neighbor	NOUN	NNS	Number=Plur	21	nmod	_	_
+25	in	in	ADP	IN	_	26	case	_	_
+26	spite	spite	NOUN	NN	Number=Sing	24	nmod	_	_
+27	of	of	ADP	IN	_	30	case	_	_
+28	the	the	DET	DT	Definite=Def|PronType=Art	30	det	_	_
+29	10-month-old	10-month-old	ADJ	JJ	Degree=Pos	30	amod	_	_
+30	conflict	conflict	NOUN	NN	Number=Sing	26	nmod	_	_
+31	that	that	DET	DT	Number=Sing|PronType=Dem	32	det	_	_
+32	possibility	possibility	NOUN	NN	Number=Sing	34	nsubj	_	_
+33	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	34	aux	_	_
+34	ignited	ignit	VERB	VBN	Tense=Past|VerbForm=Part	30	acl:relcl	_	_
+35	with	with	ADP	IN	_	36	case	_	_
+36	Russia	Russia	PROPN	NNP	Number=Sing	34	nmod	_	_
+37	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="GOLD" date="20150609" id="GOLD_4" evaluate="true"/>
+<EventCoding eventcode="057" sourcecode="UKR" targetcode="IGOEUREEC" />
+<Text>
+Ukraine ratified a sweeping agreement with the European Union on Tuesday.
+</Text>
+<Parse>
+1	Ukraine	Ukraine	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	ratified	ratify	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+4	sweeping	sweeping	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	agreement	agreement	NOUN	NN	Number=Sing	2	dobj	_	_
+6	with	with	ADP	IN	_	9	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+8	European	european	PROPN	NNP	Number=Sing	9	compound	_	_
+9	Union	Union	PROPN	NNP	Number=Sing	5	nmod	_	_
+10	on	on	ADP	IN	_	11	case	_	_
+11	Tuesday	Tuesday	PROPN	NNP	Number=Sing	2	nmod	_	_
+12	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="GOLD" date="20150609" id="GOLD_5" evaluate="true"/>
+<EventCoding eventcode="193" sourcecode="SYRREB" targetcode="PHL" />
+<Text>
+Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense and
+military officials said.
+</Text>
+<Parse>
+1	Syrian	syrian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	rebels	rebel	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	engaged	engage	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	Filipino	filipino	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	peacekeepers	peacekeeper	NOUN	NNS	Number=Plur	3	dobj	_	_
+6	in	in	ADP	IN	_	8	case	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+8	firefight	firefight	NOUN	NN	Number=Sing	3	nmod	_	_
+9	in	in	ADP	IN	_	11	case	_	_
+10	Golan	Golan	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Heights	Heights	PROPN	NNPS	Number=Plur	8	nmod	_	_
+12	on	on	ADP	IN	_	13	case	_	_
+13	Saturday	Saturday	PROPN	NNP	Number=Sing	3	nmod	_	_
+14	,	,	PUNCT	,	_	13	punct	_	_
+15	defense	defense	NOUN	NN	Number=Sing	13	conj	_	_
+16	and	and	CONJ	CC	_	13	cc	_	_
+17	military	military	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	officials	official	NOUN	NNS	Number=Plur	19	nsubj	_	_
+19	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	13	conj	_	_
+20	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="GOLD" date="20150609" id="GOLD_6" evaluate="true"/>
+<!-- exiled leaders([~OPP]) of Egypt's ([EGY]) Muslim Brotherhood ([~MUS])-->
+<EventCoding eventcode="174" sourcecode="QAT" targetcode="EGYOPPMUS" />
+<Text>
+Qatar has pledged to expel exiled leaders of Egypt's Muslim Brotherhood as one of the conditions of
+an agreement forced on the wealthy Gulf state by Saudi Arabia, the United Arab Emirates and other
+neighbours.
+</Text>
+<Parse>
+1	Qatar	Qatar	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	pledged	pledge	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	expel	expel	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	exiled	exil	VERB	VBN	Tense=Past|VerbForm=Part	7	amod	_	_
+7	leaders	leader	NOUN	NNS	Number=Plur	5	obj	_	_
+8	of	of	ADP	IN	_	12	case	_	_
+9	Egypt	Egypt	PROPN	NNP	Number=Sing	12	nmod:poss	_	SpaceAfter=No
+10	's	's	PART	POS	_	9	case	_	_
+11	Muslim	Muslim	PROPN	NNP	Number=Sing	12	compound	_	_
+12	Brotherhood	Brotherhood	PROPN	NNP	Number=Sing	7	nmod	_	_
+13	as	as	ADP	IN	_	14	case	_	_
+14	one	one	NUM	CD	NumType=Card	5	obl	_	_
+15	of	of	ADP	IN	_	17	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	17	det	_	_
+17	conditions	condition	NOUN	NNS	Number=Plur	14	nmod	_	_
+18	of	of	ADP	IN	_	20	case	_	_
+19	an	a	DET	DT	Definite=Ind|PronType=Art	20	det	_	_
+20	agreement	agreement	NOUN	NN	Number=Sing	17	nmod	_	_
+21	forced	force	VERB	VBN	Tense=Past|VerbForm=Part	20	acl	_	_
+22	on	on	ADP	IN	_	26	case	_	_
+23	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
+24	wealthy	wealthy	ADJ	JJ	Degree=Pos	25	amod	_	_
+25	Gulf	Gulf	NOUN	NN	Number=Sing	26	compound	_	_
+26	state	state	NOUN	NN	Number=Sing	21	obl	_	_
+27	by	by	ADP	IN	_	29	case	_	_
+28	Saudi	Saudi	PROPN	NNP	Number=Sing	29	compound	_	_
+29	Arabia	Arabia	PROPN	NNP	Number=Sing	26	nmod	_	SpaceAfter=No
+30	,	,	PUNCT	,	_	34	punct	_	_
+31	the	the	DET	DT	Definite=Def|PronType=Art	34	det	_	_
+32	United	United	PROPN	NNP	Number=Sing	34	compound	_	_
+33	Arab	arab	PROPN	NNP	Number=Sing	34	compound	_	_
+34	Emirates	Emirates	PROPN	NNP	Number=Sing	29	conj	_	_
+35	and	and	CCONJ	CC	_	37	cc	_	_
+36	other	other	ADJ	JJ	Degree=Pos	37	amod	_	_
+37	neighbours	neighbour	NOUN	NNS	Number=Plur	29	conj	_	_
+38	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_7" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+The Canadian government announced asset freezes and bans on travel to Canada against four senior
+officers in the Russian military, as well as economic sanctions against five more of Russia's arms
+makers and one Moscow-based bank.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Canadian	canadian	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	government	government	NOUN	NN	Number=Sing	0	root	_	_
+4	announced	announce	VERB	VBN	Tense=Past|VerbForm=Part	6	amod	_	_
+5	asset	asset	NOUN	NN	Number=Sing	6	compound	_	_
+6	freezes	freeze	NOUN	NNS	Number=Plur	3	appos	_	_
+7	and	and	CONJ	CC	_	6	cc	_	_
+8	bans	ban	NOUN	NNS	Number=Plur	6	conj	_	_
+9	on	on	ADP	IN	_	10	case	_	_
+10	travel	travel	NOUN	NN	Number=Sing	6	nmod	_	_
+11	to	to	ADP	IN	_	12	case	_	_
+12	Canada	Canada	PROPN	NNP	Number=Sing	6	nmod	_	_
+13	against	against	ADP	IN	_	16	case	_	_
+14	four	four	NUM	CD	NumType=Card	16	nummod	_	_
+15	senior	senior	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	officers	officer	NOUN	NNS	Number=Plur	12	nmod	_	_
+17	in	in	ADP	IN	_	20	case	_	_
+18	the	the	DET	DT	Definite=Def|PronType=Art	20	det	_	_
+19	Russian	russian	ADJ	JJ	Degree=Pos	20	amod	_	_
+20	military	military	NOUN	NN	Number=Sing	16	nmod	_	_
+21	,	,	PUNCT	,	_	12	punct	_	_
+22	as	as	ADV	RB	_	12	cc	_	_
+23	well	well	ADV	RB	Degree=Pos	22	mwe	_	_
+24	as	as	ADP	IN	_	22	mwe	_	_
+25	economic	economic	ADJ	JJ	Degree=Pos	26	amod	_	_
+26	sanctions	sanction	NOUN	NNS	Number=Plur	12	conj	_	_
+27	against	against	ADP	IN	_	28	case	_	_
+28	five	five	NUM	CD	NumType=Card	26	nmod	_	_
+29	more	more	ADJ	JJR	Degree=Cmp	12	amod	_	_
+30	of	of	ADP	IN	_	34	case	_	_
+31	Russia	Russia	PROPN	NNP	Number=Sing	34	nmod:poss	_	_
+32	's	's	PART	POS	_	31	case	_	_
+33	arms	arm	NOUN	NNS	Number=Plur	34	compound	_	_
+34	makers	maker	NOUN	NNS	Number=Plur	29	nmod	_	_
+35	and	and	CONJ	CC	_	34	cc	_	_
+36	one	one	NUM	CD	NumType=Card	38	nummod	_	_
+37	Moscow-based	Moscow-based	ADJ	JJ	Degree=Pos	38	amod	_	_
+38	bank	bank	NOUN	NN	Number=Sing	34	conj	_	_
+39	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_8" evaluate="true"/>
+<EventCoding eventcode="080" sourcecode="IGOUNOMIL" targetcode="SYR" />
+<Text>
+Hundreds of UN troops withdrew from the Syrian to the Israeli-occupied sector of the Golan on
+Monday, an AFP correspondent said, two weeks after Al-Qaeda-linked rebels kidnapped dozens of
+peacekeepers.
+</Text>
+<Parse>
+1	Hundreds	hundred	NOUN	NNS	Number=Plur	5	nsubj	_	_
+2	of	of	ADP	IN	_	4	case	_	_
+3	UN	UN	PROPN	NNP	Number=Sing	4	compound	_	_
+4	troops	troops	NOUN	NNS	Number=Plur	1	nmod	_	_
+5	withdrew	withdraw	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	from	from	ADP	IN	_	8	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+8	Syrian	syrian	ADJ	JJ	Degree=Pos	5	nmod	_	_
+9	to	to	ADP	IN	_	12	case	_	_
+10	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+11	Israeli-occupied	Israeli-occupied	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	sector	sector	NOUN	NN	Number=Sing	5	nmod	_	_
+13	of	of	ADP	IN	_	15	case	_	_
+14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
+15	Golan	Golan	PROPN	NNP	Number=Sing	12	nmod	_	_
+16	on	on	ADP	IN	_	17	case	_	_
+17	Monday	Monday	PROPN	NNP	Number=Sing	15	nmod	_	_
+18	,	,	PUNCT	,	_	12	punct	_	_
+19	an	a	DET	DT	Definite=Ind|PronType=Art	21	det	_	_
+20	AFP	AFP	ADJ	JJ	Degree=Pos	21	amod	_	_
+21	correspondent	correspondent	NOUN	NN	Number=Sing	22	nsubj	_	_
+22	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	12	acl:relcl	_	_
+23	,	,	PUNCT	,	_	22	punct	_	_
+24	two	two	NUM	CD	NumType=Card	25	nummod	_	_
+25	weeks	week	NOUN	NNS	Number=Plur	22	dobj	_	_
+26	after	after	ADP	IN	_	28	case	_	_
+27	Al-Qaeda-linked	Al-Qaeda-linked	VERB	VBN	Tense=Past|VerbForm=Part	28	amod	_	_
+28	rebels	rebel	NOUN	NNS	Number=Plur	25	nmod	_	_
+29	kidnapped	kidnap	VERB	VBN	Tense=Past|VerbForm=Part	30	amod	_	_
+30	dozens	dozen	NOUN	NNS	Number=Plur	28	appos	_	_
+31	of	of	ADP	IN	_	32	case	_	_
+32	peacekeepers	peacekeeper	NOUN	NNS	Number=Plur	30	nmod	_	_
+33	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="GOLD" date="20150609" id="GOLD_9" evaluate="true"/>
+<EventCoding eventcode="193" sourcecode="SYRREB" targetcode="PHL" />
+<Text>
+Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense and military officials said.
+</Text>
+<Parse>
+1	Syrian	syrian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	rebels	rebel	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	engaged	engage	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	Filipino	filipino	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	peacekeepers	peacekeeper	NOUN	NNS	Number=Plur	3	dobj	_	_
+6	in	in	ADP	IN	_	8	case	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+8	firefight	firefight	NOUN	NN	Number=Sing	3	nmod	_	_
+9	in	in	ADP	IN	_	11	case	_	_
+10	Golan	Golan	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Heights	Heights	PROPN	NNPS	Number=Plur	8	nmod	_	_
+12	on	on	ADP	IN	_	13	case	_	_
+13	Saturday	Saturday	PROPN	NNP	Number=Sing	3	nmod	_	_
+14	,	,	PUNCT	,	_	13	punct	_	_
+15	defense	defense	NOUN	NN	Number=Sing	13	conj	_	_
+16	and	and	CONJ	CC	_	13	cc	_	_
+17	military	military	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	officials	official	NOUN	NNS	Number=Plur	19	nsubj	_	_
+19	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	13	conj	_	_
+20	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_1" evaluate="true"/>
+<EventCoding eventcode="194" sourcecode="---REB" targetcode="MYSBUS" />
+<Text>
+The Malaysia Airlines Boeing 777 flight MH17 was blown up over Eastern Ukraine by a sophisticated BAK 
+surface-to-air missile believed to be fired by pro-Russia rebels.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+2	Malaysia	Malaysia	PROPN	NNP	Number=Sing	4	compound	_	_
+3	Airlines	airlines	PROPN	NNP	Number=Sing	4	compound	_	_
+4	Boeing	Boeing	PROPN	NNP	Number=Sing	6	compound	_	_
+5	777	777	NUM	CD	NumType=Card	6	nummod	_	_
+6	flight	flight	NOUN	NN	Number=Sing	7	compound	_	_
+7	MH17	MH17	NOUN	NN	Number=Sing	9	nsubjpass	_	_
+8	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	9	aux:pass	_	_
+9	blown	blow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+10	up	up	ADP	RP	_	9	compound:prt	_	_
+11	over	over	ADP	IN	_	13	case	_	_
+12	Eastern	Eastern	PROPN	NNP	Number=Sing	13	compound	_	_
+13	Ukraine	Ukraine	PROPN	NNP	Number=Sing	9	obl	_	_
+14	by	by	ADP	IN	_	18	case	_	_
+15	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
+16	sophisticated	sophisticated	ADJ	JJ	Degree=Pos	18	amod	_	_
+17	BAK	BAK	NOUN	NN	Number=Sing	18	compound	_	_
+18	surface	surface	NOUN	NN	Number=Sing	23	compound	_	SpaceAfter=No
+19	-	-	PUNCT	HYPH	_	18	punct	_	SpaceAfter=No
+20	to	to	ADP	IN	_	22	case	_	SpaceAfter=No
+21	-	-	PUNCT	HYPH	_	22	punct	_	SpaceAfter=No
+22	air	air	NOUN	NN	Number=Sing	23	compound	_	_
+23	missile	missile	NOUN	NN	Number=Sing	9	obl	_	_
+24	believed	believe	VERB	VBN	Tense=Past|VerbForm=Part	23	acl	_	_
+25	to	to	PART	TO	_	27	mark	_	_
+26	be	be	AUX	VB	VerbForm=Inf	27	aux:pass	_	_
+27	fired	fire	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	24	xcomp	_	_
+28	by	by	ADP	IN	_	30	case	_	_
+29	pro-Russia	pro-Russia	NOUN	NN	Number=Sing	30	compound	_	_
+30	rebels	rebel	NOUN	NNS	Number=Plur	27	obl	_	SpaceAfter=No
+31	.	.	PUNCT	.	_	9	punct	_	SpacesAfter=No
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_2" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="USA" targetcode="RUS" />
+<Text>
+The United States fired anti-aircraft batteries at Russia this week.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	States	States	PROPN	NNP	Number=Sing	4	nsubj	_	_
+4	fired	fire	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	anti-aircraft	anti-aircraft	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	batteries	battery	NOUN	NNS	Number=Plur	4	obj	_	_
+7	at	at	ADP	IN	_	8	case	_	_
+8	Russia	Russia	PROPN	NNP	Number=Sing	4	obl	_	_
+9	this	this	DET	DT	Number=Sing|PronType=Dem	10	det	_	_
+10	week	week	NOUN	NN	Number=Sing	4	obl:tmod	_	SpaceAfter=No
+11	.	.	PUNCT	.	_	4	punct	_	SpacesAfter=No
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_3" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="USAGOV" targetcode="RUS" />
+<Text>
+Barack Obama fired anti-aircraft batteries at Russia this week.
+</Text>
+<Parse>
+1	Barack	Barack	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	Obama	Obama	PROPN	NNP	Number=Sing	1	flat	_	_
+3	fired	fire	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	anti-aircraft	anti-aircraft	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	batteries	battery	NOUN	NNS	Number=Plur	3	obj	_	_
+6	at	at	ADP	IN	_	7	case	_	_
+7	Russia	Russia	PROPN	NNP	Number=Sing	3	obl	_	_
+8	this	this	DET	DT	Number=Sing|PronType=Dem	9	det	_	_
+9	week	week	NOUN	NN	Number=Sing	3	obl:tmod	_	SpaceAfter=No
+10	.	.	PUNCT	.	_	3	punct	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_4" evaluate="true">
+<!-- UD parser separated out the dateline as a separate sentence -->
+<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSECVL" />
+<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSEGZACVL" />
+<Text>
+GAZA CITY, Palestinian Territories: Four children and a man were killed in 
+Israeli tank shelling in the east of the Gaza Strip on Friday evening, medics said.
+</Text>
+<Parse>
+1	Four	four	NUM	CD	NumType=Card	2	nummod	_	_
+2	children	child	NOUN	NNS	Number=Plur	7	nsubjpass	_	_
+3	and	and	CONJ	CC	_	2	cc	_	_
+4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	man	man	NOUN	NN	Number=Sing	2	conj	_	_
+6	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	auxpass	_	_
+7	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+8	in	in	ADP	IN	_	10	case	_	SpacesAfter=\s\s
+9	Israeli	israeli	ADJ	JJ	Degree=Pos	10	amod	_	_
+10	tank	tank	NOUN	NN	Number=Sing	7	nmod	_	_
+11	shelling	shelling	VERB	VBG	VerbForm=Ger	10	acl	_	_
+12	in	in	ADP	IN	_	14	case	_	_
+13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
+14	east	east	NOUN	NN	Number=Sing	11	nmod	_	_
+15	of	of	ADP	IN	_	18	case	_	_
+16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
+17	Gaza	Gaza	PROPN	NNP	Number=Sing	18	compound	_	_
+18	Strip	Strip	PROPN	NNP	Number=Sing	14	nmod	_	_
+19	on	on	ADP	IN	_	21	case	_	_
+20	Friday	Friday	PROPN	NNP	Number=Sing	21	compound	_	_
+21	evening	evening	NOUN	NN	Number=Sing	7	nmod	_	SpaceAfter=No
+22	,	,	PUNCT	,	_	7	punct	_	_
+23	medics	medic	NOUN	NNS	Number=Plur	24	nsubj	_	_
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	conj	_	_
+25	.	.	PUNCT	.	_	7	punct	_	_
+</Parse>
+</Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_5" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+The United Nations chief made his remarks in Doha at the start of a regional trip 
+aimed at pushing for a ceasefire in the Gaza Strip.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Nations	Nations	PROPN	NNP	Number=Sing	4	compound	_	_
+4	chief	chief	NOUN	NN	Number=Sing	5	nsubj	_	_
+5	made	make	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+6	his	he	PRON	PRP$	Gender=Masc|Number=Sing|Person=3|Poss=Yes|PronType=Prs	7	nmod:poss	_	_
+7	remarks	remark	NOUN	NNS	Number=Plur	5	obj	_	_
+8	in	in	ADP	IN	_	9	case	_	_
+9	Doha	Doha	PROPN	NNP	Number=Sing	7	nmod	_	_
+10	at	at	ADP	IN	_	12	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+12	start	start	NOUN	NN	Number=Sing	5	obl	_	_
+13	of	of	ADP	IN	_	16	case	_	_
+14	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+15	regional	regional	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	trip	trip	NOUN	NN	Number=Sing	12	nmod	_	_
+17	aimed	aim	VERB	VBN	Tense=Past|VerbForm=Part	16	acl	_	_
+18	at	at	SCONJ	IN	_	19	mark	_	_
+19	pushing	pushing	VERB	VBG	VerbForm=Ger	17	advcl	_	_
+20	for	for	ADP	IN	_	22	case	_	_
+21	a	a	DET	DT	Definite=Ind|PronType=Art	22	det	_	_
+22	ceasefire	ceasefire	NOUN	NN	Number=Sing	19	obl	_	_
+23	in	in	ADP	IN	_	26	case	_	_
+24	the	the	DET	DT	Definite=Def|PronType=Art	26	det	_	_
+25	Gaza	Gaza	PROPN	NNP	Number=Sing	26	compound	_	_
+26	Strip	Strip	PROPN	NNP	Number=Sing	22	nmod	_	SpaceAfter=No
+27	.	.	PUNCT	.	_	5	punct	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_6" evaluate="true"/>
+<EventCoding eventcode="015" sourcecode="SOMUAF" targetcode="KEN" />
+<Text>
+The Al Qaeda-linked Somali militant group al-Shabab is claiming responsibility 
+for a deadly attack targeting non-Muslims at an upscale mall in Kenya's capital.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+2	Al	Al	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Qaeda	Qaeda	PROPN	NNP	Number=Sing	5	compound	_	_
+4	-	-	PUNCT	HYPH	_	5	punct	_	SpaceAfter=No
+5	linked	link	VERB	VBN	Tense=Past|VerbForm=Part	11	amod	_	_
+6	Somali	Somali	PROPN	NNP	Number=Sing	11	compound	_	_
+7	militant	militant	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	group	group	NOUN	NN	Number=Sing	11	compound	_	_
+9	al	al	PROPN	NNP	Number=Sing	11	compound	_	_
+10	-	-	PUNCT	HYPH	_	11	punct	_	_
+11	Shabab	Shabab	PROPN	NNP	Number=Sing	13	nsubj	_	_
+12	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	aux	_	_
+13	claiming	claim	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+14	responsibility	responsibility	NOUN	NN	Number=Sing	13	dobj	_	_
+15	for	for	ADP	IN	_	18	case	_	_
+16	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
+17	deadly	deadly	ADJ	JJ	Degree=Pos	18	amod	_	_
+18	attack	attack	NOUN	NN	Number=Sing	14	nmod	_	_
+19	targeting	target	VERB	VBG	VerbForm=Ger	14	acl	_	_
+20	non-Muslims	non-Muslims	NOUN	NNS	Number=Plur	19	dobj	_	_
+21	at	at	ADP	IN	_	24	case	_	_
+22	an	a	DET	DT	Definite=Ind|PronType=Art	24	det	_	_
+23	upscale	upscale	ADJ	JJ	Degree=Pos	24	amod	_	_
+24	mall	mall	NOUN	NN	Number=Sing	19	nmod	_	_
+25	in	in	ADP	IN	_	28	case	_	_
+26	Kenya	Kenya	PROPN	NNP	Number=Sing	28	nmod:poss	_	_
+27	's	's	PART	POS	_	26	case	_	_
+28	capital	capital	NOUN	NN	Number=Sing	19	nmod	_	_
+29	.	.	PUNCT	.	_	13	punct	_	_
+</Parse>
+</Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_7" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="PSEGZA" targetcode="PSEREBHMSGOV" />
+<Text>
+At the same time, it seems clear that no lasting solution to the problem of Gaza 
+can be conceived unless the Hamas regime is disarmed, or at least put in a position 
+where it can neither build up its inventory of rockets nor replace those it 
+fires at Israel.
+</Text>
+<Parse>
+1	At	at	ADP	IN	_	4	case	_	_
+2	the	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+3	same	same	ADJ	JJ	Degree=Pos	4	amod	_	_
+4	time	time	NOUN	NN	Number=Sing	7	obl	_	SpaceAfter=No
+5	,	,	PUNCT	,	_	7	punct	_	_
+6	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
+7	seems	seem	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+8	clear	clear	ADJ	JJ	Degree=Pos	7	xcomp	_	_
+9	that	that	SCONJ	IN	_	20	mark	_	_
+10	no	no	DET	DT	_	12	det	_	_
+11	lasting	lasting	ADJ	JJ	Degree=Pos	12	amod	_	_
+12	solution	solution	NOUN	NN	Number=Sing	20	nsubjpass	_	_
+13	to	to	ADP	IN	_	15	case	_	_
+14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
+15	problem	problem	NOUN	NN	Number=Sing	12	nmod	_	_
+16	of	of	ADP	IN	_	17	case	_	_
+17	Gaza	Gaza	PROPN	NNP	Number=Sing	15	nmod	_	_
+18	can	can	AUX	MD	VerbForm=Fin	20	aux	_	_
+19	be	be	AUX	VB	VerbForm=Inf	20	aux:pass	_	_
+20	conceived	conceive	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	7	ccomp	_	_
+21	unless	unless	SCONJ	IN	_	26	mark	_	_
+22	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
+23	Hamas	Hamas	PROPN	NNP	Number=Sing	24	compound	_	_
+24	regime	regime	NOUN	NN	Number=Sing	26	nsubjpass	_	_
+25	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	26	aux:pass	_	_
+26	disarmed	disarm	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	20	advcl	_	SpaceAfter=No
+27	,	,	PUNCT	,	_	31	punct	_	_
+28	or	or	CCONJ	CC	_	31	cc	_	_
+29	at	at	ADV	RB	_	31	advmod	_	_
+30	least	least	ADV	RBS	Degree=Sup	29	fixed	_	_
+31	put	put	VERB	VBN	Tense=Past|VerbForm=Part	26	conj	_	_
+32	in	in	ADP	IN	_	34	case	_	_
+33	a	a	DET	DT	Definite=Ind|PronType=Art	34	det	_	_
+34	position	position	NOUN	NN	Number=Sing	26	obl	_	_
+35	where	where	ADV	WRB	PronType=Rel	39	advmod	_	_
+36	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	39	nsubj	_	_
+37	can	can	AUX	MD	VerbForm=Fin	39	aux	_	_
+38	neither	neither	ADV	RB	_	39	advmod	_	_
+39	build	build	VERB	VB	VerbForm=Inf	34	acl:relcl	_	_
+40	up	up	ADP	RP	_	39	compound:prt	_	_
+41	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	42	nmod:poss	_	_
+42	inventory	inventory	NOUN	NN	Number=Sing	39	obj	_	_
+43	of	of	ADP	IN	_	44	case	_	_
+44	rockets	rocket	NOUN	NNS	Number=Plur	42	nmod	_	_
+45	nor	nor	CCONJ	CC	_	46	cc	_	_
+46	replace	replace	VERB	VB	VerbForm=Inf	39	conj	_	_
+47	those	those	PRON	DT	Number=Plur|PronType=Dem	46	obj	_	_
+48	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	49	nsubj	_	_
+49	fires	fire	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	47	acl:relcl	_	_
+50	at	at	ADP	IN	_	51	case	_	_
+51	Israel	Israel	PROPN	NNP	Number=Sing	49	obl	_	SpaceAfter=No
+52	.	.	PUNCT	.	_	7	punct	_	SpacesAfter=\r\n
+</Parse></Sentence>
+
+
+<Sentence category="TEST" date="20150609" id="TEST_8" evaluate="true"/>
+<!-- PATTERN - * TEAM  [036]         # SEND-->
+<EventCoding eventcode="036" sourcecode="IGOCOPITP" targetcode="---" />
+<Text>
+LYON: Interpol has said it will send a team in the next 48 hours to help identify 
+victims killed by the Malaysia Airlines flight MH17 crash in east Ukraine.
+</Text>
+<Parse>
+1	LYON	Lyon	ADP	IN	_	5	case	_	SpaceAfter=No
+2	:	:	PUNCT	:	_	5	punct	_	_
+3	Interpol	Interpol	PROPN	NNP	Number=Sing	5	nsubj	_	_
+4	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	said	say	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+6	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+7	will	will	AUX	MD	VerbForm=Fin	8	aux	_	_
+8	send	send	VERB	VB	VerbForm=Inf	5	ccomp	_	_
+9	a	a	DET	DT	Definite=Ind|PronType=Art	10	det	_	_
+10	team	team	NOUN	NN	Number=Sing	8	obj	_	_
+11	in	in	ADP	IN	_	15	case	_	_
+12	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
+13	next	next	ADJ	JJ	Degree=Pos	15	amod	_	_
+14	48	48	NUM	CD	NumType=Card	15	nummod	_	_
+15	hours	hour	NOUN	NNS	Number=Plur	8	obl	_	_
+16	to	to	PART	TO	_	17	mark	_	_
+17	help	help	VERB	VB	VerbForm=Inf	8	advcl	_	_
+18	identify	identify	VERB	VB	VerbForm=Inf	17	ccomp	_	_
+19	victims	victim	NOUN	NNS	Number=Plur	18	obj	_	_
+20	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part	19	acl	_	_
+21	by	by	ADP	IN	_	27	case	_	_
+22	the	the	DET	DT	Definite=Def|PronType=Art	27	det	_	_
+23	Malaysia	Malaysia	PROPN	NNP	Number=Sing	24	compound	_	_
+24	Airlines	airlines	PROPN	NNP	Number=Sing	25	compound	_	_
+25	flight	flight	NOUN	NN	Number=Sing	27	compound	_	_
+26	MH17	MH17	NUM	CD	NumType=Card	27	nummod	_	_
+27	crash	crash	NOUN	NN	Number=Sing	20	obl	_	_
+28	in	in	ADP	IN	_	30	case	_	_
+29	east	east	PROPN	NNP	Number=Sing	30	compound	_	_
+30	Ukraine	Ukraine	PROPN	NNP	Number=Sing	27	nmod	_	SpaceAfter=No
+31	.	.	PUNCT	.	_	5	punct	_	SpacesAfter=\r\n
+</Parse></Sentence>
+
+
+<Sentence category="TEST" date="20150609" id="TEST_09" evaluate="true"/>
+<EventCoding eventcode="018" sourcecode="USAGOV" targetcode="USA" />
+<Text>
+President obama expressed sorrow for the horrific shootings in South Carolina
+</Text>
+<Parse>
+1	President	President	PROPN	NNP	Number=Sing	2	compound	_	_
+2	obama	obama	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	expressed	express	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	sorrow	sorrow	ADV	RB	_	3	advmod	_	_
+5	for	for	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	horrific	horrific	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	shootings	shooting	NOUN	NNS	Number=Plur	3	nmod	_	_
+9	in	in	ADP	IN	_	11	case	_	_
+10	South	South	PROPN	NNP	Number=Sing	11	compound	_	_
+11	Carolina	Carolina	PROPN	NNP	Number=Sing	8	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_10" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+Ukraine says it has strong evidence proving Russia was behind the chemical attacks
+</Text>
+<Parse>
+1	Ukraine	Ukraine	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	says	say	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	it	it	PRON	PRP	Case=Nom|Gender=Neut|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+4	has	have	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	2	ccomp	_	_
+5	strong	strong	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	evidence	evidence	NOUN	NN	Number=Sing	13	nsubj	_	_
+7	proving	prove	VERB	VBG	VerbForm=Ger	6	acl	_	_
+8	Russia	Russia	PROPN	NNP	Number=Sing	7	dobj	_	_
+9	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	13	cop	_	_
+10	behind	behind	ADP	IN	_	13	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+12	chemical	chemical	ADJ	JJ	Degree=Pos	13	amod	_	_
+13	attacks	attacks	NOUN	NNS	Number=Plur	4	ccomp	_	_
+</Parse></Sentence>
+
+<Sentence category="TEST" date="20150609" id="TEST_11" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="USAGOV" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="RUSGOV" targetcode="CHE" />
+<Text>
+Barack Obama and Vladimir Putin will meet in Zurich to discuss their music tastes
+</Text>
+<Parse>
+1	Barack	Barack	PROPN	NNP	Number=Sing	2	name	_	_
+2	Obama	Obama	PROPN	NNP	Number=Sing	7	nsubj	_	_
+3	and	and	CONJ	CC	_	2	cc	_	_
+4	Vladimir	Vladimir	PROPN	NNP	Number=Sing	5	name	_	_
+5	Putin	Putin	PROPN	NNP	Number=Sing	2	conj	_	_
+6	will	will	AUX	MD	VerbForm=Fin	7	aux	_	_
+7	meet	meet	VERB	VB	VerbForm=Inf	0	root	_	_
+8	in	in	ADP	IN	_	9	case	_	_
+9	Zurich	Zurich	PROPN	NNP	Number=Sing	7	nmod	_	_
+10	to	to	PART	TO	_	11	mark	_	_
+11	discuss	discuss	VERB	VB	VerbForm=Inf	7	advcl	_	_
+12	their	they	PRON	PRP$	Number=Plur|Person=3|Poss=Yes|PronType=Prs	14	nmod:poss	_	_
+13	music	music	NOUN	NN	Number=Sing	14	compound	_	_
+14	tastes	tastes	NOUN	NNS	Number=Plur	11	dobj	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="NEST_0" evaluate="true"/>
+<EventCoding eventcode="015" sourcecode="USA" targetcode="IRQ" />
+<Text>
+The US claimed that they had attacked Iraq
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	claimed	claim	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	that	that	SCONJ	IN	_	7	mark	_	_
+5	they	they	PRON	PRP	Case=Nom|Number=Plur|Person=3|PronType=Prs	7	nsubj	_	_
+6	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	aux	_	_
+7	attacked	attack	VERB	VBN	Tense=Past|VerbForm=Part	3	ccomp	_	_
+8	Iraq	Iraq	PROPN	NNP	Number=Sing	7	dobj	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="NEST_2.75" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="USA" targetcode="IMGMUSISI" />
+<Text>
+The US claimed that ISIL had attacked Iraq and taken the city of Mosul
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	claimed	claim	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	that	that	SCONJ	IN	_	7	mark	_	_
+5	ISIL	ISIL	PROPN	NNP	Number=Sing	7	nsubj	_	_
+6	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	aux	_	_
+7	attacked	attack	VERB	VBN	Tense=Past|VerbForm=Part	3	ccomp	_	_
+8	Iraq	Iraq	PROPN	NNP	Number=Sing	7	dobj	_	_
+9	and	and	CONJ	CC	_	7	cc	_	_
+10	taken	take	VERB	VBN	Tense=Past|VerbForm=Part	7	conj	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+12	city	city	NOUN	NN	Number=Sing	10	dobj	_	_
+13	of	of	ADP	IN	_	14	case	_	_
+14	Mosul	Mosul	PROPN	NNP	Number=Sing	12	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="EXIST_0" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+Local news reports that there was a pause in the bombing in Aleppo.
+</Text>
+<Parse>
+1	Local	local	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	news	news	NOUN	NN	Number=Sing	3	nsubj	_	_
+3	reports	report	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	that	that	SCONJ	IN	_	6	mark	_	_
+5	there	there	PRON	EX	_	6	expl	_	_
+6	was	be	VERB	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	ccomp	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	8	det	_	_
+8	pause	pause	NOUN	NN	Number=Sing	6	nsubj	_	_
+9	in	in	ADP	IN	_	11	case	_	_
+10	the	the	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+11	bombing	bombing	NOUN	NN	Number=Sing	8	nmod	_	_
+12	in	in	ADP	IN	_	13	case	_	_
+13	Aleppo	Aleppo	PROPN	NNP	Number=Sing	11	nmod	_	_
+14	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="EXIST_1" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="UKR" targetcode="RUSMIL" />
+<Text>
+There were 10 Russian soldiers killed in Ukraine today.
+</Text>
+<Parse>
+1	There	there	PRON	EX	_	2	expl	_	_
+2	were	be	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	10	10	NUM	CD	NumType=Card	5	nummod	_	_
+4	Russian	russian	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	soldiers	soldier	NOUN	NNS	Number=Plur	6	nsubj	_	_
+6	killed	kill	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	2	csubj	_	_
+7	in	in	ADP	IN	_	8	case	_	_
+8	Ukraine	Ukraine	PROPN	NNP	Number=Sing	6	nmod	_	_
+9	today	today	NOUN	NN	Number=Sing	6	nmod:tmod	_	_
+10	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150101" id="abc12_3" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="NGAREB" targetcode="NGAMUS" />
+<Text>
+</Text>
+<Parse>
+1	Boko	Boko	PROPN	NNP	Number=Sing	2	name	_	_
+2	Haram	Haram	PROPN	NNP	Number=Sing	4	nsubj	_	_
+3	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+4	launched	launch	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+5	many	many	ADJ	JJ	Degree=Pos	7	amod	_	_
+6	similar	similar	ADJ	JJ	Degree=Pos	7	amod	_	_
+7	attacks	attack	NOUN	NNS	Number=Plur	4	dobj	_	_
+8	during	during	ADP	IN	_	11	case	_	_
+9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
+10	six-year	six-year	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	campaign	campaign	NOUN	NN	Number=Sing	4	nmod	_	_
+12	for	for	ADP	IN	_	16	case	_	_
+13	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+14	strict	strict	ADJ	JJ	Degree=Pos	16	amod	_	_
+15	Islamic	islamic	PROPN	NNP	Number=Sing	16	compound	_	_
+16	state	state	NOUN	NN	Number=Sing	4	nmod	_	_
+17	in	in	ADP	IN	_	19	case	_	_
+18	northeastern	northeastern	ADJ	JJ	Degree=Pos	19	amod	_	_
+19	Nigeria	Nigeria	PROPN	NNP	Number=Sing	16	nmod	_	_
+20	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="NEST_8" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="USA" targetcode="IRQ" />
+<Text>
+The US said that Iraq had attacked themselves
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	that	that	SCONJ	IN	_	7	mark	_	_
+5	Iraq	Iraq	PROPN	NNP	Number=Sing	7	nsubj	_	_
+6	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	aux	_	_
+7	attacked	attack	VERB	VBN	Tense=Past|VerbForm=Part	3	ccomp	_	_
+8	themselves	themselves	PRON	PRP	Case=Acc|Number=Plur|Person=3|PronType=Prs|Reflex=Yes	7	dobj	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="PREP_1" evaluate="true"/>
+<EventCoding eventcode="140" sourcecode="RWALEG" targetcode="---" />
+<Text>
+Opponents of Rwanda's Senate protested yesterday in the city's capital
+</Text>
+<Parse>
+1	Opponents	Opponent	NOUN	NNS	Number=Plur	6	nsubj	_	_
+2	of	of	ADP	IN	_	5	case	_	_
+3	Rwanda	Rwanda	PROPN	NNP	Number=Sing	5	nmod:poss	_	_
+4	's	's	PART	POS	_	3	case	_	_
+5	Senate	Senate	PROPN	NNP	Number=Sing	1	nmod	_	_
+6	protested	protest	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7	yesterday	yesterday	NOUN	NN	Number=Sing	6	nmod:tmod	_	_
+8	in	in	ADP	IN	_	12	case	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+10	city	city	NOUN	NN	Number=Sing	12	nmod:poss	_	_
+11	's	's	PART	POS	_	10	case	_	_
+12	capital	capital	NOUN	NN	Number=Sing	6	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="PREP_0" evaluate="true"/>
+<!-- PATTERN '- * &PEOPLE      [0841]        # RELEASE' -->
+<EventCoding eventcode="0841" sourcecode="RUSGOV" targetcode="---CVL" />
+<Text>
+The civilians imprisoned for acting against Moscow were released yesterday by Putin himself
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	civilians	civilian	NOUN	NNS	Number=Plur	9	nsubjpass	_	_
+3	imprisoned	imprison	VERB	VBN	Tense=Past|VerbForm=Part	2	acl	_	_
+4	for	for	SCONJ	IN	_	5	mark	_	_
+5	acting	act	VERB	VBG	VerbForm=Ger	3	advcl	_	_
+6	against	against	ADP	IN	_	7	case	_	_
+7	Moscow	Moscow	PROPN	NNP	Number=Sing	5	nmod	_	_
+8	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	9	auxpass	_	_
+9	released	release	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+10	yesterday	yesterday	NOUN	NN	Number=Sing	9	nmod:tmod	_	_
+11	by	by	ADP	IN	_	12	case	_	_
+12	Putin	Putin	PROPN	NNP	Number=Sing	9	nmod	_	_
+13	himself	himself	PRON	PRP	Gender=Masc|Number=Sing|Person=3|PronType=Prs	9	nmod:tmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_0" evaluate="true"/>
+<EventCoding eventcode="044" sourcecode="USAGOV" targetcode="IRN" />
+<Text>
+Obama is scheduled to attend a summit on the unrest in Iran
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	3	nsubjpass	_	_
+2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	auxpass	_	_
+3	scheduled	schedule	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	attend	attend	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+7	summit	summit	NOUN	NN	Number=Sing	5	dobj	_	_
+8	on	on	ADP	IN	_	10	case	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+10	unrest	unrest	NOUN	NN	Number=Sing	7	nmod	_	_
+11	in	in	ADP	IN	_	12	case	_	_
+12	Iran	Iran	PROPN	NNP	Number=Sing	10	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_1" evaluate="true"/>
+<EventCoding eventcode="042" sourcecode="USAGOV" targetcode="CHE" />
+<Text>
+Obama is scheduled to attend a summit in Switzerland on the unrest in Iran
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	3	nsubjpass	_	_
+2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	auxpass	_	_
+3	scheduled	schedule	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	attend	attend	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	a	a	DET	DT	Definite=Ind|PronType=Art	7	det	_	_
+7	summit	summit	NOUN	NN	Number=Sing	5	dobj	_	_
+8	in	in	ADP	IN	_	9	case	_	_
+9	Switzerland	Switzerland	PROPN	NNP	Number=Sing	7	nmod	_	_
+10	on	on	ADP	IN	_	12	case	_	_
+11	the	the	DET	DT	Definite=Def|PronType=Art	12	det	_	_
+12	unrest	unrest	NOUN	NN	Number=Sing	5	nmod	_	_
+13	in	in	ADP	IN	_	14	case	_	_
+14	Iran	Iran	PROPN	NNP	Number=Sing	12	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_2" evaluate="true"/>
+<EventCoding eventcode="013" sourcecode="---GOV" targetcode="CHN" />
+<Text>
+The government expressed appreciation for China's assistance.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	government	government	NOUN	NN	Number=Sing	3	nsubj	_	_
+3	expressed	express	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	appreciation	appreciation	NOUN	NN	Number=Sing	3	dobj	_	_
+5	for	for	ADP	IN	_	8	case	_	_
+6	China	China	PROPN	NNP	Number=Sing	8	nmod:poss	_	_
+7	's	's	PART	POS	_	6	case	_	_
+8	assistance	assistance	NOUN	NN	Number=Sing	4	nmod	_	_
+9	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="VERB" date="20150609" id="VERB_3" evaluate="true"/>
+<EventCoding eventcode="160" sourcecode="USA" targetcode="TUN" />
+<Text>
+The US State department has advised against travel to Tunisia after the museum shooting last week.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	4	compound	_	_
+3	State	State	PROPN	NNP	Number=Sing	4	compound	_	_
+4	department	department	NOUN	NN	Number=Sing	6	nsubj	_	_
+5	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	aux	_	_
+6	advised	advise	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+7	against	against	ADP	IN	_	8	case	_	_
+8	travel	travel	NOUN	NN	Number=Sing	6	nmod	_	_
+9	to	to	ADP	IN	_	10	case	_	_
+10	Tunisia	Tunisia	PROPN	NNP	Number=Sing	8	nmod	_	_
+11	after	after	ADP	IN	_	13	case	_	_
+12	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+13	museum	museum	NOUN	NN	Number=Sing	6	nmod	_	_
+14	shooting	shoot	VERB	VBG	VerbForm=Ger	13	acl	_	_
+15	last	last	ADJ	JJ	Degree=Pos	16	amod	_	_
+16	week	week	NOUN	NN	Number=Sing	14	nmod:tmod	_	_
+17	.	.	PUNCT	.	_	6	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="VERB" date="20150609" id="VERB_4" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+The tanks head back from the border after the skirmish went wrong
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	tanks	tank	NOUN	NNS	Number=Plur	3	compound	_	_
+3	head	head	NOUN	NN	Number=Sing	0	root	_	_
+4	back	back	ADV	RB	_	3	advmod	_	_
+5	from	from	ADP	IN	_	7	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+7	border	border	NOUN	NN	Number=Sing	4	nmod	_	_
+8	after	after	ADP	IN	_	10	case	_	_
+9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+10	skirmish	skirmish	NOUN	NN	Number=Sing	3	nmod	_	_
+11	went	go	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	xcomp	_	_
+12	wrong	wrong	ADJ	JJ	Degree=Pos	11	xcomp	_	_
+</Parse></Sentence>
+
+<Sentence category="VERB" date="20150609" id="VERB_5" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+The USA tanks might want Obama to head back after what just happened.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	USA	USA	PROPN	NNP	Number=Sing	3	compound	_	_
+3	tanks	tank	NOUN	NNS	Number=Plur	5	nsubj	_	_
+4	might	might	AUX	MD	VerbForm=Fin	5	aux	_	_
+5	want	want	VERB	VB	VerbForm=Inf	0	root	_	_
+6	Obama	Obama	PROPN	NNP	Number=Sing	5	dobj	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	head	head	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+9	back	back	ADV	RB	_	8	advmod	_	_
+10	after	after	SCONJ	IN	_	13	mark	_	_
+11	what	what	PRON	WP	PronType=Int	13	nsubj	_	_
+12	just	just	ADV	RB	_	13	advmod	_	_
+13	happened	happen	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	advcl	_	_
+14	.	.	PUNCT	.	_	5	punct	_	_
+</Parse>
+<!---
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	tanks	tank	NOUN	NNS	Number=Plur	4	nsubj	_	_
+3	might	might	AUX	MD	VerbForm=Fin	4	aux	_	_
+4	want	want	VERB	VB	VerbForm=Inf	0	root	_	_
+5	Obama	Obama	PROPN	NNP	Number=Sing	4	dobj	_	_
+6	to	to	PART	TO	_	7	mark	_	_
+7	head	head	VERB	VB	VerbForm=Inf	4	xcomp	_	_
+8	back	back	ADV	RB	_	7	advmod	_	_
+9	after	after	SCONJ	IN	_	12	mark	_	_
+10	what	what	PRON	WP	PronType=Int	12	nsubj	_	_
+11	just	just	ADV	RB	_	12	advmod	_	_
+12	happened	happen	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	advcl	_	_
+13	.	.	PUNCT	.	_	4	punct	_	_
+</Parse>-->
+
+</Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_6" evaluate="true"/>
+<EventCoding eventcode="090" sourcecode="IGOUNO" targetcode="IRN" />
+<Text>
+The United Nations inspectors want to re-examine the refineries in Iran
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Nations	Nations	PROPN	NNP	Number=Sing	4	compound	_	_
+4	inspectors	inspector	NOUN	NNS	Number=Plur	5	nsubj	_	_
+5	want	want	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
+6	to	to	PART	TO	_	7	mark	_	_
+7	re-examine	re-examine	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+9	refineries	refinery	NOUN	NNS	Number=Plur	7	dobj	_	_
+10	in	in	ADP	IN	_	11	case	_	_
+11	Iran	Iran	PROPN	NNP	Number=Sing	7	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_8" evaluate="true"/>
+<!-- Pattern '- * ARMS  [072]         # SUPPLY' -->
+<!-- PETRARCH2 returns 0332 : WILL[030] + SUPPLY[072] = 0332 -->
+<EventCoding eventcode="072" sourcecode="USA" targetcode="ISR" />
+<Text>
+The United States will supply arms to Israel
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	States	States	PROPN	NNP	Number=Sing	5	nsubj	_	_
+4	will	will	AUX	MD	VerbForm=Fin	5	aux	_	_
+5	supply	supply	VERB	VB	VerbForm=Inf	0	root	_	_
+6	arms	arm	NOUN	NNS	Number=Plur	5	dobj	_	_
+7	to	to	ADP	IN	_	8	case	_	_
+8	Israel	Israel	PROPN	NNP	Number=Sing	5	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_0" evaluate="true"/>
+<EventCoding eventcode="1124" sourcecode="USA" targetcode="RUS" />
+<Text>
+Evidence against Russia was presented by the US.
+</Text>
+<Parse>
+1	Evidence	evidence	NOUN	NN	Number=Sing	5	nsubjpass	_	_
+2	against	against	ADP	IN	_	3	case	_	_
+3	Russia	Russia	PROPN	NNP	Number=Sing	1	nmod	_	_
+4	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	5	auxpass	_	_
+5	presented	present	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+6	by	by	ADP	IN	_	8	case	_	_
+7	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+8	US	US	PROPN	NNP	Number=Sing	5	nmod	_	_
+9	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_1" evaluate="true"/>
+<EventCoding eventcode="1124" sourcecode="USA" targetcode="RUS" />
+<Text>
+The US presented evidence against Russia.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	presented	present	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	evidence	evidence	NOUN	NN	Number=Sing	3	dobj	_	_
+5	against	against	ADP	IN	_	6	case	_	_
+6	Russia	Russia	PROPN	NNP	Number=Sing	4	nmod	_	_
+7	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_2" evaluate="true"/>
+<EventCoding noevents="True" />
+<Text>
+A protestor demolished the building.
+</Text>
+<Parse>
+1	A	a	DET	DT	Definite=Ind|PronType=Art	2	det	_	_
+2	protestor	protestor	NOUN	NN	Number=Sing	0	root	_	_
+3	demolished	demolish	VERB	VBN	Tense=Past|VerbForm=Part	2	acl	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+5	building	building	NOUN	NN	Number=Sing	3	dobj	_	_
+6	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_3" evaluate="true"/>
+<EventCoding eventcode="145" sourcecode="UKR" targetcode="RUS" />
+<Text>
+The Russian building was demolished by a Ukrainian protestor.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	Russian	russian	ADJ	JJ	Degree=Pos	3	amod	_	_
+3	building	building	NOUN	NN	Number=Sing	5	nsubjpass	_	_
+4	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	5	auxpass	_	_
+5	demolished	demolish	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+6	by	by	ADP	IN	_	9	case	_	_
+7	a	a	DET	DT	Definite=Ind|PronType=Art	9	det	_	_
+8	Ukrainian	Ukrainian	ADJ	JJ	Degree=Pos	9	amod	_	_
+9	protestor	protestor	NOUN	NN	Number=Sing	5	obl	_	_
+10	.	.	PUNCT	.	_	5	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_4" evaluate="true"/>
+<EventCoding eventcode="100" sourcecode="---LEG" targetcode="USAGOV" />
+<Text>
+Obama faces pressure from Congress to help Iran.
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	faces	face	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	pressure	pressure	NOUN	NN	Number=Sing	2	dobj	_	_
+4	from	from	ADP	IN	_	5	case	_	_
+5	Congress	Congress	PROPN	NNP	Number=Sing	3	nmod	_	_
+6	to	to	PART	TO	_	7	mark	_	_
+7	help	help	VERB	VB	VerbForm=Inf	2	advcl	_	_
+8	Iran	Iran	PROPN	NNP	Number=Sing	7	dobj	_	_
+9	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_5" evaluate="true"/>
+<EventCoding eventcode="023" sourcecode="---LEG" targetcode="USAGOV" />
+<Text>
+Congress is asking Obama to help Iran.
+</Text>
+<Parse>
+1	Congress	Congress	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	asking	ask	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+4	Obama	Obama	PROPN	NNP	Number=Sing	3	dobj	_	_
+5	to	to	PART	TO	_	6	mark	_	_
+6	help	help	VERB	VB	VerbForm=Inf	3	advcl	_	_
+7	Iran	Iran	PROPN	NNP	Number=Sing	6	dobj	_	_
+8	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_6" evaluate="true"/>
+<EventCoding eventcode="170" sourcecode="---LEG" targetcode="USAGOV" />
+<Text>
+Obama is being pressured by congress to help Iran.
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	4	nsubjpass	_	_
+2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+3	being	be	AUX	VBG	VerbForm=Ger	4	auxpass	_	_
+4	pressured	pressure	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+5	by	by	ADP	IN	_	6	case	_	_
+6	congress	congress	NOUN	NN	Number=Sing	4	nmod	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	help	help	VERB	VB	VerbForm=Inf	4	advcl	_	_
+9	Iran	Iran	PROPN	NNP	Number=Sing	8	dobj	_	_
+10	.	.	PUNCT	.	_	4	punct	_	_
+</Parse></Sentence>
+
+
+
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_10" evaluate="true"/>
+<EventCoding eventcode="175" sourcecode="SYR" targetcode="EGY" />
+<EventCoding eventcode="145" sourcecode="EGY" targetcode="SYR" />
+<Text>
+Syrian forces clash with tunisian rioters in the Egyptian square
+</Text>
+<Parse>
+1	Syrian	syrian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	forces	force	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	clash	clash	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	with	with	ADP	IN	_	6	case	_	_
+5	tunisian	tunisian	ADJ	JJ	Degree=Pos	6	amod	_	_
+6	rioters	rioter	NOUN	NNS	Number=Plur	3	obl	_	_
+7	in	in	ADP	IN	_	10	case	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+9	Egyptian	egyptian	ADJ	JJ	Degree=Pos	10	amod	_	_
+10	square	square	NOUN	NN	Number=Sing	6	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="OTHER" date="20150609" id="NEG_0" evaluate="true"/>
+<!-- "PROVIDE SUPPORT" has code 060, its negation is 121 -->
+<EventCoding eventcode="121" sourcecode="USAGOV" targetcode="ISR" />
+<Text>
+Obama said he would not provide support to Israel
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+4	would	would	AUX	MD	VerbForm=Fin	6	aux	_	_
+5	not	not	PART	RB	_	6	neg	_	_
+6	provide	provide	VERB	VB	VerbForm=Inf	2	ccomp	_	_
+7	support	support	NOUN	NN	Number=Sing	6	dobj	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Israel	Israel	PROPN	NNP	Number=Sing	6	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="NEG_1" evaluate="true"/>
+<EventCoding eventcode="124" sourcecode="USAGOV" targetcode="RUS" />
+<Text>
+Obama said he would not give permission to Russia to help Israel
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+4	would	would	AUX	MD	VerbForm=Fin	6	aux	_	_
+5	not	not	PART	RB	_	6	neg	_	_
+6	give	give	VERB	VB	VerbForm=Inf	2	ccomp	_	_
+7	permission	permission	NOUN	NN	Number=Sing	6	dobj	_	_
+8	to	to	ADP	IN	_	9	case	_	_
+9	Russia	Russia	PROPN	NNP	Number=Sing	6	nmod	_	_
+10	to	to	PART	TO	_	11	mark	_	_
+11	help	help	VERB	VB	VerbForm=Inf	6	advcl	_	_
+12	Israel	Israel	PROPN	NNP	Number=Sing	11	dobj	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="Pattern_1" evaluate="true"/>
+<!--Transformation pattern ~ a (a b ATTACK) SAY = a b 015-->
+<EventCoding eventcode="015" sourcecode="USAGOV" targetcode="IRQ" />
+<EventCoding eventcode="015" sourcecode="RUSGOV" targetcode="IRQ" />
+<Text>
+Obama and Putin said they will attack Iraq
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	4	nsubj	_	_
+2	and	and	CONJ	CC	_	1	cc	_	_
+3	Putin	Putin	PROPN	NNP	Number=Sing	1	conj	_	_
+4	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+5	they	they	PRON	PRP	Case=Nom|Number=Plur|Person=3|PronType=Prs	7	nsubj	_	_
+6	will	will	AUX	MD	VerbForm=Fin	7	aux	_	_
+7	attack	attack	VERB	VB	VerbForm=Inf	4	ccomp	_	_
+8	Iraq	Iraq	PROPN	NNP	Number=Sing	7	dobj	_	_
+</Parse></Sentence>
+
+
+<Sentence category="OTHER" date="20150609" id="APPEALS_0" evaluate="true"/>
+<EventCoding eventcode="021" sourcecode="USAGOV" targetcode="RUSGOV" />
+<Text>
+Obama wants Putin to attack Switzerland.
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	wants	want	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	Putin	Putin	PROPN	NNP	Number=Sing	2	dobj	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	attack	attack	VERB	VB	VerbForm=Inf	2	xcomp	_	_
+6	Switzerland	Switzerland	PROPN	NNP	Number=Sing	5	dobj	_	_
+7	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="APPEALS_1" evaluate="true"/>
+<EventCoding eventcode="138" sourcecode="USAGOV" targetcode="CHE" />
+<Text>
+Obama wants to attack Switzerland.
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	wants	want	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	to	to	PART	TO	_	4	mark	_	_
+4	attack	attack	VERB	VB	VerbForm=Inf	2	xcomp	_	_
+5	Switzerland	Switzerland	PROPN	NNP	Number=Sing	4	dobj	_	_
+6	.	.	PUNCT	.	_	2	punct	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="SYNSET_0" evaluate="true"/>
+<EventCoding eventcode="1014" sourcecode="USAGOV" targetcode="IRN" />
+<Text>
+Obama ordered an investigation against Iran
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	2	nsubj	_	_
+2	ordered	order	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	an	a	DET	DT	Definite=Ind|PronType=Art	4	det	_	_
+4	investigation	investigation	NOUN	NN	Number=Sing	2	dobj	_	_
+5	against	against	ADP	IN	_	6	case	_	_
+6	Iran	Iran	PROPN	NNP	Number=Sing	4	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="AGREE_0" evaluate="true"/>
+<EventCoding eventcode="085" sourcecode="USAGOV" targetcode="IRN" />
+<Text>
+Obama has agreed to lift the sanctions on Iran
+</Text>
+<Parse>
+1	Obama	Obama	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	agreed	agree	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+4	to	to	PART	TO	_	5	mark	_	_
+5	lift	lift	VERB	VB	VerbForm=Inf	3	xcomp	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+7	sanctions	sanction	NOUN	NNS	Number=Plur	5	dobj	_	_
+8	on	on	ADP	IN	_	9	case	_	_
+9	Iran	Iran	PROPN	NNP	Number=Sing	5	nmod	_	_
+</Parse></Sentence>
+
+
+<Sentence category="OTHER" date="20150609" id="VALID_0" evaluate="true"/>
+<EventCoding eventcode="070" sourcecode="USA" targetcode="EGYOPP" />
+<Text>
+The USA helped the two exiled dissidents from Egypt assylum
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	USA	USA	PROPN	NNP	Number=Sing	3	nsubj	_	_
+3	helped	help	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+5	two	two	NUM	CD	NumType=Card	7	nummod	_	_
+6	exiled	exil	ADJ	JJ	Degree=Pos	7	amod	_	_
+7	dissidents	dissident	NOUN	NNS	Number=Plur	3	dobj	_	_
+8	from	from	ADP	IN	_	10	case	_	_
+9	Egypt	Egypt	PROPN	NNP	Number=Sing	10	compound	_	_
+10	assylum	assylum	NOUN	NN	Number=Sing	7	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="OVERLAP_0" evaluate="true"/>
+<EventCoding eventcode="150" sourcecode="RUS" targetcode="USA" />
+<Text>
+Russia is conducting military exercises in Alaska
+</Text>
+<Parse>
+1	Russia	Russia	PROPN	NNP	Number=Sing	3	nsubj	_	_
+2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	conducting	conduct	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+4	military	military	ADJ	JJ	Degree=Pos	5	amod	_	_
+5	exercises	exercis	NOUN	NNS	Number=Plur	3	dobj	_	_
+6	in	in	ADP	IN	_	7	case	_	_
+7	Alaska	Alaska	PROPN	NNP	Number=Sing	3	nmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20150609" id="PMATCH_0" evaluate="true"/>
+<EventCoding eventcode="033" sourcecode="USAGOV" targetcode="ISR" />
+<Text>
+The US Secretary of state wants to help iSrael
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Secretary	Secretary	PROPN	NNP	Number=Sing	6	nsubj	_	_
+4	of	of	ADP	IN	_	5	case	_	_
+5	state	state	NOUN	NN	Number=Sing	3	nmod	_	_
+6	wants	want	VERB	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	help	help	VERB	VB	VerbForm=Inf	6	xcomp	_	_
+9	iSrael	iSrael	PROPN	NNP	Number=Sing	8	dobj	_	_
+</Parse></Sentence>
+
+
+<Sentence category="OTHER" date="20150609" id="COOP_0" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="USA" targetcode="RUS" />
+<EventCoding eventcode="040" sourcecode="USA" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="CHE" targetcode="USA" />
+<EventCoding eventcode="040" sourcecode="RUS" targetcode="USA" />
+<EventCoding eventcode="040" sourcecode="RUS" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="CHE" targetcode="RUS" />
+<Text>
+The US, Russia, and Switzerland met yesterday
+</Text>
+<Parse>
+1	THe	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	US	US	PROPN	NNP	Number=Sing	8	nsubj	_	_
+3	,	,	PUNCT	,	_	2	punct	_	_
+4	Russia	Russia	PROPN	NNP	Number=Sing	2	conj	_	_
+5	,	,	PUNCT	,	_	2	punct	_	_
+6	and	and	CONJ	CC	_	2	cc	_	_
+7	Switzerland	Switzerland	PROPN	NNP	Number=Sing	2	conj	_	_
+8	met	meet	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+9	yesterday	yesterday	NOUN	NN	Number=Sing	8	nmod:tmod	_	_
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_1" evaluate="true">
+<EventCoding eventcode="194" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<Text>
+Georgian demonstrators launched missiles at the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	launched	launch	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	missiles	missile	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	at	at	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_2" evaluate="true">
+<EventCoding eventcode="043" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<EventCoding eventcode="042" sourcecode="GEOGOV" targetcode="GEOOPP" />
+<Text>
+Georgian demonstrators received ministers from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	ministers	minister	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_3" evaluate="true">
+<EventCoding eventcode="072" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<Text>
+Georgian demonstrators received weapons	from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	weapons	weapon	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_4" evaluate="true">
+<EventCoding eventcode="030" sourcecode="GEOGOV" targetcode="GEOOPP" />
+<Text>
+Georgian demonstrators received assurances from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	assurances	assurance	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	_
+9	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
+</Sentences>
+
+</Validation>

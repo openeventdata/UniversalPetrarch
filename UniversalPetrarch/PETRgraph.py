@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import networkx as nx
 import PETRglobals
@@ -8,6 +10,11 @@ import utilities
 import sys
 if sys.version[0] == '2':
     from sets import Set
+
+try:
+    basestring
+except:
+    basestring = str
 
 
 class NounPhrase:
@@ -1074,7 +1081,10 @@ An instantiated Sentence object
                 # check for conjuncting verbs
                 predecessors = list(self.udgraph.predecessors(verb.headID))
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][verb.headID] and self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and self.udgraph.node[predecessor]['pos'] == 'VERB':
+                    if 'relation' in self.udgraph[predecessor][verb.headID] and \
+                    self.udgraph[predecessor][verb.headID]['relation'] in ['conj'] and \
+                    'pos' in self.udgraph.node[predecessor] and \
+                    self.udgraph.node[predecessor]['pos'] == 'VERB':
                         logger.debug("found conj verb:" +self.udgraph.node[predecessor]['token'])
                         conjverb = self.get_verbPhrase(predecessor)
                         logger.debug("extracting verb:" + conjverb.text)
@@ -2308,9 +2318,9 @@ An instantiated Sentence object
                                 event_before_transfer)
                             current_eventID = tripleID
                             triple["transfermation"] = transfer_pattern
-                            # if transferpattern != "None":
-                            #     triple["before_transfer"] = event_before_transfer
-                            #     triple["after_transfer"] = event_after_transfer
+                            if transfer_pattern != "None":
+                                triple["before_transfer"] = event_before_transfer
+                                triple["after_transfer"] = event_after_transfer
 
 
                         elif current_event[0] and current_event[1]:
@@ -2698,7 +2708,7 @@ An instantiated Sentence object
                                 code_combined, 0))
                             logger.debug(event)
                             results.append(event)
-                        return results
+                        return results, "a ( b . Q ) P"
 
                     code_combined = utilities.combine_code(utilities.convert_code(e[2])[
                                                            0], utilities.convert_code(e[1][2])[0])
@@ -3399,7 +3409,7 @@ An instantiated Sentence object
                         # e.g. +MEET_WITH
                         i = verb.headID + 1
                         found_flag = True
-                        while found_flag:
+                        while found_flag and i< len(self.udgraph.node) :
                             word = self.udgraph.node[i]['lemma'].upper()
                             if word in patternlist:
                                 if '#' in patternlist[word]:

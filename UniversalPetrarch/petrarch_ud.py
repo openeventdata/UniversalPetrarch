@@ -407,8 +407,14 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['issues'] = event_issues
 
                 if PETRglobals.PauseBySentence:
-                    if len((input("Press Enter to continue..."))) > 0:
-                        sys.exit()
+                    if sys.version[0]=='3':
+                        if len((input("Press Enter to continue..."))) > 0:
+                            sys.exit()
+                    elif sys.version[0] =='2':
+                        if len(raw_input("Press Enter to continue...")) > 0:
+                            sys.exit()
+
+
 
 
 
