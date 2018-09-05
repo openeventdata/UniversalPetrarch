@@ -1,8 +1,8 @@
-INFO 2018-09-05 12:05:13,018: Running
-INFO 2018-09-05 12:05:13,018: Using user-specified config: data/config/PETR_AR_config.ini
-INFO 2018-09-05 12:05:13,021: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/PETR.Internal.Coding.Ontology.txt
-INFO 2018-09-05 12:05:13,023: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/CAMEO.ar.0.4.txt
-INFO 2018-09-05 12:05:13,552: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/agents.all.ar_v3.txt
+INFO 2018-09-05 12:13:42,527: Running
+INFO 2018-09-05 12:13:42,527: Using user-specified config: data/config/PETR_AR_config.ini
+INFO 2018-09-05 12:13:42,530: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/PETR.Internal.Coding.Ontology.txt
+INFO 2018-09-05 12:13:42,532: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/CAMEO.ar.0.4.txt
+INFO 2018-09-05 12:13:42,995: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/agents.all.ar_v3.txt
 
-INFO 2018-09-05 12:05:13,573: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/discards_ar.txt
-INFO 2018-09-05 12:05:13,574: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/issues_ar.txt
+INFO 2018-09-05 12:13:43,021: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/discards_ar.txt
+INFO 2018-09-05 12:13:43,021: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/issues_ar.txt
