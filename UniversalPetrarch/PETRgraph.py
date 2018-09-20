@@ -443,16 +443,16 @@ class NounPhrase:
                 nodatecode = j[0]
             elif len(date) == 1:
                 if date[0][0] == '<':
-                    if curdate <= int(date[0][1:]):
+                    if int(curdate) <= int(date[0][1:]):
                         code = j[0]
                         matched_code.append(j)
                 else:
-                    if curdate >= int(date[0][1:]):
+                    if int(curdate) >= int(date[0][1:]):
                         code = j[0]
                         matched_code.append(j)
             else:
-                if curdate <= int(date[1]):
-                    if curdate >= int(date[0]):
+                if int(curdate) <= int(date[1]):
+                    if int(curdate) >= int(date[0]):
                         code = j[0]
                         matched_code.append(j)
 
@@ -2509,10 +2509,12 @@ An instantiated Sentence object
                     event[0] = ['---']
                 if event[1] in [None, ["None"],[],['---']]:
                     event[1] = ['---']
-
+                self.events[eventID] = event
+                
         for eventID in removed:
             if eventID in self.events:
                 del self.events[eventID]
+
 
         return self.events
 
@@ -3115,6 +3117,8 @@ An instantiated Sentence object
                             CodedEvents[-1].extend([srclist[1], tarlist[1]])
                         if PETRglobals.WriteActorText:
                             CodedEvents[-1].extend([srclist[2], tarlist[2]])
+                        else:
+                            CodedEvents[-1].extend(["",""])
                         CodedEvents[-1].append(line)
                         CodedEvents[-1].append(verbhead)
 
