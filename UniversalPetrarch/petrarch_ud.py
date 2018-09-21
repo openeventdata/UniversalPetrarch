@@ -85,6 +85,44 @@ def main():
 
         print("Coding time:", time.time() - start_time)
 
+    elif cli_args.command_name == 'preprocess':
+
+        if cli_args.config:
+            print('Using user-specified config: {}'.format(cli_args.config))
+            logger.info(
+                'Using user-specified config: {}'.format(cli_args.config))
+            PETRglobals.ConfigFileName = cli_args.config
+
+            PETRreader.parse_Config(cli_args.config)
+        else:
+            logger.info('Using default config file.')
+            PETRglobals.ConfigFileName = 'PETR_config.ini'
+            PETRreader.parse_Config(utilities._get_data('data/config/',
+                                                        'PETR_config.ini'))
+
+        start_time = time.time()
+        print('\n\n')
+
+        paths = PETRglobals.TextFileList
+        if cli_args.inputs:
+            if os.path.isdir(cli_args.inputs):
+                if cli_args.inputs[-1] != '/':
+                    paths = glob.glob(cli_args.inputs + '/*.xml')
+                else:
+                    paths = glob.glob(cli_args.inputs + '*.xml')
+            elif os.path.isfile(cli_args.inputs):
+                paths = [cli_args.inputs]
+            else:
+                print(
+                    '\nFatal runtime error:\n"' +
+                    cli_args.inputs +
+                    '" could not be located\nPlease enter a valid directory or file of source texts.')
+                sys.exit()
+
+        preprocess(paths)
+
+        print("Preprocessing time:", time.time() - start_time)
+
     print("Finished")
 
 
@@ -98,6 +136,18 @@ PETRARCH
                                      description=__description__)
 
     sub_parse = aparse.add_subparsers(dest='command_name')
+
+    preprocess_command = sub_parse.add_parser('preprocess')
+    preprocess_command.add_argument('-i', '--inputs',
+                               help='File, or directory of files, to parse.',
+                               required=True)
+    preprocess_command.add_argument('-d', '--debug', action = 'store_true', default = False,
+                               help="""Enable debug info""")
+    preprocess_command.add_argument('-c', '--config',
+                               help="""Filepath for the PETRARCH configuration
+                               file. Defaults to PETR_config.ini""",
+                               required=False)
+
     parse_command = sub_parse.add_parser('parse', help=""" DEPRECATED Command to run the
                                          PETRARCH parser. Do not use unless you've used it before. If you need to
                                          process unparsed text, see the README""",
@@ -117,9 +167,8 @@ PETRARCH
                                help="""Filepath for the PETRARCH configuration
                                file. Defaults to PETR_config.ini""",
                                required=False)
-    parse_command.add_argument('-d', '--debug',
-                               help="""Enable debug info""",
-                               required=False)
+    parse_command.add_argument('-d', '--debug', action = 'store_true', default = False,
+                               help="""Enable debug info""")
 
 
     batch_command = sub_parse.add_parser('batch', help="""Command to run a batch
@@ -451,11 +500,18 @@ def run(filepaths, out_file, s_parsed):
     # this is the routine called from main()
     events = PETRreader.read_xml_input(filepaths, s_parsed)
     logger.debug("Incoming data from XML: ", events)
-    # if not s_parsed:
-    #    events = utilities.stanford_parse(events)
+    if not s_parsed:
+        events = utilities.udpipe_parse(events)
     updated_events = do_coding(events)
 
     PETRwriter.write_events(updated_events, 'evts.' + out_file)
+
+def preprocess(filepaths):
+    logger = logging.getLogger('petr_log')
+
+    # this is the routine called from main()
+    events = PETRreader.depparse_xml_input(filepaths)
+    
 
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
