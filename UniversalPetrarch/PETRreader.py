@@ -1588,10 +1588,12 @@ def read_petrarch1_verb_dictionary(verb_path):
 
     theverb = ''
     newblock = False
+    block_name = ''
     ka = 0   # primary verb count ( debug )
     line = read_FIN_line()
     while len(line) > 0:  # loop through the file
-        #print(line)
+        #print("line:", line)
+        #print("theverb:",theverb)
         if '[' in line:
             part = line.partition('[')
             verb = part[0].strip()
@@ -1599,12 +1601,14 @@ def read_petrarch1_verb_dictionary(verb_path):
         else:
             verb = line.strip()
             code = ''
+
         if verb.startswith('---'):  # start of new block
             if len(code) > 0:
                 primarycode = code
             else:
                 primarycode = '---'
             newblock = True
+            block_name = verb.replace("---","").strip()
             line = read_FIN_line()
 
         elif verb[0] == '-':   # pattern
@@ -1680,6 +1684,7 @@ def read_petrarch1_verb_dictionary(verb_path):
             else:
                 curcode = primarycode
             if newblock:
+                '''
                 if '{' in verb:
                     # theverb is the index to the pattern storage for the
                     # remainder of the block
@@ -1687,7 +1692,9 @@ def read_petrarch1_verb_dictionary(verb_path):
 
                 else:
                     theverb = verb
-                add_dict_tree([], theverb, code=curcode, line=line)
+                '''
+                theverb = block_name
+                add_dict_tree([], block_name, code=curcode, line=line)
                 newblock = False
             if '_' in verb:
                 store_multi_word_verb(curcode, line)
@@ -1695,7 +1702,7 @@ def read_petrarch1_verb_dictionary(verb_path):
                 add_dict_tree(
                     [],
                     verb.split()[0],
-                    theverb,
+                    block_name,
                     curcode,
                     dicttype='verbs',
                     line=line)
@@ -1705,7 +1712,7 @@ def read_petrarch1_verb_dictionary(verb_path):
                     #make_verb_forms(curcode, line)
             ka += 1   # counting primary verbs
             line = read_FIN_line()
-            #print(line)
+            # print("line:",line)
 
     close_FIN()
 
