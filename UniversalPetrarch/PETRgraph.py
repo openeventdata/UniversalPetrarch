@@ -3908,7 +3908,7 @@ An instantiated Sentence object
                 # logger.debug("could be a synset")
                 matchflag = False
                 for synset in path['synsets'].keys():
-                    if lower[i] in PETRglobals.P1VerbDict['verbs'][synset]:
+                    if synset in PETRglobals.P1VerbDict['verbs'] and lower[i] in PETRglobals.P1VerbDict['verbs'][synset]:
                         # logger.debug("found a synset match")
 
                         matchlist.append(synset)
