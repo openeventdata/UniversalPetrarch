@@ -13,7 +13,11 @@
     e.g. data/text/spanish_protest_cameo_4_jj_validation.xml
 2. configuration file: 
     e.g. data/config/PETR_config_es.ini
-3. doc list: list of document names that UDpetrarch will run on those stories only
+3. doc list (optional): list of document names that UDpetrarch will run on those stories only
+4. skip list (optional): skip some of the records. Defaults is not skipping any records. This option is used for analyzing
+    usage example: -s "noun_sentence#noun_gold"
+    - "noun_sentence": skip sentences that the parsed tree don't contain verbs (usually title of news articles, or capitalized sentence)
+    - "noun_gold": skip sentences that gold events are nouns instead of verbs
 
 ###output
 1. validation output: the detailed output for each record
@@ -22,7 +26,7 @@
     e.g. Validation_output_analysis_[date].xlsx
 
 ###usage
-python validation2_spanish_withanalysis.py validate [-i validation_file] [-c configuration file] [-l document list]
+python validation2_spanish_withanalysis.py validate [-i validation_file] [-c configuration file] [-l document list (optional)] [-s skip list (optional)]
 
 example:
 1. run entrie validation set
@@ -697,7 +701,6 @@ def do_validation():
     ka = 0 # debugging counters
     kb = 0
     line = fin.readline() 
-    print(line)
     while len(line) > 0:  # loop through the file
         ka += 1
         if line.startswith("<Stop"):
@@ -772,6 +775,7 @@ def do_validation():
                     line = fin.readline() 
                     parse = ""
                     found_verb = False
+
                     gold_is_noun = [False]*len(valrecord['events'])
                     gold_is_verb = [False]*len(valrecord['events'])
                     postags = [""]*len(valrecord['events'])
@@ -782,6 +786,7 @@ def do_validation():
                         if "noevents" not in valrecord['eventtexts']:
 
                             for eid in range(0,len(valrecord['events'])):
+                                #print(tmp)
                                 if tmp[1] in valrecord['eventtexts'][eid]['eventtext']:
                                     postags[eid] = postags[eid] + " " + tmp[3]
                                     if "VERB" in line:
@@ -796,12 +801,19 @@ def do_validation():
 
                     valrecord['parse'] = parse
 
-                    #'''
+                    #print("gold is verb:",gold_is_verb)
+                    #print("gold is noun:",gold_is_noun)
+                    #print(found_verb)
+                    #input(" ")
+                    
+                    #check if verb is found in the sentence
                     if not found_verb:
                         #noun_sentences.append(valrecord['sentence']+" "+valrecord['text'])
                         #noun_sentences_filenames.append(valrecord['id'])
 
-                        valrecord['valid'] = False
+                        if "noun_sentence" in skiplist:
+                            valrecord['valid'] = False
+                            print(valrecord['id']+" doesn't contain verbs")
 
                         if valrecord['id'] in stats_dict:
                             stats_dict[valrecord['id']]['nounsent'] = True
@@ -815,14 +827,17 @@ def do_validation():
                             stats_dict[valrecord['id']] = {}
                             stats_dict[valrecord['id']]['nounsent'] = False
                         #raw_input("")
-                    #'''
+                        #input(" ")
 
                     for eid in range(0,len(valrecord['events'])):
 
                         if gold_is_noun[eid] and not gold_is_verb[eid]:
                             gold_nouns.append(valrecord['id']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext']+"\t"+postags[eid])
                             #print(valrecord['sentence']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext'])
-                            valrecord['valid'] = False
+                            if "noun_gold" in skiplist:
+                                valrecord['valid'] = False
+                                print(valrecord['id']+" contain noun actions")
+
                             gold_nouns_filenames.append(valrecord['id'])
                             if valrecord['id'] in stats_dict:
                                 stats_dict[valrecord['id']]['nounaction'] = True
@@ -847,9 +862,10 @@ def do_validation():
             print("\nRecord:",valrecord['id'],recordType)
             docname = valrecord['id'][0:valrecord['id'].rindex("_",)]
             if len(doclist)> 0 and docname not in doclist:
+                #print(docname,doclist)
                 valrecord['valid'] = False
                 fout.write("Not in the doc list: " + valrecord['id']  + "\n" + idline  + "\n")
-
+                #input(" ")
 
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid']:
                 validate_record(valrecord)
@@ -871,17 +887,23 @@ PETRARCH
 
     sub_parse = aparse.add_subparsers(dest='command_name')
 
-    preprocess_command = sub_parse.add_parser('validate')
-    preprocess_command.add_argument('-i', '--inputs',
+    validation_command = sub_parse.add_parser('validate')
+    validation_command.add_argument('-i', '--inputs',
                                help='File, or directory of files, to parse.',
                                required=True)
-    preprocess_command.add_argument('-d', '--debug', action = 'store_true', default = False,
+    validation_command.add_argument('-d', '--debug', action = 'store_true', default = False,
                                help="""Enable debug info""")
-    preprocess_command.add_argument('-c', '--config',
+    validation_command.add_argument('-c', '--config',
                                help="""Filepath for the PETRARCH configuration
                                file. Defaults to PETR_config.ini""",
                                required=False)
-    preprocess_command.add_argument('-l', '--doclist', help = """list of document names to parse""",required=False)
+    validation_command.add_argument('-l', '--doclist', help = """list of document names to parse""",required=False)
+    ##--skip option: skip some of the records. This option is used for analyzing
+    ## usage example: -s "noun_sentence#noun_gold"
+    ## "noun_sentence": skip sentences that the parsed tree don't contain verbs (usually title of news articles, or capitalized sentence)
+    ## "noun_gold": skip sentences that gold actions are nouns instead of verbs
+    validation_command.add_argument('-s', '--skip',help = """types of records to skip. Defaults to none""", default = "none", required=False)
+
     args = aparse.parse_args()
     return args
 
@@ -930,7 +952,7 @@ if __name__ == '__main__':
         with open(cli_args.doclist,'r') as file:
             doc = file.readline()
             while len(doc)>0:
-                doclist.append(doc)
+                doclist.append(doc.strip())
                 doc = file.readline()
 
     try:
@@ -939,6 +961,12 @@ if __name__ == '__main__':
     except:
         print("can't find the validation file", filename)
         exit()
+
+    skiplist = ""
+    if cli_args.skip:
+        print('Skipping records of type: {}'.format(cli_args.skip))
+        skiplist = cli_args.skip
+    
     print("Reading validation file ",filename)
     foutfilname = "Validation_output_"+datetime.datetime.now().strftime("%Y%m%d")[2:]+".txt"
     fout = open(foutfilname, 'w')
