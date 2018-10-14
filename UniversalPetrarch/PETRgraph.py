@@ -3276,6 +3276,10 @@ An instantiated Sentence object
             return codelist
 
         codelist = []
+        if len(thisloc) == 0:
+            codelist = ['---']
+            return codelist
+
         if thisloc[1]:
 
             try:
@@ -3478,13 +3482,21 @@ An instantiated Sentence object
                     logger.debug("Lower sequence: %s", lower)
                     #raw_input()
 
+                    events_oneverb = []
                     for i in range(0,len(verbdata)):
                         meaning = verbdata[i]['meaning']
                         verbcode = verbdata[i]['code']
                         line = verbdata[i]['line']
                         logger.debug(
                             "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
-
+                        if "#" not in verb.meaning:
+                            verb.meaning = meaning+"#"
+                            verb.code = verbcode+"#"
+                        else:
+                            verb.meaning = verb.meaning + meaning +"#"
+                            verb.code = (verb.code if verb.code != None else "None") + verbcode +"#"
+                        #print("verb meaining:",verb.meaning)
+                        #print("verb.code:", verb.code)
 
                         if not meaning == '':
                             patternlist = PETRglobals.P1VerbDict[
@@ -3492,7 +3504,7 @@ An instantiated Sentence object
                         # logger.debug("CV-2 patlist: %s", patternlist.keys())
 
                         vpm, lowsrc, lowtar = self.petrarch1_verb_pattern_match(
-                            patternlist, upperlemma, lowerlemma)
+                            patternlist, upperlemma, upper, lowerlemma, lower)
                         hasmatch = False
                         if not vpm == {}:
                             hasmatch = True
@@ -3503,7 +3515,7 @@ An instantiated Sentence object
 
                             logger.debug("EventCode: %s,%s,%s,%s",
                                          EventCode, line, SourceLoc, TargetLoc)
-                        # raw_input()
+                        #input(" ")
 
                         if hasmatch and EventCode == '---':
                             hasmatch = False
@@ -3518,28 +3530,60 @@ An instantiated Sentence object
                                 TargetLoc = self.find_target(lower, TargetLoc)
                                 logger.debug("CV-3 trg %s", TargetLoc)
 
-                            # print("TargetLoc", TargetLoc)
+                            #print("TargetLoc", TargetLoc)
                             if not TargetLoc == "":
                                 if SourceLoc == "":
-                                    # print(upper)
+                                    #print(upper)
                                     # print(lower)
                                     # print(TargetLoc == "")
                                     if not TargetLoc[0] == "":
                                         SourceLoc = self.find_source(
                                             upper, lower, SourceLoc, TargetLoc)
-                                if not SourceLoc == "":
-                                    logger.debug("CV-3 src %s", SourceLoc)
-                                    CodedEvents = self.make_event_strings(
-                                        CodedEvents, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+                                #print("SourceLoc", SourceLoc) 
+                                #if not SourceLoc == "":
 
-                                    logger.debug("coded_events: %s", CodedEvents)
-                                    logger.debug("line: %s", line)
-                                    # for event in CodedEvents:
-                                    # event.append(line)
+                            logger.debug("CV-3 src %s", SourceLoc)
+                            events_oneverb = self.make_event_strings(
+                                events_oneverb, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+
+                            logger.debug("events_oneverb: %s", events_oneverb)
+                            logger.debug("line: %s", line)
+                    
+                    '''               
+                    events_oneverb_map = {}
+                    for event in events_oneverb:
+                        eventkey = event[0]+"#"+event[1]+"#"+event[-1]
+                        if eventkey in events_oneverb_map:
+                            events_oneverb_map[eventkey].append(event)
+                        else:
+                            events_oneverb_map[eventkey] = [event]
+
+                    filtered_events_oneverb = []
+                    for evenkey, events in events_oneverb_map.items():
+                        pattern_events = []
+                        for event in events:
+                            if "*" in event[-2]:
+                                pattern_events.append(event)
+
+                        if len(pattern_events)> 0:
+                            filtered_events_oneverb.extend(pattern_events)
+                        else:
+                            filtered_events_oneverb.extend(events)
+
+                        #print(eventkey)
+                        #print("all_events",events)
+                        #print("pattern_events", pattern_events)
+                        #input(" ")
+
+                    CodedEvents.extend(filtered_events_oneverb)
+                    '''
+
+                    CodedEvents.extend(events_oneverb)
+                    logger.debug("coded_events: %s", CodedEvents)
+                    #input(" ")
             #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
                 #break
 
-        # return CodedEvents,SourceLoc
         return CodedEvents
 
     def skip_item(self, item):
@@ -3565,7 +3609,7 @@ An instantiated Sentence object
         except:
             return 0
 
-    def petrarch1_verb_pattern_match(self, patlist, upper, lower):
+    def petrarch1_verb_pattern_match(self, patlist, upper, upper_raw, lower, lower_raw):
         """
         ##########################################
         ##
@@ -3629,12 +3673,19 @@ An instantiated Sentence object
                     pathleft.append((path, i, 1))
                     path = path[phrase[i]]
 
+                elif upper_raw[i] in path and not option > 0:
+                    logger.debug("upper matched a raw word %s", upper_raw[i])
+
+                    matchlist.append(upper_raw[i])
+                    pathleft.append((path, i, 1))
+                    path = path[upper_raw[i]]
+
                 # maybe a synset match
                 elif 'synsets' in path and not option > 1:
                     # logger.debug("could be a synset")
                     matchflag = False
                     for synset in path['synsets'].keys():
-                        if phrase[i] in PETRglobals.P1VerbDict['verbs'][synset]:
+                        if synset in PETRglobals.P1VerbDict['verbs'] and phrase[i] in PETRglobals.P1VerbDict['verbs'][synset]:
                             # logger.debug("found a synset match")
 
                             matchlist.append(synset)
@@ -3844,13 +3895,20 @@ An instantiated Sentence object
                 matchlist.append(lower[i])
                 pathleft.append((path, i, 1))
                 path = path[lower[i]]
+            elif lower_raw[i] in path and not option > 0:
+                logger.debug("lower matched a raw word %s", lower_raw[i])
+
+                matchlist.append(lower_raw[i])
+                pathleft.append((path, i, 1))
+                path = path[lower_raw[i]]
+
 
             # maybe a synset match
             elif 'synsets' in path and not option > 1:
                 # logger.debug("could be a synset")
                 matchflag = False
                 for synset in path['synsets'].keys():
-                    if lower[i] in PETRglobals.P1VerbDict['verbs'][synset]:
+                    if synset in PETRglobals.P1VerbDict['verbs'] and lower[i] in PETRglobals.P1VerbDict['verbs'][synset]:
                         # logger.debug("found a synset match")
 
                         matchlist.append(synset)
