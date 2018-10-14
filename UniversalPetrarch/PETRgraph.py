@@ -1396,7 +1396,7 @@ An instantiated Sentence object
 
             if noun_phrase != None:
 
-                if not isinstance(noun_phrase, str):
+                if not isinstance(noun_phrase, basestring):
                     logger.debug("noun:" + noun_phrase.head +
                                  "#" + noun_phrase.text)
 
@@ -1871,12 +1871,12 @@ An instantiated Sentence object
                                  "\t" + matched_pattern)
 
                     source = newsource if not isinstance(
-                        newsource, str) else source
+                        newsource, basestring) else source
                     target = newtarget if not isinstance(
-                        newtarget, str) else target
+                        newtarget, basestring) else target
             
-        tripleID = ('-' if isinstance(source, str) else str(source.headID)) + '#' + \
-                   ('-' if isinstance(target, str) else str(target.headID)) + '#' + \
+        tripleID = ('-' if isinstance(source, basestring) else str(source.headID)) + '#' + \
+                   ('-' if isinstance(target, basestring) else str(target.headID)) + '#' + \
             str(verb.headID) + "#" + str(len(self.triplets))
         newtriple = (source, target, verb)
 
@@ -2071,12 +2071,12 @@ An instantiated Sentence object
 
             # Test of %, if % in pattern, and no target is found, PETRARCH
             # generates a paired event coded on a compound
-            if '%' in triple['matched_txt'] and (not target or not isinstance(target, str) or target == '-'):
+            if '%' in triple['matched_txt'] and (not target or not isinstance(target, basestring) or target == '-'):
                 paired_event[tripleID] = triple
                 # continue
 
             source_meaning = ''
-            if not isinstance(source, str):
+            if not isinstance(source, basestring):
                 source.get_meaning()
                 source_meaning = source.meaning if source.meaning != None else ''
                 logger.debug("source: " + source.head + " code: " +
@@ -2084,7 +2084,7 @@ An instantiated Sentence object
                 self.nouns[source.headID] = source
 
             target_meaning = ['---']
-            if not isinstance(target, str):
+            if not isinstance(target, basestring):
                 tarcodes,_, tarmatched_txt = target.get_meaning()
                 target_meaning = target.meaning if target.meaning != None else [
                     '---']
@@ -2140,7 +2140,7 @@ An instantiated Sentence object
                     # entire target actor is in the matched pattern
                     target_meaning = ['---']
 
-            if (target_meaning in [['---'],[]] or isinstance(target, str)) or (verb.passive and source_meaning in [['---'],[],'']):
+            if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 verblist = self.metadata['othernoun'][verb.headID]
                 item = find_new_target_actor(verblist,triple['matched_txt'],verb)
                 
@@ -2160,7 +2160,7 @@ An instantiated Sentence object
                         source = newtarget
                         self.nouns[source.headID] = source
                         source_meaning = newtarget_meaning
-                    elif target_meaning in [['---'],[]] or isinstance(target, str):
+                    elif target_meaning in [['---'],[]] or isinstance(target, basestring):
                         target = newtarget
                         self.nouns[target.headID] = target
                         target_meaning = newtarget_meaning
@@ -2249,7 +2249,7 @@ An instantiated Sentence object
 
             # If there are multiple actors in a cooperation
             # scenario, code their cooperation as well
-            if source_meaning not in [['---'],[],''] and (target_meaning in [['---']] or isinstance(target, str)) and triple['verbcode'] and triple['verbcode'][
+            if source_meaning not in [['---'],[],''] and (target_meaning in [['---']] or isinstance(target, basestring)) and triple['verbcode'] and triple['verbcode'][
                     :2] in ["03", "04", "05", "06"]:
                 paired_event[tripleID] = triple
                 #raw_input(tripleID)
@@ -2509,10 +2509,12 @@ An instantiated Sentence object
                     event[0] = ['---']
                 if event[1] in [None, ["None"],[],['---']]:
                     event[1] = ['---']
-
+                self.events[eventID] = event
+                
         for eventID in removed:
             if eventID in self.events:
                 del self.events[eventID]
+
 
         return self.events
 
@@ -3115,6 +3117,8 @@ An instantiated Sentence object
                             CodedEvents[-1].extend([srclist[1], tarlist[1]])
                         if PETRglobals.WriteActorText:
                             CodedEvents[-1].extend([srclist[2], tarlist[2]])
+                        else:
+                            CodedEvents[-1].extend(["",""])
                         CodedEvents[-1].append(line)
                         CodedEvents[-1].append(verbhead)
 

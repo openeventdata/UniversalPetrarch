@@ -20,7 +20,7 @@ then
 
 
 	echo "Generate sentence xml file..."
-	python preprocess_sent.py ${FILEPATH}/$FILENAME
+	python3 preprocess_sent.py ${FILEPATH}/$FILENAME
 
 	echo "Call Stanford Segmenter to do arabic word segmentation.."
 	java -mx1g -cp $CLASSPATH edu.stanford.nlp.international.arabic.process.ArabicSegmenter -loadClassifier $STANFORD_SEG/data/arabic-segmenter-atb+bn+arztrain.ser.gz -textFile ${FILEPATH}/$FILENAME.raw.txt > ${FILEPATH}/$FILENAME.segmented 
@@ -28,7 +28,7 @@ then
 
 	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$FILENAME.segmented > ${FILEPATH}/$FILENAME.conll
 
-	#rm ${FILEPATH}/$FILENAME.segmented
+	rm ${FILEPATH}/$FILENAME.segmented
 
 else
 
@@ -46,7 +46,7 @@ else
 
 
 	echo "Prepare file for stanford CoreNLP"
-	python preprocess_sent.py ${FILEPATH}/$FILENAME
+	python3 preprocess_sent.py ${FILEPATH}/$FILENAME
 
 	echo "Call Stanford CoreNLP to do tokenization..."
 	echo "property file path: "
@@ -54,12 +54,12 @@ else
 	java -cp "$STANFORD_CORENLP/*" -Xmx4g edu.stanford.nlp.pipeline.StanfordCoreNLP -props ${STANFORD_PROPERTY} -ssplit.newlineIsSentenceBreak always -file ${FILEPATH}/$FILENAME.raw.txt -outputFormat text -outputDirectory ${FILEPATH}
 
 	echo "Generate sentence xml file..."
-	python preprocess.py ${FILEPATH}/$FILENAME
+	python3 preprocess.py ${FILEPATH}/$FILENAME
 
 	${SCRIPT}/create_conll_corpus_from_text.pl ${FILEPATH}/$FILENAME.txt > ${FILEPATH}/$FILENAME.conll
 
-	# rm ${FILEPATH}/$FILENAME.raw.txt.out
-	# rm ${FILEPATH}/$FILENAME.txt
+	rm ${FILEPATH}/$FILENAME.raw.txt.out
+	rm ${FILEPATH}/$FILENAME.txt
 
 fi
 
@@ -70,7 +70,7 @@ echo $languageModel
 ${udpipePath}/udpipe --tag --parse --outfile=${FILEPATH}/$FILENAME.conll.predpos.pred --input=conllu $languageModel ${FILEPATH}/$FILENAME.conll 
 
 echo "Ouput parsed xml file..."
-python generateParsedFile.py ${FILEPATH}/$FILENAME "$language"
+python3 generateParsedFile.py ${FILEPATH}/$FILENAME "$language"
 
 rm ${FILEPATH}/$FILENAME.raw.txt
 rm ${FILEPATH}/$FILENAME.conll
