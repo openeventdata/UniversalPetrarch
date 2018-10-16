@@ -8,12 +8,41 @@ https://github.com/openeventdata/UniversalPetrarch/tree/dev-validate
 
 TO RUN PROGRAM:
 
-python validation.py [-d] [-i filename] [-p1] [-p2]
+python validation.py [-d] [-i filename] [-p1] [-p2] [-es]
 
   -d: use alternatve file with dictionaries in validate/, typically a debug file. Input files are hard coded.
   -i <filename>: use alternative file with dictionaries in data/dictionaries
-  -p1/-p2: batch comparison 
+  -p1/-p2: batch comparison
+  -es : Spanish GSR set 
   
+==== STATUS OF PROGRAM 18.10.16 ====
+
+This will run the current Spanish validation file spanish_protest_cameo_4_jj_validation.xml and also incorporates
+the Spanish (ES)-specific code from validation2_spanish_withanalysis.py, with the key difference that it reads
+files based on the file's <Environment> block rather than a separate config file. 
+
+Results of the two programs are generally comparable but not identical (results of this program and earlier versions on
+the English-language "Lord of the Rings" and "Gigaword" validation sets are identical)
+
+validation.py -es:
+Records evaluated:     640
+Correct events:        601    79.71%
+Uncoded events:        153    20.29%
+Extra events:        10427  1629.22%
+
+python validation2_spanish_withanalysis_mod1.py validate -i data/text/spanish_protest_cameo_4_jj_validation.xml -c data/config/PETR_config_es.ini
+Records evaluated:     640
+Correct events:        567    75.20%
+Uncoded events:        187    24.80%
+Extra events:         8413  1314.53%
+
+The difference is probably due to specifics of counting "correct" events and other metrics: at present, presumably for diagnostic
+purposes, the ES validation statistics are counting something as "correct" if *any* of the events produced correspond at the two-digit 
+level to the record's "eventcode" and currently the ES records have no actor codes. Ultimately this program is intended to apply the 
+same source-target-event metric to all three languages, so at present I haven't tried to duplicate the ES diagnostics. This may change
+in a future rendition.
+
+======================================  
 
 PROGRAMMING NOTES:
 
@@ -25,10 +54,10 @@ PROGRAMMING NOTES:
 2.  The PETR_Validate_records_2_02.xml file is currently XML and could be read as such, but in all likelihood this will soon to 
     transitioned over to YAML, so the fields are being processed without using XML tools.
     
-3. In the current version, only PETR-2 dictionaries are used, even for the -p1 option.
+3. In the current English versions, only PETR-2 dictionaries are used, even for the -p1 option.
     
 SYSTEM REQUIREMENTS
-This program has been successfully run under Mac OS 10.10.5; it is standard Python 3.5 so it should also run in Unix or Windows. 
+This program has been successfully run under Mac OS 10.13.6; it is standard Python 3.5 so it should also run in Unix or Windows. 
 
 PROVENANCE:
 Programmer: Philip A. Schrodt
@@ -52,6 +81,7 @@ REVISION HISTORY:
 24-May-18: Modified to work with Universal-PETR off-the-shelf
 01-Jun-18: -p1 and -p2 batch coding options added
 21-Jun-18: assorted additional tabulations for the batch coding
+16-Oct-18: initial integration of Spanish coding under the -es option
 
 =========================================================================================================
 """
@@ -63,7 +93,6 @@ import datetime
 import textwrap
 import os.path
 import logging
-import codecs
 import ast
 import sys
 
@@ -81,6 +110,30 @@ run_sample_only = False # comment-out to debug
 cue_counts = collections.Counter()
 allmatch = False
 
+doing_es = False
+doing_ar = False
+
+# these variables are currently specific to -es option
+
+none_verb = []
+none_verb_id = []
+none_verb_filenames = []
+
+unmatched_patterns = []
+unmatched_filenames = []
+
+missing_patterns = []
+
+gold_nouns = []
+gold_nouns_filenames = []
+
+correct_files = []
+incorrect_files = []
+
+stats_dict = {}
+stats = []
+
+doclist = None
 
 # ========================== VALIDATION FUNCTIONS ========================== #
 
@@ -123,7 +176,7 @@ def get_environment():
     ValidOnly = True
     ValidPause = 0
     
-    PETRglobals.CodeWithPetrarch1 = False
+    PETRglobals.CodeWithPetrarch1 = doing_es 
     
     line = fin.readline() 
     while len(line) > 0 and not line.startswith("<Environment>"):  # loop through the file
@@ -138,11 +191,14 @@ def get_environment():
         if '<Verbfile' in line:
             PETRglobals.VerbFileName = line[line.find(">") + 1:line.find("</")]
 
+        elif '<P1Verbfile' in line:
+            PETRglobals.P1VerbFileName = line[line.find(">") + 1:line.find("</")]
+
         elif '<Actorfile' in line:
             PETRglobals.ActorFileList = line[line.find(">") + 1:line.find("</")].split(',')
 
         elif '<Agentfile' in line:
-            PETRglobals.AgentFileList = [line[line.find(">") + 1:line.find("</")]]
+            PETRglobals.AgentFileList = line[line.find(">") + 1:line.find("</")].split(',')
             
         elif '<Discardfile' in line:
             PETRglobals.DiscardFileName = line[line.find(">") + 1:line.find("</")]
@@ -177,6 +233,33 @@ def get_environment():
     print(ValidPause, ValidOnly)
     return ValidInclude, ValidExclude, ValidPause, ValidOnly
 
+
+def csv_writer(fileprefix):
+    """ modifies pandas excel writer from validation2_spanish_withanalysis.py 18.10.10 to just write three csv files rather 
+        than importing pandas and writing an .xlsx file. Plus I can read csv in a text editor and don't own a copy of Excel... """
+
+    with open(fileprefix + "_stats_" + datetime.datetime.now().strftime("%Y%m%d")[2:]+".csv", "w") as fcsv:
+        stats_head = ["ID","Correct","NounSentence","NounEvent","VerbNotFound","CodeNotMatch","MissingPattern","#Found Events" , "#Missing Events","#Extra Event" ,"#Null Events"]
+        fcsv.write("\t".join(stats_head) + "\n")
+        for key in stats_dict:
+            if 'correct' in stats_dict[key]:
+                fcsv.write("\t".join([key,str(stats_dict[key]['correct']),"False", "False", str(stats_dict[key]['noneverb']),str(stats_dict[key]['unmatch'])
+                    ,str(stats_dict[key]['missing']),str(stats_dict[key]['numbers'][0]),str(stats_dict[key]['numbers'][1]) 
+                    ,str(stats_dict[key]['numbers'][2]),str(stats_dict[key]['numbers'][3])]) + "\n")
+            else:
+                row = [key,"False",str(stats_dict[key]['nounsent']),str(stats_dict[key]['nounaction'])] 
+                row = row + [""] * (len(stats_head) - len(row))
+                fcsv.write("\t".join(row) + "\n")
+    
+    with open(fileprefix + "_mismatched_" + datetime.datetime.now().strftime("%Y%m%d")[2:]+".csv", "w") as fcsv:
+        fcsv.write("\t".join(["ID","Sentence","System verb(lemma)","System Code","Matched pattern","Gold event text","Gold Code"]) + "\n")
+        for row in unmatched_patterns:
+            fcsv.write("\t".join(row) + "\n")
+            
+    with open(fileprefix + "_not_found_" + datetime.datetime.now().strftime("%Y%m%d")[2:]+".csv", "w") as fcsv:
+        fcsv.write("\t".join(["ID","Sentence","System verb(lemma)","System Code","Gold event text","Gold Code"]) + "\n")    
+        for row in none_verb:
+            fcsv.write("\t".join(row) + "\n")
 
 
 def validate_record(valrecord):
@@ -218,46 +301,156 @@ def validate_record(valrecord):
 
     def parse_verb(phrase_dict,sentence):
         """ from test_script_ud.py with minor modifications """
+        if doing_es:
+            if '0' not in return_dict[idstrg]['sents']:
+                return
         if 'verbs' not in return_dict[idstrg]['sents']['0']:
             return
         str_arr = str(return_dict[idstrg]['sents']['0']['verbs']).strip("{").split(",")
-        fout.write("Verbs found:\n") 
-        for x in str_arr[:1]:
-            str_num = x.find(":")		
-            try:        
-                np = sentence.get_verbPhrase(int(x[:str_num].strip()))
-                str_add = x[:str_num].strip() + " : text = " + str(np.text) +", head="+ str(np.head) +", meaning="+ str(np.meaning)+", code="+ str(np.code)+" ,passive="+str(np.passive) + "\n"
+        fout.write("Verbs found:\n")
+         
+        if doing_es:
+            for verbID in return_dict[idstrg]['sents']['0']['verbs']:
+                verb = return_dict[idstrg]['sents']['0']['verbs'][verbID]
+                str_add = str(verbID) + " : text = " + str(verb.text) +", head="+ str(verb.head) +", meaning="+ str(verb.meaning)+", code="+ str(verb.code)+" ,passive="+str(verb.passive) + "\n"
                 fout.write("    " + str_add)
-            except Exception as e:
-                print(e)
-                fout.write(" --> Exception generating sentence.get_verbPhrase(): " + str(e) + '\n')
+        else:
+            for x in str_arr[:1]:
+                str_num = x.find(":")		
+                try:        
+                    np = sentence.get_verbPhrase(int(x[:str_num].strip()))
+                    str_add = x[:str_num].strip() + " : text = " + str(np.text) +", head="+ str(np.head) +", meaning="+ str(np.meaning)+", code="+ str(np.code)+" ,passive="+str(np.passive) + "\n"
+                    fout.write("    " + str_add)
+                except Exception as e:
+                    print(e)
+                    fout.write(" --> Exception generating sentence.get_verbPhrase(): " + str(e) + '\n')
         return
 
 
     def parse_triplets(phrase_dict):
         """ from test_script_ud.py with minor modifications """
+        if doing_es:
+            if '0' not in return_dict[idstrg]['sents']:
+                return
         if 'triplets' not in return_dict[idstrg]['sents']['0']:
             return
         triplets=return_dict[idstrg]['sents']['0']['triplets']
         fout.write("Triplets found:\n") 
         for triple in triplets:
             strs = triplets[triple]
-            meaning = strs['meaning']
-            verbcode = strs['verbcode']
+#            print(strs)
+            if doing_es:
+                source_text = strs.get('source_text',"***")  # *** is indicator that source_text, etc was not computed: currently not clear why we're hitting this <18.10.15>
+                target_text = strs.get('target_text',"***")
+                verb_text = strs.get('verb_text',"***")
+            else:
+                meaning = strs['meaning']
+                verbcode = strs['verbcode']
             matched_text = strs['matched_txt']
             codes = str(triple).split("#")
-            event = "(" + phrase_dict[codes[0]] + "," + phrase_dict[codes[1]] + "," + phrase_dict[codes[2]] + ")"
-            str_add = str(triple) + event +": Meaning = " + str(meaning) + ", VerbCode = " + str(verbcode) + ", Matched Text = " + str(matched_text) + "\n"
+            if doing_es:
+                event = "(" + source_text + "," + target_text + "," + verb_text +")"
+                str_add = str(triple) + event + ": Matched Text = " + str(matched_text) + "\n"
+            else:
+                event = "(" + phrase_dict[codes[0]] + "," + phrase_dict[codes[1]] + "," + phrase_dict[codes[2]] + ")"
+                str_add = str(triple) + event +": Meaning = " + str(meaning) + ", VerbCode = " + str(verbcode) + ", Matched Text = " + str(matched_text) + "\n"
             fout.write("    " + str_add)                
         return 
 
+
+    def check_none_verb(expected):
+        """ ES validation function """
+        if '0' not in return_dict[idstrg]['sents']:
+            return
+        if 'verbs' not in return_dict[idstrg]['sents']['0']:
+            return
+        
+        found = False
+        for verbID in return_dict[idstrg]['sents']['0']['verbs']:
+            verb = return_dict[idstrg]['sents']['0']['verbs'][verbID]
+            for i in range(0,len(expected['events'])):
+                goldevent = expected['events'][i]
+                goldeventtext = expected['eventtexts'][i]
+                if verb.rawtext in goldeventtext['eventtext'] and verb.code == None:
+                    code = verb.code if verb.code != None else "None"
+                    #noneverb = idstrg+"\t"+"verb_raw:"+verb.rawtext+"\tverb_lemma:"+verb.text+"\tgold:"+edict['eventtext']+"\tcode:"+code
+                    #noneverb = idstrg+"\t"+expected['text']+"\t"+verb.text+"\t["+code+"]\t"+ goldeventtext['eventtext']+"\t["+goldevent['eventcode']+"]"+"\t"+ goldevent['plover']+"\t"+goldeventtext['sourcetext']+"\t"+goldeventtext['targettext']
+                    noneverb = [idstrg,expected['text'],verb.text,"["+code+"]", goldeventtext['eventtext'],"["+goldevent['eventcode']+"]"]
+
+                    none_verb.append(noneverb)
+                    none_verb_filenames.append(idstrg)
+                    found = True
+
+        return found
+
+
+    def check_unmatched_triplets(valrecord):
+        """ ES validation function """
+        if '0' not in return_dict[idstrg]['sents']:
+            return
+        if 'triplets' not in return_dict[idstrg]['sents']['0']:
+            return
+        triplets=return_dict[idstrg]['sents']['0']['triplets']
+        
+        found = False
+
+        for triple in triplets:
+            strs = triplets[triple]
+            source_text = strs.get('source_text',"***")  # see above note on ***  <18.10.15>
+            target_text = strs.get('target_text',"***")
+            verb_text = strs.get('verb_text',"***")
+            matched_text = strs['matched_txt']
+            code = strs['verbcode']
+            codes = str(triple).split("#")
+            event = verb_text
+            for i in range(0,len(valrecord['events'])):
+                goldevent = valrecord['events'][i]
+                goldeventtext = valrecord['eventtexts'][i]
+                if verb_text != None and verb_text.lower() in goldeventtext['eventtext'] and goldevent['eventcode'] not in code:
+                    unmatched_patterns.append([idstrg,valrecord['text'],event,"["+code+"]",matched_text.strip().replace("\t"," "),goldeventtext['eventtext'],"["+goldevent['eventcode']+"]"])
+                    unmatched_filenames.append(idstrg)
+                    found = True
+        return found
+
+
+    def check_missing_pattern(expected):
+        """ ES validation function """
+        if '0' not in return_dict[idstrg]['sents']:
+            return
+        if 'triplets' not in return_dict[idstrg]['sents']['0']:
+            return
+
+        found = False
+
+        for verbID in return_dict[idstrg]['sents']['0']['verbs']:
+            verb = return_dict[idstrg]['sents']['0']['verbs'][verbID]
+            for i in range(0,len(expected['events'])):
+                goldevent = expected['events'][i]
+                goldeventtext = expected['eventtexts'][i]
+                if verb.rawtext in goldeventtext['eventtext'] and verb.code == '---':
+                    code = verb.code if verb.code != None else "None"
+                    noneverb = [idstrg,expected['text'],verb.text,"["+code+"]", goldeventtext['eventtext'],"["+goldevent['eventcode']+"]", goldevent['plover']]
+                    missing_patterns.append(noneverb)
+
+                    found = True
+
+        return found
+
+
     logger = logging.getLogger('petr_log.validate')
-#        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
     parse = valrecord['parse']
     idstrg = valrecord['id']
     print("evaluating", idstrg)
+#    print("evaluating", valrecord)
     logger.debug("\nevaluating: "+ idstrg)
     fout.write("Record ID: " + idstrg + '\n')
+
+    phrase_dict = parse_parser(parse)
+    parsed = utilities._format_ud_parsed_str(parse)
+    dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
+        u'meta': {u'date': valrecord['date']}}}
+    return_dict = petrarch_ud.do_coding(dict)
+
     if not doing_compare:
         fout.write("Text:\n")
         for li in textwrap.wrap(valrecord['text'], width = 100):
@@ -266,22 +459,23 @@ def validate_record(valrecord):
         for strg in parse[:-1].split("\n"):
             fout.write("    " +  strg  + '\n')
     fout.write("Expected events:\n")
-    for edict in valrecord['events']:
+    for i in range(len(valrecord['events'])):    
+        edict =  valrecord['events'][i]
         if "noevents" in edict:
             fout.write("    noevents\n")                 
         else:
-            fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
+            if doing_es:
+                fout.write("    " + edict['eventcode']  + ' ' + valrecord['eventtexts'][i]['eventtext'] + '\n')
+            else:
+                fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n')              
     
-    phrase_dict = parse_parser(parse)
-    parsed = utilities._format_ud_parsed_str(parse)
-    dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
-        u'meta': {u'date': valrecord['date']}}}
-    return_dict = "" 
-    return_dict = petrarch_ud.do_coding(dict)
 
     fout.write("Coded events:\n")
+    if doing_es:
+        if '0' not in return_dict[idstrg]['sents']:
+            print(return_dict[idstrg])
+
     if 'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
-        print(return_dict[idstrg]['sents']['0']['events'])
         event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
         
         nfound, ncoded, nnull = 0, 0, 0
@@ -302,12 +496,21 @@ def validate_record(valrecord):
                         fout.write("  ERROR: NO EVENTS\n")
                         break                 
                     else:
-                        if (edict['eventcode'] == evt[2] and
-                            edict['sourcecode'] == evt[0][0] and
-                            edict['targetcode'] == evt[1][0]) :
-                            fout.write("  CORRECT\n")
-                            nfound += 1
-                            break
+                        if doing_es:
+                            if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
+                                fout.write("  CORRECT\n")
+                                if 'found' not in edict:
+                                    nfound += 1
+                                    edict['found'] = True
+                                    break
+
+                        else:
+                            if (edict['eventcode'] == evt[2] and
+                                edict['sourcecode'] == evt[0][0] and
+                                edict['targetcode'] == evt[1][0]) :
+                                fout.write("  CORRECT\n")
+                                nfound += 1
+                                break
                 else:
                     fout.write("  ERROR\n") # do we ever hit this now?
                     
@@ -361,9 +564,29 @@ def validate_record(valrecord):
             nfound, ncoded, nnull = 0, 0, 0
             fout.write("  ERROR\n")
         
+    if doing_es and nfound > 0:
+        correct_files.append(idstrg)
         
-    fout.write("Stats:\n    Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
-                + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
+    if doing_es:
+        num_found = 0
+        num_notcoded = 0
+        numcoded = 0
+
+        for edict in valrecord['events']:
+            if "noevents" in edict:
+                num_found = 1
+                num_coded = 1
+            else:
+                if 'found' in edict and edict['found'] == True: ## really only need the first test
+                    num_found +=1
+                else:
+                    num_notcoded +=1
+
+        fout.write("Stats:\n    Correct: " + str(num_found) + "   Not coded: " + str(num_notcoded) 
+                    + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n')
+    else: 
+        fout.write("Stats:\n    Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
+                        + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
     if valrecord['category'] in valid_counts:
         valid_counts[valrecord['category']][0] += 1  # records
         valid_counts[valrecord['category']][1] += nfound  # correct
@@ -371,17 +594,45 @@ def validate_record(valrecord):
         valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
         valid_counts[valrecord['category']][4] += nnull            # null
     else:
-        valid_counts[valrecord['category']] = [1, nfound, len(valrecord['events']) - nfound, ncoded - nfound, nnull]
+        if doing_es:
+            valid_counts[valrecord['category']] = [1, num_found, num_notcoded, ncoded - nfound, nnull]
+        else:
+            valid_counts[valrecord['category']] = [1, nfound, len(valrecord['events']) - nfound, ncoded - nfound, nnull]        
         valid_counts['catlist'].append(valrecord['category'])  # keep track of the order of the categories found
     
-    try:        
-        sentence = PETRgraph.Sentence(parsed, valrecord['text'] , 0000)  # 18.05.22: what the heck is this doing???
-    except Exception as e:
-        print(" --> Exception generating PETRgraph.Sentence(): ",e)
-        fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
 
     if not doing_compare:
-        parse_verb(phrase_dict, sentence)
+        try:        
+            sentence = PETRgraph.Sentence(parsed, valrecord['text'] , 0000)
+        except Exception as e:
+            print(" --> Exception generating PETRgraph.Sentence(): ",e)
+            fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
+            parse_verb(phrase_dict, sentence)
+
+        if doing_es:
+            if idstrg not in correct_files:
+                noneverbflag = check_none_verb(valrecord)
+                unmatchflag = check_unmatched_triplets(valrecord)
+                missingflag = check_missing_pattern(valrecord)
+
+                if valrecord['id'] not in stats_dict:
+                    stats_dict[valrecord['id']] = {}
+
+                stats_dict[valrecord['id']]['noneverb'] = noneverbflag
+                stats_dict[valrecord['id']]['unmatch'] = unmatchflag
+                stats_dict[valrecord['id']]['missing'] = missingflag
+                stats_dict[valrecord['id']]['correct'] = False
+            else:
+
+                if valrecord['id'] not in stats_dict:
+                    stats_dict[valrecord['id']] = {}
+
+                stats_dict[valrecord['id']]['noneverb'] = False
+                stats_dict[valrecord['id']]['unmatch'] = False
+                stats_dict[valrecord['id']]['missing'] = False
+                stats_dict[valrecord['id']]['correct'] = True
+
+            stats_dict[valrecord['id']]['numbers'] = [nfound,(len(valrecord['events']) - nfound),(ncoded-nfound),nnull]
         parse_triplets(phrase_dict)
     fout.write('\n')
 
@@ -431,10 +682,28 @@ def do_validation():
                                     'targetcode' : get_line_attribute('targetcode'),
                                     'coded': False
                                     }
+                        if doing_es:
+                            theevent['plover'] = get_line_attribute('plover'),
                         if 'events' in valrecord:
                             valrecord['events'].append(theevent)
                         else:
                             valrecord['events'] = [theevent]    
+
+                elif line.startswith("<EventText") and not doing_compare and doing_es:
+                    if 'noevents="True"' in line:
+                        valrecord['eventtexts'] = ["noevents"]    
+                    else:
+                        theevent = {
+                                    'coding' : line[line.find(" ") + 1:line.find(">")],  # not actually using this
+                                    'eventtext': get_line_attribute('eventtext'),
+                                    'sourcetext' :  get_line_attribute('sourcetext'),
+                                    'targettext' : get_line_attribute('targettext'),
+                                    'coded': False
+                                    }
+                        if 'eventtexts' in valrecord:
+                            valrecord['eventtexts'].append(theevent)
+                        else:
+                            valrecord['eventtexts'] = [theevent]
 
                 elif (line.startswith("<P1Event ") and doing_P1) or (line.startswith("<P2Event ") and doing_P2):
                      thelist = ast.literal_eval(line[9:-2])
@@ -457,10 +726,67 @@ def do_validation():
                 elif line.startswith("<Parse"):
                     line = fin.readline() 
                     parse = ""
+                    if doing_es:
+                        found_verb = False
+                        gold_is_noun = [False]*len(valrecord['events'])
+                        gold_is_verb = [False]*len(valrecord['events'])
+                        postags = [""]*len(valrecord['events'])
+
                     while not line.startswith("</Parse"):
+                        if doing_es:
+                            tmp = line.split("\t")
+
+                            if "noevents" not in valrecord['eventtexts']:
+
+                                for eid in range(0,len(valrecord['events'])):
+                                    if tmp[1] in valrecord['eventtexts'][eid]['eventtext']:
+                                        postags[eid] = postags[eid] + " " + tmp[3]
+                                        if "VERB" in line:
+                                            gold_is_verb[eid] = True
+                                        elif "NOUN" in line or "PROPN" in line or "ADJ" in line:
+                                            gold_is_noun[eid] = True
+
+                            if "VERB" in line:
+                                found_verb = True
                         parse += line
                         line = fin.readline() 
                     valrecord['parse'] = parse
+                    if doing_es:
+
+                        if not found_verb:
+                            valrecord['valid'] = False
+
+                            if valrecord['id'] in stats_dict:
+                                stats_dict[valrecord['id']]['nounsent'] = True
+                            else:
+                                stats_dict[valrecord['id']] = {}
+                                stats_dict[valrecord['id']]['nounsent'] = True
+                        else:
+                            if valrecord['id'] in stats_dict:
+                                stats_dict[valrecord['id']]['nounsent'] = False
+                            else:
+                                stats_dict[valrecord['id']] = {}
+                                stats_dict[valrecord['id']]['nounsent'] = False
+
+                        for eid in range(0,len(valrecord['events'])):
+
+                            if gold_is_noun[eid] and not gold_is_verb[eid]:
+                                gold_nouns.append(valrecord['id']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext']+"\t"+postags[eid])
+                                #print(valrecord['sentence']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext'])
+                                valrecord['valid'] = False
+                                gold_nouns_filenames.append(valrecord['id'])
+                                if valrecord['id'] in stats_dict:
+                                    stats_dict[valrecord['id']]['nounaction'] = True
+                                else:
+                                    stats_dict[valrecord['id']] = {}
+                                    stats_dict[valrecord['id']]['nounaction'] = True
+                            else:
+                                if valrecord['id'] in stats_dict:
+                                    stats_dict[valrecord['id']]['nounaction'] = False
+                                else:
+                                    stats_dict[valrecord['id']] = {}
+                                    stats_dict[valrecord['id']]['nounaction'] = False
+
                     break
                 line = fin.readline() 
 
@@ -473,12 +799,13 @@ def do_validation():
                 else:
                     allmatch = True
                     print("Match:",  valrecord['id'], valrecord['P1'], valrecord['P2'])
+
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid']:
                 validate_record(valrecord)
                 kb += 1
             elif not valrecord['valid']:
                 fout.write("Skipping " + valrecord['id']  + "\n" + idline  + "\n")
-#            if kb > 60: break
+#            if kb > 20: break
 
         line = fin.readline() 
 
@@ -488,6 +815,14 @@ if __name__ == '__main__':
     if "-d" in sys.argv:
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.debug.xml" 
+    elif "-es" in sys.argv:
+        directory_name = "validate/spanish"
+        filename = "spanish_protest_cameo_4_jj_validation.xml" 
+        doing_es = True
+    elif "-ar" in sys.argv:
+        directory_name = "validate"
+        filename = "PETR_Validate_records_x_02.debug.xml" # placeholder
+        doing_ar = True
     elif "-i" in sys.argv:
         directory_name = "data/text"
         filename = sys.argv[sys.argv.index("-i") + 1] 
@@ -520,7 +855,7 @@ if __name__ == '__main__':
 
     ValidInclude, ValidExclude, ValidPause, ValidOnly = get_environment()
     print("Reading dictionaries")
-    if directory_name == "validate":
+    if directory_name.startswith("validate"):
         read_validate_dictionaries()
     else:
         petrarch_ud.read_dictionaries()
@@ -532,7 +867,7 @@ if __name__ == '__main__':
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
     if PETRglobals.CodeWithPetrarch1:
-        fout.write('Petrarch 1 Verb dictionary: ', PETRglobals.P1VerbFileName + "\n")
+        fout.write('Petrarch 1 Verb dictionary: ' + PETRglobals.P1VerbFileName + "\n")
     fout.write('Actor dictionaries: ' + str(PETRglobals.ActorFileList) + "\n")
     fout.write('Agent dictionaries: ' + str(PETRglobals.AgentFileList) + "\n")
     fout.write('Discard dictionary: ' + PETRglobals.DiscardFileName + "\n")
@@ -575,6 +910,9 @@ if __name__ == '__main__':
     print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
     print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
     print("===========================\n")
+    
+    if doing_es:
+        csv_writer("Validation_output_Mk1")
 
     if doing_compare:
         print("Accuracy on coded single event cases (N = {:d}):".format(type_counts[0]))

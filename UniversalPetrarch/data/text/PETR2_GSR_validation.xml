@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Validation>
-<!--
+
 ##########################################################################################################################################
 #
 #                                            PETRARCH-2 VALIDATION RECORDS
@@ -14,11 +14,12 @@
 #   then the addition of <EventCoding...> records based on the PETR-2 output from GigaWord.sample.PETR.xml file. 
 #
 #   REVISION HISTORY
-#   May-2018: Initial version
-#   21-Jun-18: Corrected assortment of records where the original text didn't correspond to the parse and coding 
+#   May-2018: Initial version 
+#	June-2018: fix some incorrect Dependency Parsed trees and some event coding
+#	August-2018: add new records from GitHub issues
 #
 ##########################################################################################################################################
--->
+
 <Environment>
     <Verbfile>CAMEO.2.0.txt</Verbfile>
     <Actorfile>Phoenix.Countries.actors.txt,Phoenix.International.actors.txt,Phoenix.MilNonState.actors.txt</Actorfile>
@@ -26,11 +27,10 @@
     <Discardfile>Phoenix.discards.txt</Discardfile>
     <PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
     <Include>valid AFP TEST GOLD VERB PASSIVE OTHER </Include>
-</Environment>		
-
+</Environment>
 <Sentences>
-<Sentence category="AFP" date="20080804" id="AFP0808020625_4" evaluate="true">
-<EventCoding eventcode="042" sourcecode="USA" targetcode="CHN" >
+<Sentence category="AFP" date="20080804" id="AFP0808020625_4" evaluate="true"/>
+<EventCoding eventcode="042" sourcecode="USA" targetcode="CHN" />
 <Text>
 The stopover came as the US leader prepared to attend the Beijing Olympics, an event which will test
 his vow to keep politics out of the Games.
@@ -65,14 +65,12 @@ his vow to keep politics out of the Games.
 27	the	the	DET	DT	Definite=Def|PronType=Art	28	det	_	_
 28	Games	game	NOUN	NNS	Number=Plur	23	obl	_	SpaceAfter=No
 29	.	.	PUNCT	.	_	3	punct	_	_
-</Parse></Sentence>
+</Parse>
+</Sentence>
 
-<!--Stop></Stop-->
-
-
-<Sentence category="AFP" date="20080806" id="AFP0808020675_1" evaluate="true">
-<EventCoding eventcode="031" sourcecode="BRA" targetcode="USA" >
-<EventCoding eventcode="031" sourcecode="USA" targetcode="BRA" >
+<Sentence category="AFP" date="20080806" id="AFP0808020675_1" evaluate="true"/>
+<EventCoding eventcode="031" sourcecode="BRA" targetcode="USA" />
+<EventCoding eventcode="031" sourcecode="USA" targetcode="BRA" />
 <Text>
 Brazil and the United States are seeking to deepen a partnership in energy, especially by promoting
 biofuels and other alternatives to oil, US Deputy Secretary of Energy Jeffrey Kupfer said here
@@ -117,8 +115,8 @@ Wednesday.
 </Parse></Sentence>
 
 
-<Sentence category="AFP" date="20080806" id="AFP0808020705_1" evaluate="true">
-<EventCoding eventcode="173" sourcecode="GUYJUD" targetcode="BRAPPL" >
+<Sentence category="AFP" date="20080806" id="AFP0808020705_1" evaluate="true"/>
+<EventCoding eventcode="173" sourcecode="GUYJUD" targetcode="BRAPPL" />
 <Text>
 A court in Guyana has issued arrest warrants for two Brazilian men sought in the brutal slaying of
 two American missionaries in southern Guyana three years ago, a senior Guyanese police officer said
@@ -158,12 +156,12 @@ Wednesday.
 31	Guyanese	Guyanese	ADJ	JJ	Degree=Pos	32	amod	_	_
 32	police	police	NOUN	NN	Number=Sing	33	compound	_	_
 33	officer	officer	NOUN	NN	Number=Sing	34	nsubj	_	_
-34	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	ccomp	_	_
+34	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	6	parataxis	_	_
 35	Wednesday	Wednesday	PROPN	NNP	Number=Sing	34	nmod:tmod	_	_
 36	.	.	PUNCT	.	_	6	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020742_2" evaluate="true">
+<Sentence category="AFP" date="20080806" id="AFP0808020742_2" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 Washington said such a step enjoyed support from Moscow and Beijing-- which have resisted taking a
@@ -214,7 +212,7 @@ unaware of such agreement.
 41	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020776_5" evaluate="true">
+<Sentence category="AFP" date="20080806" id="AFP0808020776_5" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 The statement by the French presidency comes a day before Sarkozy heads to Beijing for the Friday
@@ -348,8 +346,8 @@ crimes.
 37	.	.	PUNCT	.	_	1	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020840_2" evaluate="true">
-<EventCoding noevents="True" />
+<Sentence category="AFP" date="20080806" id="AFP0808020840_2" evaluate="true"/>
+<EventCoding eventcode="110" sourcecode="RWA" targetcode="FRA" />
 <Text>
 A 500-page report released Tuesday in the Rwandan capital alleged that France was aware of
 preparations for the genocide, and that the French military in Rwanda helped to plan and carry out
@@ -393,8 +391,8 @@ killings.
 35	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020857_1" evaluate="true">
-<EventCoding eventcode="084" sourcecode="ISR" targetcode="PSEGOV" >
+<Sentence category="AFP" date="20080806" id="AFP0808020857_1" evaluate="true"/>
+<EventCoding eventcode="084" sourcecode="ISR" targetcode="PSEGOV" />
 <Text>
 Israel on Wednesday released the mayor of the northern West Bank city of Nablus, a member of the
 Islamist Hamas movement jailed over a year ago, Palestinian security officials said.
@@ -435,11 +433,10 @@ Islamist Hamas movement jailed over a year ago, Palestinian security officials s
 33	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020857_2" evaluate="true">
-<EventCoding eventcode="0352" sourcecode="ISR" targetcode="PSE" >
+<Sentence category="AFP" date="20080806" id="AFP0808020857_2" evaluate="true"/>
+<EventCoding eventcode="0352" sourcecode="ISR" targetcode="PSE" />
 <Text>
-The release of Adli Yaish, who had been arrested 15 months ago, came as Israel announced it would
-free over 150 Palestinian prisoners by the end of August as a goodwill gesture to Palestinian
+The release of Adli Yaish, who had been arrested 15 months ago, came as Israel announced it would free over 150 Palestinian prisoners by the end of August as a goodwill gesture to Palestinian
 president Mahmud Abbas.
 </Text>
 <Parse>
@@ -447,7 +444,7 @@ president Mahmud Abbas.
 2	release	release	NOUN	NN	Number=Sing	15	nsubj	_	_
 3	of	of	ADP	IN	_	5	case	_	_
 4	Adli	Adli	PROPN	NNP	Number=Sing	5	name	_	_
-5	Yaish	Yaish	PROPN	NNP	Number=Sing	2	nmod	_	_
+5	Yaish	Yaish	PROPN	NNP	Number=Sing	2	nmod	_	SpaceAfter=No
 6	,	,	PUNCT	,	_	5	punct	_	_
 7	who	who	PRON	WP	PronType=Rel	10	nsubjpass	_	_
 8	had	have	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	10	aux	_	_
@@ -455,7 +452,7 @@ president Mahmud Abbas.
 10	arrested	arrest	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	5	acl:relcl	_	_
 11	15	15	NUM	CD	NumType=Card	12	nummod	_	_
 12	months	month	NOUN	NNS	Number=Plur	13	nmod:npmod	_	_
-13	ago	ago	ADV	RB	_	10	advmod	_	_
+13	ago	ago	ADV	RB	_	10	advmod	_	SpaceAfter=No
 14	,	,	PUNCT	,	_	15	punct	_	_
 15	came	come	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
 16	as	as	SCONJ	IN	_	18	mark	_	_
@@ -481,13 +478,14 @@ president Mahmud Abbas.
 36	Palestinian	palestinian	ADJ	JJ	Degree=Pos	37	amod	_	_
 37	president	president	PROPN	NNP	Number=Sing	39	compound	_	_
 38	Mahmud	Mahmud	PROPN	NNP	Number=Sing	39	name	_	_
-39	Abbas	Abbas	PROPN	NNPS	Number=Plur	34	nmod	_	_
+39	Abbas	Abbas	PROPN	NNPS	Number=Plur	34	nmod	_	SpaceAfter=No
 40	.	.	PUNCT	.	_	15	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020905_1" evaluate="true">
-<EventCoding eventcode="044" sourcecode="LBNGOV" targetcode="USAMIL" >
-<EventCoding eventcode="044" sourcecode="USAMIL" targetcode="LBNGOV" >
+<Sentence category="AFP" date="121108" id="AFP0808020905_1" evaluate="true"/>
+<!-- PATTERN * TALKS   [046:046]     # HOLD-->
+<EventCoding eventcode="046" sourcecode="LBNGOV" targetcode="USAMIL" />
+<EventCoding eventcode="046" sourcecode="USAMIL" targetcode="LBNGOV" />
 <Text>
 The US commander in Iraq, General David Petraeus, held talks with President Michel Suleiman during a
 surprise visit to Beirut on Wednesday, offering further military support to Lebanon.
@@ -527,8 +525,10 @@ surprise visit to Beirut on Wednesday, offering further military support to Leba
 32	.	.	PUNCT	.	_	11	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020937_1" evaluate="true">
-<EventCoding eventcode="140" sourcecode="GBROPP" targetcode="CHN" >
+<Sentence category="AFP" date="20080806" id="AFP0808020937_1" evaluate="true"/>
+<!-- 18.06.10 PATTERN - * PROTEST  [141]         # STAGE -->
+<EventCoding eventcode="141" sourcecode="GBROPP" targetcode="CHN" />
+<EventCoding eventcode="141" sourcecode="USAOPP" targetcode="CHN" />
 <Text>
 US and British activists staged a dramatic protest in Beijing on Wednesday, scaling a pole and
 unfurling giant`` Free Tibet'' banners close to the stadium where the Olympics will open in two
@@ -667,8 +667,8 @@ Kigali.
 36	.	.	PUNCT	.	_	25	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="AFP" date="20080806" id="AFP0808020957_2" evaluate="true">
-<EventCoding eventcode="110" sourcecode="RWA" targetcode="FRAMIL" >
+<Sentence category="AFP" date="20080806" id="AFP0808020957_2" evaluate="true"/>
+<EventCoding eventcode="110" sourcecode="RWA" targetcode="FRA" />
 <Text>
 A 500-page report released Tuesday in the Rwandan capital alleged that France was aware of
 preparations for the genocide, and that the French military in Rwanda contributed to planning the
@@ -759,8 +759,8 @@ with Asia and meet with exiled dissidents from military-ruled Myanmar.
 </Parse></Sentence>
 
 
-<Sentence category="AFP" date="20150609" id="SYRIA_0" evaluate="true">
-<EventCoding eventcode="190" sourcecode="---REB" targetcode="SYRGOV" >
+<Sentence category="AFP" date="20150609" id="SYRIA_0" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="---REB" targetcode="SYR" />
 <Text>
 Insurgents bombarded a government-held part of Syria's second city Aleppo overnight, killing at
 least eight people, Syrian state media reported
@@ -792,8 +792,8 @@ least eight people, Syrian state media reported
 </Parse></Sentence>
 
 
-<Sentence category="AFP" date="20150609" id="SYRIA_1" evaluate="true">
-<EventCoding eventcode="112" sourcecode="SYROPPHRI" targetcode="---MIL" >
+<Sentence category="AFP" date="20150609" id="SYRIA_1" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="SYROPPHRI" targetcode="---MIL" />
 <Text>
 The Syrian Observatory for Human Rights, a UK-based group that tracks the war, said eight people
 were killed in an air strike by government forces in a separate, rebel-held part of the city.
@@ -838,8 +838,8 @@ were killed in an air strike by government forces in a separate, rebel-held part
 37	.	.	PUNCT	.	_	16	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_0" evaluate="true">
-<EventCoding eventcode="1959" sourcecode="USA" targetcode="IRQMUS" >
+<Sentence category="GOLD" date="20150609" id="GOLD_0" evaluate="true"/>
+<EventCoding eventcode="195" sourcecode="USA" targetcode="IRQMUS" />
 <Text>
 The United States launched an air strike against an Islamic State target southwest of Baghdad, the
 U.S. Central Command said on Monday night, expanding its campaign against the militant group that
@@ -889,8 +889,8 @@ has seized parts of Iraq and Syria.
 41	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_1" evaluate="true">
-<EventCoding eventcode="112" sourcecode="ISR" targetcode="PSEGZA" >
+<Sentence category="GOLD" date="20150609" id="GOLD_1" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="ISR" targetcode="PSEGZA" />
 <Text>
 Israel said a mortar bomb was fired at it from the Gaza Strip on Tuesday in the first such attack
 since a seven-week war in the enclave ended on Aug 26.
@@ -930,8 +930,8 @@ since a seven-week war in the enclave ended on Aug 26.
 32	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_2" evaluate="true">
-<EventCoding eventcode="040" sourcecode="IRQGOVMIL" targetcode="SYRGOV" >
+<Sentence category="GOLD" date="20150609" id="GOLD_2" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="IRQGOVMIL" targetcode="SYRGOV" />
 <Text>
 Iraq's national security advisor met with Syrian President Bashar Assad Tuesday to discuss efforts
 to counter Islamic State militants, Reuters reports.
@@ -963,8 +963,8 @@ to counter Islamic State militants, Reuters reports.
 24	.	.	PUNCT	.	_	6	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_3" evaluate="true">
-<EventCoding eventcode="051" sourcecode="UKRLEG" targetcode="IGOEUREEC" >
+<Sentence category="GOLD" date="20150609" id="GOLD_3" evaluate="true"/>
+<EventCoding eventcode="051" sourcecode="UKRLEG" targetcode="IGOEUREEC" />
 <Text>
 Ukrainian lawmakers Tuesday endorsed an association agreement with the European Union, making a
 decisive turn in favor of closer relations with Western neighbors in spite of the 10-month-old
@@ -1011,9 +1011,8 @@ conflict that possibility has ignited with Russia.
 </Parse></Sentence>
 
 
-<Sentence category="GOLD" date="20150609" id="GOLD_4" evaluate="true">
-<EventCoding eventcode="0579" sourcecode="IGOEUREEC" targetcode="UKR" >
-<EventCoding eventcode="0579" sourcecode="UKR" targetcode="IGOEUREEC" >
+<Sentence category="GOLD" date="20150609" id="GOLD_4" evaluate="true"/>
+<EventCoding eventcode="057" sourcecode="UKR" targetcode="IGOEUREEC" />
 <Text>
 Ukraine ratified a sweeping agreement with the European Union on Tuesday.
 </Text>
@@ -1033,8 +1032,8 @@ Ukraine ratified a sweeping agreement with the European Union on Tuesday.
 </Parse></Sentence>
 
 
-<Sentence category="GOLD" date="20150609" id="GOLD_5" evaluate="true">
-<EventCoding eventcode="193" sourcecode="SYRREB" targetcode="PHL" >
+<Sentence category="GOLD" date="20150609" id="GOLD_5" evaluate="true"/>
+<EventCoding eventcode="193" sourcecode="SYRREB" targetcode="PHL" />
 <Text>
 Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense and
 military officials said.
@@ -1063,8 +1062,9 @@ military officials said.
 </Parse></Sentence>
 
 
-<Sentence category="GOLD" date="20150609" id="GOLD_6" evaluate="true">
-<EventCoding eventcode="174" sourcecode="QAT" targetcode="EGYMUS" >
+<Sentence category="GOLD" date="20150609" id="GOLD_6" evaluate="true"/>
+<!-- exiled leaders([~OPP]) of Egypt's ([EGY]) Muslim Brotherhood ([~MUS])-->
+<EventCoding eventcode="174" sourcecode="QAT" targetcode="EGYOPPMUS" />
 <Text>
 Qatar has pledged to expel exiled leaders of Egypt's Muslim Brotherhood as one of the conditions of
 an agreement forced on the wealthy Gulf state by Saudi Arabia, the United Arab Emirates and other
@@ -1111,7 +1111,7 @@ neighbours.
 38	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_7" evaluate="true">
+<Sentence category="GOLD" date="20150609" id="GOLD_7" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 The Canadian government announced asset freezes and bans on travel to Canada against four senior
@@ -1160,8 +1160,8 @@ makers and one Moscow-based bank.
 39	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="GOLD" date="20150609" id="GOLD_8" evaluate="true">
-<EventCoding eventcode="080" sourcecode="IGOUNOMIL" targetcode="SYR" >
+<Sentence category="GOLD" date="20150609" id="GOLD_8" evaluate="true"/>
+<EventCoding eventcode="080" sourcecode="IGOUNOMIL" targetcode="SYR" />
 <Text>
 Hundreds of UN troops withdrew from the Syrian to the Israeli-occupied sector of the Golan on
 Monday, an AFP correspondent said, two weeks after Al-Qaeda-linked rebels kidnapped dozens of
@@ -1203,12 +1203,10 @@ peacekeepers.
 33	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
 
-
 <Sentence category="GOLD" date="20150609" id="GOLD_9" evaluate="true"/>
 <EventCoding eventcode="193" sourcecode="SYRREB" targetcode="PHL" />
 <Text>
-Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense 
-and military officials said.
+Syrian rebels engaged Filipino peacekeepers in a firefight in Golan Heights on Saturday, defense and military officials said.
 </Text>
 <Parse>
 1	Syrian	syrian	ADJ	JJ	Degree=Pos	2	amod	_	_
@@ -1233,46 +1231,8 @@ and military officials said.
 20	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
-
-<Sentence category="GOLD" date="20150609" id="GOLD_10" evaluate="true">
-<EventCoding eventcode="050" sourcecode="PHL" targetcode="IGOEUREEC" >
-<EventCoding eventcode="050" sourcecode="IGOEUREEC" targetcode="PHL" >
-<Text>
-The Philippines and the European Union (EU) agree that territorial disputes in the South China Sea
-should be resolved through international arbitration.
-</Text>
-<Parse>
-1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
-2	Philippines	Philippines	PROPN	NNPS	Number=Plur	10	nsubj	_	_
-3	and	and	CONJ	CC	_	2	cc	_	_
-4	the	the	DET	DT	Definite=Def|PronType=Art	6	det	_	_
-5	European	european	PROPN	NNP	Number=Sing	6	compound	_	_
-6	Union	Union	PROPN	NNP	Number=Sing	2	conj	_	_
-7	-LRB-	-LRB-	PUNCT	HYPH	_	8	punct	_	_
-8	EU	EU	PROPN	NNP	Number=Sing	10	nsubj	_	_
-9	-RRB-	-RRB-	SYM	NFP	_	8	punct	_	_
-10	agree	agree	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
-11	that	that	SCONJ	IN	_	21	mark	_	_
-12	territorial	territorial	ADJ	JJ	Degree=Pos	13	amod	_	_
-13	disputes	dispute	NOUN	NNS	Number=Plur	21	nsubjpass	_	_
-14	in	in	ADP	IN	_	18	case	_	_
-15	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
-16	South	South	PROPN	NNP	Number=Sing	18	compound	_	_
-17	China	China	PROPN	NNP	Number=Sing	18	compound	_	_
-18	Sea	Sea	PROPN	NNP	Number=Sing	13	nmod	_	_
-19	should	should	AUX	MD	VerbForm=Fin	21	aux	_	_
-20	be	be	AUX	VB	VerbForm=Inf	21	auxpass	_	_
-21	resolved	resolve	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	10	ccomp	_	_
-22	through	through	ADP	IN	_	24	case	_	_
-23	international	international	ADJ	JJ	Degree=Pos	24	amod	_	_
-24	arbitration	arbitration	NOUN	NN	Number=Sing	21	nmod	_	_
-25	.	.	PUNCT	.	_	10	punct	_	_
-</Parse></Sentence>
-
-
-<Sentence category="TEST" date="20150609" id="TEST_1" evaluate="true">
-<EventCoding eventcode="194" sourcecode="---REB" targetcode="MNCUSABUS" >
-<EventCoding eventcode="194" sourcecode="---REB" targetcode="MYSBUS" >
+<Sentence category="TEST" date="20150609" id="TEST_1" evaluate="true"/>
+<EventCoding eventcode="194" sourcecode="---REB" targetcode="MYSBUS" />
 <Text>
 The Malaysia Airlines Boeing 777 flight MH17 was blown up over Eastern Ukraine by a sophisticated BAK 
 surface-to-air missile believed to be fired by pro-Russia rebels.
@@ -1284,7 +1244,7 @@ surface-to-air missile believed to be fired by pro-Russia rebels.
 4	Boeing	Boeing	PROPN	NNP	Number=Sing	6	compound	_	_
 5	777	777	NUM	CD	NumType=Card	6	nummod	_	_
 6	flight	flight	NOUN	NN	Number=Sing	7	compound	_	_
-7	MH17	MH17	NOUN	NN	Number=Sing	9	nsubj:pass	_	_
+7	MH17	MH17	NOUN	NN	Number=Sing	9	nsubjpass	_	_
 8	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	9	aux:pass	_	_
 9	blown	blow	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
 10	up	up	ADP	RP	_	9	compound:prt	_	_
@@ -1311,8 +1271,8 @@ surface-to-air missile believed to be fired by pro-Russia rebels.
 31	.	.	PUNCT	.	_	9	punct	_	SpacesAfter=No
 </Parse></Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_2" evaluate="true">
-<EventCoding eventcode="190" sourcecode="USA" targetcode="RUS" >
+<Sentence category="TEST" date="20150609" id="TEST_2" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="USA" targetcode="RUS" />
 <Text>
 The United States fired anti-aircraft batteries at Russia this week.
 </Text>
@@ -1330,8 +1290,8 @@ The United States fired anti-aircraft batteries at Russia this week.
 11	.	.	PUNCT	.	_	4	punct	_	SpacesAfter=No
 </Parse></Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_3" evaluate="true">
-<EventCoding eventcode="190" sourcecode="USAGOV" targetcode="RUS" >
+<Sentence category="TEST" date="20150609" id="TEST_3" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="USAGOV" targetcode="RUS" />
 <Text>
 Barack Obama fired anti-aircraft batteries at Russia this week.
 </Text>
@@ -1350,41 +1310,42 @@ Barack Obama fired anti-aircraft batteries at Russia this week.
 
 <Sentence category="TEST" date="20150609" id="TEST_4" evaluate="true">
 <!-- UD parser separated out the dateline as a separate sentence -->
-<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSECVL" >
-<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSEGZACVL" >
+<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSECVL" />
+<EventCoding eventcode="190" sourcecode="ISR" targetcode="PSEGZACVL" />
 <Text>
 GAZA CITY, Palestinian Territories: Four children and a man were killed in 
 Israeli tank shelling in the east of the Gaza Strip on Friday evening, medics said.
 </Text>
 <Parse>
 1	Four	four	NUM	CD	NumType=Card	2	nummod	_	_
-2	children	child	NOUN	NNS	Number=Plur	7	nsubj:pass	_	_
-3	and	and	CCONJ	CC	_	5	cc	_	_
+2	children	child	NOUN	NNS	Number=Plur	7	nsubjpass	_	_
+3	and	and	CONJ	CC	_	2	cc	_	_
 4	a	a	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
 5	man	man	NOUN	NN	Number=Sing	2	conj	_	_
-6	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	aux:pass	_	_
-7	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	24	ccomp	_	_
-8	in	in	ADP	IN	_	10	case	_	_
+6	were	be	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	auxpass	_	_
+7	killed	kill	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+8	in	in	ADP	IN	_	10	case	_	SpacesAfter=\s\s
 9	Israeli	israeli	ADJ	JJ	Degree=Pos	10	amod	_	_
-10	tank	tank	NOUN	NN	Number=Sing	7	obl	_	_
-11	shelling	shelling	VERB	VBG	VerbForm=Ger	7	advcl	_	_
+10	tank	tank	NOUN	NN	Number=Sing	7	nmod	_	_
+11	shelling	shelling	VERB	VBG	VerbForm=Ger	10	acl	_	_
 12	in	in	ADP	IN	_	14	case	_	_
 13	the	the	DET	DT	Definite=Def|PronType=Art	14	det	_	_
-14	east	east	NOUN	NN	Number=Sing	11	obl	_	_
+14	east	east	NOUN	NN	Number=Sing	11	nmod	_	_
 15	of	of	ADP	IN	_	18	case	_	_
 16	the	the	DET	DT	Definite=Def|PronType=Art	18	det	_	_
 17	Gaza	Gaza	PROPN	NNP	Number=Sing	18	compound	_	_
 18	Strip	Strip	PROPN	NNP	Number=Sing	14	nmod	_	_
 19	on	on	ADP	IN	_	21	case	_	_
 20	Friday	Friday	PROPN	NNP	Number=Sing	21	compound	_	_
-21	evening	evening	NOUN	NN	Number=Sing	11	obl	_	SpaceAfter=No
-22	,	,	PUNCT	,	_	24	punct	_	_
+21	evening	evening	NOUN	NN	Number=Sing	7	nmod	_	SpaceAfter=No
+22	,	,	PUNCT	,	_	7	punct	_	_
 23	medics	medic	NOUN	NNS	Number=Plur	24	nsubj	_	_
-24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	SpaceAfter=No
-25	.	.	PUNCT	.	_	24	punct	_	SpaceAfter=No
-</Parse></Sentence>
+24	said	say	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	conj	_	_
+25	.	.	PUNCT	.	_	7	punct	_	_
+</Parse>
+</Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_5" evaluate="true">
+<Sentence category="TEST" date="20150609" id="TEST_5" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 The United Nations chief made his remarks in Doha at the start of a regional trip 
@@ -1420,9 +1381,8 @@ aimed at pushing for a ceasefire in the Gaza Strip.
 27	.	.	PUNCT	.	_	5	punct	_	SpaceAfter=No
 </Parse></Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_6" evaluate="true">
-<EventCoding eventcode="015" sourcecode="SOMUAF" targetcode="KEN" >
-<EventCoding eventcode="015" sourcecode="SOMREBUAF" targetcode="KEN" >
+<Sentence category="TEST" date="20150609" id="TEST_6" evaluate="true"/>
+<EventCoding eventcode="015" sourcecode="SOMUAF" targetcode="KEN" />
 <Text>
 The Al Qaeda-linked Somali militant group al-Shabab is claiming responsibility 
 for a deadly attack targeting non-Muslims at an upscale mall in Kenya's capital.
@@ -1457,10 +1417,11 @@ for a deadly attack targeting non-Muslims at an upscale mall in Kenya's capital.
 27	's	's	PART	POS	_	26	case	_	_
 28	capital	capital	NOUN	NN	Number=Sing	19	nmod	_	_
 29	.	.	PUNCT	.	_	13	punct	_	_
-</Parse></Sentence>
+</Parse>
+</Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_7" evaluate="true">
-<EventCoding eventcode="190" sourcecode="PSEGZA" targetcode="PSEREBHMSGOV" >
+<Sentence category="TEST" date="20150609" id="TEST_7" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="PSEGZA" targetcode="PSEREBHMSGOV" />
 <Text>
 At the same time, it seems clear that no lasting solution to the problem of Gaza 
 can be conceived unless the Hamas regime is disarmed, or at least put in a position 
@@ -1479,7 +1440,7 @@ fires at Israel.
 9	that	that	SCONJ	IN	_	20	mark	_	_
 10	no	no	DET	DT	_	12	det	_	_
 11	lasting	lasting	ADJ	JJ	Degree=Pos	12	amod	_	_
-12	solution	solution	NOUN	NN	Number=Sing	20	nsubj:pass	_	_
+12	solution	solution	NOUN	NN	Number=Sing	20	nsubjpass	_	_
 13	to	to	ADP	IN	_	15	case	_	_
 14	the	the	DET	DT	Definite=Def|PronType=Art	15	det	_	_
 15	problem	problem	NOUN	NN	Number=Sing	12	nmod	_	_
@@ -1491,7 +1452,7 @@ fires at Israel.
 21	unless	unless	SCONJ	IN	_	26	mark	_	_
 22	the	the	DET	DT	Definite=Def|PronType=Art	24	det	_	_
 23	Hamas	Hamas	PROPN	NNP	Number=Sing	24	compound	_	_
-24	regime	regime	NOUN	NN	Number=Sing	26	nsubj:pass	_	_
+24	regime	regime	NOUN	NN	Number=Sing	26	nsubjpass	_	_
 25	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	26	aux:pass	_	_
 26	disarmed	disarm	VERB	VBN	Tense=Past|VerbForm=Part|Voice=Pass	20	advcl	_	SpaceAfter=No
 27	,	,	PUNCT	,	_	31	punct	_	_
@@ -1523,8 +1484,9 @@ fires at Israel.
 </Parse></Sentence>
 
 
-<Sentence category="TEST" date="20150609" id="TEST_8" evaluate="true">
-<EventCoding noevents="True" />
+<Sentence category="TEST" date="20150609" id="TEST_8" evaluate="true"/>
+<!-- PATTERN - * TEAM  [036]         # SEND-->
+<EventCoding eventcode="036" sourcecode="IGOCOPITP" targetcode="---" />
 <Text>
 LYON: Interpol has said it will send a team in the next 48 hours to help identify 
 victims killed by the Malaysia Airlines flight MH17 crash in east Ukraine.
@@ -1564,8 +1526,8 @@ victims killed by the Malaysia Airlines flight MH17 crash in east Ukraine.
 </Parse></Sentence>
 
 
-<Sentence category="TEST" date="20150609" id="TEST_09" evaluate="true">
-<EventCoding eventcode="018" sourcecode="USAGOV" targetcode="USA" >
+<Sentence category="TEST" date="20150609" id="TEST_09" evaluate="true"/>
+<EventCoding eventcode="018" sourcecode="USAGOV" targetcode="USA" />
 <Text>
 President obama expressed sorrow for the horrific shootings in South Carolina
 </Text>
@@ -1583,7 +1545,7 @@ President obama expressed sorrow for the horrific shootings in South Carolina
 11	Carolina	Carolina	PROPN	NNP	Number=Sing	8	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_10" evaluate="true">
+<Sentence category="TEST" date="20150609" id="TEST_10" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 Ukraine says it has strong evidence proving Russia was behind the chemical attacks
@@ -1604,9 +1566,9 @@ Ukraine says it has strong evidence proving Russia was behind the chemical attac
 13	attacks	attacks	NOUN	NNS	Number=Plur	4	ccomp	_	_
 </Parse></Sentence>
 
-<Sentence category="TEST" date="20150609" id="TEST_11" evaluate="true">
-<EventCoding eventcode="040" sourcecode="USAGOV" targetcode="CHE" >
-<EventCoding eventcode="040" sourcecode="RUSGOV" targetcode="CHE" >
+<Sentence category="TEST" date="20150609" id="TEST_11" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="USAGOV" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="RUSGOV" targetcode="CHE" />
 <Text>
 Barack Obama and Vladimir Putin will meet in Zurich to discuss their music tastes
 </Text>
@@ -1627,8 +1589,8 @@ Barack Obama and Vladimir Putin will meet in Zurich to discuss their music taste
 14	tastes	tastes	NOUN	NNS	Number=Plur	11	dobj	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="NEST_0" evaluate="true">
-<EventCoding eventcode="015" sourcecode="USA" targetcode="IRQ" >
+<Sentence category="OTHER" date="20150609" id="NEST_0" evaluate="true"/>
+<EventCoding eventcode="015" sourcecode="USA" targetcode="IRQ" />
 <Text>
 The US claimed that they had attacked Iraq
 </Text>
@@ -1643,8 +1605,8 @@ The US claimed that they had attacked Iraq
 8	Iraq	Iraq	PROPN	NNP	Number=Sing	7	dobj	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="NEST_2.75" evaluate="true">
-<EventCoding eventcode="112" sourcecode="USA" targetcode="IMGMUSISI" >
+<Sentence category="OTHER" date="20150609" id="NEST_2.75" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="USA" targetcode="IMGMUSISI" />
 <Text>
 The US claimed that ISIL had attacked Iraq and taken the city of Mosul
 </Text>
@@ -1665,7 +1627,7 @@ The US claimed that ISIL had attacked Iraq and taken the city of Mosul
 14	Mosul	Mosul	PROPN	NNP	Number=Sing	12	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="EXIST_0" evaluate="true">
+<Sentence category="OTHER" date="20150609" id="EXIST_0" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 Local news reports that there was a pause in the bombing in Aleppo.
@@ -1687,8 +1649,8 @@ Local news reports that there was a pause in the bombing in Aleppo.
 14	.	.	PUNCT	.	_	3	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="EXIST_1" evaluate="true">
-<EventCoding eventcode="190" sourcecode="UKR" targetcode="RUSMIL" >
+<Sentence category="OTHER" date="20150609" id="EXIST_1" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="UKR" targetcode="RUSMIL" />
 <Text>
 There were 10 Russian soldiers killed in Ukraine today.
 </Text>
@@ -1705,39 +1667,35 @@ There were 10 Russian soldiers killed in Ukraine today.
 10	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150101" id="EXIST_2" evaluate="true">
-<EventCoding eventcode="190" sourcecode="NGAREB" targetcode="NGAMUS" >
+<Sentence category="OTHER" date="20150101" id="abc12_3" evaluate="true"/>
+<EventCoding eventcode="190" sourcecode="NGAREB" targetcode="NGAMUS" />
 <Text>
-Boko Haram has launched many similar attacks during its six-year campaign for a strict
-Islamic state in northeastern Nigeria.
 </Text>
 <Parse>
-1	Boko	Boko	PROPN	NNP	Number=Sing	4	nsubj	_	_
-2	Haram	Haram	PROPN	NNP	Number=Sing	1	flat	_	_
+1	Boko	Boko	PROPN	NNP	Number=Sing	2	name	_	_
+2	Haram	Haram	PROPN	NNP	Number=Sing	4	nsubj	_	_
 3	has	have	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
 4	launched	launch	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
 5	many	many	ADJ	JJ	Degree=Pos	7	amod	_	_
 6	similar	similar	ADJ	JJ	Degree=Pos	7	amod	_	_
-7	attacks	attack	NOUN	NNS	Number=Plur	4	obj	_	_
-8	during	during	ADP	IN	_	13	case	_	_
-9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	13	nmod:poss	_	_
-10	six	six	NUM	CD	NumType=Card	12	nummod	_	SpaceAfter=No
-11	-	-	PUNCT	HYPH	_	12	punct	_	SpaceAfter=No
-12	year	year	NOUN	NN	Number=Sing	13	compound	_	_
-13	campaign	campaign	NOUN	NN	Number=Sing	4	obl	_	_
-14	for	for	ADP	IN	_	18	case	_	_
-15	a	a	DET	DT	Definite=Ind|PronType=Art	18	det	_	_
-16	strict	strict	ADJ	JJ	Degree=Pos	18	amod	_	SpacesAfter=\r\n
-17	Islamic	Islamic	PROPN	NNP	Number=Sing	18	compound	_	_
-18	state	state	NOUN	NN	Number=Sing	4	nmod	_	_
-19	in	in	ADP	IN	_	21	case	_	_
-20	northeastern	northeastern	ADJ	JJ	Degree=Pos	21	amod	_	_
-21	Nigeria	nigeria	PROPN	NNP	Number=Sing	18	nmod	_	SpaceAfter=No
-22	.	.	PUNCT	.	_	4	punct	_	SpaceAfter=No
+7	attacks	attack	NOUN	NNS	Number=Plur	4	dobj	_	_
+8	during	during	ADP	IN	_	11	case	_	_
+9	its	its	PRON	PRP$	Gender=Neut|Number=Sing|Person=3|Poss=Yes|PronType=Prs	11	nmod:poss	_	_
+10	six-year	six-year	ADJ	JJ	Degree=Pos	11	amod	_	_
+11	campaign	campaign	NOUN	NN	Number=Sing	4	nmod	_	_
+12	for	for	ADP	IN	_	16	case	_	_
+13	a	a	DET	DT	Definite=Ind|PronType=Art	16	det	_	_
+14	strict	strict	ADJ	JJ	Degree=Pos	16	amod	_	_
+15	Islamic	islamic	PROPN	NNP	Number=Sing	16	compound	_	_
+16	state	state	NOUN	NN	Number=Sing	4	nmod	_	_
+17	in	in	ADP	IN	_	19	case	_	_
+18	northeastern	northeastern	ADJ	JJ	Degree=Pos	19	amod	_	_
+19	Nigeria	Nigeria	PROPN	NNP	Number=Sing	16	nmod	_	_
+20	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="NEST_8" evaluate="true">
-<EventCoding eventcode="112" sourcecode="USA" targetcode="IRQ" >
+<Sentence category="OTHER" date="20150609" id="NEST_8" evaluate="true"/>
+<EventCoding eventcode="112" sourcecode="USA" targetcode="IRQ" />
 <Text>
 The US said that Iraq had attacked themselves
 </Text>
@@ -1752,8 +1710,8 @@ The US said that Iraq had attacked themselves
 8	themselves	themselves	PRON	PRP	Case=Acc|Number=Plur|Person=3|PronType=Prs|Reflex=Yes	7	dobj	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="PREP_1" evaluate="true">
-<EventCoding noevents="True" />
+<Sentence category="OTHER" date="20150609" id="PREP_1" evaluate="true"/>
+<EventCoding eventcode="140" sourcecode="RWALEG" targetcode="---" />
 <Text>
 Opponents of Rwanda's Senate protested yesterday in the city's capital
 </Text>
@@ -1772,8 +1730,9 @@ Opponents of Rwanda's Senate protested yesterday in the city's capital
 12	capital	capital	NOUN	NN	Number=Sing	6	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="PREP_0" evaluate="true">
-<EventCoding eventcode="0842" sourcecode="RUSGOV" targetcode="---CVL" >
+<Sentence category="OTHER" date="20150609" id="PREP_0" evaluate="true"/>
+<!-- PATTERN '- * &PEOPLE      [0841]        # RELEASE' -->
+<EventCoding eventcode="0841" sourcecode="RUSGOV" targetcode="---CVL" />
 <Text>
 The civilians imprisoned for acting against Moscow were released yesterday by Putin himself
 </Text>
@@ -1794,8 +1753,8 @@ The civilians imprisoned for acting against Moscow were released yesterday by Pu
 </Parse></Sentence>
 
 
-<Sentence category="VERB" date="20150609" id="VERB_0" evaluate="true">
-<EventCoding eventcode="044" sourcecode="USAGOV" targetcode="IRN" >
+<Sentence category="VERB" date="20150609" id="VERB_0" evaluate="true"/>
+<EventCoding eventcode="044" sourcecode="USAGOV" targetcode="IRN" />
 <Text>
 Obama is scheduled to attend a summit on the unrest in Iran
 </Text>
@@ -1815,8 +1774,8 @@ Obama is scheduled to attend a summit on the unrest in Iran
 </Parse></Sentence>
 
 
-<Sentence category="VERB" date="20150609" id="VERB_1" evaluate="true">
-<EventCoding eventcode="042" sourcecode="USAGOV" targetcode="CHE" >
+<Sentence category="VERB" date="20150609" id="VERB_1" evaluate="true"/>
+<EventCoding eventcode="042" sourcecode="USAGOV" targetcode="CHE" />
 <Text>
 Obama is scheduled to attend a summit in Switzerland on the unrest in Iran
 </Text>
@@ -1838,8 +1797,8 @@ Obama is scheduled to attend a summit in Switzerland on the unrest in Iran
 </Parse></Sentence>
 
 
-<Sentence category="VERB" date="20150609" id="VERB_2" evaluate="true">
-<EventCoding eventcode="013" sourcecode="---GOV" targetcode="CHN" >
+<Sentence category="VERB" date="20150609" id="VERB_2" evaluate="true"/>
+<EventCoding eventcode="013" sourcecode="---GOV" targetcode="CHN" />
 <Text>
 The government expressed appreciation for China's assistance.
 </Text>
@@ -1855,8 +1814,8 @@ The government expressed appreciation for China's assistance.
 9	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="VERB" date="20150609" id="VERB_3" evaluate="true">
-<EventCoding eventcode="160" sourcecode="USA" targetcode="TUN" >
+<Sentence category="VERB" date="20150609" id="VERB_3" evaluate="true"/>
+<EventCoding eventcode="160" sourcecode="USA" targetcode="TUN" />
 <Text>
 The US State department has advised against travel to Tunisia after the museum shooting last week.
 </Text>
@@ -1880,7 +1839,7 @@ The US State department has advised against travel to Tunisia after the museum s
 17	.	.	PUNCT	.	_	6	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="VERB" date="20150609" id="VERB_4" evaluate="true">
+<Sentence category="VERB" date="20150609" id="VERB_4" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 The tanks head back from the border after the skirmish went wrong
@@ -1888,7 +1847,7 @@ The tanks head back from the border after the skirmish went wrong
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
 2	tanks	tank	NOUN	NNS	Number=Plur	3	compound	_	_
-3	head	head	NOUN	NN	Number=Sing	11	nsubj	_	_
+3	head	head	NOUN	NN	Number=Sing	0	root	_	_
 4	back	back	ADV	RB	_	3	advmod	_	_
 5	from	from	ADP	IN	_	7	case	_	_
 6	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
@@ -1896,30 +1855,75 @@ The tanks head back from the border after the skirmish went wrong
 8	after	after	ADP	IN	_	10	case	_	_
 9	the	the	DET	DT	Definite=Def|PronType=Art	10	det	_	_
 10	skirmish	skirmish	NOUN	NN	Number=Sing	3	nmod	_	_
-11	went	go	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+11	went	go	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	3	xcomp	_	_
 12	wrong	wrong	ADJ	JJ	Degree=Pos	11	xcomp	_	_
 </Parse></Sentence>
 
-<Sentence category="VERB" date="20150609" id="VERB_5" evaluate="true">
+<Sentence category="VERB" date="20150609" id="VERB_5" evaluate="true"/>
 <EventCoding noevents="True" />
+<Text>
+The USA tanks might want Obama to head back after what just happened.
+</Text>
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2	USA	USA	PROPN	NNP	Number=Sing	3	compound	_	_
+3	tanks	tank	NOUN	NNS	Number=Plur	5	nsubj	_	_
+4	might	might	AUX	MD	VerbForm=Fin	5	aux	_	_
+5	want	want	VERB	VB	VerbForm=Inf	0	root	_	_
+6	Obama	Obama	PROPN	NNP	Number=Sing	5	dobj	_	_
+7	to	to	PART	TO	_	8	mark	_	_
+8	head	head	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+9	back	back	ADV	RB	_	8	advmod	_	_
+10	after	after	SCONJ	IN	_	13	mark	_	_
+11	what	what	PRON	WP	PronType=Int	13	nsubj	_	_
+12	just	just	ADV	RB	_	13	advmod	_	_
+13	happened	happen	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	8	advcl	_	_
+14	.	.	PUNCT	.	_	5	punct	_	_
+</Parse>
+<!---
+<Parse>
+1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
+2	tanks	tank	NOUN	NNS	Number=Plur	4	nsubj	_	_
+3	might	might	AUX	MD	VerbForm=Fin	4	aux	_	_
+4	want	want	VERB	VB	VerbForm=Inf	0	root	_	_
+5	Obama	Obama	PROPN	NNP	Number=Sing	4	dobj	_	_
+6	to	to	PART	TO	_	7	mark	_	_
+7	head	head	VERB	VB	VerbForm=Inf	4	xcomp	_	_
+8	back	back	ADV	RB	_	7	advmod	_	_
+9	after	after	SCONJ	IN	_	12	mark	_	_
+10	what	what	PRON	WP	PronType=Int	12	nsubj	_	_
+11	just	just	ADV	RB	_	12	advmod	_	_
+12	happened	happen	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	advcl	_	_
+13	.	.	PUNCT	.	_	4	punct	_	_
+</Parse>-->
+
+</Sentence>
+
+
+<Sentence category="VERB" date="20150609" id="VERB_6" evaluate="true"/>
+<EventCoding eventcode="090" sourcecode="IGOUNO" targetcode="IRN" />
 <Text>
 The United Nations inspectors want to re-examine the refineries in Iran
 </Text>
 <Parse>
-1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
-2	inspectors	inspector	NOUN	NNS	Number=Plur	3	nsubj	_	_
-3	want	want	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
-4	to	to	PART	TO	_	5	mark	_	_
-5	re-examine	re-examine	VERB	VB	VerbForm=Inf	3	xcomp	_	_
-6	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
-7	refineries	refinery	NOUN	NNS	Number=Plur	5	dobj	_	_
-8	in	in	ADP	IN	_	9	case	_	_
-9	Iran	Iran	PROPN	NNP	Number=Sing	5	nmod	_	_
+1	The	the	DET	DT	Definite=Def|PronType=Art	4	det	_	_
+2	United	United	PROPN	NNP	Number=Sing	3	compound	_	_
+3	Nations	Nations	PROPN	NNP	Number=Sing	4	compound	_	_
+4	inspectors	inspector	NOUN	NNS	Number=Plur	5	nsubj	_	_
+5	want	want	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
+6	to	to	PART	TO	_	7	mark	_	_
+7	re-examine	re-examine	VERB	VB	VerbForm=Inf	5	xcomp	_	_
+8	the	the	DET	DT	Definite=Def|PronType=Art	9	det	_	_
+9	refineries	refinery	NOUN	NNS	Number=Plur	7	dobj	_	_
+10	in	in	ADP	IN	_	11	case	_	_
+11	Iran	Iran	PROPN	NNP	Number=Sing	7	nmod	_	_
 </Parse></Sentence>
 
 
-<Sentence category="VERB" date="20150609" id="VERB_6" evaluate="true">
-<EventCoding eventcode="0332" sourcecode="USA" targetcode="ISR" >
+<Sentence category="VERB" date="20150609" id="VERB_8" evaluate="true"/>
+<!-- Pattern '- * ARMS  [072]         # SUPPLY' -->
+<!-- PETRARCH2 returns 0332 : WILL[030] + SUPPLY[072] = 0332 -->
+<EventCoding eventcode="072" sourcecode="USA" targetcode="ISR" />
 <Text>
 The United States will supply arms to Israel
 </Text>
@@ -1935,8 +1939,8 @@ The United States will supply arms to Israel
 </Parse></Sentence>
 
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_0" evaluate="true">
-<EventCoding eventcode="1124" sourcecode="USA" targetcode="RUS" >
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_0" evaluate="true"/>
+<EventCoding eventcode="1124" sourcecode="USA" targetcode="RUS" />
 <Text>
 Evidence against Russia was presented by the US.
 </Text>
@@ -1952,8 +1956,8 @@ Evidence against Russia was presented by the US.
 9	.	.	PUNCT	.	_	5	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_1" evaluate="true">
-<EventCoding noevents="True" />
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_1" evaluate="true"/>
+<EventCoding eventcode="1124" sourcecode="USA" targetcode="RUS" />
 <Text>
 The US presented evidence against Russia.
 </Text>
@@ -1967,7 +1971,7 @@ The US presented evidence against Russia.
 7	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_2" evaluate="true">
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_2" evaluate="true"/>
 <EventCoding noevents="True" />
 <Text>
 A protestor demolished the building.
@@ -2000,8 +2004,8 @@ The Russian building was demolished by a Ukrainian protestor.
 </Parse></Sentence>
 
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_4" evaluate="true">
-<EventCoding eventcode="100" sourcecode="---LEG" targetcode="USAGOV" >
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_4" evaluate="true"/>
+<EventCoding eventcode="100" sourcecode="---LEG" targetcode="USAGOV" />
 <Text>
 Obama faces pressure from Congress to help Iran.
 </Text>
@@ -2018,15 +2022,15 @@ Obama faces pressure from Congress to help Iran.
 </Parse></Sentence>
 
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_5" evaluate="true">
-<EventCoding eventcode="020" sourcecode="---LEG" targetcode="USAGOV" >
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_5" evaluate="true"/>
+<EventCoding eventcode="023" sourcecode="---LEG" targetcode="USAGOV" />
 <Text>
-Congress is pressuring Obama to help Iran.
+Congress is asking Obama to help Iran.
 </Text>
 <Parse>
 1	Congress	Congress	PROPN	NNP	Number=Sing	3	nsubj	_	_
 2	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
-3	pressuring	pressure	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
+3	asking	ask	VERB	VBG	Tense=Pres|VerbForm=Part	0	root	_	_
 4	Obama	Obama	PROPN	NNP	Number=Sing	3	dobj	_	_
 5	to	to	PART	TO	_	6	mark	_	_
 6	help	help	VERB	VB	VerbForm=Inf	3	advcl	_	_
@@ -2035,8 +2039,8 @@ Congress is pressuring Obama to help Iran.
 </Parse></Sentence>
 
 
-<Sentence category="PASSIVE" date="20150609" id="PASSIVE_6" evaluate="true">
-<EventCoding eventcode="170" sourcecode="---LEG" targetcode="USAGOV" >
+<Sentence category="PASSIVE" date="20150609" id="PASSIVE_6" evaluate="true"/>
+<EventCoding eventcode="170" sourcecode="---LEG" targetcode="USAGOV" />
 <Text>
 Obama is being pressured by congress to help Iran.
 </Text>
@@ -2052,6 +2056,7 @@ Obama is being pressured by congress to help Iran.
 9	Iran	Iran	PROPN	NNP	Number=Sing	8	dobj	_	_
 10	.	.	PUNCT	.	_	4	punct	_	_
 </Parse></Sentence>
+
 
 
 <Sentence category="PASSIVE" date="20150609" id="PASSIVE_10" evaluate="true"/>
@@ -2112,7 +2117,6 @@ Obama said he would not give permission to Russia to help Israel
 12	Israel	Israel	PROPN	NNP	Number=Sing	11	dobj	_	_
 </Parse></Sentence>
 
-
 <Sentence category="OTHER" date="20150609" id="Pattern_1" evaluate="true"/>
 <!--Transformation pattern ~ a (a b ATTACK) SAY = a b 015-->
 <EventCoding eventcode="015" sourcecode="USAGOV" targetcode="IRQ" />
@@ -2132,8 +2136,8 @@ Obama and Putin said they will attack Iraq
 </Parse></Sentence>
 
 
-<Sentence category="OTHER" date="20150609" id="APPEALS_0" evaluate="true">
-<EventCoding eventcode="021" sourcecode="USAGOV" targetcode="RUSGOV" >
+<Sentence category="OTHER" date="20150609" id="APPEALS_0" evaluate="true"/>
+<EventCoding eventcode="021" sourcecode="USAGOV" targetcode="RUSGOV" />
 <Text>
 Obama wants Putin to attack Switzerland.
 </Text>
@@ -2147,8 +2151,8 @@ Obama wants Putin to attack Switzerland.
 7	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="APPEALS_1" evaluate="true">
-<EventCoding eventcode="138" sourcecode="USAGOV" targetcode="CHE" >
+<Sentence category="OTHER" date="20150609" id="APPEALS_1" evaluate="true"/>
+<EventCoding eventcode="138" sourcecode="USAGOV" targetcode="CHE" />
 <Text>
 Obama wants to attack Switzerland.
 </Text>
@@ -2161,8 +2165,8 @@ Obama wants to attack Switzerland.
 6	.	.	PUNCT	.	_	2	punct	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="SYNSET_0" evaluate="true">
-<EventCoding eventcode="1014" sourcecode="USAGOV" targetcode="IRN" >
+<Sentence category="OTHER" date="20150609" id="SYNSET_0" evaluate="true"/>
+<EventCoding eventcode="1014" sourcecode="USAGOV" targetcode="IRN" />
 <Text>
 Obama ordered an investigation against Iran
 </Text>
@@ -2175,8 +2179,8 @@ Obama ordered an investigation against Iran
 6	Iran	Iran	PROPN	NNP	Number=Sing	4	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="AGREE_0" evaluate="true">
-<EventCoding eventcode="085" sourcecode="USAGOV" targetcode="IRN" >
+<Sentence category="OTHER" date="20150609" id="AGREE_0" evaluate="true"/>
+<EventCoding eventcode="085" sourcecode="USAGOV" targetcode="IRN" />
 <Text>
 Obama has agreed to lift the sanctions on Iran
 </Text>
@@ -2193,10 +2197,10 @@ Obama has agreed to lift the sanctions on Iran
 </Parse></Sentence>
 
 
-<Sentence category="OTHER" date="20150609" id="VALID_0" evaluate="true">
-<EventCoding noevents="True" />
+<Sentence category="OTHER" date="20150609" id="VALID_0" evaluate="true"/>
+<EventCoding eventcode="070" sourcecode="USA" targetcode="EGYOPP" />
 <Text>
-The USA gave the two exiled dissidents from Egypt asylum
+The USA helped the two exiled dissidents from Egypt assylum
 </Text>
 <Parse>
 1	The	the	DET	DT	Definite=Def|PronType=Art	2	det	_	_
@@ -2208,11 +2212,11 @@ The USA gave the two exiled dissidents from Egypt asylum
 7	dissidents	dissident	NOUN	NNS	Number=Plur	3	dobj	_	_
 8	from	from	ADP	IN	_	10	case	_	_
 9	Egypt	Egypt	PROPN	NNP	Number=Sing	10	compound	_	_
-10	asylum	asylum	NOUN	NN	Number=Sing	7	nmod	_	_
+10	assylum	assylum	NOUN	NN	Number=Sing	7	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="OVERLAP_0" evaluate="true">
-<EventCoding eventcode="150" sourcecode="RUS" targetcode="USA" >
+<Sentence category="OTHER" date="20150609" id="OVERLAP_0" evaluate="true"/>
+<EventCoding eventcode="150" sourcecode="RUS" targetcode="USA" />
 <Text>
 Russia is conducting military exercises in Alaska
 </Text>
@@ -2226,8 +2230,8 @@ Russia is conducting military exercises in Alaska
 7	Alaska	Alaska	PROPN	NNP	Number=Sing	3	nmod	_	_
 </Parse></Sentence>
 
-<Sentence category="OTHER" date="20150609" id="PMATCH_0" evaluate="true">
-<EventCoding eventcode="033" sourcecode="USAGOV" targetcode="ISR" >
+<Sentence category="OTHER" date="20150609" id="PMATCH_0" evaluate="true"/>
+<EventCoding eventcode="033" sourcecode="USAGOV" targetcode="ISR" />
 <Text>
 The US Secretary of state wants to help iSrael
 </Text>
@@ -2244,13 +2248,13 @@ The US Secretary of state wants to help iSrael
 </Parse></Sentence>
 
 
-<Sentence category="OTHER" date="20150609" id="COOP_0" evaluate="true">
-<EventCoding eventcode="040" sourcecode="USA" targetcode="RUS" >
-<EventCoding eventcode="040" sourcecode="USA" targetcode="CHE" >
-<EventCoding eventcode="040" sourcecode="CHE" targetcode="USA" >
-<EventCoding eventcode="040" sourcecode="RUS" targetcode="USA" >
-<EventCoding eventcode="040" sourcecode="RUS" targetcode="CHE" >
-<EventCoding eventcode="040" sourcecode="CHE" targetcode="RUS" >
+<Sentence category="OTHER" date="20150609" id="COOP_0" evaluate="true"/>
+<EventCoding eventcode="040" sourcecode="USA" targetcode="RUS" />
+<EventCoding eventcode="040" sourcecode="USA" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="CHE" targetcode="USA" />
+<EventCoding eventcode="040" sourcecode="RUS" targetcode="USA" />
+<EventCoding eventcode="040" sourcecode="RUS" targetcode="CHE" />
+<EventCoding eventcode="040" sourcecode="CHE" targetcode="RUS" />
 <Text>
 The US, Russia, and Switzerland met yesterday
 </Text>
@@ -2266,4 +2270,71 @@ The US, Russia, and Switzerland met yesterday
 9	yesterday	yesterday	NOUN	NN	Number=Sing	8	nmod:tmod	_	_
 </Parse></Sentence>
 
+<Sentence category="OTHER" date="20080804" id="github_issue27_1" evaluate="true">
+<EventCoding eventcode="194" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<Text>
+Georgian demonstrators launched missiles at the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	launched	launch	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	missiles	missile	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	at	at	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_2" evaluate="true">
+<EventCoding eventcode="043" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<EventCoding eventcode="042" sourcecode="GEOGOV" targetcode="GEOOPP" />
+<Text>
+Georgian demonstrators received ministers from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	ministers	minister	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_3" evaluate="true">
+<EventCoding eventcode="072" sourcecode="GEOOPP" targetcode="GEOGOV" />
+<Text>
+Georgian demonstrators received weapons	from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	weapons	weapon	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	SpaceAfter=No
+</Parse></Sentence>
+
+<Sentence category="OTHER" date="20080804" id="github_issue27_4" evaluate="true">
+<EventCoding eventcode="030" sourcecode="GEOGOV" targetcode="GEOOPP" />
+<Text>
+Georgian demonstrators received assurances from the Georgian government.
+</Text>
+<Parse>
+1	Georgian	Georgian	ADJ	JJ	Degree=Pos	2	amod	_	_
+2	demonstrators	demonstrator	NOUN	NNS	Number=Plur	3	nsubj	_	_
+3	received	receive	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4	assurances	assurance	NOUN	NNS	Number=Plur	3	dobj	_	_
+5	from	from	ADP	IN	_	8	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	8	det	_	_
+7	Georgian	Georgian	ADJ	JJ	Degree=Pos	8	amod	_	_
+8	government	government	NOUN	NN	Number=Sing	3	nmod	_	_
+9	.	.	PUNCT	.	_	3	punct	_	_
+</Parse></Sentence>
 </Sentences>
+
+</Validation>

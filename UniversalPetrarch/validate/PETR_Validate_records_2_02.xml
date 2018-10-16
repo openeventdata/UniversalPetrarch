@@ -46,7 +46,7 @@
     <Discardfile>PETR_Validate_discards_2_02.txt</Discardfile>
     <PICOfile>PETR_Validate_Internal_Coding_Ontology_1_01.txt</PICOfile>
     <Errorfile>Errors_validation.txt</Errorfile>  <!-- currently not implemented -->
-    <Include>valid DEMO ACTOR VERB AGENT COMPOUND PATTERN DATE MODIFY SYNSET </Include>
+    <Include>DEMO ACTOR VERB AGENT COMPOUND PATTERN DATE MODIFY SYNSET </Include>
 </Environment>		
 
 <Sentences>

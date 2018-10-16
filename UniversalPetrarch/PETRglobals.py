@@ -95,6 +95,7 @@ CommaEMin = 2
 CommaEMax = 8
 
 stanfordnlp = ''
+udpipemodel = ''
 
 CodeWithPetrarch1 = True # if code with petrarch1 verb dictionaries
 CodeWithPetrarch2 = True # if code with petrarch2 verb dictionaries

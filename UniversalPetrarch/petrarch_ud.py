@@ -4,11 +4,13 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import sys
+'''
 if sys.version[0] == '3':
     print("""Universal Petrarch is currently only tested on Python 2. If you
 encounter errors with Python 3, try switching to Python 2.
 Alternatively, pull requests enabling Python 3 compatibility would be very
 welcome! https://github.com/openeventdata/UniversalPetrarch/""")
+'''
 
 import os
 import sys
@@ -83,6 +85,44 @@ def main():
 
         print("Coding time:", time.time() - start_time)
 
+    elif cli_args.command_name == 'preprocess':
+
+        if cli_args.config:
+            print('Using user-specified config: {}'.format(cli_args.config))
+            logger.info(
+                'Using user-specified config: {}'.format(cli_args.config))
+            PETRglobals.ConfigFileName = cli_args.config
+
+            PETRreader.parse_Config(cli_args.config)
+        else:
+            logger.info('Using default config file.')
+            PETRglobals.ConfigFileName = 'PETR_config.ini'
+            PETRreader.parse_Config(utilities._get_data('data/config/',
+                                                        'PETR_config.ini'))
+
+        start_time = time.time()
+        print('\n\n')
+
+        paths = PETRglobals.TextFileList
+        if cli_args.inputs:
+            if os.path.isdir(cli_args.inputs):
+                if cli_args.inputs[-1] != '/':
+                    paths = glob.glob(cli_args.inputs + '/*.xml')
+                else:
+                    paths = glob.glob(cli_args.inputs + '*.xml')
+            elif os.path.isfile(cli_args.inputs):
+                paths = [cli_args.inputs]
+            else:
+                print(
+                    '\nFatal runtime error:\n"' +
+                    cli_args.inputs +
+                    '" could not be located\nPlease enter a valid directory or file of source texts.')
+                sys.exit()
+
+        preprocess(paths)
+
+        print("Preprocessing time:", time.time() - start_time)
+
     print("Finished")
 
 
@@ -96,6 +136,18 @@ PETRARCH
                                      description=__description__)
 
     sub_parse = aparse.add_subparsers(dest='command_name')
+
+    preprocess_command = sub_parse.add_parser('preprocess')
+    preprocess_command.add_argument('-i', '--inputs',
+                               help='File, or directory of files, to parse.',
+                               required=True)
+    preprocess_command.add_argument('-d', '--debug', action = 'store_true', default = False,
+                               help="""Enable debug info""")
+    preprocess_command.add_argument('-c', '--config',
+                               help="""Filepath for the PETRARCH configuration
+                               file. Defaults to PETR_config.ini""",
+                               required=False)
+
     parse_command = sub_parse.add_parser('parse', help=""" DEPRECATED Command to run the
                                          PETRARCH parser. Do not use unless you've used it before. If you need to
                                          process unparsed text, see the README""",
@@ -115,9 +167,8 @@ PETRARCH
                                help="""Filepath for the PETRARCH configuration
                                file. Defaults to PETR_config.ini""",
                                required=False)
-    parse_command.add_argument('-d', '--debug',
-                               help="""Enable debug info""",
-                               required=False)
+    parse_command.add_argument('-d', '--debug', action = 'store_true', default = False,
+                               help="""Enable debug info""")
 
 
     batch_command = sub_parse.add_parser('batch', help="""Command to run a batch
@@ -289,7 +340,7 @@ def do_coding(event_dict):
     times = 0
     sents = 0
 
-    for key, val in sorted(event_dict.items()):
+    for key, val in sorted(list(event_dict.items())):
         NStory += 1
         prev_code = []
 
@@ -329,6 +380,8 @@ def do_coding(event_dict):
                         break
 
                 t1 = time.time()
+#                print("UD-1 \ntr:",treestr, "\nST:", SentenceText, "\ndate:",Date)
+                
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
                 # print(sentence.txt)
                 # this is the entry point into the processing in PETRgraph
@@ -348,7 +401,10 @@ def do_coding(event_dict):
                     
                     event_dict[key]['sents'][sent].setdefault('events', {})
                     event_dict[key]['sents'][sent].setdefault('triplets', {})
+                    event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
+
                     for i in range(0,len(p1_coded_events)):
+                        #raw_input(p1_coded_events[i])
                         event_dict[key]['sents'][sent]['events']['p1_'+str(i)] = [[p1_coded_events[i][0]],[p1_coded_events[i][1]],p1_coded_events[i][2]]
                         
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)] = {}
@@ -356,6 +412,8 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['source_text'] = p1_coded_events[i][3] if p1_coded_events[i][3] != None else "---"
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['target_text'] = p1_coded_events[i][4] if p1_coded_events[i][4] != None else "---"
                         event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['verb_text'] = p1_coded_events[i][6]
+                        event_dict[key]['sents'][sent]['triplets']['p1_'+str(i)]['verbcode'] = p1_coded_events[i][2]
+                        
                         coded_events['p1_'+str(i)]= event_dict[key]['sents'][sent]['events']['p1_'+str(i)]
 
                 logger.debug("check events of id:"+SentenceID)
@@ -398,8 +456,14 @@ def do_coding(event_dict):
                         event_dict[key]['sents'][sent]['issues'] = event_issues
 
                 if PETRglobals.PauseBySentence:
-                    if len(raw_input("Press Enter to continue...")) > 0:
-                        sys.exit()
+                    if sys.version[0]=='3':
+                        if len((input("Press Enter to continue..."))) > 0:
+                            sys.exit()
+                    elif sys.version[0] =='2':
+                        if len(raw_input("Press Enter to continue...")) > 0:
+                            sys.exit()
+
+
 
                 NEvents += len(coded_events.values())
                 if len(coded_events) == 0:
@@ -438,11 +502,18 @@ def run(filepaths, out_file, s_parsed):
     # this is the routine called from main()
     events = PETRreader.read_xml_input(filepaths, s_parsed)
     logger.debug("Incoming data from XML: ", events)
-    # if not s_parsed:
-    #    events = utilities.stanford_parse(events)
+    if not s_parsed:
+        events = utilities.udpipe_parse(events)
     updated_events = do_coding(events)
 
     PETRwriter.write_events(updated_events, 'evts.' + out_file)
+
+def preprocess(filepaths):
+    logger = logging.getLogger('petr_log')
+
+    # this is the routine called from main()
+    events = PETRreader.depparse_xml_input(filepaths)
+    
 
 def run_pipeline(data, out_file=None, config=None, write_output=True,
                  parsed=False):
