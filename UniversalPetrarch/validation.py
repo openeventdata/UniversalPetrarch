@@ -15,32 +15,35 @@ python validation.py [-d] [-i filename] [-p1] [-p2] [-es]
   -p1/-p2: batch comparison
   -es : Spanish GSR set 
   
-==== STATUS OF PROGRAM 18.10.16 ====
+==== STATUS OF PROGRAM 18.10.19 ====
 
 This will run the current Spanish validation file spanish_protest_cameo_4_jj_validation.xml and also incorporates
 the Spanish (ES)-specific code from validation2_spanish_withanalysis.py, with the key difference that it reads
 files based on the file's <Environment> block rather than a separate config file. 
 
-Results of the two programs are generally comparable but not identical (results of this program and earlier versions on
-the English-language "Lord of the Rings" and "Gigaword" validation sets are identical)
+Results of the two programs are now very close, identical on "Correct events" but still not identical on "Extra events"(results of this 
+program and earlier versions on the English-language "Lord of the Rings" and "Gigaword" validation sets are identical on all metrics)
 
-validation.py -es:
+python3 validation.py -es:
 Records evaluated:     640
-Correct events:        601    79.71%
-Uncoded events:        153    20.29%
-Extra events:        10427  1629.22%
+Correct events:        566    75.07%
+Uncoded events:        188    24.93%
+Extra events:         8379  1309.22%
 
-python validation2_spanish_withanalysis_mod1.py validate -i data/text/spanish_protest_cameo_4_jj_validation.xml -c data/config/PETR_config_es.ini
+python3 validation2_spanish_withanalysis_mod1.py validate -i data/text/spanish_protest_cameo_4_jj_validation.xml -c data/config/PETR_config_es.ini
 Records evaluated:     640
-Correct events:        567    75.20%
-Uncoded events:        187    24.80%
-Extra events:         8413  1314.53%
+Correct events:        566    75.07%
+Uncoded events:        188    24.93%
+Extra events:         8441  1318.91%
 
-The difference is probably due to specifics of counting "correct" events and other metrics: at present, presumably for diagnostic
-purposes, the ES validation statistics are counting something as "correct" if *any* of the events produced correspond at the two-digit 
-level to the record's "eventcode" and currently the ES records have no actor codes. Ultimately this program is intended to apply the 
-same source-target-event metric to all three languages, so at present I haven't tried to duplicate the ES diagnostics. This may change
-in a future rendition.
+Running a diff on the _stats_ output files shows differences one or more of the various metric on 36 records (some of these are differences
+on the "correct" tabulation, so that aggregate alignment is probably just a small, but lucky, coincidence), and the one case I've explored 
+in considerable depth indicates this is occurring despite identical inputs to petrarch_ud.do_coding(dict). 
+
+Most likely explanation for this sort of odd behavior would be something not getting initialized somewhere in the new ES-specific code in 
+petrarch_ud.py or PETRgraph.py but since that code is still in flux, and in particular as the teleconference yesterday indicated that 
+major changes are being made to reduce extra events, I'm going to leave this for the time being and see if the problem goes away in the 
+next iteration.
 
 ======================================  
 
@@ -81,14 +84,12 @@ REVISION HISTORY:
 24-May-18: Modified to work with Universal-PETR off-the-shelf
 01-Jun-18: -p1 and -p2 batch coding options added
 21-Jun-18: assorted additional tabulations for the batch coding
-16-Oct-18: initial integration of Spanish coding under the -es option
+19-Oct-18: initial integration of Spanish coding under the -es option
 
 =========================================================================================================
 """
-from __future__ import print_function
 
 import collections
-import utilities
 import datetime
 import textwrap
 import os.path
@@ -96,6 +97,7 @@ import logging
 import ast
 import sys
 
+import utilities
 import PETRreader
 import PETRgraph 
 import petrarch_ud
@@ -133,7 +135,6 @@ incorrect_files = []
 stats_dict = {}
 stats = []
 
-doclist = None
 
 # ========================== VALIDATION FUNCTIONS ========================== #
 
@@ -437,11 +438,31 @@ def validate_record(valrecord):
         return found
 
 
+    def write_dict():
+        """ debugging output """
+        thekeys = ["verbs","events","triplets","parsed"]
+        print("\n---- return_dict -----")
+        for key in return_dict:
+            print(key)
+            print("meta") 
+            for k2 in return_dict[key]['meta']:
+                print(k2)
+            print("\n=== sents ====")
+            for k2 in thekeys:
+                print(k2)
+                if k2 != "parsed":
+                    for k3,v3 in sorted(return_dict[key]['sents']['0'][k2].items()):
+                        print("    ",k3,":",v3)
+                else:
+                    print("    ", return_dict[key]['sents']['0'][k2])
+
+
+
     logger = logging.getLogger('petr_log.validate')
     parse = valrecord['parse']
     idstrg = valrecord['id']
     print("evaluating", idstrg)
-#    print("evaluating", valrecord)
+#    print("valrecord\n", valrecord)
     logger.debug("\nevaluating: "+ idstrg)
     fout.write("Record ID: " + idstrg + '\n')
 
@@ -449,7 +470,9 @@ def validate_record(valrecord):
     parsed = utilities._format_ud_parsed_str(parse)
     dict = {idstrg: {u'sents': {u'0': {u'content': valrecord['text'], u'parsed': parsed}},
         u'meta': {u'date': valrecord['date']}}}
+
     return_dict = petrarch_ud.do_coding(dict)
+#    write_dict()
 
     if not doing_compare:
         fout.write("Text:\n")
@@ -473,10 +496,11 @@ def validate_record(valrecord):
     fout.write("Coded events:\n")
     if doing_es:
         if '0' not in return_dict[idstrg]['sents']:
-            print(return_dict[idstrg])
+            print("Mk-1\n",return_dict[idstrg])
 
     if 'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
         event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
+#        print("Mk-2\n",return_dict[idstrg]['sents']['0']['events']) ### debugging print ###
         
         nfound, ncoded, nnull = 0, 0, 0
         for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
@@ -499,11 +523,9 @@ def validate_record(valrecord):
                         if doing_es:
                             if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
                                 fout.write("  CORRECT\n")
-                                if 'found' not in edict:
-                                    nfound += 1
-                                    edict['found'] = True
-                                    break
-
+                                nfound += 1
+                                edict['found'] = True
+                                break
                         else:
                             if (edict['eventcode'] == evt[2] and
                                 edict['sourcecode'] == evt[0][0] and
@@ -564,10 +586,10 @@ def validate_record(valrecord):
             nfound, ncoded, nnull = 0, 0, 0
             fout.write("  ERROR\n")
         
-    if doing_es and nfound > 0:
-        correct_files.append(idstrg)
         
     if doing_es:
+        if nfound > 0:
+            correct_files.append(idstrg)
         num_found = 0
         num_notcoded = 0
         numcoded = 0
@@ -588,11 +610,18 @@ def validate_record(valrecord):
         fout.write("Stats:\n    Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
                         + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
     if valrecord['category'] in valid_counts:
-        valid_counts[valrecord['category']][0] += 1  # records
-        valid_counts[valrecord['category']][1] += nfound  # correct
-        valid_counts[valrecord['category']][2] += len(valrecord['events']) - nfound  # uncoded
-        valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
-        valid_counts[valrecord['category']][4] += nnull            # null
+        if doing_es:
+            valid_counts[valrecord['category']][0] += 1  # records
+            valid_counts[valrecord['category']][1] += num_found #nfound  # correct
+            valid_counts[valrecord['category']][2] += num_notcoded #len(valrecord['events']) - nfound  # uncoded
+            valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
+            valid_counts[valrecord['category']][4] += nnull            # null
+        else:
+            valid_counts[valrecord['category']][0] += 1  # records
+            valid_counts[valrecord['category']][1] += nfound  # correct
+            valid_counts[valrecord['category']][2] += len(valrecord['events']) - nfound  # uncoded
+            valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
+            valid_counts[valrecord['category']][4] += nnull            # null
     else:
         if doing_es:
             valid_counts[valrecord['category']] = [1, num_found, num_notcoded, ncoded - nfound, nnull]
@@ -632,7 +661,7 @@ def validate_record(valrecord):
                 stats_dict[valrecord['id']]['missing'] = False
                 stats_dict[valrecord['id']]['correct'] = True
 
-            stats_dict[valrecord['id']]['numbers'] = [nfound,(len(valrecord['events']) - nfound),(ncoded-nfound),nnull]
+        stats_dict[valrecord['id']]['numbers'] = [nfound,(len(valrecord['events']) - nfound),(ncoded-nfound),nnull]
         parse_triplets(phrase_dict)
     fout.write('\n')
 
@@ -715,6 +744,7 @@ def do_validation():
                                     'coded': False
                                     }
                         valrecord['events'].append(theevent)
+                        
                 elif line.startswith("<Text"):
                     thetext = ""
                     line = fin.readline() 
@@ -805,7 +835,8 @@ def do_validation():
                 kb += 1
             elif not valrecord['valid']:
                 fout.write("Skipping " + valrecord['id']  + "\n" + idline  + "\n")
-#            if kb > 20: break
+
+#            if kb > 1: break  ### debugging ###
 
         line = fin.readline() 
 
