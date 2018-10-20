@@ -578,6 +578,13 @@ An instantiated Sentence object
         dpgraph.add_node(0, token='ROOT', pos='ROOT', lemma='ROOT')
         for p in parsed:
             temp = p.split("\t")
+            if "-" in temp[0]:
+                #skip line in Spanish 
+                #for example: parser split word "haberse" into "haber" and "se", line "24-25 haberse ...." is skipped
+                #24-25  haberse _   _   _   _   _   _   _   _
+                #24  haber   haber   AUX AUX VerbForm=Inf    26  aux _   _
+                #25  se  él  PRON    PRON    Person=3    26  obj _   _
+                continue
 
             # print(temp)
             dpgraph.add_node(int(temp[0]), token=temp[
@@ -1663,7 +1670,7 @@ An instantiated Sentence object
                 fulltargetmatch,_ = match_noun(path, fulltarget)
                 if not isinstance(fulltargetmatch, tuple) and fulltargetmatch:
                     #print("full target match")
-                    #raw_input(fulltargetmatch)
+                    #input(fulltargetmatch)
                     return fulltargetmatch
 
             return False
@@ -1725,6 +1732,7 @@ An instantiated Sentence object
         verbDictPath = verbDictionary
         code = None
         meaning = None
+        matched_line = None
         matched_txt = []
 
         codes = []
@@ -1775,11 +1783,14 @@ An instantiated Sentence object
                             # tempverbDictPath['#']['#']['meaning']
                             code = item['code']
                             meaning = item['meaning']
+                            matched_line = item['line']
 
-                            if (code != None and meaning != None):
-                                codes.append(code)
-                                meanings.append(meaning)
-                                matched_txts.append(matched_txt)
+                            #if (code != None and meaning != None):
+                            #    codes.append(code)
+                            #    meanings.append(meaning)
+                                #matched_txts.append(matched_txt)
+                            #   matched_txts.append(matched_line)
+
                     except:
                         print("passing:" + verb.text)
                         pass
@@ -1787,17 +1798,18 @@ An instantiated Sentence object
                 if (code != None and meaning != None):
                     codes.append(code)
                     meanings.append(meaning)
-                    matched_txts.append(matched_txt)
+                    #matched_txts.append(matched_txt)
+                    matched_txts.append(matched_line)
 
         if(len(verbtokens) > 1):
             logger.debug(codes)
             logger.debug(meanings)
             logger.debug(matched_txts)
+            #input(" ")
             #raw_input("verb pharse has length large than 1")
 
         if code != None and meaning != None:
-            logger.debug(code + "\t" + meaning + "\t" + verb.text + "\t" +
-                         (" ").join(matched_txt) + "\t" + str(len(verb.vpIDs)))
+            logger.debug(code + "\t" + meaning + "\t" + verb.text + "\t" + (" ").join(matched_txts) + "\t" + str(len(verb.vpIDs)))
         else:
             logger.debug("None code and none meaning")
 
@@ -1914,7 +1926,7 @@ An instantiated Sentence object
         triple_dict = {}
         triple_dict['triple'] = newtriple
         triple_dict['verbcode'] = verbcode
-        triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
+        triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txts)
         triple_dict['meaning'] = (",").join(meanings)
 
         #raw_input("Press Enter to continue...")
@@ -2497,10 +2509,10 @@ An instantiated Sentence object
                 #if both source and target code are none
                 #self.events.pop(eventID)
                 removed.append(eventID)
-            elif event[2] in ["010"]:
+            #elif event[2] in ["010"]:
                 #print(event)
                 #raw_input()
-                removed.append(eventID)
+                #removed.append(eventID)
                 #self.events.pop(eventID)
             else:
                 if isinstance(event, tuple):
@@ -3549,7 +3561,7 @@ An instantiated Sentence object
                             logger.debug("events_oneverb: %s", events_oneverb)
                             logger.debug("line: %s", line)
                     
-                    '''               
+                    #'''               
                     events_oneverb_map = {}
                     for event in events_oneverb:
                         eventkey = event[0]+"#"+event[1]+"#"+event[-1]
@@ -3566,9 +3578,24 @@ An instantiated Sentence object
                                 pattern_events.append(event)
 
                         if len(pattern_events)> 0:
-                            filtered_events_oneverb.extend(pattern_events)
+                            max_pattern_event = pattern_events[0]
+                            for pattern_event in pattern_events:
+                                #print(pattern_event[-2].split())
+                                #print(max_pattern_event[-2].split())
+                                if len(pattern_event[-2].split()) > len(max_pattern_event[-2].split()):
+                                    
+                                    max_pattern_event = pattern_event
+                                    
+
+                            #print("max:",max_pattern_event[-2].split())
+                            #input(" ")
+
+                        if len(pattern_events)> 0:
+                            #filtered_events_oneverb.extend(pattern_events)
+                            filtered_events_oneverb.append(max_pattern_event)
                         else:
-                            filtered_events_oneverb.extend(events)
+                            #filtered_events_oneverb.extend(events)
+                            filtered_events_oneverb.append(events[0])
 
                         #print(eventkey)
                         #print("all_events",events)
@@ -3576,9 +3603,9 @@ An instantiated Sentence object
                         #input(" ")
 
                     CodedEvents.extend(filtered_events_oneverb)
-                    '''
+                    #'''
 
-                    CodedEvents.extend(events_oneverb)
+                    #CodedEvents.extend(events_oneverb)
                     logger.debug("coded_events: %s", CodedEvents)
                     #input(" ")
             #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:

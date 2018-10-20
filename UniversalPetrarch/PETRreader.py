@@ -882,9 +882,17 @@ def read_verb_dictionary(verb_path):
             prep_pats.append((p, pnps))
         return nps, prep_pats
 
-
+    linecount = 0
     for line in file:
-        #print(line)
+        #print(line.strip(),linecount)
+        #input(" ")
+        linecount += 1
+        line = line.strip()
+        if "#" in line:
+            line = line + " line:" + str(linecount)
+        else:
+            line = line + " # line:" + str(linecount)
+
         if line.startswith("<!"):
             record_patterns = 0
             continue
@@ -995,10 +1003,10 @@ def read_verb_dictionary(verb_path):
                                         path = path.setdefault(element, {})
                                 path = path.setdefault(",", {}) if not count == len(phrase[1]) else path
                                 count += 1
-
-                path["#"] = {'code': code[1:-1], 'line': line[:-1]}
+               # print("code:",code[1:-1],code[1:-1])
+                path["#"] = {'code': code[1:-1], 'line': line}
         elif syn and line.startswith("&"): #read SYNONYM SETS block information
-            block_meaning = line.strip()
+            block_meaning = line.strip().split("#")[0].strip()
         elif syn and line.startswith("+"): #read SYNONYM SETS
             #print(line)
             if sys.version[0] == '2':
@@ -1006,6 +1014,7 @@ def read_verb_dictionary(verb_path):
             else:
                 term = line.strip()[1:] #.decode('utf-8')
             #print(term[-1])
+            term = term.split("#")[0].strip()
 
             if "_" in term[-1] and "_" in term[:-1]:
                 temp = term[:-1]
@@ -1022,7 +1031,7 @@ def read_verb_dictionary(verb_path):
             else:
                 temp = term
 
-            synsets[block_meaning] = synsets.setdefault(block_meaning, []) + [temp]
+            synsets[block_meaning] = synsets.setdefault(block_meaning, []) + [temp]   
         elif line.startswith("~"):
             # VERB TRANSFORMATION
             p = line[1:].replace("(", "").replace(")", "")
@@ -1113,9 +1122,9 @@ def read_verb_dictionary(verb_path):
                 if pathcheck:
                     #print(wstem)
                     #raw_input(pathcheck)
-                    path["#"].append({'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
+                    path["#"].append({'code': code[1:-1], 'meaning': block_meaning, 'line': line})
                 else:
-                    path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]}])
+                    path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line}])
                     #path = path.setdefault("#", {'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
 
     PETRglobals.VerbDict['synsets'] = synsets
@@ -1612,7 +1621,10 @@ def read_petrarch1_verb_dictionary(verb_path):
             line = read_FIN_line()
 
         elif verb[0] == '-':   # pattern
-
+            if "#" in line:
+                line = line.strip() + " line:"+ str(FINnline)
+            else:
+                line = line.strip() + " #line:"+ str(FINnline)
             # TABARI legacy: currently aren't processing these
             if '{' in verb:
                 line = read_FIN_line()
@@ -1644,7 +1656,7 @@ def read_petrarch1_verb_dictionary(verb_path):
 
             if verb[-1] == '_':
                 noplural = True
-                verb = verb[:-1]  # remove final blank and _
+                verb = verb[:-1].strip()  # remove final blank and _
             else:
                 noplural = False
             PETRglobals.P1VerbDict[verb] = {}
@@ -1679,6 +1691,11 @@ def read_petrarch1_verb_dictionary(verb_path):
                 line = read_FIN_line()
 
         else:  # verb
+            if "#" in line:
+                line = line.strip() + " line:"+ str(FINnline)
+            else:
+                line = line.strip() + " #line:"+ str(FINnline)
+
             if len(code) > 0:
                 curcode = code
             else:
@@ -1712,7 +1729,7 @@ def read_petrarch1_verb_dictionary(verb_path):
                     #make_verb_forms(curcode, line)
             ka += 1   # counting primary verbs
             line = read_FIN_line()
-            # print("line:",line)
+            #print("line:",line)
 
     close_FIN()
 
