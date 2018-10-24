@@ -287,6 +287,8 @@ class NounPhrase:
 
         actorcodes = list(set(actorcodes))
         agentcodes = list(set(agentcodes))
+        actorcodes.sort()
+        agentcodes.sort()
         return actorcodes, agentcodes
 
     def mix_codes(self, agents, actors):
@@ -3169,21 +3171,42 @@ An instantiated Sentence object
 
         SentenceLoc = ''
 
+        #print("srccodes:",srccodes)
+        #print("tarcodes:",tarcodes)
+
         if len(srccodes) == 0 and len(tarcodes) == 0:
             logger.debug(
                 'Empty codes in make_event_strings(): {}'.format(self.ID))
             return CodedEvents
         if ':' in EventCode:  # symmetric event
-            if srccodes[0] == '---' or tarcodes[0] == '---':
-                if tarcodes[0] == '---':
-                    tarcodes = srccodes
-                else:
-                    srccodes = tarcodes
+            #if srccodes[0] == '---' or tarcodes[0] == '---':
+            #    if tarcodes[0] == '---':
+            #        tarcodes = srccodes
+            #    else:
+            #        srccodes = tarcodes
+
             ecodes = EventCode.partition(':')
-            CodedEvents = make_events(srccodes, tarcodes, ecodes[
-                                      0], CodedEvents, line, verbhead)
-            CodedEvents = make_events(tarcodes, srccodes, ecodes[
-                                      2], CodedEvents, line, verbhead)
+
+            for srccode in srccodes:
+                for tarcode in tarcodes:
+                    if '=' in srccode:
+                        srccode = srccode[:srccode.index("=")]
+
+                    if '=' in tarcode:
+                        tarcode = tarcode[:tarcode.index("=")]
+
+                    if srccode != '---' and tarcode != '---':
+                        #print("symmetric srccodes:",srccode)
+                        #print("symmetric tarcodes:",tarcode)
+                        #input(" ")
+
+                        CodedEvents = make_events([srccode], [tarcode], ecodes[
+                                                  0], CodedEvents, line, verbhead)
+                        #print(CodedEvents)
+                        CodedEvents = make_events([tarcode], [srccode], ecodes[
+                                                  2], CodedEvents, line, verbhead)
+                        #print(CodedEvents)
+                        #input(" ")
         else:
             CodedEvents = make_events(
                 srccodes, tarcodes, EventCode, CodedEvents, line, verbhead)
@@ -3419,7 +3442,7 @@ An instantiated Sentence object
 
                     verbcode = '---'
                     meaning = ''
-                    verbdata = {}
+                    verbdata = []
 
                     verb_start = verb.headID
                     verb_end = verb.headID
@@ -3495,6 +3518,8 @@ An instantiated Sentence object
                     #raw_input()
 
                     events_oneverb = []
+                    #if not isinstance(verbdata,list):
+                    #    input(type(verbdata))
                     for i in range(0,len(verbdata)):
                         meaning = verbdata[i]['meaning']
                         verbcode = verbdata[i]['code']
@@ -3542,7 +3567,8 @@ An instantiated Sentence object
                                 TargetLoc = self.find_target(lower, TargetLoc)
                                 logger.debug("CV-3 trg %s", TargetLoc)
 
-                            #print("TargetLoc", TargetLoc)
+                            #print("TargetLoc:", TargetLoc)
+                            #print("SourceLoc:",SourceLoc)
                             if not TargetLoc == "":
                                 if SourceLoc == "":
                                     #print(upper)
@@ -3555,12 +3581,16 @@ An instantiated Sentence object
                                 #if not SourceLoc == "":
 
                             logger.debug("CV-3 src %s", SourceLoc)
+                            #print("sourceloc:",SourceLoc)
+                            #print("targetloc:",TargetLoc)
                             events_oneverb = self.make_event_strings(
                                 events_oneverb, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+                            #print("eventoneverb after:",events_oneverb)
 
                             logger.debug("events_oneverb: %s", events_oneverb)
                             logger.debug("line: %s", line)
-                    
+                            #input(" ")
+
                     #'''               
                     events_oneverb_map = {}
                     for event in events_oneverb:
@@ -3594,6 +3624,7 @@ An instantiated Sentence object
                             #filtered_events_oneverb.extend(pattern_events)
                             filtered_events_oneverb.append(max_pattern_event)
                         else:
+                            #print("Events:",events)
                             #filtered_events_oneverb.extend(events)
                             filtered_events_oneverb.append(events[0])
 
@@ -3610,7 +3641,7 @@ An instantiated Sentence object
                     #input(" ")
             #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
                 #break
-
+        CodedEvents.sort(key=lambda x:x[0]+"#"+x[1]+"#"+x[2])
         return CodedEvents
 
     def skip_item(self, item):
@@ -4103,6 +4134,7 @@ An instantiated Sentence object
         return TargetLoc
 
     def find_source(self, UpperSeq, LowerSeq, Src, Trg):
+        #improvement needed 2018.10.24
         """
         Assign SourceLoc to the first coded or compound (NE in the UpperSeq; if
         neither found then first (NE with --- code Note that we are going through
@@ -4115,11 +4147,13 @@ An instantiated Sentence object
         """
         SourceLoc = Src
         kseq = 0
+        #print("UPPERSEQ:",UpperSeq)
         # print(LowerSeq[Trg[0]])
         in_NEC = False
         in_NE = False
         while kseq < len(UpperSeq):
             #print(UpperSeq[kseq])
+            #print(kseq,UpperSeq[kseq],"in_NE:",in_NE,"in_NEC:",in_NEC)
             if "~NEC" in UpperSeq[kseq]:
                 in_NEC = not in_NEC
             elif "~NE" in UpperSeq[kseq]:
@@ -4127,13 +4161,14 @@ An instantiated Sentence object
 
             if in_NEC and '(NEC' in UpperSeq[kseq]: # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
                 SourceLoc = [kseq, True]
-                return SourceLoc
+                #return SourceLoc
 
             if in_NE and not in_NEC and '(NE' in UpperSeq[kseq] and ('>---' not in UpperSeq[kseq]): #and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
 
                 SourceLoc = [kseq, True]
                 return SourceLoc
             kseq += 1
+        
         kseq = 0
         while kseq < len(UpperSeq):
             if ('(NE' in UpperSeq[kseq]): # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
