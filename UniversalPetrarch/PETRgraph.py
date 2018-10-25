@@ -1930,7 +1930,8 @@ An instantiated Sentence object
         triple_dict['verbcode'] = verbcode
         triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txts)
         triple_dict['meaning'] = (",").join(meanings)
-
+        triple_dict['source_id'] = source.headID if not isinstance(source,basestring) else None
+        triple_dict['target_id'] = target.headID if not isinstance(target,basestring) else None
         #raw_input("Press Enter to continue...")
         return verbcode, triple_dict['matched_txt'],triple_dict['meaning'],tripleID, triple_dict
 
@@ -2147,12 +2148,16 @@ An instantiated Sentence object
                         meaning = target.mix_codes(newagentcodes, newactorcodes)
                         meaning = meaning if meaning != None else ['---']
                         target_meaning = meaning
+                        target.matched_txt = no_overlap_text
                     else:   
-                        target_meaning = ['---']          
+                        target_meaning = ['---']  
+                        triple['target_id']= None
+
 
                 elif overlap and len(target.matched_txt) == len(overlap):
                     # entire target actor is in the matched pattern
                     target_meaning = ['---']
+                    triple['target_id']= None
 
             if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 verblist = self.metadata['othernoun'][verb.headID]
@@ -2174,10 +2179,14 @@ An instantiated Sentence object
                         source = newtarget
                         self.nouns[source.headID] = source
                         source_meaning = newtarget_meaning
+                        triple['source_id'] = source.headID
+
                     elif target_meaning in [['---'],[]] or isinstance(target, basestring):
                         target = newtarget
                         self.nouns[target.headID] = target
                         target_meaning = newtarget_meaning
+                        triple['target_id'] = target.headID
+
                         
                         #print("new target found,",target.text, target_meaning)
 
@@ -2221,8 +2230,9 @@ An instantiated Sentence object
                     source = newsource
                     self.nouns[source.headID] = source
                     source_meaning = newsource_meaning
+                    triple['source_id'] = source.headID
                     
-            #'''
+            
             #check if verb code updates:
             newverbcode, newmatched_txt, newmeanings, _ , _ = self.get_verb_code_per_triplet((source,target,verb))
             #print(triple['verbcode'],newverbcode,newmatched_txt,newmeanings)
@@ -2230,7 +2240,7 @@ An instantiated Sentence object
                 if newverbcode not in ['---',None] and "*" in newmatched_txt and "*" not in triple['matched_txt']:
                     triple['verbcode'] = newverbcode
                     #raw_input()
-            #'''
+            
 
             if verb.headID in self.rootID and tripleID not in paired_event:
                 if verb.headID in root_eventID:
@@ -2335,7 +2345,7 @@ An instantiated Sentence object
                             if transfer_pattern != "None":
                                 triple["before_transfer"] = event_before_transfer
                                 triple["after_transfer"] = event_after_transfer
-
+                                ##need update source, target ID info
 
                         elif current_event[0] and current_event[1]:
                             event_after_transfer = [current_event]
@@ -2462,19 +2472,20 @@ An instantiated Sentence object
             logger.debug("paired_event:" + tripleID)
             logger.debug(triple['event'])
             verbcode = triple['event'][2]
-            ids = tripleID.split("#")
+            verbid = tripleID.split("#")[2]
+            sourid = triple['source_id'] if triple['source_id']!= None else ""
             if verbcode not in allactors:
                 allactors[verbcode] = {}
-                allactors[verbcode]['vid'] = ids[2]
-            allactors[verbcode][ids[0]] = triple['event'][0]
+                allactors[verbcode]['vid'] = verbid
+            allactors[verbcode][sourid] = triple['event'][0]
 
         for verbcode, actors in allactors.items():
             idx = len(self.events)
             if len(actors) > 1:
                 for sid in actors.keys():
                     for tid in actors.keys():
-                        if sid != tid and sid != 'vid' and tid != 'vid':
-                            tripleID = sid + "#" + tid + "#" + \
+                        if sid != tid and sid != 'vid' and tid != 'vid' and sid != "" and tid != "":
+                            tripleID = str(sid) + "#" + str(tid) + "#" + \
                                 actors['vid'] + "#" + str(idx)
                             self.events[tripleID] = [
                                 actors[sid], actors[tid], verbcode]
