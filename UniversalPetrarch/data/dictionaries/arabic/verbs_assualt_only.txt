@@ -12,7 +12,6 @@
 وقع                             # put,place
 وضع+ل                           # put
 نظم                             # put,stage,arrange
-حدد                             # set
 اضرم+نار+في                     # set
 - * نار (باحتجاج) [145] # وضع,أضرم+النار+في,اسس,حدد,احرق
 - * نفس هوو (ب نار) [145] # وضع,أضرم+النار+في,اسس,حدد,احرق
@@ -45,16 +44,12 @@
 نادي                            # call
 انتهى                           # end
 طلب                   [020]     # call
-تلقى                            # take
 وقف                             # stop,halt
 طوى                             # close
 نادي+ب                          # call
 قفل                             # close,shut
 دعى                             # call
 منع                   [1211]    # stop
-أخذ                             # take
-ختم                             # close
-لغى                             # cancel
 سأل                   [020]     # call
 حجز                             # shut
 دعا+إلى                         # call
@@ -349,7 +344,6 @@
 عبر+عن                [140]     # express
 ردد                             # say
 قدم                             # report
-قال                             # say
 عرب                             # express
 لفظ                             # say
 نطق                             # say

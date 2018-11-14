@@ -201,40 +201,40 @@ PETRARCH
 def read_dictionaries(validation=False):
 
     print('Internal Coding Ontology:', PETRglobals.InternalCodingOntologyFileName)
-    pico_path = utilities._get_data('../data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
+    pico_path = utilities._get_data('./data/dictionaries', PETRglobals.InternalCodingOntologyFileName)
     PETRreader.read_internal_coding_ontology(pico_path)
 
     print('Verb dictionary:', PETRglobals.VerbFileName)
     verb_path = utilities._get_data(
-        '../data/dictionaries',
+        './data/dictionaries',
         PETRglobals.VerbFileName)
     PETRreader.read_verb_dictionary(verb_path)
 
     if PETRglobals.CodeWithPetrarch1:
         print('Petrarch 1 Verb dictionary:', PETRglobals.P1VerbFileName)
         verb_path = utilities._get_data(
-            '../data/dictionaries',
+            './data/dictionaries',
             PETRglobals.P1VerbFileName)
         PETRreader.read_petrarch1_verb_dictionary(verb_path)
 
     print('Actor dictionaries:', PETRglobals.ActorFileList)
     for actdict in PETRglobals.ActorFileList:
-        actor_path = utilities._get_data('../data/dictionaries', actdict)
+        actor_path = utilities._get_data('./data/dictionaries', actdict)
         PETRreader.read_actor_dictionary(actor_path)
    
     print('Agent dictionary:', PETRglobals.AgentFileList)
     for agentdict in PETRglobals.AgentFileList:
-        agent_path = utilities._get_data('../data/dictionaries', agentdict)
+        agent_path = utilities._get_data('./data/dictionaries', agentdict)
         PETRreader.read_agent_dictionary(agent_path)
 
     print('Discard dictionary:', PETRglobals.DiscardFileName)
-    discard_path = utilities._get_data('../data/dictionaries',
+    discard_path = utilities._get_data('./data/dictionaries',
                                        PETRglobals.DiscardFileName)
     PETRreader.read_discard_list(discard_path)
 
     if PETRglobals.IssueFileName != "":
         print('Issues dictionary:', PETRglobals.IssueFileName)
-        issue_path = utilities._get_data('../data/dictionaries',
+        issue_path = utilities._get_data('./data/dictionaries',
                                          PETRglobals.IssueFileName)
         PETRreader.read_issue_list(issue_path)
 

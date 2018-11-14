@@ -1,0 +1,16 @@
+UD-PETRARCH functional validation
+Run date-time: 181015-170100
+Validation file:    Arabic_validation/arabic_protest_gsr_validation.xml
+Verb dictionary:    arabic/CAMEO.ar.0.5.txt
+Actor dictionaries: ['arabic/actor_dict_ar_v4.txt']
+Agent dictionaries: ['arabic/agents.all.ar_v3.txt']
+Discard dictionary: arabic/discards_ar.txt
+PICO file:          PETR.Internal.Coding.Ontology.txt
+
+
+Summary: Arabic_validation/arabic_protest_gsr_validation.xml at 181015-170100
+Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  
+Total              0         0         0         0         0      nan%      nan%      nan%
+TP = correct/(correct + uncoded) 
+FN = uncoded/(correct + uncoded) = 100 - TP 
+FP = extra/records

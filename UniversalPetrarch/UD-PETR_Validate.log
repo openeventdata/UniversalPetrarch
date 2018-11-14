@@ -1,0 +1,7 @@
+INFO 2018-10-15 17:01:00,973: Running
+INFO 2018-10-15 17:01:00,974: Reading PETR.Internal.Coding.Ontology.txt
+INFO 2018-10-15 17:01:00,976: Reading arabic/CAMEO.ar.0.5.txt
+INFO 2018-10-15 17:01:01,444: Reading arabic/agents.all.ar_v3.txt
+
+INFO 2018-10-15 17:01:01,468: Reading arabic/discards_ar.txt
+INFO 2018-10-15 17:01:01,469: Reading /Users/kld/Documents/workspace/EventData/UniversalPetrarch/UniversalPetrarch/data/dictionaries/arabic/issues_ar.txt
