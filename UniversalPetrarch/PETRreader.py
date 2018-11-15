@@ -781,7 +781,7 @@ def read_verb_dictionary(verb_path):
             ......
         '''
         segs = line.split()
-        print(line)
+#        print(line)
         syns = [a for a in segs if '&' in a]
         lines = []
         if syns:
