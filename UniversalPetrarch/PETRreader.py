@@ -15,6 +15,7 @@ import sys
 if sys.version[0] == '2':
     reload(sys)
     sys.setdefaultencoding("utf-8")
+    from sets import Set
 try:
     from ConfigParser import ConfigParser
 except ImportError:
@@ -102,6 +103,10 @@ def parse_Config(config_path):
 
         direct = parser.get('StanfordNLP', 'stanford_dir')
         PETRglobals.stanfordnlp = os.path.expanduser(direct)
+
+        udpipe_model_dir = parser.get('UDpipe','udpipe_model_dir')
+        PETRglobals.udpipemodel = udpipe_model_dir
+        print("udpipe_model_dir:",PETRglobals.udpipemodel)
 
         filestring = parser.get('Dictionaries', 'actorfile_list')
         PETRglobals.ActorFileList = filestring.split(', ')
@@ -669,16 +674,18 @@ def read_internal_coding_ontology(pico_path):
             #print(operations)
             #raw_input()
             hexnumbers = []
-            tempstring = mappings[1][1:] #find the first hex, e.g -0xFFFF
+            tempstring = mappings[1][0:] #find the first hex, e.g -0xFFFF
+            #print(tempstring)
             idx = tempstring.find(operations[0])+1
             hexnumbers.append(int(mappings[1][0:idx-1],16))
-            tempstring = mappings[1][idx+1:]
+            tempstring = mappings[1][idx:]
 
             for i in range(1,len(operations)): #iteratively to find the rests
                 oper = operations[i]
                 idx = tempstring.find(oper)
                 hexnumbers.append(int(tempstring[0:idx-1],16))
                 tempstring = tempstring[idx+1:]
+                #print(tempstring)
 
             hexnumbers.append(int(tempstring,16))
             #print(hexnumbers)
@@ -710,6 +717,8 @@ def read_internal_coding_ontology(pico_path):
 def make_plural_noun(noun):
     """ Create the plural of a synonym noun st """
 
+    if not noun:
+        return None
     if noun[-1] == '_' or noun[0] == '{':
         return None
     if 'Y' == noun[-1]:
@@ -772,8 +781,8 @@ def read_verb_dictionary(verb_path):
             ......
         '''
         segs = line.split()
-        # print(line)
-        syns = filter(lambda a: '&' in a, segs)
+        print(line)
+        syns = [a for a in segs if '&' in a]
         lines = []
         if syns:
             set = syns[0].replace(
@@ -784,7 +793,7 @@ def read_verb_dictionary(verb_path):
             if set in synsets:
                 for word in synsets[set]:
                     # print(word)
-                    if '_' in word[-1]:
+                    if word and '_' in word[-1]:
                         baseword = word[0:-1]
                     else:
                         baseword = word
@@ -847,11 +856,10 @@ def read_verb_dictionary(verb_path):
 
             index += 1
 
-        preps = map(lambda a: segment[a[0]:a[1] + 1],
-                    zip(prepstarts, prepends))
+        preps = [segment[a[0]:a[1] + 1] for a in zip(prepstarts, prepends)]
         prep_pats = []
         for phrase in preps:
-            phrase = map(lambda a: a.replace("(", "").replace(")", ""), phrase)
+            phrase = [a.replace("(", "").replace(")", "") for a in phrase]
             p = phrase[0]
             pnps = []
             pmodifiers = []
@@ -875,9 +883,17 @@ def read_verb_dictionary(verb_path):
             prep_pats.append((p, pnps))
         return nps, prep_pats
 
-
+    linecount = 0
     for line in file:
-        #print(line)
+        #print(line.strip(),linecount)
+        #input(" ")
+        linecount += 1
+        line = line.strip()
+        if "#" in line:
+            line = line + " line:" + str(linecount)
+        else:
+            line = line + " # line:" + str(linecount)
+
         if line.startswith("<!"):
             record_patterns = 0
             continue
@@ -988,22 +1004,26 @@ def read_verb_dictionary(verb_path):
                                         path = path.setdefault(element, {})
                                 path = path.setdefault(",", {}) if not count == len(phrase[1]) else path
                                 count += 1
-
-                path["#"] = {'code': code[1:-1], 'line': line[:-1]}
+               # print("code:",code[1:-1],code[1:-1])
+                path["#"] = {'code': code[1:-1], 'line': line}
         elif syn and line.startswith("&"): #read SYNONYM SETS block information
-            block_meaning = line.strip()
+            block_meaning = line.strip().split("#")[0].strip()
         elif syn and line.startswith("+"): #read SYNONYM SETS
             #print(line)
-            term = line.strip()[1:].decode('utf-8')
+            if sys.version[0] == '2':
+                term = line.strip()[1:].decode('utf-8')
+            else:
+                term = line.strip()[1:] #.decode('utf-8')
             #print(term[-1])
+            term = term.split("#")[0].strip()
 
-            if "_" in term[-1] and "_" in term[:-1]:
+            if term and "_" in term[-1] and "_" in term[:-1]:
                 temp = term[:-1]
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "_}"
                 else:
                     temp = term
-            elif "_" not in term[-1] and "_" in term:
+            elif term and "_" not in term[-1] and "_" in term:
                 temp = term
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "}"
@@ -1012,7 +1032,7 @@ def read_verb_dictionary(verb_path):
             else:
                 temp = term
 
-            synsets[block_meaning] = synsets.setdefault(block_meaning, []) + [temp]
+            synsets[block_meaning] = synsets.setdefault(block_meaning, []) + [temp]   
         elif line.startswith("~"):
             # VERB TRANSFORMATION
             p = line[1:].replace("(", "").replace(")", "")
@@ -1024,8 +1044,8 @@ def read_verb_dictionary(verb_path):
             while len(ev2) > 1:
                 source = ev2[0]
 
-                verb = reduce(lambda a, b: a + b, map(lambda c: utilities.convert_code(PETRglobals.VerbDict[
-                              'verbs'][c]['#']['#'][0]['code'])[0] if not c == "Q" else -1, ev2[-1].split("_")), 0)
+                verb = reduce(lambda a, b: a + b, [utilities.convert_code(PETRglobals.VerbDict[
+                              'verbs'][c]['#']['#'][0]['code'])[0] if not c == "Q" else -1 for c in ev2[-1].split("_")], 0)
 
                 path = path.setdefault(verb, {})
                 path = path.setdefault(source, {})
@@ -1103,12 +1123,12 @@ def read_verb_dictionary(verb_path):
                 if pathcheck:
                     #print(wstem)
                     #raw_input(pathcheck)
-                    path["#"].append({'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
+                    path["#"].append({'code': code[1:-1], 'meaning': block_meaning, 'line': line})
                 else:
-                    path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]}])
+                    path = path.setdefault("#", [{'code': code[1:-1], 'meaning': block_meaning, 'line': line}])
                     #path = path.setdefault("#", {'code': code[1:-1], 'meaning': block_meaning, 'line': line[:-1]})
 
-    #PETRglobals.VerbDict['synsets'] = synsets
+    PETRglobals.VerbDict['synsets'] = synsets
     #print(sorted(PETRglobals.VerbDict['phrases'].keys()))
     #print(PETRglobals.VerbDict.__sizeof__())
     #print(PETRglobals.VerbDict['phrases'].__sizeof__())
@@ -1384,10 +1404,10 @@ def read_petrarch1_verb_dictionary(verb_path):
     PETRglobals.P1VerbDict = {'verbs': {}, 'phrases': {}}
 
     def add_dict_tree(targ, verb, meaning="", code='---',
-                      upper=[], synset=False, dict='phrases', line=""):
+                      upper=[], synset=False, dicttype='phrases', line=""):
         # DOUBLE CHECK THAT VERB =/= targ[0]
         prev = verb
-        list = PETRglobals.P1VerbDict[dict].setdefault(verb, {})
+        verbdict = PETRglobals.P1VerbDict[dicttype].setdefault(verb, {})
         while targ != []:
             if targ[0] in [' ', '']:
                 targ = targ[1:]
@@ -1395,17 +1415,17 @@ def read_petrarch1_verb_dictionary(verb_path):
 
             # Put synset trees in their own bin so we can
             if targ[0][0] == '&':
-                list = list.setdefault(
+                verbdict = verbdict.setdefault(
                     'synsets',
                     {})   # consider this case later
-            list = list.setdefault(targ[0], {})
+            verbdict = verbdict.setdefault(targ[0], {})
             targ = targ[1:]
 
-        list["#"] = list.setdefault(
+        verbdict["#"] = verbdict.setdefault(
             "#",
             {})  # termination symbol for the lower phrase
 
-        list = list["#"]
+        verbdict = verbdict["#"]
 
         targ = upper
         while targ != []:
@@ -1415,13 +1435,24 @@ def read_petrarch1_verb_dictionary(verb_path):
 
             # Put synset trees in their own bin so we can
             if targ[-1][0] == '&':
-                list = list.setdefault(
+                verbdict = verbdict.setdefault(
                     'synsets',
                     {})   # consider this case later
-            list = list.setdefault(targ[-1], {})
+            verbdict = verbdict.setdefault(targ[-1], {})
             targ = targ[:-1]
 
-        list['#'] = {'meaning': meaning, 'code': code, 'line': line}
+        if '#' not in verbdict:
+            verbdict['#'] = []
+        verbdict['#'].append({'meaning': meaning, 'code': code, 'line': line})
+
+        if dicttype =='verbs' and not synset:
+
+            #print(verb, verbdict['#'])
+            verbdict['#'] = list({v['meaning']+"#"+v['code']: v for v in verbdict['#']}.values())
+            #verbdict['#'] = list(set(verbdict['#']))
+            #print(verb, verbdict['#'])
+            #raw_input(" ")
+
 
     def make_phrase_list(thepat):
         """ Converts a pattern phrase into a list of alternating words and connectors """
@@ -1452,9 +1483,9 @@ def read_petrarch1_verb_dictionary(verb_path):
             if len(phlist[ka]) > 0:
                 if (phlist[ka][0] == '&') and (
                         phlist[ka] not in PETRglobals.P1VerbDict):
-                    print("WTF", phlist[ka])
-                    print(sorted(PETRglobals.P1VerbDict.keys()))
-                    exit()
+                    print("Synset not found:", phlist[ka])
+                    #print(sorted(PETRglobals.P1VerbDict.keys()))
+                    #exit()
 
                     logger.warning("Synset " + phlist[ka] +
                                    " has not been defined; pattern skipped")
@@ -1470,7 +1501,7 @@ def read_petrarch1_verb_dictionary(verb_path):
         forms = verb[verb.find('{') + 1:verb.find('}')].split()
         for wrd in forms:
             vscr = wrd
-            add_dict_tree([], vscr, theverb, loccode, dict='verbs', line=line)
+            add_dict_tree([], vscr, theverb, loccode, dicttype='verbs', line=line)
 
     def store_multi_word_verb(loccode, line):
         """  Store a multi-word verb and optional irregular forms. """
@@ -1518,7 +1549,7 @@ def read_petrarch1_verb_dictionary(verb_path):
                 add_dict_tree(
                     multilist[
                         1:], targverb, theverb, loccode, upper=upper[
-                        1:], dict='verbs', line=line)
+                        1:], dicttype='verbs', line=line)
 
             else:
                 logger.warning(
@@ -1534,21 +1565,21 @@ def read_petrarch1_verb_dictionary(verb_path):
         vroot = verb
         vscr = vroot + \
             "S" if vroot[-1] not in ["S", "X", "Z"] else vroot + "ES"
-        add_dict_tree([], vscr, theverb, loccode, dict='verbs', line=line)
+        add_dict_tree([], vscr, theverb, loccode, dicttype='verbs', line=line)
         if vroot[-1] == 'E':  # root ends in 'E'
             vscr = vroot + "D"
 
-            add_dict_tree([], vscr, theverb, loccode, dict='verbs', line=line)
+            add_dict_tree([], vscr, theverb, loccode, dicttype='verbs', line=line)
 
             vscr = vroot[:-1] + "ING"
 
         else:
             vscr = vroot + "ED"  # if vroot[-1] not == "Y" else vroot[-1]+"IES"
 
-            add_dict_tree([], vscr, theverb, loccode, dict='verbs', line=line)
+            add_dict_tree([], vscr, theverb, loccode, dicttype='verbs', line=line)
             vscr = vroot + "ING"
 
-        add_dict_tree([], vscr, theverb, loccode, dict='verbs', line=line)
+        add_dict_tree([], vscr, theverb, loccode, dicttype='verbs', line=line)
 
     def make_plural(st):
         """ Create the plural of a synonym noun st """
@@ -1562,15 +1593,17 @@ def read_petrarch1_verb_dictionary(verb_path):
 
     # note that this will be ignored if there are no errors
     logger = logging.getLogger('petr_log')
-    logger.info("Reading " + PETRglobals.VerbFileName)
+    logger.info("Reading " + PETRglobals.P1VerbFileName)
     open_FIN(verb_path, "verb")
 
     theverb = ''
     newblock = False
+    block_name = ''
     ka = 0   # primary verb count ( debug )
     line = read_FIN_line()
     while len(line) > 0:  # loop through the file
-        #print(line)
+        #print("line:", line)
+        #print("theverb:",theverb)
         if '[' in line:
             part = line.partition('[')
             verb = part[0].strip()
@@ -1578,16 +1611,21 @@ def read_petrarch1_verb_dictionary(verb_path):
         else:
             verb = line.strip()
             code = ''
+
         if verb.startswith('---'):  # start of new block
             if len(code) > 0:
                 primarycode = code
             else:
                 primarycode = '---'
             newblock = True
+            block_name = verb.replace("---","").strip()
             line = read_FIN_line()
 
         elif verb[0] == '-':   # pattern
-
+            if "#" in line:
+                line = line.strip() + " line:"+ str(FINnline)
+            else:
+                line = line.strip() + " #line:"+ str(FINnline)
             # TABARI legacy: currently aren't processing these
             if '{' in verb:
                 line = read_FIN_line()
@@ -1619,7 +1657,7 @@ def read_petrarch1_verb_dictionary(verb_path):
 
             if verb[-1] == '_':
                 noplural = True
-                verb = verb[:-1]  # remove final blank and _
+                verb = verb[:-1].strip()  # remove final blank and _
             else:
                 noplural = False
             PETRglobals.P1VerbDict[verb] = {}
@@ -1632,7 +1670,7 @@ def read_petrarch1_verb_dictionary(verb_path):
                         wordstr.split(),
                         verb,
                         synset=True,
-                        dict='verbs',
+                        dicttype='verbs',
                         line=line)
                 else:
                     wordstr = wordstr.replace('_', ' ')
@@ -1640,23 +1678,31 @@ def read_petrarch1_verb_dictionary(verb_path):
                         wordstr.split(),
                         verb,
                         synset=True,
-                        dict='verbs',
+                        dicttype='verbs',
                         line=line)
+                    '''
                     add_dict_tree(
                         make_plural(wordstr).split(),
                         verb,
                         synset=True,
                         dict='verbs',
                         line=line)
+                    '''
 
                 line = read_FIN_line()
 
         else:  # verb
+            if "#" in line:
+                line = line.strip() + " line:"+ str(FINnline)
+            else:
+                line = line.strip() + " #line:"+ str(FINnline)
+
             if len(code) > 0:
                 curcode = code
             else:
                 curcode = primarycode
             if newblock:
+                '''
                 if '{' in verb:
                     # theverb is the index to the pattern storage for the
                     # remainder of the block
@@ -1664,7 +1710,9 @@ def read_petrarch1_verb_dictionary(verb_path):
 
                 else:
                     theverb = verb
-                add_dict_tree([], theverb, code=curcode, line=line)
+                '''
+                theverb = block_name
+                add_dict_tree([], block_name, code=curcode, line=line)
                 newblock = False
             if '_' in verb:
                 store_multi_word_verb(curcode, line)
@@ -1672,17 +1720,17 @@ def read_petrarch1_verb_dictionary(verb_path):
                 add_dict_tree(
                     [],
                     verb.split()[0],
-                    theverb,
+                    block_name,
                     curcode,
-                    dict='verbs',
+                    dicttype='verbs',
                     line=line)
                 if '{' in verb:
                     get_verb_forms(curcode, line)
-                else:
-                    make_verb_forms(curcode, line)
+                #else:
+                    #make_verb_forms(curcode, line)
             ka += 1   # counting primary verbs
             line = read_FIN_line()
-            #print(line)
+            #print("line:",line)
 
     close_FIN()
 
@@ -1786,7 +1834,8 @@ def dstr_to_ordate(datestring):
 		dstr_to_ordate("16010101")  # 2305814
 	"""
 
-# print datestring        # debug
+    # print(datestring)        # debug
+    
     try:
         if len(datestring) > 7:
             year = int(datestring[:4])
@@ -1849,13 +1898,13 @@ def ordate_to_dstr(ordate):
     """
     ordate += 2305813 #adjust for ANSI date
     L= ordate+68569
-    N= 4*L/146097
-    L= L-(146097*N+3)/4
-    I= 4000*(L+1)/1461001
-    L= L-1461*I/4+31
-    J= 80*L/2447
-    K= L-2447*J/80
-    L= J/11
+    N= 4*L//146097
+    L= L-(146097*N+3)//4
+    I= 4000*(L+1)//1461001
+    L= L-1461*I//4+31
+    J= 80*L//2447
+    K= L-2447*J//80
+    L= J//11
     J= J+2-12*L
     I= 100*(N-49)+I+L
 
@@ -2232,6 +2281,7 @@ def read_agent_dictionary(agent_path):
 
         if '!' in part[0]:
             store_marker(agent, code)  # handle a substitution marker
+            plural = ''
         elif '{' in part[0]:
             if '}' not in part[0]:
                 logger.warning(brackerrorstr + enderrorstr)
@@ -2370,6 +2420,35 @@ def read_xml_input(filepaths, parsed=False):
 
     return holding
 
+def depparse_xml_input(filepaths):
+#    udpipe_parser = UDpipeparser(PETRglobals.udpipemodel)
+
+    for path in filepaths:
+
+        xml_file = io.open(path,'rb')
+
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+
+        for elem in root:
+            if elem.tag == "Sentence":
+                story = elem
+                parsed =[]
+
+                # Check to make sure all the proper XML attributes are included
+                attribute_check = [key in story.attrib for key in ['date', 'id', 'sentence', 'source']]
+                if not attribute_check:
+                    print('Need to properly format your XML...')
+                    break
+
+                for oldparse in elem.findall('Parse'):
+                    elem.remove(oldparse)
+
+                parsed_content = udpipe_parser.udpipe_parse_sent(elem.find('Text').text)
+                parse = ET.SubElement(elem,"Parse")
+                parse.text = "\n"+parsed_content.strip()+"\n"
+
+        tree.write(path.replace(".xml","")+"_parsed.xml",encoding='utf-8',xml_declaration=True)
 
 def read_pipeline_input(pipeline_list):
     """
