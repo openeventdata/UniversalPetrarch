@@ -8,42 +8,15 @@ https://github.com/openeventdata/UniversalPetrarch/tree/dev-validate
 
 TO RUN PROGRAM:
 
-python validation.py [-d] [-i filename] [-p1] [-p2] [-es]
+python validation.py [-d] [-i filename] [-p1] [-p2] [-es] [-ar] [-esutd]
 
   -d: use alternatve file with dictionaries in validate/, typically a debug file. Input files are hard coded.
   -i <filename>: use alternative file with dictionaries in data/dictionaries
   -p1/-p2: batch comparison
-  -es : Spanish GSR set 
+  -ar:     Arabic GSR set
+  -es :    Spanish GSR set using standard metrics [currently not implemented]
+  -esutd : Spanish GSR set using UT/Dallas metrics
   
-==== STATUS OF PROGRAM 18.10.19 ====
-
-This will run the current Spanish validation file spanish_protest_cameo_4_jj_validation.xml and also incorporates
-the Spanish (ES)-specific code from validation2_spanish_withanalysis.py, with the key difference that it reads
-files based on the file's <Environment> block rather than a separate config file. 
-
-Results of the two programs are now very close, identical on "Correct events" but still not identical on "Extra events"(results of this 
-program and earlier versions on the English-language "Lord of the Rings" and "Gigaword" validation sets are identical on all metrics)
-
-python3 validation.py -es:
-Records evaluated:     640
-Correct events:        566    75.07%
-Uncoded events:        188    24.93%
-Extra events:         8379  1309.22%
-
-python3 validation2_spanish_withanalysis_mod1.py validate -i data/text/spanish_protest_cameo_4_jj_validation.xml -c data/config/PETR_config_es.ini
-Records evaluated:     640
-Correct events:        566    75.07%
-Uncoded events:        188    24.93%
-Extra events:         8441  1318.91%
-
-Running a diff on the _stats_ output files shows differences one or more of the various metric on 36 records (some of these are differences
-on the "correct" tabulation, so that aggregate alignment is probably just a small, but lucky, coincidence), and the one case I've explored 
-in considerable depth indicates this is occurring despite identical inputs to petrarch_ud.do_coding(dict). 
-
-Most likely explanation for this sort of odd behavior would be something not getting initialized somewhere in the new ES-specific code in 
-petrarch_ud.py or PETRgraph.py but since that code is still in flux, and in particular as the teleconference yesterday indicated that 
-major changes are being made to reduce extra events, I'm going to leave this for the time being and see if the problem goes away in the 
-next iteration.
 
 ======================================  
 
@@ -80,11 +53,12 @@ This code is covered under the MIT license: http://opensource.org/licenses/MIT
 Report bugs to: schrodt735@gmail.com
 
 REVISION HISTORY:
-27-Jul-17:	Initial version based on parallel function in PETRARCH-1
+27-Jul-17: Initial version based on parallel function in PETRARCH-1
 24-May-18: Modified to work with Universal-PETR off-the-shelf
 01-Jun-18: -p1 and -p2 batch coding options added
 21-Jun-18: assorted additional tabulations for the batch coding
-19-Oct-18: initial integration of Spanish coding under the -es option
+19-Oct-18: initial integration of Spanish coding under the -esutd option
+15-Nov-18: initial integration of Arabic coding under the -ar option
 
 =========================================================================================================
 """
@@ -112,7 +86,7 @@ run_sample_only = False # comment-out to debug
 cue_counts = collections.Counter()
 allmatch = False
 
-doing_es = False
+doing_esutd = False
 doing_ar = False
 
 # these variables are currently specific to -es option
@@ -177,7 +151,8 @@ def get_environment():
     ValidOnly = True
     ValidPause = 0
     
-    PETRglobals.CodeWithPetrarch1 = doing_es 
+    PETRglobals.CodeWithPetrarch1 = doing_esutd 
+#    PETRglobals.CodeWithPetrarch1 = False   # experiment to see if we can get the CAMEO.es.0.0.7.txt to work...not really...
     
     line = fin.readline() 
     while len(line) > 0 and not line.startswith("<Environment>"):  # loop through the file
@@ -302,7 +277,7 @@ def validate_record(valrecord):
 
     def parse_verb(phrase_dict,sentence):
         """ from test_script_ud.py with minor modifications """
-        if doing_es:
+        if doing_esutd:
             if '0' not in return_dict[idstrg]['sents']:
                 return
         if 'verbs' not in return_dict[idstrg]['sents']['0']:
@@ -310,7 +285,7 @@ def validate_record(valrecord):
         str_arr = str(return_dict[idstrg]['sents']['0']['verbs']).strip("{").split(",")
         fout.write("Verbs found:\n")
          
-        if doing_es:
+        if doing_esutd:
             for verbID in return_dict[idstrg]['sents']['0']['verbs']:
                 verb = return_dict[idstrg]['sents']['0']['verbs'][verbID]
                 str_add = str(verbID) + " : text = " + str(verb.text) +", head="+ str(verb.head) +", meaning="+ str(verb.meaning)+", code="+ str(verb.code)+" ,passive="+str(verb.passive) + "\n"
@@ -330,7 +305,7 @@ def validate_record(valrecord):
 
     def parse_triplets(phrase_dict):
         """ from test_script_ud.py with minor modifications """
-        if doing_es:
+        if doing_esutd:
             if '0' not in return_dict[idstrg]['sents']:
                 return
         if 'triplets' not in return_dict[idstrg]['sents']['0']:
@@ -340,7 +315,7 @@ def validate_record(valrecord):
         for triple in triplets:
             strs = triplets[triple]
 #            print(strs)
-            if doing_es:
+            if doing_esutd:
                 source_text = strs.get('source_text',"***")  # *** is indicator that source_text, etc was not computed: currently not clear why we're hitting this <18.10.15>
                 target_text = strs.get('target_text',"***")
                 verb_text = strs.get('verb_text',"***")
@@ -349,7 +324,7 @@ def validate_record(valrecord):
                 verbcode = strs['verbcode']
             matched_text = strs['matched_txt']
             codes = str(triple).split("#")
-            if doing_es:
+            if doing_esutd:
                 event = "(" + source_text + "," + target_text + "," + verb_text +")"
                 str_add = str(triple) + event + ": Matched Text = " + str(matched_text) + "\n"
             else:
@@ -484,17 +459,20 @@ def validate_record(valrecord):
     fout.write("Expected events:\n")
     for i in range(len(valrecord['events'])):    
         edict =  valrecord['events'][i]
+#        print("Mk1\n", edict)
         if "noevents" in edict:
             fout.write("    noevents\n")                 
         else:
-            if doing_es:
+            if doing_esutd:
                 fout.write("    " + edict['eventcode']  + ' ' + valrecord['eventtexts'][i]['eventtext'] + '\n')
+            elif doing_ar:
+                fout.write("    " + edict['plover'][0]  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n')              
             else:
                 fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n')              
     
 
     fout.write("Coded events:\n")
-    if doing_es:
+    if doing_esutd:
         if '0' not in return_dict[idstrg]['sents']:
             print("Mk-1\n",return_dict[idstrg])
 
@@ -520,8 +498,18 @@ def validate_record(valrecord):
                         fout.write("  ERROR: NO EVENTS\n")
                         break                 
                     else:
-                        if doing_es:
+                        if doing_esutd:
                             if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
+                                fout.write("  CORRECT\n")
+                                nfound += 1
+                                edict['found'] = True
+                                break
+                        if doing_ar:
+                            camcue = evt[2][:2]
+                            if (        # for AR do a generous match with the CAMEO cue code
+                                (edict['plover'][0] == "PROTEST" and camcue in ["13", "14"]) or
+                                (edict['plover'][0] == "ASSAULT" and camcue in ["18", "19", "20"])
+                                ): 
                                 fout.write("  CORRECT\n")
                                 nfound += 1
                                 edict['found'] = True
@@ -536,7 +524,7 @@ def validate_record(valrecord):
                 else:
                     fout.write("  ERROR\n") # do we ever hit this now?
                     
-                if doing_compare:
+                if doing_compare or doing_ar:
                     cue_counts[evt[2][:2]] += 1
                     
                     if allmatch:
@@ -554,14 +542,18 @@ def validate_record(valrecord):
                             type_counts[1] += 1
                         if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
                             type_counts[2] += 1
-                        if valrecord['events'][0]['sourcecode'] == evt[0][0]:
+                        if valrecord['events'][0]['sourcecode'] == evt[0][0]: # complete code
                             type_counts[3] += 1
                         if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
                             type_counts[4] += 1
-                        if valrecord['events'][0]['targetcode'] == evt[1][0]:
+                        if valrecord['events'][0]['sourcecode'][3:] == evt[0][0][3:]: # agent code
                             type_counts[5] += 1
-                        if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
+                        if valrecord['events'][0]['targetcode'] == evt[1][0]:
                             type_counts[6] += 1
+                        if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
+                            type_counts[7] += 1
+                        if valrecord['events'][0]['targetcode'][3:] == evt[0][0][3:]: # agent code
+                            type_counts[8] += 1
                                                         
             except:
                 pass
@@ -587,7 +579,7 @@ def validate_record(valrecord):
             fout.write("  ERROR\n")
         
         
-    if doing_es:
+    if doing_esutd:
         if nfound > 0:
             correct_files.append(idstrg)
         num_found = 0
@@ -610,7 +602,7 @@ def validate_record(valrecord):
         fout.write("Stats:\n    Correct: " + str(nfound) + "   Not coded: " + str(len(valrecord['events']) - nfound) 
                         + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
     if valrecord['category'] in valid_counts:
-        if doing_es:
+        if doing_esutd:
             valid_counts[valrecord['category']][0] += 1  # records
             valid_counts[valrecord['category']][1] += num_found #nfound  # correct
             valid_counts[valrecord['category']][2] += num_notcoded #len(valrecord['events']) - nfound  # uncoded
@@ -623,7 +615,7 @@ def validate_record(valrecord):
             valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
             valid_counts[valrecord['category']][4] += nnull            # null
     else:
-        if doing_es:
+        if doing_esutd:
             valid_counts[valrecord['category']] = [1, num_found, num_notcoded, ncoded - nfound, nnull]
         else:
             valid_counts[valrecord['category']] = [1, nfound, len(valrecord['events']) - nfound, ncoded - nfound, nnull]        
@@ -638,14 +630,15 @@ def validate_record(valrecord):
             fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
             parse_verb(phrase_dict, sentence)
 
-        if doing_es:
+        if doing_esutd or doing_ar:
+                if valrecord['id'] not in stats_dict:
+                    stats_dict[valrecord['id']] = {}
+                    
+        if doing_esutd:
             if idstrg not in correct_files:
                 noneverbflag = check_none_verb(valrecord)
                 unmatchflag = check_unmatched_triplets(valrecord)
                 missingflag = check_missing_pattern(valrecord)
-
-                if valrecord['id'] not in stats_dict:
-                    stats_dict[valrecord['id']] = {}
 
                 stats_dict[valrecord['id']]['noneverb'] = noneverbflag
                 stats_dict[valrecord['id']]['unmatch'] = unmatchflag
@@ -680,7 +673,7 @@ def do_validation():
     line = fin.readline() 
     while len(line) > 0:  # loop through the file
         ka += 1
-#        if ka > 36: break
+#        if ka > 3: break  # debug which has effect of stopping after first record
         if line.startswith("<Stop"):
             print("\nExiting: <Stop> record ")
             break
@@ -711,14 +704,14 @@ def do_validation():
                                     'targetcode' : get_line_attribute('targetcode'),
                                     'coded': False
                                     }
-                        if doing_es:
+                        if doing_esutd or doing_ar:
                             theevent['plover'] = get_line_attribute('plover'),
                         if 'events' in valrecord:
                             valrecord['events'].append(theevent)
                         else:
                             valrecord['events'] = [theevent]    
 
-                elif line.startswith("<EventText") and not doing_compare and doing_es:
+                elif line.startswith("<EventText") and not doing_compare and doing_esutd:
                     if 'noevents="True"' in line:
                         valrecord['eventtexts'] = ["noevents"]    
                     else:
@@ -756,14 +749,14 @@ def do_validation():
                 elif line.startswith("<Parse"):
                     line = fin.readline() 
                     parse = ""
-                    if doing_es:
+                    if doing_esutd:
                         found_verb = False
                         gold_is_noun = [False]*len(valrecord['events'])
                         gold_is_verb = [False]*len(valrecord['events'])
                         postags = [""]*len(valrecord['events'])
 
                     while not line.startswith("</Parse"):
-                        if doing_es:
+                        if doing_esutd:
                             tmp = line.split("\t")
 
                             if "noevents" not in valrecord['eventtexts']:
@@ -781,7 +774,7 @@ def do_validation():
                         parse += line
                         line = fin.readline() 
                     valrecord['parse'] = parse
-                    if doing_es:
+                    if doing_esutd:
 
                         if not found_verb:
                             valrecord['valid'] = False
@@ -821,6 +814,8 @@ def do_validation():
                 line = fin.readline() 
 
             print("\nRecord:",valrecord['id'])
+            print(valrecord)
+            
             allmatch = False
             if "P1" in valrecord:
                 for li in valrecord['P1']:
@@ -836,8 +831,7 @@ def do_validation():
             elif not valrecord['valid']:
                 fout.write("Skipping " + valrecord['id']  + "\n" + idline  + "\n")
 
-#            if kb > 1: break  ### debugging ###
-
+        if kb > 1500: break  # debug
         line = fin.readline() 
 
 
@@ -846,13 +840,15 @@ if __name__ == '__main__':
     if "-d" in sys.argv:
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.debug.xml" 
-    elif "-es" in sys.argv:
+    elif "-esutd" in sys.argv:
         directory_name = "validate/spanish"
         filename = "spanish_protest_cameo_4_jj_validation.xml" 
-        doing_es = True
+        doing_esutd = True
     elif "-ar" in sys.argv:
-        directory_name = "validate"
-        filename = "PETR_Validate_records_x_02.debug.xml" # placeholder
+        directory_name = "validate/arabic"
+#        filename = "arabic_protest_gsr_validation.xml"
+#        filename = "arabic_assault_gsr_validation.xml"
+        filename = "arabic_gsr_validation_18-11-14.xml"  # combination of the above
         doing_ar = True
     elif "-i" in sys.argv:
         directory_name = "data/text"
@@ -892,8 +888,8 @@ if __name__ == '__main__':
         petrarch_ud.read_dictionaries()
         
     valid_counts = {'catlist': []}
-    if doing_compare:
-        type_counts = [0,0,0,0,0,0,0]
+    if doing_compare or doing_ar:
+        type_counts = [0,0,0,0,0,0,0,0,0]
         match_counts = [0,0,0,0]
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
@@ -914,9 +910,8 @@ if __name__ == '__main__':
             fin = open(os.path.join(directory_name, filename[:-1]),'r')
             do_validation()
             fin.close()
-
-    if doing_compare:
         filename = "P1/2 comparison files"  # this is just for labelling purposes
+
     fout.write("\nSummary: " + filename + " at " + timestamp + "\n")
 #    fout.write("Categories included: " + str(ValidInclude) + "\n")
     fout.write("Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  \n")
@@ -942,30 +937,32 @@ if __name__ == '__main__':
     print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
     print("===========================\n")
     
-    if doing_es:
+    if doing_esutd:
         csv_writer("Validation_output_Mk1")
 
-    if doing_compare:
+    if doing_compare or doing_ar:
         print("Accuracy on coded single event cases (N = {:d}):".format(type_counts[0]))
         fout.write("\nAccuracy on coded single event cases (N = {:d}):\n".format(type_counts[0]))
-        for ka, lbl in enumerate(["", "Event", "Cue category", "Source", "Source primary", "Target", "Target primary"]):
+        for ka, lbl in enumerate(["", "Event", "Cue category", "Source", "Source primary", "Source agent", "Target", "Target primary", "Target agent"]):
             if ka == 0: continue
             print("{:14s}:   {:8d} {:8.2f}%".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
             fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
         print("===========================\n")           
 
-        print("Accuracy on matched event cases (N = {:d}):".format(match_counts[0]))
-        fout.write("\nAccuracy on matched event cases (N = {:d}):\n".format(match_counts[0]))
-        for ka, lbl in enumerate(["", "Cue category", "Source primary",  "Target primary"]):
-            if ka == 0: continue
-            print("{:14s}:   {:8d} {:8.2f}%".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
-            fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
+        if match_counts[0] > 0:
+            print("Accuracy on matched event cases (N = {:d}):".format(match_counts[0]))
+            fout.write("\nAccuracy on matched event cases (N = {:d}):\n".format(match_counts[0]))
+            for ka, lbl in enumerate(["", "Cue category", "Source primary",  "Target primary"]):
+                if ka == 0: continue
+                print("{:14s}:   {:8d} {:8.2f}%".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
+                fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
 
         print("===========================\n")           
-        print("UDP Marginals")
+        print("UDP CAMEO cue category marginals")
         tot = sum(cue_counts.values())
         for key in sorted(cue_counts):
             print("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
+        print("--------------------------\nTotal:{:4d}".format(tot))
         print("===========================\n")
 
     fin.close()
