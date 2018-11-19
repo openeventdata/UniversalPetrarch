@@ -14,8 +14,9 @@ python validation.py [-d] [-i filename] [-p1] [-p2] [-es] [-ar] [-esutd]
   -i <filename>: use alternative file with dictionaries in data/dictionaries
   -p1/-p2: batch comparison
   -ar:     Arabic GSR set
-  -es :    Spanish GSR set using standard metrics [currently not implemented]
-  -esutd : Spanish GSR set using UT/Dallas metrics
+  -es :    Spanish GSR set using standard metrics
+  -esutd : Spanish GSR set using UT/Dallas metrics and older spanish_protest_cameo_4_jj_validation.xml file
+  -nn:     null actor cases (--- ---) excluded from tabulation 
   
 
 ======================================  
@@ -31,9 +32,10 @@ PROGRAMMING NOTES:
     transitioned over to YAML, so the fields are being processed without using XML tools.
     
 3. In the current English versions, only PETR-2 dictionaries are used, even for the -p1 option.
+
     
 SYSTEM REQUIREMENTS
-This program has been successfully run under Mac OS 10.13.6; it is standard Python 3.5 so it should also run in Unix or Windows. 
+This program has been successfully run under Mac OS 10.13.6; it is standard Python 3.7 so it should also run in Unix or Windows. 
 
 PROVENANCE:
 Programmer: Philip A. Schrodt
@@ -59,6 +61,8 @@ REVISION HISTORY:
 21-Jun-18: assorted additional tabulations for the batch coding
 19-Oct-18: initial integration of Spanish coding under the -esutd option
 15-Nov-18: initial integration of Arabic coding under the -ar option
+19-Nov-18: -es option now computes stats for exact and partial matches similar to other languages
+
 
 =========================================================================================================
 """
@@ -86,10 +90,12 @@ run_sample_only = False # comment-out to debug
 cue_counts = collections.Counter()
 allmatch = False
 
+doing_es = False
 doing_esutd = False
 doing_ar = False
+no_nulls = False
 
-# these variables are currently specific to -es option
+# these variables are mostly specific to -esutd option
 
 none_verb = []
 none_verb_id = []
@@ -108,6 +114,33 @@ incorrect_files = []
 
 stats_dict = {}
 stats = []
+
+# valid_count list indices
+VC_RECS = 0
+VC_FOUND = 1
+VC_NTCOD = 2 # not coded
+VC_EXTRA = 3
+VC_NULL = 4
+
+# valrecord list indices
+VR_LABELS = ["", "Event", "Cue category", "Source full", "Source primary", "Source nonnull", "Source agent", "Target full", "Target primary", "Target nonnull", "Target agent"]
+VR_EVTCNT = 0
+VR_EVTCOD = 1
+VR_EVTCUE = 2
+VR_SRCALL = 3
+VR_SRCCTY = 4  # first three characters (country, usually)
+VR_SRCNNL = 5  # non-null
+VR_SRCAGT = 6
+VR_TARALL = 7
+VR_TARCTY = 8
+VR_TARNNL = 9
+VR_TARAGT = 10
+
+# match_counts list indices
+MC_REC = 0
+MC_EVT = 1
+MC_SRC = 2
+MC_TAR = 3
 
 
 # ========================== VALIDATION FUNCTIONS ========================== #
@@ -151,7 +184,7 @@ def get_environment():
     ValidOnly = True
     ValidPause = 0
     
-    PETRglobals.CodeWithPetrarch1 = doing_esutd 
+    PETRglobals.CodeWithPetrarch1 = (doing_esutd or doing_es) 
 #    PETRglobals.CodeWithPetrarch1 = False   # experiment to see if we can get the CAMEO.es.0.0.7.txt to work...not really...
     
     line = fin.readline() 
@@ -239,10 +272,11 @@ def csv_writer(fileprefix):
 
 
 def validate_record(valrecord):
-    """ primary procedure which calls the coder with the parse in valrecord and compares the coded results with the expected 
-        as well as writing assorted intermediate data structures to fout per test_script_ud.py """
+    """ primary procedure which calls the coder with the parse in valrecord and compares the coded results with the expected. 
+        Under -esutd options, evaluates assorted intermediate data structures per validation2_spanish_withanalysis.py """
         
-    global cue_counts  # used to get the marginal distribution on the cue categories
+    global cue_counts  # get the marginal distribution on the cue categories
+    global totcoded, totevents, totnotnull
 
     def process_event_output(str):
         """ from test_script_ud.py """
@@ -276,8 +310,8 @@ def validate_record(valrecord):
         return phrase_dict	
 
     def parse_verb(phrase_dict,sentence):
-        """ from test_script_ud.py with minor modifications """
-        if doing_esutd:
+        """ -esutd function from test_script_ud.py with minor modifications """
+        if doing_esutd or doing_es:
             if '0' not in return_dict[idstrg]['sents']:
                 return
         if 'verbs' not in return_dict[idstrg]['sents']['0']:
@@ -285,7 +319,7 @@ def validate_record(valrecord):
         str_arr = str(return_dict[idstrg]['sents']['0']['verbs']).strip("{").split(",")
         fout.write("Verbs found:\n")
          
-        if doing_esutd:
+        if doing_esutd or doing_es:
             for verbID in return_dict[idstrg]['sents']['0']['verbs']:
                 verb = return_dict[idstrg]['sents']['0']['verbs'][verbID]
                 str_add = str(verbID) + " : text = " + str(verb.text) +", head="+ str(verb.head) +", meaning="+ str(verb.meaning)+", code="+ str(verb.code)+" ,passive="+str(verb.passive) + "\n"
@@ -304,8 +338,8 @@ def validate_record(valrecord):
 
 
     def parse_triplets(phrase_dict):
-        """ from test_script_ud.py with minor modifications """
-        if doing_esutd:
+        """ -esutd function from test_script_ud.py with minor modifications """
+        if doing_esutd or doing_es:
             if '0' not in return_dict[idstrg]['sents']:
                 return
         if 'triplets' not in return_dict[idstrg]['sents']['0']:
@@ -315,7 +349,7 @@ def validate_record(valrecord):
         for triple in triplets:
             strs = triplets[triple]
 #            print(strs)
-            if doing_esutd:
+            if doing_esutd or doing_es:
                 source_text = strs.get('source_text',"***")  # *** is indicator that source_text, etc was not computed: currently not clear why we're hitting this <18.10.15>
                 target_text = strs.get('target_text',"***")
                 verb_text = strs.get('verb_text',"***")
@@ -324,7 +358,7 @@ def validate_record(valrecord):
                 verbcode = strs['verbcode']
             matched_text = strs['matched_txt']
             codes = str(triple).split("#")
-            if doing_esutd:
+            if doing_esutd or doing_es:
                 event = "(" + source_text + "," + target_text + "," + verb_text +")"
                 str_add = str(triple) + event + ": Matched Text = " + str(matched_text) + "\n"
             else:
@@ -335,7 +369,7 @@ def validate_record(valrecord):
 
 
     def check_none_verb(expected):
-        """ ES validation function """
+        """ -esutd validation function """
         if '0' not in return_dict[idstrg]['sents']:
             return
         if 'verbs' not in return_dict[idstrg]['sents']['0']:
@@ -361,7 +395,7 @@ def validate_record(valrecord):
 
 
     def check_unmatched_triplets(valrecord):
-        """ ES validation function """
+        """ -esutd validation function """
         if '0' not in return_dict[idstrg]['sents']:
             return
         if 'triplets' not in return_dict[idstrg]['sents']['0']:
@@ -390,7 +424,7 @@ def validate_record(valrecord):
 
 
     def check_missing_pattern(expected):
-        """ ES validation function """
+        """ -esutd validation function """
         if '0' not in return_dict[idstrg]['sents']:
             return
         if 'triplets' not in return_dict[idstrg]['sents']['0']:
@@ -432,7 +466,6 @@ def validate_record(valrecord):
                     print("    ", return_dict[key]['sents']['0'][k2])
 
 
-
     logger = logging.getLogger('petr_log.validate')
     parse = valrecord['parse']
     idstrg = valrecord['id']
@@ -459,6 +492,7 @@ def validate_record(valrecord):
     fout.write("Expected events:\n")
     for i in range(len(valrecord['events'])):    
         edict =  valrecord['events'][i]
+        totevents += 1
 #        print("Mk1\n", edict)
         if "noevents" in edict:
             fout.write("    noevents\n")                 
@@ -472,7 +506,7 @@ def validate_record(valrecord):
     
 
     fout.write("Coded events:\n")
-    if doing_esutd:
+    if doing_esutd or doing_es:
         if '0' not in return_dict[idstrg]['sents']:
             print("Mk-1\n",return_dict[idstrg])
 
@@ -493,18 +527,21 @@ def validate_record(valrecord):
             try:
                 fout.write("    " + evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
                 ncoded += 1
+                totcoded += 1
+                if evt[0][0] != '---' and evt[1][0]!= '---':
+                    totnotnull += 1
                 for edict in valrecord['events']:
                     if "noevents" in edict:
                         fout.write("  ERROR: NO EVENTS\n")
                         break                 
                     else:
                         if doing_esutd:
-                            if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
+                            if edict['eventcode'][:2] == evt[2][:2]: # for -esutd now only match event code per UT/D metrics
                                 fout.write("  CORRECT\n")
                                 nfound += 1
                                 edict['found'] = True
                                 break
-                        if doing_ar:
+                        elif doing_ar:
                             camcue = evt[2][:2]
                             if (        # for AR do a generous match with the CAMEO cue code
                                 (edict['plover'][0] == "PROTEST" and camcue in ["13", "14"]) or
@@ -513,6 +550,13 @@ def validate_record(valrecord):
                                 fout.write("  CORRECT\n")
                                 nfound += 1
                                 edict['found'] = True
+                                break
+                        elif doing_es:
+                            if (edict['eventcode'][:3] == evt[2][:3] and
+                                edict['sourcecode'] == evt[0][0] and
+                                edict['targetcode'] == evt[1][0]) :
+                                fout.write("  CORRECT\n")
+                                nfound += 1
                                 break
                         else:
                             if (edict['eventcode'] == evt[2] and
@@ -524,36 +568,40 @@ def validate_record(valrecord):
                 else:
                     fout.write("  ERROR\n") # do we ever hit this now?
                     
-                if doing_compare or doing_ar:
+                if doing_standard_counts:
                     cue_counts[evt[2][:2]] += 1
                     
                     if allmatch:
-                        match_counts[0] += 1                        
+                        match_counts[MC_REC] += 1                        
                         if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
-                            match_counts[1] += 1                        
+                            match_counts[MC_EVT] += 1                        
                         if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
-                            match_counts[2] += 1                        
+                            match_counts[MC_SRC] += 1                        
                         if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
-                             match_counts[3] += 1                                               
+                             match_counts[MC_TAR] += 1                                               
 
                     if len(valrecord['events']) == 1 and len(return_dict[idstrg]['sents']['0']['events']) == 1:
-                        type_counts[0] += 1
+                        type_counts[VR_EVTCNT] += 1
                         if valrecord['events'][0]['eventcode'] == evt[2]:
-                            type_counts[1] += 1
+                            type_counts[VR_EVTCOD] += 1
                         if valrecord['events'][0]['eventcode'][:2] == evt[2][:2]:  # cue category
-                            type_counts[2] += 1
+                            type_counts[VR_EVTCUE] += 1
                         if valrecord['events'][0]['sourcecode'] == evt[0][0]: # complete code
-                            type_counts[3] += 1
+                            type_counts[VR_SRCALL] += 1
                         if valrecord['events'][0]['sourcecode'][:3] == evt[0][0][:3]: # country code
-                            type_counts[4] += 1
+                            type_counts[VR_SRCCTY] += 1
+                            if evt[0][0][:3] != "---":
+                                type_counts[VR_SRCNNL] += 1
                         if valrecord['events'][0]['sourcecode'][3:] == evt[0][0][3:]: # agent code
-                            type_counts[5] += 1
-                        if valrecord['events'][0]['targetcode'] == evt[1][0]:
-                            type_counts[6] += 1
+                            type_counts[VR_SRCAGT] += 1
+                        if valrecord['events'][0]['targetcode'] == evt[1][0]: # same for target
+                            type_counts[VR_TARALL] += 1
                         if valrecord['events'][0]['targetcode'][:3] == evt[1][0][:3]:
-                            type_counts[7] += 1
-                        if valrecord['events'][0]['targetcode'][3:] == evt[0][0][3:]: # agent code
-                            type_counts[8] += 1
+                            type_counts[VR_TARCTY] += 1
+                            if evt[1][0][:3] != "---":
+                                type_counts[VR_TARNNL] += 1                           
+                        if valrecord['events'][0]['targetcode'][3:] == evt[0][0][3:]: 
+                            type_counts[VR_TARAGT] += 1
                                                         
             except:
                 pass
@@ -579,7 +627,7 @@ def validate_record(valrecord):
             fout.write("  ERROR\n")
         
         
-    if doing_esutd:
+    if doing_esutd or doing_es:
         if nfound > 0:
             correct_files.append(idstrg)
         num_found = 0
@@ -603,19 +651,19 @@ def validate_record(valrecord):
                         + "   Extra events: " + str(ncoded - nfound)  + "   Null events: " + str(nnull) + '\n') 
     if valrecord['category'] in valid_counts:
         if doing_esutd:
-            valid_counts[valrecord['category']][0] += 1  # records
-            valid_counts[valrecord['category']][1] += num_found #nfound  # correct
-            valid_counts[valrecord['category']][2] += num_notcoded #len(valrecord['events']) - nfound  # uncoded
-            valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
-            valid_counts[valrecord['category']][4] += nnull            # null
+            valid_counts[valrecord['category']][VC_RECS]  += 1  # records
+            valid_counts[valrecord['category']][VC_FOUND] += num_found #nfound  # correct
+            valid_counts[valrecord['category']][VC_NTCOD] += num_notcoded #len(valrecord['events']) - nfound  # uncoded
+            valid_counts[valrecord['category']][VC_EXTRA] += ncoded - nfound  # extra
+            valid_counts[valrecord['category']][VC_NULL]  += nnull            # null
         else:
-            valid_counts[valrecord['category']][0] += 1  # records
-            valid_counts[valrecord['category']][1] += nfound  # correct
-            valid_counts[valrecord['category']][2] += len(valrecord['events']) - nfound  # uncoded
-            valid_counts[valrecord['category']][3] += ncoded - nfound  # extra
-            valid_counts[valrecord['category']][4] += nnull            # null
+            valid_counts[valrecord['category']][VC_RECS]  += 1  # records
+            valid_counts[valrecord['category']][VC_FOUND] += nfound  # correct
+            valid_counts[valrecord['category']][VC_NTCOD] += len(valrecord['events']) - nfound  # uncoded
+            valid_counts[valrecord['category']][VC_EXTRA] += ncoded - nfound  # extra
+            valid_counts[valrecord['category']][VC_NULL]  += nnull            # null
     else:
-        if doing_esutd:
+        if doing_esutd or doing_es:
             valid_counts[valrecord['category']] = [1, num_found, num_notcoded, ncoded - nfound, nnull]
         else:
             valid_counts[valrecord['category']] = [1, nfound, len(valrecord['events']) - nfound, ncoded - nfound, nnull]        
@@ -630,7 +678,7 @@ def validate_record(valrecord):
             fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
             parse_verb(phrase_dict, sentence)
 
-        if doing_esutd or doing_ar:
+        if doing_esutd or doing_es or doing_ar:
                 if valrecord['id'] not in stats_dict:
                     stats_dict[valrecord['id']] = {}
                     
@@ -664,9 +712,12 @@ def do_validation():
     global allmatch   # if doing_compare, P1 and P2 returned the same events
 
     def get_line_attribute(target):
-        """ quick and dirty function for extracting well-formed XML attributes"""
+        """ quick and dirty function for extracting well-formed --- and a few not-so-well-formed -- XML attributes"""
         part = line.partition(target)
-        return part[2][2:part[2].find('"',3)]
+        attr = part[2][2:part[2].find('"',3)]
+        if attr.startswith('"'):
+            attr = "---"
+        return attr
 
     ka = 0 # debugging counters
     kb = 0
@@ -686,6 +737,7 @@ def do_validation():
             valrecord['category'] = get_line_attribute('category')
             valrecord['id'] = get_line_attribute('id')
             valrecord['valid'] = True if get_line_attribute('evaluate').lower() == "true" else False
+            got_nonnull = False 
             idline = line
             line = fin.readline() # get the rest of the record
             while len(line) > 0: 
@@ -693,25 +745,32 @@ def do_validation():
                      thelist = ast.literal_eval(line[9:-2])
                      valrecord[line[1:3]] = [[li[0][:3], li[1][:3], li[2][:2]]for li in thelist]  # match only on primary actor codes and event cue category
 #                     valrecord[line[1:3]] = thelist # complete match
-                if line.startswith("<EventCoding") and not doing_compare:
-                    if 'noevents="True"' in line:
-                        valrecord['events'] = ["noevents"]    
+
+                if line.startswith("<EventCoding") and doing_standard_counts:
+                    valrecord['eventtexts'] = []    
+                    if 'noevents="True"' in line and not no_nulls:
+                        valrecord['events'] = ["noevents"]      ### CLEAN THIS UP
+                        valrecord['eventtexts'] = ["noevents"]    
                     else:
                         theevent = {
                                     'coding' : line[line.find(" ") + 1:line.find(">")],  # not actually using this
                                     'eventcode': get_line_attribute('eventcode'),
-                                    'sourcecode' :  get_line_attribute('sourcecode'),
-                                    'targetcode' : get_line_attribute('targetcode'),
+                                    'sourcecode' :  get_line_attribute('sourcecode').replace("~", "---"),  # replace handles the isolated agent cases
+                                    'targetcode' : get_line_attribute('targetcode').replace("~", "---"),
                                     'coded': False
                                     }
+                        if theevent['sourcecode'] != "---" or theevent['targetcode'] != "---":
+                            got_nonnull = True
                         if doing_esutd or doing_ar:
                             theevent['plover'] = get_line_attribute('plover'),
-                        if 'events' in valrecord:
-                            valrecord['events'].append(theevent)
-                        else:
-                            valrecord['events'] = [theevent]    
+                        if (not no_nulls) or got_nonnull:
+                            if 'events' in valrecord:
+                                valrecord['events'].append(theevent)
+                            else:
+                                valrecord['events'] = [theevent]
+#                        print("Mk1:",theevent)    
 
-                elif line.startswith("<EventText") and not doing_compare and doing_esutd:
+                elif line.startswith("<EventText") and doing_esutd:
                     if 'noevents="True"' in line:
                         valrecord['eventtexts'] = ["noevents"]    
                     else:
@@ -739,12 +798,13 @@ def do_validation():
                         valrecord['events'].append(theevent)
                         
                 elif line.startswith("<Text"):
-                    thetext = ""
+                    thetext = line[:-1] + ' '
                     line = fin.readline() 
                     while not line.startswith("</Text"):
                         thetext += line[:-1] + ' '
-                        line = fin.readline() 
-                    valrecord['text'] = thetext
+                        line = fin.readline()
+                    thetext += line[:-1] + ' ' 
+                    valrecord['text'] = thetext.replace("<Text>","").replace("</Text>","")
  
                 elif line.startswith("<Parse"):
                     line = fin.readline() 
@@ -774,6 +834,7 @@ def do_validation():
                         parse += line
                         line = fin.readline() 
                     valrecord['parse'] = parse
+                    
                     if doing_esutd:
 
                         if not found_verb:
@@ -814,7 +875,7 @@ def do_validation():
                 line = fin.readline() 
 
             print("\nRecord:",valrecord['id'])
-            print(valrecord)
+#            print(valrecord)
             
             allmatch = False
             if "P1" in valrecord:
@@ -825,21 +886,32 @@ def do_validation():
                     allmatch = True
                     print("Match:",  valrecord['id'], valrecord['P1'], valrecord['P2'])
 
-            if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid']:
+            if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid'] and 'events' in valrecord:
                 validate_record(valrecord)
                 kb += 1
             elif not valrecord['valid']:
                 fout.write("Skipping " + valrecord['id']  + "\n" + idline  + "\n")
 
-        if kb > 1500: break  # debug
+#        if kb > 1500: break  # debug
         line = fin.readline() 
 
 
 if __name__ == '__main__':
  # get path to validation file
+    """    print(sys.argv)
+        suff = "".join(sys.argv[1:]).replace("-","_")
+        print(suff)
+        exit()
+    """
+    if "-nn" in sys.argv:
+        no_nulls = True
     if "-d" in sys.argv:
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.debug.xml" 
+    elif "-es" in sys.argv:
+        directory_name = "validate/spanish"
+        filename = "spanish_validation_1018_noaccent.xml" 
+        doing_es = True
     elif "-esutd" in sys.argv:
         directory_name = "validate/spanish"
         filename = "spanish_protest_cameo_4_jj_validation.xml" 
@@ -867,6 +939,8 @@ if __name__ == '__main__':
     else:
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.xml"  # path to validation file
+        
+    doing_standard_counts = doing_compare or doing_ar or doing_es
 
     try:
         fin = open(os.path.join(directory_name, filename),'r')
@@ -874,7 +948,7 @@ if __name__ == '__main__':
         print("can't find the validation file", os.path.join(directory_name, filename))
         exit()
     print("Reading validation file ",os.path.join(directory_name, filename))
-    fout = open("Validation_output.txt", 'w')
+    fout = open("Validation_output" + "".join(sys.argv[1:]).replace("-","_") + ".txt", 'w')
 
     utilities.init_logger('UD-PETR_Validate.log', debug = False)
     timestamp =  datetime.datetime.now().strftime("%Y%m%d")[2:] + "-" + datetime.datetime.now().strftime("%H%M%S")
@@ -888,9 +962,10 @@ if __name__ == '__main__':
         petrarch_ud.read_dictionaries()
         
     valid_counts = {'catlist': []}
-    if doing_compare or doing_ar:
-        type_counts = [0,0,0,0,0,0,0,0,0]
+    if doing_standard_counts:
+        type_counts = [0,0,0,0,0,0,0,0,0,0,0]
         match_counts = [0,0,0,0]
+        totcoded, totevents, totnotnull = 0, 0, 0
 
     fout.write('Verb dictionary:    ' + PETRglobals.VerbFileName + "\n")
     if PETRglobals.CodeWithPetrarch1:
@@ -914,6 +989,8 @@ if __name__ == '__main__':
 
     fout.write("\nSummary: " + filename + " at " + timestamp + "\n")
 #    fout.write("Categories included: " + str(ValidInclude) + "\n")
+    if no_nulls:
+        fout.write("(Only non-null events tabulated)\n")
     fout.write("Category     Records   Correct   Uncoded     Extra      Null      TP        FN        FP  \n")
     valid_counts['Total'] = [0, 0, 0, 0, 0]
     valid_counts['catlist'].append('Total')
@@ -924,45 +1001,54 @@ if __name__ == '__main__':
             fout.write("{:10d}".format(valid_counts[catstrg][ka]))
             if catstrg != "Total":
                 valid_counts['Total'][ka] += valid_counts[catstrg][ka]
-        fout.write(" {:8.2f}%".format((valid_counts[catstrg][1] * 100.0)/(valid_counts[catstrg][1] + valid_counts[catstrg][2])))
-        fout.write(" {:8.2f}%".format((valid_counts[catstrg][2] * 100.0)/(valid_counts[catstrg][1] + valid_counts[catstrg][2])))
-        fout.write(" {:8.2f}%".format((valid_counts[catstrg][3] * 100.0)/(valid_counts[catstrg][0])))  # this as percent of records
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][VC_FOUND] * 100.0)/(valid_counts[catstrg][VC_FOUND] + valid_counts[catstrg][VC_NTCOD])))
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][VC_NTCOD] * 100.0)/(valid_counts[catstrg][VC_FOUND] + valid_counts[catstrg][VC_NTCOD])))
+        fout.write(" {:8.2f}%".format((valid_counts[catstrg][VC_EXTRA] * 100.0)/(valid_counts[catstrg][VC_RECS])))  # this as percent of records
         fout.write('\n')
     fout.write("TP = correct/(correct + uncoded) \n")
     fout.write("FN = uncoded/(correct + uncoded) = 100 - TP \n")
     fout.write("FP = extra/records\n")
     print("\nRecords evaluated:{:8d}".format(valid_counts['Total'][0]))
-    print("Correct events:   {:8d} {:8.2f}%".format(valid_counts['Total'][1], (valid_counts['Total'][1] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
-    print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][2], (valid_counts['Total'][2] * 100.0)/(valid_counts['Total'][1] + valid_counts['Total'][2])))
-    print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], (valid_counts['Total'][3] * 100.0)/valid_counts['Total'][0]))
+    if no_nulls:
+        print("(Only non-null events tabulated)")
+    print("Correct events:   {:8d} {:8.2f}%".format(valid_counts['Total'][VC_FOUND], 
+            (valid_counts['Total'][VC_FOUND] * 100.0)/(valid_counts['Total'][VC_FOUND] + valid_counts['Total'][VC_NTCOD])))
+    print("Uncoded events:   {:8d} {:8.2f}%".format(valid_counts['Total'][VC_NTCOD], 
+            (valid_counts['Total'][VC_NTCOD] * 100.0)/(valid_counts['Total'][VC_FOUND] + valid_counts['Total'][VC_NTCOD])))
+    print("Extra events:     {:8d} {:8.2f}%".format(valid_counts['Total'][3], 
+            (valid_counts['Total'][VC_EXTRA] * 100.0)/valid_counts['Total'][VC_RECS]))
     print("===========================\n")
+    print("Expected events: {:4d}  Coded events: {:4d}    Non-null events: {:4d}".format(totevents, totcoded, totnotnull))
     
     if doing_esutd:
         csv_writer("Validation_output_Mk1")
 
-    if doing_compare or doing_ar:
+    if doing_standard_counts:
         print("Accuracy on coded single event cases (N = {:d}):".format(type_counts[0]))
         fout.write("\nAccuracy on coded single event cases (N = {:d}):\n".format(type_counts[0]))
-        for ka, lbl in enumerate(["", "Event", "Cue category", "Source", "Source primary", "Source agent", "Target", "Target primary", "Target agent"]):
+        for ka, lbl in enumerate(VR_LABELS):
             if ka == 0: continue
             print("{:14s}:   {:8d} {:8.2f}%".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
             fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, type_counts[ka], (type_counts[ka] * 100.0)/type_counts[0]))
         print("===========================\n")           
 
-        if match_counts[0] > 0:
+        if match_counts[MC_REC] > 0:  # this is only relevant to doing_compare
             print("Accuracy on matched event cases (N = {:d}):".format(match_counts[0]))
             fout.write("\nAccuracy on matched event cases (N = {:d}):\n".format(match_counts[0]))
             for ka, lbl in enumerate(["", "Cue category", "Source primary",  "Target primary"]):
                 if ka == 0: continue
-                print("{:14s}:   {:8d} {:8.2f}%".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
-                fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[0]))
+                print("{:14s}:   {:8d} {:8.2f}%".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[MC_REC]))
+                fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, match_counts[ka], (match_counts[ka] * 100.0)/match_counts[MC_REC]))
+            print("===========================\n")           
 
-        print("===========================\n")           
         print("UDP CAMEO cue category marginals")
+        fout.write("\nUDP CAMEO cue category marginals\n")
         tot = sum(cue_counts.values())
         for key in sorted(cue_counts):
             print("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
+            fout.write("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
         print("--------------------------\nTotal:{:4d}".format(tot))
+        fout.write("--------------------------\nTotal:{:4d}\n".format(tot))
         print("===========================\n")
 
     fin.close()
