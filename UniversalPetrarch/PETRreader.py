@@ -23,6 +23,7 @@ except ImportError:
 
 import PETRglobals
 import utilities
+#from udpipeparser import UDpipeparser
 
 
 # ================== STRINGS ================== #
@@ -717,8 +718,6 @@ def read_internal_coding_ontology(pico_path):
 def make_plural_noun(noun):
     """ Create the plural of a synonym noun st """
 
-    if not noun:
-        return None
     if noun[-1] == '_' or noun[0] == '{':
         return None
     if 'Y' == noun[-1]:
@@ -781,7 +780,7 @@ def read_verb_dictionary(verb_path):
             ......
         '''
         segs = line.split()
-#        print(line)
+        # print(line)
         syns = [a for a in segs if '&' in a]
         lines = []
         if syns:
@@ -793,7 +792,7 @@ def read_verb_dictionary(verb_path):
             if set in synsets:
                 for word in synsets[set]:
                     # print(word)
-                    if word and '_' in word[-1]:
+                    if '_' in word[-1]:
                         baseword = word[0:-1]
                     else:
                         baseword = word
@@ -1017,13 +1016,13 @@ def read_verb_dictionary(verb_path):
             #print(term[-1])
             term = term.split("#")[0].strip()
 
-            if term and "_" in term[-1] and "_" in term[:-1]:
+            if "_" in term[-1] and "_" in term[:-1]:
                 temp = term[:-1]
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "_}"
                 else:
                     temp = term
-            elif term and "_" not in term[-1] and "_" in term:
+            elif "_" not in term[-1] and "_" in term:
                 temp = term
                 if len(temp.replace("_", " ").split()) > 1:
                     temp = "{" + temp.replace("_", " ") + "}"
@@ -2374,6 +2373,7 @@ def read_xml_input(filepaths, parsed=False):
                     parsed_content = ''
 
                 # Get the sentence information
+                print("Mk1",str(story.attrib))
                 if story.attrib['sentence'].lower() == 'true':
                     entry_id = story.attrib['id'][0:story.attrib['id'].rfind('_')]
                     sent_id = story.attrib['id'][story.attrib['id'].rfind('_')+1:]

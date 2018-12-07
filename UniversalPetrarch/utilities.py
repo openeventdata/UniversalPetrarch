@@ -334,21 +334,29 @@ def story_filter(story_dict, story_id):
 # if event_tuple[1:] in text_dict:  # log an error here if we can't find a
 # non-null case?
                     if event in sent_dict['triplets']:
+                        triple_dict = sent_dict['triplets'][event]
                         if not event.startswith("p1_"):
                             # get source, target, matched text for events using Petrarch2 dictionary
-                            indexes = event.split('#')
 
-                            sourcetext='---'
-                            if indexes[0] !='-':
-                                sourceid = int(indexes[0])
+                            sourcetext='---'                           
+                            if 'source_id' in triple_dict and triple_dict['source_id'] != None:
+                                sourceid = int(triple_dict['source_id'])
                                 sourcetext = (" ").join(sent_dict['nouns'][sourceid].matched_txt)
+                                #print(sent_dict['nouns'][sourceid].text)
+                                if sourcetext == "":
+                                    sourcetext = sent_dict['nouns'][sourceid].text
+                            
 
                             targettext='---'
-                            if indexes[1] !='-':
-                                targetid = int(indexes[1])
+                            if 'target_id' in triple_dict and triple_dict['target_id'] != None:
+                                targetid = int(triple_dict['target_id'])
                                 targettext = (" ").join(sent_dict['nouns'][targetid].matched_txt)
+                                if targettext == "":
+                                    targettext = sent_dict['nouns'][targetid].text
+                                #print(sent_dict['nouns'][targetid].text)
+                           
 
-                            verbtext = sent_dict['triplets'][event]['triple'][2].text
+                            verbtext = triple_dict['triple'][2].text
 
                             if PETRglobals.WriteActorText:
                                 filtered[event_tuple]['actortext'] = [sourcetext,targettext]
@@ -356,14 +364,14 @@ def story_filter(story_dict, story_id):
                                 #eventtext = str(sent_dict['triplets'][event]['matched_txt'].replace("*",verbtext))
                                 #if eventtext.find('[') != -1:
                                 #    eventtext = eventtext[0:eventtext.find('[')]
-                                eventtext = str(sent_dict['triplets'][event]['matched_txt'])
+                                eventtext = str(triple_dict['matched_txt'])
                                 filtered[event_tuple]['eventtext'] = eventtext
                         else:
                             # get source, target, matched text for events using Petrarch1 dictionary
                             if PETRglobals.WriteActorText:
-                                filtered[event_tuple]['actortext'] = [sent_dict['triplets'][event]['source_text'], sent_dict['triplets'][event]['target_text']]
+                                filtered[event_tuple]['actortext'] = [triple_dict['source_text'], triple_dict['target_text']]
                             if PETRglobals.WriteEventText:
-                                eventtext = str(sent_dict['triplets'][event]['matched_txt'])
+                                eventtext = str(triple_dict['matched_txt'])
                                 filtered[event_tuple]['eventtext'] = eventtext
 
 
@@ -597,4 +605,4 @@ def convert_code(code, forward=1):
         if code and code in reverse:
             return reverse[code]
 
-        return 0  # hex(code)
+        return 0  # hex(code)               

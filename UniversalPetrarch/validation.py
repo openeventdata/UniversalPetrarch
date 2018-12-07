@@ -8,7 +8,7 @@ https://github.com/openeventdata/UniversalPetrarch/tree/dev-validate
 
 TO RUN PROGRAM:
 
-python validation.py [-d] [-i filename] [-p1] [-p2] [-es] [-ar] [-esutd]
+python3 validation.py [-d] [-i filename] [-p1] [-p2] [-es] [-ar] [-esutd]
 
   -d: use alternatve file with dictionaries in validate/, typically a debug file. Input files are hard coded.
   -i <filename>: use alternative file with dictionaries in data/dictionaries
@@ -33,6 +33,11 @@ PROGRAMMING NOTES:
     
 3. In the current English versions, only PETR-2 dictionaries are used, even for the -p1 option.
 
+4. Adjustments to -ar calculations
+    -- a "No events" and a GSR [NONE NONE]/[NONE NONE] source/target is counted as "CORRECT"; code is also in the program
+       to also include GSR [NONE CVL]/[NONE NONE] source/target is counted as "CORRECT"
+    -- Duplicate coded events are eliminated: this reduces the FP rate by about half
+    
     
 SYSTEM REQUIREMENTS
 This program has been successfully run under Mac OS 10.13.6; it is standard Python 3.7 so it should also run in Unix or Windows. 
@@ -62,7 +67,7 @@ REVISION HISTORY:
 19-Oct-18: initial integration of Spanish coding under the -esutd option
 15-Nov-18: initial integration of Arabic coding under the -ar option
 19-Nov-18: -es option now computes stats for exact and partial matches similar to other languages
-
+07-Dec-18: Various adjustments to the -ar computation; added PETRwriter.write_events() output
 
 =========================================================================================================
 """
@@ -77,6 +82,7 @@ import sys
 
 import utilities
 import PETRreader
+import PETRwriter
 import PETRgraph 
 import petrarch_ud
 import PETRglobals
@@ -277,24 +283,6 @@ def validate_record(valrecord):
         
     global cue_counts  # get the marginal distribution on the cue categories
     global totcoded, totevents, totnotnull
-
-    def process_event_output(str):
-        """ from test_script_ud.py """
-        logger.debug("pso(): " + str)
-        str = str.replace("{","")
-        str = str.replace("}","")
-        res = ""
-        events = str[str.find(":"):].split("':")
-        for event in events:
-            event = event[0:event.rfind("]")]
-            event = event.replace(" ","")
-            event = event.replace(":","")
-            event = event.replace("u","")
-            event = event.replace("\'","")
-            event = event[1:]
-            event = event.replace("~","")
-            res = res+"\n("+event+")"
-        return res[1:]
     
     def parse_parser(parse):
         """ from test_script_ud.py """
@@ -480,6 +468,7 @@ def validate_record(valrecord):
         u'meta': {u'date': valrecord['date']}}}
 
     return_dict = petrarch_ud.do_coding(dict)
+    PETRwriter.write_events(return_dict, "evts.validation.txt")
 #    write_dict()
 
     if not doing_compare:
@@ -511,10 +500,10 @@ def validate_record(valrecord):
             print("Mk-1\n",return_dict[idstrg])
 
     if 'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
-        event_out = process_event_output(str(return_dict[idstrg]['sents']['0']['events']))
 #        print("Mk-2\n",return_dict[idstrg]['sents']['0']['events']) ### debugging print ###
         
         nfound, ncoded, nnull = 0, 0, 0
+        cur_events = []
         for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
             try:
                 #if evt[0][0].startswith("---") or evt[1][0].startswith("---") or evt[2].startswith("---") :  # earlier version that skipped actors with a null primary code
@@ -525,6 +514,12 @@ def validate_record(valrecord):
                 nnull += 1
                 continue       
             try:
+                if doing_ar:  # remove event duplicates
+                    evtoken = evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0]
+                    if evtoken in cur_events:
+                        continue
+                    else:
+                        cur_events.append(evtoken)
                 fout.write("    " + evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")                        
                 ncoded += 1
                 totcoded += 1
@@ -544,10 +539,13 @@ def validate_record(valrecord):
                         elif doing_ar:
                             camcue = evt[2][:2]
                             if (        # for AR do a generous match with the CAMEO cue code
-                                (edict['plover'][0] == "PROTEST" and camcue in ["13", "14"]) or
-                                (edict['plover'][0] == "ASSAULT" and camcue in ["18", "19", "20"])
+                                ((edict['plover'][0] == "PROTEST" and camcue in ["13", "14"]) or
+                                (edict['plover'][0] == "ASSAULT" and camcue in ["18", "19", "20"]))
+                                and
+                                edict['sourcecode'] == evt[0][0] and
+                                edict['targetcode'] == evt[1][0]
                                 ): 
-                                fout.write("  CORRECT\n")
+                                fout.write("  ARCORRECT\n")
                                 nfound += 1
                                 edict['found'] = True
                                 break
@@ -619,12 +617,24 @@ def validate_record(valrecord):
                 fout.write("    " + key  + ': ' + str(val) + '\n')
     else:
         fout.write("    No events returned")
-        if "noevents" in valrecord['events'][0]:
-            nfound, ncoded, nnull = 1, 1, 0  # count this as a match
-            fout.write("  CORRECT\n")            
+        if doing_ar:
+#            fout.write("\nMk1:" + str(valrecord['events'][0]) + "\n")
+            if (("noevents" in valrecord['events'][0]) or
+                (valrecord['events'][0]['sourcecode'] == "None None" and valrecord['events'][0]['targetcode'] == "None None") #or
+#                (valrecord['events'][0]['sourcecode'] == "None CVL" and valrecord['events'][0]['targetcode'] == "None None")
+                ):
+                nfound, ncoded, nnull = 1, 1, 0  # count this as a match
+                fout.write("  CORRECT\n")
+            else:
+                nfound, ncoded, nnull = 0, 0, 0
+                fout.write("  ERROR\n")
         else:
-            nfound, ncoded, nnull = 0, 0, 0
-            fout.write("  ERROR\n")
+            if "noevents" in valrecord['events'][0]:
+                nfound, ncoded, nnull = 1, 1, 0  # count this as a match
+                fout.write("  CORRECT\n")            
+            else:
+                nfound, ncoded, nnull = 0, 0, 0
+                fout.write("  ERROR\n")
         
         
     if doing_esutd or doing_es:
@@ -911,6 +921,7 @@ if __name__ == '__main__':
     elif "-es" in sys.argv:
         directory_name = "validate/spanish"
         filename = "spanish_validation_1018_noaccent.xml" 
+#        filename = "spanish_validation_1018_noaccent_mod.xml" #51DBG
         doing_es = True
     elif "-esutd" in sys.argv:
         directory_name = "validate/spanish"
@@ -950,7 +961,8 @@ if __name__ == '__main__':
     print("Reading validation file ",os.path.join(directory_name, filename))
     fout = open("Validation_output" + "".join(sys.argv[1:]).replace("-","_") + ".txt", 'w')
 
-    utilities.init_logger('UD-PETR_Validate.log', debug = False)
+#    utilities.init_logger('UD-PETR_Validate.log', debug = False)
+#    utilities.init_logger_PAS('UD-PETR_DBG_Validate.log') # 51DBG
     timestamp =  datetime.datetime.now().strftime("%Y%m%d")[2:] + "-" + datetime.datetime.now().strftime("%H%M%S")
     fout.write("UD-PETRARCH functional validation\nRun date-time: " + timestamp + "\nValidation file:    " + filename + "\n")
 
@@ -1020,6 +1032,8 @@ if __name__ == '__main__':
     print("===========================\n")
     print("Expected events: {:4d}  Coded events: {:4d}    Non-null events: {:4d}".format(totevents, totcoded, totnotnull))
     
+#    exit() # 51DBG
+
     if doing_esutd:
         csv_writer("Validation_output_Mk1")
 
@@ -1046,7 +1060,7 @@ if __name__ == '__main__':
         tot = sum(cue_counts.values())
         for key in sorted(cue_counts):
             print("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
-            fout.write("{:s}  {:6d}   {:8.2f}%".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
+            fout.write("{:s}  {:6d}   {:8.2f}%\n".format(key, cue_counts[key],(cue_counts[key] * 100.0)/tot))
         print("--------------------------\nTotal:{:4d}".format(tot))
         fout.write("--------------------------\nTotal:{:4d}\n".format(tot))
         print("===========================\n")

@@ -287,6 +287,8 @@ class NounPhrase:
 
         actorcodes = list(set(actorcodes))
         agentcodes = list(set(agentcodes))
+        actorcodes.sort()
+        agentcodes.sort()
         return actorcodes, agentcodes
 
     def mix_codes(self, agents, actors):
@@ -573,12 +575,20 @@ An instantiated Sentence object
     def str_to_graph(self, str):
         dpgraph = nx.DiGraph()
         parsed = self.parse.split("\n")
-        # print("stg-1",parsed)
+        # print(parsed)
 
         dpgraph.add_node(0, token='ROOT', pos='ROOT', lemma='ROOT')
         for p in parsed:
             temp = p.split("\t")
-            # print("stg-2",temp)
+            if "-" in temp[0]:
+                #skip line in Spanish 
+                #for example: parser split word "haberse" into "haber" and "se", line "24-25 haberse ...." is skipped
+                #24-25  haberse _   _   _   _   _   _   _   _
+                #24  haber   haber   AUX AUX VerbForm=Inf    26  aux _   _
+                #25  se  él  PRON    PRON    Person=3    26  obj _   _
+                continue
+
+            # print(temp)
             dpgraph.add_node(int(temp[0]), token=temp[
                              1], pos=temp[3], lemma=temp[2])
             dpgraph.add_edge(int(temp[6]), int(temp[0]), relation=temp[7])
@@ -1662,7 +1672,7 @@ An instantiated Sentence object
                 fulltargetmatch,_ = match_noun(path, fulltarget)
                 if not isinstance(fulltargetmatch, tuple) and fulltargetmatch:
                     #print("full target match")
-                    #raw_input(fulltargetmatch)
+                    #input(fulltargetmatch)
                     return fulltargetmatch
 
             return False
@@ -1724,6 +1734,7 @@ An instantiated Sentence object
         verbDictPath = verbDictionary
         code = None
         meaning = None
+        matched_line = None
         matched_txt = []
 
         codes = []
@@ -1774,11 +1785,14 @@ An instantiated Sentence object
                             # tempverbDictPath['#']['#']['meaning']
                             code = item['code']
                             meaning = item['meaning']
+                            matched_line = item['line']
 
-                            if (code != None and meaning != None):
-                                codes.append(code)
-                                meanings.append(meaning)
-                                matched_txts.append(matched_txt)
+                            #if (code != None and meaning != None):
+                            #    codes.append(code)
+                            #    meanings.append(meaning)
+                                #matched_txts.append(matched_txt)
+                            #   matched_txts.append(matched_line)
+
                     except:
                         print("passing:" + verb.text)
                         pass
@@ -1786,17 +1800,18 @@ An instantiated Sentence object
                 if (code != None and meaning != None):
                     codes.append(code)
                     meanings.append(meaning)
-                    matched_txts.append(matched_txt)
+                    #matched_txts.append(matched_txt)
+                    matched_txts.append(matched_line)
 
         if(len(verbtokens) > 1):
             logger.debug(codes)
             logger.debug(meanings)
             logger.debug(matched_txts)
+            #input(" ")
             #raw_input("verb pharse has length large than 1")
 
         if code != None and meaning != None:
-            logger.debug(code + "\t" + meaning + "\t" + verb.text + "\t" +
-                         (" ").join(matched_txt) + "\t" + str(len(verb.vpIDs)))
+            logger.debug(code + "\t" + meaning + "\t" + verb.text + "\t" + (" ").join(matched_txts) + "\t" + str(len(verb.vpIDs)))
         else:
             logger.debug("None code and none meaning")
 
@@ -1913,9 +1928,10 @@ An instantiated Sentence object
         triple_dict = {}
         triple_dict['triple'] = newtriple
         triple_dict['verbcode'] = verbcode
-        triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txt)
+        triple_dict['matched_txt'] = matched_pattern if matched_pattern != None else (" ").join(matched_txts)
         triple_dict['meaning'] = (",").join(meanings)
-
+        triple_dict['source_id'] = source.headID if not isinstance(source,basestring) else None
+        triple_dict['target_id'] = target.headID if not isinstance(target,basestring) else None
         #raw_input("Press Enter to continue...")
         return verbcode, triple_dict['matched_txt'],triple_dict['meaning'],tripleID, triple_dict
 
@@ -2132,12 +2148,16 @@ An instantiated Sentence object
                         meaning = target.mix_codes(newagentcodes, newactorcodes)
                         meaning = meaning if meaning != None else ['---']
                         target_meaning = meaning
+                        target.matched_txt = no_overlap_text
                     else:   
-                        target_meaning = ['---']          
+                        target_meaning = ['---']  
+                        triple['target_id']= None
+
 
                 elif overlap and len(target.matched_txt) == len(overlap):
                     # entire target actor is in the matched pattern
                     target_meaning = ['---']
+                    triple['target_id']= None
 
             if (target_meaning in [['---'],[]] or isinstance(target, basestring)) or (verb.passive and source_meaning in [['---'],[],'']):
                 verblist = self.metadata['othernoun'][verb.headID]
@@ -2159,10 +2179,14 @@ An instantiated Sentence object
                         source = newtarget
                         self.nouns[source.headID] = source
                         source_meaning = newtarget_meaning
+                        triple['source_id'] = source.headID
+
                     elif target_meaning in [['---'],[]] or isinstance(target, basestring):
                         target = newtarget
                         self.nouns[target.headID] = target
                         target_meaning = newtarget_meaning
+                        triple['target_id'] = target.headID
+
                         
                         #print("new target found,",target.text, target_meaning)
 
@@ -2206,8 +2230,9 @@ An instantiated Sentence object
                     source = newsource
                     self.nouns[source.headID] = source
                     source_meaning = newsource_meaning
+                    triple['source_id'] = source.headID
                     
-            #'''
+            
             #check if verb code updates:
             newverbcode, newmatched_txt, newmeanings, _ , _ = self.get_verb_code_per_triplet((source,target,verb))
             #print(triple['verbcode'],newverbcode,newmatched_txt,newmeanings)
@@ -2215,7 +2240,7 @@ An instantiated Sentence object
                 if newverbcode not in ['---',None] and "*" in newmatched_txt and "*" not in triple['matched_txt']:
                     triple['verbcode'] = newverbcode
                     #raw_input()
-            #'''
+            
 
             if verb.headID in self.rootID and tripleID not in paired_event:
                 if verb.headID in root_eventID:
@@ -2320,7 +2345,7 @@ An instantiated Sentence object
                             if transfer_pattern != "None":
                                 triple["before_transfer"] = event_before_transfer
                                 triple["after_transfer"] = event_after_transfer
-
+                                ##need update source, target ID info
 
                         elif current_event[0] and current_event[1]:
                             event_after_transfer = [current_event]
@@ -2447,19 +2472,20 @@ An instantiated Sentence object
             logger.debug("paired_event:" + tripleID)
             logger.debug(triple['event'])
             verbcode = triple['event'][2]
-            ids = tripleID.split("#")
+            verbid = tripleID.split("#")[2]
+            sourid = triple['source_id'] if triple['source_id']!= None else ""
             if verbcode not in allactors:
                 allactors[verbcode] = {}
-                allactors[verbcode]['vid'] = ids[2]
-            allactors[verbcode][ids[0]] = triple['event'][0]
+                allactors[verbcode]['vid'] = verbid
+            allactors[verbcode][sourid] = triple['event'][0]
 
         for verbcode, actors in allactors.items():
             idx = len(self.events)
             if len(actors) > 1:
                 for sid in actors.keys():
                     for tid in actors.keys():
-                        if sid != tid and sid != 'vid' and tid != 'vid':
-                            tripleID = sid + "#" + tid + "#" + \
+                        if sid != tid and sid != 'vid' and tid != 'vid' and sid != "" and tid != "":
+                            tripleID = str(sid) + "#" + str(tid) + "#" + \
                                 actors['vid'] + "#" + str(idx)
                             self.events[tripleID] = [
                                 actors[sid], actors[tid], verbcode]
@@ -2496,10 +2522,10 @@ An instantiated Sentence object
                 #if both source and target code are none
                 #self.events.pop(eventID)
                 removed.append(eventID)
-            elif event[2] in ["010"]:
+            #elif event[2] in ["010"]:
                 #print(event)
                 #raw_input()
-                removed.append(eventID)
+                #removed.append(eventID)
                 #self.events.pop(eventID)
             else:
                 if isinstance(event, tuple):
@@ -3156,21 +3182,42 @@ An instantiated Sentence object
 
         SentenceLoc = ''
 
+        #print("srccodes:",srccodes)
+        #print("tarcodes:",tarcodes)
+
         if len(srccodes) == 0 and len(tarcodes) == 0:
             logger.debug(
                 'Empty codes in make_event_strings(): {}'.format(self.ID))
             return CodedEvents
         if ':' in EventCode:  # symmetric event
-            if srccodes[0] == '---' or tarcodes[0] == '---':
-                if tarcodes[0] == '---':
-                    tarcodes = srccodes
-                else:
-                    srccodes = tarcodes
+            #if srccodes[0] == '---' or tarcodes[0] == '---':
+            #    if tarcodes[0] == '---':
+            #        tarcodes = srccodes
+            #    else:
+            #        srccodes = tarcodes
+
             ecodes = EventCode.partition(':')
-            CodedEvents = make_events(srccodes, tarcodes, ecodes[
-                                      0], CodedEvents, line, verbhead)
-            CodedEvents = make_events(tarcodes, srccodes, ecodes[
-                                      2], CodedEvents, line, verbhead)
+
+            for srccode in srccodes:
+                for tarcode in tarcodes:
+                    if '=' in srccode:
+                        srccode = srccode[:srccode.index("=")]
+
+                    if '=' in tarcode:
+                        tarcode = tarcode[:tarcode.index("=")]
+
+                    if srccode != '---' and tarcode != '---':
+                        #print("symmetric srccodes:",srccode)
+                        #print("symmetric tarcodes:",tarcode)
+                        #input(" ")
+
+                        CodedEvents = make_events([srccode], [tarcode], ecodes[
+                                                  0], CodedEvents, line, verbhead)
+                        #print(CodedEvents)
+                        CodedEvents = make_events([tarcode], [srccode], ecodes[
+                                                  2], CodedEvents, line, verbhead)
+                        #print(CodedEvents)
+                        #input(" ")
         else:
             CodedEvents = make_events(
                 srccodes, tarcodes, EventCode, CodedEvents, line, verbhead)
@@ -3406,7 +3453,7 @@ An instantiated Sentence object
 
                     verbcode = '---'
                     meaning = ''
-                    verbdata = {}
+                    verbdata = []
 
                     verb_start = verb.headID
                     verb_end = verb.headID
@@ -3482,6 +3529,8 @@ An instantiated Sentence object
                     #raw_input()
 
                     events_oneverb = []
+                    #if not isinstance(verbdata,list):
+                    #    input(type(verbdata))
                     for i in range(0,len(verbdata)):
                         meaning = verbdata[i]['meaning']
                         verbcode = verbdata[i]['code']
@@ -3529,7 +3578,8 @@ An instantiated Sentence object
                                 TargetLoc = self.find_target(lower, TargetLoc)
                                 logger.debug("CV-3 trg %s", TargetLoc)
 
-                            #print("TargetLoc", TargetLoc)
+                            #print("TargetLoc:", TargetLoc)
+                            #print("SourceLoc:",SourceLoc)
                             if not TargetLoc == "":
                                 if SourceLoc == "":
                                     #print(upper)
@@ -3542,13 +3592,17 @@ An instantiated Sentence object
                                 #if not SourceLoc == "":
 
                             logger.debug("CV-3 src %s", SourceLoc)
+                            #print("sourceloc:",SourceLoc)
+                            #print("targetloc:",TargetLoc)
                             events_oneverb = self.make_event_strings(
                                 events_oneverb, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+                            #print("eventoneverb after:",events_oneverb)
 
                             logger.debug("events_oneverb: %s", events_oneverb)
                             logger.debug("line: %s", line)
-                    
-                    '''               
+                            #input(" ")
+
+                    #'''               
                     events_oneverb_map = {}
                     for event in events_oneverb:
                         eventkey = event[0]+"#"+event[1]+"#"+event[-1]
@@ -3565,9 +3619,25 @@ An instantiated Sentence object
                                 pattern_events.append(event)
 
                         if len(pattern_events)> 0:
-                            filtered_events_oneverb.extend(pattern_events)
+                            max_pattern_event = pattern_events[0]
+                            for pattern_event in pattern_events:
+                                #print(pattern_event[-2].split())
+                                #print(max_pattern_event[-2].split())
+                                if len(pattern_event[-2].split()) > len(max_pattern_event[-2].split()):
+                                    
+                                    max_pattern_event = pattern_event
+                                    
+
+                            #print("max:",max_pattern_event[-2].split())
+                            #input(" ")
+
+                        if len(pattern_events)> 0:
+                            #filtered_events_oneverb.extend(pattern_events)
+                            filtered_events_oneverb.append(max_pattern_event)
                         else:
-                            filtered_events_oneverb.extend(events)
+                            #print("Events:",events)
+                            #filtered_events_oneverb.extend(events)
+                            filtered_events_oneverb.append(events[0])
 
                         #print(eventkey)
                         #print("all_events",events)
@@ -3575,14 +3645,14 @@ An instantiated Sentence object
                         #input(" ")
 
                     CodedEvents.extend(filtered_events_oneverb)
-                    '''
+                    #'''
 
-                    CodedEvents.extend(events_oneverb)
+                    #CodedEvents.extend(events_oneverb)
                     logger.debug("coded_events: %s", CodedEvents)
                     #input(" ")
             #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
                 #break
-
+        CodedEvents.sort(key=lambda x:x[0]+"#"+x[1]+"#"+x[2])
         return CodedEvents
 
     def skip_item(self, item):
@@ -4075,6 +4145,7 @@ An instantiated Sentence object
         return TargetLoc
 
     def find_source(self, UpperSeq, LowerSeq, Src, Trg):
+        #improvement needed 2018.10.24
         """
         Assign SourceLoc to the first coded or compound (NE in the UpperSeq; if
         neither found then first (NE with --- code Note that we are going through
@@ -4087,11 +4158,13 @@ An instantiated Sentence object
         """
         SourceLoc = Src
         kseq = 0
+        #print("UPPERSEQ:",UpperSeq)
         # print(LowerSeq[Trg[0]])
         in_NEC = False
         in_NE = False
         while kseq < len(UpperSeq):
             #print(UpperSeq[kseq])
+            #print(kseq,UpperSeq[kseq],"in_NE:",in_NE,"in_NEC:",in_NEC)
             if "~NEC" in UpperSeq[kseq]:
                 in_NEC = not in_NEC
             elif "~NE" in UpperSeq[kseq]:
@@ -4099,13 +4172,14 @@ An instantiated Sentence object
 
             if in_NEC and '(NEC' in UpperSeq[kseq]: # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
                 SourceLoc = [kseq, True]
-                return SourceLoc
+                #return SourceLoc
 
             if in_NE and not in_NEC and '(NE' in UpperSeq[kseq] and ('>---' not in UpperSeq[kseq]): #and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):
 
                 SourceLoc = [kseq, True]
                 return SourceLoc
             kseq += 1
+        
         kseq = 0
         while kseq < len(UpperSeq):
             if ('(NE' in UpperSeq[kseq]): # and not UpperSeq[kseq].endswith(LowerSeq[Trg[0]].split('>')[1]):

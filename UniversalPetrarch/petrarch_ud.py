@@ -380,8 +380,6 @@ def do_coding(event_dict):
                         break
 
                 t1 = time.time()
-#                print("UD-1 \ntr:",treestr, "\nST:", SentenceText, "\ndate:",Date)
-                
                 sentence = PETRgraph.Sentence(treestr, SentenceText, Date)
                 # print(sentence.txt)
                 # this is the entry point into the processing in PETRgraph
