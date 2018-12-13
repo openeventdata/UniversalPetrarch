@@ -31,6 +31,7 @@ class NounPhrase:
         self.matched_txt = None
         self.prep_phrase = []
         self.compound_modifier = False
+        self.compound_modifiers = {}
 
     def get_meaning(self):
         logger = logging.getLogger('petr_log.NPgetmeaning')
@@ -61,18 +62,48 @@ class NounPhrase:
             npMainTextIds.sort()
             npMainTokens = []
 
-            for npID in npMainTextIds: #range(npMainTextIds[0], min(npMainTextIds[-1], self.npIDs[-1]) + 1):
-                npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
+            npcompTokens = []
+            if self.compound_modifier:
+                compound_mods = []
+                for mod in self.compound_modifiers.values():
+                    for m in mod:
+                        compound_mods.extend(m)
+                #print(compound_mods)
+
+                for npID in npMainTextIds:
+                    if npID not in compound_mods:
+                        npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
+                    
+                for mhead,cmod in self.compound_modifiers.items():
+                    if mhead in npMainTextIds:
+                        for m in cmod:
+                            npcompToken = [self.sentence.udgraph.node[t]['token'] for t in m]
+                            npcompTokens.append(npcompToken)
+                            #print("npcompToken:",npcompToken)
+            else:
+
+                for npID in npMainTextIds: #range(npMainTextIds[0], min(npMainTextIds[-1], self.npIDs[-1]) + 1):
+                    npMainTokens.append(self.sentence.udgraph.node[npID]['token'])
+
             npMainText = (" ").join(npMainTokens)
-
-
             logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
+            #input("")
+
             codes, roots, matched_txt = self.textMatching(npMainText.upper().split(" "))
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
 
+            compound_mods_code = []
+            for ccomp in npcompTokens:
+                ccomptext = (" ").join(ccomp)
+                compcodes,comproots, compmatched_txt = self.textMatching(ccomptext.upper().split(" "))
+                cactorcodes, cagentcodes = self.resolve_codes(compcodes, compmatched_txt)
+                compfullcode = self.mix_codes(cagentcodes, cactorcodes)
+                #print("ccomptext:",ccomptext,compfullcode,compmatched_txt)
+                compound_mods_code.append((compfullcode,compmatched_txt))
+
             if (both and actorcodes and agentcodes) or (not both and (actorcodes or agentcodes)):
                 # if both actor and agent are found, return the code
-                return codes, roots, matched_txt
+                return codes, roots, matched_txt,compound_mods_code
 
             return False
 
@@ -96,10 +127,15 @@ class NounPhrase:
             main_matched.append(noun_matched)
 
         if len(main_matched)==1:
-            codes, roots, matched_txt = main_matched[0]
+            codes, roots, matched_txt, compound_mods_code = main_matched[0]
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
             self.meaning = self.mix_codes(agentcodes, actorcodes)
             self.matched_txt = matched_txt
+
+            for compmod_code in compound_mods_code:
+                self.meaning.extend(compmod_code[0])
+                self.matched_txt.extend(compmod_code[1])
+
             logger.debug("npMainText meaning:" + (",").join(self.meaning))
             return codes, roots, matched_txt
         elif len(main_matched)==2:
@@ -107,13 +143,18 @@ class NounPhrase:
             #if true, return codes from main part 2
             containsall = all(m in main_matched[1][2] for m in main_matched[0][2])
             if containsall:
-                codes, roots, matched_txt = main_matched[1]
+                codes, roots, matched_txt, compound_mods_code = main_matched[1]
             else:
-                codes, roots, matched_txt = main_matched[0]
+                codes, roots, matched_txt, compound_mods_code = main_matched[0]
 
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
             self.meaning = self.mix_codes(agentcodes, actorcodes)
             self.matched_txt = matched_txt
+
+            for compmod_code in compound_mods_code:
+                self.meaning.extend(compmod_code[0])
+                self.matched_txt.extend(compmod_code[1])
+
             logger.debug("npMainText meaning:" + (",").join(self.meaning))
             return codes, roots, matched_txt
 
@@ -661,6 +702,7 @@ An instantiated Sentence object
         npIDs = []
         prep_phrase = []
         found_compound_modifier = False
+        compound_mod_head = []
 
         if(self.udgraph.node[nounhead]['pos'] in ['NOUN', 'ADJ', 'PROPN','ADV']):
             allsuccessors = nx.dfs_successors(self.udgraph, nounhead)
@@ -720,16 +762,48 @@ An instantiated Sentence object
                                 for nmodchild in allsuccessors[child]:
                                     if self.udgraph[child][nmodchild]['relation'] in ['conj'] and self.udgraph.node[nmodchild]['pos'] in ['NOUN', 'PROPN']:
                                         found_compound_modifier = True
+                                        compound_mod_head.append((child,nmodchild))
+                                        #print("compound modifier:",nmodchild,self.udgraph.node[nmodchild])
+
 
 
                 parents = temp
-                                               
+                                   
 
         #print(found_compound_modifier)
+
+        compound_mods = {}
+        for nhead, chead in compound_mod_head:
+            tids = []
+            tids.append(chead)
+
+            parents = [chead]
+            while len(parents) > 0:
+                temp = []
+                for parent in parents:
+                    if parent in allsuccessors.keys():
+                        for child in allsuccessors[parent]:
+                            temp.append(child)
+                            tids.append(child)
+                parents = temp
+
+            tids = list(set(tids))
+
+            tokens = [self.udgraph.node[tid]['token'] for tid in tids]
+            #print("compound_mod:",tids,tokens)
+            if nhead in compound_mods:
+                compound_mods[nhead].append(tids)
+            else:
+                compound_mods[nhead] = []
+                compound_mods[nhead].append(tids)
+
+
+
+
         npIDs.append(nounhead)
         npTokens = []
         npIDs.sort()
-        # print(npIDs)
+        #print(npIDs)
         if self.udgraph.node[npIDs[0]]['pos'] == 'ADP':
             npIDs = npIDs[1:]
         for npID in npIDs:
@@ -741,6 +815,7 @@ An instantiated Sentence object
         np.text = nounPhrasetext
         np.head = self.udgraph.node[nounhead]['token']
         np.compound_modifier = found_compound_modifier
+        np.compound_modifiers = compound_mods
 
         logger.debug("noun:" + nounPhrasetext)
         for pp in prep_phrase:
@@ -753,7 +828,7 @@ An instantiated Sentence object
             pphrase.text = pptext
             np.prep_phrase.append(pphrase)
 
-            logger.debug(pptext)
+            logger.debug("PP:" + pptext)
 
         return np
 
@@ -3399,7 +3474,7 @@ An instantiated Sentence object
 
         logger = logging.getLogger("petr_log.petrarch1")
         nouns, compound_nouns = self.get_all_nounPhrases()
-        # raw_input()
+        #input(" ")
 
         CodedEvents = []
         SourceLoc = ""
@@ -3526,7 +3601,7 @@ An instantiated Sentence object
                     lowerlemma = self.get_lower_seq(
                         verb_end + 1, len(self.udgraph.node), nouns, compound_nouns, True)
                     logger.debug("Lower sequence: %s", lower)
-                    #raw_input()
+                    #input(" ")
 
                     events_oneverb = []
                     #if not isinstance(verbdata,list):
@@ -3664,6 +3739,7 @@ An instantiated Sentence object
         """
         if item[0] in "~(":
             return 1
+        '''
         if item in ["THE", "A", "AN", "IT", "HE", "THEY",
                                 "HER", "HAS", "HAD", "HAVE", "SOME", "FEW", "THAT"]:
             return 2
@@ -3672,6 +3748,8 @@ An instantiated Sentence object
             return 3
         if item in ["DOLLAR", "DUCAT"]:
             return 5
+        '''
+        
         try:
             int(item)
             return 4
@@ -4208,16 +4286,22 @@ An instantiated Sentence object
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
+                    #if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass'] and self.udgraph.nodes[predecessor]['pos']== "VERB":
                         found = True
                         break
 
                 if found:
                     noun = self.get_nounPharse(nodeID)
-                    nouns.append(noun)
+                    if len(noun.npIDs)>0:
+                        nouns.append(noun)
+                    #print("noun:",nodeID,noun.text,noun.npIDs)
 
-                    conj_nouns = self.get_conj_noun_for_petrarch1(nodeID, noun) 			
-                    nouns.extend(conj_nouns)
+                    conj_nouns = self.get_conj_noun_for_petrarch1(nodeID, noun)
+                    for conj_noun in conj_nouns:
+                        if len(conj_noun.npIDs)>0:
+                            nouns.append(conj_noun)			
+                    #nouns.extend(conj_nouns)
 
                     if conj_nouns:
                         ids = []
@@ -4228,8 +4312,10 @@ An instantiated Sentence object
                         compound_nouns.append((ids[0], ids[-1])) #start_idx and end_idx of compound noun phrase
                         #print("compound:", (ids[0], ids[-1]))
 
+                    #input(" ")
         
         for noun in nouns:
+            #print("noun:",noun.head,noun.text)
             noun.get_meaning()
             noun.meaning = ["---"] if noun.meaning == [] else noun.meaning
             logger.debug("noun: " + noun.head + " code: " +
@@ -4251,8 +4337,8 @@ An instantiated Sentence object
         """
         conj_noun = []
         for successor in self.udgraph.successors(nodeID):
-            if(self.udgraph[nodeID][successor]['relation'] == 'conj'):
-                # conj_noun.append(self.get_nounPharse(successor))
+            if self.udgraph[nodeID][successor]['relation'] in ['conj','appos']:
+                conj_noun.append(self.get_nounPharse(successor))
                 conjnouns = self.get_nounPharse(successor)
 
                 for conjnoun in [conjnouns]:
@@ -4276,6 +4362,7 @@ An instantiated Sentence object
 
                     nntext = (' ').join(npTokens)
                     conjnoun.text = nntext
+                    #print("conj:",nntext)
 
                     conj_noun.append(conjnoun)
 
