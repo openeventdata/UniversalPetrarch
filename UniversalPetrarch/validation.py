@@ -8,16 +8,18 @@ https://github.com/openeventdata/UniversalPetrarch/tree/dev-validate
 
 TO RUN PROGRAM:
 
-python3 validation.py [-d] [-i filename] [-p1] [-p2] [-es] [-ar] [-esutd]
+python3 validation.py [-d] [-i filename] [-p1] [-p2] [-en] [-es] [-ar] [-esutd]
 
   -d: use alternatve file with dictionaries in validate/, typically a debug file. Input files are hard coded.
   -i <filename>: use alternative file with dictionaries in data/dictionaries
   -p1/-p2: batch comparison
+  -en:     English GSR set (same as default)
   -ar:     Arabic GSR set
   -es :    Spanish GSR set using standard metrics
   -esutd : Spanish GSR set using UT/Dallas metrics and older spanish_protest_cameo_4_jj_validation.xml file
   -nn:     null actor cases (--- ---) excluded from tabulation 
-  
+
+  Running without any options defaults to the English validity tests  
 
 ======================================  
 
@@ -37,6 +39,12 @@ PROGRAMMING NOTES:
     -- a "No events" and a GSR [NONE NONE]/[NONE NONE] source/target is counted as "CORRECT"; code is also in the program
        to also include GSR [NONE CVL]/[NONE NONE] source/target is counted as "CORRECT"
     -- Duplicate coded events are eliminated: this reduces the FP rate by about half
+    
+5. If doing_en, events that have either a null ("---") source or target are not included in the evaluation (see conditional
+   in validate_record(valrecord) ca. line 520): this provides compatibility with earlier assessments of validity for PETR-1
+   and PETR-2 which had this requirement (and thus the null records aren't in the validation annotations)
+   
+6. Calling PETRwriter.write_events() also requires a change in that code in PETRwriter: see note on this below
     
     
 SYSTEM REQUIREMENTS
@@ -67,7 +75,8 @@ REVISION HISTORY:
 19-Oct-18: initial integration of Spanish coding under the -esutd option
 15-Nov-18: initial integration of Arabic coding under the -ar option
 19-Nov-18: -es option now computes stats for exact and partial matches similar to other languages
-07-Dec-18: Various adjustments to the -ar computation; added PETRwriter.write_events() output
+07-Dec-18: Various adjustments to the -ar computation; added optional PETRwriter.write_events() output
+14-Dec-18: Various adjustments to the default English computation
 
 =========================================================================================================
 """
@@ -96,6 +105,7 @@ run_sample_only = False # comment-out to debug
 cue_counts = collections.Counter()
 allmatch = False
 
+doing_en = False
 doing_es = False
 doing_esutd = False
 doing_ar = False
@@ -161,6 +171,8 @@ def read_validate_dictionaries():
     print('Verb dictionary:', PETRglobals.VerbFileName)
     verb_path = utilities._get_data(directory_name, PETRglobals.VerbFileName)
     PETRreader.read_verb_dictionary(verb_path)
+    PETRreader.show_AR_verb_dictionary()
+#    exit()
 
     if PETRglobals.CodeWithPetrarch1:
         print('Petrarch 1 Verb dictionary:', PETRglobals.P1VerbFileName)
@@ -468,7 +480,12 @@ def validate_record(valrecord):
         u'meta': {u'date': valrecord['date']}}}
 
     return_dict = petrarch_ud.do_coding(dict)
-    PETRwriter.write_events(return_dict, "evts.validation.txt")
+    """ To see the write_events() output, uncomment next line and change the mode in the line
+                    f = codecs.open(output_file, encoding='utf-8', mode='a')
+        near the end of PETRwriter.write_events from "w" to "a" (otherwise only the results of
+        the last record coded, which may be null, are written to the file)
+    """
+#    PETRwriter.write_events(return_dict, "evts.validation.txt")
 #    write_dict()
 
     if not doing_compare:
@@ -489,6 +506,8 @@ def validate_record(valrecord):
             if doing_esutd:
                 fout.write("    " + edict['eventcode']  + ' ' + valrecord['eventtexts'][i]['eventtext'] + '\n')
             elif doing_ar:
+                edict['sourcecode'] = edict['sourcecode'].replace(" ", "").replace("None", "---")
+                edict['targetcode'] = edict['targetcode'].replace(" ", "").replace("None", "---")
                 fout.write("    " + edict['plover'][0]  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n')              
             else:
                 fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n')              
@@ -505,6 +524,10 @@ def validate_record(valrecord):
         nfound, ncoded, nnull = 0, 0, 0
         cur_events = []
         for key, evt in return_dict[idstrg]['sents']['0']['events'].items():
+
+            if doing_en:
+                if evt[0][0] == "---" or evt[1][0] == "---": continue  # this gives compatibility with earlier evaluations: see note in header
+                
             try:
                 #if evt[0][0].startswith("---") or evt[1][0].startswith("---") or evt[2].startswith("---") :  # earlier version that skipped actors with a null primary code
                 if evt[2].startswith("---") :
@@ -545,7 +568,7 @@ def validate_record(valrecord):
                                 edict['sourcecode'] == evt[0][0] and
                                 edict['targetcode'] == evt[1][0]
                                 ): 
-                                fout.write("  ARCORRECT\n")
+                                fout.write("  CORRECT\n")
                                 nfound += 1
                                 edict['found'] = True
                                 break
@@ -688,7 +711,7 @@ def validate_record(valrecord):
             fout.write(" --> Exception generating PETRgraph.Sentence(): " + str(e) + '\n')
             parse_verb(phrase_dict, sentence)
 
-        if doing_esutd or doing_es or doing_ar:
+        if doing_esutd or doing_es or doing_ar or doing_en:
                 if valrecord['id'] not in stats_dict:
                     stats_dict[valrecord['id']] = {}
                     
@@ -885,7 +908,7 @@ def do_validation():
                 line = fin.readline() 
 
             print("\nRecord:",valrecord['id'])
-#            print(valrecord)
+#            print("dv-valrecord:", valrecord)
             
             allmatch = False
             if "P1" in valrecord:
@@ -931,7 +954,8 @@ if __name__ == '__main__':
         directory_name = "validate/arabic"
 #        filename = "arabic_protest_gsr_validation.xml"
 #        filename = "arabic_assault_gsr_validation.xml"
-        filename = "arabic_gsr_validation_18-11-14.xml"  # combination of the above
+#        filename = "arabic_gsr_validation_18-11-14.xml"  # combination of the above
+        filename = "arabic_gsr_validation_18-12-13.xml"  # first light cases
         doing_ar = True
     elif "-i" in sys.argv:
         directory_name = "data/text"
@@ -947,11 +971,12 @@ if __name__ == '__main__':
             doing_P1 = True
         else:
             doing_P2 = True 
-    else:
+    else:  # no options or -en
         directory_name = "validate"
         filename = "PETR_Validate_records_2_02.xml"  # path to validation file
+        doing_en = True
         
-    doing_standard_counts = doing_compare or doing_ar or doing_es
+    doing_standard_counts = doing_compare or doing_ar or doing_es or doing_en
 
     try:
         fin = open(os.path.join(directory_name, filename),'r')
@@ -959,7 +984,10 @@ if __name__ == '__main__':
         print("can't find the validation file", os.path.join(directory_name, filename))
         exit()
     print("Reading validation file ",os.path.join(directory_name, filename))
-    fout = open("Validation_output" + "".join(sys.argv[1:]).replace("-","_") + ".txt", 'w')
+    outfilename = "Validation_output" + "".join(sys.argv[1:]).replace("-","_")
+    if doing_en and "_en" not in outfilename:
+        outfilename += "_en"
+    fout = open(outfilename + ".txt", 'w')
 
 #    utilities.init_logger('UD-PETR_Validate.log', debug = False)
 #    utilities.init_logger_PAS('UD-PETR_DBG_Validate.log') # 51DBG
