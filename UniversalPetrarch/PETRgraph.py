@@ -363,8 +363,30 @@ class NounPhrase:
 
         codes = set()
         actors = actors if actors else ['~']
+        #print("actors:",actors)
+
+        #Deduplicate extracted agents:
+        #1. remove a agent if it is part of another agent
+        # e.g. [~CHR, ~CHRCTH] remove ~CHR
+        #2. remove a agent if it is part of the actor code 
+        uniq_agents = []
         for ag in agents:
-            if ag == '~PPL' and len(agents) > 1:
+            found_in_other = False
+            for oag in agents:
+                if ag != oag and ag in oag:
+                    #print("ag:",ag,"oag:",oag)
+                    found_in_other = True
+
+            for actor in actors:
+                temp = ag.replace("~","")
+                if temp in actor:
+                    found_in_other = True
+
+            if not found_in_other:
+                uniq_agents.append(ag)
+
+        for ag in uniq_agents:
+            if ag == '~PPL' and len(uniq_agents) > 1:
                 continue
         #            actors = map( lambda a : mix( a[0], ag[1:]), actors)
             actors = [mix(a, ag) for a in actors]
@@ -372,6 +394,11 @@ class NounPhrase:
         # --        print('mc-1',actors)
         for code in filter(lambda a: a not in ['', '~', '~~', None], actors):
             codes.add(code)
+
+        #print("agents:",agents)
+        #print("unique agents:",uniq_agents)
+        #print("codes:",codes)
+        #input(" ")
         return list(codes)
 
         # 16.04.25 hmmm, this is either a construct of utterly phenomenal
