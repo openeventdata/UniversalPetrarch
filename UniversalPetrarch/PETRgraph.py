@@ -3477,6 +3477,7 @@ An instantiated Sentence object
         #input(" ")
 
         CodedEvents = []
+        CodedEventsMap = {} #key: verb, value: events of that verb
         SourceLoc = ""
 
         head_verbs, conj_verbs = self.get_rootNode()
@@ -3719,12 +3720,33 @@ An instantiated Sentence object
                         #print("pattern_events", pattern_events)
                         #input(" ")
 
-                    CodedEvents.extend(filtered_events_oneverb)
-                    #'''
+                    #CodedEvents.extend(filtered_events_oneverb)
+                    CodedEventsMap[verbID] = filtered_events_oneverb
+
 
                     #CodedEvents.extend(events_oneverb)
                     logger.debug("coded_events: %s", CodedEvents)
                     #input(" ")
+        
+        for verbID, events in CodedEventsMap.items():
+            found_in_other_pattern = False
+
+            for event in events:
+                verbhead = event[-1]
+                pattern = event[-2]
+                for overbID, oevents in CodedEventsMap.items():
+                    if overbID != verbID:
+                        for oevent in oevents:
+                            opattern = oevent[-2]
+                            if verbhead in opattern:
+                                logger.debug("found verb: %s in other matched pattern %s", verbhead, opattern)
+                                #input(" ")
+                                found_in_other_pattern = True
+
+            if not found_in_other_pattern:
+                CodedEvents.extend(events)
+        
+
             #if verbID not in head_verbs and CodedEvents and '---' not in [item for event in CodedEvents for item in event]:
                 #break
         CodedEvents.sort(key=lambda x:x[0]+"#"+x[1]+"#"+x[2])
