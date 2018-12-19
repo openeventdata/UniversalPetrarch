@@ -3642,10 +3642,10 @@ An instantiated Sentence object
                     for i in range(0,len(verbdata)):
                         meaning = verbdata[i]['meaning']
                         verbcode = verbdata[i]['code']
-                        line = verbdata[i]['line']
+                        verbline = verbdata[i]['line']
                         matchlist = []
                         logger.debug(
-                            "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
+                            "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, verbline)
                         if "#" not in verb.meaning:
                             verb.meaning = meaning+"#"
                             verb.code = verbcode+"#"
@@ -3666,7 +3666,7 @@ An instantiated Sentence object
                         if not vpm == {}:
                             hasmatch = True
                             EventCode = vpm[0][0]['code']
-                            line = vpm[0][0]['line']
+                            line = vpm[0][0]['line'] if "*" in vpm[0][0]['line'] else verbline
                             SourceLoc = lowsrc if not lowsrc == "" else vpm[2]
                             TargetLoc = lowtar if not lowtar == "" else vpm[1]
                             matchlist = lowmatchlist
@@ -3677,6 +3677,7 @@ An instantiated Sentence object
                         if hasmatch and EventCode == '---':
                             hasmatch = False
                         if not hasmatch and verbcode != '---':
+                            line = verbline
                             logger.debug(
                                 "Matched on the primary verb %s, %s, %s", verbhead, meaning, line)
                             EventCode = verbcode
