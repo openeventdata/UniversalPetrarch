@@ -87,10 +87,13 @@ class NounPhrase:
 
             npMainText = (" ").join(npMainTokens)
             logger.debug("npMainText:" + npMainText+" found_compound:"+ str(self.compound_modifier))
+            
             #input("")
 
             codes, roots, matched_txt = self.textMatching(npMainText.upper().split(" "))
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
+
+            #print("matched_txt:",matched_txt)
 
             compound_mods_code = []
             for ccomp in npcompTokens:
@@ -3172,7 +3175,7 @@ An instantiated Sentence object
 
         return LowerSeq
 
-    def make_event_strings(self, CodedEv, UpperSeq, LowerSeq, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead):
+    def make_event_strings(self, CodedEv, UpperSeq, LowerSeq, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead, matchlist):
         """
         Creates the set of event strings, handing compound actors and symmetric
         events.
@@ -3204,7 +3207,7 @@ An instantiated Sentence object
             else:
                 return [fullcode, None, None]
 
-        def make_events(codessrc, codestar, codeevt, CodedEvents_, line, verbhead):
+        def make_events(codessrc, codestar, codeevt, CodedEvents_, line, verbhead, matchlist):
             """
             Create events from each combination in the actor lists except self-references
             """
@@ -3246,8 +3249,10 @@ An instantiated Sentence object
                             CodedEvents[-1].extend([srclist[2], tarlist[2]])
                         else:
                             CodedEvents[-1].extend(["",""])
+
                         CodedEvents[-1].append(line)
                         CodedEvents[-1].append(verbhead)
+                        CodedEvents[-1].append(matchlist)
 
             return CodedEvents
 
@@ -3297,7 +3302,7 @@ An instantiated Sentence object
             #        tarcodes = srccodes
             #    else:
             #        srccodes = tarcodes
-
+            
             ecodes = EventCode.partition(':')
 
             for srccode in srccodes:
@@ -3314,15 +3319,15 @@ An instantiated Sentence object
                         #input(" ")
 
                         CodedEvents = make_events([srccode], [tarcode], ecodes[
-                                                  0], CodedEvents, line, verbhead)
+                                                  0], CodedEvents, line, verbhead,matchlist)
                         #print(CodedEvents)
                         CodedEvents = make_events([tarcode], [srccode], ecodes[
-                                                  2], CodedEvents, line, verbhead)
+                                                  2], CodedEvents, line, verbhead,matchlist)
                         #print(CodedEvents)
                         #input(" ")
         else:
             CodedEvents = make_events(
-                srccodes, tarcodes, EventCode, CodedEvents, line, verbhead)
+                srccodes, tarcodes, EventCode, CodedEvents, line, verbhead,matchlist)
 
         if PETRglobals.RequireDyad:
             ka = 0
@@ -3638,6 +3643,7 @@ An instantiated Sentence object
                         meaning = verbdata[i]['meaning']
                         verbcode = verbdata[i]['code']
                         line = verbdata[i]['line']
+                        matchlist = []
                         logger.debug(
                             "CV-1 Verb Code Found:\n meaning:%s \n verbcode: %s \n line: %s", meaning, verbcode, line)
                         if "#" not in verb.meaning:
@@ -3654,7 +3660,7 @@ An instantiated Sentence object
                                 'phrases'][meaning]
                         # logger.debug("CV-2 patlist: %s", patternlist.keys())
 
-                        vpm, lowsrc, lowtar = self.petrarch1_verb_pattern_match(
+                        vpm, lowsrc, lowtar, lowmatchlist = self.petrarch1_verb_pattern_match(
                             patternlist, upperlemma, upper, lowerlemma, lower)
                         hasmatch = False
                         if not vpm == {}:
@@ -3663,10 +3669,10 @@ An instantiated Sentence object
                             line = vpm[0][0]['line']
                             SourceLoc = lowsrc if not lowsrc == "" else vpm[2]
                             TargetLoc = lowtar if not lowtar == "" else vpm[1]
+                            matchlist = lowmatchlist
 
                             logger.debug("EventCode: %s,%s,%s,%s",
-                                         EventCode, line, SourceLoc, TargetLoc)
-                        #input(" ")
+                                         EventCode, line, SourceLoc, TargetLoc)    
 
                         if hasmatch and EventCode == '---':
                             hasmatch = False
@@ -3698,7 +3704,7 @@ An instantiated Sentence object
                             #print("sourceloc:",SourceLoc)
                             #print("targetloc:",TargetLoc)
                             events_oneverb = self.make_event_strings(
-                                events_oneverb, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead)
+                                events_oneverb, upper, lower, SourceLoc, TargetLoc, IsPassive, EventCode, line, verbhead, matchlist)
                             #print("eventoneverb after:",events_oneverb)
 
                             logger.debug("events_oneverb: %s", events_oneverb)
@@ -3708,7 +3714,7 @@ An instantiated Sentence object
                     #'''               
                     events_oneverb_map = {}
                     for event in events_oneverb:
-                        eventkey = event[0]+"#"+event[1]+"#"+event[-1]
+                        eventkey = event[0]+"#"+event[1]+"#"+event[-2] #event[-2] is the matched verb
                         if eventkey in events_oneverb_map:
                             events_oneverb_map[eventkey].append(event)
                         else:
@@ -3718,53 +3724,78 @@ An instantiated Sentence object
                     for evenkey, events in events_oneverb_map.items():
                         pattern_events = []
                         for event in events:
-                            if "*" in event[-2]:
+                            if "*" in event[-3]:
                                 pattern_events.append(event)
 
-                        if len(pattern_events)> 0:
-                            max_pattern_event = pattern_events[0]
-                            for pattern_event in pattern_events:
-                                #print(pattern_event[-2].split())
-                                #print(max_pattern_event[-2].split())
-                                if len(pattern_event[-2].split()) > len(max_pattern_event[-2].split()):
-                                    
-                                    max_pattern_event = pattern_event
-                                    
+                        max_pattern_events = []
+                        max_pattern_length = -1
 
-                            #print("max:",max_pattern_event[-2].split())
+                        if len(pattern_events)> 0:
+                            for pattern_event in pattern_events:
+                                if len(pattern_event[-3].split()) > max_pattern_length:
+                                    max_pattern_length = len(pattern_event[-3].split())
+                                    
+                            for pattern_event in pattern_events:
+                                #print("pattern_event:",len(pattern_event[-3].split()),pattern_event[-3])
+                                if len(pattern_event[-3].split()) == max_pattern_length:
+                                    max_pattern_events.append(pattern_event)
+                            
+                            #print("max_pattern_length:",max_pattern_length)
+                            #print("max_pattern_events:",max_pattern_events)
                             #input(" ")
 
-                        if len(pattern_events)> 0:
-                            #filtered_events_oneverb.extend(pattern_events)
-                            filtered_events_oneverb.append(max_pattern_event)
-                        else:
-                            #print("Events:",events)
-                            #filtered_events_oneverb.extend(events)
-                            filtered_events_oneverb.append(events[0])
+                            if len(max_pattern_events)>1:
+                                #if more than one longest matched patterns, 
+                                #return the one whose matched token is closest to the verb
+                                event_map = {}
+                                for e in max_pattern_events:
+                                    etuple = (e[0],e[1])
+                                    if etuple in event_map:
+                                        event_map[etuple].append(e)
+                                    else:
+                                        event_map[etuple] = [e]
+                                #print(event_map)
+                                #input("")
 
-                        #print(eventkey)
-                        #print("all_events",events)
-                        #print("pattern_events", pattern_events)
-                        #input(" ")
+                                for key, events in event_map.items():
+                                    closest_pos = float("inf")
+                                    closest_evt = None
+                                    #print("key:",key)
+                                    for event in events:
+                                        #print("event:",event)
+                                        matchlist = event[-1]
+                                        matchlocs = [idx for idx in range(len(matchlist)) if matchlist[idx] != "*"]
+                                        if matchlocs and matchlocs[0]<closest_pos:
+                                            closest_pos = matchlocs[0]
+                                            closest_evt = event
+
+                                    if closest_evt != None:
+                                        filtered_events_oneverb.append(closest_evt)
+                                    else:
+                                        filtered_events_oneverb.extend(events)
+
+                                #print("filtered_events_oneverb:",filtered_events_oneverb)
+                                #print("max_pattern_events:",max_pattern_events)
+                                #input(" ")
+                            else:
+                                filtered_events_oneverb.extend(max_pattern_events)
+                        else:
+                            filtered_events_oneverb.append(events[0])
 
                     #CodedEvents.extend(filtered_events_oneverb)
                     CodedEventsMap[verbID] = filtered_events_oneverb
-
-
-                    #CodedEvents.extend(events_oneverb)
-                    logger.debug("coded_events: %s", CodedEvents)
-                    #input(" ")
-        
+       
         for verbID, events in CodedEventsMap.items():
             found_in_other_pattern = False
 
             for event in events:
-                verbhead = event[-1]
-                pattern = event[-2]
+                verbhead = event[-2]
+                pattern = event[-3]
                 for overbID, oevents in CodedEventsMap.items():
                     if overbID != verbID:
                         for oevent in oevents:
-                            opattern = oevent[-2]
+                            #print(oevent)
+                            opattern = oevent[-3]
                             if verbhead in opattern:
                                 logger.debug("found verb: %s in other matched pattern %s", verbhead, opattern)
                                 #input(" ")
@@ -3979,7 +4010,7 @@ An instantiated Sentence object
                     if not '#' in path:
                         return False, {}
                     logger.debug("Upper pattern matched at end %s", matchlist)
-                    return True, (path['#'], target, source)
+                    return True, (path['#'], target, source, matchlist)
 
                 if (not i >= len(upper)) and not option > 6:
                     i += 1
@@ -3991,7 +4022,7 @@ An instantiated Sentence object
 
                 elif "#" in path:
                     logger.debug("Upper pattern matched: %s", matchlist)
-                    return True, (path['#'], target, source)
+                    return True, (path['#'], target, source, matchlist)
 
                 # return to last point of departure
                 elif not pathleft[-1][2] == 0:
@@ -4017,7 +4048,7 @@ An instantiated Sentence object
                 logger.debug("MATCHED: %s, %s", matchlist, path.keys())
 
             if "#" in path:
-                return True, (path['#'], target, source)
+                return True, (path['#'], target, source, matchlist)
 
             # logger.debug("NO MATCH IN UPPER")
             return False, {}
@@ -4192,11 +4223,11 @@ An instantiated Sentence object
                 continue
 
             elif '#' in path:
-                logger.debug("Lower pattern matched %s", matchlist)
+                #logger.debug("Lower pattern matched %s", matchlist)
 
                 result, data = upper_match(path['#'])
                 if result:
-                    return data, source, target
+                    return data, source, target, matchlist
 
                 # logger.debug("retracing "+str(len(pathleft)))
                 p = pathleft.pop()
@@ -4234,8 +4265,9 @@ An instantiated Sentence object
 
             i += 1
             option = 0
+            
 
-        return {}, "", ""
+        return {}, "", "", []
 
     def find_target(self, LowerSeq, TargetLoc):
         """
