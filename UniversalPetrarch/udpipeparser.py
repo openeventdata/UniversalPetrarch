@@ -3,6 +3,7 @@ import os
 import logging
 
 import utilities
+import unidecode
 
 from ufal.udpipe import Model,Pipeline,ProcessingError
 
@@ -35,6 +36,8 @@ class UDpipeparser():
         for line in processed.split("\n"):
             if line.startswith("#"):
                 continue
+            if "VERB\t" not in line:
+                line = unidecode.unidecode(line)
             parsed.append(line)
 
         #print(("\n").join(parsed))
