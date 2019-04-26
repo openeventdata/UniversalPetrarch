@@ -93,6 +93,7 @@ class NounPhrase:
             codes, roots, matched_txt = self.textMatching(npMainText.upper().split(" "))
             actorcodes, agentcodes = self.resolve_codes(codes, matched_txt)
 
+            #print(codes)
             #print("matched_txt:",matched_txt)
 
             compound_mods_code = []
@@ -1080,6 +1081,14 @@ An instantiated Sentence object
         for successor in self.udgraph.successors(verbhead):
             if self.udgraph[verbhead][successor]['relation'] in ['nsubjpass','nsubj:pass']:
                 vp.passive = True
+                
+        #for Spanish: check if the sentence is in passive voice
+        for successor in self.udgraph.successors(verbhead):
+            sucnode = self.udgraph[verbhead][successor]
+            if sucnode['relation'] in ['aux'] and self.udgraph.node[successor]['lemma'] == "ser" and "Tense=Past|VerbForm=Part" in self.udgraph.node[verbhead]['feature']:
+                vp.passive = True
+                #print(self.ID)
+                #print(vp.text)
                 #print(vp.passive)
                 #input(" ")
 
@@ -3191,10 +3200,10 @@ An instantiated Sentence object
         logger = logging.getLogger('actorcodes')
         try:
             srccodes = self.get_loccodes(SourceLoc, UpperSeq, LowerSeq)
-            logger.debug("srccodes: %s", srccodes)
+            logger.debug("p1 srccodes: %s", srccodes)
             expand_compound_codes(srccodes)
             tarcodes = self.get_loccodes(TargetLoc, UpperSeq, LowerSeq)
-            logger.debug("tarcodes: %s", tarcodes)
+            logger.debug("p1 tarcodes: %s", tarcodes)
             expand_compound_codes(tarcodes)
             return srccodes,tarcodes
         except:
@@ -3265,15 +3274,11 @@ An instantiated Sentence object
                     #print("tarlist:",tarlist)
 
                     # skip self-references based on code
-                    if srclist[0] != tarlist[0] or (srclist[0] == tarlist[0] and tarlist[0] == '---'):
+                    if srclist[0] != tarlist[0] or (srclist[0] == tarlist[0] and (tarlist[0] == '---' or srclist[2] != tarlist[2])):
                         if tarlist[0][0:3] == '---' and len(SentenceLoc) > 0:
                             # add location if known -- see note above
                             tarlist[0] = SentenceLoc + tarlist[0][3:]
-                        #if IsPassive:
-                        #    templist = srclist
-                        #    srclist = tarlist
-                        #    tarlist = templist
-                        #print(srclist[0], tarlist[0], codeevt)
+                        
                         CodedEvents.append([srclist[0], tarlist[0], codeevt])
                         if PETRglobals.WriteActorRoot:
                             CodedEvents[-1].extend([srclist[1], tarlist[1]])
@@ -3509,6 +3514,8 @@ An instantiated Sentence object
 
         logger = logging.getLogger("petr_log.petrarch1")
         nouns, compound_nouns = self.get_all_nounPhrases()
+        for noun in nouns:
+            self.nouns[noun.headID] = noun
 
         CodedEvents = []
         CodedEventsMap = {} #key: verb, value: events of that verb
@@ -3546,12 +3553,75 @@ An instantiated Sentence object
                 
                 self.verbs[verbID] = verb
 
-                source, target, othernoun = self.get_source_target(verb.verbIDs)
+                source, target, othernoun = self.get_source_target(verb.verbIDs)               
 
                 '''Find verb code from verb dictionary'''
+                found_verb = False;
+                temppatternlist = None;
+
+                if verbhead == "MUERTO":
+                    verbhead = "MORIR"
+
+                #handle lemma error for Spanish verbs
                 if verbhead in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead]
+                    found_verb = True
+                elif verbhead[:-2]+"ER" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-2]+"ER"]
+                    #input(verbhead[:-2]+"ER")
+                    found_verb = True
+                elif verbhead[:-2]+"IR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-2]+"IR"]
+                    #input(verbhead[:-2]+"IR")
+                    found_verb = True
+                elif verbhead[:-2]+"AR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-2]+"AR"]
+                    #input(verbhead[:-2]+"AR")
+                    found_verb = True
+                elif verbhead[:-1]+"ER" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-1]+"ER"]
+                    #input(verbhead[:-1]+"ER")
+                    found_verb = True
+                elif verbhead[:-1]+"IR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-1]+"IR"]
+                    #input(verbhead[:-1]+"IR")
+                    found_verb = True
+                elif verbhead[:-1]+"AR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-1]+"AR"]
+                    #input(verbhead[:-1]+"AR")
+                    found_verb = True
+                elif verbhead[:-3]+"ER" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-3]+"ER"]
+                    #input(verbhead[:-3]+"ER")
+                    found_verb = True
+                elif verbhead[:-3]+"IR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-3]+"IR"]
+                    #input(verbhead[:-3]+"IR")
+                    found_verb = True
+                elif verbhead[:-3]+"AR" in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-3]+"AR"]
+                    #input(verbhead[:-3]+"AR")
+                    found_verb = True
+                elif verbhead[:-1] in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-1]]
+                    #input(verbhead[:-1])
+                    found_verb = True
+                elif verbhead[:-2] in PETRglobals.P1VerbDict['verbs']:
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-2]]
+                    #input(verbhead[:-2])
+                    found_verb = True
+                elif verbhead[:-3] in PETRglobals.P1VerbDict['verbs']:
+                    #e.g. asesinarona -> asesinar
+                    temppatternlist = PETRglobals.P1VerbDict['verbs'][verbhead[:-3]]
+                    #input(verbhead[:-3])
+                    found_verb = True
+
+
+                #if verbhead in PETRglobals.P1VerbDict['verbs']:
+                if found_verb:
                     logger.debug("CV-1 Found: %s", verb.text)
-                    patternlist = PETRglobals.P1VerbDict['verbs'][verbhead]
+                    #patternlist = PETRglobals.P1VerbDict['verbs'][verbhead]
+                    patternlist = temppatternlist
 
                     SourceLoc = ""
                     TargetLoc = ""
@@ -3717,31 +3787,41 @@ An instantiated Sentence object
                                 TargetLoc = tempsource
 
                             srccodes, tarcodes = self.extract_actorcodes_from_actorLoc(upper, lower, SourceLoc, TargetLoc)
-                            
+                            #print("before srccodes:",srccodes)
+                            #print("before tarcodes:",tarcodes)
+
                             depsrccodes = []
                             deptarcodes = []
-                            if TargetLoc == "" or SourceLoc == "":
+                            if TargetLoc == "" or (TargetLoc and tarcodes == ['---']) or (SourceLoc == "" or (SourceLoc and srccodes == ['---'])):
                                 ##if source or target is not found, use dependency relation to extract source or target
                                 ##todo: check overlap with matched pattern
-                                if SourceLoc == "":
+                                if (SourceLoc == "" or (SourceLoc and srccodes == ['---'])):
                                     for s in source:
                                         s.get_meaning()
                                         s.meaning = ["---"] if s.meaning == [] else s.meaning
-                                        depsrccodes.extend(s.meaning)
+                                        depsrccodes.extend([m.replace("~","---") for m in s.meaning])
+                                    #if verb.passive and "$" not in line and "+" not in line:
+                                        #tarcodes = ["---"] if depsrccodes == [] else depsrccodes
+                                    #else:
                                     srccodes = ["---"] if depsrccodes == [] else depsrccodes
 
-                                if TargetLoc == "":
+                                if TargetLoc == "" or (TargetLoc and tarcodes == ['---']):
                                     for t in target:
                                         t.get_meaning()
                                         t.meaning = ["---"] if t.meaning == [] else t.meaning
-                                        deptarcodes.extend(t.meaning)
+                                        deptarcodes.extend([m.replace("~","---") for m in t.meaning])
+                                    #if verb.passive and "$" not in line and "+" not in line:
+                                    #    srccodes = ["---"] if deptarcodes == [] else deptarcodes
+                                    #else:
                                     tarcodes = ["---"] if deptarcodes == [] else deptarcodes
+
 
                                 #print("TargetLoc:", TargetLoc)
                                 #print("SourceLoc:",SourceLoc)
                                 #print("source:",[s.text for s in source])
                                 #print("target:",[t.text for t in target])
                                 #print("othernoun:",[o.text for o in othernoun])
+
 
                             #print("srccodes:",srccodes)
                             #print("tarcodes:",tarcodes)
@@ -3863,9 +3943,11 @@ An instantiated Sentence object
                 #input(" ")
             else:
                 for event in events:
-                    #if event[2].startswith("14") and furTense:
-                    #    print(event)
-                    #    input(" ")
+                    if event[2].startswith("14") and furTense:
+                        #if matched event code starts with 14, change the code to "130"
+                        event[2] = "130"
+                        #print(event)
+                        #input(" ")
                     CodedEvents.append(event)
 
         if len(CodedEvents)==0: #if no events are found from all above methods, return all matched verbs
@@ -3982,7 +4064,7 @@ An instantiated Sentence object
                     # logger.debug("could be a synset")
                     matchflag = False
                     for synset in path['synsets'].keys():
-                        if synset in PETRglobals.P1VerbDict['verbs'] and phrase[i] in PETRglobals.P1VerbDict['verbs'][synset]:
+                        if synset in PETRglobals.P1VerbDict['verbs'] and (phrase[i] in PETRglobals.P1VerbDict['verbs'][synset] or upper_raw[i] in PETRglobals.P1VerbDict['verbs'][synset]):
                             # logger.debug("found a synset match")
 
                             matchlist.append(synset)
@@ -4079,7 +4161,8 @@ An instantiated Sentence object
 
                     if not '#' in path:
                         return False, {}
-                    logger.debug("Upper pattern matched at end %s", matchlist)
+                    #logger.debug("Upper pattern matched at end %s", matchlist)
+                    #logger.debug("source %s, target %s", source,target)
                     return True, (path['#'], target, source, matchlist)
 
                 if (not i >= len(upper)) and not option > 6:
@@ -4092,6 +4175,7 @@ An instantiated Sentence object
 
                 elif "#" in path:
                     logger.debug("Upper pattern matched: %s", matchlist)
+                    logger.debug("source %s, target %s", source,target)
                     return True, (path['#'], target, source, matchlist)
 
                 # return to last point of departure
@@ -4105,11 +4189,15 @@ An instantiated Sentence object
                         target = p[3]
                     elif option == 4:
                         source = p[3]
+                    else:
+                        target = ""
+                        source = ""
+
                     matchlist.pop()
                     continue
 
                 else:
-                    # logger.debug("no match in upper: %s",
+                    #logger.debug("no match in upper: %s",
                     #              pathleft[-1][0].keys())
                     return False, {}
 
@@ -4120,7 +4208,7 @@ An instantiated Sentence object
             if "#" in path:
                 return True, (path['#'], target, source, matchlist)
 
-            # logger.debug("NO MATCH IN UPPER")
+            #logger.debug("NO MATCH IN UPPER")
             return False, {}
 
         #################################################
@@ -4152,12 +4240,19 @@ An instantiated Sentence object
                 #logger.debug('checking %s, option: %i,phrase_actor: %s, %s,%s', lower[i],option,phrase_actor,in_NE,path.keys())
 
             skipcheck = self.skip_item(lower[i])
-            #print(lower[i], "skip:", skipcheck, "option:",option)
+            
+            #'''
+            #print("i:", i, lower[i], "skip:", skipcheck, "option:",option)
+            #print(len(pathleft))
+            #for p in pathleft:
+            #    print(p[0].keys(),p[1],p[2])
+            #'''
+            #input(" ")
 
             # return to last point of departure
 
             if skipcheck > 0 and option > -1:
-                # logger.debug("Skipping")
+                #logger.debug("Skipping")
                 if 'NEC' in lower[i]:
                     in_NEC = not in_NEC
                 elif 'NE' in lower[i]:
@@ -4183,30 +4278,30 @@ An instantiated Sentence object
                 continue
 
             phrase_actors[i] = phrase_actors.setdefault(i, phrase_actor)
-            # print(phrase_actors)
+            #print("phrase_actors:", phrase_actors)
 
-            # check direct word match
-            if lower[i] in path and not option > 0:
-                logger.debug("lower matched a word %s", lower[i])
-
-                matchlist.append(lower[i])
-                pathleft.append((path, i, 1))
-                path = path[lower[i]]
-            elif lower_raw[i] in path and not option > 0:
+            # check direct word match, if a word is matched, option is set to 1
+            if lower_raw[i] in path and not option > 0:
                 logger.debug("lower matched a raw word %s", lower_raw[i])
 
                 matchlist.append(lower_raw[i])
                 pathleft.append((path, i, 1))
                 path = path[lower_raw[i]]
+            elif lower[i] in path and not option > 0:
+                logger.debug("lower matched a word %s", lower[i])
 
+                matchlist.append(lower[i])
+                pathleft.append((path, i, 1))
+                path = path[lower[i]]
+            
 
-            # maybe a synset match
+            # maybe a synset match, if a synset match is found, option is set to 0, otherwise 2
             elif 'synsets' in path and not option > 1:
                 # logger.debug("could be a synset")
                 matchflag = False
                 for synset in path['synsets'].keys():
-                    if synset in PETRglobals.P1VerbDict['verbs'] and lower[i] in PETRglobals.P1VerbDict['verbs'][synset]:
-                        # logger.debug("found a synset match")
+                    if synset in PETRglobals.P1VerbDict['verbs'] and (lower[i] in PETRglobals.P1VerbDict['verbs'][synset] or lower_raw[i] in PETRglobals.P1VerbDict['verbs'][synset]):
+                        logger.debug("found a synset match")
 
                         matchlist.append(synset)
                         pathleft.append((path, i, 2))
@@ -4219,7 +4314,7 @@ An instantiated Sentence object
                 option = 0 if matchflag else 2
                 continue
 
-            # check for target match
+            # check for target match, if a target is found, option is set to 3
             elif in_NE and (not option > 2) and '+' in path:
                 pathleft.append((path, i, 3, target))
 
@@ -4231,7 +4326,7 @@ An instantiated Sentence object
                 logger.debug("Matching phrase target %s", target)
                 continue
 
-            # check for source match
+            # check for source match, if a source is found, option is set to 4
             elif in_NE and (not option > 3) and '$' in path:
                 pathleft.append((path, i, 4, source))
 
@@ -4243,7 +4338,7 @@ An instantiated Sentence object
                 # logger.debug("Matching phrase source %s", source)
                 continue
 
-            # check for phrase skip
+            # check for phrase skip, if found, option is set to 5
             elif in_NE and (not option > 4) and '^' in path:
                 j = i
                 # logger.debug("Matching phrase skip")
@@ -4263,6 +4358,7 @@ An instantiated Sentence object
                     i += 1
                 continue
 
+            # check for %, if found, option is set to 6
             elif not in_NE and in_NEC and (not option > 5) and '%' in path:
                 # in original code is "upper" why?
                 logger.debug("Matching compound %s %i", lower, i)
@@ -4285,7 +4381,7 @@ An instantiated Sentence object
                 continue
 
             elif i + 1 < len(lower) and not option > 6:
-                # logger.debug("skipping")
+                #logger.debug("4369: skipping")
                 option = 0
                 pathleft.append((path, i, 7))
                 i += 1
@@ -4293,13 +4389,32 @@ An instantiated Sentence object
                 continue
 
             elif '#' in path:
-                #logger.debug("Lower pattern matched %s", matchlist)
+                logger.debug("Lower pattern matched %s", matchlist)
+                #print(path['#'])
 
                 result, data = upper_match(path['#'])
+                #print("result:",result,"data:",data)
+                #print("source:",source)
+                #print("target:",target)
+
                 if result:
+                    if target != "" and target not in matchlist:
+                        #print("source:",source)
+                        #print("target:",target)
+                        target = ""
+
+                    #if len(matchlist) in phrase_actors:
+                    #    target = [phrase_actors[len(matchlist)],False]
+                    #else:
+                        #input(" ")
+                        #print("source:",source)
+                        #print("target:",target)
+                        #input(" ")
                     return data, source, target, matchlist
 
-                # logger.debug("retracing "+str(len(pathleft)))
+                #logger.debug("retracing "+str(len(pathleft)))
+                #print("p:",p)
+                #print("option:",option)
                 p = pathleft.pop()
                 path = p[0]
                 i = p[1] + 1
@@ -4308,6 +4423,9 @@ An instantiated Sentence object
                     target = p[3]
                 elif option == 4:
                     source = p[3]
+                else:
+                    target = ""
+                    source = ""
 
                 if not matchlist == []:
                     m = matchlist.pop()
@@ -4316,8 +4434,9 @@ An instantiated Sentence object
                 continue
 
             elif not pathleft[-1][2] == 0:
-                # logger.debug("retracing "+str(len(pathleft)))
+                #logger.debug("retracing "+str(len(pathleft)))
                 p = pathleft.pop()
+                #print(p)
                 path = p[0]
                 i = p[1] + 1
                 option = p[2]
@@ -4325,11 +4444,15 @@ An instantiated Sentence object
                     target = p[3]
                 elif option == 4:
                     source = p[3]
+                else:
+                    target = ""
+                    source = ""
+
                 matchlist.pop()
                 continue
 
             else:
-                # logger.debug("no match in lower %s", pathleft.keys())
+                logger.debug("no match in lower %s", pathleft.keys())
                 phrase_return = False
                 break
 
@@ -4447,8 +4570,8 @@ An instantiated Sentence object
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    #if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass'] and self.udgraph.nodes[predecessor]['pos'] in ["VERB", "ADJ"]:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
+                    #if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass'] and self.udgraph.nodes[predecessor]['pos'] in ["VERB", "ADJ"]:
                         found = True
                         break
 

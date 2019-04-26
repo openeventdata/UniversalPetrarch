@@ -4747,9 +4747,8 @@ RECONVOCAR
 - * DATOS        [090]        # GATHER <HUX 3/21/98> 
 - * INFORMACION        [090]        # GATHER <HUX 3/21/98> 
 - * CON        [046:046]        # HUDDLE <BK 30 Jun 2007> 
-- * EN +        [042:043]        # ASSEMBLE <sls 04 Oct 2007>  , GATHER <ms 20 Dec 2007> 
 - PODER_*        [---]        # CONVENE <ab 31 Dec 2005> 
-- * EN        [042:043]        # GATHER <BNL 01 Jan 2002> 
+
 
 --- MERGE   [060]  ---
 UNIR                
@@ -5106,7 +5105,7 @@ DEFRAUDAR        [012]
 - * POR +        [110]        # DISTURB <OY 16 Mar 2006> 
 - * POR        [012]        # DISTRESS
 
---- PROVOKE   [140]  ---
+--- PROVOKE   [---]  ---
 PROVOCAR                
 CAUSAR                
 DESPERTAR                
@@ -5298,16 +5297,16 @@ DESARECER
 - * &ARTICULO &PERSONA   [181]
 - * &PERSONA   [181]
 - * A &PERSONA   [181]
-- A &PERSONA &AUXILIAR_ *   [181]
+- A &PERSONA &AUXILIAR *   [181]
 - * A &ARTICULO &PERSONA   [181]
 - A &ARTICULO &PERSONA *   [181]
 - * DE DISPAROS     [181]
-- &AUXILIAR_*   [181]
-- &AUXILIAR_*    [181]
-- &AUXILIAR_*  &ARTICULO &PERSONA   [181]
-- &AUXILIAR_*  &ARTICULO &MILITAR   [181]
-- &AUXILIAR_* &ARTICULO &LIDERGOBIERNO    [181]
-- &AUXILIAR_* &ARTICULO &REFUGIADO   [181]
+- &AUXILIAR*   [181]
+- &AUXILIAR*    [181]
+- &AUXILIAR*  &ARTICULO &PERSONA   [181]
+- &AUXILIAR*  &ARTICULO &MILITAR   [181]
+- &AUXILIAR* &ARTICULO &LIDERGOBIERNO    [181]
+- &AUXILIAR* &ARTICULO &REFUGIADO   [181]
 - * &ARTICULO &PERSONA   [181]
 - * &ARTICULO &MILITAR   [181]
 - * &ARTICULO &LIDERGOBIERNO    [181]
@@ -5329,7 +5328,7 @@ DESARECER
 - VA A * A ^ PARA HABLAR CON +        [036:036]        # TRAVEL <mj 17 Jan 2006> 
 - VA A * PARA ^ PARA HABLAR CON +        [036:036]        # TRAVEL <mj 17 Jan 2006> 
 - VA A * HACIA ^ PARA HABLAR CON +        [036:036]        # TRAVEL <mj 17 Jan 2006> 
-- $ Y + * EN &NEGOCIACION        [046:046]        # EMBARK <ELH 21 May 2008> 
+#- $ Y + * EN &NEGOCIACION        [046:046]        # EMBARK <ELH 21 May 2008> 
 - ^ * CAUSO GRIETA ENTRE %        [110:110]        # DEPART <OY 15 Mar 2006> 
 - ^ * CAUSO FISURA ENTRE %        [110:110]        # DEPART <OY 15 Mar 2006> 
 - DECIDIR EN CONTRA DE * A LA CUMBRE        [125]        # ATTEND <OY 08 Mar 2006> 
@@ -5347,14 +5346,14 @@ DESARECER
 - RESERVACIONES SOBRE *        [012]        # ATTEND <shan 1/7/94> 
 - * A + PARA INSPECCIONAR        [090]        # GO <sls 24 Mar 2008> 
 - * PARA ^ PARA TERMINAR VISITA A +        [042:043]        # DEPART <SPK 21 Apr 2008> 
-- * EN OFENSIVA        [130]        # GO <sls 05 Mar 2008> 
+#- * EN OFENSIVA        [130]        # GO <sls 05 Mar 2008> 
 - FACILITAR RESTRICCION PARA *        [081]        # TRAVEL <HUX 3/19/98> 
 - * ADELANTA CON LA GIRA        [042]        # GO <ab 31 Dec 2005> 
 - * ADELANTA CON EL RECORRIDO        [042]        # GO <ab 31 Dec 2005> 
 - NINGUNA INTENCION DE *        [124]        # LEAVE <ms 06 Feb 2008> 
 - DECIR NO * A LA CUMBRE        [125]        # ATTEND
 - NO * A LA CUMBRE        [125]        # ATTEND <tb 22 Aug 2006> 
-- JUNTA DE * EN ^ EN +        [042:043]        # ATTEND <ab 31 Dec 2005> 
+#- JUNTA DE * EN ^ EN +        [042:043]        # ATTEND <ab 31 Dec 2005> 
 - NO VISITAR *        [---]        # TOUR <oy 05 Dec 2005> 
 - TRATAR DE EXTENDER ^ * A +        [060]        # TOUR <LP 25 Feb 2006> 
 - TRANSPORTACION DE *        [---]        # DEPART <shan 1/7/94> 
@@ -5376,11 +5375,11 @@ DESARECER
 - * A LA CUMBRE        [036]        # ATTEND <ab 31 Dec 2005> 
 - % * A LA CONFERENCIA        [044:044]        # ATTEND <HUX 12/26/97> 
 - SOLO * SI        [139]        # ATTEND <LRP 25 Jun 2003> 
-- * EN GIRA DE +        [042:043]        # EMBARK <OY 16 Mar 2006> 
-- * EN VIAJE DE +        [042:043]        # EMBARK <OY 16 Mar 2006> 
-- * EN RECORRIDO A +        [036]        # EMBARK <SLS 25 Mar 2008> 
-- * EN GIRA A +        [036]        # EMBARK <SLS 25 Mar 2008> 
-- $ * EN VISTA A +        [042:043]        # EMBARK <mj 29 Dec 2005> 
+#- * EN GIRA DE +        [042:043]        # EMBARK <OY 16 Mar 2006> 
+#- * EN VIAJE DE +        [042:043]        # EMBARK <OY 16 Mar 2006> 
+#- * EN RECORRIDO A +        [036]        # EMBARK <SLS 25 Mar 2008> 
+#- * EN GIRA A +        [036]        # EMBARK <SLS 25 Mar 2008> 
+#- $ * EN VISTA A +        [042:043]        # EMBARK <mj 29 Dec 2005> 
 - + * A EL JUICIO DE $        [173]        # GO <oy 15 Jul 2007> 
 - PROBABLE * VIAJE A        [036]        # TRAVEL <BNL 04 Apr 2003> 
 - * A LA INAUGURACION        [017]        # ATTEND <OY 23 Jul 2003> 
@@ -5393,7 +5392,7 @@ DESARECER
 - * DE_LA_CARRERA        [080]        # PULLED_OUT <sms 30 Nov 2007> 
 - IMPROBABLE A *        [125]        # ATTEND <shan 1/4/94> 
 - POCO PROBABLE A *        [125]        # ATTEND <shan 1/4/94> 
-- $ * EN GIRO DE +        [042:043]        # EMBARK <LRP 13 Jun 2003> 
+#- $ * EN GIRO DE +        [042:043]        # EMBARK <LRP 13 Jun 2003> 
 - * A COMMEMORAR        [017]        # ATTEND <BK 09 May 2008> 
 - * AL MEDIO ORIENTE        [---]        # TOUR
 - * DEL MEDIO ORIENTE        [---]        # TOUR
@@ -5429,7 +5428,6 @@ DESARECER
 - * AL JUICIO        [---]        # WENT_TO <ab 08 Jul 2003> 
 - IR *        [036]        # ATTEND <NS 22 Jan 2002>  , TOUR <BNL 14 Jan 2002>  , TRAVEL <NS 04 Dec 2001> 
 - *_A_TRABAJAR        [---]        # WENT_TO <BNL 8/10/01> 
-- * A +        [042:043]        # TRAVEL <SPK 06 Mar 2008>  , TRAVEL <sls 17 Sep 2007> 
 - NO *        [125]        # ATTEND
 - % *        [042:043]        # ATTEND
 
@@ -5578,7 +5576,7 @@ PERSEVERAR
 - * DIALOGOS        [046:046]        # CONTINUE <jap 28 Oct 2002>  , CONTINUE
 - * CERCA        [190]        # CONTINUE <LRP 25 Aug 2005> 
 
---- OVERSEE_MANAGE   [060]  ---
+--- OVERSEE_MANAGE   [---]  ---
 MANEJAR                
 DIRIGIR                
 LIDERAR                
@@ -5602,19 +5600,19 @@ CONTROLAR
 DICTAMINAR                
 TRATAR                
 DIRIGIR        [010]        
-ABORDAR        [010]               
+ABORDAR        [---]               
 MONITORIZAR        [090]        
 CONTROLAR        [090]        
 SUPERVISAR                
 - * DESPLIEGUE DE FUERZAS DE &SEGURIDAD EN +        [154]        # ORDER <ELH 14 Apr 2008> 
-- % &AUXILIAR_ * DELEGACION AL CUMBRE +        [039:039]        # HEAD <SLS 25 Sep 2007> 
+- % &AUXILIAR * DELEGACION AL CUMBRE +        [039:039]        # HEAD <SLS 25 Sep 2007> 
 - * FUERZAS DE &SEGURIDAD PARA PARAR PROTESTA        [153]        # ORDER <mdc 01 Dec 2007> 
 - $ * ATAQUES_TERRORISTAS DE + A IR EN JUICIO        [173]        # ORDER <tb 16 Aug 2006> 
 - * ENTRENAMIENTO JUNO EN_^ &MILITAR        [062:062]        # CONDUCT <ss 22 Jun 2007> 
 - * IN FAVOR DE EXTRADICION POR +        [0313]        # RULE <sls 31 Mar 2008> 
 - * DESPLIEGUE DE &MILITAR A +        [072]        # ORDER <0Y 30 Jul 2003> 
 - $ EMBAJADOR * A + A REGRESAR        [161]        # ORDER <AB 10 Jul 2003> 
-- + ^ &AUXILIAR_ * DETENER POR $        [173]        # ORDER <spk 23 Oct 2007> 
+- + ^ &AUXILIAR * DETENER POR $        [173]        # ORDER <spk 23 Oct 2007> 
 - IR * A ^ A ENTREGAR AYUDA A +        [033]        # HEAD <tb 30 Apr 2007> 
 - * SUSPENCION DE ACTIVIDADES DE +        [172]        # ORDER <jap 11 Oct 2002> 
 - $ DECIR ^ ESTAR * FUERA DE +        [112]        # ORDER
@@ -7010,14 +7008,6 @@ ADMINISTRAR
 - + * A $        [140]        # DISPERSE <ab 31 Dec 2005> 
 - + * PARA $        [140]        # DISPERSE <ab 31 Dec 2005> 
 
---- SER [---] ---
-SER 
-- * MUERTE   [186]
-- * MUERTA   [186]
-- * MUERTES   [186]
-- * MUERTAS   [186]
-
-
 --- GRANT   [060]  ---
 CONCEDER                
 OTORGAR                
@@ -7054,6 +7044,7 @@ SUPLIR
 PROVENIR                
 PRESTAR                # ems 5/30/00
 DEJAR                # ems 5/30/00
+- * MUERTE   [186]
 - * MUERTE  &ARTICULO     [186]
 - * MUERTE  &ARTICULO &PERSONA     [186]
 - * MUERTE  &ARTICULO &MILITAR     [186]
@@ -7761,6 +7752,8 @@ LESIONAR
 DEBILITAR                
 DESMEJORAR                
 VICIAR 
+HIRIR
+- A UN EDUCADOR   [182]
 - RESULTARON *     [182]
 - APARECIERON *     [182]
 - SURGIERON *     [182]
@@ -7914,13 +7907,11 @@ REFUGIAR
 - * LOS DERECHOS DE +        [52]        # DEFEND <spk 26 Dec 2007> 
 - * BOICOT        [124]        # DEFEND <OY 09 Oct 2006> 
 - * ASALTO DE +        [52]        # DEFEND <sls 05 Mar 2008> 
-- + * EN $        [75]        # SHELTER <SLS 19 Mar 2008> 
 - * CIUDAD        [152]        # DEFEND <NS 19 Feb 2002> 
 - * DE        [52]        # DEFEND
 - * PLAN        [52]        # DEFEND
 - * PROHIBICION        [52]        # DEFEND <mj 27 Jan 2006>  , DEFEND
 - * IMPUESTO        [211]        # DEFEND <sls 12 Jul 2007> 
-- $ * +        [75]        # SHELTER <SLS 19 Mar 2008> 
 
 --- MAINTAIN   [---]  ---
 MANTENER                
@@ -7939,7 +7930,9 @@ PROTEGER
 SUSTENER                
 APOYAR                
 DEFENDER                
-RETENER                
+RETENER 
+SOSTUVER
+- * COMBATE     [190]               
 - * DERECHO A MONTAR INCURSION &MILITAR A +        [1382]        # RESERVE <BK 09 Jul 2007> 
 - $ * MANDAR &MILITAR A + A JUEGOS DE &PELEA        [062]        # KEEP <ss 27 Jun 2007> 
 - DECIR * DERECHO A ACTUAR IN DEFENSE-PROPIA        [138]        # RESERVE
@@ -8640,7 +8633,6 @@ ARRANCAR                # oy 29 Dec 2005
 - $ EMPEZAR * +        [0874]        # WITHDRAW <JON 2/21/96> 
 - * &MILITAR +        [0874]        # WITHDRAW <ns 7/5/01> 
 - * DESDE FRONTERA        [0874]        # WITHDRAW
-- * DE $ EN +        [0874]        # WITHDRAW <JON 2/19/96> 
 - * DE $ DESDE +        [0874]        # WITHDRAW <JON 2/19/96> 
 - $ * &ARMA +        [0874]        # PULLBACK <JON 2/19/96> 
 - * $ &ARMA +        [0874]        # PULLBACK <JON 2/19/96> 
@@ -9278,7 +9270,7 @@ CAPTURAR
 - * &ARTICULO &PERSONA        [173]
 - * &PERSONA        [173]
 - * A &PERSONA        [173]
-- A &PERSONA &AUXILIAR_ *        [173]
+- A &PERSONA &AUXILIAR *        [173]
 - * A &ARTICULO &PERSONA        [173]
 - A &ARTICULO &PERSONA *        [173]
 ARRESTAR        [173]        
@@ -9611,23 +9603,23 @@ DECAPITAR                # ab 31 Dec 2005
 #ASESINAR                
 #MASACRAR   
 - &AUXILIAR * &PREPOSICION DIEZ PUNNALADAS   [190]
-- &AUXILIAR_ * [193]
-- &PERSONA &AUXILIAR_ * [193]
+- &AUXILIAR * [193]
+- &PERSONA &AUXILIAR * [193]
 - * &ARTICULO &PERSONA [193]
 - * &PERSONA [193]
 - * A &PERSONA [193]
-- A &PERSONA &AUXILIAR_ * [193]
+- A &PERSONA &AUXILIAR * [193]
 - * A &ARTICULO &PERSONA [193]
 - A &ARTICULO &PERSONA * [193]
-- &AUXILIAR_ * DE VARIOS IMPACTOS DE ARMA DE FUEGO [193]
-- &AUXILIAR_ * DE VARIOS IMPACTOS DE BALA [193]
+- &AUXILIAR * DE VARIOS IMPACTOS DE ARMA DE FUEGO [193]
+- &AUXILIAR * DE VARIOS IMPACTOS DE BALA [193]
 - * &ARTICULO &PERSONA [193]
 - * &PERSONA [193]
 - * A &PERSONA [193]
-- A &PERSONA &AUXILIAR_ * [193]
+- A &PERSONA &AUXILIAR * [193]
 - * A &ARTICULO &PERSONA [193]
 - A &ARTICULO &PERSONA * [193]
-- &AUXILIAR_ * DE VARIOS DISPAROS [193]
+- &AUXILIAR * DE VARIOS DISPAROS [193]
 - * DE VARIOS IMPACTOS DE ARMA DE FUEGO [193]
 - * DE VARIOS IMPACTOS DE BALA [193]
 - * DE VARIOS DISPAROS [193]
@@ -9781,7 +9773,7 @@ DECAPITAR                # ab 31 Dec 2005
 - + * POR BALACERA        [193]        # KILL <sls 02 Mar 2008> 
 - * EN COALICIÓN         [---]        # KILL <oy 28 Nov 2005> 
 - * A + EN &PELEA        [190:190]        # KILL <OY 16 Mar 2006> 
-- + &AUXILIAR_ *        [190]        # KILL <SLS 02 Oct 2007> 
+- + &AUXILIAR *        [190]        # KILL <SLS 02 Oct 2007> 
 - FUERZA AÉREA * A +        [193]        # KILL <OY 11 Mar 2006> 
 - * A + EN ATAQUE        [190]        # KILL <oy 12 Nov 2005> 
 - * A + EN EMBOSCADA        [190]        # KILL <oy 28 Nov 2005> 
@@ -9824,11 +9816,11 @@ ASESINAR
 - ARTICULO *  &PERSONA   [186]
 - * ARTICULO &MILITAR   [186]
 - * ARTICULO &LIDERGOBIERNO    [186]
-- &AUXILIAR_ *   [186]
+- &AUXILIAR *   [186]
 - *  VARIOS DISPAROS   [186]
 - *  &ARMA   [186]
 - *  VARIOS DISPAROS  &ARMA    [186]
-- &AUXILIAR_ *  DISPAROS   [186]
+- &AUXILIAR *  DISPAROS   [186]
 - &AUXILIAR *   [186]
 - *  DOS IMPACTOS_DE_BALA   [186]
 - *  IMPACTOS  &ARMA   [186]
@@ -9862,7 +9854,7 @@ CONFORTAR
 CONSOLAR                
 MENSULAR                
 
---- SUPPRESS   [170]  ---
+--- SUPPRESS   [---]  ---
 REPRIMIR                
 CONTENER                
 REFRENAR                
@@ -10374,7 +10366,8 @@ LLAMAR
 ALEGRARSE A                
 CELEBRAR                
 RECONOCER                
-ADMITIR                
+ADMITIR   
+- * AMENAZA  [130]             
 - % * RELACIONES DESPUES DE LA EXPULSION DE ^         [051:051]        # HAIL <OY 25 Jul 2003> 
 - * LA ADOPCION DE LA &SOLUCION ^ POR +        [051]        # WELCOME <elh 20 May 2008> 
 - DOCUMENTALES GANARON * EN EL EXTRANJERO        [---]        # PRAISE <ms 17 Dec 2007> 
@@ -10481,7 +10474,6 @@ ADMITIR
 - * EL &CESEALFUEGO        [051]        # WELCOME <oy 05 Dec 2005>  , WELCOME <LRP 17 Jun 2003> 
 - NO * A +        [123]        # RECOGNISE <spk 05 Nov 2007> 
 - * EL DESPLIEGUE        [051]        # WELCOME <jap 18 Nov 2002> 
-- + * SOBRE $        [042:043]        # WELCOME <HUX 3/7/98> 
 - * APOYO DE +        [051]        # WELCOME <ms 24 Apr 2008> 
 - * EL SECUESTRO        [051]        # HAIL
 - * LA DECLARACION        [051]        # WELCOME <jap 29 Oct 2002> 
@@ -10538,8 +10530,6 @@ ADMITIR
 - * LA MASA        [017]        # CELEBRATE <ELH 11 Apr 2008> 
 - DECIR *        [051]        # RECOGNISE
 - * PROHIBIR        [051]        # WELCOME <ab 08 Jul 2003> 
-- $ * A_+        [054]        # RECOGNISE <ATS 7/26/01> 
-- * A +        [051]        # PRAISE <sls 15 Mar 2008> 
 - * ATENTADO [183]
 - ATENTADO * [183] 
 
@@ -10959,8 +10949,6 @@ QUITAR
 LLEVARSE                
 # EXPULSAR {+EXPULSANDO +EXPULSADO }                
 # ECHAR {+ECHANDO +ECHADO +ECHARSE }                # bl 5/17/01
-- * &AUXILIAR &ARTICULO &PERSONA   [181]
-- A UN CAMPESINO   [181]
 - NO * DEL TERRITORIO POR FECHA LIMITE        [128]        # REMOVE <ss 02 Jul 2007> 
 - * + DE HOGAR DESPUES DE ATAUE AEREO $        [195]        # REMOVE <SLS 27 Nov 2007> 
 - + * DE HOGAR DESPUES DE ATAUE AEREO DE $        [195]        # REMOVE <SLS 27 Nov 2007> 
@@ -11040,7 +11028,8 @@ PROFUGO
 FUGUTIVO                
 CENSOR        [1721]        
 CRIMINALIZAR                
-PENALIZAR                               
+PENALIZAR                
+LEGALIZAR                
 PROSCRIBIR                
 INTERCEPTAR                
 RECHAZAR                
@@ -11096,7 +11085,6 @@ VETAR
 - DICHO *        [172]        # BAN , BAN
 - LEVANTAMIENTO *        [080]        # VETO <OY 25 Jul 2003> 
 - LEVANTAR *        [080]        # VETO <OY 25 Jul 2003> 
-- * POR +        [129]        # VETO
 - * AUYUDA        [162]        # PROHIBIT <oy 12 Nov 2005> 
 
 --- WRITE   [---]  ---
@@ -11445,7 +11433,7 @@ REABRIR
 - VA A * OFENSIVA        [138]        # LAUNCH <OY 18 Mar 2006> 
 - * ATAQUE CONTRA        [190]        # LAUNCH <OY 24 Jul 2003> 
 - * PLAN_DE_EMERGENCIA        [154]        # LAUNCH <BNL 17 Apr 2003> 
-- * &ARMA EN +        [194]        # LAUNCH <SLS 08 Oct 2007> 
+- * &ARMA EN +        [180]        # LAUNCH <SLS 08 Oct 2007> 
 - % * CONSULTA        [040:040]        # START <oy 13 Dec 2005> 
 - % * &NEGOCIACION        [040:040]        # START <oy 13 Dec 2005> 
 - * ATAQUE AEREO EN +        [195]        # LAUNCH <sks 18 Mar 2008> 
@@ -11790,7 +11778,7 @@ BENEFICIAR
 - % * DE EXPERENCIA        [036]        # BENEFIT <SPK 19 May 2008> 
 - * ESTABLECER FINANZAS        [071]        # HELP <sls 10 Oct 2007> 
 - * FORTALEZER &DEFENSA        [072]        # HELP
-- + &AUXILIAR_ * EN $        [070]        # HELP <BNL 7/5/01> 
+- + &AUXILIAR * EN $        [070]        # HELP <BNL 7/5/01> 
 - + * POR AYUDA DE $        [070]        # HELP <ab 31 Dec 2005> 
 - * + EN DEMOCRACIA        [050]        # ASSIST <ELH 04 Jun 2008> 
 - * ARMAR &DEFENSA        [072]        # HELP
@@ -12568,7 +12556,7 @@ COGER
 AGARRAR                
 - * LOS DOCUMENTOS        [090]        # COLLECT
 
---- MOBILIZE   [150]  ---
+--- MOBILIZE   [---]  ---
 MOVILIZAR                # sha  11/22/93
 REUNIR                
 JUNTAR                
@@ -13267,7 +13255,6 @@ ACHICAR
 - DECIDIR A * VINCULOS        [161]        # REDUCE
 - * &DETENCION TERMINO        [081]        # REDUCE <ems 6/6/00> 
 - * PERSONAL CIVIL        [160]        # REDUCE <pas 98.2.26> 
-- * &DETENCION        [081]        # REDUCE
 - * SENTENCIAS        [081]        # REDUCE <OY 08 Mar 2006> 
 - * TROPA        [0873]        # REDUCE
 - * DEUDA        [071]        # REDUCE <OY 25 Jul 2003> 
@@ -13365,7 +13352,7 @@ CONVALIDAR
 - + TENER * $        [030]        # ACCEPT <ab 10 Nov 2005> 
 - NO PODER *        [120]        # ACCEPT <lrp 31 Aug 2005> 
 - NUNCA *        [120]        # ACCEPT <BNL 14 Jan 2002> 
-- * +        [051]        # EMBRACE <SLS 03 Oct 2007> 
+
 
 --- ALLOW   [080]  ---
 PERMITIR                
@@ -13699,22 +13686,23 @@ DIFUNDIR
 SECUESTRAR        [181]        
 RAPTAR
 LEVANTAR
+- A &PERSONA [181]
 # SECUASTRAR {+SECUESTRANDO +SECUESTRADO }                # OY 10 Mar 2006
-#- &AUXILIAR_ *
+#- &AUXILIAR *
 #- &ARTICULO *
-#- &ARTICULO &AUXILIAR_ *
+#- &ARTICULO &AUXILIAR *
 #- &PERSONA *
-#- * A &ARTICULO &PERSONA
-#- &AUXILIAR_ * A &PERSONA
-#- &PERSONA &AUXILIAR_ *
-#- &AUXILIAR_ * A &ARTICULO &PERSONA
+- * A &ARTICULO &PERSONA [181]
+- &AUXILIAR * A &PERSONA [181]
+#- &PERSONA &AUXILIAR *
+#- &AUXILIAR * A &ARTICULO &PERSONA
 #- * A &PERSONA
-#- &AUXILIAR_* &ARTICULO 
-#- &AUXILIAR_* &ARTICULO &PERSONA
-#- &AUXILIAR_* &ARTICULO &MILITAR
-#- &AUXILIAR_* &ARTICULO &LIDERGOBIERNO
-#- &AUXILIAR_* &ARTICULO &OPOSICION
-#- &AUXILIAR_* &ARTICULO &REFUGIADO
+#- &AUXILIAR* &ARTICULO 
+#- &AUXILIAR* &ARTICULO &PERSONA
+#- &AUXILIAR* &ARTICULO &MILITAR
+#- &AUXILIAR* &ARTICULO &LIDERGOBIERNO
+#- &AUXILIAR* &ARTICULO &OPOSICION
+#- &AUXILIAR* &ARTICULO &REFUGIADO
 - * &ARTICULO ASESINADO        [180]
 - $ DADO TERMINO DE &DETENCION EN + POR_*        [181]        # KIDNAP <OY 24 Jul 2003> 
 - + * A PUNTA DE PISTOLA DE &VEHICULO $        [181]        # ABDUCT <sls 28 Mar 2008> 
@@ -13760,6 +13748,7 @@ LEVANTAR
 - + ESTABA *        [181]        # KIDNAP <OY 27 Aug 2006> 
 - + ESTAR *        [181]        # KIDNAP <OY 27 Aug 2006> 
 - + FUERON * ^ $        [181]
+- + FUE * ^ $        [181]
 - * PERSONA   [181]
 
 
@@ -15235,7 +15224,6 @@ ACCIONAR
 - &SOLUCION * CHARLA        [036]        # TRIGGER <david 28.12.97> 
 - &SOLUCION * CONVERSACION        [036]        # TRIGGER <david 28.12.97> 
 - * PREOCUPACION        [012]        # SPARK <jap 4/26/01> 
-- * A +        [042:043]        # TRIP <ms 29 Apr 2008> 
 
 --- ENCIRCLE   [190]  ---
 RODEAR                
@@ -15261,8 +15249,7 @@ DESILUSIONAR
 DEFRAUDAR ESPERANZAS                
 DEFRAUDAR CREENCIAS                
 ENTRISTECER                
-CONTRISTAR                
-PONER TRISTE                
+CONTRISTAR                               
 CONSTERNAR                
 ESPANTAR                
 DESALENTAR                
@@ -15344,8 +15331,7 @@ HACER EFECTIVO
 # DESTINAR                
 # REFERIR                
 #ACCIONAR                
-# LLEVAR_A_CABO                
-# HACER                
+# LLEVAR_A_CABO                             
 # REALIZAR                
 # CUMPLIR                
 # CUMPLIMENTAR                
@@ -15498,7 +15484,7 @@ AVISAR
 - ^ $ * PODER SAQUEAR +        [132]        # WARN <SPK 25 Feb 2008> 
 - * + PAZO DE LA REFORMA        [132]        # WARN <SPK 03 Mar 2008> 
 - * + CONTRA OCUPAR        [130]        # WARN <NS 24 Jan 2002> 
-- + &AUXILIAR_ * POR +        [130]        # WARN <sls 06 Oct 2007> 
+- + &AUXILIAR * POR +        [130]        # WARN <sls 06 Oct 2007> 
 - * DE EXODO DE &REFUGIADO        [012]        # WARN <oy 25 Dec 2005> 
 - * DE &PELEA NUEVA SI +        [138]        # WARN <OY 17 Mar 2006> 
 - * SANGRE SERA DERRAMAR        [138]        # WARN <OY 15 Mar 2006> 
@@ -15556,7 +15542,7 @@ AVISAR
 - * + DE &PELEA        [138]        # WARN <OY 10 Oct 2006> 
 - * + DE TERRORISTAS        [112]        # WARN <sls 05 Mar 2008> 
 - * DE EXODO +        [012]        # WARN <oy 05 Dec 2005> 
-- * + &AUXILIAR_        [130]        # WARN <sls 14 Nov 2007> 
+- * + &AUXILIAR        [130]        # WARN <sls 14 Nov 2007> 
 - * IR ATACAR        [138]        # WARN <oy 16 Nov 2005> 
 - * DE PLAN        [064]        # WARN <sls 01 Oct 2007> 
 - * DE COMPLOT        [064]        # WARN <sls 01 Oct 2007> 
@@ -15661,7 +15647,8 @@ REFORZAR
 ARMAR                
 FORZAR                
 PRESIONAR                
-CHANTAJEAR                
+CHANTAJEAR  
+- * HERMANOS   [190]              
 - $ EMPLEAR * SOBRE +  A HABLAR CON ^        [026]        # PRESSURE <oy 29 Nov 2005> 
 - + ESTAR * A_QUEDAR EN ^ PARA $        [172]        # FORCE <tb 16 Aug 2006> 
 - DECIR PODER SER * A TOMAR ACCION        [130]        # FORCE
@@ -16195,10 +16182,9 @@ APURAR
 - * LA AYUDA A        [070]        # RUSH <oy 14 Nov 2005> 
 - * LA AYUDA PARA        [070]        # RUSH <oy 14 Nov 2005> 
 - * LA &COMIDA        [073]        # RUSH <tb 23 Feb 2007> 
-- * A +        [042:043]        # RUSH <HUX 12/14/95> 
 - * PARA +        [042:043]        # RUSH <HUX 12/14/95> 
 
---- INTRODUCE   [040]  ---
+--- INTRODUCE   [---]  ---
 PRESENTAR                
 INTRODUCIR                
 LANZAR                
@@ -16244,7 +16230,7 @@ REACCIONAR
 - * ALARMADO        [111]        # REACT <0Y 30 Jul 2003> 
 - TENER QUE *        [100]        # REACT <JON 2/22/96> 
 
---- INTERVENE   [070]  ---
+--- INTERVENE   [---]  ---
 INTERVENIR                
 INTERPONER                
 SURGIR                
@@ -17017,7 +17003,6 @@ ENFOCAR
 - AYUDA * EN +        [070:086]        # ARRIVE <tb 25 Jan 2007> 
 - PORTADOR *        [072]        # ARRIVE
 - * PORTADOR        [072]        # ARRIVE
-- * EN        [042:043]        # ARRIVE <ab 31 Dec 2005> 
 - HABIA * EN        [042:043]        # ARRIVE <ab 31 Dec 2005> 
 - * CONFERENCIA        [046]        # ARRIVE <OY 23 Jul 2003>  , ARRIVE
 - CONFERENCIA *        [046]        # ARRIVE <OY 23 Jul 2003>  , ARRIVE
@@ -17150,7 +17135,6 @@ REPATRIAR
 - TIENE QUE *        [100]        # RETURN
 - * DE        [042:043]        # RETURN <BNL 14 Nov 2002> 
 - *_DE        [042:043]        # RETURN <BNL 9/6/01> 
-- * A +        [042:043]        # RETURN <jap 9/8/01> 
 - * POR +        [042:043]        # RETURN <jap 9/8/01> 
 - * AYUDANTA        [0841]        # REPATRIATE <sls 18 Sep 2007> 
 - * SIRVIENTA        [0841]        # REPATRIATE <sls 18 Sep 2007> 
@@ -17823,14 +17807,14 @@ INCENDIAR
 INCINERAR                
 ESCALDAR                
 COMBUSTIR  
-- &AUXILIAR_ *      [171]
+- &AUXILIAR *      [171]
 - &ARTICULO *      [171]
-- &ARTICULO &AUXILIAR_ *      [171]
+- &ARTICULO &AUXILIAR *      [171]
 - &PERSONA *      [171]
 - * A &ARTICULO &PERSONA      [171]
-- &AUXILIAR_ * A &PERSONA      [171]
-- &PERSONA &AUXILIAR_ *      [171]
-- &AUXILIAR_ * A &ARTICULO &PERSONA      [171]
+- &AUXILIAR * A &PERSONA      [171]
+- &PERSONA &AUXILIAR *      [171]
+- &AUXILIAR * A &ARTICULO &PERSONA      [171]
 - * A &PERSONA      [171]
 - VEHICULO CARROTANQUE *      [171]
 - VEHICULO TRACTOMULA *      [171]
@@ -18338,8 +18322,7 @@ SUPERAR
 DECORAR                # ss 24 Jun 2007
 EMBELLECER                
 ADORNAR                
-- * +        [051]        # DECORATE <ss 24 Jun 2007> 
-- + *        [051]        # DECORATE <ss 24 Jun 2007> 
+
 
 --- DEFUSE   [---]  ---
 DESACTIVAR                # oy 02 Mar 2006
@@ -18421,7 +18404,8 @@ MORIR                # OY 25 Jul 2003
 - + * VACACIONES DE AVENTURA        [---]        # DIE
 - + * FIESTAS DE AVENTURA        [---]        # DIE
 - + A * BATALLAS EN +        [190]        
-- + * BATALLAS EN +        [190]        
+- + * BATALLAS EN +        [190]
+- + * AL ACTIVAR ARTEFACTOS EXPLOSIVOS
 
 --- DISASSOCIATE   [160]  ---
 DESASOCIAR                # ab 31 Dec 2005
@@ -18442,7 +18426,6 @@ ATRACAR                # OY 25 Jul 2003
 ACOPLAR                # OY 25 Jul 2003
 - * EN EVACUADO        [166]        # DOCK <tb 30 Oct 2006> 
 - * EN + CON        [070]        # DOCK <SPK 27 Mar 2008> 
-- * EN        [042:043]        # DOCK <OY 25 Jul 2003> 
 
 --- DRAG   [---]  ---
 # ARRASTRAR {+ARRASTRANDO +ARRASTRADO +ARRASTRARSE }                # OY 25 Jul 2003
@@ -18813,7 +18796,7 @@ PROVOCAR
 --- IRON_OUT   [---]  ---               
 ALLANAR                
 SUPRIMIR                
-- &AUXILIAR_ * &DISPUTA        [030:030]        # IRON_OUT <tony  4/26/91> 
+- &AUXILIAR * &DISPUTA        [030:030]        # IRON_OUT <tony  4/26/91> 
 - % HABER * &DISPUTA        [030:030]        # IRON_OUT
 
 
@@ -18841,12 +18824,12 @@ ALABAR
 GLORIFICAR                
 EMBELLECER                
 
---- LEGALISE   [---]  ---
+--- LEGALISE   [081]  ---
 LEGALIZAR                # oy 28 Nov 2005
 LEGALIZAR                
 DESPENALIZAR                
 
---- LEGITIMISE   [---]  ---
+--- LEGITIMISE   [051]  ---
 LEGITIMAR                
 LEGALIZAR                
 
@@ -19093,7 +19076,7 @@ REGISTRAR                # ATS 6/21/01
 
 --- REGRET   [110]  ---
 LAMENTAR                
-- $ &AUXILIAR_2 HACER * +        [130]        # REGRET <sls 24 Sep 2007> 
+- $ &AUXILIAR2 HACER * +        [130]        # REGRET <sls 24 Sep 2007> 
 - * OFENSA        [055]        # REGRET <sls 20 Nov 2007> 
 - DECIR *        [110]        # REGRET
 
@@ -19307,7 +19290,7 @@ RECUPERAR
 
 HUNDIR                # hux 11/26/95
 
---- SAVAGE   [111]  ---
+--- SAVAGE   [---]  ---
 ATACAR                # 0Y 30 Jul 2003
 +PONER_EN_RIDICULO                
 CRUCIFICAR                
@@ -19765,15 +19748,15 @@ PISOTEAR
 HOLLAR                
 CAMINAR                
 GALLEAR                
-BATIR   
-- * &ARMA SEMBRADOS       [180]
-- * &ARMA          [180]          
+BATIR            
 +IR_DANDO               
 +IR_AL_PASO               
 AMBLAR                
 +MEDIR_PASOS                
 +MARCAR_EL_PASO_PARA                
-+IR_Y_VENIR_POR                
++IR_Y_VENIR_POR     
+- * &ARMA SEMBRADOS       [180]
+- * &ARMA          [183]            
 - *_SUBIR &SEGURIDAD PROTEGER CONTRA ATAQUES        [150]        # STEP <SLS 10 Oct 2007> 
 - * SUBIR OPERACIONES DE COBERTURA EN IRAN        [180]        # STEP <sks 18 Mar 2008> 
 - * BAJO DESPUES DE 30 ANOS        [010]        # STEP <ELH 09 Apr 2008> 
@@ -19785,10 +19768,11 @@ AMBLAR
 - QUIZAS * BAJO        [0831]        # STEP <OY 16 Mar 2006> 
 - * BAJO        [0831]        # STEP <OY 11 Mar 2006> 
 
---- STEAL   [171]  ---
+--- STEAL   [---]  ---
 ROBAR                # oy 14 Nov 2005
 HURTAR                # oy 14 Nov 2005
 REFALAR 
+- * UN CAMION   [171]
 - VEHICULO *      [171]            
 - &PERSONA *   [171]
 - &ARTICULO &PERSONA *   [171]
@@ -19987,7 +19971,7 @@ DESMINAR
 --- UNDERTAKE   [---]  ---
 # EMPRENDER {+EMPRENDIENDO +EMPRENDIDO }                # OY 04 Aug 2003
 ATENTAR                
-- &AUXILIAR_ * MISION A +        [039]        # UNDERTAKE <oy 05 Dec 2005> 
+- &AUXILIAR * MISION A +        [039]        # UNDERTAKE <oy 05 Dec 2005> 
 
 --- UNIMPRESS   [---]  ---
 +NO_DAR_IMPRESION                
@@ -20042,8 +20026,8 @@ VISITAR
 - $ * HOSPITAL &MILITAR EN +        [042]        # VISIT <ELH 19 May 2008> 
 - * POR + ES PAZO EN POLITICA +        [042:043]        # VISIT <ELH 10 Jun 2008>  , VISIT
 - * POR + ES PAZO EN PROGRAMA +        [042:043]        # VISIT <ELH 10 Jun 2008>  , VISIT
-- QUIEN * $ &AUXILIAR_ ENCARCELADO        [173]        # VISIT <sls 20 Sep 2007> 
-- $ &AUXILIAR_ * + A FIRMAR NEGOCIO        [0312:0312]        # VISIT
+- QUIEN * $ &AUXILIAR ENCARCELADO        [173]        # VISIT <sls 20 Sep 2007> 
+- $ &AUXILIAR * + A FIRMAR NEGOCIO        [0312:0312]        # VISIT
 - * + DECIR FUENTES OFICIALES        [042:043]        # VISIT <ELH 08 May 2008> 
 - $ * + A ORGANIZAR LLEGADA        [042:043]        # VISIT <oy 02 Jan 2006> 
 - % ELIMINAR VISA DE *        [060]        # VISIT <oy 05 Dec 2005> 
@@ -20108,11 +20092,8 @@ VISITAR
 - * DE $        [042:043]        # VISIT <jap 18 Nov 2002>  , VISIT <OY 04 Aug 2003> 
 - ACLAMAR *        [051]        # VISIT <shan 1/6/94> 
 - ES * +        [042:043]        # VISIT <oy 25 Dec 2005> 
-- ESTAR * +        [042:043]        # VISIT <oy 25 Dec 2005> 
-- * A +        [042:043]        # VISIT <ELH 27 May 2008> 
 - * PARA +        [042:043]        # VISIT <ELH 27 May 2008> 
-- VA A *        [036:036]        # VISIT <OY 04 Aug 2003> 
-- $ * A +        [042:043]        # VISIT <OY 13 Mar 2006> 
+- VA A *        [036:036]        # VISIT <OY 04 Aug 2003>  
 
 --- VOW   [---]  ---
 JURAR                # jw   11/15/91
@@ -22340,12 +22321,11 @@ CONSEGUIR
 ENCONTRAR
 - &ARTICULO CADAVERES ^ &AUXILIAR * [180]
 - &ARTICULO CADAVER ^ &AUXILIAR * [180]
-- &AUXILIAR_*        [180]
+- &AUXILIAR *        [180]
 - &AUXILIAR * &ARTICULO CADAVER        [180]
 - &AUXILIAR * &ARTICULO CADAVERES       [180]
 - &AUXILIAR * &ARTICULO CUERPO        [180]
 - &AUXILIAR * &ARTICULO CUERPOS        [180]
-- SE * &ARTICULO &DETENCION        [173]
 - SE * DETENIDAS        [173]
 - &SERESTAR * &ARTICULO &DETENCION        [173]
 - SE * &DETENCION        [173]
@@ -22489,6 +22469,8 @@ DEJAR
 LLEVAR
 ARRASTRAR
 TRANSPOSTAR
+- * CON RUMBO DESCONOCIDO [181]
+- * A RUMBO DESCONOCIDO [181]
 - * INCAUTAR        [181]
 - * ROBAR        [181]
 - * REQUISAR        [181]
@@ -22703,6 +22685,8 @@ DENUNCIAR
 INCULPAR
 DELATAR
 CULPAR
+- * AMENAZAS DE MUERTE [130]
+- * AMENAZA DE MUERTE [130]
 - *  REPRESOR        [1123]
 - * DISPARAR        [112]
 - *  FRAUDE_ELECTORAL        [112]
@@ -22829,10 +22813,11 @@ PEDIR
 - * A ACATAR        [030]
 - * &ARTICULO TRATADO        [030]
 
---- ENCADENAR [140]---
+--- ENCADENAR [---]---
 ENCADENAR
 AMARRAR
 ACERROJAR
+- &SERESTAR *      [140]
 - &SERESTAR * &ARTICULO PORTON        [140]
 
 --- QUEMAR [---]---
@@ -23309,6 +23294,7 @@ ENCONTRAR
 HALLAR
 LOCALIZAR
 SITUAR
+- FUE * CADAVER     [190]
 - *  CARGO  &ARTICULO PROTECCION        [150]
 - *  CARGO  &ARTICULO ESTABILIDAD        [150]
 - * OBLIGADO  &ARTICULO SEGURIDAD        [150]
@@ -24285,6 +24271,9 @@ SUCUMBIR
 FENECER
 PERCER
 FALLECER
+- * DESTROZADOS   [186]
+- UNA PERSONA *    [186]
+- PERSONA *   [186]
 - *  REFRIEGA        [186]
 - *  CHOQUE        [186]
 - *  DISPARO  &ARTICULO CRANEO        [186]
@@ -24401,13 +24390,12 @@ DIRIGIR
 +LLEVAR_A_LA_PRACTICA
 EJECUTAR
 - &AUXILIAR *   [190]
-- * EN    [190]
 - PIQUETES SE *        [141]
 - * &PROTESTA VIOLENTA        [145]
 - * &ARTICULO MANIFESTACIÓN_VIOLENTA        [145]
 - * JORNADA DE LUCHA        [130]
 - * &PROTESTA PROGRESIVAS        [130]
-- * &ARTICULO &DETENCION        [173]
+#- * &ARTICULO &DETENCION        [173]
 - * OTRAS &PROTESTA        [130]
 - * INVASIONES        [1711]
 - * &ARTICULO PROTESTA PACÍFICA        [141]
@@ -24691,7 +24679,7 @@ INTENSIFICAR
 - *  &ARTICULO &PROTESTA        [145]
 - * &ARTICULO &PROTESTA        [145]
 
---- PRESIONAR [170]---
+--- PRESIONAR [---]---
 PRESIONAR
 INTIMIDAR
 OBLIGAR
@@ -24868,14 +24856,12 @@ PRENDER
 REVENTARΩ
 SALTAR
 VOLAR
-- * LAS TORRES   [171]
-- * LA TORRE    [171]
 - TRACTOMULA *   [193]
 - &VEHICULO *   [193]
 - * &VEHICULO   [193]
 - * &ARTICULO &VEHICULO   [193]
-- &ARTICULO &VEHICULO &AUXILIAR_ *   [193]
-- &AUXILIAR_ * &ARTICULO &VEHICULO   [193]
+- &ARTICULO &VEHICULO &AUXILIAR *   [193]
+- &AUXILIAR * &ARTICULO &VEHICULO   [193]
 - TRACTOMULAS *   [193]
 - &ARTICULO * &ARTICULO GRANADA   [193]
 - &ARTICULO * &ARTICULO &ARMA    [193]
@@ -25022,34 +25008,35 @@ CONMINAR
 ASUSTAR
 ADVERTIR
 COACCIONAR
+- * DE MUERTE [130]
 - RECIBIO * CONTRA &PREPOSICION VIDA [130]
 - * CONTRA &PREPOSICION VIDA [130]
 - RECIBIO *   [130]
 - RECIBIO * CONTRA &ARTICULO VIDA [130]
 - RECIBIO * &PREPOSICION VIDA [130]
 - RECIBIO &PREPOSICION CORREO FISICO &ARTICULO SOBRE QUE CONTENIA SUFRAGIO [130]
-- &AUXILIAR_ * [130]
-- &PERSONA &AUXILIAR_ * [130]
+- &AUXILIAR * [130]
+- &PERSONA &AUXILIAR * [130]
 - * &ARTICULO &PERSONA [130]
 - * &PERSONA [130]
 - * A &PERSONA [130]
-- A &PERSONA &AUXILIAR_ * [130]
+- A &PERSONA &AUXILIAR * [130]
 - * A &ARTICULO &PERSONA [130]
 - A &ARTICULO &PERSONA * [130]
 - * &ARTICULO &PERSONA [130]
 - * &PERSONA [130]
 - * A &PERSONA [130]
-- A &PERSONA &AUXILIAR_ * [130]
+- A &PERSONA &AUXILIAR * [130]
 - * A &ARTICULO &PERSONA [130]
 - A &ARTICULO &PERSONA * [130]
-- &AUXILIAR_* &ARTICULO &REFUGIADO [130]
+- &AUXILIAR* &ARTICULO &REFUGIADO [130]
 - *  &ARTICULO MUERTE 	[130]
 - *  MUERTE  &ARTICULO &PERSONA		[130]
 - *  MUERTE  &ARTICULO &LIDERGOBIERNO  	[130]
 - *  MUERTE  &ARTICULO &MILITAR 	[130]
 - &ARTICULO *  MUERTE  &ARTICULO &LIDERGOBIERNO 	[130]
 - &ARTICULO *  MUERTE  &ARTICULO &MILITAR 	[130]
-- &AUXILIAR_ *  MUERTE 	[130]
+- &AUXILIAR *  MUERTE 	[130]
 - *  &ARTICULO VIDA [130]
 - * &ARTICULO VIDA  [130]
 - *  SU VIDA  	[130]
@@ -25068,8 +25055,8 @@ COACCIONAR
 - *  &ARTICULO &ARMA   [130]
 - *  MUERTE  &ARMA   [130]
 - *  &ARMA    [130]
-- &AUXILIAR_*  MUERTE    [130]
-- &AUXILIAR_*  MUERTE  &ARMA     [130]
+- &AUXILIAR*  MUERTE    [130]
+- &AUXILIAR*  MUERTE  &ARMA     [130]
 - * &PREPOSICION CONTRA SU VIDA  &ARTICULO &ARMA    [130]
 - * DE MUERTE [130]
 - *  RETIRAR        [135]
@@ -25186,6 +25173,7 @@ COACCIONAR
 - *  PRENDER        [137]
 - *  CONFLICTO ARMADA        [130]
 - *  INFECTAR &ARTICULO AUGA        [130]
+#- * DE MUERTE
 
 --- ATACAR [---]---
 ATACAR
@@ -25384,6 +25372,7 @@ HALLAR
 EXISTIR
 ESTAR
 HABER
+- HALLAR CADAVER    [190]
 - * &ARTICULO  &PROTESTA  PROTESTAS        [130]
 - * E INSULTARON &ARTICULO &POLICIA        [145]
 - * AGREDIERON E INSULTARON  &ARTICULO &PROTESTA        [175]
@@ -25867,10 +25856,11 @@ APARECER
 MOSTRAR
 MORIR   [180]
 - *  HERIDOS        [180]
+- + *  HERIDOS A      [180]
 - *  LIGERAMENTE_HERIDOS        [180]
 - * &ARTICULO HERIDOS        [180]
 - *   HERIDO  &ARMA        [180]
-- *   HERIDO &PREPOSICION &ARTICULO &ARMA        [183]
+- *   HERIDO &PREPOSICION &ARTICULO &ARMA        [180]
 - *   HERIDO &PREPOSICION &ARMA        [183]
 - *   HERIDO &PREPOSICION ACTIVAR &ARMA        [183]
 - *  MUERTO        [180]
@@ -25886,6 +25876,7 @@ MORIR   [180]
 - * HERIDO  BALA        [180]
 - *  &ARTICULO HERIDAS        [180]
 - *  HERIDAS        [180]
+- + *  HERIDAS A     [180]
 - * MUERTOS  &ARTICULO &PROTESTA        [142]
 - * HERIDO  &ARMA        [180]
 - *  &ARTICULO &ARMA        [180]
@@ -25932,13 +25923,6 @@ LLEVAR
 ACARREAR
 TRANSPORTAR
 TRASLADAR
-- * CAMPESINO  [181]
-- * &PERSONA  [181]
-- * DESCONOCIDO   [181]
-- SE * UN DESCONOCIDO  [181]
-- SE * UN CAMPESINO   [181]
-- SE * UNA DESCONOCIDA  [181]
-- SE * UNA CAMPESINA   [181]
 - * &ARTICULO &ARMA        [150]
 - * &ARMA        [150]
 
@@ -26073,7 +26057,7 @@ MOVER
 - * MOTTO        [141]
 - * LOS LEMAS        [141]
 
---- CARACTERIZAR [110]---
+--- CARACTERIZAR [---]---
 CARACTERIZAR
 CALIFICAR
 CATEGORIZAR
@@ -26250,19 +26234,20 @@ MATAR
 LIQUIDAR
 ELIMINAR
 EJECUTAR
-- &PERSONA &AUXILIAR_ *        [190]
+- * DE DOS IMPACTOS DE BALA    [186]
+- &PERSONA &AUXILIAR *        [190]
 - * &ARTICULO &PERSONA          [190]
 - * &PERSONA         [190]
 - * A &PERSONA        [190]
-- A &PERSONA &AUXILIAR_ *        [190]
+- A &PERSONA &AUXILIAR *        [190]
 - * A &ARTICULO &PERSONA         [190]
 - A &ARTICULO &PERSONA *         [190]
-- &AUXILIAR_*        [190]
-- &AUXILIAR_*         [190]
-- &AUXILIAR_*  &ARTICULO &PERSONA          [190]
-- &AUXILIAR_*  &ARTICULO &MILITAR         [190]
-- &AUXILIAR_* &ARTICULO &LIDERGOBIERNO         [190]
-- &ARTICULO &AUXILIAR_*         [190]
+- &AUXILIAR*        [190]
+- &AUXILIAR*         [190]
+- &AUXILIAR*  &ARTICULO &PERSONA          [190]
+- &AUXILIAR*  &ARTICULO &MILITAR         [190]
+- &AUXILIAR* &ARTICULO &LIDERGOBIERNO         [190]
+- &ARTICULO &AUXILIAR*         [190]
 - * &ARTICULO &PERSONA        [190]
 - * &ARTICULO &MILITAR         [190]
 - * &ARTICULO &LIDERGOBIERNO         [190]
@@ -26279,14 +26264,14 @@ EJECUTAR
 - *  VARIOS_IMPACTOS   &ARTICULO ARMA_DE_FUEGO           [190]
 - *  VARIOS_IMPACTOS   &ARTICULO &ARMA            [190]
 - * EXTRAJUDIALMENTE &ARTICULO            [190]
-- &AUXILIAR_* EXTRAJUDIALMENTE            [190]
-- &AUXILIAR_*               [190]
-- &AUXILIAR_*  &ARTICULO &PERSONA              [190]
-- &AUXILIAR_*  &ARTICULO &MILITAR              [190]
-- &AUXILIAR_* &ARTICULO &LIDERGOBIERNO           [190]
-- &AUXILIAR_* EXTRAJUDIALMENTE &ARTICULO &PERSONA            [190]
-- &AUXILIAR_* EXTRAJUDIALMENTE &ARTICULO &MILITAR         [190]
-- &AUXILIAR_* EXTRAJUDIALMENTE &ARTICULO &LIDERGOBIERNO           [190]
+- &AUXILIAR* EXTRAJUDIALMENTE            [190]
+- &AUXILIAR*               [190]
+- &AUXILIAR*  &ARTICULO &PERSONA              [190]
+- &AUXILIAR*  &ARTICULO &MILITAR              [190]
+- &AUXILIAR* &ARTICULO &LIDERGOBIERNO           [190]
+- &AUXILIAR* EXTRAJUDIALMENTE &ARTICULO &PERSONA            [190]
+- &AUXILIAR* EXTRAJUDIALMENTE &ARTICULO &MILITAR         [190]
+- &AUXILIAR* EXTRAJUDIALMENTE &ARTICULO &LIDERGOBIERNO           [190]
 -  *        [180]
 - * A ESCALA MASIVA          [190]
 - &ARTICULO * ILEGITIMO          [190]
@@ -26860,8 +26845,8 @@ DISPONER
 COLOCAR
 - CAMPO_MINADO *   [183]
 - &ARMA *   [183]
-- &AUXILIAR_ * CAMPO MINADO    [183]
-- &AUXILIAR_ * &ARMA    [183]
+- &AUXILIAR * CAMPO MINADO    [183]
+- &AUXILIAR * &ARMA    [183]
 - &AUXILIAR &ARTICULO CAMPO MINADO *    [183]
 - &AUXILIAR * &ARTICULO CAMPO MINADO     [183]
 - * &ARTICULO &ARMA        [180]
