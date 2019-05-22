@@ -4242,7 +4242,8 @@ An instantiated Sentence object
             skipcheck = self.skip_item(lower[i])
             
             #'''
-            #print("i:", i, lower[i], "skip:", skipcheck, "option:",option)
+            #print("i:", i, lower[i], "skip:", skipcheck, "option:",option, "in_NE", in_NE)
+            #print(path.keys())
             #print(len(pathleft))
             #for p in pathleft:
             #    print(p[0].keys(),p[1],p[2])
@@ -4252,7 +4253,7 @@ An instantiated Sentence object
             # return to last point of departure
 
             if skipcheck > 0 and option > -1:
-                #logger.debug("Skipping")
+                # logger.debug("Skipping")
                 if 'NEC' in lower[i]:
                     in_NEC = not in_NEC
                 elif 'NE' in lower[i]:
@@ -4269,6 +4270,7 @@ An instantiated Sentence object
 
             elif i == len(lower) - 1 and not pathleft[-1][2] == 0:
                 # logger.debug("retracing "+str(len(pathleft)))
+                # input(" ")
                 p = pathleft.pop()
                 path = p[0]
                 i = p[1] + 1
@@ -4380,14 +4382,6 @@ An instantiated Sentence object
                 matchlist.append('%')
                 continue
 
-            elif i + 1 < len(lower) and not option > 6:
-                #logger.debug("4369: skipping")
-                option = 0
-                pathleft.append((path, i, 7))
-                i += 1
-                matchlist.append("*")
-                continue
-
             elif '#' in path:
                 logger.debug("Lower pattern matched %s", matchlist)
                 #print(path['#'])
@@ -4397,7 +4391,7 @@ An instantiated Sentence object
                 #print("source:",source)
                 #print("target:",target)
 
-                if result:
+                if result and data[0][0]['code'] != "---":
                     if target != "" and target not in matchlist:
                         #print("source:",source)
                         #print("target:",target)
@@ -4433,8 +4427,16 @@ An instantiated Sentence object
                         source = ""
                 continue
 
+            elif i + 1 < len(lower) and not option > 6:
+                #logger.debug("4386: skipping")
+                option = 0
+                pathleft.append((path, i, 7))
+                i += 1
+                matchlist.append("*")
+                continue
+
             elif not pathleft[-1][2] == 0:
-                #logger.debug("retracing "+str(len(pathleft)))
+                #logger.debug("4438 retracing "+str(len(pathleft)))
                 p = pathleft.pop()
                 #print(p)
                 path = p[0]
@@ -4565,12 +4567,12 @@ An instantiated Sentence object
             nodeID = node[0]
             attrs = node[1]
 
-            if 'pos' in attrs and attrs['pos'] in ['NOUN', 'PROPN']:
+            if 'pos' in attrs and attrs['pos'] in ['NOUN', 'PROPN', 'ADJ']:
 
                 found = False
                 predecessors = self.udgraph.predecessors(nodeID)
                 for predecessor in predecessors:
-                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass']:
+                    if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass', 'amod']:
                     #if 'relation' in self.udgraph[predecessor][nodeID] and self.udgraph[predecessor][nodeID]['relation'] in ['nsubj', 'obj', 'nmod', 'obl', 'dobj', 'iobj', 'nsubjpass', 'nsubj:pass'] and self.udgraph.nodes[predecessor]['pos'] in ["VERB", "ADJ"]:
                         found = True
                         break

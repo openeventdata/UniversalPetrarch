@@ -13749,6 +13749,8 @@ LEVANTAR
 - + ESTAR *        [181]        # KIDNAP <OY 27 Aug 2006> 
 - + FUERON * ^ $        [181]
 - + FUE * ^ $        [181]
+#- + FUERON * $        [181]
+#- + FUE * $        [181]
 - * PERSONA   [181]
 
 
@@ -25382,6 +25384,7 @@ HABER
 - &ARTICULO * ARRESTADOS        [130]
 - * GRAVES CONTRATIEMPOS        [180]
 - * HERIDO        [180]
+- + * MUERTO  $ 	[193]
 - &AUXILIAR * &REHEN        [181]
 - *  &PROTESTA        [130]
 - * GRANDES INCIDENTES        [180]
