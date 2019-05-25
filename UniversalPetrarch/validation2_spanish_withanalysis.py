@@ -424,7 +424,7 @@ def validate_record(valrecord):
         return found
 
 
-
+    '''
     def check_if_matched(return_dict, idstrg):
 
         if '0' in return_dict[idstrg]['sents'] and  'events' in return_dict[idstrg]['sents']['0'] and len(return_dict[idstrg]['sents']['0']['events']) > 0:
@@ -448,21 +448,28 @@ def validate_record(valrecord):
                             break                 
                         else:
                             
+                            sourcematch = True
+                            targetmatch = True
                             #if (edict['eventcode'] == evt[2] and
                             #    edict['sourcecode'] == evt[0][0] and
                             #    edict['targetcode'] == evt[1][0]) :
-                            if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
-                                nfound += 1
-                                break
-                            '''
-                            elif edict['eventcode']== "18/19/20":
-                                tmp = edict['eventcode'].split("/")
-                                for c in tmp:
-                                    if c == evt[2][:2]:
-                                        nfound += 1
-                                        #raw_input("    " + evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")
-                                        break
-                            '''
+                            if edict['eventcode'][:2] not in ["18","19"]:
+                                if edict['eventcode'][:2] == evt[2][:2] and  (sourcematch and targetmatch): # for spanish now only match event code
+                                    fout.write("  CORRECT\n")
+                                    nfound += 1
+                                    edict['found'] = True
+                                    matched = True
+                                    break
+                       
+                            else:
+                                # if 2-digit system event code is 18 and 2-digit gold code is 19, it is counted as correct
+                                # and vice-versa
+                                if evt[2][:2] in ["18","19"] and (sourcematch and targetmatch):
+                                    fout.write("  CORRECT\n")
+                                    nfound += 1
+                                    edict['found'] = True
+                                    matched = True
+                                    break
                                                          
                 except:
                     pass
@@ -473,6 +480,7 @@ def validate_record(valrecord):
                 nfound, ncoded, nnull = 0, 0, 0
 
         return nfound,ncoded,nnull
+    '''
 
     logger = logging.getLogger('petr_log.validate')
 #        logger.addFilter(NoLoggingFilter())  # uncomment to decactivate logging for this function      
@@ -514,13 +522,14 @@ def validate_record(valrecord):
         for strg in parse[:-1].split("\n"):
             fout.write("    " +  strg  + '\n')
     fout.write("Expected events:\n")
+
     for i in range(len(valrecord['events'])):    
         edict =  valrecord['events'][i]
         if "noevents" in edict:
             fout.write("    noevents\n")                 
         else:
-            #fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
-            fout.write("    " + edict['eventcode']  + ' ' + valrecord['eventtexts'][i]['eventtext'] + '\n') 
+            fout.write("    " + edict['eventcode']  + ' ' + edict['sourcecode']  + ' ' + edict['targetcode']  + '\n') 
+            #fout.write("    " + edict['eventcode']  + ' ' + valrecord['eventtexts'][i]['eventtext'] + '\n') 
 
     fout.write("Coded events:\n")
     if '0' not in return_dict[idstrg]['sents']:
@@ -550,24 +559,104 @@ def validate_record(valrecord):
                         break                 
                     else:
                         
+                        sourcematch = False
+                        targetmatch = False
+
+                        if edict['sourcecode'].replace("---","") == evt[0][0].replace("---",""):
+                            sourcematch = True
+                        #elif edict['sourcecode'] == "---" and evt[0][0] != "---":
+                        #    sourcematch = True
+                        else:
+                            #allow partial actor code match in some cases
+                            goldsrcset = []
+                            goldtemp = edict['sourcecode'].replace("---","").replace("COL","")
+                            goldn = len(goldtemp)//3
+                            for i in range(goldn):
+                                goldsrcset.append(goldtemp[i*3:(i+1)*3])
+                            print("g:",goldsrcset)
+                            #input(" ")
+
+                            syssrcset = []
+                            systemp = evt[0][0].replace("---","").replace("COL","")
+                            sysn = len(systemp)//3
+                            for i in range(sysn):
+                                syssrcset.append(systemp[i*3:(i+1)*3])
+                            print("s:",syssrcset)
+                            #input(" ")
+                            if len(syssrcset) >0 and len(goldsrcset)>0:
+                                if len(syssrcset)<= len(goldsrcset):
+                                    fc = 0
+                                    for src in syssrcset:
+                                        if src in goldsrcset:
+                                            fc += 1
+                                    if fc/len(syssrcset) >= 0.5:
+                                        sourcematch = True
+                                        #input(" ")
+                                else:
+                                    fc = 0
+                                    for src in goldsrcset:
+                                        if src in syssrcset:
+                                            fc += 1
+                                    if fc/len(goldsrcset) >= 0.5:
+                                        sourcematch = True
+                                        #input(" ")
+
+                        if edict['targetcode'].replace("---","") == evt[1][0].replace("---",""):
+                            targetmatch = True
+                        #elif edict['targetcode'] == "---" and evt[1][0] != "---":
+                        #    targetmatch = True
+                        else:
+                            goldsrcset = []
+                            goldtemp = edict['targetcode'].replace("---","").replace("COL","")
+                            goldn = len(goldtemp)//3
+                            for i in range(goldn):
+                                goldsrcset.append(goldtemp[i*3:(i+1)*3])
+                            print("g:",goldsrcset)
+                            #input(" ")
+
+                            syssrcset = []
+                            systemp = evt[1][0].replace("---","").replace("COL","")
+                            sysn = len(systemp)//3
+                            for i in range(sysn):
+                                syssrcset.append(systemp[i*3:(i+1)*3])
+                            print("s:",syssrcset)
+                            #input(" ")
+                            if len(syssrcset) >0 and len(goldsrcset)>0:
+                                if len(syssrcset)<= len(goldsrcset):
+                                    fc = 0
+                                    for src in syssrcset:
+                                        if src in goldsrcset:
+                                            fc += 1
+                                    if fc/len(syssrcset) >= 0.5:
+                                        targetmatch = True
+                                        #input(" ")
+                                else:
+                                    fc = 0
+                                    for src in goldsrcset:
+                                        if src in syssrcset:
+                                            fc += 1
+                                    if fc/len(goldsrcset) >= 0.5:
+                                        targetmatch = True
+                                    #input(" ")
                         #if (edict['eventcode'] == evt[2] and
                         #    edict['sourcecode'] == evt[0][0] and
                         #    edict['targetcode'] == evt[1][0]) :
-                        if edict['eventcode'][:2] == evt[2][:2]: # for spanish now only match event code
-                            fout.write("  CORRECT\n")
-                            nfound += 1
-                            edict['found'] = True
-
-                            break
-                        elif edict['eventcode']== "18/19/20":
-                            tmp = edict['eventcode'].split("/")
-                            for c in tmp:
-                                if c == evt[2][:2]:
-                                    fout.write("  CORRECT\n")
-                                    nfound += 1
-                                    edict['found'] = True
-                                    #raw_input("    " + evt[2] + ' ' + evt[0][0] + ' ' + evt[1][0] + "  (" + key + ")")
-                                    break
+                        if edict['eventcode'][:2] not in ["18","19"]:
+                            if edict['eventcode'][:2] == evt[2][:2] and  (sourcematch and targetmatch): # for spanish now only match event code
+                                fout.write("  CORRECT\n")
+                                nfound += 1
+                                edict['found'] = True
+                                matched = True
+                                break
+                        else:
+                            # if 2-digit system event code is 18 and 2-digit gold code is 19, it is counted as correct
+                            # and vice-versa
+                            if evt[2][:2] in ["18","19"] and (sourcematch and targetmatch):
+                                fout.write("  CORRECT\n")
+                                nfound += 1
+                                edict['found'] = True
+                                matched = True
+                                break
 
                 else:
                     fout.write("  ERROR\n") # do we ever hit this now?
@@ -776,14 +865,15 @@ def do_validation():
                     parse = ""
                     found_verb = False
 
-                    gold_is_noun = [False]*len(valrecord['events'])
-                    gold_is_verb = [False]*len(valrecord['events'])
-                    postags = [""]*len(valrecord['events'])
+                    if 'events' in valrecord:
+                        gold_is_noun = [False]*len(valrecord['events'])
+                        gold_is_verb = [False]*len(valrecord['events'])
+                        postags = [""]*len(valrecord['events'])
 
                     while not line.startswith("</Parse"):
                         tmp = line.split("\t")
 
-                        if "noevents" not in valrecord['eventtexts']:
+                        if valrecord['valid'] and 'events' in valrecord and "noevents" not in valrecord['eventtexts']:
 
                             for eid in range(0,len(valrecord['events'])):
                                 #print(tmp)
@@ -828,33 +918,33 @@ def do_validation():
                             stats_dict[valrecord['id']]['nounsent'] = False
                         #raw_input("")
                         #input(" ")
+                    if valrecord['valid'] and 'events' in valrecord:
+                        for eid in range(0,len(valrecord['events'])):
+                            if gold_is_noun[eid] and not gold_is_verb[eid]:
+                                gold_nouns.append(valrecord['id']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext']+"\t"+postags[eid])
+                                #print(valrecord['sentence']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext'])
+                                if "noun_gold" in skiplist:
+                                    valrecord['valid'] = False
+                                    print(valrecord['id']+" contain noun actions")
 
-                    for eid in range(0,len(valrecord['events'])):
-
-                        if gold_is_noun[eid] and not gold_is_verb[eid]:
-                            gold_nouns.append(valrecord['id']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext']+"\t"+postags[eid])
-                            #print(valrecord['sentence']+"\t"+valrecord['text']+"\t"+valrecord['eventtexts'][eid]['eventtext'])
-                            if "noun_gold" in skiplist:
-                                valrecord['valid'] = False
-                                print(valrecord['id']+" contain noun actions")
-
-                            gold_nouns_filenames.append(valrecord['id'])
-                            if valrecord['id'] in stats_dict:
-                                stats_dict[valrecord['id']]['nounaction'] = True
+                                gold_nouns_filenames.append(valrecord['id'])
+                                if valrecord['id'] in stats_dict:
+                                    stats_dict[valrecord['id']]['nounaction'] = True
+                                else:
+                                    stats_dict[valrecord['id']] = {}
+                                    stats_dict[valrecord['id']]['nounaction'] = True
                             else:
-                                stats_dict[valrecord['id']] = {}
-                                stats_dict[valrecord['id']]['nounaction'] = True
-                        else:
-                            if valrecord['id'] in stats_dict:
-                                stats_dict[valrecord['id']]['nounaction'] = False
-                            else:
-                                stats_dict[valrecord['id']] = {}
-                                stats_dict[valrecord['id']]['nounaction'] = False
-                            #raw_input("")
+                                if valrecord['id'] in stats_dict:
+                                    stats_dict[valrecord['id']]['nounaction'] = False
+                                else:
+                                    stats_dict[valrecord['id']] = {}
+                                    stats_dict[valrecord['id']]['nounaction'] = False
+                                #raw_input("")
 
                     #if valrecord['id'] in none_verb_id:
                         #valrecord['valid'] = False
                         #raw_input(valrecord['id'])
+                    
 
                     break
                 line = fin.readline() 
@@ -866,6 +956,9 @@ def do_validation():
                 valrecord['valid'] = False
                 fout.write("Not in the doc list: " + valrecord['id']  + "\n" + idline  + "\n")
                 #input(" ")
+
+            if 'events' not in valrecord:
+                valrecord['valid'] = False
 
             if recordType == 'Sentence' and valrecord['category'] in ValidInclude and valrecord['valid']:
                 validate_record(valrecord)
@@ -1046,6 +1139,7 @@ if __name__ == '__main__':
             fout.write("{:14s}:   {:8d} {:8.2f}%\n".format(lbl, type_counts[ka], np.divide((type_counts[ka] * 100.0),type_counts[0])))
         print("===========================\n")
 
+    '''
     analysis_filename = "Validation_output_analysis_"+datetime.datetime.now().strftime("%Y%m%d")[2:]+".xlsx"
     
     writer = pd.ExcelWriter(analysis_filename)
@@ -1072,10 +1166,8 @@ if __name__ == '__main__':
     none_verb_head = ["ID","Sentence","System verb(lemma)","System Code","Gold event text","Gold Code"]
     none_verb_df = pd.DataFrame(none_verb, columns=none_verb_head)
     none_verb_df.to_excel(writer,sheet_name = "not found", index = False)
-
-
-
     writer.save()
+    '''
 
     fin.close()
     fout.close()

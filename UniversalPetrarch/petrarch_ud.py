@@ -400,6 +400,7 @@ def do_coding(event_dict):
                     event_dict[key]['sents'][sent].setdefault('events', {})
                     event_dict[key]['sents'][sent].setdefault('triplets', {})
                     event_dict[key]['sents'][sent]['verbs'] = sentence.verbs
+                    event_dict[key]['sents'][sent]['nouns'] = sentence.nouns
 
                     for i in range(0,len(p1_coded_events)):
                         #raw_input(p1_coded_events[i])
