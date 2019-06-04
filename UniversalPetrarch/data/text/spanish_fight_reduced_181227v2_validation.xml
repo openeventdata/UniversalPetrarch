@@ -1,4 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
+<Validation>
+<Environment>
+<Verbfile>CAMEO.2.0.txt</Verbfile>
+<P1Verbfile>spanish/verbpatterns_es_190128.txt</P1Verbfile>
+<Actorfile>spanish/actors_unified_181220.txt,spanish/actors_COL.txt</Actorfile>
+<Agentfile>spanish/agents_181220.txt</Agentfile>
+<Discardfile>Phoenix.discards.txt</Discardfile>
+<PICOfile>PETR.Internal.Coding.Ontology.txt</PICOfile>
+<Include>SAT SA AT A TA TAS ATS protest</Include>
+</Environment>
 <Sentences>
 <Sentence category="SAT" date="20181220" evaluate="true" id="note_10320_1" sentence="True" source="nyn">
 <EventText eid="0" eventtext="amenazaron de muerte" sourcetext="Guerrilleros del Frente 13 de las FARC EP" targettext="candidatos" />
@@ -10286,3 +10296,4 @@ m , en el sitio Puente Angosto .
 </Parse>
 </Sentence>
 </Sentences>
+</Validation>

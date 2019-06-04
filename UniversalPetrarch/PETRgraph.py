@@ -3795,7 +3795,7 @@ An instantiated Sentence object
                             if TargetLoc == "" or (TargetLoc and tarcodes == ['---']) or (SourceLoc == "" or (SourceLoc and srccodes == ['---'])):
                                 ##if source or target is not found, use dependency relation to extract source or target
                                 ##todo: check overlap with matched pattern
-                                if (SourceLoc == "" or (SourceLoc and srccodes == ['---'])):
+                                if (SourceLoc == "" or (SourceLoc and srccodes == ['---'])) and "+" not in line:
                                     for s in source:
                                         s.get_meaning()
                                         s.meaning = ["---"] if s.meaning == [] else s.meaning
@@ -3805,7 +3805,7 @@ An instantiated Sentence object
                                     #else:
                                     srccodes = ["---"] if depsrccodes == [] else depsrccodes
 
-                                if TargetLoc == "" or (TargetLoc and tarcodes == ['---']):
+                                if (TargetLoc == "" or (TargetLoc and tarcodes == ['---'])) and "$" not in line:
                                     for t in target:
                                         t.get_meaning()
                                         t.meaning = ["---"] if t.meaning == [] else t.meaning
